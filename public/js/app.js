@@ -161,6 +161,7 @@ module.exports = function xhrAdapter(config) {
         status: request.status,
         statusText: request.statusText,
         headers: responseHeaders,
+
         config: config,
         request: request
       };
