@@ -10,7 +10,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
+            'username' => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,username',
             'password' => 'required|alpha_dash|min:6',
             'verification_key' => 'required|string',
             'verification_code' => 'required|string',

@@ -10,15 +10,15 @@ class UsersController extends Controller
 {
     public function store(UserRequest $request)
     {
-        $verifyCode = \Cache::get($request->verification_key);
-        if(!$verifyCode) {
+        $verifyData = \Cache::get($request->verification_key);
+        if(!$verifyData) {
             abort(403, '验证码已失效');
         }
-        if(!hash_equals($verifyData['code'], $request->verification_code)) {
+        if (!hash_equals($verifyData['code'], $request->verification_code)) {
             // 返回401
             throw new AuthenticationException('验证码错误');
         }
-        $user = new User([
+        $user = User::create([
             'username' => $request->username,
             'phone' => $verifyData['phone'],
             'password' => $request->password,
