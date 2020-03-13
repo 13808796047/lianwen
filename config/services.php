@@ -38,6 +38,6 @@ return [
     //获取字数
     'words_count' => [
         'appid' => env('WORDSCOUNT_APPID'),
-        'key' => ('WORDSCOUNT_KEY')
+        'key' => env('WORDSCOUNT_KEY')
     ]
 ];

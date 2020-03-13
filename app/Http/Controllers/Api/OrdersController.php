@@ -8,6 +8,7 @@ use App\Http\Requests\Api\OrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Category;
 use App\Models\Order;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 
 class OrdersController extends Controller
@@ -27,6 +28,7 @@ class OrdersController extends Controller
 
 
         $order = \DB::transaction(function() use ($user, $category, $uploader, $request, $fileWords) {
+
             if($request->type == 'file' && $file = $request->file) {
                 $result = $uploader->save($file, 'files', $user->id);
                 if($result) {
@@ -34,8 +36,12 @@ class OrdersController extends Controller
                         //读取文件内容
                         $content = file_get_contents($result['path']);
                     } else {
-                        $fileWords->getWords('111', '2222', 'https://www.lianwen.com/asset/upload/15840025082612.docx');
+                        $phpWord = \PhpOffice\PhpWord\IOFactory::load(public_path() . '/uploads/files/202003/13/1_1584106553_fBQMqLJQtb.docx');
+                        $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, "HTML");
 
+                        dd($xmlWriter);
+                        $result = $fileWords->getWords('111', '2222', $result['path']);
+                        dd($result);
 //                        dd(read_doc_from_antiword($result['path']));
 //                        $content = read_docx($result['path']);
                     }
