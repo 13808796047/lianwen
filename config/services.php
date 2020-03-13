@@ -34,5 +34,10 @@ return [
         'client_id' => env('WENXIN_KEY'),
         'client_secret' => env('WEIXIN_SECRET'),
         'redirect' => env('WEIXIN_REDIRECT_URI'),
+    ],
+    //获取字数
+    'words_count' => [
+        'appid' => env('WORDSCOUNT_APPID'),
+        'key' => ('WORDSCOUNT_KEY')
     ]
 ];

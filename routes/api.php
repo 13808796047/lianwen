@@ -41,6 +41,10 @@ Route::prefix('v1')
                 //用户注册
                 Route::post('users', 'UsersController@store')
                     ->name('users.store');
+                //用户me
+                Route::get('users/{user}', function(\App\Models\User $user) {
+                    dd($user);
+                });
                 //登录
                 Route::post('authorizations', 'AuthorizationsController@store')
                     ->name('api.authorizations.store');

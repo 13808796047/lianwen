@@ -124,3 +124,4 @@ function read_doc_from_antiword($file, $antipath = "/usr/bin/antiword", $enc = "
     $content = shell_exec("$antipath -m  $enc $file");
     return remove_spec_char($content);
 }
+

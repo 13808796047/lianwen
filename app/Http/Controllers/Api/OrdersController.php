@@ -3,16 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Handlers\FileUploadHandler;
+use App\Handlers\FileWordsHandle;
 use App\Http\Requests\Api\OrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Category;
 use App\Models\Order;
+use Illuminate\Support\Facades\Http;
 
 class OrdersController extends Controller
 {
     //提交订单
-    public function store(OrderRequest $request, FileUploadHandler $uploader)
+    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords)
     {
+
         $user = $request->user();
 
         $category = Category::find($request->cid);
@@ -23,7 +26,7 @@ class OrdersController extends Controller
         }
 
 
-        $order = \DB::transaction(function() use ($user, $category, $uploader, $request) {
+        $order = \DB::transaction(function() use ($user, $category, $uploader, $request, $fileWords) {
             if($request->type == 'file' && $file = $request->file) {
                 $result = $uploader->save($file, 'files', $user->id);
                 if($result) {
@@ -31,9 +34,9 @@ class OrdersController extends Controller
                         //读取文件内容
                         $content = file_get_contents($result['path']);
                     } else {
+                        $fileWords->getWords('111', '2222', 'https://www.lianwen.com/asset/upload/15840025082612.docx');
 
-
-                        dd(read_doc_from_antiword($result['path']));
+//                        dd(read_doc_from_antiword($result['path']));
 //                        $content = read_docx($result['path']);
                     }
                     //统计字数
