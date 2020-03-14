@@ -6,5 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    //
+    protected $guarded = [];
+    const PRICE_TYPE_THOUSAND = 0;
+    const PRICE_TYPE_MILLION = 1;
+    const PRICE_TYPE_ARTICLE = 2;
+    public static $priceTypeMap = [
+        self::PRICE_TYPE_THOUSAND => '千字/元',
+        self::PRICE_TYPE_MILLION => '万字/元',
+        self::PRICE_TYPE_ARTICLE => '篇'
+    ];
+    const CHECK_TYPE_MANUAL = 0;
+    const CHECK_TYPE_AUTO = 1;
+    public static $checkTypeMap = [
+        self::CHECK_TYPE_MANUAL => '手动',
+        self::CHECK_TYPE_AUTO => 'api'
+    ];
 }
