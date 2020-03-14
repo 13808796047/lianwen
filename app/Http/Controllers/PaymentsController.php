@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\InvalidRequestException;
 use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PaymentsController extends Controller
@@ -45,6 +46,7 @@ class PaymentsController extends Controller
         }
         // $data->out_trade_no 拿到订单流水号，并在数据库中查询
         $order = Order::where('orderid', $data->out_trade_no)->first();
+
         // 正常来说不太可能出现支付了一笔不存在的订单，这个判断只是加强系统健壮性。
         if(!$order) {
             return 'fail';
