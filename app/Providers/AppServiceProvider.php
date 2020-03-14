@@ -24,9 +24,10 @@ class AppServiceProvider extends ServiceProvider
             $config['return_url'] = route('payments.alipay.return');
             //判断当前项目运行环境是否为线上环境
             if(app()->environment() != 'production') {
-                $config['mode'] = 'dev';
+
                 $config['log']['level'] = Logger::DEBUG;
             } else {
+                $config['mode'] = 'dev';
                 $config['log']['level'] = Logger::DEBUG;
             }
             //调用yansongda/pay来创建一个支付宝对象
