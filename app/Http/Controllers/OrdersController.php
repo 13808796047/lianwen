@@ -9,6 +9,6 @@ class OrdersController extends Controller
 {
     public function show(Order $order, Request $request)
     {
-        return view('orders.show', compact('order'));
+        return view('orders.show', ['order' => $order->load('category')]);
     }
 }

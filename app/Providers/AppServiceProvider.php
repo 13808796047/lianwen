@@ -18,10 +18,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //往服务容器中注入一个名为alipay的单例对象
-        $this->app->singleton('alipay_pay_web', function() {
+        $this->app->singleton('alipay', function() {
             $config = config('pay.alipay');
-            $config['notify_url'] = 'http://lianwen.test/api/v1/payment/alipay/notify';
-            $config['return_url'] = 'http://lianwen.test/api/v1/payment/alipay/return';
+            $config['notify_url'] = 'https://dev.lianwen.com/payments/alipay/notify';
+            $config['return_url'] = route('payments.alipay.return');
             //判断当前项目运行环境是否为线上环境
             if(app()->environment() != 'production') {
                 $config['mode'] = 'dev';
