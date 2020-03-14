@@ -125,3 +125,7 @@ function read_doc_from_antiword($file, $antipath = "/usr/bin/antiword", $enc = "
     return remove_spec_char($content);
 }
 
+function route_class()
+{
+    return str_replace('.', '-', Route::currentRouteName());
+}
