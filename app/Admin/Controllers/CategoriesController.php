@@ -32,8 +32,8 @@ class CategoriesController extends AdminController
             return Category::$priceTypeMap[$value];
         });
         $grid->price('单价');
-        $grid->price_agent1('代理商单价');
-        $grid->price_agent2('高级代理单价');
+        $grid->agent_price1('代理商单价');
+        $grid->agent_price2('高级代理单价');
         $grid->check_type('检测模式')->display(function($value) {
             return Category::$checkTypeMap[$value];
         });
@@ -50,26 +50,37 @@ class CategoriesController extends AdminController
     protected function form()
     {
         $form = new Form(new Category());
+        $form->number('classid', '分类ID');
+        $form->text('classname', '分类名称')->rules('required');
+        $form->text('name', '系统名称')->rules('required');
+        $form->text('sname', '系统简介')->rules('required');
+        $priceTypeOption = [
+            0 => '千字/元',
+            1 => '万字/元',
+            2 => '篇'
+        ];
+        $form->select('price_type', '计价方式')->options($priceTypeOption);
+        $form->decimal('price', '检测单价')->default(0.00);
+        $form->decimal('agent_price1', '普通代理价')->default(0.00);
+        $form->decimal('agent_price2', '高级代理价')->default(0.00);
+        $checkTypeOption = [
+            0 => '手动',
+            1 => 'API'
+        ];
+        $form->select('price_type', '计价方式')->options($checkTypeOption);
 
-        $form->number('aid', __('Aid'));
-        $form->number('classid', __('Classid'));
-        $form->text('classname', __('Classname'));
-        $form->switch('status', __('Status'));
-        $form->text('name', __('Name'));
-        $form->text('sname', __('Sname'));
-        $form->switch('price_type', __('Price type'));
-        $form->decimal('price', __('Price'))->default(0.00);
-        $form->decimal('agent_price1', __('Agent price1'))->default(0.00);
-        $form->decimal('agent_price2', __('Agent price2'))->default(0.00);
-        $form->switch('check_type', __('Check type'));
-        $form->number('min_words', __('Min words'));
-        $form->number('max_words', __('Max words'));
-        $form->textarea('intro', __('Intro'));
-        $form->textarea('sintro', __('Sintro'));
-        $form->text('tese', __('Tese'));
-        $form->text('seo_title', __('Seo title'));
-        $form->text('sys_logo', __('Sys logo'));
-        $form->text('sys_ico', __('Sys ico'));
+        $form->number('min_words', '最少字数');
+        $form->number('max_words', '最多字数');
+        $form->textarea('intro', '系统介绍');
+        $form->textarea('sintro', '系统简介');
+
+        $form->text('tese', '特色');
+        $form->text('seo_title', 'SEO标题');
+        $form->text('sys_logo', '系统LOGO');
+        $form->text('sys_ico', '系统图标');
+
+        $form->switch('status', '状态');
+
 
         return $form;
     }
