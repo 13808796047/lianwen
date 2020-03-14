@@ -11,7 +11,7 @@ use Encore\Admin\Show;
 class CategoriesController extends AdminController
 {
 
-    protected $title = '分类列表';
+    protected $title = '检测分类';
 
 
     protected function grid()
@@ -30,6 +30,9 @@ class CategoriesController extends AdminController
             return Category::$checkTypeMap[$value];
         });
         $grid->staus('状态')->bool(['Y' => 1, 'N' => 0]);
+        $grid->actions(function($actions) {
+            $actions->disableView();
+        });
         return $grid;
     }
 

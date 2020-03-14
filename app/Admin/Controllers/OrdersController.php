@@ -15,7 +15,7 @@ class OrdersController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\Models\Order';
+    protected $title = '订单';
 
     /**
      * Make a grid builder.
@@ -26,109 +26,37 @@ class OrdersController extends AdminController
     {
         $grid = new Grid(new Order());
 
-        $grid->column('id', __('Id'));
-        $grid->column('orderid', __('Orderid'));
-        $grid->column('cid', __('Cid'));
-        $grid->column('userid', __('Userid'));
-        $grid->column('status', __('Status'));
-        $grid->column('title', __('Title'));
-        $grid->column('writer', __('Writer'));
-        $grid->column('content', __('Content'));
-        $grid->column('date_publish', __('Date publish'));
-        $grid->column('words', __('Words'));
-        $grid->column('price', __('Price'));
-        $grid->column('pay_price', __('Pay price'));
-        $grid->column('pay_type', __('Pay type'));
-        $grid->column('payid', __('Payid'));
-        $grid->column('date_pay', __('Date pay'));
-        $grid->column('paper_path', __('Paper path'));
-        $grid->column('report_path', __('Report path'));
-        $grid->column('rate', __('Rate'));
-        $grid->column('result', __('Result'));
-        $grid->column('from', __('From'));
-        $grid->column('keyword', __('Keyword'));
-        $grid->column('rid', __('Rid'));
-        $grid->column('del', __('Del'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
-        $grid->column('api_orderid', __('Api orderid'));
-
+        $grid->column('orderid', '订单号');
+        $grid->column('category.name', '分类');
+        // 展示关联关系的字段时，使用 column 方法
+        $grid->column('user.name', '买家');
+        $grid->column('price', '金额');
+        $grid->column('title', '标题');
+        $grid->column('writer', '作者');
+        $grid->column('date_publish', '发表时间');
+        $grid->column('words', '字数');
+        $grid->column('pay_price', '支付金额');
+        $grid->column('pay_type', '支付方式');
+        $grid->column('payid', '支付ID');
+        $grid->column('date_pay', '支付日期');
+        $grid->column('rate', '完成率');
+        $grid->column('result', '结果');
+        $grid->column('from', '来源');
+        $grid->column('created_at', '创建时间');
+        $grid->column('api_orderid', 'api订单ID');
+        // 禁用创建按钮，后台不需要创建订单
+        $grid->disableCreateButton();
+        $grid->actions(function($actions) {
+            // 禁用删除和编辑按钮
+            $actions->disableDelete();
+            $actions->disableEdit();
+        });
+        $grid->tools(function($tools) {
+            // 禁用批量删除按钮
+            $tools->batch(function($batch) {
+                $batch->disableDelete();
+            });
+        });
         return $grid;
-    }
-
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        $show = new Show(Order::findOrFail($id));
-
-        $show->field('id', __('Id'));
-        $show->field('orderid', __('Orderid'));
-        $show->field('cid', __('Cid'));
-        $show->field('userid', __('Userid'));
-        $show->field('status', __('Status'));
-        $show->field('title', __('Title'));
-        $show->field('writer', __('Writer'));
-        $show->field('content', __('Content'));
-        $show->field('date_publish', __('Date publish'));
-        $show->field('words', __('Words'));
-        $show->field('price', __('Price'));
-        $show->field('pay_price', __('Pay price'));
-        $show->field('pay_type', __('Pay type'));
-        $show->field('payid', __('Payid'));
-        $show->field('date_pay', __('Date pay'));
-        $show->field('paper_path', __('Paper path'));
-        $show->field('report_path', __('Report path'));
-        $show->field('rate', __('Rate'));
-        $show->field('result', __('Result'));
-        $show->field('from', __('From'));
-        $show->field('keyword', __('Keyword'));
-        $show->field('rid', __('Rid'));
-        $show->field('del', __('Del'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
-        $show->field('api_orderid', __('Api orderid'));
-
-        return $show;
-    }
-
-    /**
-     * Make a form builder.
-     *
-     * @return Form
-     */
-    protected function form()
-    {
-        $form = new Form(new Order());
-
-        $form->text('orderid', __('Orderid'));
-        $form->number('cid', __('Cid'));
-        $form->number('userid', __('Userid'));
-        $form->switch('status', __('Status'));
-        $form->text('title', __('Title'));
-        $form->text('writer', __('Writer'));
-        $form->textarea('content', __('Content'));
-        $form->datetime('date_publish', __('Date publish'))->default(date('Y-m-d H:i:s'));
-        $form->number('words', __('Words'));
-        $form->decimal('price', __('Price'))->default(0.00);
-        $form->decimal('pay_price', __('Pay price'))->default(0.00);
-        $form->text('pay_type', __('Pay type'));
-        $form->text('payid', __('Payid'));
-        $form->datetime('date_pay', __('Date pay'))->default(date('Y-m-d H:i:s'));
-        $form->text('paper_path', __('Paper path'));
-        $form->text('report_path', __('Report path'));
-        $form->decimal('rate', __('Rate'))->default(0.00);
-        $form->textarea('result', __('Result'));
-        $form->text('from', __('From'));
-        $form->text('keyword', __('Keyword'));
-        $form->number('rid', __('Rid'));
-        $form->text('del', __('Del'));
-        $form->text('api_orderid', __('Api orderid'));
-
-        return $form;
     }
 }

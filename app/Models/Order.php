@@ -13,6 +13,12 @@ class Order extends Model
         return $this->belongsTo(User::class, 'userid');
     }
 
+    //分类
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
