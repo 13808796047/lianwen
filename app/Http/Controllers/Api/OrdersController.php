@@ -8,8 +8,10 @@ use App\Http\Requests\Api\OrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Category;
 use App\Models\Order;
+use http\Exception\InvalidArgumentException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Symfony\Component\CssSelector\Exception\InternalErrorException;
 
 class OrdersController extends Controller
 {
@@ -24,8 +26,6 @@ class OrdersController extends Controller
                 'message' => '此检测通道已关闭!'
             ]);
         }
-
-
         $order = \DB::transaction(function() use ($user, $category, $uploader, $request, $fileWords) {
 
             if($request->type == 'file' && $file = $request->file) {
@@ -42,14 +42,15 @@ class OrdersController extends Controller
                     }
 
                 } else {
-                    return response()->json([
-                        'message' => '文件类型错误'
-                    ]);
+                    throw new InternalErrorException('文件类型错误');
                 }
                 //计算价格
             } else {
                 $content = remove_spec_char($request->input('content'));
                 $words = count_words($content);
+            }
+            if(!$words >= $category->min_word && $words <= $category->max_word) {
+                throw new InvalidArgumentException("检测字数必须在" . $category->min_word . "与" . $category->max_word . "之间");
             }
             switch ($category->price_type) {
                 case 1:
