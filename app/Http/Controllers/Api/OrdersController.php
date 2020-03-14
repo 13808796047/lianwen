@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\InvalidRequestException;
 use App\Handlers\FileUploadHandler;
 use App\Handlers\FileWordsHandle;
 use App\Http\Requests\Api\OrderRequest;
@@ -42,7 +43,7 @@ class OrdersController extends Controller
                     }
 
                 } else {
-                    throw new InternalErrorException('文件类型错误');
+                    throw new InvalidRequestException('文件类型错误');
                 }
                 //计算价格
             } else {
@@ -50,7 +51,7 @@ class OrdersController extends Controller
                 $words = count_words($content);
             }
             if(!$words >= $category->min_word && $words <= $category->max_word) {
-                throw new InvalidArgumentException("检测字数必须在" . $category->min_word . "与" . $category->max_word . "之间");
+                throw new InvalidRequestException('"检测字数必须在" . $category->min_word . "与" . $category->max_word . "之间"');
             }
             switch ($category->price_type) {
                 case 1:

@@ -30,6 +30,13 @@ Route::prefix('v1')
             //订单
             Route::post('orders', 'OrdersController@store')
                 ->name('orders.store');
+            //支付宝网页支付
+            Route::get('payment/{order}/alipay_web', 'AliPaymentsController@aliPayWeb')
+                ->name('payment.alipay_web');
+            Route::get('payment/alipay/return', 'AliPaymentsController@alipayReturn')
+                ->name('payment.alipay.return');
+            Route::post('payment/alipay/notify', 'AliPaymentsController@alipayNotify')
+                ->name('payment.alipay.notify');
         });
 
 
@@ -41,10 +48,10 @@ Route::prefix('v1')
                 //用户注册
                 Route::post('users', 'UsersController@store')
                     ->name('users.store');
-                //用户me
-                Route::get('users/{user}', function(\App\Models\User $user) {
-                    dd($user);
-                });
+//                //用户me
+//                Route::get('users/{user}', function(\App\Models\User $user) {
+//                    dd($user);
+//                });
                 //登录
                 Route::post('authorizations', 'AuthorizationsController@store')
                     ->name('api.authorizations.store');
