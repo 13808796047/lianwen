@@ -16,7 +16,6 @@ class OrdersController extends Controller
     //提交订单
     public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords)
     {
-
         $user = $request->user();
 
         $category = Category::find($request->cid);
@@ -34,38 +33,30 @@ class OrdersController extends Controller
                 if($result) {
                     if($result['ext'] == 'txt') {
                         //读取文件内容
-                        $content = file_get_contents($result['path']);
+                        $content = remove_spec_char(convert2utf8($content));
+                        $words = count_words(remove_spec_char(convert2utf8($content)));
                     } else {
-                        $phpWord = \PhpOffice\PhpWord\IOFactory::load(public_path() . '/uploads/files/202003/13/1_1584106553_fBQMqLJQtb.docx');
-                        $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, "HTML");
-
-                        dd($xmlWriter);
-                        $result = $fileWords->getWords('111', '2222', $result['path']);
-                        dd($result);
-//                        dd(read_doc_from_antiword($result['path']));
-//                        $content = read_docx($result['path']);
+                        $words_count = $fileWords->getWords($request->title, $request->writer, $result['path']);
+                        $words = $words_count['data']['wordCount'];
+                        $content = read_doc_from_antiword($result['path']);
                     }
-                    //统计字数
-                    $content = remove_spec_char(convert2utf8($content));
-                    $words = count_words(remove_spec_char(convert2utf8($content)));
+
                 } else {
-                    return [
+                    return response()->json([
                         'message' => '文件类型错误'
-                    ];
+                    ]);
                 }
                 //计算价格
             } else {
                 $content = remove_spec_char($request->input('content'));
-//                $data['content'] = $content;
                 $words = count_words($content);
             }
-            dd($content, $words);
-            switch ($category->pricetype) {
+            switch ($category->price_type) {
                 case 1:
-                    $price = round($category->price * ceil($words / 1000), 2);
+                    $price = round($category->price * ceil($words * 1.05 / 1000), 2);
                     break;
                 case 2:
-                    $price = round($category->price * ceil($words / 10000), 2);
+                    $price = round($category->price * ceil($words * 1.05 / 10000), 2);
                     break;
                 default:
                     $price = $category->price;
@@ -81,10 +72,9 @@ class OrdersController extends Controller
                 'words' => $words,
                 'price' => $price,
                 'paper_path' => $result['path'],
-                'from' => url()->current()
+                'from' => config('app.url')
             ]);
             $order->user()->associate($user);
-            dd($order);
             $order->save();
             return $order;
         });
