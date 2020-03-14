@@ -10,18 +10,10 @@ use Encore\Admin\Show;
 
 class CategoriesController extends AdminController
 {
-    /**
-     * Title for current resource.
-     *
-     * @var string
-     */
+
     protected $title = '分类列表';
 
-    /**
-     * Make a grid builder.
-     *
-     * @return Grid
-     */
+
     protected function grid()
     {
         $grid = new Grid(new Category());
@@ -50,10 +42,11 @@ class CategoriesController extends AdminController
     protected function form()
     {
         $form = new Form(new Category());
+        $form->number('aid', 'app_id');
         $form->number('classid', '分类ID');
         $form->text('classname', '分类名称')->rules('required');
         $form->text('name', '系统名称')->rules('required');
-        $form->text('sname', '系统简介')->rules('required');
+        $form->text('sname', '系统简称')->rules('required');
         $priceTypeOption = [
             0 => '千字/元',
             1 => '万字/元',
@@ -71,13 +64,13 @@ class CategoriesController extends AdminController
 
         $form->number('min_words', '最少字数');
         $form->number('max_words', '最多字数');
-        $form->textarea('intro', '系统介绍');
+        $form->quill('intro', '系统介绍');
         $form->textarea('sintro', '系统简介');
 
         $form->text('tese', '特色');
         $form->text('seo_title', 'SEO标题');
-        $form->text('sys_logo', '系统LOGO');
-        $form->text('sys_ico', '系统图标');
+        $form->image('sys_logo', '系统LOGO');
+        $form->image('sys_ico', '系统图标');
 
         $form->switch('status', '状态');
 
