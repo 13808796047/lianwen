@@ -114,7 +114,7 @@ class PaymentsController extends Controller
             'pay_price' => $data->total_fee / 100,//支付金额
             'status' => 1,
         ]);
-        app('wechat_pay')->success();
-        return view('pages.success', ['msg' => '付款成功']);;
+
+        return app('wechat_pay')->success();
     }
 }
