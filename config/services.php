@@ -39,5 +39,18 @@ return [
     'words_count' => [
         'appid' => env('WORDSCOUNT_APPID'),
         'key' => env('WORDSCOUNT_KEY')
+    ],
+    //order.lianwen.com接口
+    'lianwne_api' => [
+        'appid' => env('LIANWEN_APPID'),
+        'public_key' => '-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDOBFQY/e4rOhVMMMET8WlgKVr/
+fvaX3UxKMjYhSgD/RVS6a2pbfbLzNRaWO+QW04ABEEBu+q96zuzl5dnYNxtNUYfp
+CBoFgF6ISuWjCVmOdWGS3pIRrkHvYWQF/sjnxukU63uzXPEipjelnYTGRbQgBiWI
+S219oi5cFhQG8bDSKwIDAQAB
+-----END PUBLIC KEY-----
+',
+        'app_key' => env('LIANWEN_APPKEY'),
+        'server_url' => env('LIANWEN_SERVER_URL')
     ]
 ];

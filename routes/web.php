@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Route::get('/', function() {
-//    return view('welcome');
+//    dd(1111);
 //});
 Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
 //支付宝
