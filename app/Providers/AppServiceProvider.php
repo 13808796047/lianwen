@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
             return Pay::alipay($config);
         });
         //微信支付容器
-        $this->app->singleton('wechat_pay_web', function() {
+        $this->app->singleton('wechat_pay', function() {
             $config = config('pay.wechat');
             $config['notify_url'] = 'https://dev.lianwen.com/payments/wechat/notify';
             if(app()->environment() !== 'production') {

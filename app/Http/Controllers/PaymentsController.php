@@ -74,9 +74,9 @@ class PaymentsController extends Controller
         // 校验权限
 //        $this->authorize('own', $order);
         // 校验订单状态
-//        if($order->date_pay || $order->del) {
-//            throw new InvalidRequestException('订单状态不正确');
-//        }
+        if($order->payid || $order->del) {
+            throw new InvalidRequestException('订单状态不正确');
+        }
         // scan 方法为拉起微信扫码支付
         return app('wechat_pay')->scan([
             'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
