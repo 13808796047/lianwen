@@ -175,7 +175,7 @@
                              -->
                   <a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;"
                      href="{{ route('payments.alipay', ['order' => $order->id])}}" class="btn btn-primary btn-sm sbtn">提交</a>
-                  <button class="btn btn-sm btn-success" id='btn-wechat'>微信支付</button>
+                  <button class="btn btn-sm btn-success" type="button" id='btn-wechat'>微信支付</button>
 
                 </form>
                 <div class="clearfix"></div>
@@ -205,7 +205,7 @@
 
 @endsection
 @section('scripts')
-  <script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script>
     $(document).ready(function () {
