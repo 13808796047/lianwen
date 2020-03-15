@@ -53,10 +53,10 @@ class PaymentsController extends Controller
             return 'fail';
         }
         // 如果这笔订单的状态已经是已支付
-//        if($order->date_pay) {
-//            // 返回数据给支付宝
-//            return app('alipay')->success();
-//        }
+        if($order->date_pay) {
+            // 返回数据给支付宝
+            return app('alipay')->success();
+        }
 
         $order->update([
             'date_pay' => Carbon::now(), // 支付时间
@@ -75,7 +75,7 @@ class PaymentsController extends Controller
         // 校验权限
 //        $this->authorize('own', $order);
         // 校验订单状态
-        if($order->payid || $order->del) {
+        if($order->status == 1 || $order->del) {
             throw new InvalidRequestException('订单状态不正确');
         }
         // scan 方法为拉起微信扫码支付
@@ -101,10 +101,10 @@ class PaymentsController extends Controller
             return 'fail';
         }
         // 订单已支付
-//        if ($order->date_pay) {
-//            // 告知微信支付此订单已处理
-//            return app('wechat_pay')->success();
-//        }
+        if($order->date_pay) {
+            // 告知微信支付此订单已处理
+            return app('wechat_pay')->success();
+        }
 
         // 将订单标记为已支付
         $order->update([
@@ -114,7 +114,7 @@ class PaymentsController extends Controller
             'pay_price' => $data->total_fee / 100,//支付金额
             'status' => 1,
         ]);
-
-        return app('wechat_pay')->success();
+        app('wechat_pay')->success();
+        return view('pages.success', ['msg' => '付款成功']);;
     }
 }
