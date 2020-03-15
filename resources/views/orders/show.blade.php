@@ -207,16 +207,8 @@
 @endsection
 @section('scripts')
   <script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+
   <script>
-    // function checkpaied() {
-    //   $.get("/order/paied/JCDC337E", function (data) {
-    //     if (data == true) {
-    //       location.reload();
-    //     }
-    //   });
-    // }
-    <
-    script >
     $(document).ready(function () {
       // 微信支付按钮事件
       $('#btn-wechat').click(function () {
@@ -234,16 +226,16 @@
           })
       });
     });
-  </script>
-  $(function () {
-  setInterval("checkpaied()", 1000);
-  $("#usedeposit").click(function () {
-  if ($(this).is(":checked")) {
-  $("#depositinfo").show();
-  } else {
-  $("#depositinfo").hide();
-  }
-  });
-  });
+
+    $(function () {
+      setInterval("checkpaied()", 1000);
+      $("#usedeposit").click(function () {
+        if ($(this).is(":checked")) {
+          $("#depositinfo").show();
+        } else {
+          $("#depositinfo").hide();
+        }
+      });
+    });
   </script>
 @stop
