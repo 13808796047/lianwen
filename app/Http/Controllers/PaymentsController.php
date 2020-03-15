@@ -52,17 +52,17 @@ class PaymentsController extends Controller
             return 'fail';
         }
         // 如果这笔订单的状态已经是已支付
-        if($order->date_pay) {
-            // 返回数据给支付宝
-            return app('alipay')->success();
-        }
+//        if($order->date_pay) {
+//            // 返回数据给支付宝
+//            return app('alipay')->success();
+//        }
 
         $order->update([
             'date_pay' => Carbon::now(), // 支付时间
             'pay_type' => 'alipay', // 支付方式
             'payid' => $data->trade_no, // 支付宝订单号
-//            'pay_price' => $data->total_amount,//支付金额
-//            'status' => 1,
+            'pay_price' => $data->total_amount,//支付金额
+            'status' => 1,
         ]);
 
         return app('alipay')->success();
