@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /storage/*.key
+/resources/wechat_pay
 /vendor
 .env
 .env.backup
@@ -12,4 +13,4 @@ npm-debug.log
 yarn-error.log
 .idea
 .vscode
-/resources/wechat_pay
+
