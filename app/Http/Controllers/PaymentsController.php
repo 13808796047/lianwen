@@ -12,7 +12,7 @@ class PaymentsController extends Controller
 {
     public function alipay(Order $order, Request $request)
     {
-        if($order->pay_date || $order->del) {
+        if($order->status == 1 || $order->del) {
             throw new InvalidRequestException('订单状态不正确!');
         }
         // 调用支付宝的网页支付
@@ -53,7 +53,7 @@ class PaymentsController extends Controller
             return 'fail';
         }
         // 如果这笔订单的状态已经是已支付
-        if($order->date_pay) {
+        if($order->status == 1) {
             // 返回数据给支付宝
             return app('alipay')->success();
         }
@@ -101,7 +101,7 @@ class PaymentsController extends Controller
             return 'fail';
         }
         // 订单已支付
-        if($order->date_pay) {
+        if($order->status == 1) {
             // 告知微信支付此订单已处理
             return app('wechat_pay')->success();
         }
