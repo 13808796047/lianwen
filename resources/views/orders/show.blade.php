@@ -206,6 +206,7 @@
 
 @endsection
 @section('scripts')
+  <script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
   <script>
     // function checkpaied() {
     //   $.get("/order/paied/JCDC337E", function (data) {
@@ -214,16 +215,35 @@
     //     }
     //   });
     // }
-
-    $(function () {
-      setInterval("checkpaied()", 1000);
-      $("#usedeposit").click(function () {
-        if ($(this).is(":checked")) {
-          $("#depositinfo").show();
-        } else {
-          $("#depositinfo").hide();
-        }
+    <
+    script >
+    $(document).ready(function () {
+      // 微信支付按钮事件
+      $('#btn-wechat').click(function () {
+        swal({
+          // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+          content: $('<img src="{{ route('payments.wechat', ['order' => $order->id]) }}" />')[0],
+          // buttons 参数可以设置按钮显示的文案
+          buttons: ['关闭', '已完成付款'],
+        })
+          .then(function (result) {
+            // 如果用户点击了 已完成付款 按钮，则重新加载页面
+            if (result) {
+              location.reload();
+            }
+          })
       });
     });
+  </script>
+  $(function () {
+  setInterval("checkpaied()", 1000);
+  $("#usedeposit").click(function () {
+  if ($(this).is(":checked")) {
+  $("#depositinfo").show();
+  } else {
+  $("#depositinfo").hide();
+  }
+  });
+  });
   </script>
 @stop
