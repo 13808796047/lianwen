@@ -175,8 +175,7 @@
                              -->
                   <a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;"
                      href="{{ route('payments.alipay', ['order' => $order->id])}}" class="btn btn-primary btn-sm sbtn">提交</a>
-                  <a class="btn btn-success btn-sm"
-                     href="{{ route('payments.wechat', ['order' => $order->id]) }}">微信支付</a>
+                  <button class="btn btn-sm btn-success" id='btn-wechat'>微信支付</button>
 
                 </form>
                 <div class="clearfix"></div>
