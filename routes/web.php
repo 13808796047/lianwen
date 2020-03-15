@@ -24,7 +24,7 @@ Route::post('payments/alipay/notify', 'PaymentsController@alipayNotify')->name('
 //微信
 Route::get('payment/{order}/wechat', 'PaymentsController@wechatPay')->name('payments.wechat');
 
-Route::post('payments/wechat/notify', 'PaymentController@wechatNotify')->name('payments.wechat.notify');
+Route::post('payments/wechat/notify', 'PaymentsController@wechatNotify')->name('payments.wechat.notify');
 //Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

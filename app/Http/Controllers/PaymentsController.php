@@ -110,8 +110,8 @@ class PaymentsController extends Controller
         $order->update([
             'date_pay' => Carbon::now(),
             'pay_type' => 'wechat',
-            'payid' => $data->out_trade_no, // 支付宝订单号
-            'pay_price' => $data->total_fee,//支付金额
+            'payid' => $data->out_trade_no, //订单号
+            'pay_price' => $data->total_fee / 100,//支付金额
             'status' => 1,
         ]);
 
