@@ -4,7 +4,6 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Http\Request;
-use Throwable;
 
 class InvalidRequestException extends Exception
 {
@@ -15,9 +14,11 @@ class InvalidRequestException extends Exception
 
     public function render(Request $request)
     {
-        if($request->exceptsJson()) {
+        if($request->expectsJson()) {
+            // json() 方法第二个参数就是 Http 返回码
             return response()->json(['msg' => $this->message], $this->code);
         }
-//        return view('pages.error', ['msg' => $this->message]);
+
+        return view('pages.error', ['msg' => $this->message]);
     }
 }
