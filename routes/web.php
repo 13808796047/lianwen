@@ -13,9 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function() {
-//    dd(1111);
-//});
+Route::get('/test', function() {
+    $order = [
+        'out_trade_no' => time(),
+        'total_amount' => '0.01',
+        'subject' => 'test subject-刷卡支付',
+    ];
+
+    $result = app('alipay')->scan($order);
+    dd($result);
+});
 Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
 //支付宝
 Route::get('payments/{order}/alipay', 'PaymentsController@alipay')->name('payments.alipay');
