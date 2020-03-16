@@ -34,7 +34,7 @@ class OrdersController extends Controller
             if($file = $request->file) {
                 if(!in_array($file->getClientOriginalExtension(), ['doc', 'docx'])) {
                     //读取文件内容
-                    $content = remove_spec_char(convert2utf8($content));
+                    $content = remove_spec_char(convert2utf8(file_get_contents($file)));
                     $result = $wordHandler->save($content, 'files', $user->id);
                     $words = count_words(remove_spec_char(convert2utf8($content)));
                 } else {
@@ -43,7 +43,7 @@ class OrdersController extends Controller
                     $words = $words_count['data']['wordCount'];
                 }
             } else {
-                $content = remove_spec_char($request->input('content'));
+                $content = remove_spec_char($request->input('content', ''));
                 $result = $wordHandler->save($content, 'files', $user->id);
                 $words = count_words($content);
             }
