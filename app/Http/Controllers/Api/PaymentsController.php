@@ -19,11 +19,12 @@ class PaymentsController extends Controller
 //            throw new InvalidRequestException('订单状态不正确!');
 //        }
         // 调用支付宝的网页支付
-        return app('alipay')->web([
+        return response(app('alipay')->web([
             'out_trade_no' => time(), // 订单编号，需保证在商户端不重复
             'total_amount' => 0.01, // 订单金额，单位元，支持小数点后两位
             'subject' => '支付 联文检测 的订单：' . time(), // 订单标题
-        ]);
+        ]))->header('Content-Type', 'text/plain; charset=UTF-8');
+
     }
 
     // 前端回调页面
