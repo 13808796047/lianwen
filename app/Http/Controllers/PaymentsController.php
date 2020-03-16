@@ -30,10 +30,14 @@ class PaymentsController extends Controller
         try {
             app('alipay')->verify();
         } catch (\Exception $e) {
-            return view('pages.error', ['msg' => '数据不正确']);
+            return response()->json([
+                'message' => '支付失败!'
+            ], 500);
         }
 
-        return view('pages.success', ['msg' => '付款成功']);
+        return response()->json([
+            'message' => '支付成功！'
+        ], 200);
     }
 
     // 服务器端回调
