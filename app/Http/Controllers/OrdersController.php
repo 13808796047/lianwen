@@ -10,10 +10,10 @@ class OrdersController extends Controller
 {
     public function show(Order $order, Request $request, OrderApiHandler $apiHandler)
     {
-        $result = $apiHandler->fileUpload($order);
-        $apiOrder = $apiHandler->createOrder($order, $result);
-        $apiHandler->startCheck($apiOrder);
-        dd($apiHandler->getOrder($apiOrder));
+//        $result = $apiHandler->fileUpload($order);
+//        $apiOrder = $apiHandler->createOrder($order, $result);
+//        $apiHandler->startCheck($apiOrder);
+//        dd($apiHandler->getOrder($apiOrder));
         return view('orders.show', ['order' => $order->load('category')]);
     }
 
