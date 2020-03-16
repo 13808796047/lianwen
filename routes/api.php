@@ -30,13 +30,17 @@ Route::prefix('v1')
             //订单
             Route::post('orders', 'OrdersController@store')
                 ->name('orders.store');
-            //支付宝网页支付
-            Route::get('payment/{order}/alipay_web', 'AliPaymentsController@aliPayWeb')
-                ->name('payment.alipay_web');
-            Route::get('payment/alipay/return', 'AliPaymentsController@alipayReturn')
-                ->name('payment.alipay.return');
-            Route::post('payment/alipay/notify', 'AliPaymentsController@alipayNotify')
-                ->name('payment.alipay.notify');
+            //支付宝支付
+            Route::get('payments/{order}/alipay_scan', 'PaymentsController@alipayScan')
+                ->name('payments.alipay_scan');
+            Route::any('payments/alipay/notify', 'PaymentsController@alipayNotify');
+            Route::any('payments/alipay/return', 'PaymentsController@alipayReturn');
+//            Route::get('payment/{order}/alipay_web', 'AliPaymentsController@aliPayWeb')
+//                ->name('payment.alipay_web');
+//            Route::get('payment/alipay/return', 'AliPaymentsController@alipayReturn')
+//                ->name('payment.alipay.return');
+//            Route::post('payment/alipay/notify', 'AliPaymentsController@alipayNotify')
+//                ->name('payment.alipay.notify');
         });
 
 
