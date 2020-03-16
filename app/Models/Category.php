@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
@@ -21,4 +22,13 @@ class Category extends Model
         self::CHECK_TYPE_MANUAL => '手动',
         self::CHECK_TYPE_AUTO => 'api'
     ];
+
+    public function getSysLogoAttribute()
+    {
+        //如果image字段本身就已经是完整的Url就直接返回
+        if(Str::startsWith($this->attributes['sys_logo'], ['http://', 'https://'])) {
+            return $this->attributes['sys_logo'];
+        }
+        return \Storage::disk('public')->url($this->attributes['sys_logo']);
+    }
 }
