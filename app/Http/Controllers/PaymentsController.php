@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\OrderPaid;
 use App\Exceptions\InvalidRequestException;
+use App\Jobs\CheckOrderStatus;
 use App\Models\Order;
 use Carbon\Carbon;
 use Endroid\QrCode\QrCode;
@@ -71,6 +72,7 @@ class PaymentsController extends Controller
             'status' => 1,
         ]);
         $this->afterPaid($order);
+        $this->dispatch(new CheckOrderStatus($order));
         return app('alipay')->success();
     }
 
@@ -121,6 +123,7 @@ class PaymentsController extends Controller
         ]);
 //        redirect('pages.success');
         $this->afterPaid($order);
+        $this->dispatch(new CheckOrderStatus($order));
         return app('wechat_pay')->success();
     }
 

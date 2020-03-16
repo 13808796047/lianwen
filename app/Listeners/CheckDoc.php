@@ -27,7 +27,7 @@ class CheckDoc implements ShouldQueue
         //调用创建apiOrder
         $apiOrderId = $this->api->createOrder($order, $result);
         //调用获取订单
-        $apiOrder = $this->api->getOrder($apiOrderId);
+        $apiOrder = $this->api->getOrder($apiOrderId->data);
         if($apiOrder->code == 200) {
             $order->update([
                 'rate' => $apiOrder->data->orderCheck->apiResultSemblance,

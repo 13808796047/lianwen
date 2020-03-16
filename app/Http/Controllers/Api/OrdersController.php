@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\InvalidRequestException;
 use App\Handlers\FileUploadHandler;
 use App\Handlers\FileWordsHandle;
+use App\Handlers\OrderApiHandler;
 use App\Handlers\WordHandler;
 use App\Http\Requests\Api\OrderRequest;
 use App\Http\Resources\OrderResource;
+use App\Jobs\CheckOrderStatus;
 use App\Models\Category;
 use App\Models\Order;
 use http\Exception\InvalidArgumentException;
@@ -19,8 +21,9 @@ use Symfony\Component\CssSelector\Exception\InternalErrorException;
 class OrdersController extends Controller
 {
     //提交订单
-    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
+    public function store(OrderRequest $request, OrderApiHandler $api, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
     {
+
         $user = $request->user();
 
         $category = Category::find($request->cid);
