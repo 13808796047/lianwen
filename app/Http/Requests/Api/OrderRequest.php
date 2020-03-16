@@ -12,7 +12,7 @@ class OrderRequest extends FormRequest
         return [
             'title' => 'required',
             'writer' => 'required',
-            'content' => 'required_without:file|min:1000',
+            'content' => 'required_without:file|min:1',
             'file' => 'required_without:content|mimes:txt,doc,docx'
         ];
     }

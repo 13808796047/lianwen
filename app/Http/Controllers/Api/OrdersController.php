@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\InvalidRequestException;
 use App\Handlers\FileUploadHandler;
 use App\Handlers\FileWordsHandle;
+use App\Handlers\WordHandler;
 use App\Http\Requests\Api\OrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Category;
@@ -12,12 +13,13 @@ use App\Models\Order;
 use http\Exception\InvalidArgumentException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use PhpOffice\PhpWord\IOFactory;
 use Symfony\Component\CssSelector\Exception\InternalErrorException;
 
 class OrdersController extends Controller
 {
     //提交订单
-    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords)
+    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
     {
         $user = $request->user();
 
@@ -25,33 +27,29 @@ class OrdersController extends Controller
         if($category->status == 0) {
             return response()->json([
                 'message' => '此检测通道已关闭!'
-            ]);
+            ], 401);
         }
-        $order = \DB::transaction(function() use ($user, $category, $uploader, $request, $fileWords) {
-
-            if($request->type == 'file' && $file = $request->file) {
-                $result = $uploader->save($file, 'files', $user->id);
-                if($result) {
-                    if($result['ext'] == 'txt') {
-                        //读取文件内容
-                        $content = remove_spec_char(convert2utf8($content));
-                        $words = count_words(remove_spec_char(convert2utf8($content)));
-                    } else {
-                        $words_count = $fileWords->getWords($request->title, $request->writer, $result['path']);
-                        $words = $words_count['data']['wordCount'];
-                        $content = read_doc_from_antiword($result['path']);
-                    }
-
+        $order = \DB::transaction(function() use ($user, $category, $uploader, $request, $fileWords, $wordHandler) {
+//            dd($request->file->getClientOriginalExtension());
+            if($file = $request->file) {
+                if(!in_array($file->getClientOriginalExtension(), ['doc', 'docx'])) {
+                    //读取文件内容
+                    $content = remove_spec_char(convert2utf8($content));
+                    $result = $wordHandler->save($content, 'files', $user->id);
+                    $words = count_words(remove_spec_char(convert2utf8($content)));
                 } else {
-                    throw new InvalidRequestException('文件类型错误');
+                    $result = $uploader->save($file, 'files', $user->id);//存本地
+                    $words_count = $fileWords->getWords($request->title, $request->writer, $result['path']);
+                    $words = $words_count['data']['wordCount'];
                 }
-                //计算价格
             } else {
                 $content = remove_spec_char($request->input('content'));
+                $result = $wordHandler->save($content, 'files', $user->id);
                 $words = count_words($content);
             }
+
             if(!$words >= $category->min_word && $words <= $category->max_word) {
-                throw new InvalidRequestException('"检测字数必须在" . $category->min_word . "与" . $category->max_word . "之间"');
+                throw new InvalidRequestException("检测字数必须在" . $category->min_word . "与" . $category->max_word . "之间");
             }
             switch ($category->price_type) {
                 case 1:
@@ -69,7 +67,7 @@ class OrdersController extends Controller
                 'cid' => $request->cid,
                 'title' => $request->title,
                 'writer' => $request->writer,
-                'content' => $content,
+                'content' => '',
                 'date_publish' => $request->date_publish,
                 'words' => $words,
                 'price' => $price,
@@ -81,9 +79,5 @@ class OrdersController extends Controller
             return $order;
         });
         return new OrderResource($order);
-    }
-    public function show()
-    {
-
     }
 }

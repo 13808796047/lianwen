@@ -3,7 +3,7 @@
 namespace App\Handlers;
 class FileUploadHandler
 {
-    protected $allowed_ext = ['doc', 'docx', 'txt'];
+    protected $allowed_ext = ['doc', 'docx'];
 
     public function save($file, $folder, $file_prefix)
     {
@@ -22,7 +22,6 @@ class FileUploadHandler
         $file->move($upload_path, $filename);
         return [
             'path' => config('app.url') . "/$folder_name/$filename",
-            'ext' => $extension,
         ];
     }
 }
