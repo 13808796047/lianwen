@@ -8,14 +8,13 @@ use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
-    public function show(Order $order, Request $request, OrderApiHandler $apiHandler)
+    public function index()
     {
-//        $result = $apiHandler->fileUpload($order);
-//        $apiOrder = $apiHandler->createOrder($order, $result);
-//        $apiHandler->startCheck($apiOrder);
-//        dd($apiHandler->getOrder($apiOrder));
-        return view('orders.show', ['order' => $order->load('category')]);
+
     }
 
-
+    public function show(Order $order, Request $request, OrderApiHandler $apiHandler)
+    {
+        return view('orders.show', ['order' => $order->load('category')]);
+    }
 }
