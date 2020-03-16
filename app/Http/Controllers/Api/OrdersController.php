@@ -82,4 +82,8 @@ class OrdersController extends Controller
         });
         return new OrderResource($order);
     }
+    public function show()
+    {
+
+    }
 }

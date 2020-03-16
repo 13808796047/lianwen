@@ -35,12 +35,10 @@ Route::prefix('v1')
                 ->name('payments.alipay_scan');
             Route::any('payments/alipay/notify', 'PaymentsController@alipayNotify');
             Route::any('payments/alipay/return', 'PaymentsController@alipayReturn');
-//            Route::get('payment/{order}/alipay_web', 'AliPaymentsController@aliPayWeb')
-//                ->name('payment.alipay_web');
-//            Route::get('payment/alipay/return', 'AliPaymentsController@alipayReturn')
-//                ->name('payment.alipay.return');
-//            Route::post('payment/alipay/notify', 'AliPaymentsController@alipayNotify')
-//                ->name('payment.alipay.notify');
+            //微信
+            Route::get('payments/{order}/wechat_scan', 'PaymentsController@wechatScan')
+                ->name('payments.wechat_scan');
+            Route::any('payments/wechat/notify', 'PaymentsController@wechatNotify');
         });
 
 
