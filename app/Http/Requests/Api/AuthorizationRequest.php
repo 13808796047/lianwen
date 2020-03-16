@@ -9,7 +9,7 @@ class AuthorizationRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string',
+            'phone' => 'required|string',
             'password' => 'required|alpha_dash|min:6',
         ];
     }

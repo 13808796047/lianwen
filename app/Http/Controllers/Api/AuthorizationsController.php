@@ -57,11 +57,7 @@ class AuthorizationsController extends Controller
 
     public function store(AuthorizationRequest $request)
     {
-        $username = $request->username;
-        User::where('username', $username)->first() ?
-            $credentials['username'] = $username :
-            $credentials['phone'] = $username;
-
+        $credentials['phone'] = $request->phone;
         $credentials['password'] = $request->password;
         if(!$token = \Auth::guard('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
