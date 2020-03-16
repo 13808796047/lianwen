@@ -13,7 +13,7 @@ use Yansongda\Pay\Pay;
 
 class PaymentsController extends Controller
 {
-    public function alipay(Order $order)
+    public function alipayScan(Order $order)
     {
         if($order->status == 1 || $order->del) {
             throw new InvalidRequestException('订单状态不正确!');
