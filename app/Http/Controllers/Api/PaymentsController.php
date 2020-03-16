@@ -24,7 +24,9 @@ class PaymentsController extends Controller
             'total_amount' => 0.01, // 订单金额，单位元，支持小数点后两位
             'subject' => '支付 联文检测 的订单：' . time(), // 订单标题
         ]);
-        return \response()->json($data);
+        return response()->json([
+            'data' => $data
+        ]);
     }
 
     // 前端回调页面
