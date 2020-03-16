@@ -45,7 +45,7 @@ class CategoriesController extends AdminController
     protected function form()
     {
         $form = new Form(new Category());
-        $form->number('aid', 'app_id');
+        $form->number('cid', 'cid');
         $form->number('classid', '分类ID');
         $form->text('classname', '分类名称')->rules('required');
         $form->text('name', '系统名称')->rules('required');
