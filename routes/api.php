@@ -59,5 +59,7 @@ Route::prefix('v1')
                 Route::post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
                     ->where('social_type', 'weixin')
                     ->name('socials.authorizations.store');
+                //分类
+                Route::get('categories', 'CategoriesController@index')->name('categories.index');
             });
     });
