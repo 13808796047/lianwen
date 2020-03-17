@@ -131,7 +131,7 @@ class OrderApiHandler
             ],
         ];
         try {
-            $response = $this->http->get($this->api . 'order/download-report' . $id, $option);
+            $response = $this->http->get($this->api . 'order/download-report/' . $id, $option);
         } catch (Exception $e) {
             return $e->getMessage();
         }
