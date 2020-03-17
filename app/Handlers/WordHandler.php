@@ -22,6 +22,9 @@ class WordHandler
         $upload_path = public_path() . '/' . $folder_name;
         $filename = $file_prefix . '_' . time() . '_' . \Str::random(10) . '.docx';
         try {
+            if(!file_exists($upload_path)) {
+                mkdir($upload_path);
+            }
             $writer->save($upload_path . '/' . $filename);
             return [
                 'path' => config('app.url') . "/$folder_name/$filename"
