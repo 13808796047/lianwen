@@ -23,7 +23,8 @@ class WordHandler
         $filename = $file_prefix . '_' . time() . '_' . \Str::random(10) . '.docx';
         try {
             if(!file_exists($upload_path)) {
-                mkdir($upload_path);
+                mkdir($upload_path, 0777, true);
+                chmod($upload_path, 0777);
             }
             $writer->save($upload_path . '/' . $filename);
             return [
