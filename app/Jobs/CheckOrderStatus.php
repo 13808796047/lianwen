@@ -33,6 +33,15 @@ class CheckOrderStatus implements ShouldQueue
         //判断对应的订单是否已经被支付
         if($this->status == 5) {
             $file = $api->downloadReport($this->order->api_orderid);
+            $path = 'downloads\report-' . $this->order->api_orderid . '.zip';
+            $result = \Storage::disk('local')->put($path, $file);
+            if($result) {
+                \DB::transaction(function() use ($path) {
+                    $this->order->update([
+                        'report_path' => $path
+                    ]);
+                });
+            }
             return;
         }
 

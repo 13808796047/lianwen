@@ -135,7 +135,7 @@ class OrderApiHandler
         } catch (Exception $e) {
             return $e->getMessage();
         }
-        return json_decode($response->getbody()->getContents());
+        return $response->getbody()->getContents();
 //        return file_put_contents(public_path().'/test.docx',$response->getbody()->getContents());
     }
 
