@@ -137,4 +137,20 @@ class OrderApiHandler
         }
         return json_decode($response->getbody()->getContents());
     }
+
+    public function extractReportDetail($id)
+    {
+        // 构建请求参数
+        $option = [
+            'headers' => [
+                'Token' => $this->token
+            ],
+        ];
+        try {
+            $response = $this->http->get($this->api . 'extract-report-detail/' . $id, $option);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+        return json_decode($response->getbody()->getContents());
+    }
 }
