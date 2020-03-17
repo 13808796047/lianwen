@@ -12,8 +12,8 @@ class OrderRequest extends FormRequest
         return [
             'title' => 'required',
             'writer' => 'required',
-            'content' => 'required_without:file|min:1',
-            'file' => 'required_without:content|mimes:txt,doc,docx'
+//            'content' => 'required_without:file|min:1',
+//            'file' => 'required_without:content|mimes:txt,doc,docx'
         ];
     }
 
@@ -22,8 +22,7 @@ class OrderRequest extends FormRequest
         return [
             'title' => '标题',
             'writer' => '作者',
-            'content' => '内容',
-            'file' => '文件'
+      
         ];
     }
 }

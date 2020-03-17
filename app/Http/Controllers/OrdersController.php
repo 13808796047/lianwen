@@ -17,7 +17,7 @@ class OrdersController extends Controller
     public function show(Order $order, Request $request, OrderApiHandler $apiHandler)
     {
 //        $this->dispatch(new CheckOrderStatus($order));
-        dd($apiHandler->downloadReport($order->api_orderid));
+        dd($apiHandler->downloadReport(A307322871));
         return view('orders.show', ['order' => $order->load('category')]);
     }
 }
