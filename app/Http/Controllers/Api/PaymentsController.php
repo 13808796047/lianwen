@@ -95,10 +95,7 @@ class PaymentsController extends Controller
         //把要转换的字符串作为QrCode的构造函数
         $qrCode = new QrCode($scan->code_url);
         //将生成的二维码图片数据以字符串形式输出，并带上相应的响应类型
-        return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
-//        return response()->json([
-//            'html' => $qrCode->writeString(),
-//        ], 200);
+        return response(json_encode($qrCode->writeString()), 200, ['Content-Type' => $qrCode->getContentType()]);
     }
 
     public function wechatNotify()
