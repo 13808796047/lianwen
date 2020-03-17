@@ -136,6 +136,7 @@ class OrderApiHandler
             return $e->getMessage();
         }
         return json_decode($response->getbody()->getContents());
+//        return file_put_contents(public_path().'/test.docx',$response->getbody()->getContents());
     }
 
     public function extractReportDetail($id)

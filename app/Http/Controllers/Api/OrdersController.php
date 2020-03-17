@@ -83,4 +83,9 @@ class OrdersController extends Controller
         });
         return new OrderResource($order);
     }
+
+    public function index()
+    {
+        return new OrderResource(Order::paginate());
+    }
 }
