@@ -33,7 +33,6 @@ class CheckOrderStatus implements ShouldQueue
         //判断对应的订单是否已经被支付
         if($this->status == 5) {
             $file = $api->downloadReport($this->order->api_orderid);
-            dd($file);
             return;
         }
 
