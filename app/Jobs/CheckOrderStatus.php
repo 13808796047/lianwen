@@ -28,16 +28,26 @@ class CheckOrderStatus implements ShouldQueue
     //当队列处理器从队列中取出任务时，会调用handle()方法
     public function handle()
     {
-        //判断对应的订单是否已经被支付
-        if($this->order->status == 0) {
-            return;
-        }
         $api = new OrderApiHandler();
         $order = $api->getOrder($this->order->api_orderid);
+        //判断对应的订单是否已经被支付
+        if($this->status == 5) {
+            $file = $api->downloadReport($this->order->api_orderid);
+            dd($file);
+            return;
+        }
+
+        if($order->data->order->status == 7) {
+            $status = 3;
+        } elseif($order->data->order->status == 9) {
+            $status = 5;
+        } else {
+            $status = 4;
+        }
         \DB::transaction(function() {
             $this->order->update([
                 'rate' => $order->data->orderCheck->apiResultSemblance,
-                'status' => $order->data->order->status,
+                'status' => $status,
             ]);
         });
     }
