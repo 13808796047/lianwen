@@ -48,7 +48,6 @@ class OrdersController extends Controller
             } else {
                 $content = remove_spec_char($request->input('content', ''));
                 $result = $wordHandler->save($content, 'files', $user->id);
-                dd($result);
                 $words = count_words($content);
             }
 
