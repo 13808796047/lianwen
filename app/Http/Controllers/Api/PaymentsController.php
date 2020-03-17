@@ -92,7 +92,6 @@ class PaymentsController extends Controller
             'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
             'body' => '支付 联文检测 的订单：' . $order->orderid, // 订单描述
         ]);
-        dd($scan);
         //把要转换的字符串作为QrCode的构造函数
         $qrCode = new QrCode($scan->code_url);
         //将生成的二维码图片数据以字符串形式输出，并带上相应的响应类型
