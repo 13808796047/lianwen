@@ -88,4 +88,16 @@ class OrdersController extends Controller
     {
         return new OrderResource(Order::paginate());
     }
+
+    public function show(Order $order)
+    {
+        //        校验权限
+        $this->authorize('own', $order);
+        return new OrderResource($order);
+    }
+
+    public function download(Order $order)
+    {
+        return \Storage::disk('local')->download($order->report_path);
+    }
 }

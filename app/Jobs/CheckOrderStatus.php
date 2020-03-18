@@ -34,7 +34,7 @@ class CheckOrderStatus implements ShouldQueue
         if($this->order->status == 5) {
             $file = $api->downloadReport($this->order->api_orderid);
             $path = 'downloads\report-' . $this->order->api_orderid . '.zip';
-            $result = \Storage::disk('local')->put($path, $file);
+            $result = \Storage::put($path, $file);
             if($result) {
                 \DB::transaction(function() use ($path) {
                     $this->order->update([
