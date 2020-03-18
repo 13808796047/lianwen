@@ -60,7 +60,7 @@ class AuthorizationsController extends Controller
         $credentials['phone'] = $request->phone;
         $credentials['password'] = $request->password;
         if(!$token = \Auth::guard('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => '未登录或登录状态失效'], 401);
         }
         return response()->json([
             'access_token' => $token,
@@ -87,7 +87,7 @@ class AuthorizationsController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60,
+            'expires_in' => auth('api')->factory()->getTTL() * 60 * 60,
         ]);
     }
 }
