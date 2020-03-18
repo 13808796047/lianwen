@@ -39,8 +39,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "ext-pcntl": "73",
-            "ext-posix": "73"
+            "ext-pcntl": "7.3",
+            "ext-posix": "7.3"
         }
     },
     "extra": {
