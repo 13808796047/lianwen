@@ -11,6 +11,7 @@ class OrdersController extends Controller
 {
     public function show(Order $order, Request $request)
     {
+        
 //        return \Storage::disk('local')->download('downloads/report-1.zip');
 //        $file = $apiHandler->downloadReport($order->api_orderid);
 //        $path = 'downloads\report-' . $order->id . '.zip';

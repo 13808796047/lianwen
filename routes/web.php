@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/test', function() {
 //
 //});
-Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
+Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
 //支付宝
 Route::get('payments/{order}/alipay', 'PaymentsController@alipay')
     ->name('payments.alipay');

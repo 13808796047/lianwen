@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 
 class FilesController extends Controller
 {
+
     public function store()
     {
+
         return response()->json([
             'message' => '文件来了...'
         ], 200);
