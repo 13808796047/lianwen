@@ -9,15 +9,10 @@ use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
-    public function index()
+    public function show(Order $order, Request $request)
     {
-
-    }
-
-    public function show(Order $order, Request $request, OrderApiHandler $apiHandler)
-    {
-        return \Storage::disk('local')->download('downloads/report-1.zip');
-//        $this->dispatch(new CheckOrderStatus($order));
+//        return \Storage::disk('local')->download('downloads/report-1.zip');
+        $this->dispatch(new CheckOrderStatus($order));
 //        $file = $apiHandler->downloadReport($order->api_orderid);
 //        $path = 'downloads\report-' . $order->id . '.zip';
 //        $result = \Storage::put($path, $file);
