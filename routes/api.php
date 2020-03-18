@@ -39,6 +39,8 @@ Route::prefix('v1')
             Route::get('payments/{order}/wechat_scan', 'PaymentsController@wechatScan')
                 ->name('payments.wechat_scan');
             Route::any('payments/wechat/notify', 'PaymentsController@wechatNotify');
+            //上传
+            Route::post('upload', 'FilesController@store')->name('uploads.files');
         });
 
 
