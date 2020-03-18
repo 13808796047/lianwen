@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class FilesController extends Controller
 {
-    public function store(FileRequest $request, FileUploadHandler $uploader)
+    public function store()
     {
         return response()->json([
             'message' => '文件来了...'
