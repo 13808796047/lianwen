@@ -32,6 +32,8 @@ Route::prefix('v1')
                 ->name('orders.store');
             Route::get('orders', 'OrdersController@index')
                 ->name('orders.index');
+            Route::get('orders/{order}', 'OrdersController@show')
+                ->name('orders.show');
             //支付宝支付
             Route::get('payments/{order}/alipay_scan', 'PaymentsController@alipayScan')
                 ->name('payments.alipay_scan');
