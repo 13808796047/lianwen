@@ -102,11 +102,4 @@ class OrdersController extends Controller
         $order->content = $report->data->content;
         return new OrderResource($order);
     }
-
-    public function download(Order $order)
-    {
-        //        校验权限
-        $this->authorize('own', $order);
-        return \Storage::disk('local')->download($order->report_path);
-    }
 }
