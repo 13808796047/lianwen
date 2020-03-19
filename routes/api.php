@@ -30,6 +30,8 @@ Route::prefix('v1')
             //订单
             Route::post('orders', 'OrdersController@store')
                 ->name('orders.store');
+            Route::get('orders', 'OrdersController@index')
+                ->name('orders.index');
             //支付宝支付
             Route::get('payments/{order}/alipay_scan', 'PaymentsController@alipayScan')
                 ->name('payments.alipay_scan');
