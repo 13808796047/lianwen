@@ -13,6 +13,7 @@ use App\Jobs\CheckOrderStatus;
 use App\Models\Category;
 use App\Models\Order;
 use http\Exception\InvalidArgumentException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use PhpOffice\PhpWord\IOFactory;
@@ -84,9 +85,13 @@ class OrdersController extends Controller
         return new OrderResource($order);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return new OrderResource(Order::paginate()->load('category'));
+        $orders = Order::query()
+            ->where('userid', $request->user()->id)
+            ->with('category')
+            ->paginate();
+        return OrderResource::collection($orders);
     }
 
     public function show(Order $order)
