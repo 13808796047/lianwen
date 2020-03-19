@@ -21,9 +21,9 @@ class OrdersController extends Controller
 //    }
     public function download(Order $order)
     {
-        $this->dispatch(new CheckOrderStatus($order));
+//        $this->dispatch(new CheckOrderStatus($order));
 //        //        校验权限
 //        $this->authorize('own', $order);
-//        return \Storage::disk('local')->download($order->report_path);
+        return \Storage::disk('local')->download($order->report_path);
     }
 }
