@@ -13,8 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', 'PagesController@index')->name('pages.index');
 Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
+
+
+//下载
+Route::get('orders/{order}/download', 'OrdersController@download')
+    ->name('orders.download');
+
 //支付宝
 Route::get('payments/{order}/alipay', 'PaymentsController@alipay')
     ->name('payments.alipay');

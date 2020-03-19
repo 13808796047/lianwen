@@ -13,6 +13,7 @@ use App\Jobs\CheckOrderStatus;
 use App\Models\Category;
 use App\Models\Order;
 use http\Exception\InvalidArgumentException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use PhpOffice\PhpWord\IOFactory;
@@ -84,20 +85,21 @@ class OrdersController extends Controller
         return new OrderResource($order);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return new OrderResource(Order::paginate());
+        $orders = Order::query()
+            ->where('userid', $request->user()->id)
+            ->with('category:id,name')
+            ->paginate();
+        return OrderResource::collection($orders);
     }
 
-    public function show(Order $order)
+    public function show(Request $request, Order $order, OrderApiHandler $api)
     {
         //        校验权限
         $this->authorize('own', $order);
+        $report = $api->extractReportDetail($order->api_orderid);
+        $order->content = $report->data->content;
         return new OrderResource($order);
-    }
-
-    public function download(Order $order)
-    {
-        return \Storage::disk('local')->download($order->report_path);
     }
 }

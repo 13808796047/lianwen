@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')
     ->namespace('Api')
     ->name('api.v1')
-    ->middleware('throttle:' . config('api.rate_limits.sign'))
+//    ->middleware('throttle:' . config('api.rate_limits.sign'))
     ->group(function() {
         Route::middleware('auth:api')->group(function() {
 
@@ -30,6 +30,10 @@ Route::prefix('v1')
             //订单
             Route::post('orders', 'OrdersController@store')
                 ->name('orders.store');
+            Route::get('orders', 'OrdersController@index')
+                ->name('orders.index');
+            Route::get('orders/{order}', 'OrdersController@show')
+                ->name('orders.show');
             //支付宝支付
             Route::get('payments/{order}/alipay_scan', 'PaymentsController@alipayScan')
                 ->name('payments.alipay_scan');
