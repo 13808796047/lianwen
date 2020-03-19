@@ -13,15 +13,19 @@
       <li><a href="./check/index/14#2">知网查重</a></li>
       <li id="report"><a href="./report">查看报告</a></li>
     </ul>
-    <div class="more fr">
-      <img
-        src="http://thirdwx.qlogo.cn/mmopen/VzQsdzsGScPNH7sV7oYFtiaKQFldT8I9VKEV1gCEBJFudnfK9gwsiaUcgtkqNeOuQJiagcIskGhibHwfn1cEfQkoFg/132"
-        class="imguser"
-      /><a href="./logout" class="reg">登出</a>&nbsp;<a
-        href="./user/profile"
-        class="reg"
-      >个人中心</a
-      >
-    </div>
+
+    @auth
+      <div class="more fr">
+        <img
+          src="http://thirdwx.qlogo.cn/mmopen/VzQsdzsGScPNH7sV7oYFtiaKQFldT8I9VKEV1gCEBJFudnfK9gwsiaUcgtkqNeOuQJiagcIskGhibHwfn1cEfQkoFg/132"
+          class="imguser"
+        /><a href="./logout" class="reg">登出</a>&nbsp;<a
+          href="./user/profile"
+          class="reg"
+        >个人中心</a
+        >
+      </div>
+      {{ Auth::user()->phone }}
+    @endauth
   </div>
 </div>

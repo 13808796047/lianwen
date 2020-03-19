@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//登录
+Route::get('login', 'LoginController@showLoginForm')->name('login');
+Route::post('login', 'LoginController@login')->name('login');
 
 Route::get('/', 'PagesController@index')->name('pages.index');
 Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
@@ -35,5 +38,10 @@ Route::get('payments/{order}/wechat', 'PaymentsController@wechatPay')
 Route::post('payments/wechat/notify', 'PaymentsController@wechatNotify')
     ->name('payments.wechat.notify');
 
+
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
