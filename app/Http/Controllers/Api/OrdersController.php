@@ -86,7 +86,7 @@ class OrdersController extends Controller
 
     public function index()
     {
-        return new OrderResource(Order::paginate());
+        return new OrderResource(Order::paginate()->load('category'));
     }
 
     public function show(Order $order)
