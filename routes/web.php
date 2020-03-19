@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/test', function() {
-//
-//});
+Route::get('/', 'PagesController@index')->name('pages.index');
 Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
 //支付宝
 Route::get('payments/{order}/alipay', 'PaymentsController@alipay')
@@ -29,6 +27,6 @@ Route::get('payments/{order}/wechat', 'PaymentsController@wechatPay')
     ->name('payments.wechat');
 Route::post('payments/wechat/notify', 'PaymentsController@wechatNotify')
     ->name('payments.wechat.notify');
-//Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+
