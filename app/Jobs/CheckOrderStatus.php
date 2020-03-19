@@ -32,7 +32,7 @@ class CheckOrderStatus implements ShouldQueue
         //判断对应的订单是否已经被支付
         if($this->order->status == OrderEnum::CHECKED) {
             $file = $api->downloadReport($this->order->api_orderid);
-            $path = 'downloads\report-' . $this->order->api_orderid . '.zip';
+            $path = 'downloads/report-' . $this->order->api_orderid . '.zip';
             $result = \Storage::put($path, $file);
             if($result) {
                 \DB::transaction(function() use ($path) {

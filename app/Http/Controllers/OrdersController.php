@@ -24,6 +24,6 @@ class OrdersController extends Controller
 //        $this->dispatch(new CheckOrderStatus($order));
 //        //        校验权限
 //        $this->authorize('own', $order);
-        return response()->download(storage_path('app/downloads/') . $order->report_path);
+        return response()->download(storage_path() . '/' . $order->report_path);
     }
 }
