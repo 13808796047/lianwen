@@ -89,7 +89,7 @@ class OrdersController extends Controller
     {
         $orders = Order::query()
             ->where('userid', $request->user()->id)
-            ->with('category')
+            ->with('category:id,name')
             ->paginate();
         return OrderResource::collection($orders);
     }
