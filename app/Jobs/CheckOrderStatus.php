@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Handlers\OrderApiHandler;
+use App\Models\Enum\OrderEnum;
 use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -19,8 +20,6 @@ class CheckOrderStatus implements ShouldQueue
     public function __construct(Order $order)
     {
         $this->order = $order;
-        //设置延迟的时间，delay()方法的参数代表多少秒之后执行
-//        $this->delay($delay);
 
     }
 
@@ -31,7 +30,7 @@ class CheckOrderStatus implements ShouldQueue
         $api = new OrderApiHandler();
         $order = $api->getOrder($this->order->api_orderid);
         //判断对应的订单是否已经被支付
-        if($this->order->status == 5) {
+        if($this->order->status == OrderEnum::CHECKED) {
             $file = $api->downloadReport($this->order->api_orderid);
             $path = 'downloads\report-' . $this->order->api_orderid . '.zip';
             $result = \Storage::put($path, $file);
@@ -46,11 +45,11 @@ class CheckOrderStatus implements ShouldQueue
         }
 
         if($order->data->order->status == 7) {
-            $status = 3;
+            $status = OrderEnum::INLINE;
         } elseif($order->data->order->status == 9) {
-            $status = 5;
+            $status = OrderEnum::CHECKED;
         } else {
-            $status = 4;
+            $status = OrderEnum::TIMEOUT;
         }
         \DB::transaction(function() use ($order, $status) {
             $this->order->update([

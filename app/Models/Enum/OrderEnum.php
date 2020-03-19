@@ -26,6 +26,14 @@ class OrderEnum
                 return '排队中';
             case self::CHECKING:
                 return '检测中';
+            case self::CHECKED:
+                return '检测完成';
+            case self::TIMEOUT:
+                return '暂停';
+            case self::CANCEL:
+                return '取消';
+            case self::REFUNDED:
+                return '已退款';
         }
     }
 }
