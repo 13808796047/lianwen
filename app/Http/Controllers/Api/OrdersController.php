@@ -105,6 +105,8 @@ class OrdersController extends Controller
 
     public function download(Order $order)
     {
+        //        校验权限
+        $this->authorize('own', $order);
         return \Storage::disk('local')->download($order->report_path);
     }
 }
