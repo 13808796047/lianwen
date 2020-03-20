@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //微信登录
-Route::get('/oauth/{type}', 'AuthenticationsController@oauth');
+Route::get('/oauth/{type}', 'AuthenticationsController@oauth')->name('oauth');
 
 Route::get('/oauth/{type}/callback', 'AuthenticationsController@callback');
 

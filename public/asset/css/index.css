@@ -7,7 +7,7 @@
   -webkit-box-sizing: border-box;
   /* Safari */
   list-style-type: none;
-  border: 0;
+
 }
 
 a {
@@ -137,19 +137,6 @@ body {
   top: 55px;
   margin-left: 190px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-
-.icon-wx {
-  background-image: url('../images/icon.png');
-  background-color: initial;
-}
-
-.icon-wx {
-  width: 63px;
-  height: 63px;
-  background: url('../images/icon.png');
-  background-position: -217px -170px;
-  cursor: pointer;
 }
 
 .login-box .header {

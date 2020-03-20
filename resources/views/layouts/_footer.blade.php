@@ -1,3 +1,6 @@
-<div class="foot">
-  本检测报告由联文检测®提供
+<div class="footer">
+  <div class="container">
+    COPYRIGHT © 2005-2020 深圳智汇教育有限公司 粤ICP备16093775号 联文检测 版权所有 客服热线：400-823-8869 <a href="/sitemap.xml">网站地图</a> <a
+      href="javascript:void(0)">关于我们</a>
+  </div>
 </div>

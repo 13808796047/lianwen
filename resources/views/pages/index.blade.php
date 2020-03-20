@@ -116,15 +116,17 @@
               </form>
               <div class="form-item">
                 还没有账号？<a
-                  href="javascript:void(0)"
-                  onclick="window.location.href='/register'"
+                  href="{{route('register')}}"
                 >立即注册</a
                 >
+                <a href="{{route('oauth',['type'=>'wechat'])}}"
+                   style="padding-left: 20px;font-size: 2rem; cursor: pointer"><i
+                    class="fab fa-weixin"></i></a>
               </div>
               <div class="oauth" style="padding: 20px 0px;">
                 <p style="text-align: center">
                   <i class="icon icon-qq"></i>
-                  <i class="icon icon-wx"></i>
+                  <i class="icon icon-wx" style=""></i>
                 </p>
               </div>
             </div>
