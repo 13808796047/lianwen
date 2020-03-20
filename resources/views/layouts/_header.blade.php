@@ -17,7 +17,7 @@
     @auth
       <div class="more fr">
         <img
-          src="http://thirdwx.qlogo.cn/mmopen/VzQsdzsGScPNH7sV7oYFtiaKQFldT8I9VKEV1gCEBJFudnfK9gwsiaUcgtkqNeOuQJiagcIskGhibHwfn1cEfQkoFg/132"
+          src="{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}"
           class="imguser"
         /><a href="./logout" class="reg">登出</a>&nbsp;<a
           href="./user/profile"
@@ -25,7 +25,7 @@
         >个人中心</a
         >
       </div>
-      {{ Auth::user()->phone }}
+      {{ Auth::user()->nick_name }}
     @endauth
   </div>
 </div>

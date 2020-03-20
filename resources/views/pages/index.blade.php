@@ -138,8 +138,8 @@
           <div class="box-main">
             <div class="content listbox">
               <p class='logintitle'>欢迎你</p>
-              <p class='loginname'>{{Auth::user()->username}}</p>
-              <img src='https://css.lianwen.com/images/head.jpg' class='loginimg'>
+              <p class='loginname'>{{Auth::user()->nick_name}}</p>
+              <img src='{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}' class='loginimg'>
               <a href='javascript:;' id="logoutBtn" class='exit'>退出</a>
             </div>
           </div>
