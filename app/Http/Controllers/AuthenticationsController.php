@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use EasyWeChat\Factory;
 use Illuminate\Http\Request;
 use Overtrue\Socialite\SocialiteManager;
 
@@ -13,15 +12,18 @@ class AuthenticationsController extends Controller
     public function __construct()
     {
         $config = [
-            'app_id' => 'wxdaab22b871fc3982', // AppID
-            'secret' => '6680c8ec8bd33997d3f709b889f36d17', // AppSecret
-            'redirect' => 'https://dev.lianwen.com/auth/weixin/callback',
+            'wechat' => [
+                'app_id' => 'wxdaab22b871fc3982', // AppID
+                'secret' => '6680c8ec8bd33997d3f709b889f36d17', // AppSecret
+                'redirect' => 'https://dev.lianwen.com/auth/weixin/callback',
+            ]
         ];
         $this->app = new SocialiteManager($config);
     }
 
     public function oauth($type, Request $request)
     {
+
         return $this->app->driver('wechat')->redirect();
     }
 
