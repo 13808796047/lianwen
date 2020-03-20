@@ -14,11 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 //微信登录
-Route::get('/oauth/{type}', 'AuthenticationsController@oauth')
-    ->middleware('guest');
+Route::get('/oauth/{type}', 'AuthenticationsController@oauth');
 
-Route::get('/oauth/{type}/callback', 'AuthenticationsController@callback')
-    ->middleware('guest');
+Route::get('/oauth/{type}/callback', 'AuthenticationsController@callback');
 
 Route::get('/', 'PagesController@index')->name('pages.index');
 Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
