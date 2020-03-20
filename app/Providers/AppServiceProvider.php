@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -54,5 +55,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        view()->composer('layouts._header', function($view) {
+            // 这里的菜单是随意写的，可以根据实际情况去获取，比如从数据库中
+//            $categories_id = Category::all()->groupBy('classid');
+//
+//            dd($categories_id);
+            $categories = \DB::table('categories')->distinct()->select(['classname', 'classid'])->get();
+//            dd($categories);
+            $view->with('categories', $categories);
+        });
     }
 }

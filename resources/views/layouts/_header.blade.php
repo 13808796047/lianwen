@@ -8,9 +8,10 @@
         /></a>
     </div>
     <ul class="navlist fl">
-      <li><a href="./check/index/14#0">论文查重</a></li>
-      <li><a href="./check/index/14#1">维普检测</a></li>
-      <li><a href="./check/index/14#2">知网查重</a></li>
+      @foreach($categories as $category)
+
+        <li><a href="{{route('categories.show',['classid'=>$category->classid])}}">{{$category->classname}}</a></li>
+      @endforeach
       <li id="report"><a href="./report">查看报告</a></li>
     </ul>
 

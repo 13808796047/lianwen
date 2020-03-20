@@ -19,6 +19,8 @@ Route::get('/oauth/{type}', 'AuthenticationsController@oauth')->name('oauth');
 Route::get('/oauth/{type}/callback', 'AuthenticationsController@callback');
 
 Route::get('/', 'PagesController@index')->name('pages.index');
+
+Route::get('categories/{classid}', 'CategoriesController@show')->name('categories.show');
 Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
 
 
