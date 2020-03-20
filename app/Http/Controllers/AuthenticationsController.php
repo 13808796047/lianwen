@@ -51,6 +51,6 @@ class AuthenticationsController extends Controller
                 break;
         }
         auth('web')->login($user);
-        return redirect()->to('pages.index');
+        return redirect()->to('/');
     }
 }
