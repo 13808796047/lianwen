@@ -13,8 +13,8 @@ class AuthenticationsController extends Controller
     {
         $config = [
             'wechat' => [
-                'app_id' => 'wxdaab22b871fc3982', // AppID
-                'secret' => '6680c8ec8bd33997d3f709b889f36d17', // AppSecret
+                'client_id' => 'wxdaab22b871fc3982', // AppID
+                'client_secret' => '6680c8ec8bd33997d3f709b889f36d17', // AppSecret
                 'redirect' => 'https://dev.lianwen.com/auth/weixin/callback',
             ]
         ];
