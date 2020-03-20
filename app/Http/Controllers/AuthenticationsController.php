@@ -15,7 +15,7 @@ class AuthenticationsController extends Controller
             'wechat' => [
                 'client_id' => 'wxdaab22b871fc3982', // AppID
                 'client_secret' => '6680c8ec8bd33997d3f709b889f36d17', // AppSecret
-                'redirect' => 'https://dev.lianwen.com',
+                'redirect' => 'https://dev.lianwen.com/oauth/weixin/callback',
             ]
         ];
         $this->app = new SocialiteManager($config);
@@ -29,7 +29,8 @@ class AuthenticationsController extends Controller
 
     public function callback($type, Request $request)
     {
-        return '测试';
+        $user = $socialite->driver('wechat')->user();
+        dd($user);
 //        $oauthUser = \Socialite::with($type)->user();
 //        dd($oauthUser);
     }
