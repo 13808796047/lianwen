@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//登录
-//Route::get('login', 'LoginController@showLoginForm')->name('login');
-//Route::post('login', 'LoginController@login')->name('login');
+//微信登录
+# 用户点击登录按钮时请求的地址
+Route::get('/auth/oauth', 'Auth\AuthController@oauth');
+
+# 微信接口回调地址
+Route::get('/auth/callback', 'Auth\AuthController@callback');
 
 Route::get('/', 'PagesController@index')->name('pages.index');
 Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
@@ -37,7 +40,6 @@ Route::get('payments/{order}/wechat', 'PaymentsController@wechatPay')
     ->name('payments.wechat');
 Route::post('payments/wechat/notify', 'PaymentsController@wechatNotify')
     ->name('payments.wechat.notify');
-
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
