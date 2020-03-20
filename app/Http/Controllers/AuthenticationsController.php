@@ -13,7 +13,8 @@ class AuthenticationsController extends Controller
 
     public function callback($type, Request $request)
     {
-        $oauthUser = \Socialite::with($type)->user();
-        dd($oauthUser);
+        echo '1111';
+//        $oauthUser = \Socialite::with($type)->user();
+//        dd($oauthUser);
     }
 }
