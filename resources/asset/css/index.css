@@ -17,11 +17,11 @@ a {
 body {
   font-size: 14px;
   background: #ebedf3;
-  user-select:none;
-  -moz-user-select:none;/*火狐*/
-  -webkit-user-select:none;/*webkit浏览器*/
-  -ms-user-select:none;/*IE10*/
-  -khtml-user-select:none;/*早期浏览器*/
+  user-select: none;
+  -moz-user-select: none; /*火狐*/
+  -webkit-user-select: none; /*webkit浏览器*/
+  -ms-user-select: none; /*IE10*/
+  -khtml-user-select: none; /*早期浏览器*/
 }
 
 .fl {
@@ -38,27 +38,30 @@ body {
 
 /* 头部 */
 .head {
-    background: #ffffff;
-    border-bottom: 1px solid #c1bebd;
-    box-shadow: 0px 0px 3px #c1bebd;
-    height: 76px;
-	margin-bottom:6px;
+  background: #ffffff;
+  border-bottom: 1px solid #c1bebd;
+  box-shadow: 0px 0px 3px #c1bebd;
+  height: 76px;
+  margin-bottom: 6px;
 }
 
 .head .navlist a:hover {
-    color: #FF0000 !important;
+  color: #FF0000 !important;
 }
 
 .head .nav {
-    height: 71px;
-    white-space: nowrap;
+  height: 71px;
+  white-space: nowrap;
 }
 
 .head .logo {
   background: #0084DB;
-  padding:8px 30px;
+  padding: 8px 30px;
 }
-.head .logo img{ height:55px;}
+
+.head .logo img {
+  height: 55px;
+}
 
 .head .logo .version {
   color: #ffffff;
@@ -91,7 +94,7 @@ body {
   width: 250px;
   right: 30px;
   position: absolute;
-  z-index:99;
+  z-index: 99;
 }
 
 .head .reg {
@@ -101,7 +104,7 @@ body {
   padding: 3px 16px;
   border-radius: 3px;
   line-height: 71px;
-  margin-left:13px;
+  margin-left: 13px;
 }
 
 .head .login {
@@ -116,8 +119,8 @@ body {
 .login-banner {
   height: 620px;
   position: relative;
-  background: url('/images/bg0.jpg') no-repeat center center;
-  background-color: rgb(69,119,195);
+  background: url('../images/bg0.jpg') no-repeat center center;
+  background-color: rgb(69, 119, 195);
   background-size: 100% 100%;
 }
 
@@ -242,11 +245,12 @@ body {
   font-size: 18px;
   border-radius: 4px;
 }
+
 /*检测按钮*/
-.login-banner-box{
-  width:90%;
-  height:100%;
-  margin:0 auto;
+.login-banner-box {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .bg_orange_container a {
@@ -255,7 +259,7 @@ body {
   color: #ff6b4e;
   font-size: 26px;
   font-family: "SourceHanSansSC";
-  margin-right:450px;
+  margin-right: 450px;
   font-weight: bold;
   height: 64px;
   line-height: 66px;
@@ -305,7 +309,8 @@ body {
   line-height: 28px;
   color: #56565e;
 }
-.form-item a{
+
+.form-item a {
   color: #3e8bdb;
   text-decoration: underline;
 }
@@ -322,27 +327,31 @@ body {
 }
 
 /*登陆后样式*/
-.logintitle{
+.logintitle {
   font-size: 19px;
   margin-top: 30px;
 }
-.loginname{
+
+.loginname {
   font-size: 16px;
   margin-top: 10px;
-  color:#999;
+  color: #999;
 }
-.loginimg{
+
+.loginimg {
   width: 129px;
   height: 129px;
   border-radius: 50%;
   border: 1px solid #D3D5D7;
   margin: 20px 0;
 }
-.loginbalance{
+
+.loginbalance {
   font-size: 16px;
   margin-bottom: 23px;
 }
-.exit{
+
+.exit {
   display: inline-block;
   color: #fff;
   background: #FE5722;
@@ -351,7 +360,8 @@ body {
   font-size: 16px;
   line-height: 40px;
 }
-.start{
+
+.start {
   display: inline-block;
   color: #fff;
   background: #2281e6;
@@ -359,6 +369,9 @@ body {
   height: 40px;
   font-size: 16px;
   line-height: 40px;
-  margin-bottom:5px;
+  margin-bottom: 5px;
 }
-.foot a{ color:#cccccc;}
+
+.foot a {
+  color: #cccccc;
+}

@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 //登录
-Route::get('login', 'LoginController@showLoginForm')->name('login');
-Route::post('login', 'LoginController@login')->name('login');
+//Route::get('login', 'LoginController@showLoginForm')->name('login');
+//Route::post('login', 'LoginController@login')->name('login');
 
 Route::get('/', 'PagesController@index')->name('pages.index');
 Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
