@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 //微信登录
-# 用户点击登录按钮时请求的地址
-Route::get('/auth/oauth', 'Auth\AuthController@oauth');
+Route::get('/auth/{social}', 'AuthenticationController@SocialRedirect')
+    ->middleware('guest');
 
-# 微信接口回调地址
-Route::get('/auth/callback', 'Auth\AuthController@callback');
+Route::get('/auth/{social}/callback', 'AuthenticationController@SocialCallback')
+    ->middleware('guest');
 
 Route::get('/', 'PagesController@index')->name('pages.index');
 Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
