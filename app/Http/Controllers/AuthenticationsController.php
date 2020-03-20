@@ -29,7 +29,7 @@ class AuthenticationsController extends Controller
 
     public function callback($type, Request $request)
     {
-        $user = $socialite->driver('wechat')->user();
+        $user = $this->app->driver('wechat')->user();
         dd($user);
 //        $oauthUser = \Socialite::with($type)->user();
 //        dd($oauthUser);
