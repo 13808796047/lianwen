@@ -24,14 +24,16 @@ class AuthenticationsController extends Controller
     public function oauth($type, Request $request)
     {
 
-        return $this->app->driver('wechat')->redirect();
+        return $this->app->driver($type)->redirect();
     }
 
     public function callback($type, Request $request)
     {
-        $user = $this->app->driver('wechat')->user();
-        dd($user);
-//        $oauthUser = \Socialite::with($type)->user();
-//        dd($oauthUser);
+        $oauthUser = $this->app->driver($type)->user();
+        switch ($type) {
+            case 'wechat':
+                $unionid = $oauthUser->offsetExists('unionid') ? $oauthUser->offsetGet('unionid') : null;
+                dd($unionid);
+        }
     }
 }
