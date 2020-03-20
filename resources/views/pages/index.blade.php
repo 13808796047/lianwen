@@ -35,7 +35,7 @@
           <div class="header">
             <ul id="loginTitle">
               <li class="banner-li li-current" id="zh">账号登陆</li>
-              <li class="banner-li " id="wx">微信登陆</li>
+              {{--              <li class="banner-li " id="wx">微信登陆</li>--}}
 
             </ul>
           </div>
@@ -112,14 +112,21 @@
                   />
                 </div>
 
-                <div class="form-item">
-                  还没有账号？<a
-                    href="javascript:void(0)"
-                    onclick="window.location.href='/register'"
-                  >立即注册</a
-                  >
-                </div>
+
               </form>
+              <div class="form-item">
+                还没有账号？<a
+                  href="javascript:void(0)"
+                  onclick="window.location.href='/register'"
+                >立即注册</a
+                >
+              </div>
+              <div class="oauth" style="padding: 20px 0px;">
+                <p style="text-align: center">
+                  <i class="icon icon-qq"></i>
+                  <i class="icon icon-wx"></i>
+                </p>
+              </div>
             </div>
             <div class="content listbox " style="display: none" id="wxlogin">
               <div class="tit">
