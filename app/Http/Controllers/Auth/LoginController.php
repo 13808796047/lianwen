@@ -24,7 +24,7 @@ class LoginController extends Controller
 
     public function username()
     {
-        return 'account';
+        return 'phone';
     }
 
     protected function validateLogin(Request $request)
@@ -33,18 +33,18 @@ class LoginController extends Controller
             $this->username() => 'required|string',
             'password' => 'required|string',
         ], [], [
-            $this->username() => '用户名或手机号',
+            $this->username() => '手机号',
         ]);
     }
 
-    protected function attemptLogin(Request $request)
-    {
-        return collect(['username', 'phone'])->contains(function($value) use ($request) {
-            $account = $request->get($this->username());
-            $password = $request->get('password');
-            return $this->guard()->attempt([$value => $account, 'password' => $password], $request->filled('remember'));
-        });
-    }
+//    protected function attemptLogin(Request $request)
+//    {
+//        return collect(['username', 'phone'])->contains(function($value) use ($request) {
+//            $account = $request->get($this->username());
+//            $password = $request->get('password');
+//            return $this->guard()->attempt([$value => $account, 'password' => $password], $request->filled('remember'));
+//        });
+//    }
 
     /**
      * Where to redirect users after login.

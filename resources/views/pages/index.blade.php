@@ -60,12 +60,12 @@
                   <div class="input-div">
                     <input
                       class="input"
-                      name="account"
+                      name="phone"
                       id="name"
                       type="text"
-                      placeholder="用户名或手机号"
+                      placeholder="手机号"
                       autocomplete="off"
-                      value="{{old('account')}}"
+                      value="{{old('phone')}}"
                     />
                     <span class="invalid_feedback" role="alert">
                   </span>
@@ -176,14 +176,14 @@
     $(function () {
       $('#btnSubmit').click(() => {
         axios.post('{{ route('login') }}', {
-          account: $('#name').val(),
+          phone: $('#name').val(),
           password: $('#password').val()
         }).then(res => {
           location.reload();
         }).catch(err => {
           if (err.response.status == 422) {
             $.each(err.response.data.errors, (field, errors) => {
-              if (field == 'account') {
+              if (field == 'phone') {
                 $('#name').addClass('is_invalid')
                 $('#name+span').html('<strong>' + errors[0] + '</strong>');
               } else {
