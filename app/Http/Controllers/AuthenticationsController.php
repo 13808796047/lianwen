@@ -42,8 +42,8 @@ class AuthenticationsController extends Controller
                 // 没有用户，默认创建一个用户
                 if(!$user) {
                     $user = User::create([
-                        'nick_name' => $oauthUser->getNickname(),
-                        'avatar' => $oauthUser->getAvatar(),
+                        'nick_name' => $oauthUser['nickname'],
+                        'avatar' => $oauthUser['avatar'],
                         'weixin_openid' => $oauthUser->getOriginal()['openid'],
                         'weixin_unionid' => $unionid,
                     ]);
