@@ -6,5 +6,14 @@ use Illuminate\Http\Request;
 
 class AuthenticationsController extends Controller
 {
-    //
+    public function oauth($type, Request $request)
+    {
+        return \Socialite::with($type)->redirect();
+    }
+
+    public function callback($type, Request $request)
+    {
+        $oauthUser = \Socialite::with($type)->user();
+        dd($oauthUser);
+    }
 }

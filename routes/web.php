@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 //微信登录
-Route::get('/auth/{social}', 'AuthenticationController@SocialRedirect')
+Route::get('/oauth/{type}', 'AuthenticationsController@oauth')
     ->middleware('guest');
 
-Route::get('/auth/{social}/callback', 'AuthenticationController@SocialCallback')
+Route::get('/oauth/{type}/callback', 'AuthenticationsController@callback')
     ->middleware('guest');
 
 Route::get('/', 'PagesController@index')->name('pages.index');

@@ -126,7 +126,7 @@
                 <p>微信扫一扫 享免费检测</p>
               </div>
               <div class="codeimg">
-                <img id="{{qrcodeUrl}}" src="" alt="更新二维码"/>
+                <img id="" src="" alt="更新二维码"/>
               </div>
 
               <div class="box-word">无需注册，一键登录</div>
