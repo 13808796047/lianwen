@@ -15,7 +15,7 @@ class AuthenticationsController extends Controller
             'wechat' => [
                 'client_id' => 'wxdaab22b871fc3982', // AppID
                 'client_secret' => '6680c8ec8bd33997d3f709b889f36d17', // AppSecret
-                'redirect' => 'https://dev.lianwen.com/auth/weixin/callback',
+                'redirect' => 'https://dev.lianwen.com',
             ]
         ];
         $this->app = new SocialiteManager($config);
