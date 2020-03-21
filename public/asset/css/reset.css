@@ -17,11 +17,11 @@ a {
 body {
   font-size: 14px;
   background: #EBEDF3;
-  user-select:none;
-  -moz-user-select:none;/*火狐*/
-  -webkit-user-select:none;/*webkit浏览器*/
-  -ms-user-select:none;/*IE10*/
-  -khtml-user-select:none;/*早期浏览器*/
+  user-select: none;
+  -moz-user-select: none; /*火狐*/
+  -webkit-user-select: none; /*webkit浏览器*/
+  -ms-user-select: none; /*IE10*/
+  -khtml-user-select: none; /*早期浏览器*/
 }
 
 .clearfix:after {
@@ -113,9 +113,12 @@ body {
 
 .head .logo {
   background: #0084DB;
-  padding:8px 30px;
+  padding: 8px 30px;
 }
-.head .logo img{ height:55px;}
+
+.head .logo img {
+  height: 55px;
+}
 
 .head .logo .version {
   color: #ffffff;
@@ -148,7 +151,7 @@ body {
   width: 250px;
   right: 30px;
   position: absolute;
-  z-index:99;
+  z-index: 99;
 }
 
 .head .reg {
@@ -158,7 +161,7 @@ body {
   padding: 3px 16px;
   border-radius: 3px;
   line-height: 71px;
-  margin-left:13px;
+  margin-left: 13px;
 }
 
 .head .login {
@@ -183,7 +186,7 @@ body {
   padding: 40px 50px;
 }
 
-.versionlist li {
+.versionlist .tab {
   border: #CCCACA solid 1px;
   color: #666;
   border-radius: 5px;
@@ -203,10 +206,10 @@ body {
   width: 22.2%;
 }
 
-.versionlist .i-select {
+.tab .i-select {
   border: #FE5D33 2px solid;
   padding: 8px 13px;
-  background: url(/images/select.png) no-repeat right top;
+  background: url(../images/select.png) no-repeat right top;
   color: #FE5D33;
 }
 
@@ -377,14 +380,15 @@ h1 {
   color: red !important
 }
 
-.imguser{
+.imguser {
   border-radius: 50%;
   width: 35px;
   height: 35px;
   display: inline-block;
   vertical-align: middle;
 }
-.upload{
+
+.upload {
   padding: 7px 10px;
   height: 20px;
   line-height: 20px;
@@ -394,16 +398,20 @@ h1 {
   cursor: pointer;
   background: #0084DB;
 }
-.replyFileid{
-  width:100%;
+
+.replyFileid {
+  width: 100%;
   position: absolute;
   overflow: hidden;
   right: 0;
   top: 0;
-  filter:alpha(opacity=0);
-  -moz-opacity:0;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
   -khtml-opacity: 0;
   opacity: 0;
   cursor: pointer;
 }
-.foot a{ color:#cccccc;}
+
+.foot a {
+  color: #cccccc;
+}

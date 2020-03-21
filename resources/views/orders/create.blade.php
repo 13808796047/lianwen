@@ -2,26 +2,26 @@
 @section('title', '创建订单')
 @section('styles')
   <link rel="stylesheet" href="{{asset('asset/css/reset.css')}}">
-  @stop
+@stop
 @section('content')
   <div class="main clearfix">
     <div class="lbox fl">
       <ul class="versionlist clearfix v2">
-        <li class="i-select">
+        <li class="tab i-select">
           <div class="version">
             <b>联文检测(高级版)</b> <br/>
             <span class="price">（3.00/万字）</span>
           </div>
           首篇一万字内免费..
         </li>
-        <li class="">
+        <li class="tab">
           <div class="version">
             <b>联文检测(旗舰版)</b> <br/>
             <span class="price">（1.50/千字）</span>
           </div>
           检测范围更广更严格，适合定..
         </li>
-        <li class="">
+        <li class="tab">
           <div class="version">
             <b>PaperPass旗舰版</b> <br/>
             <span class="price">（1.80/千字）</span>
@@ -226,3 +226,13 @@
     </div>
   </div>
 @stop
+@section('scripts')
+  <script>
+    $(() => {
+      $('.versionlist .tab').click(() => {
+        $(this).addClass('i-select').siblings().removeClass('i-select');
+      });
+    })
+  </script>
+@stop
+
