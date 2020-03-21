@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 //微信登录
 Route::get('/oauth/{type}', 'AuthenticationsController@oauth')->name('oauth');
@@ -20,9 +21,10 @@ Route::get('/oauth/{type}/callback', 'AuthenticationsController@callback');
 
 Route::get('/', 'PagesController@index')->name('pages.index');
 
-Route::get('categories/{classid}', 'CategoriesController@show')->name('categories.show');
-Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
-
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('categories/{classid}', 'CategoriesController@show')->name('categories.show');
+    Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
+});
 
 //下载
 Route::get('orders/{order}/download', 'OrdersController@download')
@@ -41,9 +43,4 @@ Route::get('payments/{order}/wechat', 'PaymentsController@wechatPay')
 Route::post('payments/wechat/notify', 'PaymentsController@wechatNotify')
     ->name('payments.wechat.notify');
 
-
-//Route::get('/home', 'HomeController@index')->name('home');
-
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

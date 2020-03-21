@@ -18,10 +18,13 @@ class LoginController extends Controller
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
-    */
+     */
 
     use AuthenticatesUsers;
-
+    public function showLoginForm()
+    {
+        return view('pages.index');
+    }
     public function username()
     {
         return 'phone';
@@ -38,13 +41,13 @@ class LoginController extends Controller
     }
 
 //    protected function attemptLogin(Request $request)
-//    {
-//        return collect(['username', 'phone'])->contains(function($value) use ($request) {
-//            $account = $request->get($this->username());
-//            $password = $request->get('password');
-//            return $this->guard()->attempt([$value => $account, 'password' => $password], $request->filled('remember'));
-//        });
-//    }
+    //    {
+    //        return collect(['username', 'phone'])->contains(function($value) use ($request) {
+    //            $account = $request->get($this->username());
+    //            $password = $request->get('password');
+    //            return $this->guard()->attempt([$value => $account, 'password' => $password], $request->filled('remember'));
+    //        });
+    //    }
 
     /**
      * Where to redirect users after login.
