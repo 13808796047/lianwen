@@ -21,9 +21,10 @@ Route::get('/oauth/{type}/callback', 'AuthenticationsController@callback');
 
 Route::get('/', 'PagesController@index')->name('pages.index');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function() {
     Route::get('categories/{classid}', 'CategoriesController@show')->name('categories.show');
-    Route::any('orders/{order?}', 'OrdersController@show')->name('orders.show');
+    Route::post('orders', 'OrdersController@store')->name('orders.store');
+    Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
 });
 
 //下载

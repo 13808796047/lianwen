@@ -12,8 +12,8 @@ class Category extends Model
     const PRICE_TYPE_MILLION = 1;
     const PRICE_TYPE_ARTICLE = 2;
     public static $priceTypeMap = [
-        self::PRICE_TYPE_THOUSAND => '千字/元',
-        self::PRICE_TYPE_MILLION => '万字/元',
+        self::PRICE_TYPE_THOUSAND => '千字',
+        self::PRICE_TYPE_MILLION => '万字',
         self::PRICE_TYPE_ARTICLE => '篇'
     ];
     const CHECK_TYPE_MANUAL = 0;

@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
-    public function index()
+    public function show($classid)
     {
-        $categories = Category::all();
-        return CategoryResource::collection($categories)->collection->groupBy('classid');
+
     }
 }
