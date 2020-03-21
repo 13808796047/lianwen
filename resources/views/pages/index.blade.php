@@ -203,10 +203,25 @@
           }
         });
       });
+      //退出登录
       $('#logoutBtn').click(() => {
-        axios.post('{{route('logout')}}').then(res => {
-          location.reload();
+        swal({
+          title: "您确认要退出登录吗?",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
         })
+          .then((willDelete) => {
+            if (willDelete) {
+              axios.post('{{route('logout')}}').then(res => {
+                swal("注销成功!", {
+                  icon: "success",
+                }).then(willDelete => {
+                  location.reload();
+                });
+              })
+            }
+          });
       });
       // Tab切换
       $(".banner-li").click(function () {

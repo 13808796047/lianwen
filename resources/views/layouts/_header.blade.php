@@ -20,8 +20,7 @@
         <img
           src="{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}"
           class="imguser"
-        /><a href="./logout" class="reg">登出</a>&nbsp;<a
-          href="./user/profile"
+        /><a href="javascript:;" class="reg" id="logoutBtn">登出</a>&nbsp;<a
           class="reg"
         >个人中心</a
         >

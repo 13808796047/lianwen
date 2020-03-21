@@ -16855,3 +16855,11 @@ body {
   color: inherit;
 }
 
+.imguser {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
