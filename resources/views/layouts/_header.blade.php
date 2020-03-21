@@ -12,7 +12,7 @@
 
         <li><a href="{{route('categories.show',['classid'=>$category->classid])}}">{{$category->classname}}</a></li>
       @endforeach
-      <li id="report"><a href="./report">查看报告</a></li>
+      <li id="report"><a href="{{route('orders.index')}}">查看报告</a></li>
     </ul>
 
     @auth

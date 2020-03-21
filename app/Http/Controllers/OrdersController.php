@@ -21,6 +21,13 @@ class OrdersController extends Controller
         $this->orderService = $orderService;
     }
 
+    public function index(Request $request)
+    {
+        $orders = $request->user()->orders()->paginate(10);
+
+        return view('orders.index', compact('orders'));
+    }
+
     public function store(Request $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
     {
         $user = $request->user();
@@ -38,6 +45,13 @@ class OrdersController extends Controller
     public function show(Order $order)
     {
         return view('orders.show', compact('order'));
+    }
+
+    public function showReport(Order $order, OrderApiHandler $api)
+    {
+        $report = $api->extractReportDetail($order->api_orderid);
+        $order->content = $report->data->content;
+        return view('orders.show_report', compact('order'));
     }
 
     public function download(Order $order)
