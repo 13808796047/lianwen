@@ -16,7 +16,7 @@ class VerificationCodesController extends Controller
             $code = '1234';
         } else {
             //生成4位随机数,左侧补0
-            $code = Str::pad(random_int(1, 9999), 4, 0, STR_PAD_LEFT);
+            $code = str_pad(random_int(1, 9999), 4, 0, STR_PAD_LEFT);
         }
         try {
             $result = $easySms->send($phone, [
