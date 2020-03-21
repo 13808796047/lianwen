@@ -54,6 +54,16 @@ class OrdersController extends Controller
         return view('orders.show_report', compact('order'));
     }
 
+    public function destroy(Request $request)
+    {
+        if(!is_array($request->ids)) {
+            $ids = [$request->ids];
+        }
+        $ids = $request->ids;
+        Order::whereIn('id', $ids)->delete();
+        return [];
+    }
+
     public function download(Order $order)
     {
         return response()->download(storage_path() . '/app/' . $order->report_path);

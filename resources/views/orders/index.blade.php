@@ -23,7 +23,7 @@
         </tr>
         @foreach($orders as $order)
           <tr>
-            <td align="center"><input type='checkbox' name='delete' value='4026'/></td>
+            <td align="center"><input type='checkbox' name='delete' value='{{$order->id}}'/></td>
             <td>{{$order->title}}</td>
             <td align="center">{{$order->category->name}}</td>
             <td align="center">{{\App\Models\Enum\OrderEnum::getStatusName($order->status)}}</td>
@@ -79,4 +79,50 @@
     </div>
 
   </div>
+@stop
+@section('scripts')
+  <script>
+    $(function () {
+      // 全选
+      $('#allcheck').click(function () {
+        $("input[name='delete']").prop("checked", this.checked);
+      })
+      // 单选
+      let single = $("input[name='delete']")
+      single.click(function () {
+        $("#allcheck").prop("checked", single.length == single.filter(":checked").length ? true : false);
+      });
+      $('#del_item').click(function () {
+        // 判断是否至少选择一项
+        var checkedNum = $("input[name='delete']:checked").length;
+        if (checkedNum == 0) {
+          swal('请最少选择一项删除!')
+          return
+        }
+        // 选择后状态
+        swal({
+          title: "您确认要删除数据?",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        }).then(willDelete => {
+          if (willDelete) {
+            var valuelist = [];
+            $("input[name='delete']:checked").each(function () {
+              var inputval = $(this).val()
+              valuelist.push(inputval);
+            });
+            axios.delete('{{route('orders.destroy')}}', {
+              data: {
+                ids: valuelist
+              }
+            }).then(res => {
+              swal('删除成功!')
+              location.reload()
+            })
+          }
+        })
+      })
+    })
+  </script>
 @stop
