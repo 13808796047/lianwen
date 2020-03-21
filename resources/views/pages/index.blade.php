@@ -141,15 +141,13 @@
               <div class="box-word">无需注册，一键登录</div>
             </div>
           </div>
-
-
         @else
           <div class="box-main">
             <div class="content listbox">
               <p class='logintitle'>欢迎你</p>
               <p class='loginname'>{{Auth::user()->nick_name}}</p>
               <img src='{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}' class='loginimg'>
-              <a href='javascript:;' id="logoutBtn" class='exit'>退出</a>
+              <a href='javascript:;' class='exit logout'>退出</a>
             </div>
           </div>
         @endguest
@@ -204,7 +202,7 @@
         });
       });
       //退出登录
-      $('#logoutBtn').click(() => {
+      $('.logout').click(() => {
         swal({
           title: "您确认要退出登录吗?",
           icon: "warning",

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -63,8 +64,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $verification_key = $data['verification_key'];
+        if($verification_key) {
+            $verifyData = \Cache::get($verification_key);
+
+            if(!$verifyData) {
+                abort(403, '验证码已失效');
+            }
+            if(!hash_equals($verifyData['code'], $data['verification_code'])) {
+                // 返回401
+                throw new AuthenticationException('验证码错误');
+            }
+            $phone = $verifyData['phone'];
+        } else {
+            $phone = $data['phone'];
+        }
+
+
         return User::create([
-            'phone' => $data['phone'],
+            'phone' => $phone,
             'password' => Hash::make($data['password']),
         ]);
     }

@@ -9,8 +9,6 @@
 
 @section('content')
   <div id="wrap">
-
-
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span12">
@@ -21,6 +19,8 @@
                 <h5>注册新账号</h5>
               </div>
               <div class="widget-body clearfix" style="padding:25px;">
+                <div class="alert alert-danger" role="alert" id="message" style="display: none">
+                </div>
                 <!--?php echo form_open($this->uri->uri_string()); ?-->
                 <form action="{{route('register')}}" method="post" accept-charset="utf-8">
                 @csrf
@@ -79,7 +79,8 @@
                   {{--                  <div id="sjh" style="color:red;display: none">手机号已存在</div>--}}
                   <div class="control-group ">
                     <label for="phone">验证码:</label>
-                    <div class="controls"><input type="text" name="code" value="" id="code" placeholder="请输入验证码">
+                    <div class="controls"><input type="text" name="code" value="" id="code"
+                                                 placeholder="请输入验证码">
                       <input type="button" value="获取验证码"
                              style="margin-bottom: 10px;font-size: 14px;line-height: 20px;height:30px" id="yzm"
                       >
@@ -104,6 +105,7 @@
   <script !src="">
     $(() => {
       var wait = 60;
+      var verification_key = '';
 
       function time(o) {
         if (wait == 0) {
@@ -128,22 +130,22 @@
         if (!reg.test(phone)) {
           index.removeAttribute("disabled");
           $("input[name='phone']").focus();
-          $('#phone+span').html('<strong>请输入正确的手机号码</strong>');
+          $('#message').show();
+          $('#message').html('<strong>请输入正确的手机号码</strong>');
           return;
         }
         axios.post('/api/v1/verificationCodes', {
           phone: phone,
         }).then(res => {
-          alert('发送成功，请注意查收!')
+          swal('验证码已发送成功!,请注意查收!')
           time(index);
-          localStorage.setItem('code', "verificationCode_KEezsSSzqKi1oDD");
+          verification_key = res.data.key;
         }).catch(err => {
           index.removeAttribute("disabled");
           if (err.response.status == 422) {
+            $('#message').show();
             $.each(err.response.data.errors, (field, errors) => {
-              if (field == 'phone') {
-                $('#phone+span').html('<strong>' + errors[0] + '</strong>');
-              }
+              $('#message').html('<strong>' + errors[0] + '</strong>');
             })
           }
         })
@@ -155,8 +157,23 @@
 
       //
       $('#submitBtn').click(() => {
-        let code = localStorage.getItem('code');
-        console.log(code)
+        axios.post('{{route('register')}}', {
+          'verification_key': verification_key,
+          'phone': $('#phone').val(),
+          'password': $('#password').val(),
+          'password_confirmation': $('#password-confirm').val(),
+          'verification_code': $('#code').val()
+        }).then(res => {
+          swal("注册成功!");
+          location.href = '{{route('pages.index')}}'
+        }).catch(err => {
+          if (err.response.status == 422) {
+            $('#message').show();
+            $.each(err.response.data.errors, (field, errors) => {
+              $('#message').append('<strong>' + errors + '</strong> </br>');
+            })
+          }
+        })
       })
     })
   </script>
