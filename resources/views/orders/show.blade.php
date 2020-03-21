@@ -155,12 +155,12 @@
                           value="alipay"
                           checked="checked"
                         />
-                        <img src="{{asset('asset/imgs/alipay.png')}}"/>
+                        <img src="{{asset('asset/images/alipay.png')}}"/>
                         &nbsp;&nbsp;
                         <!--<label><input type="radio" name="paytype" value="tenpay" > <img src="./asset/imgs/tenpay.png" /></label> -->
                         <input type="radio" name="paytype" value="wxpay"/>
                         <img
-                          src="{{asset('asset/imgs/wxpay.png')}}"
+                          src="{{asset('asset/images/wxpay.png')}}"
                           style="width:99px"
                         />
                         <div class="tips">
@@ -173,10 +173,12 @@
                   <!--
                             <span id="depositinfo" >（将从账户中扣除￥0.00，余下￥1.8请使用其它方式支付）</span><br />
                              -->
-                  <a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;"
+                  <a type="button" id="bottonsubmit"
+                     style="height:33px; margin-left:20px; margin-left:320px;"
                      href="{{ route('payments.alipay', ['order' => $order->id])}}" class="btn btn-primary btn-sm sbtn">提交</a>
-                  <button class="btn btn-sm btn-success" type="button" id='btn-wechat'>微信支付</button>
-
+                  <a type="button" id="btn-wechat"
+                     style="height:33px; margin-left:20px; margin-left:320px;display: none"
+                     href="javascript:;" class="btn btn-primary btn-sm sbtn">提交</a>
                 </form>
                 <div class="clearfix"></div>
                 <div class="tipsbox">
@@ -205,10 +207,12 @@
 
 @endsection
 @section('scripts')
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
   <script>
     $(document).ready(function () {
+      $("input[name='paytype']").change(() => {
+        $('#bottonsubmit').toggle();
+        $('#btn-wechat').toggle();
+      })
       // 微信支付按钮事件
       $('#btn-wechat').click(function () {
         swal({
@@ -226,15 +230,15 @@
       });
     });
 
-    $(function () {
-      setInterval("checkpaied()", 1000);
-      $("#usedeposit").click(function () {
-        if ($(this).is(":checked")) {
-          $("#depositinfo").show();
-        } else {
-          $("#depositinfo").hide();
-        }
-      });
-    });
+    // $(function () {
+    //   setInterval("checkpaied()", 1000);
+    //   $("#usedeposit").click(function () {
+    //     if ($(this).is(":checked")) {
+    //       $("#depositinfo").show();
+    //     } else {
+    //       $("#depositinfo").hide();
+    //     }
+    //   });
+    // });
   </script>
 @stop

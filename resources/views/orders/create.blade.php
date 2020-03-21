@@ -6,22 +6,26 @@
 @section('content')
   <div class="main clearfix">
     <div class="lbox fl">
-      <ul class="versionlist clearfix v4">
-        @foreach($category as $item)
-          <li data-id="{{$item->cid}}">
-            <div class="version"><b>{{$item->name}}</b><span class="price">（{{$item->price}}元/{{\App\Models\Category::$priceTypeMap[$item->price_type]}}）</span>
-            </div>
-            完全免费，适用于初稿检测
+      <form action="{{route('orders.store')}}" method="post" enctype="multipart/form-data">
+        @csrf
 
-          </li>
+        <ul class="versionlist clearfix v4">
+          @foreach($category as $item)
+            <input type="hidden" name="cid" value="{{$item->cid}}">
+            <li>
+              <div class="version"><b>{{$item->name}}</b><span class="price">（{{$item->price}}元/{{\App\Models\Category::$priceTypeMap[$item->price_type]}}）</span>
+              </div>
+              完全免费，适用于初稿检测
 
-        @endforeach
-      </ul>
-      <div class="tips">
-        <span>第一个</span>
-        <span style="display: none">第2个</span>
-      </div>
-      <form class="clearfix">
+            </li>
+
+          @endforeach
+        </ul>
+        <div class="tips">
+          <span>第一个</span>
+          <span style="display: none">第2个</span>
+        </div>
+
         <dl class="item">
           <dt>题目：</dt>
           <dd><input type="text" class="txt" name="title" placeholder="请输入论文题目"></dd>
@@ -43,7 +47,7 @@
         <dl class="item" style="display: none;" id="upload">
           <input type="file" name="file">
         </dl>
-        <div class="item"><input class="btn" type="button" id="subBtn" value="提交检测"></div>
+        <div class="item"><input class="btn" type="submit" id="subBtn" value="提交检测"></div>
       </form>
 
     </div>
@@ -89,27 +93,27 @@
           $('#upload').show()
         }
       });
-      $('input[name=file]').change((e) => {
-        var file = e.target.files[0]
+      {{--$('input[name=file]').change((e) => {--}}
+      {{--  var file = e.target.files[0]--}}
 
-        formData.append('file', file);
-      })
-      $('#subBtn').click(() => {
-        formData.append('cid', cid)
-        formData.append('title', $('input[name=title]').val())
-        formData.append('writer', $('input[name=writer]').val())
-        formData.append('content', $('textarea[name=content]').val())
-        axios.post('{{route('orders.store')}}', formData,
-          {
-            headers: {
-              'Content-Type':
-                'multipart/form-data'
-            }
-          }
-        ).then(res => {
-          console.log(res)
-        })
-      })
+      {{--  formData.append('file', file);--}}
+      {{--})--}}
+      {{--$('#subBtn').click(() => {--}}
+      {{--  formData.append('cid', cid)--}}
+      {{--  formData.append('title', $('input[name=title]').val())--}}
+      {{--  formData.append('writer', $('input[name=writer]').val())--}}
+      {{--  formData.append('content', $('textarea[name=content]').val())--}}
+      {{--  axios.post('{{route('orders.store')}}', formData,--}}
+      {{--    {--}}
+      {{--      headers: {--}}
+      {{--        'Content-Type':--}}
+      {{--          'multipart/form-data'--}}
+      {{--      }--}}
+      {{--    }--}}
+      {{--  ).then(res => {--}}
+      {{--    location.href = '{{route('orders.show',['id'=>res.data.id])}}'--}}
+      {{--  })--}}
+      {{--})--}}
 
     })
   </script>

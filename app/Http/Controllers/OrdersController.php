@@ -37,7 +37,7 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
-        dd($order);
+        return view('orders.show', compact('order'));
     }
 
     public function download(Order $order)
