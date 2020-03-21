@@ -181,6 +181,14 @@
 @section('scripts')
   <script>
     $(function () {
+      @auth
+      swal({
+        // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+        text: '关注公众号,获取更多资讯!',
+        content: $('<img src="{{ asset('asset/images/691584772794_.pic.jpg') }}" />')[0],
+        // buttons 参数可以设置按钮显示的文案
+      })
+      @endauth
       $('#btnSubmit').click(() => {
         axios.post('{{ route('login') }}', {
           phone: $('#name').val(),
