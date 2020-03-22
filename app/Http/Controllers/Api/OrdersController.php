@@ -36,12 +36,12 @@ class OrdersController extends Controller
         $user = $request->user();
 
         $category = Category::find($request->cid);
-        if($category->status == 0) {
-            return response()->json([
-                'message' => '此检测通道已关闭!'
-            ], 401);
-        }
-        $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler);
+//        if($category->status == 0) {
+//            return response()->json([
+//                'message' => '此检测通道已关闭!'
+//            ], 401);
+//        }
+        $order = $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler);
         return new OrderResource($order);
     }
 
