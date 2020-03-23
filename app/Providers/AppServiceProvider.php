@@ -70,7 +70,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         view()->composer('layouts._header', function($view) {
-            $categories = DB::table('categories')->distinct()->select(['classname', 'classid'])->get();
+            $categories = DB::table('categories')->where('status', 1)->distinct()->select(['classname', 'classid'])->get();
             $view->with('categories', $categories);
         });
     }

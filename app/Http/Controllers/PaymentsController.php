@@ -15,6 +15,7 @@ class PaymentsController extends Controller
 {
     public function alipay(Order $order, Request $request)
     {
+        $this->authorize('own', $order);
         if($order->status == 1 || $order->del) {
             throw new InvalidRequestException('订单状态不正确!');
         }
@@ -29,6 +30,7 @@ class PaymentsController extends Controller
 //wap支付
     public function alipayWap(Order $order, Request $request)
     {
+        $this->authorize('own', $order);
         return app('alipay_wap')->wap([
             'out_trade_no' => $order->orderid, // 订单编号，需保证在商户端不重复
             'total_amount' => '0.01', // 订单金额，单位元，支持小数点后两位
@@ -89,7 +91,7 @@ class PaymentsController extends Controller
     public function wechatPay(Order $order, Request $request)
     {
         // 校验权限
-//        $this->authorize('own', $order);
+        $this->authorize('own', $order);
         // 校验订单状态
         if($order->status == 1 || $order->del) {
             throw new InvalidRequestException('订单状态不正确');
@@ -130,7 +132,6 @@ class PaymentsController extends Controller
             'pay_price' => $data->total_fee / 100,//支付金额
             'status' => 1,
         ]);
-//        redirect('pages.success');
         $this->afterPaid($order);
         $this->dispatch(new CheckOrderStatus($order));
         return app('wechat_pay')->success();

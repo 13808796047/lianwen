@@ -29,6 +29,7 @@ class OrdersController extends Controller
 
     public function store(Request $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
     {
+        $this->authorize('own', $order);
         $user = $request->user();
 
         $category = Category::where('cid', $request->cid)->first();
@@ -43,11 +44,13 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
+        $this->authorize('own', $order);
         return view('orders.show', compact('order'));
     }
 
     public function showReport(Order $order, OrderApiHandler $api)
     {
+        $this->authorize('own', $order);
         $report = $api->extractReportDetail($order->api_orderid);
         $order->content = $report->data->content;
         return view('orders.show_report', compact('order'));
@@ -55,6 +58,7 @@ class OrdersController extends Controller
 
     public function destroy(Request $request)
     {
+        $this->authorize('own', $order);
         if(!is_array($request->ids)) {
             $ids = [$request->ids];
         }
@@ -65,6 +69,7 @@ class OrdersController extends Controller
 
     public function download(Order $order)
     {
+        $this->authorize('own', $order);
         return response()->download(storage_path() . '/app/' . $order->report_path);
     }
 }
