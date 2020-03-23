@@ -36,6 +36,8 @@ Route::get('orders/{order}/download', 'OrdersController@download')
 //支付宝
 Route::get('payments/{order}/alipay', 'PaymentsController@alipay')
     ->name('payments.alipay');
+Route::get('payments/{order}/alipay_wap', 'PaymentsController@alipayWap')
+    ->name('payments.alipay');
 Route::get('payments/alipay/return', 'PaymentsController@alipayReturn')
     ->name('payments.alipay.return');
 Route::post('payments/alipay/notify', 'PaymentsController@alipayNotify')
