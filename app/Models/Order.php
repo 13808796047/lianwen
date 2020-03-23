@@ -13,6 +13,11 @@ class Order extends Model
         return $this->belongsTo(User::class, 'userid');
     }
 
+    public function report()
+    {
+        return $this->hasOne(Report::class);
+    }
+
     //分类
     public function category()
     {

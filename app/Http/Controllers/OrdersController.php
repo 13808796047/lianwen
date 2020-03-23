@@ -44,16 +44,15 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
+//        $this->dispatch(new CheckOrderStatus($order));
         $this->authorize('own', $order);
         return view('orders.show', compact('order'));
     }
 
-    public function showReport(Order $order, OrderApiHandler $api)
+    public function viewReport(Order $order)
     {
         $this->authorize('own', $order);
-        $report = $api->extractReportDetail($order->api_orderid);
-        $order->content = $report->data->content;
-        return view('orders.show_report', compact('order'));
+        return view('orders.view_report', compact('order'));
     }
 
     public function destroy(Request $request)

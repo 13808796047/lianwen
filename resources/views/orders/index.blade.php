@@ -27,11 +27,11 @@
             <td align="center">{{ $order->rate }}</td>
             <td align="center">{{$order->created_at}}</td>
             @if($order->status==0)
-              <td align="center"><a href='{{route('orders.show',$order)}}' class="bbtn"/>支付</a></td>
+              <td align="center"><a href='{{route('orders.show',$order)}}' class="bbtn">支付</a></td>
             @elseif($order->status==4)
-              <td align="center"><a href='{{route('orders.show',$order)}}' class="bbtn"/>查看报告</a></td>
+              <td align="center"><a href='{{route('orders.view-report',$order)}}' class="bbtn">查看报告</a></td>
             @else
-              <td align="center"><a href='javascript:;' class="bbtn"/>-</a></td>
+              <td align="center"><a href='javascript:;' class="bbtn">-</a></td>
             @endif
           </tr>
         @endforeach
