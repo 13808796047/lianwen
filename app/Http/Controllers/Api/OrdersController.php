@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use mysql_xdevapi\Exception;
 use PhpOffice\PhpWord\IOFactory;
 use Symfony\Component\CssSelector\Exception\InternalErrorException;
 
@@ -69,16 +70,15 @@ class OrdersController extends Controller
     {
         $to = $request->email_address;
         //发送
-        $result = Mail::to('511391805@qq.com')->send(new OrderReport($order));
-        dd($result);
-        if($result) {
+        try {
+            Mail::to('darker_1987@qq.com')->send(new OrderReport($order));
+        } catch (Exception $e) {
             return response()->json([
-                'message' => '发送邮件成功，请查收！'
-            ], 200);
-        } else {
-            return response()->json([
-                'message' => '发送邮件成功，111请查收！'
-            ], 200);
+                'message' => $e->getMessage()
+            ]);
         }
+        return response()->json([
+            'message' => '邮件发送成功,请注意查收！'
+        ]);
     }
 }
