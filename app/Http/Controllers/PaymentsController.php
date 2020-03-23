@@ -9,6 +9,7 @@ use App\Models\Order;
 use Carbon\Carbon;
 use Endroid\QrCode\QrCode;
 use Illuminate\Http\Request;
+use Yansongda\Pay\Pay;
 
 class PaymentsController extends Controller
 {
@@ -21,6 +22,16 @@ class PaymentsController extends Controller
         return app('alipay')->web([
             'out_trade_no' => $order->orderid, // 订单编号，需保证在商户端不重复
             'total_amount' => $order->price, // 订单金额，单位元，支持小数点后两位
+            'subject' => '支付 联文检测 的订单：' . $order->orderid, // 订单标题
+        ]);
+    }
+
+//wap支付
+    public function alipayWap(Order $order, Request $request)
+    {
+        return app('alipay_wap')->wap([
+            'out_trade_no' => '12121212', // 订单编号，需保证在商户端不重复
+            'total_amount' => '0.01', // 订单金额，单位元，支持小数点后两位
             'subject' => '支付 联文检测 的订单：' . $order->orderid, // 订单标题
         ]);
     }
