@@ -27,7 +27,7 @@ class CheckOrderStatus implements ShouldQueue
     //当队列处理器从队列中取出任务时，会调用handle()方法
     public function handle()
     {
-        $order = app(OrderApiHandler::class)->getOrder($this->order->api_orderid);
+        $api = app(OrderApiHandler::class);
 
         //判断对应的订单是否已经被支付
         if($this->order->status == OrderEnum::CHECKED) {
@@ -40,7 +40,7 @@ class CheckOrderStatus implements ShouldQueue
                     $this->order->update([
                         'report_path' => $path
                     ]);
-                    $this->order->report->update([
+                    $this->order->report()->create([
                         'content' => $report->data->content
                     ]);
                 });
