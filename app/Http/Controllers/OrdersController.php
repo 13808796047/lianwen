@@ -7,10 +7,12 @@ use App\Handlers\FileWordsHandle;
 use App\Handlers\OrderApiHandler;
 use App\Handlers\WordHandler;
 use App\Jobs\CheckOrderStatus;
+use App\Mail\OrderReport;
 use App\Models\Category;
 use App\Models\Order;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrdersController extends Controller
 {

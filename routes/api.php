@@ -45,6 +45,7 @@ Route::prefix('v1')
             Route::any('payments/wechat/notify', 'PaymentsController@wechatNotify');
             //上传
             Route::post('upload', 'FilesController@store')->name('uploads.files');
+            Route::post('orders/{order}/mail_report', 'OrdersController@reportMail');
         });
 
 

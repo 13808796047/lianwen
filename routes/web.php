@@ -28,7 +28,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
     Route::get('orders/{order}/view-report', 'OrdersController@viewReport')->name('orders.view-report');
     Route::delete('orders', 'OrdersController@destroy')->name('orders.destroy');
-
 });
 
 //下载

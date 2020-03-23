@@ -10,6 +10,7 @@ use App\Handlers\WordHandler;
 use App\Http\Requests\Api\OrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Jobs\CheckOrderStatus;
+use App\Mail\OrderReport;
 use App\Models\Category;
 use App\Models\Order;
 use App\Services\OrderService;
@@ -17,6 +18,7 @@ use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use PhpOffice\PhpWord\IOFactory;
 use Symfony\Component\CssSelector\Exception\InternalErrorException;
 
@@ -61,5 +63,17 @@ class OrdersController extends Controller
         $report = $api->extractReportDetail($order->api_orderid);
         $order->content = $report->data->content;
         return new OrderResource($order);
+    }
+
+    public function reportMail(Request $request, Order $order)
+    {
+        $to = $request->email_address;
+        //发送
+        $result = Mail::to($to)->send(new OrderReport($order));
+        if($result) {
+            return response()->json([
+                'message' => '发送邮件成功，请查收！'
+            ], 200);
+        }
     }
 }
