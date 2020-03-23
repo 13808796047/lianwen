@@ -23,6 +23,7 @@ class OrdersController extends Controller
 
     public function index(Request $request)
     {
+
         $orders = $request->user()->orders()->paginate(10);
 
         return view('orders.index', compact('orders'));
