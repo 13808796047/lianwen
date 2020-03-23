@@ -25,15 +25,16 @@
           <tr>
             <td align="center"><input type='checkbox' name='delete' value='{{$order->id}}'/></td>
             <td>{{$order->title}}</td>
-            <td align="center">{{$order->category->name}}</td>
+            <td align="center">{{ $order->category->name??'' }}</td>
             <td align="center">{{\App\Models\Enum\OrderEnum::getStatusName($order->status)}}</td>
             <td align="center">-</td>
             <td align="center">{{$order->created_at}}</td>
             @if($order->status==0)
               <td align="center"><a href='{{route('orders.show',$order)}}' class="bbtn"/>支付</a></td>
-            @endif
-            @if($order->status==4)
+            @elseif($order->status==4)
               <td align="center"><a href='{{route('orders.show',$order)}}' class="bbtn"/>查看报告</a></td>
+            @else
+              <td align="center"><a href='javascript:;' class="bbtn"/>-</a></td>
             @endif
           </tr>
         @endforeach

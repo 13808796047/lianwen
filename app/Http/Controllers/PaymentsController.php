@@ -35,8 +35,8 @@ class PaymentsController extends Controller
                 'message' => '支付失败!'
             ], 500);
         }
-        dd($result);
-        return view('payments.success', ['msg' => '支付成功']);
+        $order = Order::where('payid', $result->out_trade_no)->first();
+        return view('payments.success', ['msg' => '支付成功', 'order' => $order]);
     }
 
     // 服务器端回调

@@ -104,32 +104,32 @@
                 <table class="mylist">
                   <tr>
                     <td><span class="hl bred">检测编号（请牢记）</span></td>
-                    <td><span class="hl bgreen">JC17FE78</span></td>
+                    <td><span class="hl bgreen">{{$order->payid}}</span></td>
                   </tr>
                   <tr>
                     <td>检测</td>
-                    <td>维普编辑部版</td>
+                    <td>{{$order->category->name}}</td>
                   </tr>
                   <tr>
                     <td>标题</td>
-                    <td>《我国体育赛事品牌资产生成机理与培育路径研究》</td>
+                    <td>《{{$order->title}}》</td>
                   </tr>
                   <tr>
                     <td>字数</td>
-                    <td>13581</td>
+                    <td>{{$order->words}}</td>
                   </tr>
                   <tr>
                     <td>价格</td>
-                    <td style="color:#FF5300; font-weight:bold;">42.00 元</td>
+                    <td style="color:#FF5300; font-weight:bold;">{{ $order->pay_price }} 元</td>
                   </tr>
                   <tr>
                     <td>状态</td>
-                    <td><span class="hl bgreen">检测完成</span>
+                    <td><span class="hl bgreen">{{ \App\Models\Enum\OrderEnum::getStatusName($order->status) }}</span>
                     </td>
                   </tr>
                   <tr>
                     <td>时间</td>
-                    <td>2020-03-14 21:27:06</td>
+                    <td>{{ $order->date_pay }}</td>
                   </tr>
                 </table>
 
