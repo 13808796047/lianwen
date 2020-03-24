@@ -70,7 +70,7 @@ class OrdersController extends Controller
         $to = $request->email_address;
         //发送
         try {
-            Mail::to($to)->send(new OrderReport($order));
+            dd(Mail::to($to)->send(new OrderReport($order)));
         } catch (Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()

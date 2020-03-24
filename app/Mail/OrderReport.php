@@ -27,6 +27,10 @@ class OrderReport extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->view('email.orders.report')->subject('查重报告')
+            ->with([
+                'orderid' => $this->order->orderid,
+                'orderPrice' => $this->order->price,
+            ])
             ->attach(storage_path() . '/app/' . $this->order->report_path);
     }
 }
