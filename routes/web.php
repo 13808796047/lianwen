@@ -48,6 +48,8 @@ Route::get('payments/{order}/wechat', 'PaymentsController@wechatPay')
     ->name('payments.wechat');
 Route::get('payments/{order}/wechat_wap', 'PaymentsController@wechatPayWap')
     ->name('payments.wechat_wap');
+Route::get('payments/{order}/wechat_mp', 'PaymentsController@wechatPayMp')
+    ->name('payments.wechat_mp');
 Route::post('payments/wechat/notify', 'PaymentsController@wechatNotify')
     ->name('payments.wechat.notify');
 

@@ -72,6 +72,17 @@ class AppServiceProvider extends ServiceProvider
             //调用Yansongda/pay来创建一个微信支付对象
             return Pay::wechat($config);
         });
+        $this->app->singleton('wechat_pay_mp', function() {
+            $config = config('pay.wechat');
+            $config['notify_url'] = route('payments.wechat.notify');
+            if(app()->environment() !== 'production') {
+                $config['log']['level'] = Logger::DEBUG;
+            } else {
+                $config['log']['level'] = Logger::DEBUG;
+            }
+            //调用Yansongda/pay来创建一个微信支付对象
+            return Pay::wechat($config);
+        });
     }
 
     /**
