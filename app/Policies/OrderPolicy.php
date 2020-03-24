@@ -9,7 +9,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class OrderPolicy
 {
     use HandlesAuthorization;
-    
+
     public function own(User $user, Order $order)
     {
         return $order->userid == $user->id;
