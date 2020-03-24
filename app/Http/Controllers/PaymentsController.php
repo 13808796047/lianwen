@@ -104,6 +104,26 @@ class PaymentsController extends Controller
         return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
     }
 
+    //微信支付
+    public function wechatPayWap(Order $order, Request $request)
+    {
+        // 校验权限
+        // 校验订单状态
+        if($order->status == 1 || $order->del) {
+            throw new InvalidRequestException('订单状态不正确');
+        }
+        // scan 方法为拉起微信扫码支付
+        return app('wechat_pay_wap')->wap([
+            'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
+            'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
+            'body' => '支付 联文检测 的订单：' . $order->orderid, // 订单描述
+        ]);
+//        //把要转换的字符串作为QrCode的构造函数
+//        $qrCode = new QrCode($wechatOrder->code_url);
+//        //将生成的二维码图片数据以字符串形式输出，并带上相应的响应类型
+//        return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
+    }
+
     public function wechatNotify()
     {
         // 校验回调参数是否正确
