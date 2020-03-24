@@ -10,7 +10,5 @@
 <body>
 <h3>您好:</h3>
 <p>以下是查重报告文件，请查收!</p>
-{{$orderid}}
-{{ $orderPrice }}
 </body>
 </html>
