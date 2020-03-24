@@ -14,6 +14,21 @@
   <!-- Styles -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   @yield('styles')
+  <script>
+    //H5移动版自适应跳转js
+    var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mini", "mobile", "mobi", "mqqbrowser", "blackberry",
+      "webos", "incognito", "webmate", "bada", "nokia", "symbian", "wp7", "wp8", "lg", "ucweb", "skyfire");
+    var browser = navigator.userAgent.toLowerCase();
+    var _tag = "{$_GET['tag']}";
+    if (_tag != 'web') {
+      for (var i = 0; i < mobileAgent.length; i++) {
+        if (browser.indexOf(mobileAgent[i]) != -1) {
+          window.location.href = 'http://h5.lianwen.com';
+          break;
+        }
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -32,21 +47,6 @@
 
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
-<script>
-  //H5移动版自适应跳转js
-  var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mini", "mobile", "mobi", "mqqbrowser", "blackberry",
-    "webos", "incognito", "webmate", "bada", "nokia", "symbian", "wp7", "wp8", "lg", "ucweb", "skyfire");
-  var browser = navigator.userAgent.toLowerCase();
-  var _tag = "{$_GET['tag']}";
-  if (_tag != 'web') {
-    for (var i = 0; i < mobileAgent.length; i++) {
-      if (browser.indexOf(mobileAgent[i]) != -1) {
-        window.location.href = 'http://h5.lianwen.com';
-        break;
-      }
-    }
-  }
-</script>
 @yield('scripts')
 <script !src="">
   //退出登录
