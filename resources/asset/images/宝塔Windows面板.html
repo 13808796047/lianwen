@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://w2016.km999.com:10086/site -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>宝塔Windows面板</title>
+    <link rel="shortcut icon" href="http://w2016.km999.com:10086/static/favicon.ico" type="image/x-icon">
+    <link href="./宝塔Windows面板_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./宝塔Windows面板_files/site.css" rel="stylesheet">
+    <link href="./宝塔Windows面板_files/codemirror.css" rel="stylesheet">
+    <!--[if lte IE 9]>
+    <script src="/static/js/requestAnimationFrame.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .top-tips {
+            height: 50px;
+            width: 100%;
+            color: red;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+            background-color: white;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+<link rel="stylesheet" href="./宝塔Windows面板_files/layer.css" id="layuicss-skinlayercss"><link rel="stylesheet" href="./宝塔Windows面板_files/laydate.css" id="layuicss-laydate"></head>
+<body style="">
+    <div class="bt-warp bge6">
+        <div class="top-tips">当前IE浏览器版本过低,部分功能无法展示,请更换至其他浏览器，国产浏览器请使用极速模式！</div>
+        <a style="display:none;" id="request_token_head" token="8NqRUF1u7ryYL8cdehwcSwCrS4lYUNLg2o7FNHs0mlA2tIlS"></a>
+        <div id="container" class="container-fluid ">
+            <div class="sidebar-scroll" style="position: fixed; top: 0px;">
+                <div class="sidebar-auto">
+                    <div id="task" class="task cw" onclick="messagebox()">0</div>
+                    <h3 class="mypcip"><span class="f14 cw">139.199.13.232</span></h3>
+                    <ul class="menu">
+                        
+                        
+                        
+                        <li id="memuA"> <a class="menu_home" href="http://w2016.km999.com:10086/">首页</a></li>
+                        
+
+                        
+                        
+                        
+                        <li id="memuAsite" class="current"> <a class="menu_web" href="http://w2016.km999.com:10086/site">网站</a></li>
+                        
+
+                        
+                        
+                        
+                        <li id="memuAftp"> <a class="menu_ftp" href="http://w2016.km999.com:10086/ftp">FTP</a></li>
+                        
+
+                        
+                        
+                        
+                        <li id="memuAdatabase"> <a class="menu_data" href="http://w2016.km999.com:10086/database">数据库</a></li>
+                        
+
+                        
+                        
+                        
+                        <li id="memuAcontrol"> <a class="menu_control" href="http://w2016.km999.com:10086/control">监控</a></li>
+                        
+
+                        
+                        
+                        
+                        <li id="memuAfirewall"> <a class="menu_firewall" href="http://w2016.km999.com:10086/firewall">安全</a></li>
+                        
+
+                        
+                        
+                        
+                        <li id="memuAfiles"> <a class="menu_folder" href="http://w2016.km999.com:10086/files">文件</a></li>
+                        
+
+                        
+                        
+                        
+                        <li id="memuAcrontab"> <a class="menu_day" href="http://w2016.km999.com:10086/crontab">计划任务</a></li>
+                        
+
+                        
+                        
+                        
+                        <li id="memuAsoft"> <a class="menu_soft" href="http://w2016.km999.com:10086/soft">软件管理</a></li>
+                        
+
+                        
+                        
+                        
+                        <li id="memuAconfig"> <a class="menu_set" href="http://w2016.km999.com:10086/config">设置</a></li>
+                        
+
+                        
+                        
+                        
+                        <li id="dologin"> <a class="menu_exit" href="http://w2016.km999.com:10086/login?dologin=True">退出</a></li>
+                        
+
+                        
+                    </ul>
+                    <div id="newbtpc"></div>
+                    <div class="btpc-plus" onclick="bindBTPanel(0,&#39;b&#39;)">+</div>
+                </div>
+            </div>
+            <button style="display: none;" id="bt_copys" class="bt_copy" data-clipboard-text=""></button>
+            <a style="display: none;" id="defaultPath">C:/wwwroot</a>
+            <script src="./宝塔Windows面板_files/jquery-1.10.2.min.js"></script>
+            <script src="./宝塔Windows面板_files/bootstrap.min.js"></script>
+            <script src="./宝塔Windows面板_files/lan.js"></script>
+            <script src="./宝塔Windows面板_files/layer.js"></script>
+            <script type="text/javascript" src="./宝塔Windows面板_files/laydate.js"></script>
+            <script src="./宝塔Windows面板_files/jquery.fly.min.js"></script>
+            <script src="./宝塔Windows面板_files/codemirror.js"></script>
+            <script src="./宝塔Windows面板_files/editAll.js"></script>
+            <script src="./宝塔Windows面板_files/modeAll.js"></script>
+            <script src="./宝塔Windows面板_files/dialog.js"></script>
+            <script src="./宝塔Windows面板_files/search.js"></script>
+            <script src="./宝塔Windows面板_files/annotatescrollbar.js"></script>
+            <script src="./宝塔Windows面板_files/jquery.qrcode.min.js"></script>
+            <script src="./宝塔Windows面板_files/socket.io.min.js"></script>
+            <script src="./宝塔Windows面板_files/clipboard.min.js"></script>
+            <script src="./宝塔Windows面板_files/public.js"></script>
+            <script src="./宝塔Windows面板_files/public_backup.js"></script>
+            <script src="./宝塔Windows面板_files/bt_upload.js"></script>
+            
+<div class="main-content pb55" style="min-height: 601px;">
+    <div class="container-fluid">
+        <div class="pos-box bgw mtb15">
+            <div class="position f14 c9 pull-left">
+                <a class="plr10 c4" href="http://w2016.km999.com:10086/">首页</a>/<span class="plr10 c4">网站管理</span>
+            </div>
+            <div class="search pull-right">
+                <form target="hid" onsubmit="site.get_list(1,$(&quot;#SearchValue&quot;).val())">
+                    <input type="text" id="SearchValue" class="ser-text pull-left" placeholder="网站搜索">
+                    <button type="button" class="ser-sub pull-left" onclick="site.get_list(1,$(&quot;#SearchValue&quot;).val())"></button>
+                </form>
+                <iframe name="hid" id="hid" style="display:none" src="./宝塔Windows面板_files/saved_resource.html"></iframe>
+            </div>
+        </div>
+        <div class="conter-box bgw mtb15 pd15">
+            <div class="info-title-tips">
+                <p><span class="glyphicon glyphicon-alert" style="color: #f39c12; margin-right: 10px;"></span> 使用宝塔Windows面板创建站点时会自动创建权限配置，统一使用www用户。建站成功后，请在<a class="btlink" href="http://w2016.km999.com:10086/crontab">[计划任务]</a>页面添加定时备份任务!</p>
+            </div>
+            <button onclick="site.add_site()" class="btn btn-success btn-sm btn-title" type="button">添加站点</button>&nbsp;
+            <button onclick="site.set_default_page()" class="btn btn-default btn-sm btn-title" type="button">修改默认页</button>
+            <button onclick="site.set_default_site()" class="btn btn-default btn-sm btn-title" type="button">默认站点</button>
+            <button onclick="site.set_class_type()" class="btn btn-default btn-sm btn-title" type="button">分类管理</button>
+            <span id="allDelete">
+                <button batch="true" style="float: right;display: none;margin-left:10px;" class="btn btn-default btn-sm" onclick="site.batch_site(&#39;del&#39;);">删除选中</button>
+            </span>
+            <div class="move_class">
+                <button batch="false" style="float: right;margin-left:10px;display: none;" class="btn btn-default btn-sm" onclick="site.batch_site(&#39;site_type&#39;)">移动至</button>
+                <!-- <select class="bt-input-text mr5" name="defaultSite" style="width:100px"><option value="off">默认分类</option></select> -->
+            </div>
+            <div class="divtable mtb10">
+                <div class="tablescroll">
+                    <table id="webBody" class="table table-hover" style="min-width: 900px;border: 0 none;"><thead><tr><th width="30"><input class="check" onclick="bt.check_select();" type="checkbox"></th><th width="150" style="cursor: pointer;">网站名 <span data-id="name" class="glyphicon glyphicon-triangle-top" style="margin-left:5px;color:#bbb"></span></th><th width="98" style="cursor: pointer;">状态 <span data-id="status" class="glyphicon glyphicon-triangle-top" style="margin-left:5px;color:#bbb"></span></th><th width="58">备份</th><th width="26%">根目录</th><th width="86" style="cursor: pointer;">到期时间 <span data-id="edate" class="glyphicon glyphicon-triangle-top" style="margin-left:5px;color:#bbb"></span></th><th>备注</th><th width="260" style="text-align:right;">操作</th></tr></thead><tbody><tr><td><input value="2" class="check" onclick="bt.check_select();" type="checkbox"></td><td><a class="btlink webtips" onclick="site.web_edit(this)" href="javascript:;">h5.lianwen.com</a></td><td><a href="javascript:;" onclick="bt.site.stop(2,&#39;h5.lianwen.com&#39;) "><span style="color:#5CB85C">运行中 </span><span style="color:#5CB85C" class="glyphicon glyphicon-play"></span></a></td><td><a href="javascript:;" class="btlink" onclick="site.site_detail(2,&#39;h5.lianwen.com&#39;)">无备份</a></td><td><a class="btlink" title="打开目录" href="javascript:openPath(&#39;C:/wwwroot/h5.lianwen.com&#39;);">C:/wwwroot/h5.lianwen.com</a></td><td><a class="btlink setTimes" id="site_endtime_2" lay-key="100001">永久</a></td><td><span class="c9 input-edit" onclick="bt.pub.set_data_by_key(&#39;sites&#39;,&#39;ps&#39;,this)">h5.lianwen.com</span></td><td style="text-align:right"><a href="javascript:;" class="btlink" onclick="site.web_edit(this)">设置 </a> | <a href="javascript:;" class="btlink" onclick="site.del_site(2,&#39;h5.lianwen.com&#39;)" title="删除站点">删除</a></td></tr><tr><td><input value="1" class="check" onclick="bt.check_select();" type="checkbox"></td><td><a class="btlink webtips" onclick="site.web_edit(this)" href="javascript:;">dev.lianwen.com</a></td><td><a href="javascript:;" onclick="bt.site.stop(1,&#39;dev.lianwen.com&#39;) "><span style="color:#5CB85C">运行中 </span><span style="color:#5CB85C" class="glyphicon glyphicon-play"></span></a></td><td><a href="javascript:;" class="btlink" onclick="site.site_detail(1,&#39;dev.lianwen.com&#39;)">有备份</a></td><td><a class="btlink" title="打开目录" href="javascript:openPath(&#39;C:/wwwroot/dev.lianwen.com&#39;);">C:/wwwroot/dev.lianwen.com</a></td><td><a class="btlink setTimes" id="site_endtime_1" lay-key="100002">永久</a></td><td><span class="c9 input-edit" onclick="bt.pub.set_data_by_key(&#39;sites&#39;,&#39;ps&#39;,this)">dev.lianwen.com</span></td><td style="text-align:right"><a href="javascript:;" class="btlink" onclick="site.web_edit(this)">设置 </a> | <a href="javascript:;" class="btlink" onclick="site.del_site(1,&#39;dev.lianwen.com&#39;)" title="删除站点">删除</a></td></tr></tbody></table>
+                </div>
+                <div class="dataTables_paginate paging_bootstrap page"><div><span class="Pcurrent">1</span><span class="Pcount">共2条数据</span></div></div><div class="site_type"><span>站点分类:</span><select class="bt-input-text mr5" style="width:100px"><option value="-1">全部分类</option><option value="0">默认分类</option></select></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <div class="footer bgw">宝塔Windows面板 ©2014-2020 宝塔 (bt.cn)<a style="margin-left:20px;color:#20a53a;" href="http://www.bt.cn/bbs" target="_blank">问题求助 | 产品建议请上宝塔论坛</a><a style="margin-left:20px;color:#20a53a;" href="http://docs.bt.cn/" target="_blank">《使用手册》</a></div>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+    if (navigator.appName == "Microsoft Internet Explorer" && parseInt(navigator.appVersion.split(";")[1].replace(/[ ]/g, "").replace("MSIE", "")) <= 9) {
+        $(".main-content").css("margin-top","50px");
+        $('.top-tips').show();
+    }
+
+    var setup_path = "C:/BtSoft"
+    var recycle_bin_open = "0"
+    bt.os = "Windows"
+    $("#setBox").click(function () {
+        if ($(this).prop("checked")) {
+            $("input[name=id]").prop("checked", true)
+        } else {
+            $("input[name=id]").prop("checked", false)
+        }
+    });
+    setCookie('order', 'id desc');
+
+
+</script>
+
+
+<style type="text/css">
+
+    .contextmenu {
+        position: absolute;
+        width: 120px;
+        background: #FFFFFF;
+        border-radius: 5px;
+        overflow: hidden;
+        z-index: 99999999;
+    }
+
+    .contextmenu li {
+        border-left: 3px solid transparent;
+        transition: ease 0.3s;
+    }
+
+    .contextmenu li:hover {
+        background: #707070;
+        border-left: 3px solid #333;
+    }
+
+    .contextmenu li a {
+        display: block;
+        padding: 5px 10px;
+        color: #000000;
+        text-decoration: none;
+        transition: ease 0.3s;
+        cursor:default;
+    }
+
+    .contextmenu li:hover a {
+        color: #fff;
+    }
+    </style>
+
+
+<script type="text/javascript" src="./宝塔Windows面板_files/laydate.js"></script>
+<script type="text/javascript" src="./宝塔Windows面板_files/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="./宝塔Windows面板_files/site.js"></script>
+<script src="./宝塔Windows面板_files/upload.js"></script>
+<script type="text/javascript">
+    bt.set_cookie('sites_path', "C:/wwwroot");
+    bt.set_cookie('serverType', "nginx");
+
+
+    
+            site.get_list();
+            site.plugin_firewall();
+    
+
+
+</script><div class="layui-layer-move"></div>
+<div class="layui-layer-shade" id="layui-layer-shade2" times="2" style="z-index:19891015; background-color:#000; opacity:0.3; filter:alpha(opacity=30);"></div><div class="layui-layer layui-layer-page  layer-anim" id="layui-layer2" type="page" times="2" showtime="0" contype="string" style="z-index: 19891016; width: 700px; height: 690px; top: -24.5px; left: 444px;"><div class="layui-layer-title" style="cursor: move;">站点修改[dev.lianwen.com]  --  添加时间[2020-03-13 16:35:10]</div><div id="" class="layui-layer-content" style="height: 648px; overflow-y: scroll;"><div class="bt-form"><div class="bt-w-menu site-menu pull-left" style="height: 658px;"><p class="">域名管理</p><p>子目录绑定</p><p>网站目录</p><p>目录保护</p><p>应用程序池</p><p>错误页</p><p>流量限制</p><p>伪静态</p><p class="">默认文档</p><p class="bgw">配置文件</p><p>SSL</p><p>PHP版本</p><p>重定向</p><p>反向代理</p><p>防盗链</p><p>响应日志</p></div><div id="webedit-con" class="bt-w-con webedit-con pd15"><div class="line "><div class="info-r  ml0"><textarea class="bt-input-text mr20 site_config" name="site_config" style="width: 330px; height: 200px; line-height: 22px; display: none;" id="configBody">server 
+{
+    listen 80;
+	listen 443 ssl;
+    server_name dev.lianwen.com wx.lianwen.com; 
+    index index.php index.html index.htm default.php default.htm default.html;
+    root C:/wwwroot/dev.lianwen.com/public;
+		
+	#START-ERROR-PAGE
+	#error_page 403 /403.html;
+	error_page 404 /404.html;
+    #error_page 502 /502.html;
+	#END-ERROR-PAGE
+    
+    #HTTP_TO_HTTPS_START
+    if ($server_port !~ 443){
+        rewrite ^(/.*)$ https://$host$1 permanent;
+    }
+    #HTTP_TO_HTTPS_END
+
+    #LIMIT_INFO_START
+    #LIMIT_INFO_END
+
+    #SSL-INFO-START
+    ssl_certificate    ssl/dev.lianwen.com/fullchain.pem;
+    ssl_certificate_key    ssl/dev.lianwen.com/privkey.pem;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+    ssl_prefer_server_ciphers on;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+    error_page 497  https://$host$request_uri; 
+    #SSL-INFO-END
+    if ($http_user_agent ~* (mobile|nokia|iphone|ipad|android|samsung|htc|blackberry)) {
+                   rewrite  ^(.*)    https:/h5.lianwen.com$1 permanent;
+        }
+    #反代清理缓存配置
+    location ~ /purge(/.*) {
+        proxy_cache_purge cache_one $1$is_args$args;
+    }
+    #proxy 反向代理
+    include proxy/dev.lianwen.com/*.conf;
+
+    #PHP-INFO-START 
+    include php/73.conf;
+    #PHP-INFO-END
+    
+    #REWRITE-START
+    include rewrite/dev.lianwen.com/*.conf;
+    #REWRITE-END
+
+    #redirect 重定向
+    include redirect/dev.lianwen.com/*.conf;
+
+    #禁止访问的文件或目录
+    location ~ ^/(\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)
+    {
+        return 404;
+    }
+    
+    #一键申请SSL证书验证目录相关设置
+    location ~ \.well-known{
+        allow all;
+    }
+
+	access_log  C:/BtSoft/wwwlogs/dev.lianwen.com.log;
+    error_log  C:/BtSoft/wwwlogs/dev.lianwen.com.error.log;
+}
+</textarea><div class="CodeMirror cm-s-default CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 169px; left: 330.234px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true" style="bottom: 10px; display: block;"><div style="min-width: 1px; height: 1133px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true" style="display: block; right: 10px; left: 30px;"><div style="height: 100%; min-height: 1px; width: 671px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true" style="height: 10px; width: 10px; display: block;"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1" style="height: 400px; margin: 0px; padding: 0px;"><div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: -10px; border-right-width: 20px; min-height: 1112px; min-width: 640.703px; padding-right: 10px; padding-bottom: 10px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style=""><div class="CodeMirror-cursor" style="left: 299.234px; top: 544px; height: 16px;">&nbsp;</div></div><div class="CodeMirror-code" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">server </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">{</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    listen <span class="cm-number">80</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>listen <span class="cm-number">443</span> ssl;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    server_name dev.lianwen.com wx.lianwen.com; </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    index index.php index.html index.htm default.php default.htm default.html;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    root C:/wwwroot/dev.lianwen.com/public;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line "><span class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>#START-ERROR-PAGE</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>#error_page <span class="cm-number">403</span> /403.html;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>error_page <span class="cm-number">404</span> /404.html;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    #error_page <span class="cm-number">502</span> /502.html;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>#END-ERROR-PAGE</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    #HTTP_TO_HTTPS_START</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    if ($server_port !~ <span class="cm-number">443</span>){</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">        rewrite ^(/.*)$ https://$host$1 permanent;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    #HTTP_TO_HTTPS_END</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">21</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    #LIMIT_INFO_START</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">22</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    #LIMIT_INFO_END</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">23</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">24</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    #SSL-INFO-START</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">25</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    ssl_certificate    ssl/dev.lianwen.com/fullchain.pem;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">26</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    ssl_certificate_key    ssl/dev.lianwen.com/privkey.pem;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">27</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    ssl_protocols TLSv1 TLSv1.<span class="cm-number">1</span> TLSv1.<span class="cm-number">2</span>;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">28</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">29</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    ssl_prefer_server_ciphers on;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">30</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    ssl_session_cache shared:SSL:10m;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">31</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    ssl_session_timeout <span class="cm-number">10</span>m;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">32</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    error_page <span class="cm-number">497</span>  https://$host$request_uri; </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">33</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    #SSL-INFO-END</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">34</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    if ($http_user_agent ~* (mobile|nokia|iphone|ipad|android|samsung|htc|blackberry)) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">35</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">                   rewrite  ^(.*)    http:/h5.lianwen.com$1 permanent;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">36</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">        }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">37</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    #反代清理缓存配置</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">38</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    location ~ /purge(/.*) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">39</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">        proxy_cache_purge cache_one $1$is_args$args;</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">40</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">41</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    #proxy 反向代理</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">42</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    include proxy/dev.lianwen.com<span class="cm-comment">/*.conf;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">43</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">44</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">#PHP-INFO-START </span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">45</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">include php/73.conf;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">46</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">#PHP-INFO-END</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">47</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">48</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">#REWRITE-START</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">49</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">include rewrite/dev.lianwen.com/*.conf;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">50</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">#REWRITE-END</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">51</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">52</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">#redirect 重定向</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">53</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">include redirect/dev.lianwen.com/*.conf;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">54</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">55</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">#禁止访问的文件或目录</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">56</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">location ~ ^/(\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">57</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">{</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">58</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">        <span class="cm-comment">return 404;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">59</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">}</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">60</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">61</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">#一键申请SSL证书验证目录相关设置</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">62</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">location ~ \.well-known{</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">63</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">        <span class="cm-comment">allow all;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">64</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">}</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">65</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">66</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-comment">access_log  C:/BtSoft/wwwlogs/dev.lianwen.com.log;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">67</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;">    <span class="cm-comment">error_log  C:/BtSoft/wwwlogs/dev.lianwen.com.error.log;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">68</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-comment">}</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">69</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 20px; width: 1px; border-bottom: 10px solid transparent; top: 1112px;"></div><div class="CodeMirror-gutters" style="height: 1142px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div></div></div><div class="line "><div class="info-r  ml0"><button name="btn_config_submit" class="btn btn-success btn-sm mr5 ml5 btn_config_submit">保存</button><button name="btn_re_config_submit" class="btn btn-success btn-sm mr5 ml5 btn_re_config_submit">恢复默认配置</button></div></div><ul class="help-info-text c7"><li>此处为站点主配置文件,若您不了解配置规则,请勿随意修改.</li></ul></div></div></div><span class="layui-layer-setwin"><a class="layui-layer-ico layui-layer-close layui-layer-close1" href="javascript:;"></a></span><span class="layui-layer-resize"></span></div></body></html>
