@@ -21,9 +21,9 @@ class CategoriesController extends AdminController
         $grid->id('ID');
         $grid->name('名称');
         $grid->price_type('计价模式')->display(function($value) {
-            return Category::$priceTypeMap[$value];
+            return Category::$priceTypeMap[$value] . '/元';
         });
-        $grid->price('单价');
+        $grid->price('单价(元)');
         $grid->agent_price1('代理商单价');
         $grid->agent_price2('高级代理单价');
         $grid->check_type('检测模式')->display(function($value) {
