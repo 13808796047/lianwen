@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->job(new CheckOrderStatus)->everyMinute()->runInBackground();
+        $schedule->command('lianwen:check-order-status')->everyMinute();
     }
 
     /**

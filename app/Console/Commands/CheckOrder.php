@@ -12,7 +12,7 @@ class CheckOrder extends Command
      *
      * @var string
      */
-    protected $signature = 'lianwen:check-order-statu';
+    protected $signature = 'lianwen:check-order-status';
 
     /**
      * The console command description.
