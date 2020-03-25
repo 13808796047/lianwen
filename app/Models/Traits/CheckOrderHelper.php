@@ -15,7 +15,7 @@ trait CheckOrderHelper
     {
         $orders = Order::query()->where('status', 3)->get();
         foreach($orders as $order) {
-            new CheckOrderStatus($order);
+            dispatch(new CheckOrderStatus($order));
             Log::info($order->id . '检测完成');
         }
     }
