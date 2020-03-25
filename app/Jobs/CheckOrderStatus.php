@@ -30,7 +30,7 @@ class CheckOrderStatus implements ShouldQueue
         $api = app(OrderApiHandler::class);
         $apiOrder = $api->getOrder($this->order->api_orderid);
         //判断对应的订单是否已经被支付
-        if($apiOrder->status == OrderEnum::CHECKED) {
+        if($this->order->status == OrderEnum::CHECKED) {
             $file = $api->downloadReport($this->order->api_orderid);
             $path = 'downloads/report-' . $this->order->api_orderid . '.zip';
             $result = \Storage::put($path, $file);
@@ -48,16 +48,16 @@ class CheckOrderStatus implements ShouldQueue
             return;
         }
 
-        if($apiOrder->status == 7) {
+        if($apiOrder->data->order->status == 7) {
             $status = OrderEnum::INLINE;
-        } elseif($apiOrder->status == 9) {
+        } elseif($apiOrder->data->order->status == 9) {
             $status = OrderEnum::CHECKED;
         } else {
             $status = OrderEnum::TIMEOUT;
         }
         \DB::transaction(function() use ($apiOrder, $status) {
             $this->order->update([
-                'rate' => $apiOrder->data->orderCheck->semblance,
+                'rate' => $apiOrder->data->orderCheck->apiResultSemblance,
                 'status' => $status,
             ]);
         });
