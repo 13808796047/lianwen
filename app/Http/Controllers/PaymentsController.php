@@ -80,7 +80,7 @@ class PaymentsController extends Controller
             'status' => 1,
         ]);
         $this->afterPaid($order);
-        $this->dispatch(new CheckOrderStatus($order));
+        $order->getOrderStatus();
         return app('alipay')->success();
     }
 
@@ -160,7 +160,7 @@ class PaymentsController extends Controller
             'status' => 1,
         ]);
         $this->afterPaid($order);
-        $this->dispatch(new CheckOrderStatus($order));
+        $order->getOrderStatus();
         return app('wechat_pay')->success();
     }
 
