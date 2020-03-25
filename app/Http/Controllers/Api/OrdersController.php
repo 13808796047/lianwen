@@ -57,8 +57,9 @@ class OrdersController extends Controller
     public function show(Request $request, Order $order, OrderApiHandler $api)
     {
         //        校验权限
-        $report = $api->extractReportDetail($order->api_orderid);
-        $order->content = $report->data->content;
+//        $report = $api->extractReportDetail($order->api_orderid);
+//        $order->content = $report->data->content;
+
         return new OrderResource($order);
     }
 
