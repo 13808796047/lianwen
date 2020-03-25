@@ -50,7 +50,7 @@ class OrdersController extends Controller
 
     public function index(Request $request)
     {
-        $orders = $request->user()->orders()->with('category:cid,name')->paginate(10);;
+        $orders = $request->user()->orders()->with('category:cid,name')->get();;
         return OrderResource::collection($orders);
     }
 
