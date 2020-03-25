@@ -38,7 +38,8 @@ class CheckOrderStatus implements ShouldQueue
             if($result) {
                 \DB::transaction(function() use ($path, $report) {
                     $this->order->update([
-                        'report_path' => $path
+                        'report_path' => $path,
+                        'rate' => $apiOrder->data->orderCheck->apiResultSemblance,
                     ]);
                     $this->order->report()->create([
                         'content' => $report->data->content
@@ -57,7 +58,6 @@ class CheckOrderStatus implements ShouldQueue
         }
         \DB::transaction(function() use ($apiOrder, $status) {
             $this->order->update([
-                'rate' => $apiOrder->data->orderCheck->apiResultSemblance,
                 'status' => $status,
             ]);
         });
