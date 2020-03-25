@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\OrderPaid;
 use App\Exceptions\InvalidRequestException;
 use App\Handlers\FileUploadHandler;
 use App\Handlers\FileWordsHandle;
@@ -59,7 +60,7 @@ class OrdersController extends Controller
         //        校验权限
 //        $report = $api->extractReportDetail($order->api_orderid);
 //        $order->content = $report->data->content;
-
+     
         return new OrderResource($order);
     }
 

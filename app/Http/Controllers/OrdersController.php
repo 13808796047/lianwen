@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrderPaid;
 use App\Handlers\FileUploadHandler;
 use App\Handlers\FileWordsHandle;
 use App\Handlers\OrderApiHandler;
