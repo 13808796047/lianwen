@@ -6,6 +6,8 @@ use App\Handlers\OrderApiHandler;
 use App\Jobs\CheckOrderStatus;
 use App\Models\Enum\OrderEnum;
 use App\Models\Order;
+use Illuminate\Support\Facades\Log;
+
 
 trait CheckOrderHelper
 {
@@ -14,6 +16,7 @@ trait CheckOrderHelper
         $orders = Order::query()->where('status', 3)->get();
         foreach($orders as $order) {
             new CheckOrderStatus($order);
+            Log::info($order->id . '检测完成');
         }
     }
 }
