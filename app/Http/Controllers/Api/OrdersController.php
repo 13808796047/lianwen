@@ -50,7 +50,7 @@ class OrdersController extends Controller
 
     public function index(Request $request)
     {
-        $orders = $request->user()->orders()->with('category:cid,name')->get();;
+        $orders = $request->user()->orders()->with('category:cid,name')->orderBy('created_at')->get();;
         return OrderResource::collection($orders);
     }
 
