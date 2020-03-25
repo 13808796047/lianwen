@@ -18,7 +18,7 @@ class OrderResource extends JsonResource
         $data = parent::toArray($request);
         $data['category'] = new CategoryResource($this->whenLoaded('category'));
         $data['status'] = OrderEnum::getStatusName($this->status);
-        $data['content'] = $this->report->content;
+        $data['content'] = $this->report->content ?? '';
         return $data;
     }
 }
