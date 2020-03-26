@@ -16,17 +16,16 @@ class getOrderStatus implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $order;
-    protected $api;
 
     public function __construct(Order $order)
     {
         $this->order = $order;
-        $this->api = app(OrderApiHandler::class);
     }
 
 
     public function handle()
     {
+        $api = app(OrderApiHandler::class);
         $apiOrder = $api->getOrder($this->order->api_orderid);
         switch ($apiOrder->data->order->status) {
             case 7:

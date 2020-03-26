@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
                 $config['mode'] = 'dev';
                 $config['log']['level'] = Logger::DEBUG;
             } else {
-                $config['log']['level'] = Logger::DEBUG;
+//                $config['log']['level'] = Logger::DEBUG;
             }
             //调用yansongda/pay来创建一个支付宝对象
             return Pay::alipay($config);
@@ -54,7 +54,7 @@ class AppServiceProvider extends ServiceProvider
             if(app()->environment() !== 'production') {
                 $config['log']['level'] = Logger::DEBUG;
             } else {
-                $config['log']['level'] = Logger::DEBUG;
+//                $config['log']['level'] = Logger::DEBUG;
             }
             //调用Yansongda/pay来创建一个微信支付对象
             return Pay::wechat($config);

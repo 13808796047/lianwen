@@ -27,9 +27,6 @@ class CheckOrderStatus implements ShouldQueue
     //当队列处理器从队列中取出任务时，会调用handle()方法
     public function handle()
     {
-        if($this->order->report_path) {
-            return;
-        }
         $api = app(OrderApiHandler::class);
         $apiOrder = $api->getOrder($this->order->api_orderid);
         //判断对应的订单是否已经被支付
@@ -49,22 +46,21 @@ class CheckOrderStatus implements ShouldQueue
                     ]);
                 });
             }
-            return;
         }
-        switch ($apiOrder->data->order->status) {
-            case 7:
-                $status = OrderEnum::INLINE;
-                break;
-            case 9:
-                $status = OrderEnum::CHECKED;
-                break;
-            default:
-                $status = OrderEnum::CHECKING;
-        }
-        \DB::transaction(function() use ($status) {
-            $this->order->update([
-                'status' => $status,
-            ]);
-        });
+//        switch ($apiOrder->data->order->status) {
+//            case 7:
+//                $status = OrderEnum::INLINE;
+//                break;
+//            case 9:
+//                $status = OrderEnum::CHECKED;
+//                break;
+//            default:
+//                $status = OrderEnum::CHECKING;
+//        }
+//        \DB::transaction(function() use ($status) {
+//            $this->order->update([
+//                'status' => $status,
+//            ]);
+//        });
     }
 }
