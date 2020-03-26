@@ -6,6 +6,7 @@ use App\Events\OrderPaid;
 use App\Handlers\OrderApiHandler;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 class CheckDoc implements ShouldQueue
 {
@@ -29,6 +30,7 @@ class CheckDoc implements ShouldQueue
 //        //调用获取订单
 //        $apiOrder = $this->api->getOrder($apiOrderId->data);
         $result = $this->api->startCheck($apiOrder);
+        Log::info($order->title . '启动检测!~~~~');
         if($result->code == 200) {
             $order->update([
                 'api_orderid' => $apiOrder->data,
