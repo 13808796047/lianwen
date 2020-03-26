@@ -20,6 +20,7 @@ trait CheckOrderHelper
                 dispatch(new getOrderStatus($order));
             }
             if($order->status == 4 && $order->report_path == '') {
+                dispatch(new CheckOrderStatus($order));
                 Log::info($order->id . '检测完成');
             }
         }
