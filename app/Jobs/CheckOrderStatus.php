@@ -36,7 +36,7 @@ class CheckOrderStatus implements ShouldQueue
             $result = \Storage::put($path, $file);
             $report = $api->extractReportDetail($this->order->api_orderid);
             if($report) {
-                \DB::transaction(function() use ($path, $report) {
+                \DB::transaction(function() use ($path, $report, $apiOrder) {
                     $this->order->update([
                         'report_path' => $path,
                         'rate' => $apiOrder->data->orderCheck->apiResultSemblance,
