@@ -54,7 +54,7 @@ class CheckOrderStatus implements ShouldQueue
         } elseif($apiOrder->data->order->status == 9) {
             $status = OrderEnum::CHECKED;
         } else {
-            $status = OrderEnum::TIMEOUT;
+            $status = OrderEnum::CHECKING;
         }
         \DB::transaction(function() use ($apiOrder, $status) {
             $this->order->update([

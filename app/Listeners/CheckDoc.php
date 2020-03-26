@@ -34,7 +34,7 @@ class CheckDoc implements ShouldQueue
         if($result->code == 200) {
             $order->update([
                 'api_orderid' => $apiOrder->data,
-                'status' => 3,
+                'status' => 1,
             ]);
         }
     }
