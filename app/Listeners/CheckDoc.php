@@ -30,11 +30,10 @@ class CheckDoc implements ShouldQueue
 //        //调用获取订单
 //        $apiOrder = $this->api->getOrder($apiOrderId->data);
         $result = $this->api->startCheck($apiOrder);
-        Log::info($order->title . '启动检测!~~~~');
         if($result->code == 200) {
             $order->update([
                 'api_orderid' => $apiOrder->data,
-                'status' => 1,
+                'status' => 3,
             ]);
         }
     }

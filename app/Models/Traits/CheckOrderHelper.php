@@ -13,7 +13,7 @@ trait CheckOrderHelper
 {
     public function getOrderStatus()
     {
-        $orders = Order::query()->where('status', 3)->orWhere('status', 1)->get();
+        $orders = Order::query()->where('status', 3)->get();
         foreach($orders as $order) {
             dispatch(new CheckOrderStatus($order));
             Log::info($order->id . '检测完成');
