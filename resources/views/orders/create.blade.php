@@ -8,11 +8,11 @@
     <div class="lbox fl">
       <form action="{{route('orders.store')}}" method="post" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="cid" id="cid">
 
         <ul class="versionlist clearfix v4">
           @foreach($category as $item)
-            <input type="hidden" name="cid" value="{{$item->cid}}">
-            <li>
+            <li data-id="{{ $item->cid }}">
               <div class="version"><b>{{$item->name}}</b><span class="price">（{{$item->price}}元/{{\App\Models\Category::$priceTypeMap[$item->price_type]}}）</span>
               </div>
               完全免费，适用于初稿检测
@@ -42,7 +42,10 @@
         </dl>
         <dl class="item" id="paste">
           <dt>论文：</dt>
-          <dd><textarea cols="10" name="content" class="txts"></textarea><br/>当前共输入 12222 字数</dd>
+          <dd><textarea cols="10" name="content" class="txts"></textarea><br/>当前共输入 <em class="words"
+                                                                                        style="color: red;font-family: normal">
+              0 </em>字数
+          </dd>
         </dl>
         <dl class="item" style="display: none;" id="upload">
           <input type="file" name="file">
@@ -76,10 +79,12 @@
       var formData = new FormData()
       $('.versionlist li:first').addClass('i-select')
       var cid = $('.versionlist li:first').data('id');
+      $('#cid').val(cid);
       $(".versionlist li").click(function () {
         // var isshow = $(".tips").children('span'
         var index = $(this).index();
         cid = $(this).data('id');
+        $('#cid').val(cid);
         $(this).addClass("i-select").siblings().removeClass("i-select");
 
         $('.tips').children('span').eq(index).show().siblings().hide();
@@ -93,6 +98,9 @@
           $('#upload').show()
         }
       });
+      $('.txts').bind('input propertychange', (e) => {
+        $('.words').html(e.target.value.length)
+      })
       {{--$('input[name=file]').change((e) => {--}}
       {{--  var file = e.target.files[0]--}}
 
