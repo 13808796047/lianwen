@@ -2,11 +2,18 @@
 
 namespace App\Admin\Controllers;
 
+use App\Jobs\CheckOrderStatus;
+use App\Jobs\CreateCheckOrder;
+use App\Jobs\getOrderStatus;
+use App\Jobs\StartCheck;
+use App\Jobs\UploadCheckFile;
 use App\Models\Order;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class OrdersController extends AdminController
 {
@@ -58,5 +65,32 @@ class OrdersController extends AdminController
             });
         });
         return $grid;
+    }
+
+    public function show($id, Content $content)
+    {
+        return $content->header('查看订单')
+            ->body(view('admin.orders.show', ['order' => Order::find($id)]));
+    }
+
+    public function repeatCheck(Request $request, Order $order, Content $content)
+    {
+        switch ($request->type) {
+            case 'upload_file':
+                dispatch(new UploadCheckFile($order));
+                break;
+            case 'create_order':
+                dispatch(new CreateCheckOrder($order));
+                break;
+            case 'start_check':
+                dispatch(new StartCheck($order));
+                break;
+            case 'get_order':
+                dispatch(new getOrderStatus($order));
+                break;
+            default:
+                dispatch(new CheckOrderStatus($order));
+        }
+        return redirect()->back();
     }
 }
