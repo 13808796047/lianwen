@@ -55,7 +55,7 @@ class CategoriesController extends AdminController
             1 => '万字/元',
             2 => '篇'
         ];
-        $form->select('price_type', '计价方式')->options($priceTypeOption);
+        $form->select('price_type', '计价方式')->options($priceTypeOption)->default(0);
         $form->decimal('price', '检测单价')->default(0.00);
         $form->decimal('agent_price1', '普通代理价')->default(0.00);
         $form->decimal('agent_price2', '高级代理价')->default(0.00);
@@ -63,7 +63,7 @@ class CategoriesController extends AdminController
             0 => '手动',
             1 => 'API'
         ];
-        $form->select('price_type', '计价方式')->options($checkTypeOption);
+        $form->select('price_type', '计价方式')->options($checkTypeOption)->default(0);
 
         $form->number('min_words', '最少字数');
         $form->number('max_words', '最多字数');

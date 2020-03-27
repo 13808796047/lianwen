@@ -46,8 +46,7 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
-        event(new OrderPaid($order));
-//        return view('orders.show', compact('order'));
+        return view('orders.show', compact('order'));
     }
 
     public function viewReport(Order $order)
