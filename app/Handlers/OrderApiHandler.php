@@ -69,7 +69,7 @@ class OrderApiHandler
             ],
             'body' => json_encode([
                 'cid' => $order->cid, //文件資源
-                'title' => '111',
+                'title' => $order->title,
                 'postDate' => '',
                 'author' => $order->writer,
                 'mobile' => '15050505050',
