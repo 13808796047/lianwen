@@ -45,38 +45,52 @@ class CategoriesController extends AdminController
     protected function form()
     {
         $form = new Form(new Category());
-        $form->number('cid', 'cid');
-        $form->number('classid', '分类ID');
-        $form->text('classname', '分类名称')->rules('required');
-        $form->text('name', '系统名称')->rules('required');
-        $form->text('sname', '系统简称')->rules('required');
-        $priceTypeOption = [
-            0 => '千字/元',
-            1 => '万字/元',
-            2 => '篇'
-        ];
-        $form->select('price_type', '计价方式')->options($priceTypeOption)->default(0);
-        $form->decimal('price', '检测单价')->default(0.00);
-        $form->decimal('agent_price1', '普通代理价')->default(0.00);
-        $form->decimal('agent_price2', '高级代理价')->default(0.00);
-        $checkTypeOption = [
-            0 => '手动',
-            1 => 'API'
-        ];
-        $form->select('price_type', '计价方式')->options($checkTypeOption)->default(0);
 
-        $form->number('min_words', '最少字数');
-        $form->number('max_words', '最多字数');
-        $form->quill('intro', '系统介绍');
-        $form->textarea('sintro', '系统简介');
+// 第一列占据1/2的页面宽度
+        $form->column(1 / 2, function($form) {
+            $form->number('cid', 'cid');
+            $form->number('classid', '分类ID');
+            $form->text('classname', '分类名称')->rules('required');
+            $form->text('name', '系统名称')->rules('required');
+            $form->text('sname', '系统简称')->rules('required');
+            $form->radio('price_type', '计价方式')->options([
+                0 => '千字/元',
+                1 => '万字/元',
+                2 => '篇']);
+            $form->decimal('price', '检测单价')->default(0.00);
+            $form->decimal('agent_price1', '普通代理价')->default(0.00);
+            $form->decimal('agent_price2', '高级代理价')->default(0.00);
+            $checkTypeOption = [
+                0 => '手动',
+                1 => 'API'
+            ];
+            $form->radio('check_type', '检测方式')->options($checkTypeOption)->default(0);
 
-        $form->text('tese', '特色');
-        $form->text('seo_title', 'SEO标题');
-        $form->image('sys_logo', '系统LOGO');
-        $form->image('sys_ico', '系统图标');
+            $form->number('min_words', '最少字数');
+            $form->number('max_words', '最多字数');
+            $form->image('sys_logo', '系统LOGO');
+        });
+        $form->column(1 / 2, function($form) {
 
-        $form->switch('status', '状态');
+            $form->quill('intro', '系统介绍');
+            $form->textarea('sintro', '系统简介');
 
+            $form->text('tese', '特色');
+            $form->text('seo_title', 'SEO标题');
+
+            $form->image('sys_ico', '系统图标');
+
+            $form->switch('status', '状态');
+        });
+        $form->tools(function(Form\Tools $tools) {
+
+            // 去掉`列表`按钮
+            $tools->disableList();
+
+        
+            // 去掉`查看`按钮
+            $tools->disableView();
+        });
 
         return $form;
     }

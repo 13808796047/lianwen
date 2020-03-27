@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Encore\Admin\Traits\DefaultDatetimeFormat;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
     use Traits\CheckOrderHelper;
+    use DefaultDatetimeFormat;
     protected $guarded = [];
 
     public function user()
