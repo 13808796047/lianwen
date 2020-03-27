@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 
 <head>
@@ -72,4 +71,4 @@
 </script>
 </body>
 
-< /html>
+</html>
