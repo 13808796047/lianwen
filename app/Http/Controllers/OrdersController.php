@@ -26,7 +26,7 @@ class OrdersController extends Controller
 
     public function index(Request $request)
     {
-        $orders = $request->user()->orders()->with('category:cid,name')->paginate(10);
+        $orders = $request->user()->orders()->with('category:cid,name')->latest()->paginate(10);
         return view('orders.index', compact('orders'));
     }
 
