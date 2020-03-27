@@ -27,32 +27,25 @@ class getOrderStatus implements ShouldQueue
     {
         $api = app(OrderApiHandler::class);
         $result = $api->getOrder($this->order->api_orderid);
-        info('检测中....');
-//        if($result->data->order->status == 7) {
-//            $status = OrderEnum::INLINE;
-//        } elseif($result->data->order->status == 9) {
-//            $status = OrderEnum::CHECKED;
-//            dispatch(new CheckOrderStatus($this->order))->delay(now()->addSecond(5));
-//        } else {
-//            $status = OrderEnum::CHECKING;
-//            dispatch(new getOrderStatus($this->order))->delay(now()->addSecond(5));
-//        }
-        switch ($result->data->order->status) {
-            case 7:
-                $status = OrderEnum::INLINE;
-                break;
-            case 9:
-                $status = OrderEnum::CHECKED;
-                dispatch(new CheckOrderStatus($this->order))->delay(now()->addMinutes());
-                break;
-            default:
-                $status = OrderEnum::CHECKING;
-                dispatch(new getOrderStatus($this->order))->delay(now()->addMinutes());
+        if($result->code == 200) {
+            info('检测中....');
+            switch ($result->data->order->status) {
+                case 7:
+                    $status = OrderEnum::INLINE;
+                    break;
+                case 9:
+                    $status = OrderEnum::CHECKED;
+                    dispatch(new CheckOrderStatus($this->order))->delay(now()->addMinutes());
+                    break;
+                default:
+                    $status = OrderEnum::CHECKING;
+                    dispatch(new getOrderStatus($this->order))->delay(now()->addMinutes());
+            }
+            \DB::transaction(function() use ($status) {
+                $this->order->update([
+                    'status' => $status,
+                ]);
+            });
         }
-        \DB::transaction(function() use ($status) {
-            $this->order->update([
-                'status' => $status,
-            ]);
-        });
     }
 }
