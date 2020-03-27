@@ -76,7 +76,7 @@ class PaymentsController extends Controller
         $order->update([
             'date_pay' => Carbon::now(), // 支付时间
             'pay_type' => 'alipay', // 支付方式
-            'payid' => $data->trade_no, // 支付宝订单号
+            'payid' => $data->out_trade_no, // 支付宝订单号
             'pay_price' => $data->total_amount,//支付金额
             'status' => 1,
         ]);
