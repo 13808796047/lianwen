@@ -8,6 +8,7 @@ use App\Jobs\getOrderStatus;
 use App\Jobs\StartCheck;
 use App\Jobs\UploadCheckFile;
 use App\Models\Order;
+use App\Models\User;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -37,7 +38,9 @@ class OrdersController extends AdminController
         $grid->column('orderid', '订单号')->totalRow('合计');
         $grid->column('category.name', '分类');
         // 展示关联关系的字段时，使用 column 方法
-        $grid->column('user.phone', '买家');
+        $grid->column('userid', '买家')->display(function($userid) {
+            return User::find($userid)->phone ?? User::find($userid)->nick_name;
+        });
         $grid->column('price', '金额')->totalRow(function($amount) {
 
             return "<span class='text-danger text-bold'><i class='fa fa-yen'></i> {$amount} 元</span>";
@@ -55,8 +58,7 @@ class OrdersController extends AdminController
         $grid->column('pay_type', '支付方式');
         $grid->column('payid', '支付ID');
         $grid->column('date_pay', '支付日期')->sortable();
-        $grid->column('rate', '完成率');
-        $grid->column('result', '结果');
+        $grid->column('rate', '重复率');
         $grid->column('from', '来源');
         $grid->column('created_at', '创建时间')->sortable();
         $grid->column('api_orderid', 'api订单ID');
