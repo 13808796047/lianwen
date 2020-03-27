@@ -104,7 +104,7 @@
                 <table class="mylist">
                   <tr>
                     <td><span class="hl bred">检测编号（请牢记）</span></td>
-                    <td><span class="hl bgreen">{{$order->payid}}</span></td>
+                    <td><span class="hl bgreen">{{$order->orderid}}</span></td>
                   </tr>
                   <tr>
                     <td>检测</td>

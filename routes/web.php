@@ -52,5 +52,5 @@ Route::get('payments/{order}/wechat_mp', 'PaymentsController@wechatPayMp')
     ->name('payments.wechat_mp');
 Route::post('payments/wechat/notify', 'PaymentsController@wechatNotify')
     ->name('payments.wechat.notify');
-
+Route::get('payments/{order}/return', 'PaymentsController@wechatReturn')->name('payments.wechat.return');
 Auth::routes();

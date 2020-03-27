@@ -135,6 +135,11 @@ class PaymentsController extends Controller
         ]);
     }
 
+    public function wechatReturn(Order $order)
+    {
+        return view('payments.success', compact('order'));
+    }
+
     public function wechatNotify()
     {
         // 校验回调参数是否正确
