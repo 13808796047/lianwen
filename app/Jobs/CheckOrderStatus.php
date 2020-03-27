@@ -28,12 +28,12 @@ class CheckOrderStatus implements ShouldQueue
     public function handle()
     {
         $api = app(OrderApiHandler::class);
-        $apiOrder = $api->getOrder($this->order->api_orderid);
-        //判断对应的订单是否已经被支付
-        if($this->order->status == OrderEnum::CHECKED) {
+        $result = $api->getOrder($this->order->api_orderid);
+        info('获取报告....');
+        if($result->code == 200) {
             $file = $api->downloadReport($this->order->api_orderid);
             $path = 'downloads/report-' . $this->order->api_orderid . '.zip';
-            $result = \Storage::put($path, $file);
+            \Storage::put($path, $file);
             $report = $api->extractReportDetail($this->order->api_orderid);
             if($report) {
                 \DB::transaction(function() use ($path, $report, $apiOrder) {
@@ -47,20 +47,5 @@ class CheckOrderStatus implements ShouldQueue
                 });
             }
         }
-//        switch ($apiOrder->data->order->status) {
-//            case 7:
-//                $status = OrderEnum::INLINE;
-//                break;
-//            case 9:
-//                $status = OrderEnum::CHECKED;
-//                break;
-//            default:
-//                $status = OrderEnum::CHECKING;
-//        }
-//        \DB::transaction(function() use ($status) {
-//            $this->order->update([
-//                'status' => $status,
-//            ]);
-//        });
     }
 }

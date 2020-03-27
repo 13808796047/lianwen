@@ -46,8 +46,8 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
-//        $this->dispatch(new CheckOrderStatus($order));
-        return view('orders.show', compact('order'));
+        event(new OrderPaid($order));
+//        return view('orders.show', compact('order'));
     }
 
     public function viewReport(Order $order)

@@ -47,7 +47,6 @@ class OrderService
                 'cid' => $request->cid,
                 'title' => $request->title,
                 'writer' => $request->writer,
-                'content' => '',
                 'date_publish' => $request->date_publish,
                 'words' => $words,
                 'price' => $price,

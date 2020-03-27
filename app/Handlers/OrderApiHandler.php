@@ -55,11 +55,8 @@ class OrderApiHandler
                 ],
             ],
         ];
-        try {
-            $response = $this->http->post($this->api . 'file/upload', $query);
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+        $response = $this->http->post($this->api . 'file/upload', $query);
+
         return json_decode($response->getbody()->getContents());
     }
 
@@ -82,15 +79,12 @@ class OrderApiHandler
                 'source' => 2,
             ])
         ];
-        try {
-            $response = $this->http->post($this->api . 'order/create', $option);
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+        $response = $this->http->post($this->api . 'order/create', $option);
+
         return json_decode($response->getbody()->getContents());
     }
 
-    public function startCheck($apiOrder)
+    public function startCheck($id)
     {
         // 构建请求参数
         $option = [
@@ -98,11 +92,7 @@ class OrderApiHandler
                 'Token' => $this->token
             ],
         ];
-        try {
-            $response = $this->http->put($this->api . 'order/start-check/' . $apiOrder->data, $option);
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+        $response = $this->http->put($this->api . 'order/start-check/' . $id, $option);
         return json_decode($response->getbody()->getContents());
     }
 
@@ -114,11 +104,8 @@ class OrderApiHandler
                 'Token' => $this->token
             ],
         ];
-        try {
-            $response = $this->http->get($this->api . 'order/' . $id, $option);
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+        $response = $this->http->get($this->api . 'order/' . $id, $option);
+
         return json_decode($response->getbody()->getContents());
     }
 
@@ -130,11 +117,8 @@ class OrderApiHandler
                 'Token' => $this->token
             ],
         ];
-        try {
-            $response = $this->http->get($this->api . 'order/download-report/' . $id, $option);
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+        $response = $this->http->get($this->api . 'order/download-report/' . $id, $option);
+
         return $response->getbody()->getContents();
 //        return file_put_contents(public_path().'/test.docx',$response->getbody()->getContents());
     }
@@ -147,11 +131,8 @@ class OrderApiHandler
                 'Token' => $this->token
             ],
         ];
-        try {
-            $response = $this->http->get($this->api . 'order/extract-report-detail/' . $id, $option);
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+        $response = $this->http->get($this->api . 'order/extract-report-detail/' . $id, $option);
+
         return json_decode($response->getbody()->getContents());
     }
 }
