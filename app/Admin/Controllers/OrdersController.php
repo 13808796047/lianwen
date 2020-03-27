@@ -46,6 +46,19 @@ class OrdersController extends AdminController
             return "<span class='text-danger text-bold'><i class='fa fa-yen'></i> {$amount} 元</span>";
 
         });
+        $grid->column('status', '状态')->using([
+            0 => '未支付',
+            1 => '待检测',
+            2 => '排队中',
+            3 => '检测中',
+            4 => '检测完成'
+        ])->dot([
+            0 => 'danger',
+            1 => 'info',
+            2 => 'primary',
+            3 => 'warning',
+            4 => 'success',
+        ]);
         $grid->column('title', '标题');
         $grid->column('writer', '作者');
         $grid->column('date_publish', '发表时间');
@@ -58,7 +71,7 @@ class OrdersController extends AdminController
         $grid->column('pay_type', '支付方式');
         $grid->column('payid', '支付ID');
         $grid->column('date_pay', '支付日期')->sortable();
-        $grid->column('rate', '重复率');
+        $grid->column('rate', '重复率')->progressBar($style = 'primary', $size = 'sm', $max = 100);
         $grid->column('from', '来源');
         $grid->column('created_at', '创建时间')->sortable();
         $grid->column('api_orderid', 'api订单ID');
