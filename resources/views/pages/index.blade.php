@@ -142,14 +142,26 @@
             </div>
           </div>
         @else
-          <div class="box-main">
-            <div class="content listbox">
-              <p class='logintitle'>欢迎你</p>
-              <p class='loginname'>{{Auth::user()->nick_name}}</p>
-              <img src='{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}' class='loginimg'>
-              <a href='javascript:;' class='exit logout'>退出</a>
+          <div class="flex flex-col align-middle">
+            <div class=" text-center  px-4 py-2 m-2">欢迎您</div>
+            <div class=" text-center  px-4 py-2 m-2"><img
+                src='{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}' class='w-50 h-50 m-auto'>
+            </div>
+            <div
+              class=" text-center  px-4 py-2 m-2">{{auth()->user()->phone??auth()->user()->nickname}}</div>
+            <div class=" text-center  px-4 py-2 m-2">
+              <a href="javascript:;"
+                 class="rounded-sm logout text-decoration-none w-100 inline-block py-1 bg-teal-500 hover:bg-teal-600 md:text-lg xl:text-base text-white font-semibold  shadow-md">退出登录</a>
             </div>
           </div>
+          {{--          <div class="box-main">--}}
+          {{--            <div class="content listbox">--}}
+          {{--              <p class='logintitle'>欢迎你</p>--}}
+          {{--              <p class='loginname'>{{Auth::user()->nick_name}}</p>--}}
+          {{--              <img src='{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}' class='loginimg'>--}}
+          {{--              <a href='javascript:;' class='exit logout'>退出</a>--}}
+          {{--            </div>--}}
+          {{--          </div>--}}
         @endguest
       </div>
     </div>
