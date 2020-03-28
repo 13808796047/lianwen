@@ -3,7 +3,7 @@
     <h3 class="box-title">订单流水号：{{ $order->orderid }}</h3>
     <div class="box-tools">
       <div class="btn-group float-right" style="margin-right: 10px">
-        <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-default"><i class="fa fa-list"></i> 列表</a>
+        <a href="/admin/orders" class="btn btn-sm btn-default"><i class="fa fa-list"></i> 列表</a>
       </div>
     </div>
   </div>
@@ -19,10 +19,41 @@
         <td>{{ $order->pay_type }}</td>
         <td>支付渠道单号：</td>
         <td>{{ $order->payid }}</td>
-      </tr>
-      <tr>
         <td>订单金额：</td>
         <td>￥{{ $order->pay_price }}</td>
+      </tr>
+      <tr>
+        <td>系统</td>
+        <td>{{$order->category->name}}</td>
+        <td>状态:</td>
+        <td>{{\App\Models\Enum\OrderEnum::getStatusName($order->status)}}</td>
+        <td>标题</td>
+        <td>{{ $order->title }}</td>
+        <td>作者</td>
+        <td>{{ $order->writer }}</td>
+        <td>发表时间</td>
+        <td>{{ $order->date_publish }}</td>
+      </tr>
+      <tr>
+        <td>字数:</td>
+        <td>{{ $order->words }}</td>
+        <td>价格:</td>
+        <td>{{ $order->price }}</td>
+        <td>报告路径</td>
+        <td>{{ $order->paper_path }}</td>
+        <td>下载报告:</td>
+        <td>{{ $order->report_path }}</td>
+        <td>重复率</td>
+        <td>{{ $order->rate }}</td>
+
+      </tr>
+      <tr>
+        <td> 来源</td>
+        <td>{{ $order->from }}</td>
+        <td>创建时间</td>
+        <td> {{ $order->created_at }}</td>
+        <td>API订单ID</td>
+        <td>{{ $order->api_orderid }}</td>
       </tr>
       <form action="{{ route('admin.orders.repeat_check',$order) }}" method="post">
         <!-- 别忘了 csrf token 字段 -->
