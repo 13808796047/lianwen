@@ -42,13 +42,13 @@
                   <input type="hidden" name="type" value="account">
                   @csrf
                   <div>
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
                       用户名:
                     </label>
                     <input
                       class="appearance-none border rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       name="phone"
-                      id="phone" type="text" placeholder="请输入手机号码">
+                      id="phone" type="text" placeholder="请输入手机号码" value="{{ old('phone') }}">
                     @error('phone')
                     <p class="text-red-500 text-xs pb-3">{{ $message }}</p>
                     @enderror
@@ -61,7 +61,7 @@
                     <input
                       class="appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                       name="password"
-                      id="password" type="password" placeholder="请输入密码">
+                      id="password" type="password" placeholder="请输入密码" value="{{ old('password') }}">
                     @error('password')
                     <p class="text-red-500 text-xs pb-3">{{ $message }}</p>
                     @enderror
@@ -225,7 +225,7 @@
           verification_key = res.data.key;
         }).catch(err => {
           index.removeAttribute("disabled");
-          if (err.response.status == 422) {
+          if (err.response.status == 401) {
             $.each(err.response.data.errors, (field, errors) => {
               swal("提示", errors[0], "error");
             })
@@ -246,7 +246,7 @@
           location.reload();
         }).catch(err => {
           if (err.response.status == 401) {
-            swal("提示", err.message, "error");
+            swal("提示", '用户不存在！！！', "error");
           }
           if (err.response.status == 422) {
             $.each(err.response.data.errors, (field, errors) => {

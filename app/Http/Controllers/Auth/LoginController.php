@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -42,6 +44,16 @@ class LoginController extends Controller
             ], [], [
                 $this->username() => '手机号',
             ]);
+            if($this->guard()->attempt(
+                $this->credentials($request), $request->filled('remember')
+            )) {
+                return redirect()->to('/');
+            } else {
+                throw ValidationException::withMessages([
+                    $this->username() => '很抱歉，您的邮箱和密码不匹配',
+                ]);
+                return redirect()->back()->withInput();
+            }
         } else {
             $this->validate($request, [
                 $this->username() => 'required|string',
@@ -52,32 +64,26 @@ class LoginController extends Controller
                 'verification_key' => '短信Key',
                 'verification_code' => '短信验证码',
             ]);
-        }
-        if($verification_key = $request->verification_key) {
-            $verifyData = \Cache::get($verification_key);
-            if(!$verifyData) {
-                abort(403, '验证码已失效');
-            }
-            if(!hash_equals($verifyData['code'], $request->verification_code)) {
-                // 返回401
-                throw new AuthenticationException('验证码错误');
-            }
-            $phone = $verifyData['phone'];
-            $user = User::where('phone', $phone)->first();
-            if(!$user) {
-                return response()->json([
-                    'message' => '用户不存在!'
-                ], 401);
-            }
-            $this->guard()->login($user);
-        } else {
-            if($this->guard()->attempt(
-                $this->credentials($request), $request->filled('remember')
-            )) {
-                redirect()->to('/');
-            } else {
-                session()->flash('error', '很抱歉，您的邮箱和密码不匹配');
-                return redirect()->back()->withInput();
+            if($verification_key = $request->verification_key) {
+                $verifyData = \Cache::get($verification_key);
+                if(!$verifyData) {
+                    abort(403, '验证码已失效');
+                }
+                if(!hash_equals($verifyData['code'], $request->verification_code)) {
+                    // 返回401
+                    throw new AuthenticationException('验证码错误');
+                }
+                $phone = $verifyData['phone'];
+                $user = User::where('phone', $phone)->first();
+                if(!$user) {
+                    return response()->json([
+                        'message' => '用户不存在!'
+                    ], 401);
+                } else {
+                    // 清除验证码缓存
+                    \Cache::forget($verification_key);
+                    return $this->guard()->login($user);
+                }
             }
 
         }
@@ -120,7 +126,7 @@ class LoginController extends Controller
             if(!$user) {
                 return response()->json([
                     'message' => '用户不存在!'
-                ], 422);
+                ], 401);
             }
             $this->guard()->login($user);
         } else {
