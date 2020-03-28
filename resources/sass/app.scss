@@ -3,11 +3,7 @@
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
-// Fontawesome
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
+
 @import "tailwindcss/base";
 
 @import "tailwindcss/components";
@@ -17,41 +13,4 @@
 html {
   position: relative;
   min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px;
-  background-color: #747474;
-
-  .container {
-    padding-right: 15px;
-    padding-left: 15px;
-
-    p {
-      margin: 19px 0;
-      color: #c1c1c1;
-
-      a {
-        color: inherit;
-      }
-    }
-  }
-}
-
-.imguser {
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  display: inline-block;
-  vertical-align: middle;
 }
