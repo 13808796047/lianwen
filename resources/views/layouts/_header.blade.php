@@ -10,6 +10,10 @@
           {{$category->classname}}
         </a>
       @endforeach
+      <a href="{{route('orders.index')}}"
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
+        查看报告
+      </a>
     </div>
     @auth
       <div class="flex justify-content-around w-25 align-items-center">
