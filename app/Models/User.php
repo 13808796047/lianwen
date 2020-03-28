@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Encore\Admin\Traits\DefaultDatetimeFormat;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,6 +11,15 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    use DefaultDatetimeFormat;
+    const COMMON_USER_TYPE = 0;
+    const COMMON_AGENT_TYPE = 1;
+    const SENIOR_AGENT_TYPE = 2;
+    public static $userType = [
+        self::COMMON_USER_TYPE => '普通用户',
+        self::COMMON_AGENT_TYPE => '普通代理',
+        self::SENIOR_AGENT_TYPE => '高级代理',
+    ];
 
     public function getJWTIdentifier()
     {
@@ -32,7 +42,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'username', 'phone', 'email', 'password', 'weixin_openid', 'weixin_unionid', 'nick_name', 'avatar'
+        'username', 'phone', 'email', 'password', 'weixin_openid', 'weixin_unionid', 'nick_name', 'avatar', 'user_group', 'consumption_amount'
     ];
 
     /**

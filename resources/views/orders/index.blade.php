@@ -41,8 +41,8 @@
       <div class="flex justify-between">
         <a class="inline-block bg-danger text-white py-2 px-4" id="del_item">删除</a>
         <span class="p-2">共{{$orders->total()}}条</span>
-        <nav aria-label="Page navigation">
-          <ul class="pagination">
+        <nav aria-label="Page navigation ">
+          <ul class="pagination ">
             <li class="page-item"><a class="page-link" href="{{$orders->previousPageUrl()	}}">上一页</a></li>
             @for($i=1;$i<=$orders->lastPage();$i++)
               <li class="page-item {{ $i==$orders->currentPage()?'active':'' }}"><a class="page-link"
