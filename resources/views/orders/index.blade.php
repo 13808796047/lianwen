@@ -6,58 +6,105 @@
 @section('content')
   <div class="main clearfix">
     <div class="lbox fl">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="orderlist">
-        <tbody>
+      <table class="table table-hover table-sm text-center">
+        <thead class="thead-dark">
         <tr>
-          <th scope="col" width="30" align="center"><input type="checkbox" id="allcheck">
-          </th>
+          <th scope="col"><input type="checkbox" id="allcheck"></th>
           <th scope="col">论文题目</th>
-          <th scope="col" width="130">系统名称</th>
-          <th scope="col" width="75">状态</th>
-          <th scope="col" width="70">检测结果</th>
-          <th scope="col" width="168">提交日期</th>
-          <th scope="col" width="100">操作</th>
+          <th scope="col">系统名称</th>
+          <th scope="col">状态</th>
+          <th scope="col">检测结果</th>
+          <th scope="col">提交日期</th>
+          <th scope="col">操作</th>
         </tr>
+        </thead>
+        <tbody>
         @foreach($orders as $order)
           <tr>
-            <td align="center"><input type='checkbox' name='delete' value='{{$order->id}}'/></td>
+            <td><input type='checkbox' name='delete' value='{{$order->id}}'/></td>
             <td>{{$order->title}}</td>
-            <td align="center">{{ $order->category->name }}</td>
-            <td align="center">{{\App\Models\Enum\OrderEnum::getStatusName($order->status)}}</td>
-            <td align="center">{{ $order->rate }}</td>
-            <td align="center">{{$order->created_at}}</td>
+            <td>{{ $order->category->name }}</td>
+            <td>{{\App\Models\Enum\OrderEnum::getStatusName($order->status)}}</td>
+            <td>{{ $order->rate }}</td>
+            <td>{{$order->created_at}}</td>
             @if($order->status==0)
-              <td align="center"><a href='{{route('orders.show',$order)}}' class="bbtn">支付</a></td>
+              <td><a href='{{route('orders.show',$order)}}' class="bbtn">支付</a></td>
             @elseif($order->status==4)
-              <td align="center"><a href='{{route('orders.view-report',$order)}}' class="bbtn">查看报告</a></td>
+              <td><a href='{{route('orders.view-report',$order)}}' class="bbtn">查看报告</a></td>
             @else
-              <td align="center"><a href='javascript:;' class="bbtn">-</a></td>
+              <td><a href='javascript:;' class="bbtn">-</a></td>
             @endif
           </tr>
         @endforeach
-
-        <tr>
-          <td colspan="2" align="left">&ensp;<a class="rbtn" id="del_item">删除</a></td>
-          <td colspan="5" align="right">
-            共{{$orders->lastPage()}}页
-            <span>共{{$orders->total()}}条</span>
-            <span><a href="{{$orders->previousPageUrl()	}}">上一页</a></span>
-            <span>
-              @for($i=1;$i<=$orders->lastPage();$i++)
-                @if($i==$orders->currentPage())
-                  <span>&nbsp;</span><a style="color: red;" href='{{$orders->url($i)}}'>{{$i}}</a><span>&nbsp;</span>
-                  <span>&nbsp;</span>
-                @else
-                  <span>&nbsp;</span><a href='{{$orders->url($i)}}'>{{$i}}</a><span>&nbsp;</span><span>&nbsp;</span>
-                @endif
-              @endfor
-            </span>
-            <span><a href="{{$orders->nextPageUrl()}}">下一页</a></span>
-          </td>
-        </tr>
-
         </tbody>
       </table>
+      <div class="flex justify-between">
+        <a class="inline-block bg-danger text-white py-2 px-4" id="del_item">删除</a>
+        <span class="p-2">共{{$orders->total()}}条</span>
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="{{$orders->previousPageUrl()	}}">上一页</a></li>
+            @for($i=1;$i<=$orders->lastPage();$i++)
+              <li class="page-item {{ $i==$orders->currentPage()?'active':'' }}"><a class="page-link"
+                                                                                    href="{{$orders->url($i)}}">{{$i}}</a>
+              </li>
+            @endfor
+            <li class="page-item"><a class="page-link" href="{{$orders->nextPageUrl()}}">下一页</a></li>
+          </ul>
+        </nav>
+      </div>
+      {{--      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="orderlist">--}}
+      {{--        <tbody>--}}
+      {{--        <tr>--}}
+      {{--          <th scope="col" width="30" align="center"><input type="checkbox" id="allcheck">--}}
+      {{--          </th>--}}
+      {{--          <th scope="col">论文题目</th>--}}
+      {{--          <th scope="col" width="130">系统名称</th>--}}
+      {{--          <th scope="col" width="75">状态</th>--}}
+      {{--          <th scope="col" width="70">检测结果</th>--}}
+      {{--          <th scope="col" width="168">提交日期</th>--}}
+      {{--          <th scope="col" width="100">操作</th>--}}
+      {{--        </tr>--}}
+      {{--        @foreach($orders as $order)--}}
+      {{--          <tr>--}}
+      {{--            <td align="center"><input type='checkbox' name='delete' value='{{$order->id}}'/></td>--}}
+      {{--            <td>{{$order->title}}</td>--}}
+      {{--            <td align="center">{{ $order->category->name }}</td>--}}
+      {{--            <td align="center">{{\App\Models\Enum\OrderEnum::getStatusName($order->status)}}</td>--}}
+      {{--            <td align="center">{{ $order->rate }}</td>--}}
+      {{--            <td align="center">{{$order->created_at}}</td>--}}
+      {{--            @if($order->status==0)--}}
+      {{--              <td align="center"><a href='{{route('orders.show',$order)}}' class="bbtn">支付</a></td>--}}
+      {{--            @elseif($order->status==4)--}}
+      {{--              <td align="center"><a href='{{route('orders.view-report',$order)}}' class="bbtn">查看报告</a></td>--}}
+      {{--            @else--}}
+      {{--              <td align="center"><a href='javascript:;' class="bbtn">-</a></td>--}}
+      {{--            @endif--}}
+      {{--          </tr>--}}
+      {{--        @endforeach--}}
+
+      {{--        <tr>--}}
+      {{--          <td colspan="2" align="left">&ensp;<a class="rbtn" id="del_item">删除</a></td>--}}
+      {{--          <td colspan="5" align="right">--}}
+      {{--            共{{$orders->lastPage()}}页--}}
+      {{--            <span>共{{$orders->total()}}条</span>--}}
+      {{--            <span><a href="{{$orders->previousPageUrl()	}}">上一页</a></span>--}}
+      {{--            <span>--}}
+      {{--              @for($i=1;$i<=$orders->lastPage();$i++)--}}
+      {{--                @if($i==$orders->currentPage())--}}
+      {{--                  <span>&nbsp;</span><a style="color: red;" href='{{$orders->url($i)}}'>{{$i}}</a><span>&nbsp;</span>--}}
+      {{--                  <span>&nbsp;</span>--}}
+      {{--                @else--}}
+      {{--                  <span>&nbsp;</span><a href='{{$orders->url($i)}}'>{{$i}}</a><span>&nbsp;</span><span>&nbsp;</span>--}}
+      {{--                @endif--}}
+      {{--              @endfor--}}
+      {{--            </span>--}}
+      {{--            <span><a href="{{$orders->nextPageUrl()}}">下一页</a></span>--}}
+      {{--          </td>--}}
+      {{--        </tr>--}}
+
+      {{--        </tbody>--}}
+      {{--      </table>--}}
     </div>
 
     <div class="rbox fr">
