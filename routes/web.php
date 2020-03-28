@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 //微信登录
 Route::get('/oauth/{type}', 'AuthenticationsController@oauth')->name('oauth');
-
 Route::get('/oauth/{type}/callback', 'AuthenticationsController@callback');
+
 
 Route::get('/', 'PagesController@index')->name('pages.index');
 
@@ -54,3 +54,4 @@ Route::post('payments/wechat/notify', 'PaymentsController@wechatNotify')
     ->name('payments.wechat.notify');
 Route::get('payments/{order}/return', 'PaymentsController@wechatReturn')->name('payments.wechat.return');
 Auth::routes();
+

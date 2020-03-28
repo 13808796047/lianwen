@@ -53,4 +53,41 @@ class AuthenticationsController extends Controller
         auth('web')->login($user);
         return redirect()->to('/');
     }
+
+//    public function accountLogin(Request $request)
+//    {
+//        $credentials = $this->validate($request, [
+//            'phone' => 'required|unique:users|max:50',
+//            'password' => 'required|confirmed|min:6'
+//        ]);
+//        $credentials['phone'] = $request->phone;
+//        $credentials['password'] = $request->password;
+//        if(\Auth::attempt($credentials)) {
+//            session()->flash('success', '欢迎回来！');
+//            return redirect()->route('pages.index');
+//        } else {
+//            session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
+//            return redirect()->back()->withInput();
+//        }
+//    }
+//
+//    public function mobileLogin(Request $request)
+//    {
+//        $validatedData = $request->validate([
+//            'phone' => 'required|unique:users|max:50',
+//            'verification_key' => 'required',
+//            'verification_code' => 'required',
+//        ]);
+//
+//        $verifyData = \Cache::get($request->verification_key);
+//        if(!$verifyData) {
+//            abort(403, '验证码已失效');
+//        }
+//        if(!hash_equals($verifyData['code'], $request->verification_code)) {
+//            // 返回401
+//            throw new AuthenticationException('验证码错误');
+//        }
+//        $phone = $verifyData['phone'];
+//
+//    }
 }

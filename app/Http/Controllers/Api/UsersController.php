@@ -28,7 +28,6 @@ class UsersController extends Controller
         $user = User::create([
             'phone' => $phone,
             'password' => Hash::make($request->password),
-
         ]);
         // 清除验证码缓存
         \Cache::forget($verification_key);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -21,25 +22,113 @@ class LoginController extends Controller
      */
 
     use AuthenticatesUsers;
+
     public function showLoginForm()
     {
         return view('pages.index');
     }
+
     public function username()
     {
         return 'phone';
     }
 
-    protected function validateLogin(Request $request)
+    public function login(Request $request)
     {
-        $this->validate($request, [
-            $this->username() => 'required|string',
-            'password' => 'required|string',
-        ], [], [
-            $this->username() => '手机号',
-        ]);
-    }
+        if($request->type == 'account') {
+            $this->validate($request, [
+                $this->username() => 'required|string',
+                'password' => 'required|string',
+            ], [], [
+                $this->username() => '手机号',
+            ]);
+        } else {
+            $this->validate($request, [
+                $this->username() => 'required|string',
+                'verification_key' => 'required|string',
+                'verification_code' => 'required|string',
+            ], [], [
+                $this->username() => '手机号',
+                'verification_key' => '短信Key',
+                'verification_code' => '短信验证码',
+            ]);
+        }
+        if($verification_key = $request->verification_key) {
+            $verifyData = \Cache::get($verification_key);
+            if(!$verifyData) {
+                abort(403, '验证码已失效');
+            }
+            if(!hash_equals($verifyData['code'], $request->verification_code)) {
+                // 返回401
+                throw new AuthenticationException('验证码错误');
+            }
+            $phone = $verifyData['phone'];
+            $user = User::where('phone', $phone)->first();
+            if(!$user) {
+                return response()->json([
+                    'message' => '用户不存在!'
+                ], 401);
+            }
+            $this->guard()->login($user);
+        } else {
+            if($this->guard()->attempt(
+                $this->credentials($request), $request->filled('remember')
+            )) {
+                redirect()->to('/');
+            } else {
+                session()->flash('error', '很抱歉，您的邮箱和密码不匹配');
+                return redirect()->back()->withInput();
+            }
 
+        }
+    }
+//    protected function validateLogin(Request $request)
+//    {
+//        if($request->type == 'account') {
+//            $this->validate($request, [
+//                $this->username() => 'required|string',
+//                'password' => 'required|string',
+//            ], [], [
+//                $this->username() => '手机号',
+//            ]);
+//        } else {
+//            $this->validate($request, [
+//                $this->username() => 'required|string',
+//                'verification_key' => 'required|string',
+//                'verification_code' => 'required|string',
+//            ], [], [
+//                $this->username() => '手机号',
+//                'verification_key' => '短信Key',
+//                'verification_code' => '短信验证码',
+//            ]);
+//        }
+//    }
+
+    protected function attemptLogin(Request $request)
+    {
+        if($verification_key = $request->verification_key) {
+            $verifyData = \Cache::get($verification_key);
+            if(!$verifyData) {
+                abort(403, '验证码已失效');
+            }
+            if(!hash_equals($verifyData['code'], $request->verification_code)) {
+                // 返回401
+                throw new AuthenticationException('验证码错误');
+            }
+            $phone = $verifyData['phone'];
+            $user = User::where('phone', $phone)->first();
+            if(!$user) {
+                return response()->json([
+                    'message' => '用户不存在!'
+                ], 422);
+            }
+            $this->guard()->login($user);
+        } else {
+            return $this->guard()->attempt(
+                $this->credentials($request), $request->filled('remember')
+            );
+        }
+    }
 //    protected function attemptLogin(Request $request)
     //    {
     //        return collect(['username', 'phone'])->contains(function($value) use ($request) {
