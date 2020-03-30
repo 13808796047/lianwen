@@ -129,3 +129,8 @@ function route_class()
 {
     return str_replace('.', '-', Route::currentRouteName());
 }
+
+function system_nav_active($type, $date)
+{
+    return active_class((if_route('admin.home.index') && if_query('date', $date) && if_query('type', $type)));
+}

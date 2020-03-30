@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Encore\Admin\Traits\DefaultDatetimeFormat;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,6 +20,43 @@ class Order extends Model
     public function report()
     {
         return $this->hasOne(Report::class);
+    }
+
+    public function scopeWithOrder($query, $order)
+    {
+        switch ($order) {
+            case "yesterday":
+                $query->yesterdayOrder();
+                break;
+            case 'month':
+                $query->monthOrder();
+                break;
+            case 'pre_month':
+                $query->preMonthOrder();
+                break;
+            default:
+                $query->todayOrder();
+        }
+    }
+
+    public function scopeTodayOrder($query)
+    {
+        return $query->whereBetween('date_pay', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()]);
+    }
+
+    public function scopeYesterdayOrder($query)
+    {
+        return $query->whereBetween('date_pay', [Carbon::now()->subDay()->startOfDay(), Carbon::now()->subDay()->endOfDay()]);
+    }
+
+    public function scopeMonthOrder($query)
+    {
+        return $query->whereBetween('date_pay', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()]);
+    }
+
+    public function scopePreMonthOrder($query)
+    {
+        return $query->whereBetween('date_pay', [Carbon::now()->subMonth()->startOfMonth(), Carbon::now()->subMonth()->endOfMonth()]);
     }
 
     //分类

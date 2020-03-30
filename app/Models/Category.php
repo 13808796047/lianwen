@@ -23,6 +23,11 @@ class Category extends Model
         self::CHECK_TYPE_AUTO => 'api'
     ];
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'cid', 'cid');
+    }
+
     public function getSysLogoAttribute()
     {
         //如果image字段本身就已经是完整的Url就直接返回
