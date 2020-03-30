@@ -146,7 +146,9 @@ class PaymentsController extends Controller
         /**
          * 第二部分：使用参数计算签名
          */
-
+        $private_key = "-----BEGIN RSA PRIVATE KEY-----
+        MIICWwIBAAKBgQCwjyUGup1gb0h6uj+HMrguJc8imoWR7KLyWs0Xed7l9Jv1lz3bMoaH3+hhQe8mp099hJOGiqx+UqxwYmWT6I80upnGXT4j15olF2LEQ8tmOMZmbD2gTIpbmJL3/DkG3BFGdpXqlFEbphdK1/W/jym6Nl2fCdQn5hZePenSS8y3PwIDAQABAoGASf9EamSODtu1CdLDS1uDe7vW607NylHeHSrXKA6oz8HMF4sSnqq3XX0HPLPQkmeu1hFZbxrxnmPx54wlvG7MjX0ihIepBM6vshWbuEIIYOooQbEvITlxE9W3w/RzZm/RfXRYCBpGEKOIYVdK4W4yXduAtdPVPMb0dt2bHIlFuaECQQD7tB0UZSN8Lodip5hBVqxVGM6CGxbsu1h3Uy5Cj5grXyTqE2Qs8wFKZxJ411Aj2tXa4sHHNQ2VY0FFqOyw18BPAkEAs5Kq1uIv0/kz1YpTWk/wgrCRZ6l7J89C5ExdNQ8ZV6jwT7fvcyM1fkQzCxz5eszkbuEkVON9QepbKczgdPluEQJAQ+3lFzcAb6hDA34FmkSg98pdGUHkWvlos7NwPahxQetIlB+tnm/qvkC4/IHnb/XEV3FxKKkJxHJoEDu5vTRNAwJAMlLB6aJNgPvvWMKBBWgtoJJWzVQjnU5qEoyL+liW44gGgHCte/i7/vyhyVV/XLias7AIfHmcGqLQlXBC3sUf4QJATZ2sFIK3wOQQh0do0RCTS0L0BOOFC8gTTmV4e3LadwVcdYv8e0csM0J8Y+v2zUWmi35XAJW8y0Y920iO7FYyCg==
+        -----END RSA PRIVATE KEY-----";
         $requestApiParamsArr = ['key1' => 'value1', 'key2' => 'value2'];
 
 
@@ -155,7 +157,7 @@ class PaymentsController extends Controller
         $data['appKey'] = $config['app_key']; // 支付能力开通后分配的支付appKey，用以表示应用身份的唯一ID，在应用审核通过后进行分配，一经分配后不会发生更改，来唯一确定一个应用
         $data['totalAmount'] = '1';        // 订单总金额，以分为单位
         $data['tpOrderId'] = $order->orderid;    // 商户平台自己记录的订单ID
-        $data['rsaSign'] = NuomiRsaSign::genSignWithRsa($requestApiParamsArr, $rsaPrivateKey); // 对appKey+dealId+tpOrderId+totalAmount进行RSA加密后的签名，防止订单被伪造
+        $data['rsaSign'] = NuomiRsaSign::genSignWithRsa($requestApiParamsArr, $private_key); // 对appKey+dealId+tpOrderId+totalAmount进行RSA加密后的签名，防止订单被伪造
         $data['dealTitle'] = '支付 联文检测 的订单' . $order->orderid; // 订单的名称
         $data['signFieldsRange'] = 1; // 固定值1
         $data['bizInfo'] = ''; // 订
