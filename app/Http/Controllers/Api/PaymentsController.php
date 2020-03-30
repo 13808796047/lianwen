@@ -145,7 +145,7 @@ class PaymentsController extends Controller
             'tpOrderId' => $order->orderid,
             'dealTitle' => '支付 联文检测 的订单' . $order->orderid,
             'signFieldsRange' => 1,
-            'rsaSign' => $this->genSignWithRsa(),
+            'rsaSign' => $this->genSignWithRsa($orderInfo, $config['app_public_key']),
             'bizInfo' => ''
         ];
         return response()->json($orderInfo)->setStatusCode(200);
