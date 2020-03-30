@@ -9,12 +9,12 @@ class BaiduPayHandler
     //公钥
     private $rsaPubKeyStr;
     //私钥
-    private $reaPriKeyStr;
+    private $rsaPriKeyStr;
 
     public function __construct(array $options = [])
     {
         $this->rsaPubKeyStr = $options['rsaPubKeyStr'] ?? '';
-        $this->reaPriKeyStr = $options['reaPriKeyStr'] ?? '';
+        $this->rsaPriKeyStr = $options['reaPriKeyStr'] ?? '';
     }
 
     public function getSign(array $assocArr)
