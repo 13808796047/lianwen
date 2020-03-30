@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Handlers\BaiduPayHandler;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -82,6 +83,11 @@ class AppServiceProvider extends ServiceProvider
             }
             //调用Yansongda/pay来创建一个微信支付对象
             return Pay::wechat($config);
+        });
+        //百度收银台
+        $this->app->singleton('baidu_pay', function() {
+            $config = config('pay.baidu');
+            return new BaiduPayHandler($config);
         });
     }
 

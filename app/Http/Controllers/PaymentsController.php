@@ -173,9 +173,74 @@ class PaymentsController extends Controller
         event(new OrderPaid($order));
     }
 
-    //百度
+    //百度回调
+    /*
+     *   [unitPrice] => 100 //单价分
+	    [orderId] => 81406526123456 //百度平台订单ID【幂等性标识参数】(用于重入判断)
+	    [payTime] => 1573875414 //支付完成时间，时间戳
+	    [dealId] => 436123456 //百度收银台的财务结算凭证
+	    [tpOrderId] => a11358de8febff55ea78e1 //业务方唯一订单号
+	    [count] => 1 //数量
+	    [totalMoney] => 3 //订单的实际金额，单位：分
+	    [hbBalanceMoney] => 0 //余额支付金额
+	    [userId] => 2091123456   //百度用户ID
+	    [promoMoney] => 0 //营销优惠金额
+	    [promoDetail] => //订单参与的促销优惠的详细信息
+	    [hbMoney] => 0  //红包支付金额
+	    [giftCardMoney] => 0 //抵用券金额
+	    [payMoney] => 3 //实付金额 扣除各种优惠后用户还需要支付的金额，单位：分
+	    [payType] => 1117 //支付渠道值
+	    [returnData] =>  //业务方下单时传入的数据
+	    [partnerId] => 6000001 //支付平台标识值
+	    [rsaSign] => L9bmkYxBveoGZnrwayCySgQcWcCmwR0A+w2VX256odFZavUJMSYOATwH0myAl5xY9qcPwVJHfEyxEZcd+GktMEeg/zkkK92v+jOgq/B7pQxzGW5Lc6VZWAB/U2b3nooNsf+jKwPaTdlYU7ql9SgSNhRG2vk=
+	    [status] => 2 //1：未支付；2：已支付；-1：订单取消
+     */
     public function baiduNotify()
     {
+        $notify_arr = $_POST;
+        //检查空
+        if(!isset($notify_arr['rsaSign']) || empty($notify_arr['rsaSign'])) {
+            return 'fail';
+        }
+        try {
+            info("【接收到的notify通知】:\n" . json_encode($notify_arr) . "\n");
+            //因签名类是sign字段 所以替换一下
+            $rsaSign = $notify_arr['rsaSign'];
+            $notify_arr['sign'] = $rsaSign;
+            unset($notify_arr['rsaSign']);
+            //验签
+            $result = app('baidu_pay')->checkSign($notify_arr);
+            return response()->json([
+                'message' => '验签失败!',
+            ], 500);
+            if($notify_arr['status'] == 2) {
+                $notify_arr['returnData'] = json_decode($notify_arr['returnData'], true);//这是携带的参数
+//                $out_trade_no = $notify_arr['tpOrderId']; //订单号
+//                $price = $notify_arr['totalMoney']; //金额
+//                $pay_time = $notify_arr['payTime']; //支付时间
+//                $orderId = $notify_arr['orderId']; //百度平台订单ID
+                //检查订单状态 检查支付状态 检查订单号  检查金额
+                $order = Order::where('orderid', $out_trade_no)->first();
+                // 订单不存在则告知微信支付
+                if(!$order) {
+                    return 'fail';
+                }
+                // 将订单标记为已支付
+                $order->update([
+                    'date_pay' => Carbon::now(),
+                    'pay_type' => 'baidu',
+                    'payid' => $notify_arr['tpOrderId'], //订单号
+                    'pay_price' => $notify_arr['totalMoney'],//支付金额
+                    'status' => 1,
+                ]);
+                $this->afterPaid($order);
+                return response()->json([
+                    'message' => '支付成功',
+                ]);
+            }
 
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 }

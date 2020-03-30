@@ -66,7 +66,7 @@
                     <p class="text-red-500 text-xs pb-3">{{ $message }}</p>
                     @enderror
                   </div>
-                  <div class="flex items-center justify-between my-2">
+                  <div class="flex items-center justify-between my-8">
                     <button
                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full px-4 rounded focus:outline-none focus:shadow-outline"
                       type="submit">

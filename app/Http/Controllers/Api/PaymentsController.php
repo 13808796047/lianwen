@@ -138,52 +138,15 @@ class PaymentsController extends Controller
     //百度支付
     public function mockData(Order $order, Request $request)
     {
-        $rsaPriviateKeyFilePath = resource_path('baidu_pay/rsa/rsa_private_key.pem');
-
-        $rsaPrivateKey = file_get_contents($rsaPriviateKeyFilePath);
-
-
-        /**
-         * 第二部分：使用参数计算签名
-         */
-        $private_key = "-----BEGIN RSA PRIVATE KEY-----
-MIICXQIBAAKBgQCzrQWntOKChNlF9B1l+21rHjALLhUlLgXtvsGFNL3X5KdxUM8PIrXog0tNXiuW8XPoP3o25y/gKNWyUfzyRD/0Eu4NvHH4IzMAte9adj2prq3niDhoCNKf9KsyHYTxvsu3Sw66ejQqKobT74SSZ9EHm1UF7n64muso9ofd+RPFIQIDAQABAoGBAJ30+ya/p+5Uemq8PGgejMgCBvydK6u+9SlYbOr9PfShqO6+uvm0azWYz0eaBToy1NIVlAzWW8l2PMACwhv+EjW4oHe++6UIvAPrWVBnPlPlpaTx+Z/QVdm0GWjm2Jnd1CToB2jeLDfGm9w387BvpVCVeLz9wdvNIRnmOaAoD21BAkEA19DHseFLeT4zhNlYXg4Vz9tUhXFm7RL6fTXbUFI8WYpUK7PyCYTirjAuU8jbh5rCpf8MOolH8C5Z9sthM5FWyQJBANUhlPlpjR6LH7lkQ7Oatqp4JpZioaPdo2xGK0vTOT5k9hnpAjRrhPNRZ5ORIM+qkkblOHHFr4RtjbU2DLIIL5kCQAjk/OXy4BZuHtdx0beGoxV+95vMUa6hops4dgJ4cS5Lii6G6wnDZUhCihY/5/RNx4np2gorkEBw2JpYRXhHnCkCQHsvcMKDflwz/z8RM4xAlOmMjokHMvPaa9Vt7SJjUEe+5Ptu0KZpqqtT1rDVBgjhRrCRVgF0SBEbnPcq6UWRM6kCQQCuPWrK7tZ5fWVzYHlqxWVppAyHfIr02RBDhkHw3rpNyOcDC2DOMNnqMtAEO0MB+lnE2LVKEx2psXhsCWe66IGv
------END RSA PRIVATE KEY-----";
-        $requestApiParamsArr = ['key1' => 'value1', 'key2' => 'value2'];
-
-
-        $config = config('pay.baidu_pay');
-        $data['dealId'] = $config['dealid'];  // 跳转百度收银台支付必带参数之一，是百度收银台的财务结算凭证，与账号绑定的结算协议一一对应，每笔交易将结算到dealId对应的协议主体
-        $data['appKey'] = $config['app_key']; // 支付能力开通后分配的支付appKey，用以表示应用身份的唯一ID，在应用审核通过后进行分配，一经分配后不会发生更改，来唯一确定一个应用
-        $data['totalAmount'] = '1';        // 订单总金额，以分为单位
-        $data['tpOrderId'] = $order->orderid;    // 商户平台自己记录的订单ID
-        $data['rsaSign'] = NuomiRsaSign::genSignWithRsa($data, $private_key); // 对appKey+dealId+tpOrderId+totalAmount进行RSA加密后的签名，防止订单被伪造
+        $data['dealId'] = config('pay.dealId');
+        $data['appKey'] = config('pay.appKey');
+        $data['totalAmount'] = 1;
+        $data['tpOrderId'] = $order->orderid;
+        $data['rsaSign'] = app('baidu_pay')->getSign($data);
         $data['dealTitle'] = '支付 联文检测 的订单' . $order->orderid; // 订单的名称
         $data['signFieldsRange'] = 1; // 固定值1
-        $data['bizInfo'] = ''; // 订
+        $data['bizInfo'] = ''; // 其他信息
 
         return response()->json($data)->setStatusCode(200);
-    }
-
-    public function genSignWithRsa(array $assocArr, $priKey, $rsaPriKeyStr = true)
-    {
-
-        $sign = '';
-        if(empty($rsaPriKeyStr) || empty($assocArr)) {
-            return $sign;
-        }
-        $priKey = chunk_split($priKey, 64, "\n");
-        $priKey = "-----BEGIN RSA PRIVATE KEY-----\n$priKey-----END RSA PRIVATE KEY-----\n";
-        if(isset($assocArr['sign'])) {
-            unset($assocArr['sign']);
-        }
-        ksort($assocArr); //按字母升序排序
-        $parts = [];
-        foreach($assocArr as $k => $v) {
-            $parts[] = $k . '=' . $v;
-        }
-        $str = implode('&', $parts);
-        openssl_sign($str, $sign, $priKey);
-        return base64_encode($sign);
     }
 }

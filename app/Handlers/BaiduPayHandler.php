@@ -4,22 +4,37 @@
 namespace App\Handlers;
 
 
-/**
- * API入参静态检查类
- * 可以对API的参数类型. 长度. 最大值等进行校验
- *
- **/
-class NuomiRsaSign
+class BaiduPayHandler
 {
+    //公钥
+    private $rsaPubKeyStr;
+    //私钥
+    private $reaPriKeyStr;
+
+    public function __construct(array $options = [])
+    {
+        $this->rsaPubKeyStr = $options['rsaPubKeyStr'] ?? '';
+        $this->reaPriKeyStr = $options['reaPriKeyStr'] ?? '';
+    }
+
+    public function getSign(array $assocArr)
+    {
+        return $this->genSignWithRsa($assocArr, $this->rsaPriKeyStr);
+    }
+
+    public function checkSign(array $assocArr)
+    {
+        return $this->checkSignWithRsa($assocArr, $this->rsaPubKeyStr);
+    }
 
     /**
-     * @desc 私钥生成签名字符串
-     * @param array $assocArr
-     * @param $rsaPriKeyStr
-     * @return bool|string
-     * @throws Exception
+     * @desc 私钥生成签名字符串 appKey+dealId+tpOrderId+totalAmount进行RSA加密后的签名
+     * @param array $assocArr 关联数组 即参数data
+     * @param $rsaPriKeyStr 私钥
+     * @return bool|string 空字符串或签名
+     * @throws Exception 报错
      */
-    public static function genSignWithRsa(array $assocArr, $rsaPriKeyStr)
+    private function genSignWithRsa(array $assocArr, $rsaPriKeyStr)
     {
         $sign = '';
         if(empty($rsaPriKeyStr) || empty($assocArr)) {
@@ -43,6 +58,7 @@ class NuomiRsaSign
             $parts[] = $k . '=' . $v;
         }
         $str = implode('&', $parts);
+
         openssl_sign($str, $sign, $priKey);
         openssl_free_key($priKey);
 
@@ -51,12 +67,12 @@ class NuomiRsaSign
 
     /**
      * @desc 公钥校验签名
-     * @param array $assocArr
-     * @param $rsaPubKeyStr
-     * @return bool
+     * @param array $assocArr 关联数组
+     * @param $rsaPubKeyStr 公钥
+     * @return bool 布尔
      * @throws Exception
      */
-    public static function checkSignWithRsa(array $assocArr, $rsaPubKeyStr)
+    private function checkSignWithRsa(array $assocArr, $rsaPubKeyStr)
     {
         if(!isset($assocArr['sign']) || empty($assocArr) || empty($rsaPubKeyStr)) {
             return false;
@@ -72,6 +88,7 @@ class NuomiRsaSign
         if(empty($assocArr)) {
             return false;
         }
+
         ksort($assocArr); //按字母升序排序
         $parts = [];
         foreach($assocArr as $k => $v) {
@@ -80,11 +97,15 @@ class NuomiRsaSign
         $str = implode('&', $parts);
 
         $sign = base64_decode($sign);
-        $pubKey = openssl_pkey_get_public($rsaPubKeyStr);
+
+        $pubKey = chunk_split($rsaPubKeyStr, 64, "\n");
+        $pubKey = "-----BEGIN PUBLIC KEY-----\n$pubKey-----END PUBLIC KEY-----\n";
+
+        $pubKey = openssl_pkey_get_public($pubKey);
+
         $result = (bool)openssl_verify($str, $sign, $pubKey);
         openssl_free_key($pubKey);
 
         return $result;
     }
-
 }
