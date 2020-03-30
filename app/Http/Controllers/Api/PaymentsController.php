@@ -137,12 +137,24 @@ class PaymentsController extends Controller
     //百度支付
     public function mockData(Order $order, Request $request)
     {
+        $rsaPriviateKeyFilePath = resource_path('baidu_pay/rsa/rsa_private_key.pem');
+
+        $rsaPrivateKey = file_get_contents($rsaPriviateKeyFilePath);
+
+
+        /**
+         * 第二部分：使用参数计算签名
+         */
+
+        $requestApiParamsArr = ['key1' => 'value1', 'key2' => 'value2'];
+
+
         $config = config('pay.baidu_pay');
         $data['dealId'] = $config['dealid'];  // 跳转百度收银台支付必带参数之一，是百度收银台的财务结算凭证，与账号绑定的结算协议一一对应，每笔交易将结算到dealId对应的协议主体
         $data['appKey'] = $config['app_key']; // 支付能力开通后分配的支付appKey，用以表示应用身份的唯一ID，在应用审核通过后进行分配，一经分配后不会发生更改，来唯一确定一个应用
         $data['totalAmount'] = '1';        // 订单总金额，以分为单位
         $data['tpOrderId'] = $order->orderid;    // 商户平台自己记录的订单ID
-        $data['rsaSign'] = $this->genSignWithRsa($data, $config['app_pri_key']); // 对appKey+dealId+tpOrderId+totalAmount进行RSA加密后的签名，防止订单被伪造
+        $data['rsaSign'] = $this->genSignWithRsa($requestApiParamsArr, $rsaPrivateKey); // 对appKey+dealId+tpOrderId+totalAmount进行RSA加密后的签名，防止订单被伪造
         $data['dealTitle'] = '支付 联文检测 的订单' . $order->orderid; // 订单的名称
         $data['signFieldsRange'] = 1; // 固定值1
         $data['bizInfo'] = ''; // 订
@@ -152,6 +164,7 @@ class PaymentsController extends Controller
 
     public function genSignWithRsa(array $assocArr, $priKey, $rsaPriKeyStr = true)
     {
+
         $sign = '';
         if(empty($rsaPriKeyStr) || empty($assocArr)) {
             return $sign;
