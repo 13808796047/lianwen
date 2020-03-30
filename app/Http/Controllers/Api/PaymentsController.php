@@ -133,4 +133,21 @@ class PaymentsController extends Controller
     {
         event(new OrderPaid($order));
     }
+
+    //百度支付
+    public function mockData(Order $order, Request $request)
+    {
+        $config = config('pay.baidu_pay');
+        $orderInfo = [
+            'dealId' => $config['dealId'],
+            'appKey' => $config['app_key'],
+            'totalAmount' => '1',
+            'tpOrderId' => $order->orderid,
+            'dealTitle' => '支付 联文检测 的订单' . $order->orderid,
+            'signFieldsRange' => 1,
+            'rsaSign' => '',
+            'bizInfo' => ''
+        ];
+        return response()->json($orderInfo)->setStatusCode(200);
+    }
 }

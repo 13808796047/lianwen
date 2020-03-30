@@ -20,4 +20,10 @@ return [
             'file' => storage_path('logs/wechat_pay.log'),
         ],
     ],
+    'baidu_pay' => [
+        'app_id' => '28990',
+        'app_public_key' => 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4JhM1VudlfNPFHYNBWmyY9ZcqMmLGNNsXN8CSTfaCES7nRg3NVPPRTn6cGVPKRyRj6GpjOwnuUkicG372q+qqSbQNy2G+fg9V+hBdXNdHGE9DokbiZBAL+SRUf19oYo4SjBsP9wbvRwBGHQII003ryFEU3b+PEpQZZbqQGqGFXwIDAQAB',
+        'app_key' => 'MMUaVY',
+        'dealid' => '470215513'
+    ]
 ];

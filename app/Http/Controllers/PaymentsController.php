@@ -172,4 +172,10 @@ class PaymentsController extends Controller
     {
         event(new OrderPaid($order));
     }
+
+    //百度
+    public function baiduNotify()
+    {
+
+    }
 }
