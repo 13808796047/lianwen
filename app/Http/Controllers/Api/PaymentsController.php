@@ -157,7 +157,7 @@ MIICXQIBAAKBgQCzrQWntOKChNlF9B1l+21rHjALLhUlLgXtvsGFNL3X5KdxUM8PIrXog0tNXiuW8XPo
         $data['appKey'] = $config['app_key']; // 支付能力开通后分配的支付appKey，用以表示应用身份的唯一ID，在应用审核通过后进行分配，一经分配后不会发生更改，来唯一确定一个应用
         $data['totalAmount'] = '1';        // 订单总金额，以分为单位
         $data['tpOrderId'] = $order->orderid;    // 商户平台自己记录的订单ID
-        $data['rsaSign'] = NuomiRsaSign::genSignWithRsa($requestApiParamsArr, $private_key); // 对appKey+dealId+tpOrderId+totalAmount进行RSA加密后的签名，防止订单被伪造
+        $data['rsaSign'] = NuomiRsaSign::genSignWithRsa($data, $private_key); // 对appKey+dealId+tpOrderId+totalAmount进行RSA加密后的签名，防止订单被伪造
         $data['dealTitle'] = '支付 联文检测 的订单' . $order->orderid; // 订单的名称
         $data['signFieldsRange'] = 1; // 固定值1
         $data['bizInfo'] = ''; // 订
