@@ -138,8 +138,8 @@ class PaymentsController extends Controller
     //百度支付
     public function mockData(Order $order, Request $request)
     {
-        $data['dealId'] = config('pay.dealId');
-        $data['appKey'] = config('pay.appKey');
+        $data['dealId'] = config('pay.baidu_pay.dealId');
+        $data['appKey'] = config('pay.baidu_pay.appKey');
         $data['totalAmount'] = 1;
         $data['tpOrderId'] = $order->orderid;
         $data['rsaSign'] = app('baidu_pay')->getSign($data);
