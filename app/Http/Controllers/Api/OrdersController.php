@@ -39,7 +39,7 @@ class OrdersController extends Controller
 
         $user = $request->user();
 
-        $category = Category::find($request->cid);
+        $category = Category::findOrFail($request->cid);
 //        if($category->status == 0) {
 //            return response()->json([
 //                'message' => '此检测通道已关闭!'
@@ -60,7 +60,7 @@ class OrdersController extends Controller
         //        校验权限
 //        $report = $api->extractReportDetail($order->api_orderid);
 //        $order->content = $report->data->content;
-     
+
         return new OrderResource($order);
     }
 

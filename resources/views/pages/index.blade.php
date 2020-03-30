@@ -86,7 +86,7 @@
                       手机号码:
                     </label>
                     <input
-                      class="appearance-none border rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      class="appearance-none border rounded w-full py-2 px-2 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       id="mobile" type="text" placeholder="请输入手机号码">
                     <p class="text-red-500 text-xs italic "></p>
                   </div>
@@ -96,7 +96,7 @@
                     </label>
                     <div class="d-flex justify-content-between">
                       <input
-                        class="appearance-none border border-red-500 rounded   py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        class="appearance-none border border-red-500 rounded   py-2 px-2  w-full mr-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="verification_code" type="text" placeholder="请输入短信验证码"/>
                       <input
                         class="bg-blue-500 hover:bg-blue-700 px-2 py-1  text-white font-bold rounded"
