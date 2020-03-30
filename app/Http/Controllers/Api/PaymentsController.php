@@ -139,7 +139,7 @@ class PaymentsController extends Controller
     {
         $config = config('pay.baidu_pay');
         $orderInfo = [
-            'dealId' => $config['dealId'],
+            'dealId' => $config['dealid'],
             'appKey' => $config['app_key'],
             'totalAmount' => '1',
             'tpOrderId' => $order->orderid,
