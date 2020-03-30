@@ -13,19 +13,20 @@
     </div>
   </div>
   <div class="box-body">
+    <ul class="nav nav-pills">
+      <li role="presentation" class="{{ system_nav_active('cid','today') }}"><a
+          href="{{ route('admin.home.index',['type'=>'cid','date'=>'today']) }}">今天</a></li>
+      <li role="presentation" class="{{ system_nav_active('cid','yesterday') }}"><a
+          href="{{ route('admin.home.index',['type'=>'cid','date'=>'yesterday']) }}">昨天</a></li>
+      <li role="presentation" class="{{ system_nav_active('cid','month') }}"><a
+          href="{{ route('admin.home.index', ['type'=>'cid','date'=>'month']) }}">本月</a></li>
+      <li role="presentation" class="{{ system_nav_active('cid','pre_month') }}"><a
+          href="{{ route('admin.home.index', ['type'=>'cid','date'=>'pre_month']) }}">上月</a></li>
+    </ul>
     <div class="row">
       <div class="col-md-6">
         <h3>按系统统计</h3>
-        <ul class="nav nav-pills">
-          <li role="presentation" class="{{ system_nav_active('cid','today') }}"><a
-              href="{{ route('admin.home.index',['type'=>'cid','date'=>'today']) }}">今天</a></li>
-          <li role="presentation" class="{{ system_nav_active('cid','yesterday') }}"><a
-              href="{{ route('admin.home.index',['type'=>'cid','date'=>'yesterday']) }}">昨天</a></li>
-          <li role="presentation" class="{{ system_nav_active('cid','month') }}"><a
-              href="{{ route('admin.home.index', ['type'=>'cid','date'=>'month']) }}">本月</a></li>
-          <li role="presentation" class="{{ system_nav_active('cid','pre_month') }}"><a
-              href="{{ route('admin.home.index', ['type'=>'cid','date'=>'pre_month']) }}">上月</a></li>
-        </ul>
+
         <table class="table table-bordered">
           <tr>
             <th>系统名称</th>
@@ -42,6 +43,10 @@
             </tr>
           @endforeach
         </table>
+
+      </div>
+      <div class="col-md-6">
+        <h3>按来源统计</h3>
         <table class="table table-bordered">
           <tr>
             <th>来源</th>
@@ -59,7 +64,6 @@
           @endforeach
         </table>
       </div>
-
     </div>
   </div>
 </div>
