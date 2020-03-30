@@ -197,7 +197,6 @@ class PaymentsController extends Controller
      */
     public function baiduNotify()
     {
-        info('进入回调');
         $notify_arr = $_POST;
         //检查空
         if(!isset($notify_arr['rsaSign']) || empty($notify_arr['rsaSign'])) {
@@ -216,12 +215,13 @@ class PaymentsController extends Controller
             ], 500);
             if($notify_arr['status'] == 2) {
                 $notify_arr['returnData'] = json_decode($notify_arr['returnData'], true);//这是携带的参数
+                info($notify_arr);
 //                $out_trade_no = $notify_arr['tpOrderId']; //订单号
 //                $price = $notify_arr['totalMoney']; //金额
 //                $pay_time = $notify_arr['payTime']; //支付时间
 //                $orderId = $notify_arr['orderId']; //百度平台订单ID
                 //检查订单状态 检查支付状态 检查订单号  检查金额
-                $order = Order::where('orderid', $out_trade_no)->first();
+                $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
                 // 订单不存在则告知微信支付
                 if(!$order) {
                     return 'fail';
@@ -230,7 +230,7 @@ class PaymentsController extends Controller
                 $order->update([
                     'date_pay' => Carbon::now(),
                     'pay_type' => 'baidu',
-                    'payid' => $notify_arr['tpOrderId'], //订单号
+                    'payid' => $notify_arr['orderId'], //订单号
                     'pay_price' => $notify_arr['totalMoney'],//支付金额
                     'status' => 1,
                 ]);
