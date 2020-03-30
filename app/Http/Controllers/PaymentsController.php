@@ -197,6 +197,7 @@ class PaymentsController extends Controller
      */
     public function baiduNotify()
     {
+        info('进入回调');
         $notify_arr = $_POST;
         //检查空
         if(!isset($notify_arr['rsaSign']) || empty($notify_arr['rsaSign'])) {
