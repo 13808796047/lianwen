@@ -86,7 +86,7 @@ class AppServiceProvider extends ServiceProvider
         });
         //百度收银台
         $this->app->singleton('baidu_pay', function() {
-            $config = config('pay.baidu');
+            $config = config('pay.baidu_pay');
             return new BaiduPayHandler($config);
         });
     }
