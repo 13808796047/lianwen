@@ -22,8 +22,13 @@
             <tr>
               <td>作者:</td>
               <td>{{ $order->writer }}</td>
+
+            </tr>
+            <tr>
               <td>字数:</td>
               <td>{{ $order->words }}</td>
+            </tr>
+            <tr>
               <td>价格:</td>
               <td>{{ $order->price }}</td>
             </tr>
@@ -65,7 +70,8 @@
             </tr>
             <tr>
               <td>论文:</td>
-              <td><a href="{{ route('admin.orders.download_paper',$order) }}">下载</a>(订单支付后才能下载论文,论文下载后订单状态自动转为检测中)</td>
+              <td><a href="{{ route('admin.orders.download_paper',$order) }}" target="_blank">下载</a>(订单支付后才能下载论文,论文下载后订单状态自动转为检测中)
+              </td>
               <td>
                 实际路径:
               </td>
