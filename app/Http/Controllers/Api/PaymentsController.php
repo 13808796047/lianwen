@@ -138,6 +138,9 @@ class PaymentsController extends Controller
     //百度支付
     public function mockData(Order $order, Request $request)
     {
+        if($order->status == 1 || $order->del) {
+            throw new InvalidRequestException('订单状态不正确');
+        }
         $data['dealId'] = config('pay.baidu_pay.dealId');
         $data['appKey'] = config('pay.baidu_pay.appKey');
         $data['totalAmount'] = 1;

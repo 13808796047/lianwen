@@ -238,9 +238,11 @@ class PaymentsController extends Controller
                     'status' => 1,
                 ]);
                 $this->afterPaid($order);
-                return response()->json([
-                    'message' => '支付成功',
-                ]);
+                //返回付款成功
+                $ret['errno'] = 0;
+                $ret['msg'] = 'success';
+                $ret['data'] = ['isConsumed' => 2];
+                return response()->json($ret);
             }
 
         } catch (\Exception $e) {
