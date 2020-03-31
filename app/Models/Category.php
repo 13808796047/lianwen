@@ -25,7 +25,7 @@ class Category extends Model
 
     public function orders()
     {
-        return $this->hasMany(Order::class, 'cid');
+        return $this->hasMany(Order::class, 'cid', 'id');
     }
 
     public function getSysLogoAttribute()
