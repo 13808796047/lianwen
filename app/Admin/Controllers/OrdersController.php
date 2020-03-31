@@ -119,6 +119,34 @@ class OrdersController extends AdminController
             ->body(view('admin.orders.edit', ['order' => Order::findOrFail($id)]));
     }
 
+    public function receved($id, Request $request)
+    {
+        $order = Order::findOrFail($id);
+        $data = $request->all();
+        if($file = $request->file) {
+            $path = 'downloads';
+            $result = \Storage::putFileAs($path, $file, 'report-' . $order->api_orderid . '.zip');
+            if($result) {
+                $report_path = $path . '/' . 'report-' . $order->api_orderid . '.zip';
+                $data['report_path'] = $report_path;
+            }
+        }
+
+        $order->update($data);
+        return redirect()->back();
+    }
+
+    public function downloadPaper(Order $order)
+    {
+        return response()->download($order->paper_path);
+    }
+
+    public function downloadReport(Order $order)
+    {
+//        return \Storage::download(storage_path() . '/app/' . $order->report_path);
+        return response()->download(storage_path() . '/app/' . $order->report_path);
+    }
+
     public function show($id, Content $content)
     {
         return $content->header('查看订单')

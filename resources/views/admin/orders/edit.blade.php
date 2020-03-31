@@ -9,53 +9,81 @@
   </div>
   <div class="box-body">
     <div class="row">
-      <div class="col-md-4">
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="title" class="col-sm-2 control-label">标题</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="title" value="{{ $order->title }}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="writer" class="col-md-2 control-label">作者</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="writer" value="{{ $order->writer }}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="words" class="col-md-2 control-label">字数</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="words" value="{{ $order->words }}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="price" class="col-md-2 control-label">价格</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="price" value="{{ $order->price }}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="price" class="col-md-2 control-label">状态</label>
-            <div class="col-sm-4">
-              <select name="status" id="" class="form-control">
-                <option value="0">待支付</option>
-                <option value="1">待检测</option>
-                <option value="2">排队中</option>
-                <option value="3">检测中</option>
-                <option value="4">检测完成</option>
-                <option value="5">暂停</option>
-                <option value="6">取消</option>
-                <option value="7">已退款</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="rate" class="col-md-2 control-label">重复率</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="rate" value="{{ $order->rate }}">
-            </div>
-          </div>
+      <div class="col-md-10">
+        <form class="form-horizontal" method="post" enctype="multipart/form-data"
+              action="{{ route('admin.orders.receved',$order) }}">
+          <input type="hidden" name="_method" value="PUT">
+          @csrf
+          <table class="table-bordered table">
+            <tr>
+              <td width="200">标题:</td>
+              <td>{{ $order->title }}</td>
+            </tr>
+            <tr>
+              <td>作者:</td>
+              <td>{{ $order->writer }}</td>
+              <td>字数:</td>
+              <td>{{ $order->words }}</td>
+              <td>价格:</td>
+              <td>{{ $order->price }}</td>
+            </tr>
+            <tr>
+              <td>状态</td>
+              <td>
+                <div class="form-group">
+                  <select name="status" id="{{ $order->status }}" class="form-control">
+                    <option value="0">待支付</option>
+                    <option value="1">待检测</option>
+                    <option value="2">排队中</option>
+                    <option value="3">检测中</option>
+                    <option value="4">检测完成</option>
+                    <option value="5">暂停</option>
+                    <option value="6">取消</option>
+                    <option value="7">已退款</option>
+                  </select>
+                </div>
+              </td>
+
+            </tr>
+            <tr>
+              <td>重复率</td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="rate" name="rate" value="{{ $order->rate }}">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>支付详情</td>
+              <td>在线支付:{{ $order->pay_type }}</td>
+              <td>支付:</td>
+              <td>{{ $order->pay_price }}</td>
+              <td>单号:</td>
+              <td>{{ $order->orderid }}</td>
+              <td>支付时间:</td>
+              <td>{{ $order->date_pay }}</td>
+            </tr>
+            <tr>
+              <td>论文:</td>
+              <td><a href="{{ route('admin.orders.download_paper',$order) }}">下载</a>(订单支付后才能下载论文,论文下载后订单状态自动转为检测中)</td>
+              <td>
+                实际路径:
+              </td>
+              <td>{{ $order->paper_path }}</td>
+            </tr>
+            <tr>
+              <td>报告:</td>
+              <td><a href="{{ route('admin.orders.download_report',$order) }}" target="_blank">下载</a></td>
+              <td>
+                重新上传报告:
+              </td>
+              <td>
+                <input type="file" name="file">(上传报告后状态自动更新为'检测完成')
+              </td>
+            </tr>
+          </table>
+
+
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-primary">提交</button>
