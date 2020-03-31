@@ -23,7 +23,7 @@
           <tr>
             <td><input type='checkbox' name='delete' value='{{$order->id}}'/></td>
             <td>{{$order->title}}</td>
-            <td>{{ $order->category->name }}</td>
+            <td>{{ $order->category->name ?? '' }}</td>
             <td>{{\App\Models\Enum\OrderEnum::getStatusName($order->status)}}</td>
             <td>{{ $order->rate }}</td>
             <td>{{$order->created_at}}</td>

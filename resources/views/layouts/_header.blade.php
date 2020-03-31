@@ -2,7 +2,7 @@
   <div class="flex items-center flex-shrink-0 text-white mr-6 bg-blue-600 p-2">
     <a href="/"><img src="https://css.lianwen.com/logo/2019/weipudx.png" alt=""></a>
   </div>
-  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+  <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
       @foreach($categories as $category)
         <a href="{{route('categories.show',['classid'=>$category->classid])}}"
