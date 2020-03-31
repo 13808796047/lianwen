@@ -97,13 +97,13 @@
 <script !src="">
 
   $(() => {
+
     $('#btnSubmit').click(() => {
       var formData = new FormData();
       formData.append('file', $('#file')[0].files[0]); // 固定格式
       formData.append('status', $("select[name='status']").val()); // 固定格式
       formData.append('rate', $("input[name='rate']").val()); // 固定格式
       formData.append('_token', LA.token); // 固定格式
-      let data = {}
       $.ajax({
         url: '{{ route('admin.orders.receved',$order) }}',
         type: 'POST',

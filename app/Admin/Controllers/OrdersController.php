@@ -123,8 +123,8 @@ class OrdersController extends AdminController
     {
         $order = Order::findOrFail($id);
         $data = $request->all();
-        dd($request->file);
-        if($file = $request->file) {
+        dd($request->input('file', ''));
+        if($file = $request->input('file')) {
             $path = 'downloads';
             $result = \Storage::putFileAs($path, $file, 'report-' . $order->api_orderid . '.zip');
             if($result) {
