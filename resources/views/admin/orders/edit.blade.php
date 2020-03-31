@@ -70,7 +70,7 @@
             </tr>
             <tr>
               <td>论文:</td>
-              <td><a href="{{ route('admin.orders.download_paper',$order) }}" target="_blank">下载</a>(订单支付后才能下载论文,论文下载后订单状态自动转为检测中)
+              <td><a href="{{ $order->paper_path }}" target="_blank">下载</a>(订单支付后才能下载论文,论文下载后订单状态自动转为检测中)
               </td>
               <td>
                 实际路径:
