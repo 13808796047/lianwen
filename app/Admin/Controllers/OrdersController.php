@@ -123,6 +123,7 @@ class OrdersController extends AdminController
     {
         $order = Order::findOrFail($id);
         $data = $request->all();
+        dd($request->file);
         if($file = $request->file) {
             $path = 'downloads';
             $result = \Storage::putFileAs($path, $file, 'report-' . $order->api_orderid . '.zip');
@@ -133,7 +134,7 @@ class OrdersController extends AdminController
         }
 
         $order->update($data);
-        return redirect()->back();
+        return $order;
     }
 
     public function downloadPaper(Order $order)

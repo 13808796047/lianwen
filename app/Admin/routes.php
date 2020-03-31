@@ -14,7 +14,7 @@ Route::group([
     $router->get('users', 'UsersController@index');
     $router->resource('categories', CategoriesController::class);
     $router->resource('orders', OrdersController::class)->only(['index', 'show', 'edit']);
-    $router->put('orders/{order}/receved', 'OrdersController@receved')->name('admin.orders.receved');
+    $router->post('orders/{order}/receved', 'OrdersController@receved')->name('admin.orders.receved');
 
     $router->get('orders/{order}/download_paper', 'OrdersController@downloadPaper')->name('admin.orders.download_paper');
     $router->get('orders/{order}/download_report', 'OrdersController@downloadReport')->name('admin.orders.download_report');
