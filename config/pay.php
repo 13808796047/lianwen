@@ -11,9 +11,9 @@ return [
     ],
 
     'wechat' => [
-        'app_id' => '',
-        'mch_id' => '',
-        'key' => '',
+        'app_id' => 'wx7600a1aa50695b10',
+        'mch_id' => '1299024701',
+        'key' => 'c3f9b4d940fe5c2a431617bef1d62479',
         'cert_client' => '',
         'cert_key' => '',
         'log' => [
