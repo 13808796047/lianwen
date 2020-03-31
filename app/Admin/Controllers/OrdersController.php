@@ -89,29 +89,34 @@ class OrdersController extends AdminController
         return $grid;
     }
 
-    protected function form()
+//    protected function form()
+//    {
+//        $form = new Form(new Order());
+//
+//// 第一列占据1/2的页面宽度
+//        $form->column(1 / 2, function($form) {
+//            $form->select('status', '订单状态')->options([
+//                0 => '待支付',
+//                1 => '待检测',
+//                2 => '排队中',
+//                3 => '检测中',
+//                4 => '检测完成',
+//                5 => '暂停',
+//                6 => '取消',
+//                7 => '已退款',
+//            ]);
+//            $form->file('paper_path', '原文报告')->downloadable();
+//            $form->text('title', '标题');
+//            $form->text('writer', '作者');
+//            $form->file('report_path', '检测报告')->downloadable();
+//            $form->rate('rate', '重复率');
+//        });
+//        return $form;
+//    }
+    public function edit($id, Content $content)
     {
-        $form = new Form(new Order());
-
-// 第一列占据1/2的页面宽度
-        $form->column(1 / 2, function($form) {
-            $form->select('status', '订单状态')->options([
-                0 => '待支付',
-                1 => '待检测',
-                2 => '排队中',
-                3 => '检测中',
-                4 => '检测完成',
-                5 => '暂停',
-                6 => '取消',
-                7 => '已退款',
-            ]);
-            $form->file('paper_path', '原文报告')->downloadable();
-            $form->text('title', '标题');
-            $form->text('writer', '作者');
-            $form->file('report_path', '检测报告')->downloadable();
-            $form->rate('rate', '重复率');
-        });
-        return $form;
+        return $content->header('编辑订单')
+            ->body(view('admin.orders.edit', ['order' => Order::findOrFail($id)]));
     }
 
     public function show($id, Content $content)
