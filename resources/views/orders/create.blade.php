@@ -12,7 +12,7 @@
 
         <ul class="versionlist clearfix v4">
           @foreach($category as $item)
-            <li data-id="{{ $item->cid }}">
+            <li data-id="{{ $item->id }}">
               <div class="version"><b>{{$item->name}}</b><span class="price">（{{$item->price}}元/{{\App\Models\Category::$priceTypeMap[$item->price_type]}}）</span>
               </div>
               完全免费，适用于初稿检测

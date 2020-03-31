@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Exceptions\InvalidRequestException;
+use App\Models\Category;
 use App\Models\Order;
 
 class OrderService
@@ -32,10 +33,10 @@ class OrderService
                 throw new InvalidRequestException("检测字数必须在" . $category->min_words . "与" . $category->max_words . "之间");
             }
             switch ($category->price_type) {
-                case 0:
+                case Category::PRICE_TYPE_THOUSAND:
                     $price = round($category->price * ceil($words * 1.05 / 1000), 2);
                     break;
-                case 1:
+                case Category::PRICE_TYPE_MILLION:
                     $price = round($category->price * ceil($words * 1.05 / 10000), 2);
                     break;
                 default:

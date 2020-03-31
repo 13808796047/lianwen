@@ -62,7 +62,7 @@ class Order extends Model
     //分类
     public function category()
     {
-        return $this->belongsTo(Category::class, 'cid', 'cid');
+        return $this->belongsTo(Category::class, 'cid');
     }
 
     protected static function boot()
