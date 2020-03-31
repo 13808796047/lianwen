@@ -210,12 +210,12 @@ class PaymentsController extends Controller
             unset($notify_arr['rsaSign']);
             //验签
             $result = app('baidu_pay')->checkSign($notify_arr);
-            info($result);
-            if(!$result) {
-                return response()->json([
-                    'message' => '验签失败!',
-                ], 403);
-            }
+//            info($result);
+//            if(!$result) {
+//                return response()->json([
+//                    'message' => '验签失败!',
+//                ], 403);
+//            }
             if($notify_arr['status'] == 2) {
                 $notify_arr['returnData'] = json_decode($notify_arr['returnData'], true);//这是携带的参数
                 info($notify_arr);
