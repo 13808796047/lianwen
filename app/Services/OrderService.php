@@ -45,7 +45,7 @@ class OrderService
 
             //创建订单
             $order = new Order([
-                'cid' => $request->id,
+                'cid' => $request->cid,
                 'title' => $request->title,
                 'writer' => $request->writer,
                 'date_publish' => $request->date_publish,
