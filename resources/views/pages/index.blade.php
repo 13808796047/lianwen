@@ -38,7 +38,7 @@
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
               <div class="w-full">
-                <form class="bg-white rounded px-8 pt-6" action="{{ route('login') }}" method="post">
+                <form class="bg-white rounded px-4 pt-6" action="{{ route('login') }}" method="post">
                   <input type="hidden" name="type" value="account">
                   @csrf
                   <div>
@@ -66,7 +66,7 @@
                     <p class="text-red-500 text-xs pb-3">{{ $message }}</p>
                     @enderror
                   </div>
-                  <div class="flex items-center justify-between my-8">
+                  <div class="flex items-center justify-between my-2">
                     <button
                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full px-4 rounded focus:outline-none focus:shadow-outline"
                       type="submit">
@@ -105,7 +105,7 @@
                     </div>
                     <p class="text-red-500 text-xs italic "></p>
                   </div>
-                  <div class="flex items-center justify-between my-8">
+                  <div class="flex items-center justify-between my-4">
                     <button
                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full px-4 rounded focus:outline-none focus:shadow-outline"
                       type="button" id="phoneLogin">
