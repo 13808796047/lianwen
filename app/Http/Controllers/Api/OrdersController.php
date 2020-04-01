@@ -64,6 +64,18 @@ class OrdersController extends Controller
         return new OrderResource($order);
     }
 
+    public function destroy(Request $request)
+    {
+        if(!is_array($request->ids)) {
+            $ids = [$request->ids];
+        }
+        $ids = $request->ids;
+        Order::whereIn('id', $ids)->delete();
+        return response()->json([
+            'message' => '删除成功!'
+        ]);
+    }
+
     public function reportMail(Request $request, Order $order)
     {
         $to = $request->email_address;
