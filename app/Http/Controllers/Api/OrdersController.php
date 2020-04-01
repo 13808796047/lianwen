@@ -39,7 +39,7 @@ class OrdersController extends Controller
 
         $user = $request->user();
 
-        $category = Category::findOrFail($request->cid);
+        $category = Category::findOrFail($request->id);
 //        if($category->status == 0) {
 //            return response()->json([
 //                'message' => '此检测通道已关闭!'
