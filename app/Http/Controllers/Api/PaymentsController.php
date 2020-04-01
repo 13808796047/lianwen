@@ -143,7 +143,7 @@ class PaymentsController extends Controller
         }
         $data['dealId'] = config('pay.baidu_pay.dealId');
         $data['appKey'] = config('pay.baidu_pay.appKey');
-        $data['totalAmount'] = 10;
+        $data['totalAmount'] = $order->price;
         $data['tpOrderId'] = $order->orderid;
         $data['rsaSign'] = app('baidu_pay')->getSign($data);
         $data['dealTitle'] = '支付 联文检测 的订单' . $order->orderid; // 订单的名称
