@@ -68,7 +68,7 @@ class OrderApiHandler
                 'Token' => $this->token
             ],
             'body' => json_encode([
-                'cid' => $order->cid, //文件資源
+                'cid' => $order->category->cid, //文件資源
                 'title' => $order->title,
                 'postDate' => '',
                 'author' => $order->writer,
