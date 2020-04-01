@@ -9,7 +9,7 @@
   </div>
   <div class="box-body">
 
-    <form class="form-horizontal">
+    <form class="form-horizontal" enctype="multipart/form-data">
       <table class="table table-bordered">
         <tr>
           <td width="200">标题:</td>
@@ -113,7 +113,14 @@
         processData: false,
 // 告诉jQuery不要去处理发送的数据
       }).then(res => {
-        console.log(res)
+        swal({
+          title: '操作成功',
+          type: 'success'
+        }).then(function () {
+          // 用户点击 swal 上的按钮时刷新页面
+          location.reload();
+        });
+
       })
     })
   })

@@ -123,17 +123,23 @@ class OrdersController extends AdminController
     {
         $order = Order::findOrFail($id);
         $data = $request->all();
-        dd($request->input('file', ''));
-        if($file = $request->input('file')) {
+        $report_path = '';
+        if($request->hasFile('file')) {
+            $file = $request->file('file');
+            if(!$file->isValid()) {
+                abort(400, '无效的上传文件');
+            }
             $path = 'downloads';
             $result = \Storage::putFileAs($path, $file, 'report-' . $order->api_orderid . '.zip');
             if($result) {
                 $report_path = $path . '/' . 'report-' . $order->api_orderid . '.zip';
-                $data['report_path'] = $report_path;
             }
         }
-
-        $order->update($data);
+        $order->update([
+            'status' => $data['status'],
+            'rate' => $data['rate'],
+            'report_path' => $report_path
+        ]);
         return $order;
     }
 
