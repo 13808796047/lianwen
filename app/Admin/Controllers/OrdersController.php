@@ -140,6 +140,9 @@ class OrdersController extends AdminController
             'rate' => $data['rate'],
             'report_path' => $report_path
         ]);
+        if($order->status == 3) {
+            dispatch(new getOrderStatus($order));
+        }
         return $order;
     }
 

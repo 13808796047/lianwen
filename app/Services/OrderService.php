@@ -26,6 +26,7 @@ class OrderService
                 }
             } else {
                 $content = remove_spec_char($request->input('content', ''));
+                dd($content);
                 $result = $wordHandler->save($content, 'files', $user->id);
                 $words = count_words($content);
             }
