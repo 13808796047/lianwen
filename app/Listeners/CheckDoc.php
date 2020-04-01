@@ -19,7 +19,9 @@ class CheckDoc implements ShouldQueue
         $order->update([
             'status' => 3,
         ]);
-        //调用上传接口
-        dispatch(new UploadCheckFile($order));
+        if($order->category->check_type == 1) {
+            //调用上传接口
+            dispatch(new UploadCheckFile($order));
+        }
     }
 }
