@@ -75,7 +75,7 @@
     <div class="lbox fl">
       <form action="{{route('orders.store')}}" method="post" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="id" id="{{ $item->id }}">
+        <input type="hidden" name="id" id="cid">
 
         <ul class="versionlist clearfix v4">
           @foreach($category as $item)
