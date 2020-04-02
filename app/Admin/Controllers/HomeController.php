@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Order;
 use Encore\Admin\Controllers\Dashboard;
 use Encore\Admin\Form\Tab;
+use Encore\Admin\Grid;
 use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Row;
@@ -16,7 +17,16 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    //
+    //订单统计grid
+//    public function orderTotalGrid()
+//    {
+//        $grid = new Grid(new Category());
+//        $grid->model()->with(['orders' => function($query) use ($request) {
+//            $query->withOrder($request->date);
+//        }])->get();
+//        return $grid;
+//    }
+
     public function index(Request $request, Content $content)
     {
         $class_order = Category::query()->with(['orders' => function($query) use ($request) {

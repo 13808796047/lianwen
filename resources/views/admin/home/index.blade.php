@@ -42,10 +42,6 @@
               <td>{{ $order->orders->sum('pay_price')}}元</td>
             </tr>
           @endforeach
-          <tr>
-            <td>总和</td>
-            <td>2</td>
-          </tr>
         </table>
 
       </div>
