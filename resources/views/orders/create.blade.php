@@ -76,7 +76,7 @@
       <form action="{{route('orders.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="cid" id="cid">
-
+        <input type="hidden" name="from" value="www.lianwen.com/PC端">
         <ul class="versionlist clearfix v4">
           @foreach($category as $item)
             <li data-id="{{ $item->id }}">

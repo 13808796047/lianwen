@@ -52,7 +52,7 @@ class OrderService
                 'words' => $words,
                 'price' => $price,
                 'paper_path' => $result['path'],
-                'from' => config('app.url')
+                'from' => $request->from
             ]);
             $order->user()->associate($user);
             $order->save();
