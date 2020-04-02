@@ -27,7 +27,7 @@
       <div class="col-md-6">
         <h3>按系统统计</h3>
 
-        <table class="table table-bordered">
+        <table class="table-bordered table text-center">
           <tr>
             <th>系统名称</th>
             <th>付款订单数/总订单数</th>
@@ -42,6 +42,10 @@
               <td>{{ $order->orders->sum('pay_price')}}元</td>
             </tr>
           @endforeach
+          <tr>
+            <td>总和</td>
+            <td>2</td>
+          </tr>
         </table>
 
       </div>
@@ -68,6 +72,7 @@
   </div>
 </div>
 <script !src="">
+
   {{--$(() => {--}}
   {{--  $.ajax({--}}
   {{--    url: "{{ route('admin.home.statis',['type'=>'cid','date'=> '']) }}",--}}

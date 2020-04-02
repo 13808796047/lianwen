@@ -13,13 +13,13 @@ class CheckDoc implements ShouldQueue
 {
     public function handle(OrderPaid $event)
     {
-
         //从事件对象中取出对应的订单
         $order = $event->getOrder();
         $order->update([
             'status' => 3,
         ]);
         if($order->category->check_type == 1) {
+            info($order->orderid . '启动队列了');
             //调用上传接口
             dispatch(new UploadCheckFile($order));
         }

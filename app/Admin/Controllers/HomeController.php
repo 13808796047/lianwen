@@ -14,9 +14,9 @@ use Encore\Admin\Widgets\Box;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class
-HomeController extends Controller
+class HomeController extends Controller
 {
+    //
     public function index(Request $request, Content $content)
     {
         $class_order = Category::query()->with(['orders' => function($query) use ($request) {

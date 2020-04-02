@@ -142,6 +142,8 @@ class OrdersController extends AdminController
         ]);
         if($order->status == 3) {
             dispatch(new getOrderStatus($order));
+        } elseif($order->status == 1) {
+            dispatch(new UploadCheckFile($order));
         }
         return $order;
     }
