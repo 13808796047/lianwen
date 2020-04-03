@@ -81,7 +81,7 @@ class AuthorizationsController extends Controller
             }
             $token = auth('api')->login($user);
             // 清除验证码缓存
-            \Cache::forget($verification_key);
+            \Cache::forget($request->verification_key);
         } else {
             $this->validate($request, [
                 'phone' => [
