@@ -1,157 +1,134 @@
 @extends('layouts.app')
 @section('title', '创建订单')
 @section('styles')
-  <link rel="stylesheet" href="{{asset('asset/css/style.css')}}">
+  <style>
+    .selected {
+      border: #FE5D33 2px solid !important;
+      background: url({{asset('asset/images/select.png')}}) no-repeat right top;
+      color: #FE5D33 !important;
+    }
+  </style>
 @stop
 @section('content')
-  {{--  <div class="w-full px-8 mx-auto my-4">--}}
-  {{--    <div class="row">--}}
-  {{--      <div class="col-md-8">--}}
-  {{--        <div class="bg-white  overflow-hidden border shadow border-gray-400 p-4 bg-white p-8">--}}
-  {{--          <div class="grid grid-cols-4 gap-4">--}}
-  {{--            <div class="bg-blue-300  text-center">--}}
-  {{--              <div class="bg-white p-2 border">--}}
-  {{--                <span class="block text-black text-center ">知网VIP5/TMLC2</span>--}}
-  {{--                <span class="block text-orange-500 text-center  mt-2">（238.00/篇</span>--}}
-  {{--                <span class="block text-black text-center  mt-2">适合研究生论文检测.</span>--}}
-  {{--              </div>--}}
-  {{--            </div>--}}
-  {{--            <div class="bg-blue-300  text-center">--}}
-  {{--              <div class="bg-white p-2 border">--}}
-  {{--                <span class="block text-black text-center ">知网VIP5/TMLC2</span>--}}
-  {{--                <span class="block text-orange-500 text-center  mt-2">（238.00/篇</span>--}}
-  {{--                <span class="block text-black text-center  mt-2">适合研究生论文检测.</span>--}}
-  {{--              </div>--}}
-  {{--            </div>--}}
-  {{--            <div class="bg-blue-300  text-center">--}}
-  {{--              <div class="bg-white p-2 border">--}}
-  {{--                <span class="block text-black text-center ">知网VIP5/TMLC2</span>--}}
-  {{--                <span class="block text-orange-500 text-center  mt-2">（238.00/篇</span>--}}
-  {{--                <span class="block text-black text-center  mt-2">适合研究生论文检测.</span>--}}
-  {{--              </div>--}}
-  {{--            </div>--}}
-  {{--            <div class="bg-blue-300  text-center">--}}
-  {{--              <div class="bg-white p-2 border">--}}
-  {{--                <span class="block text-black text-center ">知网VIP5/TMLC2</span>--}}
-  {{--                <span class="block text-orange-500 text-center  mt-2">（238.00/篇</span>--}}
-  {{--                <span class="block text-black text-center  mt-2">适合研究生论文检测.</span>--}}
-  {{--              </div>--}}
-  {{--            </div>--}}
-  {{--            <div class="bg-blue-300  text-center">--}}
-  {{--              <div class="bg-white p-2 border">--}}
-  {{--                <span class="block text-black text-center ">知网VIP5/TMLC2</span>--}}
-  {{--                <span class="block text-orange-500 text-center  mt-2">（238.00/篇</span>--}}
-  {{--                <span class="block text-black text-center  mt-2">适合研究生论文检测.</span>--}}
-  {{--              </div>--}}
-  {{--            </div>--}}
-  {{--          </div>--}}
-  {{--          <div>--}}
-  {{--            <form>--}}
-  {{--              <div class="form-group">--}}
-  {{--                <label for="exampleInputEmail1">Email address</label>--}}
-  {{--                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">--}}
-  {{--                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone--}}
-  {{--                  else.</small>--}}
-  {{--              </div>--}}
-  {{--              <div class="form-group">--}}
-  {{--                <label for="exampleInputPassword1">Password</label>--}}
-  {{--                <input type="password" class="form-control" id="exampleInputPassword1">--}}
-  {{--              </div>--}}
-  {{--              <div class="form-group">--}}
-  {{--                <label for="exampleFormControlFile1">Example file input</label>--}}
-  {{--                <input type="file" class="form-control-file" id="exampleFormControlFile1">--}}
-  {{--              </div>--}}
-  {{--              <button type="submit" class="btn btn-primary">Submit</button>--}}
-  {{--            </form>--}}
-  {{--          </div>--}}
-  {{--        </div>--}}
-  {{--      </div>--}}
-  {{--      <div class="col-md-4 shadow border">--}}
-  {{--        dafdaslfjkklj--}}
-  {{--      </div>--}}
-  {{--    </div>--}}
-  {{--  </div>--}}
-  <div class="main clearfix">
-    <div class="lbox fl">
-      <form action="{{route('orders.store')}}" method="post" enctype="multipart/form-data">
-        @csrf
-        <input type="hidden" name="cid" id="cid">
-        <input type="hidden" name="from" value="dev.lianwen.com/PC端">
-        <ul class="versionlist clearfix v4">
-          @foreach($category as $item)
-            <li data-id="{{ $item->id }}">
-              <div class="version"><b>{{$item->name}}</b><span class="price">（{{$item->price}}元/{{\App\Models\Category::$priceTypeMap[$item->price_type]}}）</span>
+  <div class="w-full px-8 mx-auto my-4 overflow-hidden">
+    <div class="row">
+      <div class="col-md-9">
+        <form action="{{route('orders.store')}}" method="post" enctype="multipart/form-data">
+          @csrf
+          <input type="hidden" name="cid" id="cid">
+          <input type="hidden" name="from" value="dev.lianwen.com/PC端">
+          <div class="bg-white  overflow-hidden  shadow  p-4">
+
+            <div class="grid grid-cols-4 gap-4 category">
+              @foreach($category as $item)
+                <div data-id="{{ $item->id }}" class=" text-center border ">
+                  <div class="p-2">
+                    <span class="block  text-center ">{{$item->name}}</span>
+                    <span class="block text-orange-500 text-center  mt-2">（{{$item->price}}/{{\App\Models\Category::$priceTypeMap[$item->price_type]}})</span>
+                    <span class="block  text-center  mt-2">适合研究生论文检测.</span>
+                  </div>
+                </div>
+              @endforeach
+            </div>
+            <div class="my-8 px-0">
+
+              <div class="form-group">
+                <label for="title">题目</label>
+                <input type="text" class="form-control" id="title" name="title" required
+                       placeholder="请输入论文题目">
               </div>
-              完全免费，适用于初稿检测
+              <div class="form-group">
+                <label for="writer">作者</label>
+                <input type="text" class="form-control col-sm-4" id="writer" name="writer" required
+                       placeholder="请输入论文作者">
+              </div>
+              <div class="form-group">
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" value="paste" id="paste-text" name="radio" checked class="custom-control-input">
+                  <label class="custom-control-label" for="paste-text">粘贴文本</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" value="upload" name="radio" id="upload-file" class="custom-control-input">
+                  <label class="custom-control-label" for="upload-file">上传文件</label>
+                </div>
+              </div>
+              <div class="form-group" id="paste">
+                <label for="content">论文</label>
+                <textarea class="form-control" id="content" name="content" rows="10"></textarea>
+                <small id="words" class="form-text text-muted">当前共输入 <span class="text-red-500">0</span>个字</small>
+              </div>
+              <div class="form-group hidden" id="upload">
+                <label for="file">请上传论文doc文件或txt文件</label>
+                <input type="file" class="form-control-file" id="file" name="file">
+              </div>
+              <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3 shadow border px-0">
+        <div class="w-full ">
+          <h3 class="py-2 align-middle text-center bg-blue-500 text-white"> 版本选择帮助</h3>
+          <table class="table text-center">
+            <tr>
+              <th>系统名称</th>
+              <th>价格</th>
+              <th>语言支持</th>
+              <th>检测结果</th>
+            </tr>
+            <tr>
+              <td>联文普通版</td>
+              <td>3元/万字</td>
+              <td>中文/英文</td>
+              <td>一般</td>
+            </tr>
+            <tr>
+              <td>联文专业版</td>
+              <td>1.5元/千字</td>
+              <td align="center">中文/英文</td>
+              <td align="center">严格</td>
+            </tr>
+            <tr>
+              <td>PaperPass</td>
+              <td>1.8元/千字</td>
+              <td align="center">中文</td>
+              <td align="center">中等</td>
+            </tr>
 
-            </li>
-
-          @endforeach
-        </ul>
-
-        <dl class="item">
-          <dt>题目：</dt>
-          <dd><input type="text" class="txt" name="title" placeholder="请输入论文题目"></dd>
-        </dl>
-        <dl class="item">
-          <dt>作者：</dt>
-          <dd><input type="text" class="txt" name="writer" placeholder="请输入论文作者"></dd>
-        </dl>
-        <dl class="item">
-          <dt>方式：</dt>
-          <dd style="padding-top:5px;"><input type="radio" name="radio" checked value="paste"> 粘贴文本 &emsp;<input
-              type="radio" name="radio" value="upload"> 文件上传
-          </dd>
-        </dl>
-        <dl class="item" id="paste">
-          <dt>论文：</dt>
-          <dd><textarea cols="10" name="content" class="txts"></textarea><br/>当前共输入 <em class="words"
-                                                                                        style="color: red;font-family: normal">
-              0 </em>字数
-          </dd>
-        </dl>
-        <dl class="item" style="display: none;" id="upload">
-          <input type="file" name="file">
-        </dl>
-        <div class="item"><input class="btn" type="submit" id="subBtn" value="提交检测"></div>
-      </form>
-
-    </div>
-
-    <div class="rbox fr">
-      <div class="tit">版本选择帮助</div>
-      <div class="box">ffffffff</div>
-      <div class="box mt10">
-        <b>如何选择查重的版本？</b>
-        <p>PaperYY论文查重的“免费版”包含论文常用库，对比库有限，查重比例偏低，适用于论文初稿查重，如果结果过低，建议使用更高版本的查重版本，至尊版查重最为全面，比知网还严格。</p>
-
-        <b>如何正确标识参考文献？</b>
-        <p>参考文献位于文章尾部，以“参考文献”四个单字单独成行，后面跟随标准的参考文献格式即可。</p>
-
-        <b>查重比例与学校比差距大吗？</b>
-        <p>从历史查重数据来看，“至尊版”查重的结果比例一般会比学校要高，所以如果你的至尊版查重结果低于学校要求，那么基本上可以定稿了。</p>
-
+          </table>
+          <p class="px-4 text-red-500">推荐使用“联文专业版”，性价比最高，检测结果准确。</p>
+        </div>
+        <div class="mt-2 px-4">
+          <div class="py-2">
+            <b>1、怎么选择适合自己的论文检测系统？</b>
+            <p>只有使用和学校相同的数据库，才能保证重复率与学校、杂志社100%一致：<br>论文初次修改可使用联文检测、PaperPass，定稿再使用与学校一样的系统。</p>
+          </div>
+          <div class="py-2">
+            <b>2、检测要多长时间，报告怎么还没出来？</b>
+            <p>正常检测20分钟左右，毕业高峰期，服务器检测压力大，时间会有延长，请大家提前做好时间准备。超过2小时没出结果可以联系客服处理！</p>
+          </div>
+          <div class="py-2">
+            <b>3、同一篇论文可以多次检测吗？？</b>
+            <p>本站不限制论文检测次数，但检测一次需支付一次费用。</p>
+          </div>
+          <div class="py-2">
+            <b>4、检测报告有网页版、pdf格式的吗？</b>
+            <p>检测完成后会提供网页版和pdf格式的检测报告，报告只是格式不同，重复率都一样的。</p>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
 @stop
 @section('scripts')
   <script>
     $(() => {
-      var formData = new FormData()
-      $('.versionlist li:first').addClass('i-select')
-      var cid = $('.versionlist li:first').data('id');
-      $('#cid').val(cid);
-      $(".versionlist li").click(function () {
-        // var isshow = $(".tips").children('span'
-        var index = $(this).index();
-        cid = $(this).data('id');
-        $('#cid').val(cid);
-        $(this).addClass("i-select").siblings().removeClass("i-select");
-
-        $('.tips').children('span').eq(index).show().siblings().hide();
-      });
+      $('.category>div:first').addClass('selected')
+      $('#cid').val($('.category>div:first').data('id'))
+      $('.category>div').click(function () {
+        $(this).addClass('selected').siblings().removeClass('selected')
+        $('#cid').val($(this).data('id'))
+      })
       $('input[type=radio][name=radio]').change(function () {
         if (this.value == 'paste') {
           $('#paste').show()
@@ -160,10 +137,36 @@
           $('#paste').hide()
           $('#upload').show()
         }
+
       });
-      $('.txts').bind('input propertychange', (e) => {
-        $('.words').html(e.target.value.length)
+      $('#content').bind('input propertychange', (e) => {
+        $('#words span').html(e.target.value.length)
       })
+      // var formData = new FormData()
+      // $('.versionlist li:first').addClass('i-select')
+      // var cid = $('.versionlist li:first').data('id');
+      // $('#cid').val(cid);
+      // $(".versionlist li").click(function () {
+      //   // var isshow = $(".tips").children('span'
+      //   var index = $(this).index();
+      //   cid = $(this).data('id');
+      //   $('#cid').val(cid);
+      //   $(this).addClass("i-select").siblings().removeClass("i-select");
+      //
+      //   $('.tips').children('span').eq(index).show().siblings().hide();
+      // });
+      // $('input[type=radio][name=radio]').change(function () {
+      //   if (this.value == 'paste') {
+      //     $('#paste').show()
+      //     $('#upload').hide()
+      //   } else if (this.value == 'upload') {
+      //     $('#paste').hide()
+      //     $('#upload').show()
+      //   }
+      // });
+      // $('.txts').bind('input propertychange', (e) => {
+      //   $('.words').html(e.target.value.length)
+      // })
       {{--$('input[name=file]').change((e) => {--}}
       {{--  var file = e.target.files[0]--}}
 
