@@ -10,7 +10,8 @@ class AuthorizationRequest extends FormRequest
     {
         return [
             'phone' => 'required|string',
-            'password' => 'required|alpha_dash|min:6',
+//            'password' => 'required|alpha_dash|min:6',
+            'type' => 'required'
         ];
     }
 }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\AuthorizationRequest;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
 use App\Models\User;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Http\Request;
 
 class AuthorizationsController extends Controller
 {
@@ -55,17 +55,39 @@ class AuthorizationsController extends Controller
         return $this->respondWithToken($token)->setStatusCode(201);
     }
 
-    public function store(AuthorizationRequest $request)
+    public function store(Request $request)
     {
-        $credentials['phone'] = $request->phone;
-        $credentials['password'] = $request->password;
+        if($request->type == 'phone') {
+            $verifyData = \Cache::get($request->verification_key);
+            if(!$verifyData) {
+                abort(403, '验证码已失效');
+            }
+            if(!hash_equals($verifyData['code'], $request->verification_code)) {
+                // 返回401
+                throw new AuthenticationException('验证码错误');
+            }
+            $credentials['phone'] = $verifyData['phone'];
+        } else {
+            $this->validate($request, [
+                'phone' => [
+                    'required',
+                    'regex:/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199)\d{8}$/',
+                ],
+                'password' => 'required|alpha_dash|min:6',
+            ], [], [
+                'phone' => '手机号码',
+                'password' => '密码'
+            ]);
+            $credentials['phone'] = $request->phone;
+            $credentials['password'] = $request->password;
+        }
         if(!$token = \Auth::guard('api')->attempt($credentials)) {
             return response()->json(['error' => '未登录或登录状态失效'], 401);
         }
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60,
+            'expires_in' => \Auth::guard('api')->factory()->getTTL(),
         ])->setStatusCode(201);
     }
 
