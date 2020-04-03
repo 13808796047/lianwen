@@ -61,7 +61,7 @@
                 <label for="file">请上传论文doc文件或txt文件</label>
                 <input type="file" class="form-control-file" id="file" name="file">
               </div>
-              <button type="submit" class="btn btn-primary">提交</button>
+              <button type="submit" class="btn btn-primary px-10">提交</button>
             </div>
           </div>
         </form>
