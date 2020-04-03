@@ -76,8 +76,8 @@ class AuthorizationsController extends Controller
 
             if(!$user = User::where('phone', $verifyData['phone'])->first()) {
                 return response()->json([
-                    'message' => '用户不存在',
-                ]);
+                    'error' => '用户不存在',
+                ], 401);
             }
             $token = auth('api')->login($user);
             // 清除验证码缓存
