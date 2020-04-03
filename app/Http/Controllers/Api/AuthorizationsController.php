@@ -58,6 +58,13 @@ class AuthorizationsController extends Controller
     public function store(Request $request)
     {
         if($request->type == 'phone') {
+            $this->validate($request, [
+                'verification_key' => 'required|string',
+                'verification_code' => 'required|string',
+            ], [], [
+                'verification_key' => '短信验证码 key',
+                'verification_code' => '短信验证码',
+            ]);
             $verifyData = \Cache::get($request->verification_key);
             if(!$verifyData) {
                 abort(403, '验证码已失效');
