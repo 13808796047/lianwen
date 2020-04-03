@@ -73,7 +73,13 @@ class AuthorizationsController extends Controller
                 // 返回401
                 throw new AuthenticationException('验证码错误');
             }
-            $credentials['phone'] = $verifyData['phone'];
+
+            if(!$user = User::where('phone', $verifyData['phone'])->first()) {
+                return response()->json([
+                    'message' => '用户不存在',
+                ]);
+            }
+            $token = auth('api')->login($user);
         } else {
             $this->validate($request, [
                 'phone' => [
@@ -87,10 +93,11 @@ class AuthorizationsController extends Controller
             ]);
             $credentials['phone'] = $request->phone;
             $credentials['password'] = $request->password;
+            if(!$token = \Auth::guard('api')->attempt($credentials)) {
+                return response()->json(['error' => '未登录或登录状态失效'], 401);
+            }
         }
-        if(!$token = \Auth::guard('api')->attempt($credentials)) {
-            return response()->json(['error' => '未登录或登录状态失效'], 401);
-        }
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
