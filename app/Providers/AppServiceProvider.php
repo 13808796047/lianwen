@@ -86,7 +86,15 @@ class AppServiceProvider extends ServiceProvider
         });
         //百度收银台
         $this->app->singleton('baidu_pay', function() {
-            $config = config('pay.baidu_pay');
+            $domain = $request()->getHost();
+            switch ($domain) {
+                case 'dev.lianwen.com':
+                    $config = config('pay.dev_baidu_pay');
+                    break;
+                default:
+                    $config = config('pay.zcnki_baidu_pay');
+            }
+
             return new BaiduPayHandler($config);
         });
     }
