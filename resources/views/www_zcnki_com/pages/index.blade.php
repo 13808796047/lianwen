@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('domain::layouts.app')
 @section('title', '首页')
 @section('styles')
   <link href="{{asset('asset/css/index.css')}}" rel="stylesheet"/>
