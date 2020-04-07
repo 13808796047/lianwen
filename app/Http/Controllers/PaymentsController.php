@@ -137,7 +137,7 @@ class PaymentsController extends Controller
 
     public function wechatReturn(Order $order)
     {
-        return view('payments.success', ['order' => $order, 'msg' => '支付成功!']);
+        return view('domained::payments.success', ['order' => $order, 'msg' => '支付成功!']);
     }
 
     public function wechatNotify()

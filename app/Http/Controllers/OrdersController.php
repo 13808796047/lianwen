@@ -27,7 +27,7 @@ class OrdersController extends Controller
     public function index(Request $request)
     {
         $orders = $request->user()->orders()->with('category:id,name')->latest()->paginate(10);
-        return view('orders.index', compact('orders'));
+        return view('domained::orders.index', compact('orders'));
     }
 
     public function store(Request $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
@@ -41,17 +41,17 @@ class OrdersController extends Controller
 //            ], 401);
 //        }
         $order = $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler);
-        return redirect()->route('orders.show', compact('order'));
+        return redirect()->route('domained::orders.show', compact('order'));
     }
 
     public function show(Order $order)
     {
-        return view('orders.show', compact('order'));
+        return view('domained::orders.show', compact('order'));
     }
 
     public function viewReport(Order $order)
     {
-        return view('orders.view_report', compact('order'));
+        return view('domained::orders.view_report', compact('order'));
     }
 
     public function destroy(Request $request)

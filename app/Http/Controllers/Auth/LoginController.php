@@ -27,7 +27,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('pages.index');
+        return view('domained::pages.index');
     }
 
     public function username()

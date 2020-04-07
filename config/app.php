@@ -177,6 +177,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         //短信发送
         App\Providers\EasySmsServiceProvider::class,
+        //模板切换
+        App\Providers\DomainThemeServiceProvider::class
     ],
 
     /*
