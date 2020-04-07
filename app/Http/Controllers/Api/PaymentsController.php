@@ -156,7 +156,7 @@ class PaymentsController extends Controller
         $data['totalAmount'] = $order->price * 100;
         $data['tpOrderId'] = $order->orderid;
         $data['rsaSign'] = app('baidu_pay')->getSign($data);
-        $data['dealTitle'] = '支付 联文检测 的订单' . $order->orderid; // 订单的名称
+        $data['dealTitle'] = '支付 ' . $order->category->name . ' 的订单' . $order->orderid; // 订单的名称
         $data['signFieldsRange'] = 1; // 固定值1
         $data['bizInfo'] = ''; // 其他信息
         return response()->json($data)->setStatusCode(200);

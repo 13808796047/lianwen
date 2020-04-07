@@ -96,7 +96,7 @@ class PaymentsController extends Controller
         $wechatOrder = app('wechat_pay')->scan([
             'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
             'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
-            'body' => '支付 联文检测 的订单：' . $order->orderid, // 订单描述
+            'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid, // 订单描述
         ]);
         //把要转换的字符串作为QrCode的构造函数
         $qrCode = new QrCode($wechatOrder->code_url);
@@ -116,7 +116,7 @@ class PaymentsController extends Controller
         return app('wechat_pay_wap')->wap([
             'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
             'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
-            'body' => '支付 联文检测 的订单：' . $order->orderid, // 订单描述
+            'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid, // 订单描述
         ]);
     }
 
@@ -131,7 +131,7 @@ class PaymentsController extends Controller
         return app('wechat_pay_wap')->mp([
             'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
             'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
-            'body' => '支付 联文检测 的订单：' . $order->orderid, // 订单描述
+            'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid, // 订单描述
         ]);
     }
 
