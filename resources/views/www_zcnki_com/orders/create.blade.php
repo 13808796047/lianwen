@@ -16,7 +16,7 @@
         <form action="{{route('orders.store')}}" method="post" enctype="multipart/form-data">
           @csrf
           <input type="hidden" name="cid" id="cid">
-          <input type="hidden" name="from" value="dev.lianwen.com/PC端">
+          <input type="hidden" name="from" value="www.zcnki.com/PC端">
           <div class="bg-white  overflow-hidden  shadow  p-4">
 
             <div class="grid grid-cols-4 gap-4 category">

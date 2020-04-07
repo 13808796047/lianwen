@@ -34,15 +34,15 @@
 <body class="text-xs">
 <div id="app" class="{{ route_class() }}-page">
 
-  @include('layouts._header')
+  @include('domained::layouts._header')
 
 
-  @include('shared._messages')
+  @include('domained::shared._messages')
 
   @yield('content')
 
 
-  @include('layouts._footer')
+  @include('domained::layouts._footer')
 </div>
 
 <!-- Scripts -->

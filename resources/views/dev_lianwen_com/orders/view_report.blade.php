@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('domained::layouts.app')
 @section('title','查看报告')
 @section('styles')
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
