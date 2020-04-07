@@ -159,7 +159,6 @@ class PaymentsController extends Controller
         $data['dealTitle'] = '支付 联文检测 的订单' . $order->orderid; // 订单的名称
         $data['signFieldsRange'] = 1; // 固定值1
         $data['bizInfo'] = ''; // 其他信息
-
         return response()->json($data)->setStatusCode(200);
     }
 }
