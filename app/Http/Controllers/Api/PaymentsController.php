@@ -141,8 +141,18 @@ class PaymentsController extends Controller
         if($order->status == 1 || $order->del) {
             throw new InvalidRequestException('订单状态不正确');
         }
-        $data['dealId'] = config('pay.baidu_pay.dealId');
-        $data['appKey'] = config('pay.baidu_pay.appKey');
+        $domain = request()->getHost();
+        switch ($domain) {
+            case 'dev.lianwen.com':
+                $data['dealId'] = config('pay.dev_baidu_pay.dealId');
+                $data['appKey'] = config('pay.dev_baidu_pay.appKey');
+                break;
+            default:
+                $data['dealId'] = config('pay.zcnki_baidu_pay.dealId');
+                $data['appKey'] = config('pay.zcnki_baidu_pay.appKey');
+                break;
+        }
+
         $data['totalAmount'] = $order->price * 100;
         $data['tpOrderId'] = $order->orderid;
         $data['rsaSign'] = app('baidu_pay')->getSign($data);
