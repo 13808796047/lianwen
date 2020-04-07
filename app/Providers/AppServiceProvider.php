@@ -93,6 +93,7 @@ class AppServiceProvider extends ServiceProvider
                     break;
                 default:
                     $config = config('pay.zcnki_baidu_pay');
+                    break;
             }
 
             return new BaiduPayHandler($config);
