@@ -95,7 +95,6 @@ class AppServiceProvider extends ServiceProvider
                     $config = config('pay.zcnki_baidu_pay');
                     break;
             }
-
             return new BaiduPayHandler($config);
         });
     }
