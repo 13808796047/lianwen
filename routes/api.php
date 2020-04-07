@@ -48,6 +48,7 @@ Route::prefix('v1')
             //上传
             Route::post('upload', 'FilesController@store')->name('uploads.files');
             Route::post('orders/{order}/mail_report', 'OrdersController@reportMail');
+            //百度支付
             Route::get('payments/{order}/mock_data', 'PaymentsController@mockData')->name('payments.baidu.mock_data');
         });
 

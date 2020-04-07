@@ -86,7 +86,7 @@ class AppServiceProvider extends ServiceProvider
         });
         //百度收银台
         $this->app->singleton('baidu_pay', function() {
-            $domain = $request()->getHost();
+            $domain = request()->getHost();
             switch ($domain) {
                 case 'dev.lianwen.com':
                     $config = config('pay.dev_baidu_pay');
