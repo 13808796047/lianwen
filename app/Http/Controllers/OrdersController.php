@@ -41,7 +41,7 @@ class OrdersController extends Controller
 //            ], 401);
 //        }
         $order = $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler);
-        return redirect()->route('domained::orders.show', compact('order'));
+        return redirect()->route('orders.show', compact('order'));
     }
 
     public function show(Order $order)
