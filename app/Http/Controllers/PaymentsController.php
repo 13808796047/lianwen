@@ -47,7 +47,7 @@ class PaymentsController extends Controller
             ], 500);
         }
         $order = Order::where('payid', $result->out_trade_no)->first();
-        return view('payments.success', ['msg' => '支付成功', 'order' => $order]);
+        return view('domained::payments.success', ['msg' => '支付成功', 'order' => $order]);
     }
 
     // 服务器端回调

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
 use Overtrue\Socialite\SocialiteManager;
 
@@ -30,6 +31,9 @@ class AuthenticationsController extends Controller
 
     public function callback($type, Request $request)
     {
+        if(!$type = 'wechat') {
+            throw new InvalidArgumentException('参数错误!', 500);
+        }
         $oauthUser = $this->app->driver($type)->user();
         switch ($type) {
             case 'wechat':
