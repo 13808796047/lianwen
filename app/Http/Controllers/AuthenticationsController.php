@@ -31,10 +31,10 @@ class AuthenticationsController extends Controller
 
     public function callback($type, Request $request)
     {
-        if(!$type = 'wechat') {
-            abort(404);
-        } else {
+        try {
             $oauthUser = $this->app->driver($type)->user();
+        } catch (\Exception $e) {
+            throw new AuthenticationException('参数错误，未获取用户信息');
         }
         switch ($type) {
             case 'wechat':
