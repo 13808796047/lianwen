@@ -20,16 +20,24 @@ class AppServiceProvider extends ServiceProvider
     {
         //往服务容器中注入一个名为alipay的单例对象
         $this->app->singleton('alipay', function() {
-            $config = config('pay.alipay');
+            $domain = request()->getHost();
+            switch ($domain) {
+                case 'wanfang.lianwen.com':
+                    $config = config('pay.wanfang_alipay');
+                    break;
+                default:
+                    $config = config('pay.alipay');
+                    break;
+            }
             $config['notify_url'] = route('payments.alipay.notify');
             $config['return_url'] = route('payments.alipay.return');
             //判断当前项目运行环境是否为线上环境
-            if(app()->environment() != 'production') {
-                $config['mode'] = 'dev';
-//                $config['log']['level'] = Logger::DEBUG;
-            } else {
-//                $config['log']['level'] = Logger::DEBUG;
-            }
+//            if(app()->environment() != 'production') {
+//                $config['mode'] = 'dev';
+////                $config['log']['level'] = Logger::DEBUG;
+//            } else {
+////                $config['log']['level'] = Logger::DEBUG;
+//            }
             //调用yansongda/pay来创建一个支付宝对象
             return Pay::alipay($config);
         });
