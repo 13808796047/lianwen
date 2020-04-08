@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use http\Exception\InvalidArgumentException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Overtrue\Socialite\SocialiteManager;
 
