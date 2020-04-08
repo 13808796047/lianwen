@@ -32,7 +32,7 @@ class AuthenticationsController extends Controller
     public function callback($type, Request $request)
     {
         if(!$type = 'wechat') {
-            throw new InvalidArgumentException('参数错误!', 500);
+            abort(404);
         }
         $oauthUser = $this->app->driver($type)->user();
         switch ($type) {
