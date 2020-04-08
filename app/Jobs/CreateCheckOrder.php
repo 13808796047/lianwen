@@ -16,6 +16,7 @@ class CreateCheckOrder implements ShouldQueue
 
     protected $order;
     protected $file;
+    public $tries = 0;
 
     public function __construct(Order $order, $file)
     {
