@@ -22,7 +22,7 @@ class PaymentsController extends Controller
         return app('alipay')->web([
             'out_trade_no' => $order->orderid, // 订单编号，需保证在商户端不重复
             'total_amount' => $order->price, // 订单金额，单位元，支持小数点后两位
-            'subject' => '支付 联文检测 的订单：' . $order->orderid, // 订单标题
+            'subject' => '支付' . $order->category->name . '的订单：' . $order->orderid, // 订单标题
         ]);
     }
 
@@ -32,7 +32,7 @@ class PaymentsController extends Controller
         return app('alipay_wap')->wap([
             'out_trade_no' => $order->orderid, // 订单编号，需保证在商户端不重复
             'total_amount' => '0.01', // 订单金额，单位元，支持小数点后两位
-            'subject' => '支付 联文检测 的订单：' . $order->orderid, // 订单标题
+            'subject' => '支付' . $order->category->name . '的订单：' . $order->orderid, // 订单标题
         ]);
     }
 
