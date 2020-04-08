@@ -7,6 +7,7 @@ use App\Handlers\FileUploadHandler;
 use App\Handlers\FileWordsHandle;
 use App\Handlers\OrderApiHandler;
 use App\Handlers\WordHandler;
+use App\Http\Requests\Api\OrderRequest;
 use App\Jobs\CheckOrderStatus;
 use App\Mail\OrderReport;
 use App\Models\Category;
@@ -30,7 +31,7 @@ class OrdersController extends Controller
         return view('domained::orders.index', compact('orders'));
     }
 
-    public function store(Request $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
+    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
     {
         $user = $request->user();
 

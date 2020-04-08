@@ -22,7 +22,6 @@ class OrderRequest extends FormRequest
         return [
             'title' => '标题',
             'writer' => '作者',
-      
         ];
     }
 }
