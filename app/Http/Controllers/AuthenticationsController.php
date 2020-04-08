@@ -33,8 +33,9 @@ class AuthenticationsController extends Controller
     {
         if(!$type = 'wechat') {
             abort(404);
+        } else {
+            $oauthUser = $this->app->driver($type)->user();
         }
-        $oauthUser = $this->app->driver($type)->user();
         switch ($type) {
             case 'wechat':
                 $unionid = $oauthUser->getOriginal()['unionid'] ?: null;
