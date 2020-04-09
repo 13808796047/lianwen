@@ -12,7 +12,7 @@
           target="_blank"
           class="bbtn">下载完整报告</a>&emsp;<a
           href="#" target="_blank" class="rbtn">在线改重</a></div>
-      @include('orders._report',$order)
+      @include('domained::orders._report',$order)
     </div>
   </div>
 @stop
