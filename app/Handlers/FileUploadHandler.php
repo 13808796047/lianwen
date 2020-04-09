@@ -22,6 +22,18 @@ class FileUploadHandler
         $file->move($upload_path, $filename);
         return [
             'path' => config('app.url') . "/$folder_name/$filename",
+            'real_path' => "$upload_path/$filename"
+        ];
+    }
+
+    public function saveTxt($txt_content, $folder, $file_prefix)
+    {
+        $folder_name = "uploads/$folder/" . date('Ym/d', time());
+        $upload_path = public_path() . '/' . $folder_name;
+        $filename = $file_prefix . '_' . time() . '_' . \Str::random(10) . '.txt';
+        file_put_contents($upload_path . '/' . $filename, $txt_content);
+        return [
+            'path' => config('app.url') . "/$folder_name/$filename",
         ];
     }
 }

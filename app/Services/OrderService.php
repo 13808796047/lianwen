@@ -17,17 +17,29 @@ class OrderService
                 if(!in_array($file->getClientOriginalExtension(), ['doc', 'docx'])) {
                     //读取文件内容
                     $content = remove_spec_char(convert2utf8(file_get_contents($file)));
-                    $result = $wordHandler->save($content, 'files', $user->id);
+                    if($category->classid == 4) {
+                        $result = $uploader->save($file, 'files', $user->id);//存本地
+                    } else {
+                        $result = $wordHandler->save($content, 'files', $user->id);
+                    }
                     $words = count_words(remove_spec_char(convert2utf8($content)));
                 } else {
                     $result = $uploader->save($file, 'files', $user->id);//存本地
                     $words_count = $fileWords->getWords($request->title, $request->writer, $result['path']);
                     $words = $words_count['data']['wordCount'];
+                    if($category->classid == 4) {
+                        $texContent = read_docx($result['real_path']);
+                        $result = $uploader->saveTxt($texContent, 'files', $user->id);
+                    }
                 }
             } else {
                 $content = remove_spec_char($request->input('content', ''));
-                $result = $wordHandler->save($content, 'files', $user->id);
                 $words = count_words($content);
+                if($category->classid == 4) {
+                    $result = $uploader->saveTxt($content, 'files', $user->id);
+                } else {
+                    $result = $wordHandler->save($content, 'files', $user->id);
+                }
             }
             if(!$words <= $category->min_words && $words >= $category->max_words) {
                 throw new InvalidRequestException("检测字数必须在" . $category->min_words . "与" . $category->max_words . "之间");
