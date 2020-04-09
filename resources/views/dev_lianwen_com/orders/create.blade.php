@@ -58,7 +58,7 @@
                 <small id="words" class="form-text text-muted">当前共输入 <span class="text-red-500">0</span>个字</small>
               </div>
               <div class="form-group hidden" id="upload">
-                <label for="file">请上传论文doc文件或txt文件</label>
+                <label for="file">请上传论文docx文件或txt文件</label>
                 <input type="file" class="form-control-file" id="file" name="file">
               </div>
               <button type="submit" class="btn btn-primary px-10">提交</button>
