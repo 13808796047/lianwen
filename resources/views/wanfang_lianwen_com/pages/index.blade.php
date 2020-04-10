@@ -1,123 +1,123 @@
 @extends('domained::layouts.app')
 @section('title', '首页')
 @section('styles')
-  <link href="{{asset('asset/css/index.css')}}" rel="stylesheet"/>
-  <style>
-    .nav-link.active {
-      border-radius: 0;
-      border-bottom: #0d6aad 2px solid !important;
-      background: #fff !important;
-      color: #000 !important;
-    }
-
-    .login-banner {
-      background-image: url(https://www.lianwen.com/images/bg0.jpg);
-      background-color: rgb(40, 73, 123);
-    }
-  </style>
+  <link href="{{asset('asset/css/theme-style.css')}}" rel="stylesheet"/>
 @stop
 @section('content')
-  <!-- main轮播登陆块 -->
-  <div class="login-banner">
-    <div class="login-banner-box">
-      <div style="left:18%; top:88px;position: absolute;">
-        <img src="{{asset('asset/images/bg2i.png')}}" width="100%"/>
-      </div>
-      <div class="login-box">
-        @guest
-          <ul class="nav nav-pills mt-4 d-flex justify-content-center" id="pills-tab" role="tablist">
-            <li class="nav-item mr-4">
-              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-                 aria-controls="pills-home" aria-selected="true">账号登录</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
-                 aria-controls="pills-profile" aria-selected="false">手机登录</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-              <div class="w-full">
-                <form class="bg-white rounded px-4 pt-6" action="{{ route('login') }}" method="post">
-                  <input type="hidden" name="type" value="account">
-                  @csrf
-                  <div>
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
-                      用户名:
-                    </label>
-                    <input
-                      class="appearance-none border rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      name="phone"
-                      id="phone" type="text" placeholder="请输入手机号码" value="{{ old('phone') }}">
-                    @error('phone')
-                    <p class="text-red-500 text-xs pb-3">{{ $message }}</p>
-                    @enderror
 
-                  </div>
-                  <div>
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                      密码:
-                    </label>
-                    <input
-                      class="appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                      name="password"
-                      id="password" type="password" placeholder="请输入密码" value="{{ old('password') }}">
-                    @error('password')
-                    <p class="text-red-500 text-xs pb-3">{{ $message }}</p>
-                    @enderror
-                  </div>
-                  <div class="flex items-center justify-between my-2">
-                    <button
-                      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full px-4 rounded focus:outline-none focus:shadow-outline"
-                      type="submit">
-                      登录
-                    </button>
-                  </div>
-
-                </form>
-
-              </div>
-            </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-              <div class="w-full">
-                <form class="bg-white rounded px-4 pt-6">
-                  <div>
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                      手机号码:
-                    </label>
-                    <input
-                      class="appearance-none border rounded w-full py-2 px-2 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="mobile" type="text" placeholder="请输入手机号码">
-                    <p class="text-red-500 text-xs italic "></p>
-                  </div>
-                  <div>
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                      验证码:
-                    </label>
-                    <div class="d-flex justify-content-between">
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+       aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          @guest
+            <ul class="nav nav-pills mt-4 d-flex justify-content-center" id="pills-tab" role="tablist">
+              <li class="nav-item mr-4">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                   aria-controls="pills-home" aria-selected="true">账号登录</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                   aria-controls="pills-profile" aria-selected="false">手机登录</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+              <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="w-full">
+                  <form class="bg-white rounded px-4 pt-6">
+                    <div>
+                      <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
+                        用户名:
+                      </label>
                       <input
-                        class="appearance-none border border-red-500 rounded   py-2 px-2  w-full mr-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="verification_code" type="text" placeholder="请输入短信验证码"/>
-                      <input
-                        class="bg-blue-500 hover:bg-blue-700 px-2 py-1  text-white font-bold rounded"
-                        type="button" id="verificationCode" value="发送验证码">
-
+                        class="appearance-none border rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        name="phone"
+                        id="phone" type="text" placeholder="请输入手机号码" value="{{ old('phone') }}">
                     </div>
-                    <p class="text-red-500 text-xs italic "></p>
-                  </div>
-                  <div class="flex items-center justify-between my-4">
-                    <button
-                      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full px-4 rounded focus:outline-none focus:shadow-outline"
-                      type="button" id="phoneLogin">
-                      登录
-                    </button>
-                  </div>
+                    <div>
+                      <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        密码:
+                      </label>
+                      <input
+                        class="appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        name="password"
+                        id="password" type="password" placeholder="请输入密码" value="{{ old('password') }}">
+                    </div>
+                    <div class="flex items-center justify-between my-2">
+                      <button
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="button" id="accountLogin">
+                        登录
+                      </button>
+                    </div>
 
-                </form>
+                  </form>
 
+                </div>
+              </div>
+              <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="w-full">
+                  <form class="bg-white rounded px-4 pt-6">
+                    <div>
+                      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        手机号码:
+                      </label>
+                      <input
+                        class="appearance-none border rounded w-full py-2 px-2 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="mobile" type="text" placeholder="请输入手机号码">
+                      <p class="text-red-500 text-xs italic "></p>
+                    </div>
+                    <div>
+                      <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        验证码:
+                      </label>
+                      <div class="d-flex justify-content-between">
+                        <input
+                          class="appearance-none border border-red-500 rounded   py-2 px-2  w-full mr-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                          id="verification_code" type="text" placeholder="请输入短信验证码"/>
+                        <input
+                          class="bg-blue-500 hover:bg-blue-700 px-2 py-1  text-white font-bold rounded"
+                          type="button" id="verificationCode" value="发送验证码">
+
+                      </div>
+                      <p class="text-red-500 text-xs italic "></p>
+                    </div>
+                    <div class="flex items-center justify-between my-4">
+                      <button
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="button" id="phoneLogin">
+                        登录
+                      </button>
+                    </div>
+
+                  </form>
+
+                </div>
               </div>
             </div>
-          </div>
+
+          @else
+            <div class="flex flex-col align-middle">
+              <div class=" text-center  px-4 py-2 m-2">欢迎您</div>
+              <div class=" text-center  px-4 py-2 m-2"><img
+                  src='{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}' class='w-50 h-50 m-auto'>
+              </div>
+              <div
+                class=" text-center  px-4 py-2 m-2">{{auth()->user()->phone??auth()->user()->nickname}}</div>
+              <div class=" text-center  px-4 py-2 m-2">
+                <a href="javascript:;"
+                   class="rounded-sm logout text-decoration-none w-100 inline-block py-1 bg-teal-500 hover:bg-teal-600 md:text-lg xl:text-base text-white font-semibold  shadow-md">退出登录</a>
+              </div>
+            </div>
+          @endguest
+        </div>
+        <div class="modal-footer">
           <p class="text-gray-500 text-xs px-8 d-flex justify-content-center">
             <a href="{{route('oauth',['type'=>'wechat'])}}" class="block mr-4">
               <svg t="1585367706568" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -135,48 +135,334 @@
               还没有账号?去注册
             </a>
           </p>
-        @else
-          <div class="flex flex-col align-middle">
-            <div class=" text-center  px-4 py-2 m-2">欢迎您</div>
-            <div class=" text-center  px-4 py-2 m-2"><img
-                src='{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}' class='w-50 h-50 m-auto'>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!----//End-slider-script---->
+  <!-- Slideshow 4 -->
+  <div id="top" class="callbacks_container">
+    <ul class="rslides" id="slider4">
+      <li>
+        <div class="caption text-center">
+          <div class="slide-text-info">
+            <a class="btn1" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop"><span>万方查重</span></a>
+            <h1>本科大学生 <span>毕业论文</span> 学术不端检测</h1>
+            <div class="slide-text">
+              <p>用于检测大学生毕业论文是否存在抄袭剽窃等学术不端行为，全国多个高校在使用，与学校检测结果一致。</p>
             </div>
-            <div
-              class=" text-center  px-4 py-2 m-2">{{auth()->user()->phone??auth()->user()->nickname}}</div>
-            <div class=" text-center  px-4 py-2 m-2">
-              <a href="javascript:;"
-                 class="rounded-sm logout text-decoration-none w-100 inline-block py-1 bg-teal-500 hover:bg-teal-600 md:text-lg xl:text-base text-white font-semibold  shadow-md">退出登录</a>
+            <a class="btn2" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop"><span>立即查重</span></a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="caption text-center">
+          <div class="slide-text-info">
+            <a class="btn1" href="#"><span>万方查重</span></a>
+            <h1>硕博研究生 <span> 学位论文 </span> 学术不端检测</h1>
+            <div class="slide-text">
+              <p>为高校研究生院部提供检测服务，仅限检测研究生毕业论文。可检测抄袭与剽窃、伪造、篡改等学术不端行为。</p>
+            </div>
+            <a class="btn2" href="javascript:;" id="login3"><span>立即查重</span></a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="caption text-center">
+          <div class="slide-text-info">
+            <a class="btn1" href="#"><span>万方查重</span></a>
+            <h1>职称评比 <span>期刊发表</span> 学术不端检测</h1>
+            <div class="slide-text">
+              <p>为编辑部提供检测服务，可检测抄袭与剽窃、伪造、篡改、不当署名、一稿多投等学术不端文献。</p>
+            </div>
+            <a class="btn2" href="javascript:;" id="login4"><span>立即查重</span></a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
+  <!----- //End-slider---->
+  <!----start-services---->
+  <div id="ser" class="services">
+    <div class="container">
+      <div class="services-head text-center">
+        <h3>万方查重论文检测系统</h3>
+        <p>面向各级学生管理部门学风建设与管理的需求开发，提供针对毕业论文查重的专业论文检测服务，并辅助学校管理毕业论文，全过程检测毕业论文中是否存在抄袭剽窃等学术不端行为，建立学生诚信档案，帮助提高毕业论文质量。</p>
+      </div>
+      <!-----start-services-grids---->
+      <div class="services-grids row">
+        <div class="col-md-4 services-grid">
+          <div class="row">
+            <div class="col-md-3 services-grid-left">
+              <a class="top-icon1" href="#"><span> </span></a>
+            </div>
+            <div class="col-md-9 services-grid-right">
+              <h4><a href="#">海量比对文献资源</a></h4>
+              <p>涵盖期刊、博硕士学位论文、会议论文、报纸、专利、网页资源等学术资源数据，并实现定期比对更新。</p>
             </div>
           </div>
-        @endguest
+        </div>
+        <div class="col-md-4 services-grid">
+          <div class="row">
+            <div class="col-md-3 services-grid-left">
+              <a class="top-icon2" href="#"><span> </span></a>
+            </div>
+            <div class="col-md-9 services-grid-right">
+              <h4><a href="#">智能的检测技术</a></h4>
+              <p>采用国际领先的海量论文动态语义跨域识别加指纹比对技术，做到快捷、安全、准确、全面。</p>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="col-md-4 services-grid">
+          <div class="row">
+            <div class="col-md-3 services-grid-left">
+              <a class="top-icon3" href="#"><span> </span></a>
+            </div>
+            <div class="col-md-9 services-grid-right">
+              <h4><a href="#">支持手机查看结果</a></h4>
+              <p>率先接入微信公众号，检测完成实时通知查重结果，随时随地方便查看，无需一直守在电脑前。</p>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="services-grids row">
+        <div class="col-md-4 services-grid">
+          <div class="row">
+            <div class="col-md-3 services-grid-left">
+              <a class="top-icon4" href="#"><span> </span></a>
+            </div>
+            <div class="col-md-9 services-grid-right">
+              <h4><a href="#">详细的检测报告</a></h4>
+              <p>提供原文对照报告、片段对照报告、格式分析报告、比对报告、PDF报告等5个报告适合不同应用场景。</p>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="col-md-4 services-grid">
+          <div class="row">
+            <div class="col-md-3 services-grid-left">
+              <a class="top-icon5" href="#"><span> </span></a>
+            </div>
+            <div class="col-md-9 services-grid-right">
+              <h4><a href="#">正版数据库支持</a></h4>
+              <p>本站为万方官方授权代理，所有检测报告均支持在线验证，检测结果与官方一致。</p>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="col-md-4 services-grid">
+          <div class="row">
+            <div class="col-md-3 services-grid-left">
+              <a class="top-icon6" href="#"><span> </span></a>
+            </div>
+            <div class="col-md-9 services-grid-right">
+              <h4><a href="#">支持繁体文献检测</a></h4>
+              <p>可自动在后台进行简繁转换，并以原始形式（繁体文献仍为繁体）显示检测结果。</p>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
       </div>
     </div>
   </div>
-  <!-- 文字内容 -->
-  <div class="main">
-    <div class="main-wrap">
-      <div class="item fl first">
-        <h4 class="ind1_txt">专业</h4>
-        <div class="text">
-          不仅提供查重服务，更是提供专业的全套论文解决方案，为你解除论文烦恼。
-        </div>
+  <!----//End-services---->
+  <!-----//End-services-grids---->
+  <!---- start-about----->
+  <div id="about" class="about">
+    <div class="container">
+      <div class="about-head">
+        <h4>多版本查重报告</h4>
+        <p>
+          万方查重提供片段对照报告、比对报告、原文对照报告、简介报告、格式分析报告等5个版本报告，其中格式分析报告可以针对封面、目录、摘要、关键词、正文、声明/致谢、参考文献、附录等进行分析，校验是格式否符合规范，同时为论文自动推荐先关参考文献。</p>
       </div>
-      <div class="item fl">
-        <h4 class="ind1_txt">省心</h4>
-        <div class="text">
-          各种论文问题均可一键解决，省心，省力，极其方便的解决论文痛点
+      <!----- start-about-grids----->
+      <div class="about-grids row">
+        <div class="col-md-7 about-grid-left">
+          <span> </span>
         </div>
+        <div class="col-md-5 about-grid-right">
+          <h5>片段对照报告</h5>
+          <p>片段对照报告通过表格的方式将送检论文引用及相似文献来源直观地展现出来，通过片段对照报告我们可以清楚的看出所有与送检论文相似的来源。</p>
+          <h6>比对报告</h6>
+          <p>比对报告原名“全文比对报告”是按照送检论文原来的格式将有相似源的内容以飘红的方式展现出来，方便用户查看哪些内容是有相似源的。</p>
+          <a class="about-btn" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop">立即查重</a>
+        </div>
+        <div class="clearfix"></div>
       </div>
-      <div class="item fl">
-        <h4 class="ind1_txt">安全</h4>
-        <div class="text">
-          全站https协议传输，基于阿里云OSS文档上传，报告支持密码加密，安全无痕迹
+      <!----- //End-about-grids----->
+    </div>
+  </div>
+  <!----start-team----->
+  <div id="team" class="team">
+    <div class="container">
+      <div class="team-head text-center ">
+        <h3>系统说明</h3>
+        <p>系统基于数据海量学术文献资源，对学术成果相似性检测，提供客观详实的报告，为学术出版、科研管理、学位论文管理提供支持。<font color="#0000ff">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
+        </p>
+      </div>
+      <div class="team-members-grids text-center row">
+        <div class="col-md-3 team-member-grid">
+          <img src="{{ asset('asset/images/benke.png') }}" title="name"/>
+          <h5><a>本科版</a></h5>
+          <span>2.50元/千字</span>
+          <p>适合本科、专科、自考大学生毕业论文查重，全国多个高校在使用，与学校检测结果一致。</p>
+          <ul class="list-unstyled list-inline">
+            <a class="blue-btn" href="javascript:;" id="login6">立即使用</a>
+          </ul>
         </div>
+        <div class="col-md-3 team-member-grid">
+          <img src="{{ asset('asset/images/shuobo.png') }}" title="name"/>
+          <h5><a>硕博版</a></h5>
+          <span>2.50元/千字</span>
+          <p>含有博士/硕士学位论文全文数据库，更适合硕士和博士生论文查重，全国多个高校在使用。</p>
+          <ul class="list-unstyled list-inline">
+            <a class="blue-btn" href="javascript:;" id="login6">立即使用</a>
+          </ul>
+        </div>
+        <div class="col-md-3 team-member-grid">
+          <img src=" {{ asset('asset/images/tongyong.png') }}" title="name"/>
+          <h5><a>通用版</a></h5>
+          <span>2.50元/千字</span>
+          <p>适合未正式发表的文献、会议记录、工作总结、心得体会等文章查重。</p>
+          <ul class="list-unstyled list-inline">
+            <a class="blue-btn" href="javascript:;" id="login7">立即使用</a>
+          </ul>
+        </div>
+
+        <div class="col-md-3 team-member-grid">
+          <img src="{{ asset('asset/images/zhicheng.png') }}" title="name"/>
+          <h5><a>职称版</a></h5>
+          <span>5.00元/千字</span>
+          <p>适合职称评比、已发表论文查重，可选发表时间避免出现与自己发表的论文重复的尴尬。</p>
+          <ul class="list-unstyled list-inline">
+            <a class="blue-btn" href="javascript:;" id="login8">立即使用</a>
+          </ul>
+        </div>
+
+        <div class="clearfix"></div>
       </div>
     </div>
   </div>
+  <!----//End-team----->
+  <!--登陆模态框-->
+  {{--  <div class="login-box" style="display: none" id="loginbox">--}}
+  {{--    <div class="header">--}}
+  {{--      <ul id="loginTitle">--}}
+  {{--        <li class="banner-li li-current" id="wx">微信登陆</li>--}}
+  {{--        <li class="banner-li" id="zh">账号登陆</li>--}}
+  {{--        <span class="closebox" id="closebox">X</span>--}}
+  {{--      </ul>--}}
+
+  {{--    </div>--}}
+  {{--    <div class="box-main">--}}
+  {{--      <div class="content listbox" id="wxlogin">--}}
+  {{--        <div class="tit">--}}
+  {{--          <p>用微信扫码 安全查重</p>--}}
+  {{--        </div>--}}
+  {{--        <div class="codeimg">--}}
+  {{--          <img id="login_mpweixin_img" src="" alt="更新二维码"/>--}}
+  {{--        </div>--}}
+
+  {{--        <div class="box-word">无需注册，一键登录</div>--}}
+  {{--      </div>--}}
+  {{--      <div class="ch-input-wrap listbox remove" id="zhlogin" style="display: none">--}}
+  {{--        <form action="/redirect.php?url=/user/login" method="post" class="form">--}}
+  {{--          <div class="form-item">--}}
+  {{--                <span id="logerror" class="wrong c-red" style="display:none;"--}}
+  {{--                >* <em></em--}}
+  {{--                  ></span>--}}
+  {{--            <div class="hd">用户名：</div>--}}
+  {{--            <div class="input-div">--}}
+  {{--              <input--}}
+  {{--                class="input"--}}
+  {{--                name="name"--}}
+  {{--                id="name"--}}
+  {{--                type="text"--}}
+  {{--                placeholder="请输入用户名"--}}
+  {{--                autocomplete="off"--}}
+  {{--              />--}}
+  {{--            </div>--}}
+  {{--          </div>--}}
+  {{--          <div class="form-item">--}}
+  {{--            <div class="hd">密 码：</div>--}}
+  {{--            <div class="input-div">--}}
+  {{--              <input--}}
+  {{--                class="input"--}}
+  {{--                name="password"--}}
+  {{--                id="password"--}}
+  {{--                type="password"--}}
+  {{--                placeholder="密码"--}}
+  {{--                autocomplete="new-password"--}}
+  {{--              />--}}
+  {{--            </div>--}}
+  {{--          </div>--}}
+
+  {{--          <div class="form-item">--}}
+  {{--            <div class="agreement">--}}
+
+  {{--              <input id="chkLoginType" type="checkbox" name="chkLoginType"/>--}}
+  {{--              记住密码--}}
+  {{--            </div>--}}
+  {{--          </div>--}}
+  {{--          <div class="form-item">--}}
+  {{--            <input--}}
+  {{--              id="btnSubmit"--}}
+  {{--              type="button"--}}
+  {{--              class="btn-login"--}}
+  {{--              value="登 录"--}}
+  {{--              onclick="getLogin()"--}}
+  {{--            />--}}
+  {{--          </div>--}}
+
+  {{--          <div class="form-item">--}}
+  {{--            还没有账号？<a href="javascript:void(0)" onclick="window.location.href='/register'">立即注册</a>--}}
+  {{--          </div>--}}
+  {{--        </form>--}}
+  {{--      </div>--}}
+  {{--    </div>--}}
+  {{--  </div>--}}
+  {{--  <!-- main轮播登陆块 -->--}}
+  {{--  <div class="login-banner">--}}
+  {{--    <div class="login-banner-box">--}}
+  {{--      <div style="left:18%; top:88px;position: absolute;">--}}
+  {{--        <img src="{{asset('asset/images/bg2i.png')}}" width="100%"/>--}}
+  {{--      </div>--}}
+
+
+
+  {{--  <!-- 文字内容 -->--}}
+  {{--  <div class="main">--}}
+  {{--    <div class="main-wrap">--}}
+  {{--      <div class="item fl first">--}}
+  {{--        <h4 class="ind1_txt">专业</h4>--}}
+  {{--        <div class="text">--}}
+  {{--          不仅提供查重服务，更是提供专业的全套论文解决方案，为你解除论文烦恼。--}}
+  {{--        </div>--}}
+  {{--      </div>--}}
+  {{--      <div class="item fl">--}}
+  {{--        <h4 class="ind1_txt">省心</h4>--}}
+  {{--        <div class="text">--}}
+  {{--          各种论文问题均可一键解决，省心，省力，极其方便的解决论文痛点--}}
+  {{--        </div>--}}
+  {{--      </div>--}}
+  {{--      <div class="item fl">--}}
+  {{--        <h4 class="ind1_txt">安全</h4>--}}
+  {{--        <div class="text">--}}
+  {{--          全站https协议传输，基于阿里云OSS文档上传，报告支持密码加密，安全无痕迹--}}
+  {{--        </div>--}}
+  {{--      </div>--}}
+  {{--    </div>--}}
+  {{--  </div>--}}
 @stop
 @section('scripts')
+  <script type="text/javascript" src="{{ asset('asset/js/move-top.js') }}"></script>
+  <script type="text/javascript" src=" {{ asset('asset/js/easing.js') }}"></script>
+  {{--  <script src="{{ asset('asset/js/responsiveslides.min.js') }}"></script>--}}
   <script>
     $(function () {
       @auth
@@ -186,8 +472,67 @@
         content: $("<img class='inline-block' src=\"{{ asset('asset/images/691584772794_.pic.jpg') }}\" />")[0],
         // buttons 参数可以设置按钮显示的文案
       })
-        @endauth
+      @endauth
+      // $("#slider4").responsiveSlides({
+      //   auto: true,
+      //   pager: true,
+      //   nav: true,
+      //   speed: 500,
+      //   namespace: "callbacks",
+      //   before: function () {
+      //     $('.events').append("<li>before event fired.</li>");
+      //   },
+      //   after: function () {
+      //     $('.events').append("<li>after event fired.</li>");
+      //   }
+      // });
+      // $().UItoTop({easingType: 'easeOutQuart'});
 
+      // Tab切换
+      $('.banner-li').click(function () {
+        $(this)
+          .addClass('li-current')
+          .siblings()
+          .removeClass('li-current')
+        let liIndex = $(this).index()
+        $('.listbox')
+          .eq(liIndex)
+          .css('display', 'block')
+          .siblings('.listbox')
+          .css('display', 'none')
+      })
+      $(document).keydown(function (e) {
+        if (e.keyCode == 13) {
+          $("#btnSubmit").click()
+        }
+      })
+
+      //账号登录
+      $('#accountLogin').click(function () {
+        axios.post('{{route('login') }}', {
+          phone: $("input[name='phone']").val(),
+          password: $("input[name='password']").val(),
+          type: 'account'
+        }).then(res => {
+          if (res.status == 200) {
+            swal("提示", res.data.message, "success");
+            location.reload();
+          } else {
+            swal("提示", res.data.message, "error");
+          }
+        }).catch(err => {
+          if (err.response.status == 422) {
+            $.each(err.response.data.errors, (field, errors) => {
+              swal("提示", errors[0], "error");
+            })
+          }
+          if (err.response.status == 401) {
+            $.each(err.response.data, (field, errors) => {
+              swal("提示", errors, "error");
+            })
+          }
+        })
+      })
       var wait = 60;
       var verification_key = '';
 
