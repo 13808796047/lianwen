@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\OrderPaid;
+use App\Handlers\DocxConversionHandler;
 use App\Handlers\FileUploadHandler;
 use App\Handlers\FileWordsHandle;
 use App\Handlers\OrderApiHandler;
@@ -31,7 +32,7 @@ class OrdersController extends Controller
         return view('domained::orders.index', compact('orders'));
     }
 
-    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
+    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler, DocxConversionHandler $conversionHandler)
     {
         $user = $request->user();
 
@@ -41,7 +42,7 @@ class OrdersController extends Controller
 //                'message' => '此检测通道已关闭!'
 //            ], 401);
 //        }
-        $order = $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler);
+        $order = $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler, $conversionHandler);
         return redirect()->route('orders.show', compact('order'));
     }
 
