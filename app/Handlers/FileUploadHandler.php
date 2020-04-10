@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Handlers;
+
+use mysql_xdevapi\Exception;
+
 class FileUploadHandler
 {
     protected $allowed_ext = ['doc', 'docx'];
@@ -31,9 +34,17 @@ class FileUploadHandler
         $folder_name = "uploads/$folder/" . date('Ym/d', time());
         $upload_path = public_path() . '/' . $folder_name;
         $filename = $file_prefix . '_' . time() . '_' . \Str::random(10) . '.txt';
-        file_put_contents($upload_path . '/' . $filename, $txt_content);
-        return [
-            'path' => config('app.url') . "/$folder_name/$filename",
-        ];
+        try {
+            if(!file_exists($upload_path)) {
+                mkdir($upload_path, 0777, true);
+                chmod($upload_path, 0777);
+            }
+            file_put_contents($upload_path . '/' . $filename, $txt_content);
+            return [
+                'path' => config('app.url') . "/$folder_name/$filename"
+            ];
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
