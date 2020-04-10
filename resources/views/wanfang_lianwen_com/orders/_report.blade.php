@@ -1,6 +1,11 @@
 @extends('domained::layouts.app')
 @section('title', '首页')
 @section('styles')
+  <style>
+    p {
+      text-indent: 2em !important;
+    }
+  </style>
 @stop
 @section('content')
   <div class="container mt-5 mb-24">
@@ -25,7 +30,11 @@
             <a href="{{ route('orders.download',$order) }}" class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
           </div>
         </div>
-        {!! $order->report->content !!}
+        @if( $order->report->content)
+          {!! $order->report->content  !!}
+        @else
+          <h1>暂无内容!</h1>
+        @endif
       </div>
     </div>
   </div>
