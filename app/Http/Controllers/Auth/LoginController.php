@@ -47,12 +47,13 @@ class LoginController extends Controller
             if($this->guard()->attempt(
                 $this->credentials($request), $request->filled('remember')
             )) {
-                return redirect()->to('/');
-            } else {
-                throw ValidationException::withMessages([
-                    $this->username() => '很抱歉，您的邮箱和密码不匹配',
+                return response()->json([
+                    'message' => '登录成功!'
                 ]);
-                return redirect()->back()->withInput();
+            } else {
+                return response()->json([
+                    'error' => '您的账号密码错误!'
+                ], 401);
             }
         } else {
             $this->validate($request, [
