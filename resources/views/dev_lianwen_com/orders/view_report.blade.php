@@ -35,7 +35,7 @@
         @if($order->report->content)
           {!! $order->report->content !!}
         @else
-          <h2>暂无内容!!!!</h2>
+          <h2 class="text-center text-5xl">暂无内容!!!!</h2>
         @endif
       </div>
     </div>
