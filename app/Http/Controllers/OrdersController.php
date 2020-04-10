@@ -42,7 +42,7 @@ class OrdersController extends Controller
 //                'message' => '此检测通道已关闭!'
 //            ], 401);
 //        }
-        $order = $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler, $conversionHandler);
+        $order = $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler);
         return redirect()->route('orders.show', compact('order'));
     }
 
