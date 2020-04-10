@@ -32,7 +32,7 @@ class OrdersController extends Controller
         return view('domained::orders.index', compact('orders'));
     }
 
-    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler, DocxConversionHandler $conversionHandler)
+    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
     {
         $user = $request->user();
 
