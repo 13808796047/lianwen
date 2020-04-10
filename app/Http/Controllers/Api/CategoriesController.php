@@ -10,12 +10,7 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::query()->where('status', 1)->get();
         return CategoryResource::collection($categories)->collection->groupBy('classid');
-    }
-
-    public function show($classid)
-    {
-
     }
 }
