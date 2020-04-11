@@ -38,9 +38,8 @@
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
               <div class="w-full">
-                <form class="bg-white rounded px-4 pt-6" action="{{ route('login') }}" method="post">
-                  <input type="hidden" name="type" value="account">
-                  @csrf
+                <form class="bg-white rounded px-4 pt-6">
+
                   <div>
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
                       用户名:
@@ -49,9 +48,7 @@
                       class="appearance-none border rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       name="phone"
                       id="phone" type="text" placeholder="请输入手机号码" value="{{ old('phone') }}">
-                    @error('phone')
-                    <p class="text-red-500 text-xs pb-3">{{ $message }}</p>
-                    @enderror
+
 
                   </div>
                   <div>
@@ -62,14 +59,12 @@
                       class="appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                       name="password"
                       id="password" type="password" placeholder="请输入密码" value="{{ old('password') }}">
-                    @error('password')
-                    <p class="text-red-500 text-xs pb-3">{{ $message }}</p>
-                    @enderror
+
                   </div>
                   <div class="flex items-center justify-between my-2">
                     <button
                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full px-4 rounded focus:outline-none focus:shadow-outline"
-                      type="submit">
+                      type="button" id="accountLogin">
                       登录
                     </button>
                   </div>
@@ -179,15 +174,40 @@
 @section('scripts')
   <script>
     $(function () {
-      @auth
-      swal({
-        // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-        text: '关注公众号,获取更多资讯!',
-        content: $("<img class='inline-block' src=\"{{ asset('asset/images/691584772794_.pic.jpg') }}\" />")[0],
-        // buttons 参数可以设置按钮显示的文案
+      {{--      @auth--}}
+      {{--      swal({--}}
+      {{--        // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素--}}
+      {{--        text: '关注公众号,获取更多资讯!',--}}
+      {{--        content: $("<img class='inline-block' src=\"{{ asset('asset/images/691584772794_.pic.jpg') }}\" />")[0],--}}
+      {{--        // buttons 参数可以设置按钮显示的文案--}}
+      {{--      })--}}
+      {{--        @endauth--}}
+      //账号登录
+      $('#accountLogin').click(function () {
+        axios.post('{{route('login') }}', {
+          phone: $("input[name='phone']").val(),
+          password: $("input[name='password']").val(),
+          type: 'account'
+        }).then(res => {
+          if (res.status == 200) {
+            swal("提示", res.data.message, "success");
+            location.reload();
+          } else {
+            swal("提示", res.data.message, "error");
+          }
+        }).catch(err => {
+          if (err.response.status == 422) {
+            $.each(err.response.data.errors, (field, errors) => {
+              swal("提示", errors[0], "error");
+            })
+          }
+          if (err.response.status == 401) {
+            $.each(err.response.data, (field, errors) => {
+              swal("提示", errors, "error");
+            })
+          }
+        })
       })
-        @endauth
-
       var wait = 60;
       var verification_key = '';
 
