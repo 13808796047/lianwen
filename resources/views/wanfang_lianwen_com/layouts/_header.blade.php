@@ -57,7 +57,7 @@
 {{--    </div>--}}
 {{--  @endauth--}}
 {{--</nav>--}}
-<div id="home" class="header">
+<div id="home" class="header" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
   <div class="container">
     <div class="logo">
       <a href="/"><img src="http://www.zcnki.com/asset/images/logo/wanfang.png" title="logo"/></a>
