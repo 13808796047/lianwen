@@ -63,7 +63,7 @@
       <a href="/"><img src="http://www.zcnki.com/asset/images/logo/wanfang.png" title="logo"/></a>
     </div>
     <!----start-top-nav---->
-    <nav class="top-nav">
+    <nav class="top-nav float-left ml-16">
       <ul class="top-nav">
         <li class="active"><a href="/" class="scroll">首页<span> </span></a></li>
 
@@ -76,6 +76,16 @@
                                                            class="scroll">在线咨询</a></li>
       </ul>
     </nav>
+    @auth
+
+      <div class="align-items-center float-right flex text-sm mt-3">
+        {{--            <span>{{auth()->user()->phone??auth()->user()->nickname}}</span>--}}
+        {{--            <img src="{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}" class=" w-10 h-10"/>--}}
+
+        <a href="javascript:;" class="logout inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
+                lg:mt-0">登出</a>
+      </div>
+    @endauth
     <div class="clearfix"></div>
   </div>
 </div>

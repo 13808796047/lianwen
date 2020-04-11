@@ -31,7 +31,7 @@
   </script>
 </head>
 
-<body class="text-xs">
+<body>
 <div id="app" class="{{ route_class() }}-page">
 
   @include('domained::layouts._header')

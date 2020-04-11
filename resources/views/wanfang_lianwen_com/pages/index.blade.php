@@ -6,18 +6,19 @@
 @section('content')
 
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
-       aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          @guest
-            <ul class="nav nav-pills mt-4 d-flex justify-content-center" id="pills-tab" role="tablist">
+  @guest
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-none">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <ul class="nav nav-pills d-flex justify-content-center" id="pills-tab" role="tablist">
               <li class="nav-item mr-4">
                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
                    aria-controls="pills-home" aria-selected="true">账号登录</a>
@@ -49,7 +50,7 @@
                         name="password"
                         id="password" type="password" placeholder="请输入密码" value="{{ old('password') }}">
                     </div>
-                    <div class="flex items-center justify-between my-2">
+                    <div class="flex items-center justify-between my-4">
                       <button
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full px-4 rounded focus:outline-none focus:shadow-outline"
                         type="button" id="accountLogin">
@@ -77,7 +78,7 @@
                       <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                         验证码:
                       </label>
-                      <div class="d-flex justify-content-between">
+                      <div class="d-flex justify-content-between py-2">
                         <input
                           class="appearance-none border border-red-500 rounded   py-2 px-2  w-full mr-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           id="verification_code" type="text" placeholder="请输入短信验证码"/>
@@ -86,7 +87,7 @@
                           type="button" id="verificationCode" value="发送验证码">
 
                       </div>
-                      <p class="text-red-500 text-xs italic "></p>
+                    
                     </div>
                     <div class="flex items-center justify-between my-4">
                       <button
@@ -102,44 +103,44 @@
               </div>
             </div>
 
-          @else
-            <div class="flex flex-col align-middle">
-              <div class=" text-center  px-4 py-2 m-2">欢迎您</div>
-              <div class=" text-center  px-4 py-2 m-2"><img
-                  src='{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}' class='w-50 h-50 m-auto'>
-              </div>
-              <div
-                class=" text-center  px-4 py-2 m-2">{{auth()->user()->phone??auth()->user()->nickname}}</div>
-              <div class=" text-center  px-4 py-2 m-2">
-                <a href="javascript:;"
-                   class="rounded-sm logout text-decoration-none w-100 inline-block py-1 bg-teal-500 hover:bg-teal-600 md:text-lg xl:text-base text-white font-semibold  shadow-md">退出登录</a>
-              </div>
-            </div>
-          @endguest
-        </div>
-        <div class="modal-footer">
-          <p class="text-gray-500 text-xs px-8 d-flex justify-content-center">
-            <a href="{{route('oauth',['type'=>'wechat'])}}" class="block mr-4">
-              <svg t="1585367706568" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                   xmlns="http://www.w3.org/2000/svg" p-id="1112" width="24" height="24">
-                <path
-                  d="M347.729118 353.0242c-16.487119 0-29.776737 13.389539-29.776737 29.776737S331.241998 412.677596 347.729118 412.677596s29.776737-13.389539 29.776737-29.776737-13.289617-29.876659-29.776737-29.876659zM577.749415 511.800156c-13.689305 0-24.880562 11.091335-24.880563 24.880562 0 13.689305 11.091335 24.880562 24.880563 24.880562 13.689305 0 24.880562-11.191257 24.880562-24.880562s-11.191257-24.880562-24.880562-24.880562zM500.909446 412.677596c16.487119 0 29.776737-13.389539 29.776737-29.776737s-13.389539-29.776737-29.776737-29.776737c-16.487119 0-29.776737 13.389539-29.776737 29.776737s13.289617 29.776737 29.776737 29.776737zM698.455113 511.600312c-13.689305 0-24.880562 11.091335-24.880562 24.880562 0 13.689305 11.091335 24.880562 24.880562 24.880562 13.689305 0 24.880562-11.091335 24.880562-24.880562-0.099922-13.689305-11.191257-24.880562-24.880562-24.880562z"
-                  fill="#00C800" p-id="1113"></path>
-                <path
-                  d="M511.601093 0.799375C229.12178 0.799375 0.000781 229.820453 0.000781 512.399688s229.021077 511.600312 511.600312 511.600312 511.600312-229.021077 511.600312-511.600312S794.180328 0.799375 511.601093 0.799375z m-90.229508 634.504294c-27.37861 0-49.361436-5.595628-76.839969-10.991413l-76.640125 38.469945 21.882904-65.948477c-54.957065-38.370023-87.73146-87.831382-87.73146-148.084309 0-104.318501 98.722873-186.554254 219.32865-186.554255 107.815769 0 202.34192 65.648712 221.327088 153.979703-6.994536-0.799375-13.989071-1.298985-21.083529-1.298985-104.118657 0-186.454333 77.739266-186.454332 173.564403 0 15.98751 2.498048 31.275566 6.794692 45.964091-6.794692 0.599532-13.689305 0.899297-20.583919 0.899297z m323.547228 76.839969l16.48712 54.757221-60.153006-32.874317c-21.882904 5.495706-43.965652 10.991413-65.848555 10.991413-104.318501 0-186.554254-71.344262-186.554255-159.175644 0-87.631538 82.135831-159.175644 186.554255-159.175644 98.523029 0 186.254489 71.444184 186.254488 159.175644 0.099922 49.461358-32.774395 93.227166-76.740047 126.301327z"
-                  fill="#00C800" p-id="1114"></path>
-              </svg>
-            </a>
-            <a class="block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-               href="{{route('register')}}">
-              还没有账号?去注册
-            </a>
-          </p>
+            {{--          @else--}}
+            {{--            <div class="flex flex-col align-middle">--}}
+            {{--              <div class=" text-center  px-4 py-2 m-2">欢迎您</div>--}}
+            {{--              <div class=" text-center  px-4 py-2 m-2"><img--}}
+            {{--                  src='{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}' class='w-50 h-50 m-auto'>--}}
+            {{--              </div>--}}
+            {{--              <div--}}
+            {{--                class=" text-center  px-4 py-2 m-2">{{auth()->user()->phone??auth()->user()->nickname}}</div>--}}
+            {{--              <div class=" text-center  px-4 py-2 m-2">--}}
+            {{--                <a href="javascript:;"--}}
+            {{--                   class="rounded-sm logout text-decoration-none w-100 inline-block py-1 bg-teal-500 hover:bg-teal-600 md:text-lg xl:text-base text-white font-semibold  shadow-md">退出登录</a>--}}
+            {{--              </div>--}}
+            {{--            </div>--}}
+
+          </div>
+          <div class="modal-footer">
+            <p class="text-gray-500 text-xs px-8 d-flex justify-content-center">
+              <a href="{{route('oauth',['type'=>'wechat'])}}" class="block mr-4">
+                <svg t="1585367706568" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg" p-id="1112" width="24" height="24">
+                  <path
+                    d="M347.729118 353.0242c-16.487119 0-29.776737 13.389539-29.776737 29.776737S331.241998 412.677596 347.729118 412.677596s29.776737-13.389539 29.776737-29.776737-13.289617-29.876659-29.776737-29.876659zM577.749415 511.800156c-13.689305 0-24.880562 11.091335-24.880563 24.880562 0 13.689305 11.091335 24.880562 24.880563 24.880562 13.689305 0 24.880562-11.191257 24.880562-24.880562s-11.191257-24.880562-24.880562-24.880562zM500.909446 412.677596c16.487119 0 29.776737-13.389539 29.776737-29.776737s-13.389539-29.776737-29.776737-29.776737c-16.487119 0-29.776737 13.389539-29.776737 29.776737s13.289617 29.776737 29.776737 29.776737zM698.455113 511.600312c-13.689305 0-24.880562 11.091335-24.880562 24.880562 0 13.689305 11.091335 24.880562 24.880562 24.880562 13.689305 0 24.880562-11.091335 24.880562-24.880562-0.099922-13.689305-11.191257-24.880562-24.880562-24.880562z"
+                    fill="#00C800" p-id="1113"></path>
+                  <path
+                    d="M511.601093 0.799375C229.12178 0.799375 0.000781 229.820453 0.000781 512.399688s229.021077 511.600312 511.600312 511.600312 511.600312-229.021077 511.600312-511.600312S794.180328 0.799375 511.601093 0.799375z m-90.229508 634.504294c-27.37861 0-49.361436-5.595628-76.839969-10.991413l-76.640125 38.469945 21.882904-65.948477c-54.957065-38.370023-87.73146-87.831382-87.73146-148.084309 0-104.318501 98.722873-186.554254 219.32865-186.554255 107.815769 0 202.34192 65.648712 221.327088 153.979703-6.994536-0.799375-13.989071-1.298985-21.083529-1.298985-104.118657 0-186.454333 77.739266-186.454332 173.564403 0 15.98751 2.498048 31.275566 6.794692 45.964091-6.794692 0.599532-13.689305 0.899297-20.583919 0.899297z m323.547228 76.839969l16.48712 54.757221-60.153006-32.874317c-21.882904 5.495706-43.965652 10.991413-65.848555 10.991413-104.318501 0-186.554254-71.344262-186.554255-159.175644 0-87.631538 82.135831-159.175644 186.554255-159.175644 98.523029 0 186.254489 71.444184 186.254488 159.175644 0.099922 49.461358-32.774395 93.227166-76.740047 126.301327z"
+                    fill="#00C800" p-id="1114"></path>
+                </svg>
+              </a>
+              <a class="block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                 href="{{route('register')}}">
+                还没有账号?去注册
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
+  @endguest
   <!----//End-slider-script---->
   <!-- Slideshow 4 -->
   <div id="top" class="callbacks_container">
@@ -147,12 +148,17 @@
       <li>
         <div class="caption text-center">
           <div class="slide-text-info">
-            <a class="btn1" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop"><span>万方查重</span></a>
+            {{--            <a class="btn1" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop"><span>万方查重</span></a>--}}
             <h1>本科大学生 <span>毕业论文</span> 学术不端检测</h1>
             <div class="slide-text">
               <p>用于检测大学生毕业论文是否存在抄袭剽窃等学术不端行为，全国多个高校在使用，与学校检测结果一致。</p>
             </div>
-            <a class="btn2" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop"><span>立即查重</span></a>
+            @guest
+              <a class="btn2" href="javascript:;" data-toggle="modal"
+                 data-target="#staticBackdrop"><span>立即查重</span></a>
+            @else
+              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>
+            @endguest
           </div>
         </div>
       </li>
@@ -165,6 +171,9 @@
               <p>为高校研究生院部提供检测服务，仅限检测研究生毕业论文。可检测抄袭与剽窃、伪造、篡改等学术不端行为。</p>
             </div>
             <a class="btn2" href="javascript:;" id="login3"><span>立即查重</span></a>
+            @auth
+              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" id="login3"><span>立即查重</span></a>
+            @endauth
           </div>
         </div>
       </li>
@@ -176,6 +185,9 @@
             <div class="slide-text">
               <p>为编辑部提供检测服务，可检测抄袭与剽窃、伪造、篡改、不当署名、一稿多投等学术不端文献。</p>
             </div>
+            @auth
+              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" id="login4"><span>立即查重</span></a>
+            @endauth
             <a class="btn2" href="javascript:;" id="login4"><span>立即查重</span></a>
           </div>
         </div>
@@ -290,7 +302,11 @@
           <p>片段对照报告通过表格的方式将送检论文引用及相似文献来源直观地展现出来，通过片段对照报告我们可以清楚的看出所有与送检论文相似的来源。</p>
           <h6>比对报告</h6>
           <p>比对报告原名“全文比对报告”是按照送检论文原来的格式将有相似源的内容以飘红的方式展现出来，方便用户查看哪些内容是有相似源的。</p>
-          <a class="about-btn" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop">立即查重</a>
+          @guest
+            <a class="about-btn" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop">立即查重</a>
+          @else
+            <a class="about-btn" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+          @endguest
         </div>
         <div class="clearfix"></div>
       </div>
@@ -312,7 +328,13 @@
           <span>2.50元/千字</span>
           <p>适合本科、专科、自考大学生毕业论文查重，全国多个高校在使用，与学校检测结果一致。</p>
           <ul class="list-unstyled list-inline">
-            <a class="blue-btn" href="javascript:;" id="login6">立即使用</a>
+            @guest
+              <a class="blue-btn" href="javascript:;" id="login6" data-toggle="modal"
+                 data-target="#staticBackdrop">立即使用</a>
+            @else
+              <a class="blue-btn" id="login6" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+            @endguest
+
           </ul>
         </div>
         <div class="col-md-3 team-member-grid">
@@ -321,7 +343,12 @@
           <span>2.50元/千字</span>
           <p>含有博士/硕士学位论文全文数据库，更适合硕士和博士生论文查重，全国多个高校在使用。</p>
           <ul class="list-unstyled list-inline">
-            <a class="blue-btn" href="javascript:;" id="login6">立即使用</a>
+            @guest
+              <a class="blue-btn" href="javascript:;" id="login6" data-toggle="modal"
+                 data-target="#staticBackdrop">立即使用</a>
+            @else
+              <a class="blue-btn" id="login6" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+            @endguest
           </ul>
         </div>
         <div class="col-md-3 team-member-grid">
@@ -330,7 +357,12 @@
           <span>2.50元/千字</span>
           <p>适合未正式发表的文献、会议记录、工作总结、心得体会等文章查重。</p>
           <ul class="list-unstyled list-inline">
-            <a class="blue-btn" href="javascript:;" id="login7">立即使用</a>
+            @guest
+              <a class="blue-btn" href="javascript:;" id="login6" data-toggle="modal"
+                 data-target="#staticBackdrop">立即使用</a>
+            @else
+              <a class="blue-btn" id="login6" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+            @endguest
           </ul>
         </div>
 
@@ -340,7 +372,12 @@
           <span>5.00元/千字</span>
           <p>适合职称评比、已发表论文查重，可选发表时间避免出现与自己发表的论文重复的尴尬。</p>
           <ul class="list-unstyled list-inline">
-            <a class="blue-btn" href="javascript:;" id="login8">立即使用</a>
+            @guest
+              <a class="blue-btn" href="javascript:;" id="login6" data-toggle="modal"
+                 data-target="#staticBackdrop">立即使用</a>
+            @else
+              <a class="blue-btn" id="login6" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+            @endguest
           </ul>
         </div>
 
