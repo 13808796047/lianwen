@@ -87,7 +87,7 @@
                           type="button" id="verificationCode" value="发送验证码">
 
                       </div>
-                    
+
                     </div>
                     <div class="flex items-center justify-between my-4">
                       <button
@@ -502,14 +502,14 @@
   {{--  <script src="{{ asset('asset/js/responsiveslides.min.js') }}"></script>--}}
   <script>
     $(function () {
-      @auth
-      swal({
-        // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-        text: '关注公众号,获取更多资讯!',
-        content: $("<img class='inline-block' src=\"{{ asset('asset/images/691584772794_.pic.jpg') }}\" />")[0],
-        // buttons 参数可以设置按钮显示的文案
-      })
-      @endauth
+      {{--      @auth--}}
+      {{--      swal({--}}
+      {{--        // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素--}}
+      {{--        text: '关注公众号,获取更多资讯!',--}}
+      {{--        content: $("<img class='inline-block' src=\"{{ asset('asset/images/691584772794_.pic.jpg') }}\" />")[0],--}}
+      {{--        // buttons 参数可以设置按钮显示的文案--}}
+      {{--      })--}}
+      {{--      @endauth--}}
       // $("#slider4").responsiveSlides({
       //   auto: true,
       //   pager: true,
