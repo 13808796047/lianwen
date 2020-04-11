@@ -35,7 +35,7 @@ class OrderService
             } else {
                 $content = remove_spec_char($request->input('content', ''));
                 $words = count_words($content);
-                if($category->classid == 4) {
+                if($category->classid == 4 || $category->classid == 2) {
                     $result = $uploader->saveTxt($content, 'files', $user->id);
                 } else {
                     $result = $wordHandler->save($content, 'files', $user->id);
@@ -64,7 +64,8 @@ class OrderService
                 'words' => $words,
                 'price' => $price,
                 'paper_path' => $result['path'],
-                'from' => $request->from
+                'from' => $request->from,
+                'content' => $content,
             ]);
             $order->user()->associate($user);
             $order->save();
