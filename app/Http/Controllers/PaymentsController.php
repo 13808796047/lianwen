@@ -123,7 +123,7 @@ class PaymentsController extends Controller
 
     public function wechatPayMp(Order $order, OpenidHandler $openidHandler, Request $request)
     {
-        dd($openidHandler->getOpenid($request->code));
+        return $openidHandler->getOpenid($request->code);
 //        // 校验权限
 //        // 校验订单状态
 //        if($order->status == 1 || $order->del) {
