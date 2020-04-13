@@ -8,6 +8,7 @@ use App\Handlers\OpenidHandler;
 use App\Jobs\CheckOrderStatus;
 use App\Models\Order;
 use Carbon\Carbon;
+use EasyWeChatComposer\EasyWeChat;
 use Endroid\QrCode\QrCode;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
@@ -122,12 +123,10 @@ class PaymentsController extends Controller
         return app('wechat_pay_wap')->wap($attributes);
     }
 
-    public function wechatPayMp(Order $order, Request $request)
+    public function wechatPayMp(Order $order, Request $request, OpenidHandler $openidHandler)
     {
-        $mini = \EasyWeChat::miniProgram();
-
         if($code = $request->code) {
-            $response = $mini->auth->session($code);
+            $response = $openidHandler->getOpenid($code);
             $openid = Arr::get($response, 'openid');
         }
 
@@ -136,7 +135,6 @@ class PaymentsController extends Controller
         if($order->status == 1 || $order->del) {
             throw new InvalidRequestException('订单状态不正确');
         }
-        // scan 方法为拉起微信扫码支付
         return app('wechat_pay_wap')->mp([
             'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
             'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
