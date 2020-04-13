@@ -16,18 +16,17 @@ class OpenidHandler
         $this->http = new Client();
     }
 
-    public function getOpenid()
+    public function getOpenid($code)
     {
         $config = config('pay.wechat');
         $query = [
             'appid' => $config['app_id'],
-            'redirect_uri' => 'dev.lianwen.com',
-            'response_type' => 'code',
-            'scope' => 'snsapi_base',
-            'state' => '123#wechat_redirect',
+            'secret' => 'b4e08c848e9c1f9114ead07b6549d641',
+            'code' => $code,
+            'grant_type' => 'authorization_code',
         ];
-        $response = $this->http->get(' https://open.weixin.qq.com/connect/oauth2/authorize', $query);
-        dd($response);
+        $response = $this->http->request('GET', ' https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code', [$query]);
         return json_decode($response->getbody()->getContents());
     }
+
 }
