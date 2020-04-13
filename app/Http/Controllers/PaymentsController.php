@@ -124,20 +124,24 @@ class PaymentsController extends Controller
         return app('wechat_pay_wap')->wap($attributes);
     }
 
-    public function wechatPayMp(Order $order, Request $request, OpenidHandler $openidHandler)
+    public function getOpenid(Request $request)
     {
         if($code = $request->code) {
             $response = $openidHandler->openid($code);
             $openid = Arr::get($response, 'openid');
         }
+        return $openid;
+    }
 
+    public function wechatPayMp(Order $order, Request $request, OpenidHandler $openidHandler)
+    {
         // 校验权限
         // 校验订单状态
         if($order->status == 1 || $order->del) {
             throw new InvalidRequestException('订单状态不正确');
         }
         return app('wechat_pay_wap')->mp([
-            'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
+            'out_trade_no' => $order->$this->getOpenid(),  // 商户订单流水号，与支付宝 out_trade_no 一样
             'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
             'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid, // 订单描述
             'openid' => $openid
