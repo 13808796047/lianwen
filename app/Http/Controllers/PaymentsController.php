@@ -9,6 +9,7 @@ use App\Jobs\CheckOrderStatus;
 use App\Models\Order;
 use Carbon\Carbon;
 use Endroid\QrCode\QrCode;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Yansongda\Pay\Pay;
 
@@ -123,18 +124,25 @@ class PaymentsController extends Controller
 
     public function wechatPayMp(Order $order, Request $request)
     {
-        return $request->code;
-//        // 校验权限
-//        // 校验订单状态
-//        if($order->status == 1 || $order->del) {
-//            throw new InvalidRequestException('订单状态不正确');
-//        }
-//        // scan 方法为拉起微信扫码支付
-//        return app('wechat_pay_wap')->mp([
-//            'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
-//            'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
-//            'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid, // 订单描述
-//        ]);
+        $driver = \Socialite::driver($type);
+
+        if($code = $request->code) {
+            $response = $driver->getAccessTokenResponse($code);
+            $openid = Arr::get($response, 'openid');
+        }
+
+        // 校验权限
+        // 校验订单状态
+        if($order->status == 1 || $order->del) {
+            throw new InvalidRequestException('订单状态不正确');
+        }
+        // scan 方法为拉起微信扫码支付
+        return app('wechat_pay_wap')->mp([
+            'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
+            'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
+            'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid, // 订单描述
+            'openid' => $openid
+        ]);
     }
 
     public function wechatReturn(Order $order)
