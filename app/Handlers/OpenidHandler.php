@@ -25,7 +25,7 @@ class OpenidHandler
             'code' => $code,
             'grant_type' => 'authorization_code',
         ];
-        $response = $this->http->request('GET', ' https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code', [$query]);
+        $response = $this->http->request('GET', ' https://api.weixin.qq.com/sns/oauth2/access_token', [$query]);
         return json_decode($response->getbody()->getContents());
     }
 
