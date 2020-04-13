@@ -121,7 +121,7 @@ class PaymentsController extends Controller
         return app('wechat_pay_wap')->wap($attributes);
     }
 
-    public function wechatPayMp(Order $order, OpenidHandler $openidHandler, Request $request)
+    public function wechatPayMp(Order $order, Request $request)
     {
         return $request->code;
 //        // 校验权限
