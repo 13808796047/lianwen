@@ -116,16 +116,17 @@ class PaymentsController extends Controller
             'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
             'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
             'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid, // 订单描述
-            'trade_type' => 'JSAPI', // 交易类型 JSAPI | NATIVE |APP | WAP
         ];
-        $jssdk = app('wechat_pay_wap')->jssdk;
-        $result = app('wechat_pay_wap')->order->unify($attributes);
-        $json = app('wechat_pay_wap')->brudgeConfig($result['prepay_id']);
-        // scan 方法为拉起微信扫码支付
-        return response()->json([
-            'message' => '成功',
-            'json' => $json
-        ]);
+        return app('wechat_pay_wap')->wap($attributes);
+//        $jssdk = app('wechat_pay_wap')->jssdk;
+//        $result = app('wechat_pay_wap')->order->unify($attributes);
+//        dd($result);
+//        $json = app('wechat_pay_wap')->brudgeConfig($result['prepay_id']);
+//        // scan 方法为拉起微信扫码支付
+//        return response()->json([
+//            'message' => '成功',
+//            'json' => $json
+//        ]);
     }
 
     public function wechatPayMp(Order $order, Request $request)

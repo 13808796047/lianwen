@@ -82,7 +82,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('wechat_pay_wap', function() {
             $config = config('pay.wechat');
             $config['notify_url'] = route('payments.wechat.notify');
-            return Factory::payment($config);
+            return Pay::wechat($config);
         });
         $this->app->singleton('wechat_pay_mp', function() {
             $config = config('pay.wechat');
