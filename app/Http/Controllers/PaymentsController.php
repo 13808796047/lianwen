@@ -12,6 +12,7 @@ use EasyWeChatComposer\EasyWeChat;
 use Endroid\QrCode\QrCode;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Yansongda\Pay\Pay;
 
 class PaymentsController extends Controller
