@@ -132,7 +132,6 @@ class OrderApiHandler
             ],
         ];
         $response = $this->http->get($this->api . 'order/extract-report-detail/' . $id, $option);
-
         return json_decode($response->getbody()->getContents());
     }
 }

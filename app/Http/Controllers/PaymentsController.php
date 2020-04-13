@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\OrderPaid;
 use App\Exceptions\InvalidRequestException;
+use App\Handlers\OpenidHandler;
 use App\Jobs\CheckOrderStatus;
 use App\Models\Order;
 use Carbon\Carbon;
@@ -118,30 +119,22 @@ class PaymentsController extends Controller
             'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid, // 订单描述
         ];
         return app('wechat_pay_wap')->wap($attributes);
-//        $jssdk = app('wechat_pay_wap')->jssdk;
-//        $result = app('wechat_pay_wap')->order->unify($attributes);
-//        dd($result);
-//        $json = app('wechat_pay_wap')->brudgeConfig($result['prepay_id']);
-//        // scan 方法为拉起微信扫码支付
-//        return response()->json([
-//            'message' => '成功',
-//            'json' => $json
-//        ]);
     }
 
-    public function wechatPayMp(Order $order, Request $request)
+    public function wechatPayMp(Order $order, OpenidHandler $openidHandler)
     {
-        // 校验权限
-        // 校验订单状态
-        if($order->status == 1 || $order->del) {
-            throw new InvalidRequestException('订单状态不正确');
-        }
-        // scan 方法为拉起微信扫码支付
-        return app('wechat_pay_wap')->mp([
-            'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
-            'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
-            'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid, // 订单描述
-        ]);
+        dd($openidHandler->getOpenid());
+//        // 校验权限
+//        // 校验订单状态
+//        if($order->status == 1 || $order->del) {
+//            throw new InvalidRequestException('订单状态不正确');
+//        }
+//        // scan 方法为拉起微信扫码支付
+//        return app('wechat_pay_wap')->mp([
+//            'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
+//            'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
+//            'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid, // 订单描述
+//        ]);
     }
 
     public function wechatReturn(Order $order)
