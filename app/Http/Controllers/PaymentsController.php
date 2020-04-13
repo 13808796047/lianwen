@@ -124,10 +124,10 @@ class PaymentsController extends Controller
 
     public function wechatPayMp(Order $order, Request $request)
     {
-        $driver = \Socialite::driver($type);
+        $mini = \EasyWeChat::miniProgram();
 
         if($code = $request->code) {
-            $response = $driver->getAccessTokenResponse($code);
+            $response = $mini->auth->session($code);
             $openid = Arr::get($response, 'openid');
         }
 
