@@ -29,4 +29,24 @@ class OpenidHandler
         return json_decode($response->getbody()->getContents());
     }
 
+    public function openid($code)
+    {
+        $config = config('pay.wechat');
+        $secret = "b4e08c848e9c1f9114ead07b6549d641";
+        $appid = $config['app_id'];
+        $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" . $appid . "&secret=" . $secret . "&code=" . $code . "&grant_type=authorization_code";
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+        $content = curl_exec($ch);
+        $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if($status == 404) {
+            return $status;
+        }
+        curl_close($ch);
+        return json_decode($content, true);
+    }
 }

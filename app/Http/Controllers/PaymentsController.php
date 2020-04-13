@@ -123,10 +123,10 @@ class PaymentsController extends Controller
         return app('wechat_pay_wap')->wap($attributes);
     }
 
-    public function wechatPayMp(Order $order, Request $request, OpenidHandler $openidHandler)
+    public function wechatPayMp(Order $order, Request $request)
     {
         if($code = $request->code) {
-            $response = $openidHandler->getOpenid($code);
+            $response = $openidHandler->openid($code);
             $openid = Arr::get($response, 'openid');
         }
 
