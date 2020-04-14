@@ -27,7 +27,7 @@
       <div class="col-md-6">
         <h3>按系统统计</h3>
 
-        <table class="table-bordered table text-center">
+        <table class="table-bordered table text-center category">
           <tr>
             <th>系统名称</th>
             <th>付款订单数/总订单数</th>
@@ -43,12 +43,19 @@
               </td>
               <td>{{ $order->orders->sum('pay_price')}}元</td>
             </tr>
+
           @endforeach
+          <tr>
+            <td>总计</td>
+            <td></td>
+            <td></td>
+            <td id="total_price" class="text-danger fontsize-ensurer">0</td>
+          </tr>
         </table>
       </div>
       <div class="col-md-6">
         <h3>按来源统计</h3>
-        <table class="table table-bordered">
+        <table class="table table-bordered source">
           <tr>
             <th>来源</th>
             <th>付款订单数/总订单数</th>
@@ -64,13 +71,38 @@
               </td>
               <td>{{ $order->sum('pay_price')}}元</td>
             </tr>
+
           @endforeach
+          <tr>
+            <td>总计</td>
+            <td></td>
+            <td></td>
+            <td id="source_total_price" class="text-danger fontsize-ensurer">0</td>
+          </tr>
         </table>
       </div>
     </div>
   </div>
 </div>
 <script !src="">
+  $(() => {
+    var category_total = 0;
+    $(".category tr").each(function () {
+      //td:eq(3)从0开始计数
+      $(this).find("td:eq(3)").each(function () {
+        category_total += parseFloat($(this).text());
+      });
+    });
+    $('#total_price').text(category_total)
+    var source_total = 0;
+    $(".source tr").each(function () {
+      //td:eq(3)从0开始计数
+      $(this).find("td:eq(3)").each(function () {
+        source_total += parseFloat($(this).text());
+      });
+    });
+    $('#source_total_price').text(source_total)
+  })
 
   {{--$(() => {--}}
   {{--  $.ajax({--}}
