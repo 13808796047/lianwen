@@ -9,7 +9,7 @@
   @guest
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header border-none">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -143,56 +143,118 @@
   @endguest
   <!----//End-slider-script---->
   <!-- Slideshow 4 -->
-  <div id="top" class="callbacks_container">
-    <ul class="rslides" id="slider4">
-      <li>
-        <div class="caption text-center">
-          <div class="slide-text-info">
-            {{--            <a class="btn1" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop"><span>万方查重</span></a>--}}
-            <h1>本科大学生 <span>毕业论文</span> 学术不端检测</h1>
-            <div class="slide-text">
-              <p>用于检测大学生毕业论文是否存在抄袭剽窃等学术不端行为，全国多个高校在使用，与学校检测结果一致。</p>
-            </div>
-            @guest
-              <a class="btn2" href="javascript:;" data-toggle="modal"
-                 data-target="#staticBackdrop"><span>立即查重</span></a>
-            @else
-              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>
-            @endguest
-          </div>
+  {{--  <div id="top" class="callbacks_container">--}}
+  {{--    <ul class="rslides" id="slider4">--}}
+  {{--      <li>--}}
+  {{--        <div class="caption text-center">--}}
+  {{--          <div class="slide-text-info">--}}
+  {{--            --}}{{--            <a class="btn1" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop"><span>万方查重</span></a>--}}
+  {{--            <h1>本科大学生 <span>毕业论文</span> 学术不端检测</h1>--}}
+  {{--            <div class="slide-text">--}}
+  {{--              <p>用于检测大学生毕业论文是否存在抄袭剽窃等学术不端行为，全国多个高校在使用，与学校检测结果一致。</p>--}}
+  {{--            </div>--}}
+  {{--            @guest--}}
+  {{--              <a class="btn2" href="javascript:;" data-toggle="modal"--}}
+  {{--                 data-target="#staticBackdrop"><span>立即查重</span></a>--}}
+  {{--            @else--}}
+  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>--}}
+  {{--            @endguest--}}
+  {{--          </div>--}}
+  {{--        </div>--}}
+  {{--      </li>--}}
+  {{--      <li>--}}
+  {{--        <div class="caption text-center">--}}
+  {{--          <div class="slide-text-info">--}}
+  {{--            <a class="btn1" href="#"><span>万方查重</span></a>--}}
+  {{--            <h1>硕博研究生 <span> 学位论文 </span> 学术不端检测</h1>--}}
+  {{--            <div class="slide-text">--}}
+  {{--              <p>为高校研究生院部提供检测服务，仅限检测研究生毕业论文。可检测抄袭与剽窃、伪造、篡改等学术不端行为。</p>--}}
+  {{--            </div>--}}
+  {{--            <a class="btn2" href="javascript:;" id="login3"><span>立即查重</span></a>--}}
+  {{--            @auth--}}
+  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" id="login3"><span>立即查重</span></a>--}}
+  {{--            @endauth--}}
+  {{--          </div>--}}
+  {{--        </div>--}}
+  {{--      </li>--}}
+  {{--      <li>--}}
+  {{--        <div class="caption text-center">--}}
+  {{--          <div class="slide-text-info">--}}
+  {{--            <a class="btn1" href="#"><span>万方查重</span></a>--}}
+  {{--            <h1>职称评比 <span>期刊发表</span> 学术不端检测</h1>--}}
+  {{--            <div class="slide-text">--}}
+  {{--              <p>为编辑部提供检测服务，可检测抄袭与剽窃、伪造、篡改、不当署名、一稿多投等学术不端文献。</p>--}}
+  {{--            </div>--}}
+  {{--            @auth--}}
+  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" id="login4"><span>立即查重</span></a>--}}
+  {{--            @endauth--}}
+  {{--            <a class="btn2" href="javascript:;" id="login4"><span>立即查重</span></a>--}}
+  {{--          </div>--}}
+  {{--        </div>--}}
+  {{--      </li>--}}
+  {{--    </ul>--}}
+  {{--  </div>--}}
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{ asset('asset/images/01.png') }}" class="d-block w-100">
+        <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
+          <h1 class="text-6xl">本科大学生 <span>毕业论文</span> 学术不端检测</h1>
+          <p class="p-4">用于检测大学生毕业论文是否存在抄袭剽窃等学术不端行为，全国多个高校在使用，与学校检测结果一致。</p>
+          @guest
+            <a class="bg-orange-500 px-4 py-2 text-decoration-none" href="javascript:;"
+               data-toggle="modal"
+               data-target="#staticBackdrop"><span>立即查重</span></a>
+          @else
+            <a class="bg-orange-500 px-4 py-2 text-decoration-none"
+               href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>
+          @endguest
         </div>
-      </li>
-      <li>
-        <div class="caption text-center">
-          <div class="slide-text-info">
-            <a class="btn1" href="#"><span>万方查重</span></a>
-            <h1>硕博研究生 <span> 学位论文 </span> 学术不端检测</h1>
-            <div class="slide-text">
-              <p>为高校研究生院部提供检测服务，仅限检测研究生毕业论文。可检测抄袭与剽窃、伪造、篡改等学术不端行为。</p>
-            </div>
-            <a class="btn2" href="javascript:;" id="login3"><span>立即查重</span></a>
-            @auth
-              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" id="login3"><span>立即查重</span></a>
-            @endauth
-          </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{{ asset('asset/images/02.png') }}" class="d-block w-100">
+        <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
+          <h1 class="text-6xl">硕博研究生 <span> 学位论文 </span> 学术不端检测</h1>
+          <p class="p-4">为高校研究生院部提供检测服务，仅限检测研究生毕业论文。可检测抄袭与剽窃、伪造、篡改等学术不端行为。</p>
+          @guest
+            <a class="bg-orange-500 px-4 py-2 text-decoration-none" href="javascript:;"
+               data-toggle="modal"
+               data-target="#staticBackdrop"><span>立即查重</span></a>
+          @else
+            <a class="bg-orange-500 px-4 py-2 text-decoration-none"
+               href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>
+          @endguest
         </div>
-      </li>
-      <li>
-        <div class="caption text-center">
-          <div class="slide-text-info">
-            <a class="btn1" href="#"><span>万方查重</span></a>
-            <h1>职称评比 <span>期刊发表</span> 学术不端检测</h1>
-            <div class="slide-text">
-              <p>为编辑部提供检测服务，可检测抄袭与剽窃、伪造、篡改、不当署名、一稿多投等学术不端文献。</p>
-            </div>
-            @auth
-              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" id="login4"><span>立即查重</span></a>
-            @endauth
-            <a class="btn2" href="javascript:;" id="login4"><span>立即查重</span></a>
-          </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{{ asset('asset/images/03.png') }}" class="d-block w-100">
+        <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
+          <h1 class="text-6xl">职称评比 <span>期刊发表</span> 学术不端检测</h1>
+          <p class="p-4">为编辑部提供检测服务，可检测抄袭与剽窃、伪造、篡改、不当署名、一稿多投等学术不端文献。</p>
+          @guest
+            <a class="bg-orange-500 px-4 py-2 text-decoration-none" href="javascript:;"
+               data-toggle="modal"
+               data-target="#staticBackdrop"><span>立即查重</span></a>
+          @else
+            <a class="bg-orange-500 px-4 py-2 text-decoration-none"
+               href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>
+          @endguest
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
   <div class="clearfix"></div>
   <!----- //End-slider---->
@@ -314,71 +376,67 @@
     </div>
   </div>
   <!----start-team----->
-  <div id="team" class="team">
+  <div id="team" class="mb-24">
     <div class="container">
-      <div class="team-head text-center ">
-        <h3>系统说明</h3>
-        <p>系统基于数据海量学术文献资源，对学术成果相似性检测，提供客观详实的报告，为学术出版、科研管理、学位论文管理提供支持。<font color="#0000ff">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
+      <div class=" text-center p-6">
+        <h1 class="text-orange-500 text-xl mb-4">系统说明</h1>
+        <p class="p-2">系统基于数据海量学术文献资源，对学术成果相似性检测，提供客观详实的报告，为学术出版、科研管理、学位论文管理提供支持。<font class="text-blue-500">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
         </p>
       </div>
-      <div class="team-members-grids text-center row">
-        <div class="col-md-3 team-member-grid">
-          <img src="{{ asset('asset/images/benke.png') }}" title="name"/>
-          <h5><a>本科版</a></h5>
-          <span>2.50元/千字</span>
-          <p>适合本科、专科、自考大学生毕业论文查重，全国多个高校在使用，与学校检测结果一致。</p>
-          <ul class="list-unstyled list-inline">
-            @guest
-              <a class="blue-btn" href="javascript:;" id="login6" data-toggle="modal"
-                 data-target="#staticBackdrop">立即使用</a>
-            @else
-              <a class="blue-btn" id="login6" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
-            @endguest
-
-          </ul>
+      <div class="grid grid-cols-4 gap-4">
+        <div class="border border-gray-300 text-center p-2">
+          <img src="{{ asset('asset/images/benke.png') }}" class="w-full"/>
+          <h5 class="py-2"><a>本科版</a></h5>
+          <span class="text-red-500">2.50元/千字</span>
+          <p class="my-2 text-xs">适合本科、专科、自考大学生毕业论文查重，全国多个高校在使用，与学校检测结果一致。</p>
+          @guest
+            <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
+               data-target="#staticBackdrop">立即使用</a>
+          @else
+            <a class="blue-btn" id="login6" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+          @endguest
         </div>
-        <div class="col-md-3 team-member-grid">
-          <img src="{{ asset('asset/images/shuobo.png') }}" title="name"/>
-          <h5><a>硕博版</a></h5>
-          <span>2.50元/千字</span>
-          <p>含有博士/硕士学位论文全文数据库，更适合硕士和博士生论文查重，全国多个高校在使用。</p>
-          <ul class="list-unstyled list-inline">
-            @guest
-              <a class="blue-btn" href="javascript:;" id="login6" data-toggle="modal"
-                 data-target="#staticBackdrop">立即使用</a>
-            @else
-              <a class="blue-btn" id="login6" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
-            @endguest
-          </ul>
+        <div class="border border-gray-300 text-center p-2">
+          <img src="{{ asset('asset/images/shuobo.png') }}" class="w-full"/>
+          <h5 class="py-2"><a>硕博版</a></h5>
+          <span class="text-red-500">2.50元/千字</span>
+          <p class="my-2 text-xs">含有博士/硕士学位论文全文数据库，更适合硕士和博士生论文查重，全国多个高校在使用。</p>
+          @guest
+            <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
+               data-target="#staticBackdrop">立即使用</a>
+          @else
+            <a class="bg-blue-500 text-white  py-2 block" id="login6"
+               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+          @endguest
         </div>
-        <div class="col-md-3 team-member-grid">
-          <img src=" {{ asset('asset/images/tongyong.png') }}" title="name"/>
-          <h5><a>通用版</a></h5>
-          <span>2.50元/千字</span>
-          <p>适合未正式发表的文献、会议记录、工作总结、心得体会等文章查重。</p>
-          <ul class="list-unstyled list-inline">
-            @guest
-              <a class="blue-btn" href="javascript:;" id="login6" data-toggle="modal"
-                 data-target="#staticBackdrop">立即使用</a>
-            @else
-              <a class="blue-btn" id="login6" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
-            @endguest
-          </ul>
+        <div class="border border-gray-300 text-center p-2">
+          <img src=" {{ asset('asset/images/tongyong.png') }}" title="name" class="w-full"/>
+          <h5 class="py-2"><a>通用版</a></h5>
+          <span class="text-red-500">2.50元/千字</span>
+          <p class="my-2 text-xs">适合未正式发表的文献、会议记录、工作总结、心得体会等..文章查重。<br>
+            <br>
+          </p>
+          @guest
+            <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
+               data-target="#staticBackdrop">立即使用</a>
+          @else
+            <a class="bg-blue-500 text-white  py-2 block" id="login6"
+               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+          @endguest
         </div>
 
-        <div class="col-md-3 team-member-grid">
-          <img src="{{ asset('asset/images/zhicheng.png') }}" title="name"/>
-          <h5><a>职称版</a></h5>
-          <span>5.00元/千字</span>
-          <p>适合职称评比、已发表论文查重，可选发表时间避免出现与自己发表的论文重复的尴尬。</p>
-          <ul class="list-unstyled list-inline">
-            @guest
-              <a class="blue-btn" href="javascript:;" id="login6" data-toggle="modal"
-                 data-target="#staticBackdrop">立即使用</a>
-            @else
-              <a class="blue-btn" id="login6" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
-            @endguest
-          </ul>
+        <div class="border border-gray-300 text-center p-2">
+          <img src="{{ asset('asset/images/zhicheng.png') }}" title="name" class="w-full"/>
+          <h5 class="py-2"><a>职称版</a></h5>
+          <span class="text-red-500">5.00元/千字</span>
+          <p class="my-2 text-xs">适合职称评比、已发表论文查重，可选发表时间避免出现与自己发表的论文重复的尴尬。</p>
+          @guest
+            <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
+               data-target="#staticBackdrop">立即使用</a>
+          @else
+            <a class="bg-blue-500 text-white  py-2 block" id="login6"
+               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+          @endguest
         </div>
 
         <div class="clearfix"></div>

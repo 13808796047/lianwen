@@ -25,11 +25,12 @@ class OrderService
                     $words = count_words(remove_spec_char(convert2utf8($content)));
                 } else {
                     $result = $uploader->save($file, 'files', $user->id);//存本地
+                    $content = read_docx($result['path']);
                     $words_count = $fileWords->getWords($request->title, $request->writer, $result['path']);
                     $words = $words_count['data']['wordCount'];
                     if($category->classid == 4) {
-                        $texContent = read_docx($result['real_path']);
-                        $result = $uploader->saveTxt($texContent, 'files', $user->id);
+                        $content = read_docx($result['real_path']);
+                        $result = $uploader->saveTxt($content, 'files', $user->id);
                     }
                 }
             } else {

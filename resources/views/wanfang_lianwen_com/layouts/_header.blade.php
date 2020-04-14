@@ -262,6 +262,12 @@
         <a href="javascript:;" class="logout inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
                 lg:mt-0">登出</a>
       </div>
+    @else
+      <div class="flex justify-content-around pt-3">
+        <a href="javascript:;" class="login inline-block text-sm px-4 py-1 bg-blue-500 text-white " data-toggle="modal"
+           data-target="#staticBackdrop">登录</a>
+        <a href="{{ route('register')}}" class="login inline-block text-sm px-4 py-1 bg-blue-500 text-white ">注册</a>
+      </div>
     @endauth
     <div class="clearfix"></div>
   </div>
