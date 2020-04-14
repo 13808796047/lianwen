@@ -12,206 +12,206 @@ body a {
   -ms-transition: 0.5s all;
 }
 
-/*-----start-header----*/
-.logo {
-  float: left;
-}
+/*!*-----start-header----*!*/
+/*.logo {*/
+/*  float: left;*/
+/*}*/
 
-.logo a {
-  color: #FFF;
-  font-weight: 700;
-  margin-top: 1em;
-}
+/*.logo a {*/
+/*  color: #FFF;*/
+/*  font-weight: 700;*/
+/*  margin-top: 1em;*/
+/*}*/
 
-.logo a:hover {
-  text-decoration: none;
-}
+/*.logo a:hover {*/
+/*  text-decoration: none;*/
+/*}*/
 
-.logo320 {
-  display: none;
-}
+/*.logo320 {*/
+/*  display: none;*/
+/*}*/
 
-/*----navbar-nav----*/
-.top-nav ul li a {
-  color: #000000;
-  padding: 0.2em 1.9em;
-  font-size: 1em;
-  font-weight: 400;
-  text-align: center;
-  text-transform: uppercase;
-  position: relative;
-}
+/*!*----navbar-nav----*!*/
+/*.top-nav ul li a {*/
+/*  color: #000000;*/
+/*  padding: 0.2em 1.9em;*/
+/*  font-size: 1em;*/
+/*  font-weight: 400;*/
+/*  text-align: center;*/
+/*  text-transform: uppercase;*/
+/*  position: relative;*/
+/*}*/
 
-.top-nav ul li a span {
-  height: 20px;
-  width: 1px;
-  display: inline-block;
-  background: #C2C2C2;
-  position: absolute;
-  top: 29%;
-  right: 0;
-}
+/*.top-nav ul li a span {*/
+/*  height: 20px;*/
+/*  width: 1px;*/
+/*  display: inline-block;*/
+/*  background: #C2C2C2;*/
+/*  position: absolute;*/
+/*  top: 29%;*/
+/*  right: 0;*/
+/*}*/
 
-.top-nav ul li.active a,
-.top-nav ul li a:hover {
-  color: #F4BB36;
-}
+/*.top-nav ul li.active a,*/
+/*.top-nav ul li a:hover {*/
+/*  color: #F4BB36;*/
+/*}*/
 
-.logo a {
-  display: block;
-}
+/*.logo a {*/
+/*  display: block;*/
+/*}*/
 
-/* top-nav */
-.top-nav:before,
-.top-nav:after {
-  content: " ";
-  display: table;
-}
+/*!* top-nav *!*/
+/*.top-nav:before,*/
+/*.top-nav:after {*/
+/*  content: " ";*/
+/*  display: table;*/
+/*}*/
 
-.top-nav:after {
-  clear: both;
-}
+/*.top-nav:after {*/
+/*  clear: both;*/
+/*}*/
 
-nav {
-  position: relative;
-  float: right;
-}
+/*nav {*/
+/*  position: relative;*/
+/*  float: right;*/
+/*}*/
 
-nav ul {
-  padding: 0;
-  float: right;
-  margin: 0.75em 0;
-}
+/*nav ul {*/
+/*  padding: 0;*/
+/*  float: right;*/
+/*  margin: 0.75em 0;*/
+/*}*/
 
-nav li {
-  display: inline;
-  float: left;
-  position: relative;
-}
+/*nav li {*/
+/*  display: inline;*/
+/*  float: left;*/
+/*  position: relative;*/
+/*}*/
 
-nav a {
-  color: #fff;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  line-height: 40px;
-}
+/*nav a {*/
+/*  color: #fff;*/
+/*  display: inline-block;*/
+/*  text-align: center;*/
+/*  text-decoration: none;*/
+/*  line-height: 40px;*/
+/*}*/
 
-nav a:hover {
-  text-decoration: none;
-  color: #00A2C1;
-}
+/*nav a:hover {*/
+/*  text-decoration: none;*/
+/*  color: #00A2C1;*/
+/*}*/
 
-nav a#pull {
-  display: none;
-}
+/*nav a#pull {*/
+/*  display: none;*/
+/*}*/
 
-.tlinks {
-  text-indent: -9999px;
-  height: 0;
-  line-height: 0;
-  font-size: 0;
-  overflow: hidden;
-}
+/*.tlinks {*/
+/*  text-indent: -9999px;*/
+/*  height: 0;*/
+/*  line-height: 0;*/
+/*  font-size: 0;*/
+/*  overflow: hidden;*/
+/*}*/
 
-/*Styles for screen 600px and lower*/
-@media screen and (max-width: 768px) {
-  nav {
-    height: auto;
-    float: none;
-  }
+/*!*Styles for screen 600px and lower*!*/
+/*@media screen and (max-width: 768px) {*/
+/*  nav {*/
+/*    height: auto;*/
+/*    float: none;*/
+/*  }*/
 
-  nav ul {
-    width: 100%;
-    display: block;
-    height: auto;
-  }
+/*  nav ul {*/
+/*    width: 100%;*/
+/*    display: block;*/
+/*    height: auto;*/
+/*  }*/
 
-  nav li {
-    width: 100%;
-    position: relative;
-  }
+/*  nav li {*/
+/*    width: 100%;*/
+/*    position: relative;*/
+/*  }*/
 
-  nav li a {
-    border-bottom: 1px solid #eee;
-  }
+/*  nav li a {*/
+/*    border-bottom: 1px solid #eee;*/
+/*  }*/
 
-  nav a {
-    text-align: left;
-    width: 100%;
-    text-indent: 25px;
-  }
-}
+/*  nav a {*/
+/*    text-align: left;*/
+/*    width: 100%;*/
+/*    text-indent: 25px;*/
+/*  }*/
+/*}*/
 
-/*Styles for screen 515px and lower*/
-@media only screen and (max-width: 768px) {
-  nav {
-    border-bottom: 0;
-    float: none;
-  }
+/*!*Styles for screen 515px and lower*!*/
+/*@media only screen and (max-width: 768px) {*/
+/*  nav {*/
+/*    border-bottom: 0;*/
+/*    float: none;*/
+/*  }*/
 
-  nav ul {
-    display: none;
-    height: auto;
-    margin: 0;
-    background: #fff;
-  }
+/*  nav ul {*/
+/*    display: none;*/
+/*    height: auto;*/
+/*    margin: 0;*/
+/*    background: #fff;*/
+/*  }*/
 
-  nav a#pull {
-    display: block;
-    position: relative;
-    color: #F26D7D;
-    text-align: right;
-    position: absolute;
-    top: 12px;
-  }
+/*  nav a#pull {*/
+/*    display: block;*/
+/*    position: relative;*/
+/*    color: #F26D7D;*/
+/*    text-align: right;*/
+/*    position: absolute;*/
+/*    top: 12px;*/
+/*  }*/
 
-  nav a#pull:after {
-    content: "";
-    background: url('nav-icon.png') no-repeat;
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    position: absolute;
-    right: 15px;
-    top: 10px;
-  }
+/*  nav a#pull:after {*/
+/*    content: "";*/
+/*    background: url('nav-icon.png') no-repeat;*/
+/*    width: 30px;*/
+/*    height: 30px;*/
+/*    display: inline-block;*/
+/*    position: absolute;*/
+/*    right: 15px;*/
+/*    top: 10px;*/
+/*  }*/
 
-  nav a#pull img {
-    margin-right: 2%;
-  }
+/*  nav a#pull img {*/
+/*    margin-right: 2%;*/
+/*  }*/
 
-  .top-nav ul li a {
-    color: #2C3E50;
-    padding: 0em 0;
-  }
-}
+/*  .top-nav ul li a {*/
+/*    color: #2C3E50;*/
+/*    padding: 0em 0;*/
+/*  }*/
+/*}*/
 
-/*Smartphone*/
-@media only screen and (max-width: 320px) {
-  nav {
-    float: none;
-  }
+/*!*Smartphone*!*/
+/*@media only screen and (max-width: 320px) {*/
+/*  nav {*/
+/*    float: none;*/
+/*  }*/
 
-  nav li {
-    display: block;
-    float: none;
-    width: 100%;
-  }
+/*  nav li {*/
+/*    display: block;*/
+/*    float: none;*/
+/*    width: 100%;*/
+/*  }*/
 
-  nav li a {
-    border-bottom: 1px solid #576979;
-  }
-}
+/*  nav li a {*/
+/*    border-bottom: 1px solid #576979;*/
+/*  }*/
+/*}*/
 
-/*----slider----*/
-#slider2,
-#slider3 {
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  margin: 0 auto;
-}
+/*!*----slider----*!*/
+/*#slider2,*/
+/*#slider3 {*/
+/*  box-shadow: none;*/
+/*  -moz-box-shadow: none;*/
+/*  -webkit-box-shadow: none;*/
+/*  margin: 0 auto;*/
+/*}*/
 
 .rslides_tabs {
   list-style: none;
