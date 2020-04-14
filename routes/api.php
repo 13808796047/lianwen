@@ -36,20 +36,23 @@ Route::prefix('v1')
                 ->name('orders.show');
             Route::delete('orders', 'OrdersController@destroy')
                 ->name('orders.destroy');
-            //支付宝支付
-            Route::get('payments/{order}/alipay_scan', 'PaymentsController@alipayScan')
-                ->name('payments.alipay_scan');
-            Route::any('payments/alipay/notify', 'PaymentsController@alipayNotify');
-            Route::any('payments/alipay/return', 'PaymentsController@alipayReturn');
-            //微信
-            Route::get('payments/{order}/wechat_scan', 'PaymentsController@wechatScan')
-                ->name('payments.wechat_scan');
-            Route::any('payments/wechat/notify', 'PaymentsController@wechatNotify');
+//            //支付宝支付
+//            Route::get('payments/{order}/alipay_scan', 'PaymentsController@alipayScan')
+//                ->name('payments.alipay_scan');
+//            Route::any('payments/alipay/notify', 'PaymentsController@alipayNotify');
+//            Route::any('payments/alipay/return', 'PaymentsController@alipayReturn');
+//            //微信
+//            Route::get('payments/{order}/wechat_scan', 'PaymentsController@wechatScan')
+//                ->name('payments.wechat_scan');
+//            Route::any('payments/wechat/notify', 'PaymentsController@wechatNotify');
             //上传
             Route::post('upload', 'FilesController@store')->name('uploads.files');
             Route::post('orders/{order}/mail_report', 'OrdersController@reportMail');
             //百度支付
             Route::get('payments/{order}/mock_data', 'PaymentsController@mockData')->name('payments.baidu.mock_data');
+            //微信小程序
+            Route::get('payments/{order}/wechat_mp', 'PaymentsController@wechatPayMp')
+                ->name('payments.wechat_mp');
         });
 
 
