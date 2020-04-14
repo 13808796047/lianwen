@@ -272,7 +272,8 @@
 {{--  </div>--}}
 {{--</div>--}}
 <!----- //End-header---->
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top"
+     style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
   <div class="container">
     <!-- Branding Image -->
     <a class="navbar-brand " href="{{ url('/') }}">
@@ -285,12 +286,19 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Left Side Of Navbar -->
-      <ul class="navbar-nav ml-8 mr-auto">
-        <li class="nav-item active"><a class="nav-link" href="">首页</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{route('categories.show',['classid'=>4])}}">万方查重</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{route('orders.index')}}">查看报告</a></li>
-        <li class="nav-item"><a class="nav-link" href="javascript:void(0)"
-                                onclick="window.open('http://p.qiao.baidu.com/cps/chat?siteId=12623578&userId=26512539&cp=lianwen&cr=lianwen&cw=PC',height='680',width='900')">在线咨询</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item px-4 {{ active_class(if_route('pages.index')) }}"><a class="nav-link text-blue-300"
+                                                                                 href="{{ url('/') }}">首页</a>
+        </li>
+        <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 4))) }}"><a
+            class="nav-link"
+            href="{{route('categories.show',['classid'=>4])}}">万方查重</a>
+        </li>
+        <li class="nav-item px-4 {{ active_class((if_route('orders.index'))) }}"><a class="nav-link"
+                                                                                    href="{{route('orders.index')}}">查看报告</a>
+        </li>
+        <li class="nav-item px-4"><a class="nav-link" href="javascript:void(0)"
+                                     onclick="window.open('http://p.qiao.baidu.com/cps/chat?siteId=12623578&userId=26512539&cp=lianwen&cr=lianwen&cw=PC',height='680',width='900')">在线咨询</a>
         </li>
         {{--        <li class="active"><a href="/" class="scroll">首页<span> </span></a></li>--}}
 

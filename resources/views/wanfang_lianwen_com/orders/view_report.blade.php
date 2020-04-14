@@ -8,9 +8,6 @@
       text-indent: 2em !important;
     }
 
-    .container-fluid {
-      padding: 0 30px;
-    }
   </style>
 
 @stop
@@ -75,7 +72,7 @@
 @section('scripts')
   <script !src="">
     $(function () {
-      $('#home>div').removeClass('container').addClass('container-fluid')
+      $('.navbar>div').removeClass('container').addClass('container-fluid')
     })
   </script>
 @stop

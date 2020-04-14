@@ -3,9 +3,6 @@
 @section('styles')
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <style>
-    .container-fluid {
-      padding: 0 30px;
-    }
   </style>
 @stop
 @section('content')
@@ -133,7 +130,7 @@
 @section('scripts')
   <script>
     $(function () {
-      $('#home>div').removeClass('container').addClass('container-fluid')
+      $('.navbar>div').removeClass('container').addClass('container-fluid')
       // 全选
       $('#allcheck').click(function () {
         $("input[name='delete']").prop("checked", this.checked);

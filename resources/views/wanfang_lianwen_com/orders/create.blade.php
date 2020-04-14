@@ -5,10 +5,7 @@
     .selected {
       display: block;
     }
-
-    .container-fluid {
-      padding: 0 30px;
-    }
+    
   </style>
 @stop
 @section('content')
@@ -127,7 +124,7 @@
 @section('scripts')
   <script>
     $(() => {
-      $('#home>div').removeClass('container').addClass('container-fluid')
+      $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('.category>li:first-child i').addClass('selected')
       $('#cid').val($('.category>li:first-child').data('id'))
       $('.category>li').click(function () {
