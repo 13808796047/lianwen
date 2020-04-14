@@ -127,7 +127,6 @@ class PaymentsController extends Controller
 
     public function wechatPayMp(Order $order, Request $request, OpenidHandler $openidHandler)
     {
-        dd($request->code);
         if($code = $request->code) {
             $response = $openidHandler->openid($code);
             $openid = Arr::get($response, 'openid');
