@@ -10,6 +10,7 @@ use App\Models\Order;
 use Carbon\Carbon;
 use EasyWeChatComposer\EasyWeChat;
 use Endroid\QrCode\QrCode;
+use http\Exception\InvalidArgumentException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -130,6 +131,8 @@ class PaymentsController extends Controller
         if($code = $request->code) {
             $response = $openidHandler->openid($code);
             $openid = Arr::get($response, 'openid');
+        } else {
+            throw new InvalidArgumentException('参数错误', 401);
         }
         // 校验权限
         // 校验订单状态
