@@ -45,7 +45,6 @@
             </tr>
           @endforeach
         </table>
-
       </div>
       <div class="col-md-6">
         <h3>按来源统计</h3>

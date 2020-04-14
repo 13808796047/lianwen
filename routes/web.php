@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 //下载
-Route::get('orders/{order}/download', 'OrdersController@download')
+Route::get('orders/{orderid}/download', 'OrdersController@download')
     ->name('orders.download');
 
 //支付宝

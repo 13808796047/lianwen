@@ -66,8 +66,9 @@ class OrdersController extends Controller
         return [];
     }
 
-    public function download(Order $order)
+    public function download($orderid)
     {
+        $order = Order::where('orderid', $orderid)->first();
         return response()->download(storage_path() . '/app/' . $order->report_path);
     }
 }
