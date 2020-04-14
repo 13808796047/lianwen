@@ -132,7 +132,7 @@ class PaymentsController extends Controller
             $response = $openidHandler->openid($code);
             $openid = Arr::get($response, 'openid');
         } else {
-            throw new InvalidArgumentException('参数错误', 401);
+            throw new InvalidRequestException('参数错误~~~');
         }
         // 校验权限
         // 校验订单状态
