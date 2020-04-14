@@ -259,8 +259,7 @@
         {{--            <span>{{auth()->user()->phone??auth()->user()->nickname}}</span>--}}
         {{--            <img src="{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}" class=" w-10 h-10"/>--}}
 
-        <a href="javascript:;" class="logout inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
-                lg:mt-0">登出</a>
+        <a href="javascript:;" class="logout inline-block text-sm px-4 py-1 bg-blue-500 text-white">登出</a>
       </div>
     @else
       <div class="flex justify-content-around pt-3">
