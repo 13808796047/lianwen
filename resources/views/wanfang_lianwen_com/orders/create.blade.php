@@ -5,10 +5,14 @@
     .selected {
       display: block;
     }
+
+    .container-fluid {
+      padding: 0 30px;
+    }
   </style>
 @stop
 @section('content')
-  <div class="ontainer mx-auto p-4 mb-24">
+  <div class="p-4 mb-24">
     <div class="grid grid-cols-6 gap-4">
       <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
         <ul class=" category">
@@ -56,7 +60,8 @@
           <div class="mt-3">
             <ul class="nav nav-tabs tab-list" role="tablist" id="navbarText">
               <li class="nav-item">
-                <a class="nav-link active list-fw fw-a" data-contenttype="file" data-toggle="tab" href="#contentfile">上传文档</a>
+                <a class="nav-link active list-fw fw-a" data-contenttype="file" data-toggle="tab"
+                   href="#contentfile">上传文档</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link list-fw" data-contenttype="text" data-toggle="tab" href="#contenttext">粘贴文本</a>
@@ -122,6 +127,7 @@
 @section('scripts')
   <script>
     $(() => {
+      $('#home>div').removeClass('container').addClass('container-fluid')
       $('.category>li:first-child i').addClass('selected')
       $('#cid').val($('.category>li:first-child').data('id'))
       $('.category>li').click(function () {
