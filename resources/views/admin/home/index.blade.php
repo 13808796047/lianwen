@@ -37,8 +37,10 @@
           @foreach($orders as $order)
             <tr>
               <td>{{ $order->name }}</td>
-              <td>{{$order->orders->count().'/'.\App\Models\Order::all()->count()}}</td>
-              <td>{{@number_format(($order->orders->count()/(\App\Models\Order::all()->count()) *100),2)}}%</td>
+              <td>{{$order->orders->count().'/'.\App\Models\Order::query()->whereNotNull('date_pay')->count()}}</td>
+              <td>{{@number_format(($order->orders->count()/(\App\Models\Order::query()->whereNotNull('date_pay')->count()) *100),2)}}
+                %
+              </td>
               <td>{{ $order->orders->sum('pay_price')}}元</td>
             </tr>
           @endforeach
@@ -57,8 +59,10 @@
           @foreach($source_orders as $source=> $order)
             <tr>
               <td>{{ $source }}</td>
-              <td>{{$order->count().'/'.\App\Models\Order::all()->count()}}</td>
-              <td>{{@number_format($order->count()/(\App\Models\Order::all()->count()) *100,2)}}%</td>
+              <td>{{$order->count().'/'.\App\Models\Order::query()->whereNotNull('date_pay')->count()}}</td>
+              <td>{{@number_format($order->count()/(\App\Models\Order::query()->whereNotNull('date_pay')->count()) *100,2)}}
+                %
+              </td>
               <td>{{ $order->sum('pay_price')}}元</td>
             </tr>
           @endforeach
