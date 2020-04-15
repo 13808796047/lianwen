@@ -6,6 +6,26 @@
     .swal-modal {
       width:350px;
     }
+    .swal-button {
+      padding: 7px 19px;
+      border-radius: 2px;
+      background-color: #4962B3;
+      font-size: 12px;
+      border: 1px solid #3e549a;
+      text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+    }
+    .swal-title {
+      font-size: 20px;
+    }
+    .swal-text {
+      background-color: #FEFAE3;
+      padding: 17px;
+      border: 1px solid #F0E1A1;
+      display: block;
+      margin: 22px;
+      text-align: center;
+      color: #61534e;
+    }
   </style>
 @stop
 @section('content')
