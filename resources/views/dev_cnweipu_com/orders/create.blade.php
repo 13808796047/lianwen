@@ -26,7 +26,7 @@
                 <span>{{$item->name}}</span>
                 <br>
                 <b class="text-danger">{{ $item->price }}</b>
-                <span>({{\App\Models\Category::$priceTypeMap[$item->price_type]}})</span>
+                <span class="text-danger">/{{\App\Models\Category::$priceTypeMap[$item->price_type]}}</span>
               </p>
             </li>
           @endforeach
