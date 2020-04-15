@@ -68,7 +68,13 @@ class OrdersController extends Controller
 
     public function download($orderid)
     {
-        $order = Order::where('orderid', $orderid)->first();
+        if(strlen($orderid) == 3) {
+            $order = Order::find($orderid);
+        } else {
+
+            $order = Order::where('orderid', $orderid)->first();
+        }
         return response()->download(storage_path() . '/app/' . $order->report_path);
     }
+
 }
