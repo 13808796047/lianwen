@@ -10,7 +10,7 @@
 @section('content')
   <div class="p-4 mb-24">
     <div class="grid grid-cols-6 gap-4">
-      <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
+      <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
         <ul class=" category">
           @foreach($category as $item)
             <li class="float-left position-relative mr-4 "
@@ -121,7 +121,7 @@
           <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" onclick="checkType()">
         </form>
       </div>
-      <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
+      <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
         <dl class="problem text-sm">
           <dt>常见问题</dt>
           <dd>
