@@ -24492,8 +24492,9 @@ html {
   min-height: 100%;
 }
 
-.body {
+body {
   margin-bottom: 60px;
+  background: #ebedf3;
 }
 
 @media (min-width: 640px){
