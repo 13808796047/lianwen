@@ -629,20 +629,20 @@
           type: 'account'
         }).then(res => {
           if (res.status == 200) {
-            swal("提示", res.data.message, "success");
+            swal("提示", res.data.message);
             location.reload();
           } else {
-            swal("提示", res.data.message, "error");
+            swal("提示", res.data.message);
           }
         }).catch(err => {
           if (err.response.status == 422) {
             $.each(err.response.data.errors, (field, errors) => {
-              swal("提示", errors[0], "error");
+              swal("提示", errors[0]);
             })
           }
           if (err.response.status == 401) {
             $.each(err.response.data, (field, errors) => {
-              swal("提示", errors, "error");
+              swal("提示", errors);
             })
           }
         })
@@ -673,7 +673,7 @@
         if (!reg.test(phone)) {
           index.removeAttribute("disabled");
           $("input[name='phone']").focus();
-          swal('提示信息', "请输入正确的手机号码!!!", "error");
+          swal('提示信息', "请输入正确的手机号码!!!");
           return;
         }
         axios.post('/api/v1/verificationCodes', {
@@ -686,7 +686,7 @@
           index.removeAttribute("disabled");
           if (err.response.status == 401) {
             $.each(err.response.data.errors, (field, errors) => {
-              swal("提示", errors[0], "error");
+              swal("提示", errors[0]);
             })
           }
         })
@@ -705,11 +705,11 @@
           location.reload();
         }).catch(err => {
           if (err.response.status == 401) {
-            swal("提示", '用户不存在！！！', "error");
+            swal("提示", '用户不存在！！！');
           }
           if (err.response.status == 422) {
             $.each(err.response.data.errors, (field, errors) => {
-              swal("提示", errors[0], "error");
+              swal("提示", errors[0]);
             })
           }
         });
