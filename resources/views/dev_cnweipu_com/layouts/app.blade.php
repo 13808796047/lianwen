@@ -54,7 +54,7 @@
     swal({
       title: "您确认要退出登录吗?",
       icon: "warning",
-      buttons: true,
+      buttons: ['取消','确定'],
       dangerMode: true,
     })
       .then((willDelete) => {
