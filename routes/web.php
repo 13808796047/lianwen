@@ -34,6 +34,9 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get('orders/{orderid}/download', 'OrdersController@download')
     ->name('orders.download');
 
+//自动查重
+Route::get('auto_check', 'AutoCheckController@index')->name('auto.check.index');
+Route::post('auto_check', 'AutoCheckController@store')->name('auto.check.store');
 //支付宝
 Route::get('payments/{order}/alipay', 'PaymentsController@alipay')
     ->name('payments.alipay');
