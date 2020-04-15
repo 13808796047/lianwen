@@ -24492,8 +24492,8 @@ html {
   min-height: 100%;
 }
 
-.active {
-  color: #ed8936;
+.body {
+  margin-bottom: 60px;
 }
 
 @media (min-width: 640px){

@@ -5,7 +5,6 @@
     .selected {
       display: block;
     }
-    
   </style>
 @stop
 @section('content')
@@ -41,8 +40,14 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">论文标题</span>
               </div>
-              <input id="title" type="text" name="title" class="form-control" placeholder="必须填写，在检测报告中显示"
-                     maxlength="128" required="" autocomplete="off">
+              <input id="title" type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                     placeholder="必须填写，在检测报告中显示" value="{{ old('title') }}"
+              >
+              @error('title')
+              <span class="invalid-feedback" role="alert" style="display:block;">
+                                        <strong>{{ $message }}</strong>
+               </span>
+              @enderror
             </div>
           </div>
           <div class="form-group">
@@ -50,8 +55,14 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">论文作者</span>
               </div>
-              <input id="writer" type="text" name="writer" class="form-control" placeholder="必须填写，在检测报告中显示"
-                     maxlength="128" required="" autocomplete="off">
+              <input id="writer" type="text" name="writer" class="form-control @error('writer') is-invalid @enderror"
+                     placeholder="必须填写，在检测报告中显示" value="{{ old('writer') }}"
+              >
+              @error('writer')
+              <span class="invalid-feedback" role="alert" style="display:block;">
+                                        <strong>{{ $message }}</strong>
+               </span>
+              @enderror
             </div>
           </div>
           <div class="mt-3">
@@ -74,10 +85,17 @@
                   系统在检测时会分析论文的前后文关系， 所以请您提交论文的全部内容，如果是非全文的检测将不能保证检测的准确性。
                 </p>
                 <div class="custom-file my-2">
-                  <input type="file" class="custom-file-input" id="customFile" lang="cn" name="file">
+                  <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile"
+                         lang="cn" name="file"
+                  >
+                  @error('file')
+                  <span class="invalid-feedback" role="alert" style="display: block">
+                                        <strong>{{ $message }}</strong>
+               </span>
+                  @enderror
                   <label class="custom-file-label" for="customFile" data-browse="选择文件"></label>
                 </div>
-                <p class="text-xs">支持文档格式：DOC,DOCX,TXT</p>
+                <p class="text-xs">支持文档格式：DOCX,TXT</p>
               </div>
               <div id="contenttext" class="tab-pane fade">
                 <br>
@@ -87,15 +105,20 @@
                   系统在检测时会分析论文的前后文关系， 所以请您提交论文的全部内容，如果是非全文的检测将不能保证检测的准确性。
                 </p>
                 <div class="form-group">
-                  <textarea id="content" class="form-control" name="content" placeholder="输入论文内容不少于1000字"
-                            minlength="256" rows="10"></textarea>
-
+                  <textarea id="content" class="form-control @error('content') is-invalid @enderror" name="content"
+                            placeholder="输入论文内容不少于1000字"
+                            rows="10" value="{{ old('content') }}"></textarea>
+                  @error('content')
+                  <span class="invalid-feedback" role="alert" style="display: block">
+                                        <strong>{{ $message }}</strong>
+               </span>
+                  @enderror
                 </div>
                 <p id="words" class="text-right">共输入<span class="text-red-500">0</span>字</p>
               </div>
             </div>
           </div>
-          <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8">
+          <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" onclick="checkType()">
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
@@ -138,6 +161,14 @@
       $('#customFile').change(function (e) {
         $('.custom-file-label').html(e.target.files[0].name)
       })
+
+      // function checkType(e) {
+      //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
+      //   if ($.inArray(ext, ['docx', 'txt']) == -1) {
+      //     alert('不允许上传文件类型!');
+      //   }
+      // }
+
       // var formData = new FormData()
       // $('.versionlist li:first').addClass('i-select')
       // var cid = $('.versionlist li:first').data('id');
