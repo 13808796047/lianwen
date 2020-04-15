@@ -413,9 +413,7 @@
           <img src=" {{ asset('asset/images/tongyong.png') }}" title="name" class="w-full"/>
           <h5 class="py-2"><a>通用版</a></h5>
           <span class="text-red-500">2.50元/千字</span>
-          <p class="my-2 text-xs">适合未正式发表的文献、会议记录、工作总结、心得体会等..文章查重。<br>
-            <br>
-          </p>
+          <p class="my-2 text-xs">适合未正式发表的文献、会议记录、工作总结、心得体会等..文章查重。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
                data-target="#staticBackdrop">立即使用</a>
