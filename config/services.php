@@ -30,23 +30,21 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     //百度翻译
-    'baidu_translate' => [
-        "baidu_translate_one" => [
-            "appid" => env('BAIDU_TRANSLATE_APPID_ONE'),
-            "key" => env("BAIDU_TRANSLATE_KEY_ONE"),
-        ],
-        "baidu_translate_two" => [
-            "appid" => env('BAIDU_TRANSLATE_APPID_TWO'),
-            "key" => env("BAIDU_TRANSLATE_KEY_TWO"),
-        ],
-        "baidu_translate_three" => [
-            "appid" => env('BAIDU_TRANSLATE_APPID_THREE'),
-            "key" => env("BAIDU_TRANSLATE_KEY_THREE"),
-        ],
-        "baidu_translate_four" => [
-            "appid" => env('BAIDU_TRANSLATE_APPID_FOUR'),
-            "key" => env("BAIDU_TRANSLATE_KEY_FOUR"),
-        ],
+    "baidu_translate_one" => [
+        "appid" => env('BAIDU_TRANSLATE_APPID_ONE'),
+        "key" => env("BAIDU_TRANSLATE_KEY_ONE"),
+    ],
+    "baidu_translate_two" => [
+        "appid" => env('BAIDU_TRANSLATE_APPID_TWO'),
+        "key" => env("BAIDU_TRANSLATE_KEY_TWO"),
+    ],
+    "baidu_translate_three" => [
+        "appid" => env('BAIDU_TRANSLATE_APPID_THREE'),
+        "key" => env("BAIDU_TRANSLATE_KEY_THREE"),
+    ],
+    "baidu_translate_four" => [
+        "appid" => env('BAIDU_TRANSLATE_APPID_FOUR'),
+        "key" => env("BAIDU_TRANSLATE_KEY_FOUR"),
     ],
     //微信登录
     'weixin' => [

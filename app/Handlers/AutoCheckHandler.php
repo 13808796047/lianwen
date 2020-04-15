@@ -5,6 +5,7 @@ namespace App\Handlers;
 
 
 use GuzzleHttp\Client;
+use function EasyWeChat\Kernel\Support\str_random;
 
 class AutoCheckHandler
 {
@@ -13,27 +14,31 @@ class AutoCheckHandler
     protected $appid;
     protected $key;
     protected $sign;
+    protected $salt;
 
     public function __construct()
     {
         $this->http = new Client;
         $this->api = 'http://api.fanyi.baidu.com/api/trans/vip/translate?';
-        $config = array_rand(config('services.baidu_translate'), 1);
-        $this->appid = $config['appid'];
-        $this->key = $config('key');
+        $config_arr = ['baidu_translate_one', 'baidu_translate_two', 'baidu_translate_tree', 'baidu_translate_four'];
+        $config = array_rand($config_arr, 1);
+        $this->appid = config('services.' . $config_arr[$config] . '.appid');
+        $this->key = config('services.' . $config_arr[$config] . '.key');
         //根据文档生成sign
-        $this->sign = md5($appid . $text . $slat . $key);
+        $this->salt = time();
     }
 
     public function translate_en($text)
     {
+        $sign = md5($this->appid . $text . $this->salt . $this->key);
+
         $query = http_build_query([
             'q' => $text,
             "from" => 'zh',
             "to" => "en",
             "appid" => $this->appid,
-            "salt" => $salt,
-            "sign" => $this->sign
+            "salt" => $this->salt,
+            "sign" => $sign
         ]);
         $response = $this->http->get($this->api . $query);
         return json_decode($response->getBody(), true);
@@ -41,13 +46,14 @@ class AutoCheckHandler
 
     public function translate_cn($text)
     {
+        $sign = md5($this->appid . $text . $this->salt . $this->key);
         $query = http_build_query([
             'q' => $text,
             "from" => 'en',
             "to" => "zh",
             "appid" => $this->appid,
-            "salt" => $salt,
-            "sign" => $this->sign
+            "salt" => $this->salt,
+            "sign" => $sign
         ]);
         $response = $this->http->get($this->api . $query);
         return json_decode($response->getBody(), true);
