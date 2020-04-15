@@ -392,7 +392,8 @@
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
                data-target="#staticBackdrop">立即使用</a>
           @else
-            <a class="blue-btn" id="login6" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+            <a class="bg-blue-500 text-white  py-2 block" id="login6"
+               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
           @endguest
         </div>
         <div class="border border-gray-300 text-center p-2">
