@@ -14,7 +14,7 @@
 @section('content')
   <div class="container-fluid mt-5 mb-24">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-9">
         <div class="card">
           <div class="card-body">
             <div class="card-title">
@@ -39,13 +39,14 @@
             @if($order->report->content)
               {!! $order->report->content !!}
             @else
-              <h2 class="text-center text-5xl">暂无内容!!!!</h2>
+              <!-- <h2 class="text-center text-5xl">暂无内容!!!!</h2> -->
+              <iframe src="https://wap.lianwen.com/dev/weipu.pdf" width="100%"></iframe>
             @endif
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="bg-white p-4">
+      <div class="col-md-3">
+        <div class="bg-white p-5">
           <dl class="problem text-sm">
             <dt>常见问题</dt>
             <dd>
