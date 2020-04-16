@@ -130,7 +130,7 @@
 @section('scripts')
   <script>
     $(function () {
-      $('.navbar>div').removeClass('container').addClass('container-fluid')
+      //$('.navbar>div').removeClass('container').addClass('container-fluid')
       // 全选
       $('#allcheck').click(function () {
         $("input[name='delete']").prop("checked", this.checked);
