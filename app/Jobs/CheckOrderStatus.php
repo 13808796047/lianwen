@@ -10,7 +10,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use PhpOffice\PhpWord\Shared\ZipArchive;
 
 class CheckOrderStatus implements ShouldQueue
 {
@@ -38,7 +37,7 @@ class CheckOrderStatus implements ShouldQueue
             \Storage::put($path, $file);
             info(storage_path('app/' . $path));
             //解压zip文件
-            $zip = new \ZipArchive();
+            $zip = new \ZipArchive;
             if($zip->open('/www/wwwroot/www.zcnki.com/storage/app/downloads/report-A795998931.zip') === true) {
                 $zip->extractTo(storage_path('/app/pdfs/'));
                 $zip->close();
