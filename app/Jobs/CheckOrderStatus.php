@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use PhpOffice\PhpWord\Shared\ZipArchive;
 use function Psy\debug;
 
 class CheckOrderStatus implements ShouldQueue
@@ -31,7 +32,6 @@ class CheckOrderStatus implements ShouldQueue
         info('获取报告....');
         $api = app(OrderApiHandler::class);
         $result = $api->getOrder($this->order->api_orderid);
-        info('获取报告....');
         if($result->code == 200) {
             $file = $api->downloadReport($this->order->api_orderid);
             $path = 'downloads/report-' . $this->order->api_orderid . '.zip';
@@ -39,10 +39,10 @@ class CheckOrderStatus implements ShouldQueue
             \Storage::put($path, $file);
             info(storage_path('app/' . $path));
             //解压zip文件
-            $zip = new \ZipArchive;
-            debug('解压....');
-            if($zip->open('/www/wwwroot/www.zcnki.com/storage/app/downloads/report-A795998931.zip') === true) {
-                $zip->extractTo(storage_path('/app/pdfs/'));
+            $zip = new ZipArchive();
+            if($zip->open(storage_path('/app/' . $path)) === true) {
+                $content = $zip->getFromName('后张法预应力筋实际伸长量计算与分析（详细版）.pdf');
+                file_put_contents(storage_path('/app/pdfs/' . $this->order->api_orderid . '.pdf'), $content);
                 $zip->close();
             }
             $report = $api->extractReportDetail($this->order->api_orderid);
