@@ -1,7 +1,7 @@
 @extends('domained::layouts.app')
 @section('title', '首页')
 @section('styles')
-  <!-- <link href="{{asset('asset/css/theme-style.css')}}" rel="stylesheet"/> -->
+  <link href="{{asset('asset/css/theme-style.css')}}" rel="stylesheet"/>
   <style>
     .swal-modal {
       width:350px;
