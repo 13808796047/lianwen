@@ -61,7 +61,12 @@ class CheckOrderStatus implements ShouldQueue
                         $file_name = "PDF报告.pdf";
                 }
                 $content = $zip->getFromName($file_name);
-                file_put_contents(public_path('/pdf/') . $this->order->orderid . '.pdf', $content);
+
+                if(!$content) {
+                    $pdf_port_path = '';
+                }
+                $pdf_port_path = public_path('/pdf/') . $this->order->orderid . '.pdf';
+                file_put_contents($pdf_port_path, $content);
                 $zip->close();
             }
             $report = $api->extractReportDetail($this->order->api_orderid);
@@ -69,6 +74,7 @@ class CheckOrderStatus implements ShouldQueue
                 \DB::transaction(function() use ($path, $report, $result) {
                     $this->order->update([
                         'report_path' => $path,
+                        'pdf_port_path' => $pdf_port_path,
                         'rate' => $result->data->orderCheck->apiResultSemblance,
                     ]);
                     $this->order->report()->create([
