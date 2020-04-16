@@ -36,10 +36,10 @@ class CheckOrderStatus implements ShouldQueue
             $path = 'downloads/report-' . $this->order->api_orderid . '.zip';
             \Storage::delete($path);
             \Storage::put($path, $file);
-
+            info(storage_path('app/$path'));
             //解压zip文件
             $zip = new ZipArchive();
-            if($zip->open($path) === true) {
+            if($zip->open(storage_path('app/$path')) === true) {
                 $zip->extractTo(storage_path('app/pdfs/'));
                 $zip->close();
             }
