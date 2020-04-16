@@ -16,12 +16,12 @@
             <li class="float-left position-relative mr-4 "
                 data-id="{{ $item->id }}">
               <i class="position-absolute hidden"><img src="{{ asset('asset/images/icon-y.png') }}"
-                                                       class="img-fluid"
-                                                       style="height:80px"
+                                                       
+                                                       style="height:80px;width:100%;"
                                                        alt=""></i>
               <a href="javascript:;" class="icon-img checkpro-1">
                 <img src="{{$item->sys_logo}}" alt=""
-                     class="img-fluid" style="height:80px">
+                      style="height:80px;width:100%">
               </a>
               <p class="text-center text-xs py-2">
                 <span>{{$item->name}}</span>
