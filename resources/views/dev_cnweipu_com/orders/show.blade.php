@@ -216,6 +216,8 @@
 @section('scripts')
   <script>
     $(document).ready(function () {
+      $('#lwfooter').removeClass('absolute');
+
       $("input[name='paytype']").change(() => {
         $('#bottonsubmit').toggle();
         $('#btn-wechat').toggle();
