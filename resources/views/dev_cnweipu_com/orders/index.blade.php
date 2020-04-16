@@ -41,7 +41,9 @@
         </tbody>
       </table>
       <div class="flex justify-between">
+        
         <a class="inline-block bg-danger text-white py-2 px-4" id="del_item">删除</a>
+      
         <span class="p-2">共{{$orders->total()}}条</span>
         <nav aria-label="Page navigation ">
           <ul class="pagination ">
