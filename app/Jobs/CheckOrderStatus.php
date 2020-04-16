@@ -71,7 +71,7 @@ class CheckOrderStatus implements ShouldQueue
             }
             $report = $api->extractReportDetail($this->order->api_orderid);
             if($report) {
-                \DB::transaction(function() use ($path, $report, $result) {
+                \DB::transaction(function() use ($path, $report, $result, $report_pdf_path) {
                     $this->order->update([
                         'report_path' => $path,
                         'report_pdf_path' => $report_pdf_path,
