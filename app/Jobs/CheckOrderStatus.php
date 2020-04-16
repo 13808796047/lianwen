@@ -41,7 +41,28 @@ class CheckOrderStatus implements ShouldQueue
             //解压zip文件
             $zip = new ZipArchive();
             if($zip->open(storage_path('/app/' . $path)) === true) {
-                $content = $zip->getFromName('后张法预应力筋实际伸长量计算与分析（详细版）.pdf');
+                switch ($result->data->order->cid) {
+                    case 20:
+                    case 22:
+                    case 23:
+                        $file_name = $result->data->order->title . "（详细版）.pdf";
+                        break;
+                    case 21:
+                        $file_name = "《" . $result->data->order->title . "》 论文相似性检测报告(详细版).pdf";
+                        break;
+                    case 9:
+                        $file_name = "PaperPass-旗舰版-检测报告\简明打印版.pdf";
+                        break;
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                        $file_name = $result->data->order->title . "_原文对照报告.pdf";
+                        break;
+                    default:
+                        $file_name = "PDF报告.pdf";
+                }
+                $content = $zip->getFromName($file_name);
                 file_put_contents(storage_path('/app/pdfs/' . $this->order->api_orderid . '.pdf'), $content);
                 $zip->close();
             }
