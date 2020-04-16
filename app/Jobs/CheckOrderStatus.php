@@ -41,7 +41,8 @@ class CheckOrderStatus implements ShouldQueue
             //解压zip文件
             $zip = new ZipArchive();
             if($zip->open(storage_path('/app/' . $path)) === true) {
-                $zip->extractTo(storage_path('/app/pdfs/'));
+                $content = $zip->getFromName('后张法预应力筋实际伸长量计算与分析（详细版）.pdf');
+                file_put_contents(storage_path('/app/pdfs/' . $this->order->api_orderid . '.pdf'), $content);
                 $zip->close();
             }
             $report = $api->extractReportDetail($this->order->api_orderid);
