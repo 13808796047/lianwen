@@ -40,7 +40,7 @@
               {!! $order->report->content !!}
             @else
               <!-- <h2 class="text-center text-5xl">暂无内容!!!!</h2> -->
-              <iframe src="https://wap.lianwen.com/dev/weipu.pdf" width="100%"></iframe>
+              <iframe src="https://wap.lianwen.com/dev/weipu.pdf" width="100%" height="500"></iframe>
             @endif
           </div>
         </div>
