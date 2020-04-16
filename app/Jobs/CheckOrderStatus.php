@@ -63,7 +63,7 @@ class CheckOrderStatus implements ShouldQueue
                         $file_name = "PDF报告.pdf";
                 }
                 $content = $zip->getFromName($file_name);
-                file_put_contents(storage_path('/app/pdfs/' . $this->order->api_orderid . '.pdf'), $content);
+                file_put_contents(storage_path('/app/pdfs/' . $this->order->orderid . '.pdf'), $content);
                 $zip->close();
             }
             $report = $api->extractReportDetail($this->order->api_orderid);
