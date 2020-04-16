@@ -40,7 +40,7 @@ class CheckOrderStatus implements ShouldQueue
             //解压zip文件
             $zip = new \ZipArchive();
             if($zip->open('/www/wwwroot/www.zcnki.com/storage/app/downloads/report-A795998931.zip') === true) {
-                $zip->extractTo(storage_path('app/pdfs/'));
+                $zip->extractTo(storage_path('/app/pdfs/'));
                 $zip->close();
             }
             $report = $api->extractReportDetail($this->order->api_orderid);
