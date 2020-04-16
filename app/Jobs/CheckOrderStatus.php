@@ -28,6 +28,7 @@ class CheckOrderStatus implements ShouldQueue
     //当队列处理器从队列中取出任务时，会调用handle()方法
     public function handle()
     {
+        info('获取报告....');
         $api = app(OrderApiHandler::class);
         $result = $api->getOrder($this->order->api_orderid);
         info('获取报告....');
