@@ -45,10 +45,8 @@ class CheckOrderStatus implements ShouldQueue
                     case 20:
                     case 22:
                     case 23:
-                        $file_name = $result->data->order->title . "（详细版）.pdf";
-                        break;
                     case 21:
-                        $file_name = "《" . $result->data->order->title . "》 论文相似性检测报告(详细版).pdf";
+                        $file_name = $result->data->order->title . "（详细版）.pdf";
                         break;
                     case 9:
                         $file_name = "PaperPass-旗舰版-检测报告\简明打印版.pdf";
@@ -63,14 +61,20 @@ class CheckOrderStatus implements ShouldQueue
                         $file_name = "PDF报告.pdf";
                 }
                 $content = $zip->getFromName($file_name);
-                file_put_contents(storage_path('/app/pdfs/' . $this->order->orderid . '.pdf'), $content);
+
+                if(!$content) {
+                    $report_pdf_path = '';
+                }
+                $report_pdf_path = public_path('/pdf/') . $this->order->orderid . '.pdf';
+                file_put_contents($report_pdf_path, $content);
                 $zip->close();
             }
             $report = $api->extractReportDetail($this->order->api_orderid);
             if($report) {
-                \DB::transaction(function() use ($path, $report, $result) {
+                \DB::transaction(function() use ($path, $report, $result, $report_pdf_path) {
                     $this->order->update([
                         'report_path' => $path,
+                        'report_pdf_path' => $report_pdf_path,
                         'rate' => $result->data->orderCheck->apiResultSemblance,
                     ]);
                     $this->order->report()->create([
