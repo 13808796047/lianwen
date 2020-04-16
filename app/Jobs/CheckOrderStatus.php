@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use PhpOffice\PhpWord\Shared\ZipArchive;
 
 class CheckOrderStatus implements ShouldQueue
 {
@@ -33,7 +34,14 @@ class CheckOrderStatus implements ShouldQueue
         if($result->code == 200) {
             $file = $api->downloadReport($this->order->api_orderid);
             $path = 'downloads/report-' . $this->order->api_orderid . '.zip';
+
             \Storage::put($path, $file);
+            //解压zip文件
+            $zip = new ZipArchive();
+            if($zip->open($path) === true) {
+                $zip->extractTo(storage_path('app/downloads/pdfs/'));
+                $zip->close();
+            }
             $report = $api->extractReportDetail($this->order->api_orderid);
             if($report) {
                 \DB::transaction(function() use ($path, $report, $result) {
