@@ -9,7 +9,7 @@
 
 @section('content')
   <div id="wrap">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row-fluid">
         <div class="span12">
           <div class="row-fluid">

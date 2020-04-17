@@ -5,28 +5,32 @@
     .selected {
       display: block;
     }
+    .curfont{
+      font-size:16px;
+    }
   </style>
 @stop
 @section('content')
   <div class="p-4 mb-24">
     <div class="grid grid-cols-6 gap-4">
-      <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
+      <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
         <ul class=" category">
           @foreach($category as $item)
             <li class="float-left position-relative mr-4 "
                 data-id="{{ $item->id }}">
               <i class="position-absolute hidden"><img src="{{ asset('asset/images/icon-y.png') }}"
-                                                       class="img-fluid"
+                                                       
+                                                       style="height:80px;width:100%;"
                                                        alt=""></i>
               <a href="javascript:;" class="icon-img checkpro-1">
                 <img src="{{$item->sys_logo}}" alt=""
-                     class="img-fluid">
+                      style="height:80px;width:100%">
               </a>
               <p class="text-center text-xs py-2">
                 <span>{{$item->name}}</span>
                 <br>
                 <b class="text-danger">{{ $item->price }}</b>
-                <span>({{\App\Models\Category::$priceTypeMap[$item->price_type]}})</span>
+                <span class="text-danger">/{{\App\Models\Category::$priceTypeMap[$item->price_type]}}</span>
               </p>
             </li>
           @endforeach
@@ -121,7 +125,7 @@
           <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" onclick="checkType()">
         </form>
       </div>
-      <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
+      <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
         <dl class="problem text-sm">
           <dt>常见问题</dt>
           <dd>
@@ -148,6 +152,7 @@
   <script>
     $(() => {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
+      $('#headerlw').addClass('curfont')
       $('.category>li:first-child i').addClass('selected')
       $('#cid').val($('.category>li:first-child').data('id'))
       $('.category>li').click(function () {
