@@ -99,7 +99,7 @@
                   @enderror
                   <label class="custom-file-label" for="customFile" data-browse="选择文件"></label>
                 </div>
-                <p class="text-xs">支持文档格式：DOCX,TXT</p>
+                <p class="text-xs">支持文档docx和txt格式，最大支持15M</p>
               </div>
               <div id="contenttext" class="tab-pane fade">
                 <br>
