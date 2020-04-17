@@ -8,6 +8,7 @@
 @stop
 
 @section('content')
+<div>
   <div id="wrap">
     <div class="container">
       <div class="row-fluid">
@@ -100,6 +101,7 @@
       </div><!--/row-fluid-->
     </div><!--/.fluid-container-->
   </div>
+</div>
 @endsection
 @section('scripts')
   <script !src="">
