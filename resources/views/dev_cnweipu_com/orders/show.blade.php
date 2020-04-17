@@ -159,7 +159,7 @@
       $('#btn-wechat').click(function () {
         swal({
           // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-          content: $('<img src="{{ route('payments.wechat', ['order' => $order->id]) }}" />')[0],
+          content: $('<img src="{{ route('payments.wechat', ['order' => $order->id]) }}" style="display: block;margin: 0 auto;"/>')[0],
           // buttons 参数可以设置按钮显示的文案
           buttons: ['关闭', '已完成付款'],
         })
