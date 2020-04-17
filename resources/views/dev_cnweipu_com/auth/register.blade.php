@@ -92,7 +92,7 @@
                   </div>
 
 
-                  <button type="button" class="btn btn-large btn-block" id="submitBtn" style="background: #26AEF2;">立即注册</button>
+                  <button type="button" class="btn btn-large btn-block" id="submitBtn" style="background:#26AEF2;">立即注册</button>
                 </form>
               </div>
             </div>
