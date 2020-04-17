@@ -40,8 +40,14 @@
 									{{$order->title}}
 								</td>
 							</tr>
+              <tr>
+								<td width="">作者</td>
+								<td style="text-align: left;">
+									{{$order->writer}}
+								</td>
+							</tr>
 							<tr>
-								<td width="">检测</td>
+								<td width="">检测系统</td>
 								<td style="text-align: left;">{{$order->category->name}}</td>
 							</tr>
 							<tr>
