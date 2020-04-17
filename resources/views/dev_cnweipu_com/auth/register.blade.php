@@ -16,7 +16,7 @@
 
 <div class="main clearfix" style="background:#fff">
 <div style="padding:25px 500px;">
-            <div style="padding:25px 100px;">
+            <div>
                 <div class="alert alert-danger" role="alert" id="message" style="display: none">
                 </div>
     <form action="{{route('register')}}" method="post" accept-charset="utf-8">
