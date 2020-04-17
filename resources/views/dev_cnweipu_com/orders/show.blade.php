@@ -28,10 +28,10 @@
                 <table class="mylist" style="line-height: 30px">
                   <tr>
                     <td width="149">
-                      <span class="hl bred">检测编号(请牢记)</span>
+                      <span>检测编号</span>
                     </td>
                     <td style="text-align: left;">
-                      <span class="hl bgreen">{{ $order->orderid }}</span>
+                      <span>{{ $order->orderid }}</span>
                     </td>
                   </tr>
                   <tr>
@@ -146,6 +146,7 @@
                       在线支付<font color="#FF0004">(推荐)</font>
                     </td>
                     <td class="td">
+                    <div style="display:flex;align-item:center">
                       <input
                         type="radio"
                         name="paytype"
@@ -153,13 +154,16 @@
                         checked="checked"
                       />
                       <img src="{{asset('asset/images/alipay.png')}}"/>
+                      </div>
                       &nbsp;&nbsp;
                       <!--<label><input type="radio" name="paytype" value="tenpay" > <img src="./asset/imgs/tenpay.png" /></label> -->
+                      <div style="display:flex;align-item:center">
                       <input type="radio" name="paytype" value="wxpay"/>
                       <img
                         src="{{asset('asset/images/wxpay.png')}}"
                         style="width:99px"
                       />
+                      </div>
                       <div class="tips">
                         直接使用支付宝或者微信支付，即时返回支付结果，方便快捷，推荐使用。
                       </div>
@@ -184,13 +188,13 @@
           </div>
         </div>
   </div>     
-  <div class="rbox fr" style="background:#fff;">
-  <div>
-                <span class="hl bgreen">温馨提示</span>
-                <p>
+  <div class="rbox fr">
+  <div style="background:#fff;padding:30px">
+                <span class="hl bgreen" style="display:block;text-align:center;">温馨提示</span>
+                <p style="text-indent: 2em;">
                   1、如果您的可用余额、代金券/秘钥面值与实际值不符，因为您有未完成的提现申请或未完成的检测订单，造成了相应金额的锁定。
                 </p>
-                <p>
+                <p style="text-indent: 2em;">
                   2、如果您勾选了余额支付和代金券/秘钥支付，将优先使用代金券/秘钥支付，余下部分才从账户余额支付。
                 </p>
               </div>
