@@ -5,10 +5,15 @@
   <link href="{{asset('asset/css/theme.css')}}" rel="stylesheet"/>
   <link href="{{asset('asset/css/font-awesome.min.css')}}" rel="stylesheet"/>
   <link href="{{asset('asset/css/alertify.css')}}" rel="stylesheet"/>
+  <style>
+    .curfont{
+      font-size:16px;
+    }
+  </style>
 @stop
 @section('content')
 
-{{--  <div class="container my-4 bg-white shadow">--}}
+{{--  <div class="container-fluid my-4 bg-white shadow">--}}
 {{--    <div class="py-4">--}}
 {{--      <h5 class="mb-4"><span class="text-xl text-primary mr-2"><i class="text-xl iconfont icon-file-done"></i></span>订单信息--}}
 {{--      </h5>--}}
@@ -219,6 +224,7 @@
 @section('scripts')
   <script>
     $(document).ready(function () {
+      $('#headerlw').addClass('curfont')
       $('#lwfooter').removeClass('absolute');
 
       $("input[name='paytype']").change(() => {
