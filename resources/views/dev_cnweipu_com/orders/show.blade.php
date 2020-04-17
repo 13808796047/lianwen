@@ -104,8 +104,8 @@
 								</td>
 								<td class="td">
 									<div style="display:flex;align-items: center">
-										<input type="radio" name="paytype" value="alipay" checked="checked" style="margin-left:17px;"/>
-										<img src="{{asset('asset/images/alipay.png')}}" />
+										<input type="radio" name="paytype" value="alipay" checked="checked" />
+										<img src="{{asset('asset/images/alipay.png')}}" style="margin-left:17px;" />
 									</div>
 									&nbsp;&nbsp;
 									<!--<label><input type="radio" name="paytype" value="tenpay" > <img src="./asset/imgs/tenpay.png" /></label> -->
