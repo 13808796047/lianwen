@@ -39,3 +39,11 @@
     </div>
   </div>
 @stop
+@section('scripts')
+  <script !src="">
+    $(function () {
+      $('.navbar>div').removeClass('container').addClass('container-fluid')
+      $('#headerlw').addClass('curfont')
+    })
+  </script>
+@stop
