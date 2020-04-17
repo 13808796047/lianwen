@@ -14,7 +14,7 @@
 @section('content')
   <div class="main clearfix">
       <div class="lbox fl">
-        <div class="card">
+        <div>
           <div class="card-body">
             <div class="card-title">
               <h2 class="text-3xl text-center">{{ $order->title }}</h2>
