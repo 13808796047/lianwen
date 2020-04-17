@@ -65,7 +65,7 @@
                     <div class="controls"><input type="password" name="password_confirmation" value=""
                                                  id="password-confirm"
                                                  class="btn-block" placeholder="请输入确认密码"
-                                                 style="border: 1px solid #ccc;font-size: 19px;height: 39px;padding-left: 10px;">
+                                                 style="border: 1px solid #ccc;font-size: 19px;height:39px;padding-left:10px;">
                     </div>
                   </div>
 
@@ -84,9 +84,9 @@
                   <div class="control-group" style="margin-bottom: 13px;">
                     <label for="phone">验证码:</label>
                     <div class="controls"><input type="text" name="code" value="" id="code"
-                                                 placeholder="请输入验证码"  style="border: 1px solid #ccc;font-size: 19px;height: 39px;padding-left: 10px;">
+                                                 placeholder="请输入验证码"  style="border:1px solid #ccc;font-size:19px;height:39px;padding-left:10px;">
                       <input type="button" value="获取验证码"
-                             style="margin-bottom: 10px;font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color: #fff;padding: 0 20px;" id="yzm"
+                             style="margin-bottom: 10px;font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;" id="yzm"
                       >
                     </div>
                   </div>
