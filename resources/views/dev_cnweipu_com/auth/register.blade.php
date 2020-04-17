@@ -15,6 +15,7 @@
 @section('content')
 
 <div class="main clearfix" style="background:#fff">
+<div style="padding:25px 200px;">
     <form action="{{route('register')}}" method="post" accept-charset="utf-8">
                 @csrf
                 <!--	<div style="padding:10px 0">
@@ -86,6 +87,7 @@
 
                   <button type="button" class="btn btn-large btn-block" id="submitBtn" style="background:#26AEF2;">立即注册</button>
                 </form>
+                </div>
 </div>
 @endsection
 @section('scripts')
