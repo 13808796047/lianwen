@@ -14,7 +14,7 @@
 
 @section('content')
 
-<div class="main clearfix background:#fff">
+<div class="main clearfix" style="background:#fff">
     <form action="{{route('register')}}" method="post" accept-charset="utf-8">
                 @csrf
                 <!--	<div style="padding:10px 0">
