@@ -13,6 +13,16 @@
 
   <!-- Styles -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+  <style>
+    .newbody{
+      height:100%;
+      margin-bottom:0;
+    }
+    .newmain{
+      display:flex;
+      flex-direction:column;
+    }
+  </style>
   @yield('styles')
   <script>
     //H5移动版自适应跳转js
@@ -31,8 +41,8 @@
   </script>
 </head>
 
-<body style="height:100%;margin-bottom:0;">
-<div id="app" style="display:flex;flex-direction: column;" class="{{ route_class() }}-page">
+<body class="newbody">
+<div id="app" class="{{ route_class() }}-page newmain">
 
   @include('domained::layouts._header')
 
@@ -49,6 +59,7 @@
 <script src="{{ mix('js/app.js') }}"></script>
 @yield('scripts')
 <script !src="">
+
   //退出登录
   $('.logout').click(() => {
     swal({
