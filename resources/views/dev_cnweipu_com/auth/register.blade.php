@@ -34,6 +34,7 @@
                     <label for="phone">手机号码:</label>
                     <div class="controls"><input type="text" name="phone" value="{{old('phone')}}" id="phone"
                                                  placeholder="请输入手机号码"
+                                                 style="border: 1px solid #ccc;"
                                                  class="btn-block">
                       @error('phone')
                       <span class="invalid-feedback" role="alert" style="display: block">
@@ -50,7 +51,8 @@
                     <label for="password">密码:</label>
                     <div class="controls"><input type="password" name="password" value="{{old('password')}}"
                                                  id="password"
-                                                 class="btn-block" placeholder="请输入密码">
+                                                 class="btn-block" placeholder="请输入密码"
+                                                 style="border: 1px solid #ccc;">
                       @error('password')
                       <span class="invalid-feedback" role="alert" style="display: block">
                                         <strong>{{ $message }}</strong>
@@ -62,7 +64,8 @@
                     <label for="password-confirm">重复密码:</label>
                     <div class="controls"><input type="password" name="password_confirmation" value=""
                                                  id="password-confirm"
-                                                 class="btn-block" placeholder="请输入确认密码">
+                                                 class="btn-block" placeholder="请输入确认密码"
+                                                 style="border: 1px solid #ccc;">
                     </div>
                   </div>
 
@@ -81,7 +84,7 @@
                   <div class="control-group" style="margin-bottom: 13px;">
                     <label for="phone">验证码:</label>
                     <div class="controls"><input type="text" name="code" value="" id="code"
-                                                 placeholder="请输入验证码">
+                                                 placeholder="请输入验证码"  style="border: 1px solid #ccc;">
                       <input type="button" value="获取验证码"
                              style="margin-bottom: 10px;font-size: 14px;line-height: 20px;height:30px" id="yzm"
                       >
