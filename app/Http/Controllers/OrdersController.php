@@ -69,7 +69,7 @@ class OrdersController extends Controller
     public function download($orderid)
     {
         if(strlen($orderid) == 3) {
-            $order = Order::find($orderid);
+            $order = Order::findOrFail($orderid);
         } else {
 
             $order = Order::where('orderid', $orderid)->first();
