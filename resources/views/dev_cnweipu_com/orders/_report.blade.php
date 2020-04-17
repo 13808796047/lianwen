@@ -5,6 +5,9 @@
     p {
       text-indent: 2em !important;
     }
+    .curfont{
+      font-size:16px;
+    }
   </style>
 @stop
 @section('content')

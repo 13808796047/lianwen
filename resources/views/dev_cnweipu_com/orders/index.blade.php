@@ -3,6 +3,7 @@
 @section('styles')
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <style>
+  
   </style>
 @stop
 @section('content')
@@ -132,7 +133,8 @@
 @section('scripts')
   <script>
     $(function () {
-      //$('.navbar>div').removeClass('container').addClass('container-fluid')
+      $('.navbar>div').removeClass('container').addClass('container-fluid')
+      $('#headerlw').addClass('curfont')
       // 全选
       $('#allcheck').click(function () {
         $("input[name='delete']").prop("checked", this.checked);
