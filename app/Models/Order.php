@@ -21,7 +21,9 @@ class Order extends Model
 
     public function report()
     {
-        return $this->hasOne(Report::class);
+        return $this->hasOne(Report::class)->withDefault([
+            'content' => '暂无内容'
+        ]);
     }
 
     public function scopeWithOrder($query, $order)
