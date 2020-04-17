@@ -127,31 +127,31 @@
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
       <div>
-	<div>检测结果是否准确？</div>
-	<div>如果你们学校也是用万方检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。
+	<div style="font-size:14px;font-weight: bold;text-align: center;">检测结果是否准确？</div>
+	<div style="font-size:13px">如果你们学校也是用万方检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。
 	</div>
 	<div>
-		<div>检测需要多少时间？</div>
-		<div>正常情况，万方检测需要10分钟左右，高峰期可能会延迟，但不会超过1个小时，如果长时间未出结果请联系客服微信：cx5078解决。</div>
+		<div style="font-size:14px;font-weight: bold;text-align: center;">检测需要多少时间？</div>
+		<div style="font-size:13px">正常情况，万方检测需要10分钟左右，高峰期可能会延迟，但不会超过1个小时，如果长时间未出结果请联系客服微信：cx5078解决。</div>
 	</div>
 
 	<div>
-		<div>论文上传之后安全吗？</div>
-		<div>本系统有明确的条文规定并遵守严格的论文保密规定，对所有用户提交的送检文档仅做检测分析，绝不保留全文，承诺对用户送检的文档不做任何形式的收录和泄露。
+		<div style="font-size:14px;font-weight: bold;text-align: center;">论文上传之后安全吗？</div>
+		<div style="font-size:13px">本系统有明确的条文规定并遵守严格的论文保密规定，对所有用户提交的送检文档仅做检测分析，绝不保留全文，承诺对用户送检的文档不做任何形式的收录和泄露。
 		</div>
 		<div>
-			<div>提交以后能不能退款？</div>
+			<div style="font-size:14px;font-weight: bold;text-align: center;">提交以后能不能退款？</div>
 
-			<div>此系统一旦提交，系统开始检测后，即产生消费，无法退款！</div>
+			<div style="font-size:13px">此系统一旦提交，系统开始检测后，即产生消费，无法退款！</div>
 		</div>
 
 		<div>
-			<div>检测内容范围？</div>
-			<div>系统不检测文章中的封面、致谢、学校(需要替换成"X")等个人信息，请在提交前自己删除，若提交后由系统自动删除时出现的任何问题责任自负！</div>
+			<div style="font-size:14px;font-weight: bold;text-align: center;">检测内容范围？</div>
+			<div style="font-size:13px">系统不检测文章中的封面、致谢、学校(需要替换成"X")等个人信息，请在提交前自己删除，若提交后由系统自动删除时出现的任何问题责任自负！</div>
 
 			<div>
-				<div>检测时作者需要填吗？</div>
-				<div>在提交检测的文章中，引用了一些内以前自己所写的内容并且被小论文系统文献库收录，需要在此次检测中排除这些；则会有“去除本人已发表文献复制比”的结果。</div>
+				<div style="font-size:14px;font-weight: bold;text-align: center;">检测时作者需要填吗？</div>
+				<div style="font-size:13px">在提交检测的文章中，引用了一些内以前自己所写的内容并且被小论文系统文献库收录，需要在此次检测中排除这些；则会有“去除本人已发表文献复制比”的结果。</div>
 			</div>
 		</div>
 	</div>
