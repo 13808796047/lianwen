@@ -18,7 +18,7 @@
   <!-- Main window -->
   <div
     id="dashboard_page"
-    style="padding-top:15px;"
+    style="padding:15px 0;"
   >
     <div class="row-fluid">
       <div class="widget widget-padding span12">
