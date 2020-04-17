@@ -3,7 +3,9 @@
 @section('styles')
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <style>
-  
+    .curfont{
+      font-size:16px;
+    }
   </style>
 @stop
 @section('content')
