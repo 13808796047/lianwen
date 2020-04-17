@@ -114,8 +114,6 @@
 @section('scripts')
   <script !src="">
     $(() => {
-      $('.navbar>div').removeClass('container').addClass('container-fluid')
-      $('#headerlw').addClass('curfont')
       var wait = 60;
       var verification_key = '';
       function time(o) {
