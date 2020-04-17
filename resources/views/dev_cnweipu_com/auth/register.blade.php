@@ -14,21 +14,8 @@
 
 @section('content')
 <div>
-  <div id="wrap">
-    <div class="container">
-      <div class="row-fluid">
-        <div class="span12">
-          <div class="row-fluid">
-            <div class="widget" style="width:95%;max-width:530px;margin:5% auto;">
-              <div class="widget-header">
-                <i class="icon-edit"></i>
-                <h5>注册新账号</h5>
-              </div>
-              <div class="widget-body clearfix" style="padding:25px 100px;">
-                <div class="alert alert-danger" role="alert" id="message" style="display: none">
-                </div>
-                <!--?php echo form_open($this->uri->uri_string()); ?-->
-                <form action="{{route('register')}}" method="post" accept-charset="utf-8">
+    <div style="background:#fff">
+    <form action="{{route('register')}}" method="post" accept-charset="utf-8">
                 @csrf
                 <!--	<div style="padding:10px 0">
                           <a style="" href="#" class="btn btn-large btn-block btn-primary"><i class="icon-facebook-sign"></i> 使用QQ关联注册</a>
@@ -99,16 +86,7 @@
 
                   <button type="button" class="btn btn-large btn-block" id="submitBtn" style="background:#26AEF2;">立即注册</button>
                 </form>
-              </div>
-            </div>
-            <div style="text-align:center">
-              <p>已有账号? <a href="{{route('pages.index')}}">登录</a></p>
-            </div>
-          </div><!--/row-fluid-->
-        </div><!--/span10-->
-      </div><!--/row-fluid-->
-    </div><!--/.fluid-container-->
-  </div>
+    </div>
 </div>
 @endsection
 @section('scripts')
