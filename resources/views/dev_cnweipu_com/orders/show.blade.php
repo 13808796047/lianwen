@@ -37,10 +37,10 @@
                 <table class="mylist" style="line-height: 30px">
                   <tr>
                     <td width="149">
-                      <span class="hl bred">检测编号(请牢记)</span>
+                      <span>检测编号</span>
                     </td>
                     <td style="text-align: left;">
-                      <span class="hl bgreen">{{ $order->orderid }}</span>
+                      <span>{{ $order->orderid }}</span>
                     </td>
                   </tr>
                   <tr>
@@ -155,20 +155,24 @@
                       在线支付<font color="#FF0004">(推荐)</font>
                     </td>
                     <td class="td">
+                    <div style="display:flex;align-items: center;">
                       <input
                         type="radio"
                         name="paytype"
                         value="alipay"
                         checked="checked"
                       />
-                      <img src="{{asset('asset/images/alipay.png')}}"/>
+                      <img src="{{asset('asset/images/alipay.png')}}" style="margin-left:17px;"/>
+                      </div>
                       &nbsp;&nbsp;
+                      <div style="display:flex;align-items: center;">
                       <!--<label><input type="radio" name="paytype" value="tenpay" > <img src="./asset/imgs/tenpay.png" /></label> -->
                       <input type="radio" name="paytype" value="wxpay"/>
                       <img
                         src="{{asset('asset/images/wxpay.png')}}"
-                        style="width:99px"
+                        style="width:99px;margin-left:17px"
                       />
+                      </div>
                       <div class="tips">
                         直接使用支付宝或者微信支付，即时返回支付结果，方便快捷，推荐使用。
                       </div>
