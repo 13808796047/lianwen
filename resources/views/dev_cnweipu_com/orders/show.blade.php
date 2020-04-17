@@ -21,7 +21,7 @@
 {{--  </div>--}}
 <div class="main clearfix">
   <div class="lbox fl">
-  <div class="widget-body">
+  <div>
           <div class="cbox submit yh">
             <div class="down clearfix">
               <form action="{{route('payments.alipay',['order'=>$order->orderid])}}" method="get">
@@ -184,8 +184,8 @@
           </div>
         </div>
   </div>     
-  <div class="rbox fr">
-  <div class="tipsbox">
+  <div class="rbox fr" style="background:#fff;">
+  <div>
                 <span class="hl bgreen">温馨提示</span>
                 <p>
                   1、如果您的可用余额、代金券/秘钥面值与实际值不符，因为您有未完成的提现申请或未完成的检测订单，造成了相应金额的锁定。
