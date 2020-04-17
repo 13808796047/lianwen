@@ -19,7 +19,7 @@
                 <i class="icon-edit"></i>
                 <h5>注册新账号</h5>
               </div>
-              <div class="widget-body clearfix" style="padding:25px;">
+              <div class="widget-body clearfix" style="padding:25px 100px;">
                 <div class="alert alert-danger" role="alert" id="message" style="display: none">
                 </div>
                 <!--?php echo form_open($this->uri->uri_string()); ?-->
@@ -30,7 +30,7 @@
                       </div>
                        <br>
                       <legend style="font-size: 16px; color:#555;" class=""><i class="icon-envelope"></i> 您也可以使用邮箱注册</legend> -->
-                  <div class="control-group ">
+                  <div class="control-group" style="margin-bottom: 13px;">
                     <label for="phone">手机号码:</label>
                     <div class="controls"><input type="text" name="phone" value="{{old('phone')}}" id="phone"
                                                  placeholder="请输入手机号码"
@@ -46,7 +46,7 @@
                     </div>
 
                   </div>
-                  <div class="control-group ">
+                  <div class="control-group" style="margin-bottom: 13px;">
                     <label for="password">密码:</label>
                     <div class="controls"><input type="password" name="password" value="{{old('password')}}"
                                                  id="password"
@@ -58,7 +58,7 @@
                       @enderror
                     </div>
                   </div>
-                  <div class="control-group ">
+                  <div class="control-group" style="margin-bottom: 13px;">
                     <label for="password-confirm">重复密码:</label>
                     <div class="controls"><input type="password" name="password_confirmation" value=""
                                                  id="password-confirm"
@@ -78,7 +78,7 @@
                   {{--                    </div>--}}
                   {{--                  </div>--}}
                   {{--                  <div id="sjh" style="color:red;display: none">手机号已存在</div>--}}
-                  <div class="control-group ">
+                  <div class="control-group" style="margin-bottom: 13px;">
                     <label for="phone">验证码:</label>
                     <div class="controls"><input type="text" name="code" value="" id="code"
                                                  placeholder="请输入验证码">
