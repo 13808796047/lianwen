@@ -5,34 +5,32 @@
   <link href="{{asset('asset/css/theme.css')}}" rel="stylesheet"/>
   <link href="{{asset('asset/css/alertify.css')}}" rel="stylesheet"/>
   <link href="{{asset('asset/css/index.css')}}" rel="stylesheet"/>
+  <style>
+    .curfont{
+      font-size:16px;
+    }
+  </style>
 @stop
 
 @section('content')
-  <div id="wrap">
-    <div class="container">
-      <div class="row-fluid">
-        <div class="span12">
-          <div class="row-fluid">
-            <div class="widget container-narrow">
-              <div class="widget-header">
-                <i class="icon-edit"></i>
-                <h5>注册新账号</h5>
-              </div>
-              <div class="widget-body clearfix" style="padding:25px;">
+
+<div class="main clearfix" style="background:#fff">
+<div style="padding:25px 500px;">
+            <div>
                 <div class="alert alert-danger" role="alert" id="message" style="display: none">
                 </div>
-                <!--?php echo form_open($this->uri->uri_string()); ?-->
-                <form action="{{route('register')}}" method="post" accept-charset="utf-8">
+    <form action="{{route('register')}}" method="post" accept-charset="utf-8">
                 @csrf
                 <!--	<div style="padding:10px 0">
                           <a style="" href="#" class="btn btn-large btn-block btn-primary"><i class="icon-facebook-sign"></i> 使用QQ关联注册</a>
                       </div>
                        <br>
                       <legend style="font-size: 16px; color:#555;" class=""><i class="icon-envelope"></i> 您也可以使用邮箱注册</legend> -->
-                  <div class="control-group ">
+                  <div class="control-group" style="margin-bottom: 13px;">
                     <label for="phone">手机号码:</label>
                     <div class="controls"><input type="text" name="phone" value="{{old('phone')}}" id="phone"
                                                  placeholder="请输入手机号码"
+                                                 style="border: 1px solid #ccc;font-size: 17px;height: 39px;padding-left: 10px;"
                                                  class="btn-block">
                       @error('phone')
                       <span class="invalid-feedback" role="alert" style="display: block">
@@ -45,11 +43,12 @@
                     </div>
 
                   </div>
-                  <div class="control-group ">
+                  <div class="control-group" style="margin-bottom: 13px;">
                     <label for="password">密码:</label>
                     <div class="controls"><input type="password" name="password" value="{{old('password')}}"
                                                  id="password"
-                                                 class="btn-block" placeholder="请输入密码">
+                                                 class="btn-block" placeholder="请输入密码"
+                                                 style="border: 1px solid #ccc;font-size: 17px;height: 39px;padding-left: 10px;">
                       @error('password')
                       <span class="invalid-feedback" role="alert" style="display: block">
                                         <strong>{{ $message }}</strong>
@@ -57,11 +56,12 @@
                       @enderror
                     </div>
                   </div>
-                  <div class="control-group ">
+                  <div class="control-group" style="margin-bottom: 13px;">
                     <label for="password-confirm">重复密码:</label>
                     <div class="controls"><input type="password" name="password_confirmation" value=""
                                                  id="password-confirm"
-                                                 class="btn-block" placeholder="请输入确认密码">
+                                                 class="btn-block" placeholder="请输入确认密码"
+                                                 style="border: 1px solid #ccc;font-size: 17px;height:39px;padding-left:10px;">
                     </div>
                   </div>
 
@@ -77,36 +77,27 @@
                   {{--                    </div>--}}
                   {{--                  </div>--}}
                   {{--                  <div id="sjh" style="color:red;display: none">手机号已存在</div>--}}
-                  <div class="control-group ">
+                  <div class="control-group" style="margin-bottom: 13px;">
                     <label for="phone">验证码:</label>
                     <div class="controls"><input type="text" name="code" value="" id="code"
-                                                 placeholder="请输入验证码">
+                                                 placeholder="请输入验证码"  style="border:1px solid #ccc;font-size:17px;height:39px;padding-left:10px;">
                       <input type="button" value="获取验证码"
-                             style="margin-bottom: 10px;font-size: 14px;line-height: 20px;height:30px" id="yzm"
+                             style="margin-bottom: 10px;font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;" id="yzm"
                       >
                     </div>
                   </div>
 
 
-                  <button type="button" class="btn btn-large btn-block" id="submitBtn">立即注册</button>
+                  <button type="button" class="btn btn-large btn-block" id="submitBtn" style="background:#26AEF2;color:#fff;">提交注册</button>
                 </form>
-              </div>
-            </div>
-            <div style="text-align:center">
-              <p>已有账号? <a href="{{route('pages.index')}}">登录</a></p>
-            </div>
-          </div><!--/row-fluid-->
-        </div><!--/span10-->
-      </div><!--/row-fluid-->
-    </div><!--/.fluid-container-->
-  </div>
+                </div>
+</div>
 @endsection
 @section('scripts')
   <script !src="">
     $(() => {
       var wait = 60;
       var verification_key = '';
-
       function time(o) {
         if (wait == 0) {
           o.removeAttribute("disabled");
