@@ -17,7 +17,6 @@
 <div class="container-fluid">
   <!-- Main window -->
   <div
-    class="main_container"
     id="dashboard_page"
     style="padding-top:15px;"
   >
