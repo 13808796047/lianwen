@@ -286,7 +286,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Left Side Of Navbar -->
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto" id="headerlw">
         <li class="nav-item px-4 {{ active_class(if_route('pages.index')) }}"><a class="nav-link text-blue-300"
                                                                                  href="{{ url('/') }}">首页</a>
         </li>

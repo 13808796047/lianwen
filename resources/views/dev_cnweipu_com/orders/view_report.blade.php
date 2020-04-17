@@ -12,10 +12,9 @@
 
 @stop
 @section('content')
-  <div class="container-fluid mt-5 mb-24">
-    <div class="row">
-      <div class="col-md-9">
-        <div class="card">
+  <div class="main clearfix">
+      <div class="lbox fl">
+        <div>
           <div class="card-body">
             <div class="card-title">
               <h2 class="text-3xl text-center">{{ $order->title }}</h2>
@@ -40,12 +39,12 @@
               {!! $order->report->content !!}
             @else
               <!-- <h2 class="text-center text-5xl">暂无内容!!!!</h2> -->
-              <iframe src="https://wap.lianwen.com/dev/weipu.pdf" width="100%" height="500"></iframe>
+              <iframe src="https://wap.lianwen.com/dev/weipu.pdf" width="100%" height="650"></iframe>
             @endif
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="rbox fr">
         <div class="bg-white p-5">
           <dl class="problem text-sm">
             <dt>常见问题</dt>
@@ -67,7 +66,6 @@
           </dl>
         </div>
       </div>
-    </div>
   </div>
 @stop
 @section('scripts')

@@ -3,6 +3,9 @@
 @section('styles')
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <style>
+    .curfont{
+      font-size:16px;
+    }
   </style>
 @stop
 @section('content')
@@ -41,7 +44,10 @@
         </tbody>
       </table>
       <div class="flex justify-between">
-        <a class="inline-block bg-danger text-white py-2 px-4" id="del_item">删除</a>
+        
+        <a class="inline-block text-white py-2 px-4" id="del_item"><span style="background: red;
+    padding: 5px 10px;">删除</span></a>
+      
         <span class="p-2">共{{$orders->total()}}条</span>
         <nav aria-label="Page navigation ">
           <ul class="pagination ">
@@ -131,6 +137,7 @@
   <script>
     $(function () {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
+      $('#headerlw').addClass('curfont')
       // 全选
       $('#allcheck').click(function () {
         $("input[name='delete']").prop("checked", this.checked);

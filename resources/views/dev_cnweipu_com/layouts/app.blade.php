@@ -31,8 +31,8 @@
   </script>
 </head>
 
-<body>
-<div id="app" class="{{ route_class() }}-page">
+<body style="height:100%;margin-bottom:0;">
+<div id="app" style="display:flex;flex-direction: column;" class="{{ route_class() }}-page">
 
   @include('domained::layouts._header')
 
