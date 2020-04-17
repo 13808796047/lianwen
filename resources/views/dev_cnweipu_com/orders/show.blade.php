@@ -13,7 +13,7 @@
 @stop
 @section('content')
 
-{{--  <div class="container-fluid my-4 bg-white shadow">--}}
+{{--  <div class="container my-4 bg-white shadow">--}}
 {{--    <div class="py-4">--}}
 {{--      <h5 class="mb-4"><span class="text-xl text-primary mr-2"><i class="text-xl iconfont icon-file-done"></i></span>订单信息--}}
 {{--      </h5>--}}
@@ -224,9 +224,9 @@
 @section('scripts')
   <script>
     $(document).ready(function () {
+      $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('#lwfooter').removeClass('absolute');
-
       $("input[name='paytype']").change(() => {
         $('#bottonsubmit').toggle();
         $('#btn-wechat').toggle();
