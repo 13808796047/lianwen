@@ -12,6 +12,7 @@ class OrderService
 {
     public function add($user, $category, $uploader, $request, $fileWords, $wordHandler)
     {
+
         $order = \DB::transaction(function() use ($user, $category, $uploader, $request, $fileWords, $wordHandler) {
             if($file = $request->file) {
                 if(!in_array($file->getClientOriginalExtension(), ['doc', 'docx'])) {
