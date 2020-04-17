@@ -14,7 +14,7 @@
       <div class="row-fluid">
         <div class="span12">
           <div class="row-fluid">
-            <div class="widget container-narrow">
+            <div class="widget" style="width:95%;max-width:530px;margin:5% auto;">
               <div class="widget-header">
                 <i class="icon-edit"></i>
                 <h5>注册新账号</h5>
