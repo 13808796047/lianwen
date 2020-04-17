@@ -5,6 +5,11 @@
   <link href="{{asset('asset/css/theme.css')}}" rel="stylesheet"/>
   <link href="{{asset('asset/css/alertify.css')}}" rel="stylesheet"/>
   <link href="{{asset('asset/css/index.css')}}" rel="stylesheet"/>
+  <style>
+    .curfont{
+      font-size:16px;
+    }
+  </style>
 @stop
 
 @section('content')
@@ -109,9 +114,10 @@
 @section('scripts')
   <script !src="">
     $(() => {
+      $('.navbar>div').removeClass('container').addClass('container-fluid')
+      $('#headerlw').addClass('curfont')
       var wait = 60;
       var verification_key = '';
-
       function time(o) {
         if (wait == 0) {
           o.removeAttribute("disabled");
