@@ -15,10 +15,12 @@ class User extends Authenticatable implements JWTSubject
     const COMMON_USER_TYPE = 0;
     const COMMON_AGENT_TYPE = 1;
     const SENIOR_AGENT_TYPE = 2;
+    const VIP_USER_TYPE = 3;
     public static $userType = [
         self::COMMON_USER_TYPE => '普通用户',
         self::COMMON_AGENT_TYPE => '普通代理',
         self::SENIOR_AGENT_TYPE => '高级代理',
+        self::VIP_USER_TYPE => 'VIP用户',
     ];
 
     public function getJWTIdentifier()
@@ -29,6 +31,11 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'custom_prices')->withPivot('price');
     }
 
     public function orders()

@@ -28,6 +28,11 @@ class Category extends Model
         return $this->hasMany(Order::class, 'cid');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'custom_prices')->withPivot('price');
+    }
+
     public function getSysLogoAttribute()
     {
         //如果image字段本身就已经是完整的Url就直接返回

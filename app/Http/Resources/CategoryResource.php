@@ -14,7 +14,10 @@ class CategoryResource extends JsonResource
      */
     public function toArray($request)
     {
+//        dd(11);
         $data = parent::toArray($request);
+        $data['price'] = self::getPrice($this);
         return $data;
     }
+
 }
