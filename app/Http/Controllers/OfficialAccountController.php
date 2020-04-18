@@ -24,9 +24,7 @@ class OfficialAccountController extends Controller
         $result = $this->app->qrcode->temporary('foo', 600);
         $qrcodeUrl = $this->app->qrcode->url($result['ticket']);
 
-        return response()->json([
-            'qrcodeUrl' => $qrcodeUrl
-        ], 200);
+        return response($qrcodeUrl, 200);
     }
 
     public function serve()
