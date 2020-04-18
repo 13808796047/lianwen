@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use EasyWeChat\Factory;
 use Illuminate\Http\Request;
 
@@ -30,19 +31,83 @@ class OfficialAccountController extends Controller
     public function serve()
     {
         $this->app->server->push(function($message) {
-            if($message['Event'] === 'SCAN') {
-                $openid = $message['FromUserName'];
-                $user = auth()->user();
-                $user->update([
-                    'weixin_openid' => $openid
-                ]);
-                return redirect()->back();
-            } else {
-                // TODO： 用户不存在时，可以直接回返登录失败，也可以创建新的用户并登录该用户再返回
-                return '关注失败';
+            if($message) {
+                $method = camel_case('handle_' . $message['MsgType']);
+                if(method_exists($this, $method)) {
+                    $this->openid = $message['FromUserName'];
+
+                    return call_user_func_array([$this, $method], [$message]);
+                }
+                Log::info('无此处理方法:' . $method);
             }
-        }, \EasyWeChat\Kernel\Messages\Message::EVENT);
+        });
 
         return $this->app->server->serve();
+    }
+
+    /**
+     * 事件引导处理方法（事件有许多，拆分处理）
+     *
+     * @param $event
+     *
+     * @return mixed
+     */
+    protected function handleEvent($event)
+    {
+        Log::info('事件参数：', [$event]);
+
+        $method = camel_case('event_' . $event['Event']);
+        Log::info('处理方法:' . $method);
+
+        if(method_exists($this, $method)) {
+            return call_user_func_array([$this, $method], [$event]);
+        }
+
+        Log::info('无此事件处理方法:' . $method);
+    }
+
+    /**
+     * 取消订阅
+     *
+     * @param $event
+     */
+    protected function eventUnsubscribe($event)
+    {
+        $wxUser = User::whereWeixinOpenid($this->openid)->first();
+        $wxUser->weixin_openid = '';
+        $wxUser->save();
+    }
+
+    /**
+     * 订阅
+     *
+     * @param $event
+     *
+     * @throws \Throwable
+     */
+    protected function eventSubscribe($event)
+    {
+        $openId = $this->openid;
+
+        // 微信用户信息
+        $wxUser = $this->app->user->get($openId);
+        // 注册
+        $nickname = $this->filterEmoji($wxUser['nickname']);
+
+        $result = DB::transaction(function() use ($openId, $event, $nickname, $wxUser) {
+
+
+            // 用户
+            $user = auth()->user();
+            $user->update([
+                'nick_name' => $nickname,
+                'avatar' => $wxUser['headimgurl'],
+                'weixin_openid' => $wxUser['openid'],
+            ]);
+            Log::info('用户关注成功 openid：' . $openId);
+
+        });
+
+        Log::debug('SQL 错误: ', [$result]);
     }
 }
