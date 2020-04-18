@@ -34,7 +34,7 @@ class OfficialAccountController extends Controller
                 $openid = $message['FromUserName'];
                 $user = auth()->user();
                 $user->update([
-                    'openid' => $openid
+                    'weixin_openid' => $openid
                 ]);
                 return redirect()->back();
             } else {
