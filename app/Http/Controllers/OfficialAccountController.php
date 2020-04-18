@@ -15,7 +15,6 @@ class OfficialAccountController extends Controller
         $this->app = Factory::officialAccount(config('wechat.official_account.default'));
         $accessToken = $this->app->access_token;
         $token = $accessToken->getToken(); // token 数组  token['access_token'] 字符串
-        dd($token);
         $this->app['access_token']->setToken(token['access_token']);
     }
 
