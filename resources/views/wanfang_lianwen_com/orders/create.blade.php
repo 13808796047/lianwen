@@ -5,22 +5,25 @@
     .selected {
       display: block;
     }
+    .curfont{
+      font-size:16px;
+    }
   </style>
 @stop
 @section('content')
   <div class="p-4 mb-24">
-    <div class="grid grid-cols-6 gap-4">
+    <div class="grid grid-cols-6 gap-4" style="background:#fff">
       <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
         <ul class=" category">
           @foreach($categories as $item)
             <li class="float-left position-relative mr-4 "
                 data-id="{{ $item->id }}">
               <i class="position-absolute hidden"><img src="{{ asset('asset/images/icon-y.png') }}"
-                                                       class="img-fluid"
+                                                       style="width:100%;height:90px"
                                                        alt=""></i>
               <a href="javascript:;" class="icon-img checkpro-1">
                 <img src="{{$item->sys_logo}}" alt=""
-                     class="img-fluid">
+                style="width:100%;height:90px">
               </a>
               <p class="text-center text-xs py-2">
                 <span>{{$item->name}}</span>
@@ -108,7 +111,7 @@
                   @enderror
                   <label class="custom-file-label" for="customFile" data-browse="选择文件"></label>
                 </div>
-                <p class="text-xs">支持文档格式：DOCX,TXT</p>
+                <p class="text-xs">仅支持docx和txt格式，最大支持15M</p>
               </div>
               <div id="contenttext" class="tab-pane fade">
                 <br>
@@ -135,24 +138,18 @@
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
-        <dl class="problem text-sm">
-          <dt>常见问题</dt>
-          <dd>
-            <a>可以检测哪些类别的文章？</a>
-          </dd>
-          <dd>
-            <a>比对指纹数据库有哪些？</a>
-          </dd>
-          <dd>
-            <a>单次最多可以提交多少字？</a>
-          </dd>
-          <dd>
-            <a>检测的论文是否会被添加到对比数据库？</a>
-          </dd>
-          <dd>
-            <a>提交论文后多久能够获得检测报告？</a>
-          </dd>
-        </dl>
+        <b>1、检测结果是否准确？</b>
+        <p>如果你们学校也是用万方检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。</p>
+        <b>2、检测需要多少时间？</b>
+        <p>正常情况，万方检测需要10分钟左右，高峰期可能会延迟，但不会超过1个小时，如果长时间未出结果请联系客服微信：cx5078解决。</p>
+        <b>3、论文上传之后安全吗？</b>
+        <p>本系统有明确的条文规定并遵守严格的论文保密规定，对所有用户提交的送检文档仅做检测分析，绝不保留全文，承诺对用户送检的文档不做任何形式的收录和泄露。</p>
+        <b>4、提交以后能不能退款？</b>
+        <p>此系统一旦提交，系统开始检测后，即产生消费，无法退款！</p>
+        <b>5、检测内容范围？</b>
+        <p>系统不检测文章中的封面、致谢、学校(需要替换成"X")等个人信息，请在提交前自己删除，若提交后由系统自动删除时出现的任何问题责任自负！</p>
+        <b>6、检测时作者需要填吗？</b>
+        <p>在提交检测的文章中，引用了一些内以前自己所写的内容并且被小论文系统文献库收录，需要在此次检测中排除这些；则会有“去除本人已发表文献复制比”的结果。</p>
       </div>
     </div>
   </div>
@@ -161,6 +158,7 @@
   <script>
     $(() => {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
+      $('#headerlw').addClass('curfont')
       $('.category>li:first-child i').addClass('selected')
       $('#cid').val($('.category>li:first-child').data('id'))
       $('.category>li').click(function () {
