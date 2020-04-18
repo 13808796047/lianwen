@@ -34,7 +34,7 @@ class OfficialAccountController extends Controller
         $token = $accessToken->getToken(); // token 数组  token['access_token'] 字符串
         $this->app['access_token']->setToken($token['access_token']);
         info('公众号触发事件了....');
-//        $this->app->server->push(function($message) {
+        $this->app->server->push(function($message) {
 //            if($message) {
 //                $method = camel_case('handle_' . $message['MsgType']);
 //                if(method_exists($this, $method)) {
@@ -44,7 +44,8 @@ class OfficialAccountController extends Controller
 //                }
 //                Log::info('无此处理方法:' . $method);
 //            }
-//        });
+            return "您好！欢迎使用 联文检测";
+        });
 
         return $this->app->server->serve();
     }
