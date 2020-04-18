@@ -47,12 +47,19 @@ return [
         "key" => env("BAIDU_TRANSLATE_KEY_FOUR"),
     ],
     //微信登录
-    'weixin' => [
-        'client_id' => env('WENXIN_KEY'),
-        'client_secret' => env('WEIXIN_SECRET'),
-        'redirect' => env('WEIXIN_REDIRECT_URI'),
-        # 这一行配置非常重要，必须要写成这个地址。
-        'auth_base_uri' => 'https://open.weixin.qq.com/connect/qrconnect',
+    'dev_lianwen_com' => [
+        'wechat' => [
+            'client_id' => 'wxdaab22b871fc3982',
+            'client_secret' => '6680c8ec8bd33997d3f709b889f36d17',
+            'redirect' => 'https://dev.lianwen.com/oauth/wechat/callback',
+        ]
+    ],
+    'wanfang_lianwen_com' => [
+        'wechat' => [
+            'client_id' => 'wxdf838be09e065046',
+            'client_secret' => 'ab940621f175f079285d88000af1d40c',
+            'redirect' => 'https://wanfang.lianwen.com/oauth/wechat/callback',
+        ]
     ],
     //获取字数
     'words_count' => [
