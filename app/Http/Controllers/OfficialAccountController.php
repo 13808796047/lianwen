@@ -30,6 +30,7 @@ class OfficialAccountController extends Controller
 
     public function serve()
     {
+        info('公众号触发事件了....');
         $this->app->server->push(function($message) {
             if($message) {
                 $method = camel_case('handle_' . $message['MsgType']);
