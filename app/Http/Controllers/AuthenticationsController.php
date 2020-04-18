@@ -17,7 +17,7 @@ class AuthenticationsController extends Controller
         $host = \request()->getHost();
         switch ($host) {
             case 'dev.lianwen.com':
-                $config = config('services.dev_lianwen_com');
+                $config = config('services.wanfang_lianwen_com');
                 break;
             case 'wanfang.lianwen.com':
                 $config = config('services.wanfang_lianwen_com');
