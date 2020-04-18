@@ -24,7 +24,7 @@ class OfficialAccountController extends Controller
         $qrCode = $this->app->qrcode;
         $result = $qrCode->temporary('wechat', 3600 * 24);
         $url = $qrCode->url($result['ticket']);
-        return response($url, 200);
+        return response($url->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
     }
 
     public function serve()
