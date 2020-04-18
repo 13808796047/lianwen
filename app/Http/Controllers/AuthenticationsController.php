@@ -14,13 +14,17 @@ class AuthenticationsController extends Controller
 
     public function __construct()
     {
-        $config = [
-            'wechat' => [
-                'client_id' => 'wxdaab22b871fc3982', // AppID
-                'client_secret' => '6680c8ec8bd33997d3f709b889f36d17', // AppSecret
-                'redirect' => 'https://dev.lianwen.com/oauth/wechat/callback',
-            ]
-        ];
+        $host = \request()->getHost();
+        switch ($host) {
+            case 'dev.lianwen.com':
+                $config = config('services.dev_lianwen_com');
+                break;
+            case 'wanfang.lianwen.com':
+                $config = config('services.wanfang_lianwen.com');
+                break;
+            default:
+                $config = config('services.dev_lianwen_com');
+        }
         $this->app = new SocialiteManager($config);
     }
 
