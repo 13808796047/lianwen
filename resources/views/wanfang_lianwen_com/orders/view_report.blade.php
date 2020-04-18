@@ -13,59 +13,59 @@
 @stop
 @section('content')
   <div class="main clearfix">
-      <div class="lbox fl">
-        <div>
-          <div class="card-body">
-            <div class="card-title">
-              <h2 class="text-3xl text-center">{{ $order->title }}</h2>
-              <div class="info">
-                <span>作者:</span>
-                &emsp;
-                <span>{{ $order->writer }}</span>
-                &emsp;
-                <span>提交时间:</span>
-                &emsp;
-                <span>{{ $order->created_at }}</span>
-                &emsp;
-                <span>重复率:</span>
-                &emsp;
-                <span>{{ $order->rate }}</span>
-                &emsp;
-                <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
-                   class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
-              </div>
+    <div class="lbox fl">
+      <div>
+        <div class="card-body">
+          <div class="card-title">
+            <h2 class="text-3xl text-center">{{ $order->title }}</h2>
+            <div class="info">
+              <span>作者:</span>
+              &emsp;
+              <span>{{ $order->writer }}</span>
+              &emsp;
+              <span>提交时间:</span>
+              &emsp;
+              <span>{{ $order->created_at }}</span>
+              &emsp;
+              <span>重复率:</span>
+              &emsp;
+              <span>{{ $order->rate }}</span>
+              &emsp;
+              <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
+                 class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
             </div>
-            @if($order->report->content)
-              {!! $order->report->content !!}
-            @else
-              <!-- <h2 class="text-center text-5xl">暂无内容!!!!</h2> -->
-              <iframe src="https://wap.lianwen.com/dev/weipu.pdf" width="100%" height="650"></iframe>
-            @endif
           </div>
+        @if($order->report->content)
+          {!! $order->report->content !!}
+        @else
+          <!-- <h2 class="text-center text-5xl">暂无内容!!!!</h2> -->
+            <iframe src="https://dev.lianwen.com/pdf/{{$order->orderid}}.pdf" width="100%" height="650"></iframe>
+          @endif
         </div>
       </div>
-      <div class="rbox fr">
-        <div class="bg-white p-5">
-          <dl class="problem text-sm">
-            <dt>常见问题</dt>
-            <dd>
-              <a>可以检测哪些类别的文章？</a>
-            </dd>
-            <dd>
-              <a>比对指纹数据库有哪些？</a>
-            </dd>
-            <dd>
-              <a>单次最多可以提交多少字？</a>
-            </dd>
-            <dd>
-              <a>检测的论文是否会被添加到对比数据库？</a>
-            </dd>
-            <dd>
-              <a>提交论文后多久能够获得检测报告？</a>
-            </dd>
-          </dl>
-        </div>
+    </div>
+    <div class="rbox fr">
+      <div class="bg-white p-5">
+        <dl class="problem text-sm">
+          <dt>常见问题</dt>
+          <dd>
+            <a>可以检测哪些类别的文章？</a>
+          </dd>
+          <dd>
+            <a>比对指纹数据库有哪些？</a>
+          </dd>
+          <dd>
+            <a>单次最多可以提交多少字？</a>
+          </dd>
+          <dd>
+            <a>检测的论文是否会被添加到对比数据库？</a>
+          </dd>
+          <dd>
+            <a>提交论文后多久能够获得检测报告？</a>
+          </dd>
+        </dl>
       </div>
+    </div>
   </div>
 @stop
 @section('scripts')
