@@ -20,11 +20,11 @@ class OfficialAccountController extends Controller
      */
     public function index()
     {
-
-        $result = $this->app->qrcode->temporary('foo', 600);
-        $qrcodeUrl = $this->app->qrcode->url($result['ticket']);
-
-        return response($qrcodeUrl, 200);
+        // 有效期 1 天的二维码
+        $qrCode = $this->app->qrcode;
+        $result = $qrCode->temporary('wechat', 3600 * 24);
+        $url = $qrCode->url($result['ticket']);
+        return response($url, 200);
     }
 
     public function serve()
