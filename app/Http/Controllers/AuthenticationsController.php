@@ -20,7 +20,7 @@ class AuthenticationsController extends Controller
                 $config = config('services.dev_lianwen_com');
                 break;
             case 'wanfang.lianwen.com':
-                $config = config('services.wanfang_lianwen.com');
+                $config = config('services.wanfang_lianwen_com');
                 break;
             default:
                 $config = config('services.dev_lianwen_com');
