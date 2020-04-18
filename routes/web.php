@@ -61,4 +61,4 @@ Auth::routes();
 Route::post('payments/baidu/notify', 'PaymentsController@baiduNotify')->name('payments.baidu.notify');
 // 公众号关注
 Route::get('official_account', 'OfficialAccountController@index')->name('official_account.index');
-Route::get('official_account/serve', 'OfficialAccountController@serve')->name('official_account.serve');
+Route::any('official_account/serve', 'OfficialAccountController@serve')->name('official_account.serve');
