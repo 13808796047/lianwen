@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use EasyWeChat\Factory;
+use Endroid\QrCode\QrCode;
 use Illuminate\Http\Request;
 
 class OfficialAccountController extends Controller
@@ -24,7 +25,8 @@ class OfficialAccountController extends Controller
         $qrCode = $this->app->qrcode;
         $result = $qrCode->temporary('wechat', 3600 * 24);
         $url = $qrCode->url($result['ticket']);
-        return response($url, 200);
+        $qrCode = new QrCode($url);
+        return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
     }
 
     public function serve()
