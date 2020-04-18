@@ -158,11 +158,11 @@
 @section('scripts')
   <script>
     $(() => {
-      swal({
-        // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-        content: $('<img src="{{ route('official_account.index') }}" style="display: block;margin: 0 auto;"/>')[0],
-        // buttons 参数可以设置按钮显示的文案
-        buttons: ['关闭', '已完成付款'],
+      axios.get({{ route('official_account.index') }}).then(res => {
+        swal({
+          // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+          content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
+        })
       })
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
