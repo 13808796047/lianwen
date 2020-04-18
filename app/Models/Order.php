@@ -27,41 +27,41 @@ class Order extends Model
         ]);
     }
 
-    public function scopeWithOrder(Builder $query, string $dimension, string $date)
+    public function scopeWithOrder(Builder $query, string $date)
     {
-        switch ($dimension) {
+        switch ($date) {
             case "yesterday":
-                $query->yesterdayOrder($date);
+                $query->yesterdayOrder();
                 break;
             case 'month':
-                $query->monthOrder($date);
+                $query->monthOrder();
                 break;
             case 'pre_month':
-                $query->preMonthOrder($date);
+                $query->preMonthOrder();
                 break;
             default:
-                $query->todayOrder($date);
+                $query->todayOrder();
         }
     }
 
-    public function scopeTodayOrder(Builder $query, string $date)
+    public function scopeTodayOrder(Builder $query)
     {
-        return $query->whereBetween($date, [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()]);
+        return $query->whereBetween('date_pay', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()]);
     }
 
-    public function scopeYesterdayOrder(Builder $query, $date)
+    public function scopeYesterdayOrder(Builder $query)
     {
-        return $query->whereBetween($date, [Carbon::now()->subDay()->startOfDay(), Carbon::now()->subDay()->endOfDay()]);
+        return $query->whereBetween('date_pay', [Carbon::now()->subDay()->startOfDay(), Carbon::now()->subDay()->endOfDay()]);
     }
 
-    public function scopeMonthOrder(Builder $query, $date)
+    public function scopeMonthOrder(Builder $query)
     {
-        return $query->whereBetween($date, [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()]);
+        return $query->whereBetween('date_pay', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()]);
     }
 
-    public function scopePreMonthOrder(Builder $query, $date)
+    public function scopePreMonthOrder(Builder $query)
     {
-        return $query->whereBetween($date, [Carbon::now()->subMonth()->startOfMonth(), Carbon::now()->subMonth()->endOfMonth()]);
+        return $query->whereBetween('date_pay', [Carbon::now()->subMonth()->startOfMonth(), Carbon::now()->subMonth()->endOfMonth()]);
     }
 
     //分类
