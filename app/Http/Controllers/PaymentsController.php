@@ -52,8 +52,8 @@ class PaymentsController extends Controller
             ], 500);
         }
         $order = Order::where('payid', $result->out_trade_no)->first();
-
-        return view('domained::orders.index', ['orders' => auth()->user()->orders]);
+        $orders = auth()->user()->orders()->with('category:id,name')->latest()->paginate(10);
+        return view('domained::orders.index', compact('orders'));
     }
 
     // 服务器端回调
