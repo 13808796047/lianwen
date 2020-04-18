@@ -142,7 +142,7 @@
           <div class="modal-footer" style="justify-content: space-between;">
             <div style="display: flex;align-items: center;"> 
                <p class="text-sm">社交账号登录</p>
-               <a data-href="{{route('oauth',['type'=>'wechat'])}}" id="toWechat" class="block mr-4" style="padding-left:23px">
+               <a href="{{route('oauth',['type'=>'wechat'])}}" id="toWechat" class="block mr-4" style="padding-left:23px">
                   <svg t="1585367706568" class="icon" viewBox="0 0 1024 1024" version="1.1"
                      xmlns="http://www.w3.org/2000/svg" p-id="1112" width="24" height="24">
                    <path
@@ -605,9 +605,6 @@
       //   }
       // });
       // $().UItoTop({easingType: 'easeOutQuart'});
-      $('#toWechat').click(function (e) {
-        window.open($('#toWechat').attr("data-href"), "微信登录", "height=350, width=800, toolbar= no, menubar=no, scrollbars=no, resizable=no, location=no, status=no,top=100,left=300");
-      })
       // Tab切换
       $('.banner-li').click(function () {
         $(this)
