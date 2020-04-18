@@ -139,10 +139,10 @@
             {{--            </div>--}}
 
           </div>
-          <div class="modal-footer" style="justify-content: space-evenly;">
+          <div class="modal-footer" style="justify-content: space-between;">
             <div style="display: flex;align-items: center;"> 
-               <p class="text-blue-500 text-sm">社交账号登录</p>
-               <a href="{{route('oauth',['type'=>'wechat'])}}" class="block mr-4">
+               <p class="text-sm">社交账号登录</p>
+               <a href="{{route('oauth',['type'=>'wechat'])}}" class="block mr-4" style="padding-left:23px">
                   <svg t="1585367706568" class="icon" viewBox="0 0 1024 1024" version="1.1"
                      xmlns="http://www.w3.org/2000/svg" p-id="1112" width="24" height="24">
                    <path
