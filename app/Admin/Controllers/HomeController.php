@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index(Request $request, Content $content)
     {
         $classOrders = Category::query()->with(['orders' => function($query) use ($request) {
-            $query->withOrder($request->date);
+            $query->withOrder('yesterday');
         }])->get();
 //        $totalOrders = Category::query()->with(['orders' => function($query) use ($request) {
 //            $query->withOrder('created_at', $request->date);

@@ -27,7 +27,7 @@ class Order extends Model
         ]);
     }
 
-    public function scopeWithOrder(Builder $query, string $date)
+    public function scopeWithOrder($query, $date)
     {
         switch ($date) {
             case "yesterday":
