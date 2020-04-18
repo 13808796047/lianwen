@@ -37,7 +37,7 @@
           @foreach($class_orders as $order)
             <tr>
               <td>{{ $order->name }}</td>
-              <td>{{$order->orders->count().'/'.$total_orders->count()}}</td>
+              <td>{{$order->orders->count().'/'.\App\Models\Order::query()->whereNotNull('date_pay')->count()}}</td>
               <td>{{@number_format(($order->orders->count()/(\App\Models\Order::query()->whereNotNull('date_pay')->count()) *100),2)}}
                 %
               </td>
