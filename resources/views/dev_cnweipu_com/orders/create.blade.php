@@ -9,7 +9,7 @@
 @stop
 @section('content')
   <div class="p-4 mb-24">
-    <div class="grid grid-cols-6 gap-4">
+    <div class="grid grid-cols-6 gap-4" style="background:#fff">
       <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
         <ul class=" category">
           @foreach($categories as $item)
