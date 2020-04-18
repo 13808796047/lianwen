@@ -35,6 +35,7 @@ class OfficialAccountController extends Controller
         $this->app['access_token']->setToken($token['access_token']);
         info('公众号触发事件了....');
         $this->app->server->push(function($message) {
+            info('公众号触发事件了....', $message);
 //            if($message) {
 //                $method = camel_case('handle_' . $message['MsgType']);
 //                if(method_exists($this, $method)) {
