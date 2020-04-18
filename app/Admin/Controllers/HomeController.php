@@ -30,19 +30,19 @@ class HomeController extends Controller
     public function index(Request $request, Content $content)
     {
         $classOrders = Category::query()->with(['orders' => function($query) use ($request) {
-            $query->withOrder('yesterday');
+            $query->withOrder($request->date);
         }])->get();
 //        $totalOrders = Category::query()->with(['orders' => function($query) use ($request) {
 //            $query->withOrder('created_at', $request->date);
 //        }])->get();
-//        $sourceOrders = Order::query()->withOrder('date_pay', $request->date)->get()->groupBy('from');
+        $sourceOrders = Order::query()->withOrder($request->date)->get()->groupBy('from');
 //        $sourceTotalOrders = Order::query()->withOrder('created_at', $request->date)->get()->groupBy('from');
         return $content
             ->title('首页')
             ->view('admin.home.index', [
                 'class_orders' => $classOrders,
 //                'total_orders' => $totalOrders,
-//                'source_orders' => $sourceOrders,
+                'source_orders' => $sourceOrders,
 //                'source_total_orders' => $sourceTotalOrders,
             ]);
     }
