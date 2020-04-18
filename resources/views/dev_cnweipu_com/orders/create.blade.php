@@ -111,7 +111,7 @@
                   @enderror
                   <label class="custom-file-label" for="customFile" data-browse="选择文件"></label>
                 </div>
-                <p class="text-xs">支持文档格式：DOCX,TXT</p>
+                <p class="text-xs">仅支持docx和txt格式，最大支持15M</p>
               </div>
               <div id="contenttext" class="tab-pane fade">
                 <br>
@@ -138,24 +138,14 @@
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
-        <dl class="problem text-sm">
-          <dt>常见问题</dt>
-          <dd>
-            <a>可以检测哪些类别的文章？</a>
-          </dd>
-          <dd>
-            <a>比对指纹数据库有哪些？</a>
-          </dd>
-          <dd>
-            <a>单次最多可以提交多少字？</a>
-          </dd>
-          <dd>
-            <a>检测的论文是否会被添加到对比数据库？</a>
-          </dd>
-          <dd>
-            <a>提交论文后多久能够获得检测报告？</a>
-          </dd>
-        </dl>
+        <b>1、怎么选择适合自己的论文检测系统？</b>
+        <p>只有使用和学校相同的数据库，才能保证重复率与学校、杂志社100%一致：</br>论文初次修改可使用联文检测、PaperPass，定稿再使用与学校一样的系统。</p>
+        <b>2、检测要多长时间，报告怎么还没出来？</b>
+        <p>正常检测20分钟左右，毕业高峰期，服务器检测压力大，时间会有延长，请大家提前做好时间准备。超过2小时没出结果可以联系客服处理！</p>
+        <b>3、同一篇论文可以多次检测吗？？</b>
+        <p>本站不限制论文检测次数，但检测一次需支付一次费用。</p>
+        <b>4、检测报告有网页版、pdf格式的吗？</b>
+        <p>检测完成后会提供网页版和pdf格式的检测报告，报告只是格式不同，重复率都一样的。</p>
       </div>
     </div>
   </div>
