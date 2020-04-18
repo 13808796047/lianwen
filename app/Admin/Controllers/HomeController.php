@@ -32,18 +32,18 @@ class HomeController extends Controller
         $classOrders = Category::query()->with(['orders' => function($query) use ($request) {
             $query->withOrder('date_pay', $request->date);
         }])->get();
-        $totalOrders = Category::query()->with(['orders' => function($query) use ($request) {
-            $query->withOrder('created_at', $request->date);
-        }])->get();
-        $sourceOrders = Order::query()->withOrder('date_pay', $request->date)->get()->groupBy('from');
-        $sourceTotalOrders = Order::query()->withOrder('created_at', $request->date)->get()->groupBy('from');
+//        $totalOrders = Category::query()->with(['orders' => function($query) use ($request) {
+//            $query->withOrder('created_at', $request->date);
+//        }])->get();
+//        $sourceOrders = Order::query()->withOrder('date_pay', $request->date)->get()->groupBy('from');
+//        $sourceTotalOrders = Order::query()->withOrder('created_at', $request->date)->get()->groupBy('from');
         return $content
             ->title('首页')
             ->view('admin.home.index', [
                 'class_orders' => $classOrders,
-                'total_orders' => $totalOrders,
-                'source_orders' => $sourceOrders,
-                'source_total_orders' => $sourceTotalOrders,
+//                'total_orders' => $totalOrders,
+//                'source_orders' => $sourceOrders,
+//                'source_total_orders' => $sourceTotalOrders,
             ]);
     }
 
