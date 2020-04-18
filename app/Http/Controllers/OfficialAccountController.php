@@ -13,6 +13,10 @@ class OfficialAccountController extends Controller
     public function __construct()
     {
         $this->app = Factory::officialAccount(config('wechat.official_account.default'));
+        $accessToken = $this->app->access_token;
+        $token = $accessToken->getToken(); // token 数组  token['access_token'] 字符串
+        dd($token);
+        $this->app['access_token']->setToken(token['access_token']);
     }
 
     /**
@@ -30,9 +34,6 @@ class OfficialAccountController extends Controller
 
     public function serve()
     {// 获取 access token 实例
-        $accessToken = $this->app->access_token;
-        $token = $accessToken->getToken(); // token 数组  token['access_token'] 字符串
-        $this->app['access_token']->setToken($token);
         info('公众号触发事件了....', $token);
         $this->app->server->push(function($message) {
             if($message) {
