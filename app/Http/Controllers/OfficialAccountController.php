@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use EasyWeChat\Factory;
 use Illuminate\Http\Request;
 
 class OfficialAccountController extends Controller
@@ -33,19 +34,11 @@ class OfficialAccountController extends Controller
         $this->app->server->push(function($message) {
             if($message['Event'] === 'SCAN') {
                 $openid = $message['FromUserName'];
-
                 $user = auth()->user();
-
-                if($user) {
-                    $user->update([
-                        'openid' => $openid
-                    ]);
-                    // TODO: 这里根据情况加入其它鉴权逻辑
-                    session('wechat', compact('user'));
-
-                }
-
-                return '失败鸟';
+                $user->update([
+                    'openid' => $openid
+                ]);
+                return redirect()->back();
             } else {
                 // TODO： 用户不存在时，可以直接回返登录失败，也可以创建新的用户并登录该用户再返回
                 return '关注失败';

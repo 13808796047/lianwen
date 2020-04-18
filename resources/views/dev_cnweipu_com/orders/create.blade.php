@@ -5,15 +5,16 @@
     .selected {
       display: block;
     }
-    .curfont{
-      font-size:16px;
+
+    .curfont {
+      font-size: 16px;
     }
   </style>
 @stop
 @section('content')
   <div class="p-4 mb-24">
-    <div class="grid grid-cols-6 gap-4" >
-      <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff;" >
+    <div class="grid grid-cols-6 gap-4">
+      <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff;">
         <ul class=" category">
           @foreach($categories as $item)
             <li class="float-left position-relative mr-4 "
@@ -23,7 +24,7 @@
                                                        alt=""></i>
               <a href="javascript:;" class="icon-img checkpro-1">
                 <img src="{{$item->sys_logo}}" alt=""
-                style="width:100%;height:90px">
+                     style="width:100%;height:90px">
               </a>
               <p class="text-center text-xs py-2">
                 <span>{{$item->name}}</span>
@@ -137,7 +138,7 @@
           <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" onclick="checkType()">
         </form>
       </div>
-      <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff" >
+      <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
         <b>1、检测结果是否准确？</b>
         <p>如果你们学校也是用万方检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。</p>
         <b>2、检测需要多少时间？</b>
@@ -157,6 +158,12 @@
 @section('scripts')
   <script>
     $(() => {
+      swal({
+        // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+        content: $('<img src="{{ route('official_account.index') }}" style="display: block;margin: 0 auto;"/>')[0],
+        // buttons 参数可以设置按钮显示的文案
+        buttons: ['关闭', '已完成付款'],
+      })
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('.category>li:first-child i').addClass('selected')

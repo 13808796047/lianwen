@@ -59,3 +59,5 @@ Route::get('payments/{order}/return', 'PaymentsController@wechatReturn')->name('
 Auth::routes();
 //百度支付
 Route::post('payments/baidu/notify', 'PaymentsController@baiduNotify')->name('payments.baidu.notify');
+// 公众号关注
+Route::get('official_account', 'OfficialAccountController@index')->name('official_account.index');
