@@ -606,7 +606,7 @@
       // });
       // $().UItoTop({easingType: 'easeOutQuart'});
       $('#toWechat').click(function (e) {
-        console.log(e,3123123)
+        window.open($('#toWechat').attr("data-href"), "微信登录", "height=350, width=800, toolbar= no, menubar=no, scrollbars=no, resizable=no, location=no, status=no,top=100,left=300");
       })
       // Tab切换
       $('.banner-li').click(function () {
