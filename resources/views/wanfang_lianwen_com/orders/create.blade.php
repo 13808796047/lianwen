@@ -12,8 +12,8 @@
 @stop
 @section('content')
   <div class="p-4 mb-24">
-    <div class="grid grid-cols-6 gap-4" style="background:#fff">
-      <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
+    <div class="grid grid-cols-6 gap-4" >
+      <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff;" >
         <ul class=" category">
           @foreach($categories as $item)
             <li class="float-left position-relative mr-4 "
@@ -42,7 +42,7 @@
                   <b class="text-danger">{{ $item->price }}</b>
                 @endswitch
 
-                <span>({{\App\Models\Category::$priceTypeMap[$item->price_type]}})</span>
+                <span>/{{\App\Models\Category::$priceTypeMap[$item->price_type]}}</span>
               </p>
             </li>
           @endforeach
@@ -137,7 +137,7 @@
           <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" onclick="checkType()">
         </form>
       </div>
-      <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">
+      <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff" >
         <b>1、检测结果是否准确？</b>
         <p>如果你们学校也是用万方检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。</p>
         <b>2、检测需要多少时间？</b>
