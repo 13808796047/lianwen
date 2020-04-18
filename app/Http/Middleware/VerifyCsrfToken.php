@@ -17,6 +17,7 @@ class VerifyCsrfToken extends Middleware
         'payments/baidu/notify',
         'orders/*',
         'oauth/weixin/callback',
-        'oauth/weixin'
+        'oauth/weixin',
+        'official_account/*'
     ];
 }
