@@ -3,8 +3,8 @@
 @section('styles')
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <style>
-    .curfont{
-      font-size:16px;
+    .curfont {
+      font-size: 16px;
     }
   </style>
 @stop
@@ -30,7 +30,11 @@
             <td>{{$order->title}}</td>
             <td>{{ $order->category->name ?? '' }}</td>
             <td>{{\App\Models\Enum\OrderEnum::getStatusName($order->status)}}</td>
-            <td>{{ $order->rate }}</td>
+            @if($order->rate==0.00)
+              <td>-</td>
+            @else
+              <td>{{ $order->rate }}</td>
+            @endif
             <td>{{$order->created_at}}</td>
             @if($order->status==0)
               <td><a href='{{route('orders.show',$order)}}' class="bbtn">支付</a></td>
@@ -44,10 +48,10 @@
         </tbody>
       </table>
       <div class="flex justify-between">
-        
+
         <a class="inline-block text-white py-2 px-4" id="del_item"><span style="background: red;
     padding: 5px 10px;">删除</span></a>
-      
+
         <span class="p-2">共{{$orders->total()}}条</span>
         <nav aria-label="Page navigation ">
           <ul class="pagination ">

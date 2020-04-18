@@ -28,9 +28,12 @@
               <span>{{ $order->created_at }}</span>
               &emsp;
               <span>重复率:</span>
-              &emsp;
-              <span>{{ $order->rate }}</span>
-              &emsp;
+              &emsp;@if($order->rate==0.00)
+                <span>-</span>
+                &emsp;@else
+                <span>{{ $order->rate }}</span>
+              @endif
+              
               <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
                  class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
             </div>
@@ -61,7 +64,6 @@
         <b>6、检测时作者需要填吗？</b>
         <p>在提交检测的文章中，引用了一些内以前自己所写的内容并且被小论文系统文献库收录，需要在此次检测中排除这些；则会有“去除本人已发表文献复制比”的结果。</p>
       </div>
-
     </div>
   </div>
   </div>
