@@ -131,7 +131,7 @@ class OrdersController extends AdminController
             }
             $path = 'downloads/report-' . $order->api_orderid . '.zip';
             \Storage::delete($path);
-            $result = \Storage::putFileAs($path, $file, 'report-' . $order->api_orderid . '.zip');
+            $result = \Storage::put($path, $file);
             if($result) {
                 $report_path = $path;
             }
