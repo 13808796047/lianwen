@@ -131,7 +131,11 @@ class OrderApiHandler
                 'Token' => $this->token
             ],
         ];
-        $response = $this->http->get($this->api . 'order/extract-report-detail/' . $id, $option);
-        return json_decode($response->getbody()->getContents());
+        try {
+            $response = $this->http->get($this->api . 'order/extract-report-detail/' . $id, $option);
+            return json_decode($response->getbody()->getContents());
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
