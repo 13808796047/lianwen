@@ -66,7 +66,7 @@ class CheckOrderStatus implements ShouldQueue
                     $report_pdf_path = '';
                 }
                 $report_pdf_path = public_path('/pdf/') . $this->order->orderid . '.pdf';
-                \Storage::delete($report_pdf_path);
+                unlink($report_pdf_path);
                 file_put_contents($report_pdf_path, $content);
                 $zip->close();
             }
