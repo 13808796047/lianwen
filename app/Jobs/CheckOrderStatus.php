@@ -36,6 +36,7 @@ class CheckOrderStatus implements ShouldQueue
             $file = $api->downloadReport($this->order->api_orderid);
             $path = 'downloads/report-' . $this->order->api_orderid . '.zip';
             \Storage::delete($path);
+            chmod(storage_path('app/' . $path), 0777);
             \Storage::put($path, $file);
             info(storage_path('app/' . $path));
             //解压zip文件
@@ -66,6 +67,7 @@ class CheckOrderStatus implements ShouldQueue
                     $report_pdf_path = '';
                 }
                 $report_pdf_path = public_path('/pdf/') . $this->order->orderid . '.pdf';
+                chmod($report_pdf_path, 0777);
                 file_put_contents($report_pdf_path, $content);
                 $zip->close();
             }
