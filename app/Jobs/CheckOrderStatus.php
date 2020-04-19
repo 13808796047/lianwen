@@ -70,7 +70,7 @@ class CheckOrderStatus implements ShouldQueue
                 $zip->close();
             }
             $report = $api->extractReportDetail($this->order->api_orderid);
-            info('报告接口数据', $report);
+            info('报告接口数据', $report->code);
             if($report->code == 503) {
                 $report->data->content = '';
             }
