@@ -72,21 +72,19 @@ class CheckOrderStatus implements ShouldQueue
             try {
                 $report = $api->extractReportDetail($this->order->api_orderid);
             } catch (\Exception $e) {
-                $report->data->content = '';
+                $content = '';
             }
+            \DB::transaction(function() use ($path, $report, $result, $content, $report_pdf_path) {
+                $this->order->update([
+                    'report_path' => $path,
+                    'report_pdf_path' => $report_pdf_path,
+                    'rate' => $result->data->orderCheck->apiResultSemblance,
+                ]);
+                $this->order->report()->create([
+                    'content' => $report->data->content ?? $content
+                ]);
+            });
 
-            if($report->code == 200) {
-                \DB::transaction(function() use ($path, $report, $result, $report_pdf_path) {
-                    $this->order->update([
-                        'report_path' => $path,
-                        'report_pdf_path' => $report_pdf_path,
-                        'rate' => $result->data->orderCheck->apiResultSemblance,
-                    ]);
-                    $this->order->report()->create([
-                        'content' => $report->data->content
-                    ]);
-                });
-            }
         }
     }
 }
