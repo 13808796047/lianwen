@@ -129,7 +129,7 @@ class OrdersController extends AdminController
             if(!$file->isValid()) {
                 abort(400, '无效的上传文件');
             }
-            $path = 'downloads/report-' . $this->order->api_orderid . '.zip';
+            $path = 'downloads/report-' . $order->api_orderid . '.zip';
             \Storage::delete($path);
             $result = \Storage::putFileAs($path, $file, 'report-' . $order->api_orderid . '.zip');
             if($result) {
