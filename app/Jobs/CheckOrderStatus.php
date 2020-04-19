@@ -69,10 +69,12 @@ class CheckOrderStatus implements ShouldQueue
                 file_put_contents($report_pdf_path, $content);
                 $zip->close();
             }
-            $report = $api->extractReportDetail($this->order->api_orderid);
-            if($report->status == 0) {
+            try {
+                $report = $api->extractReportDetail($this->order->api_orderid);
+            } catch (\Exception $e) {
                 $report->data->content = '';
             }
+
             if($report->code == 200) {
                 \DB::transaction(function() use ($path, $report, $result, $report_pdf_path) {
                     $this->order->update([
