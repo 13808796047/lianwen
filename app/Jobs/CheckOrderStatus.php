@@ -72,7 +72,10 @@ class CheckOrderStatus implements ShouldQueue
             }
             $report = $api->extractReportDetail($this->order->api_orderid);
             info('报告接口数据', $report);
-            if($report) {
+            if($report->code == 503) {
+                $report->data->content = '';
+            }
+            if($report->code == 200) {
                 \DB::transaction(function() use ($path, $report, $result, $report_pdf_path) {
                     $this->order->update([
                         'report_path' => $path,
