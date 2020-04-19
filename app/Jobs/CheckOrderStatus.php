@@ -70,7 +70,7 @@ class CheckOrderStatus implements ShouldQueue
                 $zip->close();
             }
             $report = $api->extractReportDetail($this->order->api_orderid);
-            if($report->code == 503) {
+            if($report->status == 0) {
                 $report->data->content = '';
             }
             if($report->code == 200) {
