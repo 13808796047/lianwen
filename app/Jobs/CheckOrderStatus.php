@@ -66,7 +66,6 @@ class CheckOrderStatus implements ShouldQueue
                     $report_pdf_path = '';
                 }
                 $report_pdf_path = public_path('/pdf/') . $this->order->orderid . '.pdf';
-                chmod(public_path('/pdf/'), 0777);
                 file_put_contents($report_pdf_path, $content);
                 $zip->close();
             }
