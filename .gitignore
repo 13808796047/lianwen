@@ -5,7 +5,6 @@
 /storage/*.key
 /resources/wechat_pay
 /resources/views/lianwen_test
-/resources/views/mp_cnweipu_com
 /vendor
 .env
 .env.backup
