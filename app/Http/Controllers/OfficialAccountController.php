@@ -97,7 +97,6 @@ class OfficialAccountController extends Controller
 //            $eventKey = str_after($event['EventKey'], 'qrscene_');
 //        }
 
-        Log::info('EventKey:' . $eventKey);
         $user = User::FindOrFail($eventKey);
         $openId = $this->openid;
         // 微信用户信息
@@ -106,17 +105,12 @@ class OfficialAccountController extends Controller
 //        $nickname = $this->filterEmoji($wxUser['nickname']);
         $result = \DB::transaction(function() use ($openId, $user, $wxUser) {
             // 用户
-            Log::info('用户', [$user->phone]);
             $user->update([
                 'nick_name' => $wxUser['nickname'],
                 'avatar' => $wxUser['headimgurl'],
                 'weixin_openid' => $wxUser['openid'],
             ]);
-            Log::info('用户关注成功 openid：' . $openId);
-
         });
-
-        Log::debug('SQL 错误: ', [$result]);
     }
 
     /**
@@ -127,6 +121,11 @@ class OfficialAccountController extends Controller
     protected function eventUnsubscribe($event)
     {
         Log::info('取消关注公众号了...' . $this->openid);
+        if(empty($event['EventKey'])) {
+            return;
+        }
+        $eventKey = $event['EventKey'];
+        info('eventKey', $eventKey);
         $wxUser = User::whereWeixinOpenid($this->openid)->first();
         $wxUser->weixin_openid = '';
         $wxUser->save();
@@ -143,7 +142,11 @@ class OfficialAccountController extends Controller
     {
         Log::info('关注公众号了...' . $this->openid);
         $openId = $this->openid;
-
+        if(empty($event['EventKey'])) {
+            return;
+        }
+        $eventKey = $event['EventKey'];
+        info('eventKey', $eventKey);
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         // 注册
