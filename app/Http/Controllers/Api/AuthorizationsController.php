@@ -67,6 +67,7 @@ class AuthorizationsController extends Controller
             default:
                 $config = config('wechat.mini_program.default');
         }
+        dd($config);
         $app = Factory::miniProgram($config);
         $code = $request->code;
         $data = $app->auth->session($code);
