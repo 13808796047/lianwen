@@ -30,23 +30,24 @@ class OfficialAccountController extends Controller
 
     public function serve()
     {
-        $accessToken = $this->app->access_token;
-        $token = $accessToken->getToken(); // token 数组  token['access_token'] 字符串
-        $this->app['access_token']->setToken($token['access_token']);
-        info('公众号触发事件了....');
-        $this->app->server->push(function($message) {
-            info('公众号触发事件了....', $message);
-            if($message) {
-                $method = camel_case('handle_' . $message['MsgType']);
-                if(method_exists($this, $method)) {
-                    $this->openid = $message['FromUserName'];
-
-                    return call_user_func_array([$this, $method], [$message]);
-                }
-                Log::info('无此处理方法:' . $method);
-            }
-            return "您好！欢迎使用 联文检测";
-        });
+        info("request arrived");
+//        $accessToken = $this->app->access_token;
+//        $token = $accessToken->getToken(); // token 数组  token['access_token'] 字符串
+//        $this->app['access_token']->setToken($token['access_token']);
+//        info('公众号触发事件了....');
+//        $this->app->server->push(function($message) {
+//            info('公众号触发事件了....', $message);
+//            if($message) {
+//                $method = camel_case('handle_' . $message['MsgType']);
+//                if(method_exists($this, $method)) {
+//                    $this->openid = $message['FromUserName'];
+//
+//                    return call_user_func_array([$this, $method], [$message]);
+//                }
+//                Log::info('无此处理方法:' . $method);
+//            }
+//            return "您好！欢迎使用 联文检测";
+//        });
 
         return $this->app->server->serve();
     }
