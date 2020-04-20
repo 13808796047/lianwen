@@ -91,12 +91,6 @@ class OfficialAccountController extends Controller
             return;
         }
         $eventKey = $event['EventKey'];
-
-//        // 关注事件的场景值会带一个前缀需要去掉
-//        if($event['Event'] == 'subscribe') {
-//            $eventKey = str_after($event['EventKey'], 'qrscene_');
-//        }
-
         $user = User::FindOrFail($eventKey);
         $openId = $this->openid;
         // 微信用户信息
@@ -140,8 +134,11 @@ class OfficialAccountController extends Controller
         if(empty($event['EventKey'])) {
             return;
         }
-        $eventKey = $event['EventKey'];
-        info('eventKey', $eventKey);
+        // 关注事件的场景值会带一个前缀需要去掉
+        if($event['Event'] == 'subscribe') {
+            $eventKey = str_after($event['EventKey'], 'qrscene_');
+        }
+        info('eventKey', [$eventKey]);
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         // 注册
