@@ -42,12 +42,14 @@ class OfficialAccountController extends Controller
         $this->app->server->push(function($message) {
             info('公众号触发事件了....', $message);
             if($message) {
-                $method = camel_case('handle_' . $message['MsgType']);
+                $method = \Str::camel('handle_' . $message['MsgType']);
+
                 if(method_exists($this, $method)) {
                     $this->openid = $message['FromUserName'];
 
                     return call_user_func_array([$this, $method], [$message]);
                 }
+
                 Log::info('无此处理方法:' . $method);
             }
             return "您好！欢迎使用 联文检测";
@@ -67,7 +69,7 @@ class OfficialAccountController extends Controller
     {
         Log::info('事件参数：', [$event]);
 
-        $method = camel_case('event_' . $event['Event']);
+        $method = \Str::camel('event_' . $event['Event']);
         Log::info('处理方法:' . $method);
 
         if(method_exists($this, $method)) {
