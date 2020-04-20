@@ -114,6 +114,7 @@ class OfficialAccountController extends Controller
 
             // 用户
             $user = auth()->user();
+            Log::info('用户', [$user->phone]);
             $user->update([
                 'nick_name' => $nickname,
                 'avatar' => $wxUser['headimgurl'],
