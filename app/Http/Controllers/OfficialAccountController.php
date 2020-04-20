@@ -144,7 +144,7 @@ class OfficialAccountController extends Controller
         // 注册
 
         $user = User::FindOrFail($eventKey);
-        $result = DB::transaction(function() use ($openId, $user, $wxUser) {
+        $result = \DB::transaction(function() use ($openId, $user, $wxUser) {
             // 用户
             Log::info('用户', [$user->phone]);
             $user->update([
