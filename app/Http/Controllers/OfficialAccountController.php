@@ -121,11 +121,6 @@ class OfficialAccountController extends Controller
     protected function eventUnsubscribe($event)
     {
         Log::info('取消关注公众号了...' . $this->openid);
-        if(empty($event['EventKey'])) {
-            return;
-        }
-        $eventKey = $event['EventKey'];
-        info('eventKey', $eventKey);
         $wxUser = User::whereWeixinOpenid($this->openid)->first();
         $wxUser->weixin_openid = '';
         $wxUser->save();
