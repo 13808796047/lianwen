@@ -38,7 +38,6 @@ class OfficialAccountController extends Controller
 
     public function serve()
     {
-        info('公众号触发事件了....');
         $this->app->server->push(function($message) {
             info('公众号触发事件了....', $message);
             if($message) {
