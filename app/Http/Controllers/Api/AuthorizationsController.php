@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\MiniProgromAuthorizationRequest;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
-use App\Http\Requests\MiniProgromAuthorizationRequest;
 use App\Models\User;
 use EasyWeChat\Factory;
 use Illuminate\Auth\AuthenticationException;
