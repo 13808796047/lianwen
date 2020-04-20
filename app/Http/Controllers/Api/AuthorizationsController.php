@@ -61,10 +61,10 @@ class AuthorizationsController extends Controller
     public function miniProgramStore(MiniProgromAuthorizationRequest $request)
     {
         $domain = $request->getHost();
-        dd($domain);
         switch ($domain) {
             case 'mp.cnweipu.com':
                 $config = config('wechat.mini_program.mp');
+                break;
             default:
                 $config = config('wechat.mini_program.default');
         }
