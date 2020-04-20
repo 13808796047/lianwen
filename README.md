@@ -21,7 +21,7 @@ if [ -d "$gitPath" ]; then
                 echo "在该目录下克隆 git"
                 git clone $gitHttp gittemp
                 mv gittemp/.git .
-                rm -rf gittemp
+                rm -rf gittemp 
         fi
         #拉取最新的项目文件
 #git clean -f
