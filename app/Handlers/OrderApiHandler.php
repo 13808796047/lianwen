@@ -138,4 +138,19 @@ class OrderApiHandler
             return $e->getMessage();
         }
     }
+
+    public function extractReportPdf($id)
+    {
+        // 构建请求参数
+        $option = [
+            'headers' => [
+                'Token' => $this->token
+            ],
+        ];
+        try {
+            $response = $this->http->get($this->api . 'order/extract-report-pdf/' . $id, $option);
+        } catch (\Exception $e) {
+
+        }
+    }
 }
