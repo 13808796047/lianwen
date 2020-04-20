@@ -86,6 +86,7 @@ class OfficialAccountController extends Controller
      */
     protected function eventUnsubscribe($event)
     {
+        Log::info('取消关注公众号了...');
         $wxUser = User::whereWeixinOpenid($this->openid)->first();
         $wxUser->weixin_openid = '';
         $wxUser->save();
@@ -100,6 +101,7 @@ class OfficialAccountController extends Controller
      */
     protected function eventSubscribe($event)
     {
+        Log::info('关注公众号了...');
         $openId = $this->openid;
 
         // 微信用户信息
