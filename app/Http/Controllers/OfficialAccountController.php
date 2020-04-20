@@ -99,14 +99,13 @@ class OfficialAccountController extends Controller
 
         Log::info('EventKey:' . $eventKey);
         $user = User::FindOrFail($eventKey);
-        Log::info('user', [$user->phone]);
         $openId = $this->openid;
 
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         // 注册
         $nickname = $this->filterEmoji($wxUser['nickname']);
-        $result = DB::transaction(function() use ($openId, $user, $nickname, $wxUser) {
+        $result = \DB::transaction(function() use ($openId, $user, $nickname, $wxUser) {
             // 用户
             Log::info('用户', [$user->phone]);
             $user->update([
