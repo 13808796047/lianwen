@@ -136,7 +136,7 @@ class OfficialAccountController extends Controller
         }
         // 关注事件的场景值会带一个前缀需要去掉
         if($event['Event'] == 'subscribe') {
-            $eventKey = str_after($event['EventKey'], 'qrscene_');
+            $eventKey = \Str::after($event['EventKey'], 'qrscene_');
         }
         info('eventKey', [$eventKey]);
         // 微信用户信息
