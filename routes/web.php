@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
     Route::get('orders/{order}/view-report', 'OrdersController@viewReport')->name('orders.view-report');
     Route::delete('orders', 'OrdersController@destroy')->name('orders.destroy');
+    // 公众号关注
+    Route::get('official_account', 'OfficialAccountController@index')->name('official_account.index');
+
 });
 
 //下载
@@ -59,6 +62,4 @@ Route::get('payments/{order}/return', 'PaymentsController@wechatReturn')->name('
 Auth::routes();
 //百度支付
 Route::post('payments/baidu/notify', 'PaymentsController@baiduNotify')->name('payments.baidu.notify');
-// 公众号关注
-Route::get('official_account', 'OfficialAccountController@index')->name('official_account.index');
 Route::any('official_account/serve', 'OfficialAccountController@serve')->name('official_account.serve');
