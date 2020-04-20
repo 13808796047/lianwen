@@ -67,8 +67,8 @@ class AuthorizationsController extends Controller
                 break;
             default:
                 $config = config('wechat.mini_program.default');
+                break;
         }
-        dd($config);
         $app = Factory::miniProgram($config);
         $code = $request->code;
         $data = $app->auth->session($code);
