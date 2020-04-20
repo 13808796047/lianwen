@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use EasyWeChat\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class OfficialAccountController extends Controller
@@ -108,7 +109,7 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         // 注册
         $nickname = $this->filterEmoji($wxUser['nickname']);
-        $user = auth()->user();
+        $user = Auth::user();
         $result = DB::transaction(function() use ($openId, $event, $user, $nickname, $wxUser) {
             // 用户
             Log::info('用户', [$user->phone]);
