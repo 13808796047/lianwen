@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use EasyWeChat\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class OfficialAccountController extends Controller
 {
