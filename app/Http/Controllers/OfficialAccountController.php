@@ -41,19 +41,15 @@ class OfficialAccountController extends Controller
     public function serve()
     {
         $this->app->server->push(function($message) {
-            info('公众号触发事件了....', $message);
             if($message) {
                 $method = \Str::camel('handle_' . $message['MsgType']);
-
                 if(method_exists($this, $method)) {
                     $this->openid = $message['FromUserName'];
-
                     return call_user_func_array([$this, $method], [$message]);
                 }
 
-                Log::info('无此处理方法:' . $method);
             }
-            return "您好！欢迎使用 联文检测";
+            return "您好！欢迎使用论文检测服务";
         });
 
         return $this->app->server->serve();
@@ -68,16 +64,11 @@ class OfficialAccountController extends Controller
      */
     protected function handleEvent($event)
     {
-        Log::info('事件参数：', [$event]);
-
         $method = \Str::camel('event_' . $event['Event']);
-        Log::info('处理方法:' . $method);
 
         if(method_exists($this, $method)) {
             return call_user_func_array([$this, $method], [$event]);
         }
-
-        Log::info('无此事件处理方法:' . $method);
     }
 
     /**
@@ -114,7 +105,6 @@ class OfficialAccountController extends Controller
      */
     protected function eventUnsubscribe($event)
     {
-        Log::info('取消关注公众号了...' . $this->openid);
         $wxUser = User::whereWeixinOpenid($this->openid)->first();
         $wxUser->weixin_openid = '';
         $wxUser->save();
@@ -129,7 +119,6 @@ class OfficialAccountController extends Controller
      */
     protected function eventSubscribe($event)
     {
-        Log::info('关注公众号了...' . $this->openid);
         $openId = $this->openid;
         if(empty($event['EventKey'])) {
             return;
@@ -138,7 +127,6 @@ class OfficialAccountController extends Controller
         if($event['Event'] == 'subscribe') {
             $eventKey = \Str::after($event['EventKey'], 'qrscene_');
         }
-        info('eventKey', [$eventKey]);
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         // 注册
@@ -146,16 +134,11 @@ class OfficialAccountController extends Controller
         $user = User::FindOrFail($eventKey);
         $result = \DB::transaction(function() use ($openId, $user, $wxUser) {
             // 用户
-            Log::info('用户', [$user->phone]);
             $user->update([
                 'nick_name' => $wxUser['nickname'],
                 'avatar' => $wxUser['headimgurl'],
                 'weixin_openid' => $wxUser['openid'],
             ]);
-            Log::info('用户关注成功 openid：' . $openId);
-
         });
-
-        Log::debug('SQL 错误: ', [$result]);
     }
 }
