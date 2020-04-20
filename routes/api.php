@@ -67,8 +67,8 @@ Route::prefix('v1')
                     ->where('social_type', 'weixin')
                     ->name('socials.authorizations.store');
                 //微信小程序登录
-                Route::post('mini_progrom/authorizations', 'AuthorizationsController@miniProgromStore')
-                    ->name('mini_progrom.store');
+                Route::post('mini_program/authorizations', 'AuthorizationsController@miniProgramStore')
+                    ->name('mini_program.store');
                 //分类
                 Route::get('categories', 'CategoriesController@index')->name('categories.index');
             });
