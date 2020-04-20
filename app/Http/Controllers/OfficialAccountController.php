@@ -33,7 +33,7 @@ class OfficialAccountController extends Controller
     {
         // 有效期 1 天的二维码
         $qrCode = $this->app->qrcode;
-        $result = $qrCode->temporary('user=' . auth()->user()->id, 3600 * 24);
+        $result = $qrCode->temporary(auth()->user()->id, 3600 * 24);
         $url = $qrCode->url($result['ticket']);
         return response(compact('url'), 200);
     }
@@ -78,6 +78,28 @@ class OfficialAccountController extends Controller
         }
 
         Log::info('无此事件处理方法:' . $method);
+    }
+
+    /**
+     * 扫描带参二维码事件
+     *
+     * @param $event
+     */
+    public function eventSCAN($event)
+    {
+        if(empty($event['EventKey'])) {
+            return;
+        }
+        $eventKey = $event['EventKey'];
+
+//        // 关注事件的场景值会带一个前缀需要去掉
+//        if($event['Event'] == 'subscribe') {
+//            $eventKey = str_after($event['EventKey'], 'qrscene_');
+//        }
+
+        Log::info('EventKey:' . $eventKey, [$event['EventKey']]);
+        $user = User::FindOrFail(explode('=', $event['EventKey']));
+        Log::info('user', [$user->phone]);
     }
 
     /**
