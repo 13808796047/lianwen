@@ -57,7 +57,7 @@ class AuthorizationsController extends Controller
     }
 
     //微信小程序登录
-    public function miniProgrom(Request $request)
+    public function miniProgromStore(Request $request)
     {
         $domain = $request->getHost();
         switch ($domain) {
@@ -75,6 +75,14 @@ class AuthorizationsController extends Controller
         }
         // 找到 openid 对应的用户
         $user = User::where('weapp_openid', $data['openid'])->first();
+        $attributes['weixin_session_key'] = $data['session_key'];
+        $attributes['weapp_openid'] = $data['openid'];
+        $attributes['avatar'] = $data['avatar'];
+        if(!$user) {
+            $user = User::create($attributes);
+        }
+        $token = auth('api')->login($user);
+        return $this->respondWithToken($token)->setStatusCode(201);
     }
 
     public function store(Request $request)

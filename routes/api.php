@@ -36,15 +36,6 @@ Route::prefix('v1')
                 ->name('orders.show');
             Route::delete('orders', 'OrdersController@destroy')
                 ->name('orders.destroy');
-//            //支付宝支付
-//            Route::get('payments/{order}/alipay_scan', 'PaymentsController@alipayScan')
-//                ->name('payments.alipay_scan');
-//            Route::any('payments/alipay/notify', 'PaymentsController@alipayNotify');
-//            Route::any('payments/alipay/return', 'PaymentsController@alipayReturn');
-//            //微信
-//            Route::get('payments/{order}/wechat_scan', 'PaymentsController@wechatScan')
-//                ->name('payments.wechat_scan');
-//            Route::any('payments/wechat/notify', 'PaymentsController@wechatNotify');
             //上传
             Route::post('upload', 'FilesController@store')->name('uploads.files');
             Route::post('orders/{order}/mail_report', 'OrdersController@reportMail');
@@ -75,6 +66,9 @@ Route::prefix('v1')
                 Route::post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
                     ->where('social_type', 'weixin')
                     ->name('socials.authorizations.store');
+                //微信小程序登录
+                Route::post('mini_progrom/authorizations', 'AuthorizationsController@miniProgromStore')
+                    ->name('mini_progrom.store');
                 //分类
                 Route::get('categories', 'CategoriesController@index')->name('categories.index');
             });
