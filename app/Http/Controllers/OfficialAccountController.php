@@ -108,12 +108,9 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         // 注册
         $nickname = $this->filterEmoji($wxUser['nickname']);
-
-        $result = DB::transaction(function() use ($openId, $event, $nickname, $wxUser) {
-
-
+        $user = auth()->user();
+        $result = DB::transaction(function() use ($openId, $event, $user, $nickname, $wxUser) {
             // 用户
-            $user = auth()->user();
             Log::info('用户', [$user->phone]);
             $user->update([
                 'nick_name' => $nickname,
