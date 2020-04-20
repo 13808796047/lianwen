@@ -39,6 +39,9 @@ class OfficialAccountController extends Controller
     public function serve()
     {
         info("request arrived");
+        $app->server->push(function($message) {
+            return "您好！欢迎使用 EasyWeChat!";
+        });
 //        $accessToken = $this->app->access_token;
 //        $token = $accessToken->getToken(); // token 数组  token['access_token'] 字符串
 //        $this->app['access_token']->setToken($token['access_token']);
