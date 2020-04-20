@@ -56,9 +56,9 @@ return [
     ],
     'wanfang_lianwen_com' => [
         'wechat' => [
-            'client_id' => 'wxdf838be09e065046',
-            'client_secret' => 'ab940621f175f079285d88000af1d40c',
-            'redirect' => 'https://wanfang.lianwen.com/oauth/wechat/callback',
+            'client_id' => env('WANFANG_WEIXIN_KEY'),
+            'client_secret' => env('WANFANG_WEIXIN_SECRET'),
+            'redirect' => env('WANFANG_WEIXIN_REDIRECT'),
         ]
     ],
     //获取字数
