@@ -97,8 +97,8 @@ class OfficialAccountController extends Controller
 //            $eventKey = str_after($event['EventKey'], 'qrscene_');
 //        }
 
-        Log::info('EventKey:' . $eventKey, [$event['EventKey']]);
-        $user = User::FindOrFail(explode('=', $event['EventKey']));
+        Log::info('EventKey:' . $eventKey);
+        $user = User::FindOrFail($eventKey);
         Log::info('user', [$user->phone]);
     }
 
