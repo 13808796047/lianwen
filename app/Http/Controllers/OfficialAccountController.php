@@ -39,7 +39,7 @@ class OfficialAccountController extends Controller
     public function serve()
     {
         info("request arrived");
-        $app->server->push(function($message) {
+        $this->app->server->push(function($message) {
             return "您好！欢迎使用 EasyWeChat!";
         });
 //        $accessToken = $this->app->access_token;
