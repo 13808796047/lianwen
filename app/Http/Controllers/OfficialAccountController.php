@@ -142,13 +142,13 @@ class OfficialAccountController extends Controller
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         // 注册
-        $nickname = $this->filterEmoji($wxUser['nickname']);
-        $user = Auth::user();
-        $result = DB::transaction(function() use ($openId, $event, $user, $nickname, $wxUser) {
+
+        $user = User::FindOrFail($eventKey);
+        $result = DB::transaction(function() use ($openId, $user, $wxUser) {
             // 用户
             Log::info('用户', [$user->phone]);
             $user->update([
-                'nick_name' => $nickname,
+                'nick_name' => $wxUser['nickname'],
                 'avatar' => $wxUser['headimgurl'],
                 'weixin_openid' => $wxUser['openid'],
             ]);
