@@ -82,6 +82,7 @@ class OfficialAccountController extends Controller
 //        $nickname = $this->filterEmoji($wxUser['nickname']);
         info('wxUser', [$wxUser]);
         $result = \DB::transaction(function() use ($user, $wxUser) {
+            info('wxUser', [$wxUser]);
             // 用户
             $user->update([
                 'nick_name' => $wxUser['nickname'],
