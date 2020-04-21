@@ -45,14 +45,13 @@ class OrdersController extends Controller
 //            ], 401);
 //        }
         $order = $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler);
+        dispatch(new OrderPendingMsg($order))->delay(now()->addMinutes(2));
         return redirect()->route('orders.show', compact('order'));
     }
 
     public function show(Order $order)
     {
-        $this->dispatch(new OrderCheckedMsg($order));
-
-        // return view('domained::orders.show', compact('order'));
+        return view('domained::orders.show', compact('order'));
     }
 
     public function viewReport(Order $order, OrderApiHandler $apiHandler)

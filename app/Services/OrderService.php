@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Exceptions\InvalidRequestException;
+use App\Jobs\OrderPendingMsg;
 use App\Models\Category;
 use App\Models\Order;
 
@@ -70,6 +71,7 @@ class OrderService
             ]);
             $order->user()->associate($user);
             $order->save();
+
             return $order;
         });
         return $order;

@@ -87,6 +87,7 @@ class CheckOrderStatus implements ShouldQueue
                 $this->order->report()->create([
                     'content' => $content
                 ]);
+                dispatch(new OrderCheckedMsg($this->order));
             });
         }
     }
