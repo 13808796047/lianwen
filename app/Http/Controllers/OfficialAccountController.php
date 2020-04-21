@@ -90,6 +90,9 @@ class OfficialAccountController extends Controller
                     'weapp_openid' => $loginUser->weapp_openid ?? '',
                     'weapp_session_key' => $loginUser->weapp_session_key ?? '',
                 ]);
+                $user->orders->update([
+                    'userid' => $eventKey
+                ]);
             });
         } else {
             $loginUser->update([
@@ -99,7 +102,7 @@ class OfficialAccountController extends Controller
                 'weixin_unionid' => $wxUser['unionid'] ?: ''
             ]);
         }
-        
+
         info('扫码关注了~~~');
     }
 
