@@ -10,6 +10,7 @@ use App\Handlers\OrderApiHandler;
 use App\Handlers\WordHandler;
 use App\Http\Requests\Api\OrderRequest;
 use App\Jobs\CheckOrderStatus;
+use App\Jobs\OrderPendingMsg;
 use App\Mail\OrderReport;
 use App\Models\Category;
 use App\Models\Order;
@@ -48,7 +49,9 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
-        return view('domained::orders.show', compact('order'));
+        $this->dispatch(new OrderPendingMsg($order));
+
+        // return view('domained::orders.show', compact('order'));
     }
 
     public function viewReport(Order $order, OrderApiHandler $apiHandler)
