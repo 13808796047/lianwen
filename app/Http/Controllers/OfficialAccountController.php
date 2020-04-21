@@ -87,7 +87,7 @@ class OfficialAccountController extends Controller
         if($user && !$user->phone) {
             $user->update([
                 'phone' => $loginUser->phone,
-                'password' => $loginUser->password
+                'password' => $loginUser->makeVisible('password')
             ]);
             $user->orders->update([
                 'userid' => $eventKey,
