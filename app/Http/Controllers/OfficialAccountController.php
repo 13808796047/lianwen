@@ -80,7 +80,7 @@ class OfficialAccountController extends Controller
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
-        $user = User::whereUnionid($wxUser['unionid'])->first();
+        $user = User::whereWeixinUnionid($wxUser['unionid'])->first();
         $loginUser = User::FindOrFail($eventKey);
         if($user) {
             DB::transaction(function() use ($user, $loginUser) {
