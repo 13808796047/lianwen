@@ -30,7 +30,7 @@ class OrderPendingMsg implements ShouldQueue
         }
         $data = [
             'first' => '您有一个订单尚未完成支付，支付后开始检测',
-            '论文题目' => $this->order->title,
+            'keyword1' => ['value' => $this->order->title, 'color' => '#173177'],
         ];
         app('official_account')->template_message->send([
             'touser' => $user->weixin_openid,
