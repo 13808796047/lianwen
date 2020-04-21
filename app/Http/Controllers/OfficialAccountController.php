@@ -78,6 +78,7 @@ class OfficialAccountController extends Controller
         $openId = $this->openid;
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
+        info('wxUser', [$wxUser]);
         // 注册
         $user->update([
             'nick_name' => $wxUser['nickname'],
