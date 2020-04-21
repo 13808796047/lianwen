@@ -80,28 +80,47 @@ class OfficialAccountController extends Controller
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
-        $user = User::whereWeixinUnionid($wxUser['unionid'])->first();
+        $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         $loginUser = User::FindOrFail($eventKey);
-        if($user) {
-            DB::transaction(function() use ($user, $loginUser) {
-                $user->update([
-                    'phone' => $loginUser->phone ?? '',
-                    'password' => $loginUser->password ?? '',
-                    'weapp_openid' => $loginUser->weapp_openid ?? '',
-                    'weapp_session_key' => $loginUser->weapp_session_key ?? '',
-                ]);
-                $user->orders->update([
-                    'userid' => $eventKey
-                ]);
-            });
-        } else {
-            $loginUser->update([
-                'nick_name' => $wxUser['nickname'],
-                'avatar' => $wxUser['headimgurl'],
-                'weixin_openid' => $wxUser['openid'],
-                'weixin_unionid' => $wxUser['unionid'] ?: ''
+        if($user && !$user->phone) {
+            $user->update([
+                'phone' => $loginUser->phone,
+                'password' => $loginUser->password
             ]);
+            $user->orders->update([
+                'userid' => $eventKey,
+            ]);
+        } else {
+            $loginUser->update(
+                [
+                    'nick_name' => $wxUser['nickname'],
+                    'avatar' => $wxUser['headimgurl'],
+                    'weixin_openid' => $wxUser['openid'],
+                    'weixin_unionid' => $wxUser['unionid'] ?: ''
+                ]
+            );
         }
+
+//        if($user) {
+//            DB::transaction(function() use ($user, $loginUser) {
+//                $user->update([
+//                    'phone' => $loginUser->phone ?? '',
+//                    'password' => $loginUser->password ?? '',
+//                    'weapp_openid' => $loginUser->weapp_openid ?? '',
+//                    'weapp_session_key' => $loginUser->weapp_session_key ?? '',
+//                ]);
+//                $user->orders->update([
+//                    'userid' => $eventKey
+//                ]);
+//            });
+//        } else {
+//            $loginUser->update([
+//                'nick_name' => $wxUser['nickname'],
+//                'avatar' => $wxUser['headimgurl'],
+//                'weixin_openid' => $wxUser['openid'],
+//                'weixin_unionid' => $wxUser['unionid'] ?: ''
+//            ]);
+//        }
 
         info('扫码关注了~~~');
     }
