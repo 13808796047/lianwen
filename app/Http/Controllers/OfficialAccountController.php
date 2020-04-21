@@ -78,10 +78,9 @@ class OfficialAccountController extends Controller
         $openId = $this->openid;
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
-        info('$User', [$user->phone]);
         // 注册
 //        $nickname = $this->filterEmoji($wxUser['nickname']);
-        $result = \DB::transaction(function() use ($openId, $user, $wxUser) {
+        $result = \DB::transaction(function() use ($user, $wxUser) {
             // 用户
             $user->update([
                 'nick_name' => $wxUser['nickname'],
@@ -128,7 +127,7 @@ class OfficialAccountController extends Controller
         // 注册
 
         $user = User::FindOrFail($eventKey);
-        $result = \DB::transaction(function() use ($openId, $user, $wxUser) {
+        $result = \DB::transaction(function() use ($user, $wxUser) {
             // 用户
             $user->update([
                 'nick_name' => $wxUser['nickname'],
