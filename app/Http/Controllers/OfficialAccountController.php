@@ -83,14 +83,16 @@ class OfficialAccountController extends Controller
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         $loginUser = User::FindOrFail($eventKey)->makeVisible('password');
         if($user) {
-            $user->update([
-                'phone' => $loginUser->phone,
-                'password' => $loginUser->password
+            $loginUser->update([
+                'nick_name' => $user['nickname'],
+                'avatar' => $user['headimgurl'],
+                'weixin_openid' => $user['openid'],
+                'weixin_unionid' => $user['unionid'] ?: ''
             ]);
             info('password', $loginUser->password);
             info('update', [$user]);
-            $user->orders->update([
-                'userid' => $eventKey,
+            $loginUser->orders->update([
+                'userid' => $user->id,
             ]);
         } else {
             $loginUser->update(
