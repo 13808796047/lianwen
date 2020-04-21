@@ -113,7 +113,7 @@ class AppServiceProvider extends ServiceProvider
             $domain = \request()->getHost();
             switch ($domain) {
                 case 'mp.cnweipu.com':
-                    $config = config('wechat.official_account.mp');
+                    $config = config('wechat.official_account.default');
                     break;
                 default:
                     $config = config('wechat.official_account.default');
