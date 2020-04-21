@@ -6,6 +6,7 @@ use App\Models\User;
 use EasyWeChat\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class OfficialAccountController extends Controller
@@ -74,22 +75,31 @@ class OfficialAccountController extends Controller
             return;
         }
         $eventKey = $event['EventKey'];
-        $user = User::FindOrFail($eventKey);
+//
         $openId = $this->openid;
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
-        info('wxUser', [$wxUser]);
-        // 注册
-        try {
-            $user->update([
+        //如果先授权登录,存在unionid
+        $user = User::whereUnionid($wxUser['unionid'])->first();
+        $loginUser = User::FindOrFail($eventKey);
+        if($user) {
+            DB::transaction(function() use ($user, $loginUser) {
+                $user->update([
+                    'phone' => $loginUser->phone ?? '',
+                    'password' => $loginUser->password ?? '',
+                    'weapp_openid' => $loginUser->weapp_openid ?? '',
+                    'weapp_session_key' => $loginUser->weapp_session_key ?? '',
+                ]);
+            });
+        } else {
+            $loginUser->update([
                 'nick_name' => $wxUser['nickname'],
                 'avatar' => $wxUser['headimgurl'],
                 'weixin_openid' => $wxUser['openid'],
                 'weixin_unionid' => $wxUser['unionid'] ?: ''
             ]);
-        } catch (\Exception $exception) {
-            info($exception->getMessage());
         }
+        
         info('扫码关注了~~~');
     }
 
