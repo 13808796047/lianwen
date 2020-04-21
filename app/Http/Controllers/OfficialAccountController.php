@@ -34,6 +34,7 @@ class OfficialAccountController extends Controller
     {
         $this->app->server->push(function($message) {
             if($message) {
+                info('message', [$message]);
                 $method = \Str::camel('handle_' . $message['MsgType']);
                 if(method_exists($this, $method)) {
                     $this->openid = $message['FromUserName'];
