@@ -33,7 +33,7 @@ class OrderPendingMsg implements ShouldQueue
             'first' => '您有一个订单尚未完成支付，支付后开始检测',
             'keyword1' => ['value' => $this->order->title, 'color' => '#173177'],
             'keyword2' => ['value' => OrderEnum::getStatusName($this->order->status), 'color' => '#173177'],
-            'keyword3' => ['value' => date('YYYY-MM-dd H:i:s', $this->order->created_at), 'color' => '#173177'],
+            'keyword3' => ['value' => date('Y-m-d H:i:s', $this->order->created_at), 'color' => '#173177'],
             'keyword4' => ['value' => $this->order->category->name, 'color' => '#173177'],
             'keyword5' => ['value' => $this->order->price, 'color' => '#173177'],
             'remark' => ['value' => '点击查看详情，如已完成支付请忽略！', 'color' => '#173177']
