@@ -14,15 +14,7 @@ class OfficialAccountController extends Controller
 
     public function __construct()
     {
-        $domain = \request()->getHost();
-        switch ($domain) {
-            case 'mp.cnweipu.com':
-                $config = config('wechat.official_account.mp');
-                break;
-            default:
-                $config = config('wechat.official_account.default');
-        }
-        $this->app = Factory::officialAccount($config);
+        $this->app = app('official_account');
     }
 
     /**

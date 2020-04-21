@@ -108,6 +108,18 @@ class AppServiceProvider extends ServiceProvider
             }
             return new BaiduPayHandler($config);
         });
+        //公众号
+        $this->app->singleton('official_account', function() {
+            $domain = \request()->getHost();
+            switch ($domain) {
+                case 'mp.cnweipu.com':
+                    $config = config('wechat.official_account.mp');
+                    break;
+                default:
+                    $config = config('wechat.official_account.default');
+            }
+            return Factory::officialAccount($config);
+        });
     }
 
     /**
