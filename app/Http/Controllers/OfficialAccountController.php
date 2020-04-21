@@ -80,7 +80,6 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         // 注册
 //        $nickname = $this->filterEmoji($wxUser['nickname']);
-        info('wxUser', [$wxUser]);
         $result = \DB::transaction(function() use ($user, $wxUser) {
             info('wxUser', [$wxUser]);
             // 用户
@@ -88,7 +87,7 @@ class OfficialAccountController extends Controller
                 'nick_name' => $wxUser['nickname'],
                 'avatar' => $wxUser['headimgurl'],
                 'weixin_openid' => $wxUser['openid'],
-                'weixin_unionid' => $wxUser['unionid'],
+                'weixin_unionid' => $wxUser['unionid']
             ]);
             info('user', [$user->phone]);
         });
