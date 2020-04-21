@@ -89,9 +89,11 @@ class OfficialAccountController extends Controller
                 'phone' => $loginUser->phone,
                 'password' => $loginUser->makeVisible('password')
             ]);
-            $user->orders->update([
-                'userid' => $eventKey,
-            ]);
+            info('password', $loginUser->makeVisible('password'));
+            info('update', [$user]);
+//            $user->orders->update([
+//                'userid' => $eventKey,
+//            ]);
         } else {
             $loginUser->update(
                 [
