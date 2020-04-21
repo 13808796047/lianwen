@@ -81,10 +81,8 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        info('user', [$user]);
         $loginUser = User::FindOrFail($eventKey)->makeVisible('password');
-        info('loguser', [$loginUser]);
-        if($user && !$user->phone) {
+        if($user) {
             $user->update([
                 'phone' => $loginUser->phone,
                 'password' => $loginUser->password
