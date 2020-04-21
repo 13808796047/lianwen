@@ -79,19 +79,13 @@ class OfficialAccountController extends Controller
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         // 注册
-//        $nickname = $this->filterEmoji($wxUser['nickname']);
-        $result = \DB::transaction(function() use ($user, $wxUser) {
-            info('wxUser', [$wxUser]);
-            // 用户
-            $user->update([
-                'nick_name' => $wxUser['nickname'],
-                'avatar' => $wxUser['headimgurl'],
-                'weixin_openid' => $wxUser['openid'],
-                'weixin_unionid' => $wxUser['unionid'] ?? ''
-            ]);
-            info('user', [$user->phone]);
-        });
-        info('扫码关注了~~~', [$result]);
+        $user->update([
+            'nick_name' => $wxUser['nickname'],
+            'avatar' => $wxUser['headimgurl'],
+            'weixin_openid' => $wxUser['openid'],
+            'weixin_unionid' => $wxUser['unionid'] ?? ''
+        ]);
+        info('扫码关注了~~~');
     }
 
     /**
