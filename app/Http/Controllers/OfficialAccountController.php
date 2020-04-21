@@ -80,12 +80,16 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         info('wxUser', [$wxUser]);
         // 注册
-        $user->update([
-            'nick_name' => $wxUser['nickname'],
-            'avatar' => $wxUser['headimgurl'],
-            'weixin_openid' => $wxUser['openid'],
-            'weixin_unionid' => $wxUser['unionid'] ?: ''
-        ]);
+        try {
+            $user->update([
+                'nick_name' => $wxUser['nickname'],
+                'avatar' => $wxUser['headimgurl'],
+                'weixin_openid' => $wxUser['openid'],
+                'weixin_unionid' => $wxUser['unionid'] ?: ''
+            ]);
+        } catch (\Exception $exception) {
+            info($exception->getMessage());
+        }
         info('扫码关注了~~~');
     }
 
