@@ -89,7 +89,7 @@ class OfficialAccountController extends Controller
                 'weixin_openid' => $user['openid'],
                 'weixin_unionid' => $user['unionid'] ?: ''
             ]);
-            info('password', $loginUser->password);
+            info('password', [$loginUser->password]);
             info('update', [$user]);
             $loginUser->orders->update([
                 'userid' => $user->id,
