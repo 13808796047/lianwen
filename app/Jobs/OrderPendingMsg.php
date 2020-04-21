@@ -28,6 +28,14 @@ class OrderPendingMsg implements ShouldQueue
         if(!$user->weixin_openid) {
             return;
         }
-
+        $data = [
+            'first' => '您有一个订单尚未完成支付，支付后开始检测',
+            '论文题目' => $this->order->title,
+        ];
+        app('official_account')->template_message->send([
+            'touser' => $user->weixin_openid,
+            'template_id' => '8Fyk5ojTngSDx9lpETPCUYvjYte7ycubeqsTAxxERh0',
+            'data' => $data,
+        ]);
     }
 }
