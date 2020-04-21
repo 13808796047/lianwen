@@ -34,7 +34,6 @@ class OfficialAccountController extends Controller
     {
         $this->app->server->push(function($message) {
             if($message) {
-                info('message', [$message]);
                 $method = \Str::camel('handle_' . $message['MsgType']);
                 if(method_exists($this, $method)) {
                     $this->openid = $message['FromUserName'];
@@ -87,6 +86,7 @@ class OfficialAccountController extends Controller
                 'nick_name' => $wxUser['nickname'],
                 'avatar' => $wxUser['headimgurl'],
                 'weixin_openid' => $wxUser['openid'],
+                'weixin_unionid' => $wxUser['unionid'],
             ]);
         });
     }
@@ -131,6 +131,7 @@ class OfficialAccountController extends Controller
                 'nick_name' => $wxUser['nickname'],
                 'avatar' => $wxUser['headimgurl'],
                 'weixin_openid' => $wxUser['openid'],
+                'weixin_unionid' => $wxUser['unionid'],
             ]);
         });
     }
