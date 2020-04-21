@@ -88,6 +88,7 @@ class OfficialAccountController extends Controller
                 'weixin_openid' => $wxUser['openid'],
                 'weixin_unionid' => $wxUser['unionid'],
             ]);
+            info('user', [$user->phone]);
         });
         info('扫码关注了~~~', [$result]);
     }
