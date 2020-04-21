@@ -89,7 +89,7 @@ class OfficialAccountController extends Controller
                 'weixin_unionid' => $wxUser['unionid'],
             ]);
         });
-        info('扫码关注了~~~');
+        info('扫码关注了~~~', [$result]);
     }
 
     /**
