@@ -86,7 +86,7 @@ class OfficialAccountController extends Controller
                 'nick_name' => $wxUser['nickname'],
                 'avatar' => $wxUser['headimgurl'],
                 'weixin_openid' => $wxUser['openid'],
-                'weixin_unionid' => $wxUser['unionid'],
+//                'weixin_unionid' => $wxUser['unionid'],
             ]);
             info('user', [$user->phone]);
         });
