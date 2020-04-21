@@ -45,7 +45,9 @@ class OrdersController extends Controller
 //            ], 401);
 //        }
         $order = $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler);
-        dispatch(new OrderPendingMsg($order))->delay(now()->addMinutes(2));
+        if($order->status == 0 && $order->user->weixin_openid) {
+            dispatch(new OrderPendingMsg($order))->delay(now()->addMinutes(2));
+        }
         return redirect()->route('orders.show', compact('order'));
     }
 
