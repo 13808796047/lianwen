@@ -141,15 +141,32 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         // 注册
 
-        $user = User::FindOrFail($eventKey);
-        $result = \DB::transaction(function() use ($user, $wxUser) {
-            // 用户
-            $user->update([
-                'nick_name' => $wxUser['nickname'],
-                'avatar' => $wxUser['headimgurl'],
-                'weixin_openid' => $wxUser['openid'],
-                'weixin_unionid' => $wxUser['unionid'],
+        //如果先授权登录,存在unionid
+        $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
+        $loginUser = User::FindOrFail($eventKey);
+        if($user) {
+            $user->delete();
+            $loginUser->update([
+                'nick_name' => $user['nickname'],
+                'avatar' => $user['headimgurl'],
+                'weixin_openid' => $user['openid'],
+                'weixin_unionid' => $user['unionid'] ?: ''
             ]);
-        });
+
+            $loginUser->orders->update([
+                'userid' => $user->id,
+            ]);
+            info('update', [$loginUser]);
+        } else {
+            $loginUser->update(
+                [
+                    'nick_name' => $wxUser['nickname'],
+                    'avatar' => $wxUser['headimgurl'],
+                    'weixin_openid' => $wxUser['openid'],
+                    'weixin_unionid' => $wxUser['unionid'] ?: ''
+                ]
+            );
+        }
+        info('点击关注了~~~');
     }
 }
