@@ -26,7 +26,7 @@ class OrderPendingMsg implements ShouldQueue
     public function handle()
     {
         $user = User::FindOrFail($this->order->userid);
-        if(!$user->weixin_openid) {
+        if(!$user->weixin_openid && $this->order->status != 0) {
             return;
         }
         $data = [

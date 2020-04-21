@@ -40,7 +40,6 @@ class CheckOrderStatus implements ShouldQueue
             \Storage::put($path, $file);
             info(storage_path('app/' . $path));
             //解压zip文件
-            $path = $api->
             $zip = new ZipArchive();
             if($zip->open(storage_path('/app/' . $path)) === true) {
                 switch ($result->data->order->cid) {
@@ -78,6 +77,7 @@ class CheckOrderStatus implements ShouldQueue
                     'report_pdf_path' => $report_pdf_path,
                     'rate' => $result->data->orderCheck->apiResultSemblance,
                 ]);
+                dispatch(new OrderCheckedMsg($this->order));
                 try {
                     $report = $api->extractReportDetail($this->order->api_orderid);
                     $content = $report->data->content;
@@ -87,7 +87,6 @@ class CheckOrderStatus implements ShouldQueue
                 $this->order->report()->create([
                     'content' => $content
                 ]);
-                dispatch(new OrderCheckedMsg($this->order));
             });
         }
     }
