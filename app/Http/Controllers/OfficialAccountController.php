@@ -94,7 +94,6 @@ class OfficialAccountController extends Controller
             $loginUser->orders->update([
                 'userid' => $user->id,
             ]);
-            info('update', [$loginUser]);
         } else {
             $loginUser->update(
                 [
@@ -105,7 +104,6 @@ class OfficialAccountController extends Controller
                 ]
             );
         }
-        info('扫码关注了~~~');
     }
 
     /**
@@ -157,7 +155,6 @@ class OfficialAccountController extends Controller
             $loginUser->orders->update([
                 'userid' => $user->id,
             ]);
-            info('update', [$loginUser]);
         } else {
             $loginUser->update(
                 [
@@ -168,6 +165,5 @@ class OfficialAccountController extends Controller
                 ]
             );
         }
-        info('点击关注了~~~');
     }
 }
