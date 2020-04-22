@@ -46,14 +46,22 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('alipay_wap', function() {
             $config = config('pay.alipay');
             $config['notify_url'] = route('payments.alipay.notify');
-            $config['return_url'] = 'https://wap.lianwen.com/wanfang/#/report';
-            //判断当前项目运行环境是否为线上环境
-            if(app()->environment() != 'production') {
-                $config['mode'] = 'dev';
-//                $config['log']['level'] = Logger::DEBUG;
-            } else {
-//                $config['log']['level'] = Logger::DEBUG;
+            $domain = request()->getHost();
+            switch ($domain) {
+                case 'dev.lianwen.com':
+                    $config['return_url'] = 'https://wap.lianwen.com/wanfang/#/report';
+                    break;
+                case "www.zcnki.com":
+                    $config['return_url'] = 'https://wap.lianwen.com/weipu/#/report';
+                    break;
             }
+            //判断当前项目运行环境是否为线上环境
+//            if(app()->environment() != 'production') {
+//                $config['mode'] = 'dev';
+////                $config['log']['level'] = Logger::DEBUG;
+//            } else {
+////                $config['log']['level'] = Logger::DEBUG;
+//            }
             //调用yansongda/pay来创建一个支付宝对象
             return Pay::alipay($config);
         });
