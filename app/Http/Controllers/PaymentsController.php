@@ -159,6 +159,34 @@ class PaymentsController extends Controller
         return app('wechat_pay')->success();
     }
 
+    public function wechatMpNotify()
+    {
+        // 校验回调参数是否正确
+        $data = app('wechat_pay_mp')->verify();
+        // 找到对应的订单
+        $order = Order::where('orderid', $data->out_trade_no)->first();
+        // 订单不存在则告知微信支付
+        if(!$order) {
+            return 'fail';
+        }
+        // 订单已支付
+        if($order->status == 1) {
+            // 告知微信支付此订单已处理
+            return app('wechat_pay_mp')->success();
+        }
+
+        // 将订单标记为已支付
+        $order->update([
+            'date_pay' => Carbon::now(),
+            'pay_type' => 'wechat',
+            'payid' => $data->out_trade_no, //订单号
+            'pay_price' => $data->total_fee / 100,//支付金额
+            'status' => 1,
+        ]);
+        $this->afterPaid($order);
+        return app('wechat_pay_mp')->success();
+    }
+
     protected function afterPaid(Order $order)
     {
         event(new OrderPaid($order));

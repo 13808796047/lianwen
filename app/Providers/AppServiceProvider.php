@@ -93,16 +93,15 @@ class AppServiceProvider extends ServiceProvider
             return Pay::wechat($config);
         });
         $this->app->singleton('wechat_pay_mp', function() {
-            $domain = request()->getHost();
-            switch ($domain) {
-                case 'mp.cnweipu.com':
+            switch (config('pay.dev_min_wechat.app_id')) {
+                case 'wx6340d7d2fead020b':
                     $config = config('pay.dev_min_wechat');
                     break;
                 default:
                     $config = config('pay.dev_min_wechat');
                     break;
             }
-            $config['notify_url'] = route('payments.wechat.notify');
+            $config['notify_url'] = route('payments.wechat.mp_notify');
             return Pay::wechat($config);
         });
         //百度收银台
