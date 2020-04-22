@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\MiniProgromAuthorizationRequest;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use EasyWeChat\Factory;
 use Illuminate\Auth\AuthenticationException;
@@ -86,7 +87,7 @@ class AuthorizationsController extends Controller
         $token = auth('api')->login($user);
         return response()->json([
             'access_token' => $token,
-            'user' => $user,
+            'user' => (new UserResource($user))->showSensitiveFields(),
             'token_type' => 'Bearer',
             'expires_in' => \Auth::guard('api')->factory()->getTTL(),
         ])->setStatusCode(201);
