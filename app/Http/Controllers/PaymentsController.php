@@ -81,7 +81,7 @@ class PaymentsController extends Controller
 
         $order->update([
             'date_pay' => Carbon::now(), // 支付时间
-            'pay_type' => 'alipay', // 支付方式
+            'pay_type' => '支付宝支付', // 支付方式
             'payid' => $data->out_trade_no, // 支付宝订单号
             'pay_price' => $data->total_amount,//支付金额
             'status' => 1,
@@ -133,7 +133,6 @@ class PaymentsController extends Controller
 
     public function wechatNotify()
     {
-        info('wechatNotify');
         // 校验回调参数是否正确
         $data = app('wechat_pay')->verify();
         // 找到对应的订单
@@ -151,7 +150,7 @@ class PaymentsController extends Controller
         // 将订单标记为已支付
         $order->update([
             'date_pay' => Carbon::now(),
-            'pay_type' => 'wechat',
+            'pay_type' => '微信支付',
             'payid' => $data->out_trade_no, //订单号
             'pay_price' => $data->total_fee / 100,//支付金额
             'status' => 1,
@@ -162,7 +161,6 @@ class PaymentsController extends Controller
 
     public function wechatMpNotify()
     {
-        info('wechatMpNotify');
         // 校验回调参数是否正确
         $data = app('wechat_pay_mp')->verify();
         // 找到对应的订单
@@ -180,7 +178,7 @@ class PaymentsController extends Controller
         // 将订单标记为已支付
         $order->update([
             'date_pay' => Carbon::now(),
-            'pay_type' => 'wechat',
+            'pay_type' => '微信小程序支付',
             'payid' => $data->out_trade_no, //订单号
             'pay_price' => $data->total_fee / 100,//支付金额
             'status' => 1,
@@ -253,7 +251,7 @@ class PaymentsController extends Controller
                 // 将订单标记为已支付
                 $order->update([
                     'date_pay' => Carbon::now(),
-                    'pay_type' => 'baidu',
+                    'pay_type' => '百度支付',
                     'payid' => $notify_arr['orderId'], //订单号
                     'pay_price' => $notify_arr['totalMoney'] / 100,//支付金额
                     'status' => 1,
