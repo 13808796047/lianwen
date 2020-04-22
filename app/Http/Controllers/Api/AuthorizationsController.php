@@ -66,7 +66,7 @@ class AuthorizationsController extends Controller
                 $config = config('wechat.mini_program.mp');
                 break;
             default:
-                $config = config('wechat.mini_program.default');
+                $config = config('wechat.mini_program.mp');
                 break;
         }
         $app = Factory::miniProgram($config);
