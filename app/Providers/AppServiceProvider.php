@@ -93,7 +93,16 @@ class AppServiceProvider extends ServiceProvider
             return Pay::wechat($config);
         });
         $this->app->singleton('wechat_pay_mp', function() {
-            $config = config('pay.wechat');
+            $domain = request()->getHost();
+            switch ($domain) {
+                case 'mp.cnweipu.com':
+                    $config = config('wechat.mini_program.mp');
+                    break;
+                default:
+                    $config = config('wechat.mini_program.mp');
+                    break;
+            }
+            //$config = config('pay.wechat');
             $config['notify_url'] = route('payments.wechat.notify');
 //            if(app()->environment() !== 'production') {
 //                $config['log']['level'] = Logger::DEBUG;
