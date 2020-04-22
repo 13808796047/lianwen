@@ -63,7 +63,7 @@ class OrderService
                 'title' => $request->title,
                 'writer' => $request->writer,
                 'date_publish' => $request->date_publish,
-                'words' => $words * 1.05,
+                'words' => ceil($words * 1.05),
                 'price' => $price,
                 'paper_path' => $result['path'],
                 'from' => $request->from,
