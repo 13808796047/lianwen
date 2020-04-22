@@ -44,6 +44,9 @@ Route::prefix('v1')
             //微信小程序
             Route::get('payments/{order}/wechat_mp', 'PaymentsController@wechatPayMp')
                 ->name('payments.wechat_mp');
+            //当前登录用户信息
+            Route::get('user', "UsersController@me")
+                ->name('user.show');
         });
 
 
