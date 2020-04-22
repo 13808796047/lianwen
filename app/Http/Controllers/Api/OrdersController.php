@@ -55,16 +55,20 @@ class OrdersController extends Controller
         return OrderResource::collection($orders);
     }
 
-    public function show(Request $request, Order $order, OrderApiHandler $api)
+    public function show(Request $request, Order $order)
     {
         //        校验权限
-//        $report = $api->extractReportDetail($order->api_orderid);
-//        $order->content = $report->data->content;
-
         return new OrderResource($order);
     }
 
-    public function destroy(Request $request)
+    public function viewPdf(Order $order, OrderApiHandler $apiHandler)
+    {
+        $pdf = $apiHandler->extractReportPdf($order->api_orderid);
+        return response(compact('pdf'))->setStatusCode(200);
+    }
+
+    public
+    function destroy(Request $request)
     {
         if(!is_array($request->ids)) {
             $ids = [$request->ids];
@@ -76,7 +80,8 @@ class OrdersController extends Controller
         ]);
     }
 
-    public function reportMail(Request $request, Order $order)
+    public
+    function reportMail(Request $request, Order $order)
     {
         $to = $request->email_address;
         //发送
