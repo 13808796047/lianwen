@@ -58,8 +58,10 @@ Route::get('payments/{order}/wechat_mp', 'PaymentsController@wechatPayMp')
     ->name('payments.wechat_mp');
 Route::post('payments/wechat/notify', 'PaymentsController@wechatNotify')
     ->name('payments.wechat.notify');
+
 Route::post('payments/wechat/mp_notify', 'PaymentsController@wechatMpNotify')
     ->name('payments.wechat.mp_notify');
+
 Route::get('payments/{order}/return', 'PaymentsController@wechatReturn')->name('payments.wechat.return');
 Auth::routes();
 //百度支付
