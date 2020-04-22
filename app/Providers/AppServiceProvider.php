@@ -96,10 +96,10 @@ class AppServiceProvider extends ServiceProvider
             $domain = request()->getHost();
             switch ($domain) {
                 case 'mp.cnweipu.com':
-                    $config = config('wechat.mini_program.mp');
+                    $config = config('pay.dev_wechat');
                     break;
                 default:
-                    $config = config('wechat.mini_program.mp');
+                    $config = config('pay.dev_wechat');
                     break;
             }
             //$config = config('pay.wechat');
