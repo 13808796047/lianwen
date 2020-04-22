@@ -12,6 +12,6 @@ class OrderPolicy
 
     public function own(User $user, Order $order)
     {
-        return $order->userid == $user->id;
+        return $user->isAuthOf($order);
     }
 }

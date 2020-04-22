@@ -23,6 +23,12 @@ class User extends Authenticatable implements JWTSubject
         self::VIP_USER_TYPE => 'VIP用户',
     ];
 
+    //权限控制
+    public function isAuthOf($model)
+    {
+        return $this->id == $model->userid;
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
