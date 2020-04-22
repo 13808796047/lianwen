@@ -12,7 +12,7 @@ class UserResource extends JsonResource
     {
         // 要隐藏的字段
         if(!$this->showSensitiveFields) {
-            $this->resource->addHidden(['phone', 'email']);
+            $this->resource->makeHidden(['phone', 'email']);
         }
         $data = parent::toArray($request);
         // 是否绑定了手机
