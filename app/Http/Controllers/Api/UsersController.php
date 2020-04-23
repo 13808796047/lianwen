@@ -68,11 +68,10 @@ class UsersController extends Controller
                 'phone' => $phone,
             ]);
         } else {
-            $loginUser->delete();
-            $user->update([
+            $user->delete();
+            $loginUser->update([
                 'phone' => $phone,
-                'weapp_openid' => $loginUser->weapp_openid,
-                'weixin_session_key' => $loginUser->weixin_session_key
+                'password' => $user->makeVisible('password')
             ]);
             $loginUser->orders()->update([
                 'userid' => $user->id,
