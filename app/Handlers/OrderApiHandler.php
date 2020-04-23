@@ -159,10 +159,11 @@ class OrderApiHandler
                 'Token' => $this->token
             ],
         ];
-        try {
-            $response = $this->http->get($this->api . 'order/extract-report-pdf/' . $id, $option);
-        } catch (\Exception $e) {
-
-        }
+        $response = $this->http->get($this->api . 'order/extract-report-pdf/' . $id, $option);
+//        try {
+//
+//        } catch (\Exception $e) {
+//
+//        }
     }
 }
