@@ -157,7 +157,6 @@ class OrderApiHandler
         $header = [
             "Token:" . $this->token,
         ];
-        dd($url);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_URL, $url);
