@@ -53,10 +53,10 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
-        $this->dispatch(new CheckOrderStatus($order));
-        //校验权限
-//        $this->authorize('own', $order);
-//        return view('domained::orders.show', compact('order'));
+//        $this->dispatch(new CheckOrderStatus($order));
+//        校验权限
+        $this->authorize('own', $order);
+        return view('domained::orders.show', compact('order'));
     }
 
     public function viewReport(Order $order, OrderApiHandler $apiHandler)
