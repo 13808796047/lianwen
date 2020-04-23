@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Api\BoundPhoneRequest;
 use App\Http\Requests\Api\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -41,7 +42,7 @@ class UsersController extends Controller
         return (new UserResource($request->user))->showSensitiveFields();
     }
 
-    public function boundPhone(Request $request)
+    public function boundPhone(BoundPhoneRequest $request)
     {
         //查询该手机号是否已经存在用户
         $user = User::where('phone', $request->phone)->first();
