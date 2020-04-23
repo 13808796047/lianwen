@@ -51,9 +51,10 @@ class OrdersController extends Controller
         return redirect()->route('orders.show', compact('order'));
     }
 
-    public function show(Order $order)
+    public function show(Order $order, OrderApiHandler $apiHandler)
     {
-        return view('domained::orders.show', compact('order'));
+        dd($apiHandler->extractReportPdf('A683889857'));
+//        return view('domained::orders.show', compact('order'));
     }
 
     public function viewReport(Order $order, OrderApiHandler $apiHandler)
