@@ -63,6 +63,9 @@ class OrdersController extends Controller
 
     public function viewPdf(Order $order, OrderApiHandler $apiHandler)
     {
+        //校验权限
+        $this->authorize('own', $order);
+        //接口返回 pdf 流
         $pdf = $apiHandler->extractReportPdf($order->api_orderid);
         return response(compact('pdf'))->setStatusCode(200);
     }
