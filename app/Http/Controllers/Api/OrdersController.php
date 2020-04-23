@@ -63,10 +63,11 @@ class OrdersController extends Controller
 
     public function viewPdf(Request $request)
     {
-        //校验权限
-        $this->authorize('own', $order);
+
         //接口返回 pdf 流
         $order = Order::where('orderid', $request->orderid)->first();
+        //校验权限
+        $this->authorize('own', $order);
         $pdf = $this->orderService->getPdf($order->api_orderid);
         return response(compact('pdf'))->setStatusCode(200);
     }
