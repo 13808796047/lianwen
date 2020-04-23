@@ -153,24 +153,24 @@ class OrderApiHandler
 
     public function extractReportPdf($id)
     {
-//        $url = "https://order.lianwen.com/order/extract-report-pdf/A410122702";
-//        $header = [
-//            "Token: w6NnA59YmjiY87Op7UcKm0Se9liVpywzcxls6iEy02hS+kXTjO8R9ZdjnMNSVCc3WeTSYR0OnkcWhum1av9dO1jwsNTbUorx9Gklrv3915BzuLjc/fl4LqLoRwssQPwmd1mLxtWGsDYA7H/OJT7OE7c5ThRvjoXQcVMff7Uh6ss=",
-//        ];
-//        $ch = curl_init();
-//        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-//        curl_setopt($ch, CURLOPT_URL, $url);
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-//        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-//        curl_setopt($ch, CURLOPT_HEADER, 0);
-//        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-//        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-//        $output = curl_exec($ch);
-//        curl_close($ch);
-//        dd($output);
+        $url = "https://order.lianwen.com/order/extract-report-pdf/A410122702";
+        $header = [
+            "Token: w6NnA59YmjiY87Op7UcKm0Se9liVpywzcxls6iEy02hS+kXTjO8R9ZdjnMNSVCc3WeTSYR0OnkcWhum1av9dO1jwsNTbUorx9Gklrv3915BzuLjc/fl4LqLoRwssQPwmd1mLxtWGsDYA7H/OJT7OE7c5ThRvjoXQcVMff7Uh6ss=",
+        ];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        $output = curl_exec($ch);
+        curl_close($ch);
+        dd($output);
 //        构建请求参数
         $option = [
             'headers' => [
