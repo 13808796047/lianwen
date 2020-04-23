@@ -70,7 +70,7 @@ class OrdersController extends Controller
         //校验权限
         $this->authorize('own', $order);
         $pdf = $this->orderService->getPdf($order->api_orderid);
-        return response()->file($pdf);
+        return $pdf;
     }
 
     public function destroy(Request $request)
