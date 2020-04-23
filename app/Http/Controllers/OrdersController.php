@@ -53,7 +53,7 @@ class OrdersController extends Controller
 
     public function show(Order $order, OrderApiHandler $apiHandler)
     {
-        dd($apiHandler->extractReportPdf('A332227911'));
+        dd($apiHandler->extractReportPdf('A451682825'));
 //        return view('domained::orders.show', compact('order'));
     }
 
