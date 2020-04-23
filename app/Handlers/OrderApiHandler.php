@@ -155,7 +155,7 @@ class OrderApiHandler
     {
         $url = $this->api . 'order/extract-report-detail/' . $id;
         $header = [
-            "Token:" . $this->token,
+            "Token:{$this->token}",
         ];
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
