@@ -153,7 +153,7 @@ class OrderApiHandler
 
     public function extractReportPdf($id)
     {
-        $url = $this->api . 'order/extract-report-detail/' . $id;
+        $url = "https://order.lianwen.com/order/extract-report-pdf/A237072768";
         $header = [
             "Token:w6NnA59YmjiY87Op7UcKm0Se9liVpywzcxls6iEy02hS+kXTjO8R9ZdjnMNSVCc3WeTSYR0OnkcWhum1av9dO1jwsNTbUorx9Gklrv3915BzuLjc/fl4LqLoRwssQPwmd1mLxtWGsDYA7H/OJT7OE7c5ThRvjoXQcVMff7Uh6ss=",
         ];
