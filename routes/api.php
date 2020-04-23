@@ -36,7 +36,7 @@ Route::prefix('v1')
                 ->name('orders.show');
             Route::delete('orders', 'OrdersController@destroy')
                 ->name('orders.destroy');
-            Route::get('orders/{order}/view_pdf', 'OrdersController@viewPdf')
+            Route::get('orders/{orderid}/view_pdf', 'OrdersController@viewPdf')
                 ->name('orders.view_pdf');
             //上传
             Route::post('upload', 'FilesController@store')->name('uploads.files');
