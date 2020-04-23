@@ -44,19 +44,33 @@ class UsersController extends Controller
 
     public function boundPhone(BoundPhoneRequest $request)
     {
+        $verification_key = $request->verification_key;
+        if(!$verification_key) {
+            throw new AuthenticationException('验证码错误!');
+        }
+
+        $verifyData = \Cache::get($verification_key);
+        if(!$verifyData) {
+            abort(403, '验证码已失效');
+        }
+        if(!hash_equals($verifyData['code'], $request->verification_code)) {
+            // 返回401
+            throw new AuthenticationException('验证码错误');
+        }
+        $phone = $verifyData['phone'];
         //查询该手机号是否已经存在用户
-        $user = User::where('phone', $request->phone)->first();
+        $user = User::where('phone', $phone)->first();
         $loginUser = $request->user();
         //不存在
         if(!$user) {
             //更新登录用户的手机号码
             $loginUser->update([
-                'phone' => $request->phone,
+                'phone' => $phone,
             ]);
         } else {
             $loginUser->delete();
             $user->update([
-                'phone' => $request->phone,
+                'phone' => $phone,
                 'weapp_openid' => $loginUser->weapp_openid,
                 'weapp_session_key' => $loginUser->weapp_session_key
             ]);
@@ -64,6 +78,8 @@ class UsersController extends Controller
                 'userid' => $user->id,
             ]);
         }
+        // 清除验证码缓存
+        \Cache::forget($verification_key);
         return response([
             'message' => '绑定成功!'
         ], 200);
