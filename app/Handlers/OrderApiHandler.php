@@ -160,6 +160,7 @@ class OrderApiHandler
             ],
         ];
         $response = $this->http->get($this->api . 'order/extract-report-pdf/' . $id, $option);
+        dd($response);
 //        try {
 //
 //        } catch (\Exception $e) {
