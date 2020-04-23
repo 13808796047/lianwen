@@ -5,6 +5,7 @@ namespace App\Handlers;
 
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Arr;
 use mysql_xdevapi\Exception;
 
 class OrderApiHandler
@@ -62,47 +63,26 @@ class OrderApiHandler
 
     public function createOrder($order, $file)
     {
+        $data = [
+            'cid' => $order->category->cid, //文件資源
+            'title' => $order->title,
+            'postDate' => '',
+            'author' => $order->writer,
+            'mobile' => '15050505050',
+            'contentType' => 2,
+            'content' => '12321321321321',
+            'contentFile' => $file->data->path,
+            'source' => 2,
+        ];
         switch ($order->category->cid) {
             case 8:
-                $body = [
-                    'cid' => $order->category->cid, //文件資源
-                    'title' => $order->title,
-                    'postDate' => '',
-                    'endDate' => $order->endDate,
-                    'author' => $order->writer,
-                    'mobile' => '15050505050',
-                    'contentType' => 2,
-                    'content' => '12321321321321',
-                    'contentFile' => $file->data->path,
-                    'source' => 2,
-                ];
+                $body = Arr::add($data, 'endDate', $order->endDate);
                 break;
             case 23:
-                $body = [
-                    'cid' => $order->category->cid, //文件資源
-                    'title' => $order->title,
-                    'postDate' => '',
-                    'publishdate' => $order->publishdate,
-                    'author' => $order->writer,
-                    'mobile' => '15050505050',
-                    'contentType' => 2,
-                    'content' => '12321321321321',
-                    'contentFile' => $file->data->path,
-                    'source' => 2,
-                ];
+                $body = Arr::add($data, 'publishdate', $order->publishdate);
                 break;
             default:
-                $body = [
-                    'cid' => $order->category->cid, //文件資源
-                    'title' => $order->title,
-                    'postDate' => '',
-                    'author' => $order->writer,
-                    'mobile' => '15050505050',
-                    'contentType' => 2,
-                    'content' => '12321321321321',
-                    'contentFile' => $file->data->path,
-                    'source' => 2,
-                ];
+                $body = $data;
         }
         // 构建请求参数
         $option = [
