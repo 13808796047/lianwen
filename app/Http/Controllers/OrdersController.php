@@ -51,13 +51,17 @@ class OrdersController extends Controller
         return redirect()->route('orders.show', compact('order'));
     }
 
-    public function show(Order $order, OrderApiHandler $apiHandler)
+    public function show(Order $order)
     {
+        //校验权限
+        $this->authorize('own', $order);
         return view('domained::orders.show', compact('order'));
     }
 
     public function viewReport(Order $order, OrderApiHandler $apiHandler)
     {
+        //校验权限
+        $this->authorize('own', $order);
         $pdf = $apiHandler->extractReportPdf($order->api_orderid);
         return view('domained::orders.view_report', compact('order', 'pdf'));
     }
@@ -80,6 +84,8 @@ class OrdersController extends Controller
 
             $order = Order::where('orderid', $orderid)->first();
         }
+        //校验权限
+        $this->authorize('own', $order);
         return response()->download(storage_path() . '/app/' . $order->report_path);
     }
 

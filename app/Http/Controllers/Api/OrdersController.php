@@ -87,6 +87,8 @@ class OrdersController extends Controller
 
     public function reportMail(Request $request, Order $order)
     {
+        //校验权限
+        $this->authorize('own', $order);
         $to = $request->email_address;
         //发送
         try {

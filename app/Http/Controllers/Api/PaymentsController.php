@@ -37,6 +37,8 @@ class PaymentsController extends Controller
     //百度支付
     public function mockData(Order $order, Request $request)
     {
+        //校验权限
+        $this->authorize('own', $order);
         if($order->status == 1 || $order->del) {
             throw new InvalidRequestException('订单状态不正确');
         }
