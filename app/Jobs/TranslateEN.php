@@ -18,7 +18,6 @@ class TranslateEN implements ShouldQueue
 
     public function __construct()
     {
-
         $this->autoCheck = $autoCheck;
         $this->autoHandle = app(AutoCheckHandler::class);
     }
@@ -28,7 +27,7 @@ class TranslateEN implements ShouldQueue
     {
         $result = $this->autoHandle->translate_en($this->autoCheck->content_before);
         if($result_en['trans_result'][0]['dst']) {
-            dispatch(new TranslateCN($this->autoCheck))->delay(now()->addSeconds());
+            dispatch(new TranslateCN($this->autoCheck))->delay(now()->addSeconds())->onQueue('translate');
         }
     }
 }
