@@ -159,6 +159,7 @@ class OrderApiHandler
                 'Token' => $this->token
             ],
         ];
+        dd($this->api . 'order/extract-report-pdf/A237072768');
         $response = $this->http->get($this->api . 'order/extract-report-pdf/A237072768', $option);
         dd(json_decode($response->getbody()->getContents()));
         return json_decode($response->getbody()->getContents());
