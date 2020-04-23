@@ -70,8 +70,7 @@ class OrdersController extends Controller
         return response(compact('pdf'))->setStatusCode(200);
     }
 
-    public
-    function destroy(Request $request)
+    public function destroy(Request $request)
     {
         if(!is_array($request->ids)) {
             $ids = [$request->ids];
