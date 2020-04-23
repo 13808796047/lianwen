@@ -153,23 +153,35 @@ class OrderApiHandler
 
     public function extractReportPdf($id)
     {
-        $url = $this->api . 'order/extract-report-pdf/' . $id;
-        $header = [
-            "Token:{$this->token}",
+//        $url = $this->api . 'order/extract-report-pdf/' . $id;
+//        $header = [
+//            "Token:{$this->token}",
+//        ];
+//        $ch = curl_init();
+//        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+//        curl_setopt($ch, CURLOPT_URL, $url);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+//        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+//        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+//        curl_setopt($ch, CURLOPT_HEADER, 0);
+//        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+//        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+//        $output = curl_exec($ch);
+//        curl_close($ch);
+//        return $output;
+        // 构建请求参数
+        $option = [
+            'headers' => [
+                'Token' => $this->token
+            ],
         ];
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        $output = curl_exec($ch);
-        curl_close($ch);
-        return $output;
+        try {
+            $response = $this->http->get($this->api . 'order/extract-report-pdf/' . $id, $option);
+            return json_decode($response->getbody()->getContents());
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
