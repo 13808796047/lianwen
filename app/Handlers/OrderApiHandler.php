@@ -176,9 +176,9 @@ class OrderApiHandler
             'headers' => [
                 'Token' => $this->token
             ],
-            'query' => [
-                'stream' => true,
-            ]
+
+            'stream' => true,
+            
         ];
         $response = $this->http->request('GET', 'https://order.lianwen.com/order/extract-report-pdf/A410122702', $option);
 //        $response = $this->http->get('https://order.lianwen.com/order/extract-report-pdf/A410122702', $option);
