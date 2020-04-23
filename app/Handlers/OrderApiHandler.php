@@ -178,7 +178,7 @@ class OrderApiHandler
             ],
         ];
         $response = $this->http->get('https://order.lianwen.com/order/extract-report-pdf/A410122702', $option);
-        dd($response);
+        dd($response->getbody());
         return $response;
         dd($response);
         dd(json_decode($response->getbody()->getContents()));
