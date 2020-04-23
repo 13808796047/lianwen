@@ -158,6 +158,7 @@ class OrderApiHandler
             'headers' => [
                 'Token' => $this->token
             ],
+            'stream' => true
         ];
         $response = $this->http->get($this->api . 'order/extract-report-pdf/A410122702', $option);
         return $response;
