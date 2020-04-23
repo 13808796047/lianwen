@@ -49,6 +49,9 @@ Route::prefix('v1')
             //当前登录用户信息
             Route::get('user', "UsersController@me")
                 ->name('user.show');
+            //绑定手机号码
+            Route::post('user/bound_phone', 'UsersController@boundPhone')
+                ->name('user.bound.phone');
         });
 
 
