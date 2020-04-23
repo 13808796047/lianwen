@@ -160,7 +160,7 @@ class OrderApiHandler
             ],
         ];
         $response = $this->http->get($this->api . 'order/extract-report-pdf/' . $id, $option);
-        dd($response);
+        dd(json_decode($response->getbody()->getContents()));
         return json_decode($response->getbody()->getContents());
 //        try {
 //
