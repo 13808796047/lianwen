@@ -40,7 +40,7 @@ class CheckOrderStatus implements ShouldQueue
 
             //存储pdf
             $content = $api->extractReportPdf($this->order->api_orderid);
-            $report_pdf_path = public_path('/pdf/') . $this->order->orderid . '.pdf';
+            $report_pdf_path = public_path('/pdf/') . $this->order->api_orderid . '.pdf';
             file_put_contents($report_pdf_path, $content);
 //            info(storage_path('app/' . $path));
 //            //解压zip文件
