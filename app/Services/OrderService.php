@@ -78,7 +78,7 @@ class OrderService
         return $order;
     }
 
-    public function getPdf($api_orderid, $apiHandler)
+    public function getPdf($api_orderid)
     {
         $apiHandler = app(OrderApiHandler::class);
         return $apiHandler->extractReportPdf($api_orderid);
