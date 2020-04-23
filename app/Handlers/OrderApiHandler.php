@@ -179,7 +179,7 @@ class OrderApiHandler
         ];
         try {
             $response = $this->http->get($this->api . 'order/extract-report-pdf/' . $id, $option);
-            dd($response);
+            dd($response->getbody());
             return json_decode($response->getbody()->getContents());
         } catch (Exception $e) {
             return $e->getMessage();
