@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Exceptions\InvalidRequestException;
+use App\Handlers\OrderApiHandler;
 use App\Jobs\OrderPendingMsg;
 use App\Models\Category;
 use App\Models\Order;
@@ -75,5 +76,10 @@ class OrderService
             return $order;
         });
         return $order;
+    }
+
+    public function getPdf(Order $order, OrderApiHandler $apiHandler)
+    {
+        return $apiHandler->extractReportPdf($order->api_orderid);
     }
 }

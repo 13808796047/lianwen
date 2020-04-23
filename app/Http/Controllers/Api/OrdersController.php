@@ -61,12 +61,12 @@ class OrdersController extends Controller
         return new OrderResource($order);
     }
 
-    public function viewPdf(Order $order, OrderApiHandler $apiHandler)
+    public function viewPdf(Order $order)
     {
         //校验权限
         $this->authorize('own', $order);
         //接口返回 pdf 流
-        $pdf = $apiHandler->extractReportPdf($order->api_orderid);
+        $pdf = $this->orderService->getPdf($order);
         return response(compact('pdf'))->setStatusCode(200);
     }
 
@@ -82,8 +82,7 @@ class OrdersController extends Controller
         ]);
     }
 
-    public
-    function reportMail(Request $request, Order $order)
+    public function reportMail(Request $request, Order $order)
     {
         $to = $request->email_address;
         //发送
