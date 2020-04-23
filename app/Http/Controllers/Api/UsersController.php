@@ -74,7 +74,7 @@ class UsersController extends Controller
                 'weapp_openid' => $loginUser->weapp_openid,
                 'weapp_session_key' => $loginUser->weapp_session_key
             ]);
-            $loginUser->orders->update([
+            $loginUser->orders()->update([
                 'userid' => $user->id,
             ]);
         }
