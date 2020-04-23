@@ -62,22 +62,54 @@ class OrderApiHandler
 
     public function createOrder($order, $file)
     {
+        switch ($order->category->cid) {
+            case 8:
+                $body = [
+                    'cid' => $order->category->cid, //文件資源
+                    'title' => $order->title,
+                    'postDate' => '',
+                    'endDate' => $order->endDate,
+                    'author' => $order->writer,
+                    'mobile' => '15050505050',
+                    'contentType' => 2,
+                    'content' => '12321321321321',
+                    'contentFile' => $file->data->path,
+                    'source' => 2,
+                ];
+                break;
+            case 23:
+                $body = [
+                    'cid' => $order->category->cid, //文件資源
+                    'title' => $order->title,
+                    'postDate' => '',
+                    'publishdate' => $order->publishdate,
+                    'author' => $order->writer,
+                    'mobile' => '15050505050',
+                    'contentType' => 2,
+                    'content' => '12321321321321',
+                    'contentFile' => $file->data->path,
+                    'source' => 2,
+                ];
+                break;
+            default:
+                $body = [
+                    'cid' => $order->category->cid, //文件資源
+                    'title' => $order->title,
+                    'postDate' => '',
+                    'author' => $order->writer,
+                    'mobile' => '15050505050',
+                    'contentType' => 2,
+                    'content' => '12321321321321',
+                    'contentFile' => $file->data->path,
+                    'source' => 2,
+                ];
+        }
         // 构建请求参数
         $option = [
             'headers' => [
                 'Token' => $this->token
             ],
-            'body' => json_encode([
-                'cid' => $order->category->cid, //文件資源
-                'title' => $order->title,
-                'postDate' => '',
-                'author' => $order->writer,
-                'mobile' => '15050505050',
-                'contentType' => 2,
-                'content' => '12321321321321',
-                'contentFile' => $file->data->path,
-                'source' => 2,
-            ])
+            'body' => json_encode($body),
         ];
         $response = $this->http->post($this->api . 'order/create', $option);
 
