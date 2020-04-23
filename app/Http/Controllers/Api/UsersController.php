@@ -71,7 +71,7 @@ class UsersController extends Controller
             $user->delete();
             $loginUser->update([
                 'phone' => $phone,
-                'password' => $user->makeVisible('password') ?: ''
+                'password' => $user->password ?? ""
             ]);
 
             $loginUser->orders()->update([
