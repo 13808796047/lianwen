@@ -170,6 +170,6 @@ class OrderApiHandler
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
         $output = curl_exec($ch);
         curl_close($ch);
-        return $output;
+        dd($output);
     }
 }
