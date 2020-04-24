@@ -19,7 +19,6 @@ class FilesController extends Controller
 
     public function store(FileRequest $request, FileUploadHandler $uploadHandler)
     {
-        dd($user = auth()->user());
         $file = $this->fileService->add($request, $uploadHandler);
         return new FileResource($file);
     }
