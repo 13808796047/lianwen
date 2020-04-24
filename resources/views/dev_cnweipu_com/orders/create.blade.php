@@ -178,8 +178,17 @@
         $('#words span').html(e.target.value.length)
       })
       $('#customFile').change(function (e) {
-        console.log(e,31231)
         $('.custom-file-label').html(e.target.files[0].name)
+        var file = e.target.files[0];
+        var formData = new FormData();  
+        formData.append("file",file);  //上传一个files对象
+        axios.post('{{ route('files.store') }}',{
+          file:formData
+        }).then(res=>{
+          console.log(res,'fsadf')
+        }).catch(err=>{
+          console.log(err,3213123)
+        })
       })
 
       // function checkType(e) {
