@@ -186,7 +186,6 @@
         console.log(formData,312)  
         const instance = axios.create({
           headers: {
-            'x-requested-with': 'XMLHttpRequest',
             'x-xsrf-token': 'eyJpdiI6IlVxY090VFlZWGQ5d3h6VzFmMWhoL2c9PSIsInZhbHVlIjoiWDdSNnFBSzlkSmdEdkJqdU54T1NEZGd1NDBWZXhFamw2dXNtS2V4NXJtZzd6TWZLZ2Q0TXd1U2dsaEFXeE1ieSIsIm1hYyI6IjM2ODI2YzU5MDQxNDI4Zjk0MTY2MDc2ZWYyMzU0Y2NiZGY1YjE4ZjY3NDI5MzMyYjA3NzAzNmNjOWI3MmVkYzcifQ==',
             'Content-Type': 'multipart/form-data'
           }
