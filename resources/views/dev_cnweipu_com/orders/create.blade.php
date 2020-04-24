@@ -180,7 +180,8 @@
       $('#customFile').change(function (e) {
         $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files[0];
-        var formData = new FormData();  
+        var formData = new FormData();
+        console.log(formData,312)  
         formData.append("file",file);  //上传一个files对象
         axios.post('{{ route('files.store') }}',{
           file:formData
