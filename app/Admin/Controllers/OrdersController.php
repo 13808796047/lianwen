@@ -34,9 +34,7 @@ class OrdersController extends AdminController
      */
     protected function grid()
     {
-
         $grid = new Grid(new Order());
-        $grid->paginate(10);
         $grid->model()->orderBy('created_at', 'desc');
         $grid->filter(function($filter) {
             // 去掉默认的id过滤器
