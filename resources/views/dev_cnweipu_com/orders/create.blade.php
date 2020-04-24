@@ -184,7 +184,7 @@
         console.log(file)
         var formData = new FormData();
         console.log(formData,312)  
-        let const instance = axios.create({
+        const instance = axios.create({
           baseURL: '{{ route('files.store') }}',
           timeout: 1000,
           headers: {
