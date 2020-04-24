@@ -16,7 +16,7 @@ class OrderService
     public function add($request)
     {
         $order = \DB::transaction(function() use ($request) {
-            $category = Category::findOrFail($cid);
+            $category = Category::findOrFail($request->cid);
             if($request->type == 'file') {
                 if($fileId = $request->file_id) {
                     $result = File::find($fileId);
