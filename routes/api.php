@@ -52,8 +52,6 @@ Route::prefix('v1')
             //绑定手机号码
             Route::post('user/bound_phone', 'UsersController@boundPhone')
                 ->name('user.bound.phone');
-            //文件上传
-            Route::post('files', 'FilesController@store')->name('files.store');
         });
 
 
@@ -81,5 +79,7 @@ Route::prefix('v1')
                     ->name('mini_program.store');
                 //分类
                 Route::get('categories', 'CategoriesController@index')->name('categories.index');
+                //文件上传
+                Route::post('files', 'FilesController@store')->name('files.store');
             });
     });
