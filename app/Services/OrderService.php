@@ -21,26 +21,24 @@ class OrderService
                 if($fileId = $request->file_id) {
                     $result = File::find($fileId);
                 }
-                if($category->classid == 4) {
-                    if($file->type == 'docx') {
-                        $content = read_docx($result->path);
-                        $words_count = $fileWords->getWords($request->title, $request->writer, $result->path);
-                        $words = $words_count['data']['wordCount'];
-                        $result = $uploader->saveTxt($content, 'files', $user->id);
-                    }
-                } else {
-                    if($file->type == 'txt') {
-                        $content = remove_spec_char(convert2utf8(file_get_contents($result->path)));
-                        $words = count_words(remove_spec_char(convert2utf8($content)));
-                        $result = $wordHandler->save($content, 'files', $user->id);
-                    }
+                if($result->type == 'docx' && $category->classid == 4) {
+                    $content = read_docx($result->path);
+                    $words_count = $fileWords->getWords($request->title, $request->writer, $result->path);
+                    $words = $words_count['data']['wordCount'];
+                    $result = $uploader->saveTxt($content, 'files', $user->id);
+                }
+                if($result->type == 'txt' && $category->classid == 3) {
+                    $content = remove_spec_char(convert2utf8(file_get_contents($result->path)));
+                    $words = count_words(remove_spec_char(convert2utf8($content)));
+                    $result = $wordHandler->save($content, 'files', $user->id);
                 }
             } else {
                 $content = remove_spec_char($request->input('content', ''));
                 $words = count_words($content);
-                if($category->classid == 4 || $category->classid == 2) {
+                if($category->classid == 4) {
                     $result = $uploader->saveTxt($content, 'files', $user->id);
-                } else {
+                }
+                if($category->classid == 3) {
                     $result = $wordHandler->save($content, 'files', $user->id);
                 }
             }
@@ -64,11 +62,13 @@ class OrderService
                 'price' => $price,
                 'paper_path' => $result['path'],
                 'from' => $request->from,
-                'content' => $content,
+                'content' => '',
             ]);
             $order->user()->associate($user);
             $order->save();
-
+            $order->orderContent()->create([
+                'content' => $content
+            ]);
             return $order;
         });
 //        $order = \DB::transaction(function() use ($user, $category, $uploader, $request, $fileWords, $wordHandler) {
