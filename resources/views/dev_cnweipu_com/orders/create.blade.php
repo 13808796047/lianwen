@@ -192,11 +192,11 @@
         // });
         formData.append("file",file);  //上传一个files对
         console.log(axios)
-        axios.post('{{ route('files.store') }}', formData, `{{
+        axios.post('{{ route('files.store') }}', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
-        }}`).then(res=>{
+        }).then(res=>{
           console.log(res,'fsadf')
         }).catch(err=>{
           console.log(err,3213123)
