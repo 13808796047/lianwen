@@ -185,8 +185,12 @@
         var formData = new FormData();
         console.log(formData,312)  
         formData.append("file",file);  //上传一个files对象
-    
-        axios.post('{{ route('files.store') }}', {formData}, {headers: {'Content-Type: multipart/form-data'}}).then(res=>{
+        let config = {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+        axios.post('{{ route('files.store') }}', {formData}, config).then(res=>{
           console.log(res,'fsadf')
         }).catch(err=>{
           console.log(err,3213123)
