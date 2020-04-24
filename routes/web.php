@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function() {
     // 公众号关注
     Route::get('official_account', 'OfficialAccountController@index')->name('official_account.index');
     //异步上传文件
+    Route::post('files', 'FilesController@store')->name('files.store');
 });
 //下载
 Route::get('orders/{orderid}/download', 'OrdersController@download')
