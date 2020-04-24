@@ -33,19 +33,33 @@ class OrdersController extends Controller
         $this->orderService = $orderService;
     }
 
-    //提交订单
-    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
-    {
-
-        $user = $request->user();
-
-        $category = Category::findOrFail($request->cid);
-//        if($category->status == 0) {
-//            return response()->json([
-//                'message' => '此检测通道已关闭!'
-//            ], 401);
+//    //上传文件
+//    public function uploadFile(Request $request, FileUploadHandler $fileUploadHandler)
+//    {
+//        //初始化上传返回数据,默认是失败的
+//        $data = [
+//            'success' => false,
+//            'msg' => '上传失败!',
+//            'file_path' => '',
+//        ];
+//        //判断是否有上传文件,并赋值给file
+//        if($file = $request->file) {
+//            // 保存文件到本地
+//            $result = $fileUploadHandler->save($file, 'files', $user->id);
+//            // 文件保存成功
+//            if($result) {
+//                $data['file_path'] = $result['path'];
+//                $data['msg'] = '上传成功!';
+//                $data['success'] = true;
+//            }
 //        }
-        $order = $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler);
+//        return $data;
+//    }
+
+    //提交订单
+    public function store(OrderRequest $request)
+    {
+        $order = $this->orderService->add($request);
         return new OrderResource($order);
     }
 
