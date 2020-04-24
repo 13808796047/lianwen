@@ -16,6 +16,7 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.5",
         "hieu-le/active": "^7.0",
+        "intervention/image": "^2.5",
         "jxlwqq/echarts": "^1.0",
         "jxlwqq/quill": "^1.0",
         "laminas/laminas-escaper": "^2.6",
