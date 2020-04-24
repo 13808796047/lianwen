@@ -192,6 +192,7 @@
             formData
           }
         }
+        console.log(opt,312312)
         axios.post(opt).then(res=>{
           console.log(res,'fsadf')
         }).catch(err=>{
