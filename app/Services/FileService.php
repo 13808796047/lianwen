@@ -17,7 +17,7 @@ class FileService
             $data = File::create([
                 'type' => $type,
                 'user_id' => $user->id,
-                'path' => $request['path']
+                'path' => $result['path']
             ]);
         }
 
