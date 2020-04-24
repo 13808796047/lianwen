@@ -190,6 +190,7 @@
             'Content-Type': 'multipart/form-data'
           }
         }
+        console.log(axios)
         axios.post('{{ route('files.store') }}', {formData}, config).then(res=>{
           console.log(res,'fsadf')
         }).catch(err=>{
