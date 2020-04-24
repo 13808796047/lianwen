@@ -186,7 +186,7 @@
         console.log(formData,312)  
         formData.append("file",file);  //上传一个files对象
         let opt = {
-          url: '{{ route('files.store') }}'，
+          url: '{{ route('files.store') }}',
           headers: { 'content-type': 'multipart/form-data' },
           data: {
             formData
