@@ -5,16 +5,13 @@ namespace App\Http\Requests\Api;
 
 class OrderRequest extends FormRequest
 {
-//application/vnd.openxmlformats-officedocument.wordprocessingml.document
-//application/vnd.openxmlformats-officedocument.wordprocessingml.document
-    // application/vnd.openxmlformats-officedocument.wordprocessingml.document
     public function rules()
     {
         return [
             'title' => 'required',
             'writer' => 'required',
             'content' => 'required_without:file',
-            'file' => 'required_without:content|mimes:txt,docx,zip'
+            'file_id' => 'required_without:content'
         ];
     }
 
