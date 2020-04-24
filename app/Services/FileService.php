@@ -11,6 +11,7 @@ class FileService
     public function add($request, $uploadHandler)
     {
         $user = \Auth::user();
+        dd($user->toArray());
         if($file = $request->file) {
             $type = $file->getClientOriginalExtension() == 'docx' ? 'docx' : 'txt';
             $result = $uploadHandler->save($file, 'files', $user->id);
