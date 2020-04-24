@@ -290,12 +290,24 @@
         <li class="nav-item px-4 {{ active_class(if_route('pages.index')) }}"><a class="nav-link text-blue-300"
                                                                                  href="{{ url('/') }}">首页</a>
         </li>
-        <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 4))) }}"><a
+        <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 4))) }}">
+        @guest
+          <a class="nav-link" href="javascript:;" data-toggle="modal"
+                                  data-target="#staticBackdrop">万方查重</a>
+        @else
+        <a
             class="nav-link"
-            href="{{route('categories.show',['classid'=>4])}}">万方查重</a>
+            href="{{route('categories.show',['classid'=>4])}}" 
+            >万方查重</a>
+        @endguest
         </li>
-        <li class="nav-item px-4 {{ active_class((if_route('orders.index'))) }}"><a class="nav-link"
-                                                                                    href="{{route('orders.index')}}">查看报告</a>
+        <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 4))) }}">
+        @guest
+          <a class="nav-link" href="javascript:;" data-toggle="modal"
+                                  data-target="#staticBackdrop">查看报告</a>
+        @else
+        <a class="nav-link" href="{{route('orders.index')}}">查看报告</a>
+        @endguest
         </li>
         <li class="nav-item px-4"><a class="nav-link" href="javascript:void(0)"
                                      onclick="window.open('http://p.qiao.baidu.com/cps/chat?siteId=12623578&userId=26512539&cp=lianwen&cr=lianwen&cw=PC',height='680',width='900')">在线咨询</a>
