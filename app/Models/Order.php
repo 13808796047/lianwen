@@ -36,6 +36,11 @@ class Order extends Model
         ]);
     }
 
+    public function orderContent()
+    {
+        return $this->hasOne(OrderContent::class);
+    }
+
     public function scopeWithOrder($query, $date)
     {
         switch ($date) {

@@ -62,11 +62,13 @@ class OrderService
                 'price' => $price,
                 'paper_path' => $result['path'],
                 'from' => $request->from,
-                'content' => $content,
+                'content' => '',
             ]);
             $order->user()->associate($user);
             $order->save();
-
+            $order->orderContent()->create([
+                'content' => $content
+            ]);
             return $order;
         });
 //        $order = \DB::transaction(function() use ($user, $category, $uploader, $request, $fileWords, $wordHandler) {
