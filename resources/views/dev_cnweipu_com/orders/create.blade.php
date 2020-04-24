@@ -48,7 +48,7 @@
             </li>
           @endforeach
         </ul>
-        <form action="{{route('orders.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('orders.store')}}" method="post">
           @csrf
           <input type="hidden" name="cid" id="cid">
           <input type="hidden" name="from" value="万方PC端">
@@ -183,13 +183,6 @@
         var file = e.target.files[0];
         console.log(file)
         var formData = new FormData();
-        console.log(formData,312)  
-        // const instance = axios.create({
-        //   headers: {
-        //     'x-xsrf-token': 'eyJpdiI6IlVxY090VFlZWGQ5d3h6VzFmMWhoL2c9PSIsInZhbHVlIjoiWDdSNnFBSzlkSmdEdkJqdU54T1NEZGd1NDBWZXhFamw2dXNtS2V4NXJtZzd6TWZLZ2Q0TXd1U2dsaEFXeE1ieSIsIm1hYyI6IjM2ODI2YzU5MDQxNDI4Zjk0MTY2MDc2ZWYyMzU0Y2NiZGY1YjE4ZjY3NDI5MzMyYjA3NzAzNmNjOWI3MmVkYzcifQ==',
-        //     'Content-Type': 'multipart/form-data'
-        //   }
-        // });
         formData.append("file",file);  //上传一个files对
         console.log(axios)
         axios.post('{{ route('files.store') }}', formData, {
