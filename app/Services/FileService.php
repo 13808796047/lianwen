@@ -10,13 +10,16 @@ class FileService
 {
     public function add($request, $uploadHandler)
     {
-        $type = $file->getClientOriginalExtension() == 'docx' ?: 'txt';
-        $result = $uploadHandler->save($request->file, 'files', $request->user()->id);
-        $file = File::create([
-            'type' => $type,
-            'user_id' => $request->user()->id,
-            'path' => $request['path']
-        ]);
-        return $file;
+        if($file = $request->file) {
+            $type = $file->getClientOriginalExtension() == 'docx' ? 'docx' : 'txt';
+            $result = $uploadHandler->save($file, 'files', $request->user()->id);
+            $data = File::create([
+                'type' => $type,
+                'user_id' => $request->user()->id,
+                'path' => $request['path']
+            ]);
+        }
+
+        return $data;
     }
 }
