@@ -185,8 +185,6 @@
         var formData = new FormData();
         console.log(formData,312)  
         const instance = axios.create({
-          baseURL: '{{ route('files.store') }}',
-          timeout: 1000,
           headers: {
             'x-requested-with': 'XMLHttpRequest',
             'x-xsrf-token': 'eyJpdiI6IlVxY090VFlZWGQ5d3h6VzFmMWhoL2c9PSIsInZhbHVlIjoiWDdSNnFBSzlkSmdEdkJqdU54T1NEZGd1NDBWZXhFamw2dXNtS2V4NXJtZzd6TWZLZ2Q0TXd1U2dsaEFXeE1ieSIsIm1hYyI6IjM2ODI2YzU5MDQxNDI4Zjk0MTY2MDc2ZWYyMzU0Y2NiZGY1YjE4ZjY3NDI5MzMyYjA3NzAzNmNjOWI3MmVkYzcifQ==',
@@ -195,7 +193,7 @@
         });
         formData.append("file",file);  //上传一个files对
         console.log(axios)
-        instance.post({formData}).then(res=>{
+        instance.post('{{ route('files.store') }}', {formData}).then(res=>{
           console.log(res,'fsadf')
         }).catch(err=>{
           console.log(err,3213123)
