@@ -74,9 +74,11 @@ class UsersController extends Controller
                 'password' => $user->password ?? ""
             ]);
 
-            $loginUser->orders()->update([
-                'userid' => $user->id,
-            ]);
+            foreach($user->orders as $order) {
+                $order->update([
+                    'userid' => $loginUser->id,
+                ]);
+            }
         }
         // 清除验证码缓存
         \Cache::forget($verification_key);
