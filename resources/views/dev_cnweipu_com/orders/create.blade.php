@@ -178,8 +178,10 @@
         $('#words span').html(e.target.value.length)
       })
       $('#customFile').change(function (e) {
+        console.log(e)
         $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files[0];
+        console.log(file)
         var formData = new FormData();
         console.log(formData,312)  
         formData.append("file",file);  //上传一个files对象
