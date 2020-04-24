@@ -59,8 +59,8 @@ class UsersController extends Controller
         }
         $phone = $verifyData['phone'];
         //查询该手机号是否已经存在用户
-        $user = User::where('phone', $phone)->first();
         $loginUser = $request->user();
+        $user = User::where('phone', $phone)->first() ?? User::where('weixin_unionid', $loginUser->weixin_session_key)->first();
         //不存在
         if(!$user) {
             //更新登录用户的手机号码
