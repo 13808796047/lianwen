@@ -34,7 +34,7 @@ class OrdersController extends Controller
         return view('domained::orders.index', compact('orders'));
     }
 
-    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
+    public function store(OrderRequest $request)
     {
         $order = $this->orderService->add($request);
         if($order->status == 0 && $order->user->weixin_openid) {

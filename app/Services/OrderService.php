@@ -5,7 +5,10 @@ namespace App\Services;
 
 
 use App\Exceptions\InvalidRequestException;
+use App\Handlers\FileUploadHandler;
+use App\Handlers\FileWordsHandle;
 use App\Handlers\OrderApiHandler;
+use App\Handlers\WordHandler;
 use App\Jobs\OrderPendingMsg;
 use App\Models\Category;
 use App\Models\File;
@@ -18,25 +21,29 @@ class OrderService
         $order = \DB::transaction(function() use ($request) {
             $category = Category::findOrFail($request->cid);
             if($request->type == 'file') {
+                $fileWordsHandler = app(FileWordsHandle::class);
+                $fileUploadHandle = app(FileUploadHandler::class);
+                $wordHandler = app(WordHandler::class);
                 if($fileId = $request->file_id) {
                     $result = File::find($fileId);
                 }
                 if($result->type == 'docx' && $category->classid == 4) {
                     $content = read_docx($result->path);
-                    $words_count = $fileWords->getWords($request->title, $request->writer, $result->path);
+
+                    $words_count = $fileWordsHandler->getWords($request->title, $request->writer, $result->path);
                     $words = $words_count['data']['wordCount'];
-                    $result = $uploader->saveTxt($content, 'files', $user->id);
+                    $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
                 }
                 if($result->type == 'txt' && $category->classid == 3) {
                     $content = remove_spec_char(convert2utf8(file_get_contents($result->path)));
                     $words = count_words(remove_spec_char(convert2utf8($content)));
-                    $result = $wordHandler->save($content, 'files', $user->id);
+                    $result = $fileUploadHandle->save($content, 'files', $user->id);
                 }
             } else {
                 $content = remove_spec_char($request->input('content', ''));
                 $words = count_words($content);
                 if($category->classid == 4) {
-                    $result = $uploader->saveTxt($content, 'files', $user->id);
+                    $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
                 }
                 if($category->classid == 3) {
                     $result = $wordHandler->save($content, 'files', $user->id);
