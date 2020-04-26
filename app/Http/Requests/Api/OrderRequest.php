@@ -7,13 +7,14 @@ class OrderRequest extends FormRequest
 {
     public function rules()
     {
-        return [
+        $rules = [
             'title' => 'required',
             'writer' => 'required',
             'type' => 'required',
-            'content' => 'required_without:file_id',
+            'content' => "required_without:file_id|min:" . $this->category->min_words . '|max:' . $this->category->max_words,
             'file_id' => 'required_without:content'
         ];
+        return $rules;
     }
 
     public function attributes()
