@@ -176,6 +176,7 @@
       //     content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
       //   })
       // })
+      let set = new Set();
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('.category>li:first-child i').addClass('selected')
@@ -203,6 +204,7 @@
         }).then(res=>{
           console.log(res,'fsadf')
           var file_id=res.data.data.id;
+          set.add(file_id);
           $("#hidden_form_id").val(file_id);
           $("#hideen_type").val('file');
           $('#progress_bar_line').css("width","100%")
@@ -218,19 +220,23 @@
         
 			// });
       $("#tosubmit").click(function(){
-        axios.post('{{route('orders.store')}}',{cid: 12,
+        let arrary = [...set];
+        for (let item of array) {
+          axios.post('{{route('orders.store')}}',{cid: 12,
             from: '万方PC端',
-            file_id: $("#hidden_form_id").val(),
+            file_id: item,
             type: 'file',
             content:'',
-title: '撒反倒',
-writer: '手动阀'}).then(res=>{
-        console.log(res,3123123)
-        var order=res.data.data
-        location.href='/orders/'+res.data.data.id
-      }).catch(err=>{
-        console.log(err,3112312312)
-      })
+            title: '撒反倒',
+            writer: '手动阀'}
+            ).then(res=>{
+            console.log(res,3123123)
+            var order=res.data.data
+            //location.href='/orders/'+res.data.data.id
+          }).catch(err=>{
+            console.log(err,3112312312)
+        })
+        }
       })
       
       
