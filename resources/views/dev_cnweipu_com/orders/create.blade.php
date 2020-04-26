@@ -191,36 +191,45 @@
       })
       $('#customFile').change(function (e) {
         //console.log(e,'312312');
-        $('.custom-file-label').html(e.target.files[0].name)
-        var file = e.target.files[0];
-        var formData = new FormData();
-        formData.append("file", file);  //上传一个files对
+
+        // $('.custom-file-label').html(e.target.files[0].name)
+        var file = e.target.files;
+        console.log(file,123123)
+        
         $('#progress_bar').css("display","block");
         $('#progress_text').css('display',"block");
-        axios.post('{{ route('files.store') }}', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(res=>{
-          console.log(res,'fsadf')
-          var file_id=res.data.data.id;
-          set.add(file_id);
-          $("#hidden_form_id").val(file_id);
-          $("#hideen_type").val('file');
-          $('#progress_bar_line').css("width","100%")
-          $('#progress_bar_line').html('上传成功')
-          $('#progress_text').html("上传成功");
-          // alert('上传成功')
-        }).catch(err=>{
-          $('#progress_bar_line').css("width","100%")
-          $('#progress_text').html("不允许上传的文件类型");
-        })
+        let name = '';
+        for(let item of file){
+          name += item.name;
+          var formData = new FormData();
+          formData.append("file", item);  //上传一个files对
+          axios.post('{{ route('files.store') }}', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }).then(res=>{
+            console.log(res,'fsadf')
+            var file_id=res.data.data.id;
+            set.add(file_id);
+            $("#hidden_form_id").val(file_id);
+            $("#hideen_type").val('file');
+            $('#progress_bar_line').css("width","100%")
+            $('#progress_bar_line').html('上传成功')
+            $('#progress_text').html("上传成功");
+            // alert('上传成功')
+          }).catch(err=>{
+            $('#progress_bar_line').css("width","100%")
+            $('#progress_text').html("不允许上传的文件类型");
+          })
+        }
+        $('.custom-file-label').html(name)；
       })
+     
       // $("form").submit(function(e){
         
 			// });
       $("#tosubmit").click(function(){
-        let arrary = [...set];
+        let array = [...set];
         for (let item of array) {
           axios.post('{{route('orders.store')}}',{cid: 12,
             from: '万方PC端',
