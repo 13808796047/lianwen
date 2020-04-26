@@ -53,7 +53,7 @@ class OrderService
                 }
             }
             if($words <= $category->min_words && $words >= $category->max_words) {
-                throw new InvalidRequestException("检测字数必须在" . $category->min_words . "与" . $category->max_words . "之间");
+                throw new InvalidRequestException("检测字数必须在" . $category->min_words . "与" . $category->max_words . "之间", 422);
                 return;
             }
             switch ($category->price_type) {
