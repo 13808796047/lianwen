@@ -162,7 +162,7 @@
     $(() => {
       // axios.get('{{ route('official_account.index') }}').then(res => {
       //   swal({
-          
+
       //     // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
       //     content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
       //   })
@@ -185,12 +185,18 @@
         var file = e.target.files[0];
         console.log(file)
         var formData = new FormData();
-        formData.append("file",file);  //上传一个files对
+        formData.append("file", file);  //上传一个files对
         console.log(axios)
         axios.post('{{ route('files.store') }}', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
+<<<<<<< HEAD
+        }).then(res => {
+          console.log(res, 'fsadf')
+        }).catch(err => {
+          console.log(err, 3213123)
+=======
         }).then(res=>{
           console.log(res,'fsadf')
           var file_id=res.data.data.id;
@@ -200,6 +206,7 @@
 
         }).catch(err=>{
           console.log(err,3213123)
+>>>>>>> f20d570904a2b741434182585065a3cf92e2f947
         })
       })
 
