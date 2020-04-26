@@ -146,7 +146,7 @@
             </div>
           </div>
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" > -->
-          <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" onclick="toSubmit">
+          <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" onclick="toSubmit()">
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
