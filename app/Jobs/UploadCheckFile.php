@@ -15,7 +15,6 @@ class UploadCheckFile implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $order;
-    public $tries = 3;
 
     public function __construct(Order $order)
     {

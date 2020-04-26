@@ -18,6 +18,7 @@ use App\Models\Order;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Intervention\Image\Image;
 
 class OrdersController extends Controller
 {
@@ -45,10 +46,21 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
+        $img = Image::make('public/wp.jpg');
+        $img->text('测试文字', 50, 50, function($font) {
+            $font->file('public/Alibaba - PuHuiTi - Light . ttf');
+            $font->size(24);
+            $font->color('#000');
+            //$font->align('center');
+            //$font->valign('top');
+            //$font->angle(45);
+        });
+        dd($img);
+
 //        $this->dispatch(new CheckOrderStatus($order));
 //        校验权限
-        $this->authorize('own', $order);
-        return view('domained::orders.show', compact('order'));
+//        $this->authorize('own', $order);
+//        return view('domained::orders.show', compact('order'));
     }
 
     public function viewReport(Order $order, OrderApiHandler $apiHandler)
