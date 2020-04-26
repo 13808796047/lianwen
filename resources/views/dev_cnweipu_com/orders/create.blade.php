@@ -113,6 +113,11 @@
                </span>
                   @enderror
                   <label class="custom-file-label" for="customFile" data-browse="选择文件"></label>
+                  <div class="progress">
+                    <div div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                    <span class="sr-only">60% Complete</span>
+                    </div>
+                  </div>
                 </div>
                 <p class="text-xs">仅支持docx和txt格式，最大支持15M</p>
               </div>
@@ -186,7 +191,6 @@
         console.log(file)
         var formData = new FormData();
         formData.append("file", file);  //上传一个files对
-        console.log(axios)
         axios.post('{{ route('files.store') }}', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
