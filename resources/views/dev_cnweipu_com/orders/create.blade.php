@@ -146,7 +146,7 @@
             </div>
           </div>
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" > -->
-          <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" onclick="toSubmit()">
+          <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
@@ -217,7 +217,7 @@
       // $("form").submit(function(e){
         
 			// });
-      function toSubmit(){
+      $("#tosubmit").click(function(){
         axios.post('{{route('orders.store')}}',{cid: 12,
             from: 万方PC端,
             file_id: 42,
@@ -228,7 +228,9 @@ writer: 手动阀}).then(res=>{
       }).catch(err=>{
         console.log(err,3112312312)
       })
-      }
+      })
+      
+      
       // function checkType(e) {
       //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
       //   if ($.inArray(ext, ['docx', 'txt']) == -1) {
