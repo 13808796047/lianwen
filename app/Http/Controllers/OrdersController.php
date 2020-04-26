@@ -34,17 +34,9 @@ class OrdersController extends Controller
         return view('domained::orders.index', compact('orders'));
     }
 
-    public function store(OrderRequest $request, FileUploadHandler $uploader, FileWordsHandle $fileWords, WordHandler $wordHandler)
+    public function store(OrderRequest $request)
     {
-        $user = $request->user();
-
-        $category = Category::findOrFail($request->cid);
-//        if($category->status == 0) {
-//            return response()->json([
-//                'message' => '此检测通道已关闭!'
-//            ], 401);
-//        }
-        $order = $this->orderService->add($user, $category, $uploader, $request, $fileWords, $wordHandler);
+        $order = $this->orderService->add($request);
         if($order->status == 0 && $order->user->weixin_openid) {
             dispatch(new OrderPendingMsg($order))->delay(now()->addMinutes(2));
         }
