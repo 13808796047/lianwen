@@ -113,9 +113,9 @@
                </span>
                   @enderror
                   <label class="custom-file-label" for="customFile" data-browse="选择文件"></label>
-                  <div class="progress" style="width:30%;margin-top:15px;">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                        60%
+                  <div class="progress" style="width:30%;margin-top:15px;display:none" id="progress_bar">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+                        正在上传
                   </div>
                   </div>
                 </div>
@@ -188,9 +188,9 @@
         console.log(e)
         $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files[0];
-        console.log(file)
         var formData = new FormData();
         formData.append("file", file);  //上传一个files对
+        $('#progress_bar').css("display","block");
         axios.post('{{ route('files.store') }}', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
