@@ -105,7 +105,7 @@
                 </p>
                 <div class="custom-file my-2">
                   <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile"
-                         lang="cn" name="file"
+                         lang="cn" 
                   >
                   @error('file')
                   <span class="invalid-feedback" role="alert" style="display: block">
