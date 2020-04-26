@@ -21,10 +21,10 @@ class OrderService
         $order = \DB::transaction(function() use ($request) {
             $category = Category::findOrFail($request->cid);
             $user = \Auth()->user();
+            $fileWordsHandler = app(FileWordsHandle::class);
+            $fileUploadHandle = app(FileUploadHandler::class);
+            $wordHandler = app(WordHandler::class);
             if($request->type == 'file') {
-                $fileWordsHandler = app(FileWordsHandle::class);
-                $fileUploadHandle = app(FileUploadHandler::class);
-                $wordHandler = app(WordHandler::class);
                 if($fileId = $request->file_id) {
                     $result = File::find($fileId);
                 }
