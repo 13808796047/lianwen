@@ -9,6 +9,7 @@ use App\Handlers\FileWordsHandle;
 use App\Handlers\OrderApiHandler;
 use App\Handlers\WordHandler;
 use App\Http\Requests\Api\OrderRequest;
+use App\Http\Resources\OrderResource;
 use App\Jobs\CheckOrderStatus;
 use App\Jobs\OrderCheckedMsg;
 use App\Jobs\OrderPendingMsg;
@@ -42,7 +43,7 @@ class OrdersController extends Controller
         if($order->status == 0 && $order->user->weixin_openid) {
             dispatch(new OrderPendingMsg($order))->delay(now()->addMinutes(2));
         }
-        return redirect()->route('orders.show', compact('order'));
+        return new OrderResource($order);
     }
 
     public function show(Order $order)
