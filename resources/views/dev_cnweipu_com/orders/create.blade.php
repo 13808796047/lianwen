@@ -219,11 +219,11 @@
 			// });
       $("#tosubmit").click(function(){
         axios.post('{{route('orders.store')}}',{cid: 12,
-            from: 万方PC端,
+            from: '万方PC端',
             file_id: 42,
-            type: file,
-title: 撒反倒,
-writer: 手动阀}).then(res=>{
+            type: 'file',
+title: '撒反倒',
+writer: '手动阀'}).then(res=>{
         console.log(res,3123123)
       }).catch(err=>{
         console.log(err,3112312312)
