@@ -11,7 +11,7 @@ class OrderRequest extends FormRequest
             'title' => 'required',
             'writer' => 'required',
             'type' => 'required',
-            'content' => "required_without:file_id|min:" . $this->category->min_words . '|max:' . $this->category->max_words,
+            'content' => 'required_without:file_id',
             'file_id' => 'required_without:content'
         ];
         return $rules;
