@@ -223,7 +223,7 @@
             $('#progress_text').html("不允许上传的文件类型");
           })
         }
-        $('.custom-file-label').html(name)；
+        $('.custom-file-label').html(name);
       })
      
       // $("form").submit(function(e){
