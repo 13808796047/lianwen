@@ -191,12 +191,6 @@
           headers: {
             'Content-Type': 'multipart/form-data'
           }
-<<<<<<< HEAD
-        }).then(res => {
-          console.log(res, 'fsadf')
-        }).catch(err => {
-          console.log(err, 3213123)
-=======
         }).then(res=>{
           console.log(res,'fsadf')
           var file_id=res.data.data.id;
@@ -206,7 +200,6 @@
 
         }).catch(err=>{
           console.log(err,3213123)
->>>>>>> f20d570904a2b741434182585065a3cf92e2f947
         })
       })
 
