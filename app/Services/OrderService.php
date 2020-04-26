@@ -20,6 +20,7 @@ class OrderService
     {
         $order = \DB::transaction(function() use ($request) {
             $category = Category::findOrFail($request->cid);
+            $user = \Auth()->user();
             if($request->type == 'file') {
                 $fileWordsHandler = app(FileWordsHandle::class);
                 $fileUploadHandle = app(FileUploadHandler::class);
