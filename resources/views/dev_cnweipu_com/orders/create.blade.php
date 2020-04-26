@@ -52,7 +52,7 @@
           @csrf
           <input type="hidden" name="cid" id="cid">
           <input type="hidden" name="from" value="万方PC端">
-          <input type="hidden" name="form_id" value="" id="hidden_form_id">
+          <input type="hidden" name="file_id" value="" id="hidden_form_id">
           <input type="hidden" name="type" value="" id="hideen_type">
           <div class="form-group">
             <div class="input-group mt-3">
@@ -191,21 +191,15 @@
           headers: {
             'Content-Type': 'multipart/form-data'
           }
-<<<<<<< HEAD
-        }).then(res => {
-          console.log(res, 'fsadf')
-        }).catch(err => {
-          console.log(err, 3213123)
-=======
         }).then(res=>{
           console.log(res,'fsadf')
           var file_id=res.data.data.id;
           $("#hidden_form_id").val(file_id);
           $("#hideen_type").val('file');
+          alert('上传成功')
 
         }).catch(err=>{
           console.log(err,3213123)
->>>>>>> f20d570904a2b741434182585065a3cf92e2f947
         })
       })
 
