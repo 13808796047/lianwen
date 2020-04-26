@@ -177,6 +177,7 @@
       //   })
       // })
       let set = new Set();
+      let name = '';
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('.category>li:first-child i').addClass('selected')
@@ -198,7 +199,7 @@
         
         $('#progress_bar').css("display","block");
         $('#progress_text').css('display',"block");
-        let name = '';
+        
         for(let item of file){
           name += item.name;
           var formData = new FormData();
