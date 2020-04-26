@@ -201,6 +201,9 @@
           alert('不允许上传的文件类型!');
         })
       })
+      $("form").submit(function(e){
+        console.log(e,312312)
+			});
 
       // function checkType(e) {
       //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
