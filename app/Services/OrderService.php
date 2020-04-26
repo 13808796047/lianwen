@@ -57,10 +57,10 @@ class OrderService
             }
             switch ($category->price_type) {
                 case Category::PRICE_TYPE_THOUSAND:
-                    $price = round($category->price * ceil($words * 1.05 / 1000), 2);
+                    $price = round($category->price * ceil($words * $user->redix / 1000), 2);
                     break;
                 case Category::PRICE_TYPE_MILLION:
-                    $price = round($category->price * ceil($words * 1.05 / 10000), 2);
+                    $price = round($category->price * ceil($words * $user->redix / 10000), 2);
                     break;
                 default:
                     $price = $category->price;
@@ -71,7 +71,7 @@ class OrderService
                 'title' => $request->title,
                 'writer' => $request->writer,
                 'date_publish' => $request->date_publish,
-                'words' => ceil($words * 1.05),
+                'words' => ceil($words * $user->redix),
                 'price' => $price,
                 'paper_path' => $result['path'],
                 'from' => $request->from,
