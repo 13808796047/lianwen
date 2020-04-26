@@ -53,7 +53,7 @@
           <input type="hidden" name="cid" id="cid">
           <input type="hidden" name="from" value="万方PC端">
           <input type="hidden" name="file_id" value="" id="hidden_form_id">
-          <input type="hidden" name="type" value="" id="hideen_type">
+          <input type="hidden" name="type" value="content" id="hideen_type">
           <div class="form-group">
             <div class="input-group mt-3">
               <div class="input-group-prepend">
