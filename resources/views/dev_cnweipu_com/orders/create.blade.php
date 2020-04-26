@@ -48,7 +48,8 @@
             </li>
           @endforeach
         </ul>
-        <form action="{{route('orders.store')}}" method="post">
+        <!-- <form action="{{route('orders.store')}}" method="post" id="form"> -->
+        <form >
           @csrf
           <input type="hidden" name="cid" id="cid" >
           <input type="hidden" name="from" value="万方PC端">
@@ -144,7 +145,8 @@
               </div>
             </div>
           </div>
-          <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" >
+          <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" > -->
+          <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" onclick="toSubmit">
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
@@ -187,7 +189,7 @@
         $('#words span').html(e.target.value.length)
       })
       $('#customFile').change(function (e) {
-        console.log(e,'312312');
+        //console.log(e,'312312');
         $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files[0];
         var formData = new FormData();
@@ -212,11 +214,21 @@
           $('#progress_text').html("不允许上传的文件类型");
         })
       })
-      $("form").submit(function(e){
-
-
-			});
-
+      // $("form").submit(function(e){
+        
+			// });
+      function toSubmit(){
+        axios.post('{{route('orders.store')}}',{cid: 12,
+            from: 万方PC端,
+            file_id: 42,
+            type: file,
+title: 撒反倒,
+writer: 手动阀})
+      }.then(res=>{
+        console.log(res,3123123)
+      }).catch(err=>{
+        console.log(err,3112312312)
+      })
       // function checkType(e) {
       //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
       //   if ($.inArray(ext, ['docx', 'txt']) == -1) {
