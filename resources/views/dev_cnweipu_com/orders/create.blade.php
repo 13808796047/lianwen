@@ -113,9 +113,10 @@
                </span>
                   @enderror
                   <label class="custom-file-label" for="customFile" data-browse="选择文件"></label>
-                  <div class="progress">
+                  <div class="progress" style="width:30%;margin-top:15px;">
                     <div div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
                     <span class="sr-only">60% Complete</span>
+                    <span>正在上传</span>
                     </div>
                   </div>
                 </div>
