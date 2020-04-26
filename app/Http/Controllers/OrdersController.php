@@ -37,6 +37,7 @@ class OrdersController extends Controller
     public function store(OrderRequest $request)
     {
         $order = $this->orderService->add($request);
+        dd($order);
         if($order->status == 0 && $order->user->weixin_openid) {
             dispatch(new OrderPendingMsg($order))->delay(now()->addMinutes(2));
         }

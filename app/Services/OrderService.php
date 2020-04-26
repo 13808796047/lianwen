@@ -81,6 +81,7 @@ class OrderService
             ]);
             return $order;
         });
+        return $order;
 //        $order = \DB::transaction(function() use ($user, $category, $uploader, $request, $fileWords, $wordHandler) {
 //            if($file = $request->file) {
 //                if(!in_array($file->getClientOriginalExtension(), ['doc', 'docx'])) {
