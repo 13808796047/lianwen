@@ -11,7 +11,7 @@ class OrderRequest extends FormRequest
             'title' => 'required',
             'writer' => 'required',
             'type' => 'required',
-            'content' => 'required_without:file',
+            'content' => 'required_without:file_id',
             'file_id' => 'required_without:content'
         ];
     }
