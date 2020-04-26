@@ -118,7 +118,7 @@
                     <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;" id="progress_bar_line">
                     </div>
                     </div>
-                    <div>正在上传</div>
+                    <div style="margin-top: 11px;padding-left: 30px;display:none;" id="progress_text">正在上传</div>
                   </div>
                 </div>
                 <p class="text-xs">仅支持docx和txt格式，最大支持15M</p>
@@ -193,6 +193,7 @@
         var formData = new FormData();
         formData.append("file", file);  //上传一个files对
         $('#progress_bar').css("display","block");
+        $('#progress_text').css('display',"block");
         axios.post('{{ route('files.store') }}', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -204,10 +205,11 @@
           $("#hideen_type").val('file');
           $('#progress_bar_line').css("width","100%")
           $('#progress_bar_line').html('上传成功')
+          $('#progress_text').html("上传成功");
           // alert('上传成功')
         }).catch(err=>{
           $('#progress_bar_line').css("width","100%")
-          alert('不允许上传的文件类型!');
+          $('#progress_text').html("不允许上传的文件类型");
         })
       })
       $("form").submit(function(e){
