@@ -170,7 +170,7 @@
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('.category>li:first-child i').addClass('selected')
-      $('#cid').val($('.category>li:first-child').data('id'))
+      // $('#cid').val($('.category>li:first-child').data('id'))
       $('.category>li').click(function () {
         $(this).siblings().children('i').removeClass('selected')
         $(this).children('i').addClass('selected')
