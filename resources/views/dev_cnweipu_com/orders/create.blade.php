@@ -114,8 +114,8 @@
                   @enderror
                   <label class="custom-file-label" for="customFile" data-browse="选择文件"></label>
                   <div class="progress" style="width:30%;margin-top:15px;display:none" id="progress_bar">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
-                        正在上传
+                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 35%;" id="progress_bar_line">
+                        正在上传请等待
                   </div>
                   </div>
                 </div>
@@ -200,8 +200,11 @@
           var file_id=res.data.data.id;
           $("#hidden_form_id").val(file_id);
           $("#hideen_type").val('file');
+          $('progress_bar_line').css("width","100%")
+          $('progress_bar_line').html('上传成功')
           alert('上传成功')
         }).catch(err=>{
+          $('progress_bar_line').css("width","100%")
           alert('不允许上传的文件类型!');
         })
       })
