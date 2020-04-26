@@ -196,8 +196,9 @@
           var file_id=res.data.data.id;
           $("#hidden_form_id").val(file_id);
           $("#hideen_type").val('file');
+          alert('上传成功')
         }).catch(err=>{
-          console.log(err,3213123)
+          alert('不允许上传的文件类型!');
         })
       })
 
