@@ -105,7 +105,7 @@
                 </p>
                 <div class="custom-file my-2">
                   <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile"
-                         lang="cn"
+                         lang="cn" multiple
                   >
                   @error('file')
                   <span class="invalid-feedback" role="alert" style="display: block">
@@ -113,6 +113,13 @@
                </span>
                   @enderror
                   <label class="custom-file-label" for="customFile" data-browse="选择文件"></label>
+                  <div style="display:flex;">
+                    <div class="progress" style="width:30%;margin-top:15px;display:none" id="progress_bar">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;" id="progress_bar_line">
+                    </div>
+                    </div>
+                    <div style="margin-top: 11px;padding-left: 30px;display:none;" id="progress_text">正在上传</div>
+                  </div>
                 </div>
                 <p class="text-xs">仅支持docx和txt格式，最大支持15M</p>
               </div>
@@ -180,13 +187,13 @@
         $('#words span').html(e.target.value.length)
       })
       $('#customFile').change(function (e) {
-        console.log(e)
+        console.log(e,'312312');
         $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files[0];
-        console.log(file)
         var formData = new FormData();
         formData.append("file", file);  //上传一个files对
-        console.log(axios)
+        $('#progress_bar').css("display","block");
+        $('#progress_text').css('display',"block");
         axios.post('{{ route('files.store') }}', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -196,11 +203,19 @@
           var file_id=res.data.data.id;
           $("#hidden_form_id").val(file_id);
           $("#hideen_type").val('file');
-          alert('上传成功')
+          $('#progress_bar_line').css("width","100%")
+          $('#progress_bar_line').html('上传成功')
+          $('#progress_text').html("上传成功");
+          // alert('上传成功')
         }).catch(err=>{
-          alert('不允许上传的文件类型!');
+          $('#progress_bar_line').css("width","100%")
+          $('#progress_text').html("不允许上传的文件类型");
         })
       })
+      $("form").submit(function(e){
+
+
+			});
 
       // function checkType(e) {
       //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
