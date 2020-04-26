@@ -6,7 +6,7 @@ use mysql_xdevapi\Exception;
 
 class FileUploadHandler
 {
-    protected $allowed_ext = ['doc', 'docx'];
+    protected $allowed_ext = ['txt', 'docx'];
 
     public function save($file, $folder, $file_prefix)
     {
