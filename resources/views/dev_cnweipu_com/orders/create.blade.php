@@ -227,7 +227,7 @@ title: '撒反倒',
 writer: '手动阀'}).then(res=>{
         console.log(res,3123123)
         var order=res.data.data
-        location.href='orders/'+res.data.data.id
+        location.href='/orders/'+res.data.data.id
       }).catch(err=>{
         console.log(err,3112312312)
       })
