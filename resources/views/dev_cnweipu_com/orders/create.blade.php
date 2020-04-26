@@ -223,12 +223,12 @@
             file_id: 42,
             type: file,
 title: 撒反倒,
-writer: 手动阀})
-      }.then(res=>{
+writer: 手动阀}).then(res=>{
         console.log(res,3123123)
       }).catch(err=>{
         console.log(err,3112312312)
       })
+      }
       // function checkType(e) {
       //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
       //   if ($.inArray(ext, ['docx', 'txt']) == -1) {
