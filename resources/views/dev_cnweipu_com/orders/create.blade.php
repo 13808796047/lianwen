@@ -105,7 +105,7 @@
                 </p>
                 <div class="custom-file my-2">
                   <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile"
-                         lang="cn"
+                         lang="cn" multiple
                   >
                   @error('file')
                   <span class="invalid-feedback" role="alert" style="display: block">
@@ -187,7 +187,7 @@
         $('#words span').html(e.target.value.length)
       })
       $('#customFile').change(function (e) {
-        console.log(e)
+        console.log(e,'312312');
         $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files[0];
         var formData = new FormData();
@@ -213,7 +213,8 @@
         })
       })
       $("form").submit(function(e){
-        console.log(e,312312)
+
+
 			});
 
       // function checkType(e) {
