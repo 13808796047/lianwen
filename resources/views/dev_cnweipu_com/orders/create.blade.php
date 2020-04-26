@@ -50,7 +50,7 @@
         </ul>
         <form action="{{route('orders.store')}}" method="post">
           @csrf
-          <input type="hidden" name="cid" id="cid">
+          <input type="hidden" name="cid" id="cid" value="7">
           <input type="hidden" name="from" value="万方PC端">
           <input type="hidden" name="file_id" value="" id="hidden_form_id">
           <input type="hidden" name="type" value="" id="hideen_type">
@@ -170,7 +170,7 @@
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('.category>li:first-child i').addClass('selected')
-      $('#cid').val($('.category>li:first-child').data('id'))
+      // $('#cid').val($('.category>li:first-child').data('id'))
       $('.category>li').click(function () {
         $(this).siblings().children('i').removeClass('selected')
         $(this).children('i').addClass('selected')
