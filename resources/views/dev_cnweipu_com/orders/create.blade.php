@@ -220,7 +220,7 @@
       $("#tosubmit").click(function(){
         axios.post('{{route('orders.store')}}',{cid: 12,
             from: '万方PC端',
-            file_id: 42,
+            file_id: $("#hidden_form_id").val(),
             type: 'file',
 title: '撒反倒',
 writer: '手动阀'}).then(res=>{
