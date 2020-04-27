@@ -227,6 +227,7 @@
               var name=obj[i].name;
               option+=`<option value=${id} class='options'>${name}</option>`
             }
+            console.log(option,"xixixifsaddjfa")
             var file_id=res.data.data.id;
             set.add(file_id);
             $("#hidden_form_id").val(file_id);
