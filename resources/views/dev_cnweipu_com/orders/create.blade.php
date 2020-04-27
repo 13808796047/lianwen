@@ -227,8 +227,7 @@
             $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' value='' class='titlec'>论文作者<input type='text' title='authorc'>检测系统<select><option value='1' class='options'>fsda</option></select></div>`);
             console.log($('.titlec'));
             $('.titlec').each((i, ele) => {
-              console.log(ele);
-              ele.on('change', e => {
+              ele.change(, e => {
               array[i]['title'] = e.target.value;
               console.log(array);
             })
