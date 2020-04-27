@@ -149,6 +149,9 @@
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8"> -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
           <div id="newelement" style="display:none;">
+            <div id="newelement_container">
+
+            </div>
             <div id="batchBtn" style="width: 100px;background: #3490dc;color: #fff;text-align: center;margin: 0 auto;">批量提交</div>
           </div>
             <div id="paymsg" style="display:none;">
@@ -246,13 +249,13 @@
             $('#progress_bar_line').html('上传成功')
             $('#progress_text').html("上传成功");
             // alert('上传成功')
-            $("#newelement").prepend(`<div style='margin-bottom:10px;'><span style="margin-right:10px">订单${index}</span><input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value=${item.name}>论文作者<input type='text' class='authorc' value='匿名'>检测系统<select>${option}</select></div>`);
+            $("#newelement_container").append(`<div style='margin-bottom:10px;'><span style="margin-right:10px">订单${index}</span><input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value=${item.name}>论文作者<input type='text' class='authorc' value='匿名'>检测系统<select>${option}</select></div>`);
           }).catch(err=>{
             console.log(err);
             index++;
             $('#progress_bar_line').css("width","100%")
             $('#progress_text').html("不允许上传的文件类型");
-            $("#newelement").prepend(`<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}><p style="margin-left:10px;">上传失败，请选择正确格式</p>`);
+            $("#newelement_container").append(`<div style='margin-bottom:10px'><span style="margin-left:10px">订单${index}<span><input id='title' type='text' name='title' value=${item.name}><span style="margin-left:10px;">上传失败，请选择正确格式</span>`);
           })
         }
         $('#batchBtn').click(_ => {
@@ -277,11 +280,11 @@
 
               if(res.status==201){
                 var paymsg =res.data.data;
-                $('#paymsg').append(`<div><P>论文题目:${paymsg.title}</P><p>作者：${paymsg.writer}</p><p>价格:${paymsg.price}</p></div>`)
+                $('#paymsg').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>论文题目:${paymsg.title}</p><p>作者：${paymsg.writer}</p><p>字数:${paymsg.words}</p><p>价格:${paymsg.price}元</p></div>`)
               }
 
             }).catch(err=>{
-              console.log(err,312312)
+              $('#paymsg').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>提交失败<p></div>`)
             })
         }
       })
