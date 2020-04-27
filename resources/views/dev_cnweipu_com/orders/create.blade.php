@@ -221,7 +221,7 @@
             $('#progress_bar_line').html('上传成功')
             $('#progress_text').html("上传成功");
             // alert('上传成功')
-            $("#newelement").append(`<input id='title' type='text' name='title' value=${file_id}`);
+            $("#newelement").append(`<input id='title' type='text' name='title' value=${file_id}>`);
           }).catch(err=>{
             $('#progress_bar_line').css("width","100%")
             $('#progress_text').html("不允许上传的文件类型");
