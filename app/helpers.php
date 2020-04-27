@@ -182,3 +182,23 @@ function read_docx($file)
 
     return $striped_content;
 }
+
+//这个部分尤为重要:当文本中出现数字时，根据字符串长度换行，行末会出现多余空格，所以决定用下面的这种根据宽度实现自动换行
+function autowrap($fontsize, $angle, $fontface, $string, $width)
+{
+    // 参数分别是 字体大小, 角度, 字体名称, 字符串, 预设宽度
+    $content = "";
+    // 将字符串拆分成一个个单字 保存到数组 letter 中
+    preg_match_all("/./u", $string, $arr);
+    $letter = $arr[0];
+    foreach($letter as $l) {
+        $teststr = $content . $l;
+        $testbox = imagettfbbox($fontsize, $angle, $fontface, $teststr);
+        if(($testbox[2] > $width) && ($content !== "")) {
+            $content .= PHP_EOL;
+        }
+        $content .= $l;
+    }
+    return $content;
+}
+
