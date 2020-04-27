@@ -291,8 +291,9 @@
       $('#customFile').change(function(e){
         $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files[0];
+
         var formData = new FormData();
-        formData.append("file", formData);  //上传一个files对
+        formData.append("file", file);  //上传一个files对
         axios.post('{{ route('files.store') }}', formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
