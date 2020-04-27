@@ -107,7 +107,7 @@
                 </p>
                 <div class="custom-file my-2">
                   <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile"
-                         lang="cn" multiple
+                         lang="cn" 
                   >
                   @error('file')
                   <span class="invalid-feedback" role="alert" style="display: block">
@@ -132,7 +132,7 @@
                        alt="">
                   系统在检测时会分析论文的前后文关系， 所以请您提交论文的全部内容，如果是非全文的检测将不能保证检测的准确性。
                 </p>
-                <div class="form-group">
+                <div class="form-group" >
                   <textarea id="content" class="form-control @error('content') is-invalid @enderror" name="content"
                             placeholder="输入论文内容不少于1000字"
                             rows="10" value="{{ old('content') }}"></textarea>
@@ -146,12 +146,19 @@
               </div>
             </div>
           </div>
-          <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" > -->
+          <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8"> -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
-          <div id="newelement">
+          <div id="newelement" style="display:none;">
+            <div id="batchBtn" style="width: 100px;background: #3490dc;color: #fff;text-align: center;margin: 0 auto;">批量提交</div>
           </div>
-            <div id="batchBtn">批量提交</div>
+            <div id="paymsg" style="display:none;">
+            <p>订单确认</p>
+            </div>
         </form>
+        <div style="display:flex">
+        <input type="file"  id="customFiles" style="width:70%;border:1px solid"
+                         lang="cn" multiple>批量上传
+        </div>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
         <b>1、检测结果是否准确？</b>
@@ -182,6 +189,7 @@
       // })
       let set = new Set();
       let name = '';
+      var oneid=''
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('.category>li:first-child i').addClass('selected')
@@ -194,9 +202,10 @@
       $('#content').bind('input propertychange', (e) => {
         $('#words span').html(e.target.value.length)
       })
-      $('#customFile').change(function (e) {
+      //多文件上传
+      $('#customFiles').change(function (e) {
         //console.log(e,'312312');
-
+        $('#newelement').css('display','block')
         // $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files;
         console.log(file,123123)
@@ -204,7 +213,7 @@
         $('#progress_bar').css("display","block");
         $('#progress_text').css('display',"block");
         var index=0;
-        var array=[{}, {}, {}, {}];
+        var array=[];
         for(let i = 0; i < file.length; i++){
           let item = file[i];
           name += item.name;
@@ -215,12 +224,20 @@
               'Content-Type': 'multipart/form-data'
             }
           }).then(res=>{
+            array.push({'file_id':res.data.data.id,'from':'万方查重PC','type': 'file',
+            'content':''});
             index++;
             console.log(res,'fsadf')
             let obj = {!!$categories!!}
-            for (var value of obj) {
-              console.log(value);
+            console.log(obj, Object.prototype.toString.call(obj));
+            console.log(obj,3123)
+            var option=""
+            for (let i = 0; i < obj.length; i++) {
+              var id=obj[i].id;
+              var name=obj[i].name;
+              option+=`<option value=${id} class='options'>${name}</option>`
             }
+            console.log(option,"xixixifsaddjfa")
             var file_id=res.data.data.id;
             set.add(file_id);
             $("#hidden_form_id").val(file_id);
@@ -229,16 +246,17 @@
             $('#progress_bar_line').html('上传成功')
             $('#progress_text').html("上传成功");
             // alert('上传成功')
-            $("#newelement").append(`<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value=${item.name}>论文作者<input type='text' class='authorc' value='匿名'>检测系统<select><option value='1' class='options'>fsda</option></select></div>`);
+            $("#newelement").prepend(`<div style='margin-bottom:10px;'><span style="margin-right:10px">订单${index}</span><input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value=${item.name}>论文作者<input type='text' class='authorc' value='匿名'>检测系统<select>${option}</select></div>`);
           }).catch(err=>{
             console.log(err);
             index++;
             $('#progress_bar_line').css("width","100%")
             $('#progress_text').html("不允许上传的文件类型");
-            $("#newelement").append(`<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}><input type='text' value='请选择正确格式'>`);
+            $("#newelement").prepend(`<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}><p style="margin-left:10px;">上传失败，请选择正确格式</p>`);
           })
         }
         $('#batchBtn').click(_ => {
+          $('#newelement').css('display','none')
         $('.titlec').each((index, ele) => {
           console.log(index,ele,312321)
           array[index]['title'] = ele.value;
@@ -247,33 +265,93 @@
           console.log(index,ele,312321)
           array[index]['writer'] = ele.value;
         })
-        
-        console.log(array);
+        $('.options').each((index,ele)=>{
+          if(index +1 > array.length) return;
+          array[index]['cid']=$("select").val();
+        })
+        console.log(array,312,'fsdafa');
+        $('#paymsg').css('display','block')
+        for (let item of array){
+            axios.post('{{route('orders.store')}}',item).then(res=>{
+              
+              if(res.status==201){
+                var paymsg =res.data.data;
+                $('#paymsg').append(`<div><P>论文题目:${paymsg.title}</P><p>作者：${paymsg.writer}</p><p>价格:${paymsg.price}</p></div>`)
+              }
+             
+            }).catch(err=>{
+              console.log(err,312312)
+            })
+        }
       })
         $('.custom-file-label').html(name);
+        
+      })
+      //单文件上传
+      $('#customFile').change(function(e){
+        $('.custom-file-label').html(e.target.files[0].name)
+        var file = e.target.files[0];
+        var formData = new FormData();
+        formData.append("file", file);  //上传一个files对
+        axios.post('{{ route('files.store') }}', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }).then(res=>{
+            console.log(res,3123123)
+            oneid=res.data.data.id;
+          }).catch(err=>{
+            console.log(err);
+            
+          })
       })
      
       // $("form").submit(function(e){
         // <s></s>
 			// });
       $("#tosubmit").click(function(){
-        let array = [...set];
-        for (let item of array) {
-          axios.post('{{route('orders.store')}}',{cid: 12,
+        if($('#title').val()=='') return false;
+          if($('#writer').val()=='') return false;
+          // 判断选择谁
+          if($('#contentfile').hasClass('active')){
+            if(oneid=='') return false;
+          axios.post('{{route('orders.store')}}',{
+            cid: $('#cid').val(),
             from: '万方PC端',
-            file_id: item,
+            file_id: oneid,
             type: 'file',
             content:'',
-            title: '撒反倒',
-            writer: '手动阀'}
+            title: $('#title').val(),
+            writer: $('#writer').val()
+            }
             ).then(res=>{
             console.log(res,3123123)
             var order=res.data.data
-            //location.href='/orders/'+res.data.data.id
+            location.href='/orders/'+res.data.data.id
           }).catch(err=>{
             console.log(err,3112312312)
         })
-        }
+          }else{
+            console.log('fdsaf')
+            axios.post('{{route('orders.store')}}',{
+              cid: $('#cid').val(),
+              from: '万方PC端',
+              type: 'content',
+              content:$('#content').val(),
+              title: $('#title').val(),
+              writer: $('#writer').val()
+            }
+            ).then(res=>{
+            console.log(res,3123123)
+            var order=res.data.data
+            location.href='/orders/'+res.data.data.id
+          }).catch(err=>{
+            console.log(err,3112312312)
+        })
+          }
+          
+         
+        
       })
       
       
