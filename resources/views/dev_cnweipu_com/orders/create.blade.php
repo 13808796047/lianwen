@@ -298,7 +298,6 @@
             }
           }).then(res=>{
             console.log(res,3123123)
-            var file_id=res.data.
           }).catch(err=>{
             console.log(err);
         
