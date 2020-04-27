@@ -253,6 +253,7 @@
           array[index]['writer'] = ele.value;
         })
         $('.options').each((index,ele)=>{
+          console.log(index,ele,444)
           array[index]['cid']=ele.value
         })
         
