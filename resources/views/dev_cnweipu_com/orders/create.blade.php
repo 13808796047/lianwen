@@ -256,7 +256,7 @@
         })
         $('.options').each((index,ele)=>{
           console.log(index,ele,444,ele.value)
-          array[index]['cids'] = ele.value;
+          array[index]['ci'] = ele.value;
         })
         
         console.log(array);
