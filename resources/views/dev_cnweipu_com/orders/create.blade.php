@@ -226,13 +226,13 @@
             // alert('上传成功')
             $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' value='' class='titlec'>论文作者<input type='text' title='authorc'>检测系统<select><option value='1' class='options'>fsda</option></select></div>`);
             (
-              function() {
+              function(i) {
                 $('.titlec').change(e => {
               array[i]['title'] = e.target.value;
               console.log(array);
             })
               }
-            )(i);
+            )(index);
           }).catch(err=>{
             index++;
             $('#progress_bar_line').css("width","100%")
