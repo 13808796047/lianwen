@@ -157,6 +157,8 @@
           </div>
             <div id="paymsg" style="display:none;">
             <p>订单确认</p>
+            <div id="paymsg_container">
+            </div>
             </div>
         <div style="display:flex">
         <input type="file"  id="customFiles" style="width:70%;border:1px solid"
@@ -263,7 +265,7 @@
         }
         $('#batchBtn').click(_ => {
           $('#newelement').css('display','none')
-          $('#paymsg').children().remove();
+          $('#paymsg_containe').remove();
         $('.titlec').each((index, ele) => {
           console.log(index,ele,312321)
           array[index]['title'] = ele.value;
@@ -284,11 +286,11 @@
 
               if(res.status==201){
                 var paymsg =res.data.data;
-                $('#paymsg').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>论文题目:${paymsg.title}</p><p>作者：${paymsg.writer}</p><p>字数:${paymsg.words}</p><p>价格:${paymsg.price}元</p></div>`)
+                $('#paymsg_containe').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>论文题目:${paymsg.title}</p><p>作者：${paymsg.writer}</p><p>字数:${paymsg.words}</p><p>价格:${paymsg.price}元</p></div>`)
               }
 
             }).catch(err=>{
-              $('#paymsg').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>提交失败<p></div>`)
+              $('#paymsg_containe').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>提交失败<p></div>`)
             })
         }
       })
