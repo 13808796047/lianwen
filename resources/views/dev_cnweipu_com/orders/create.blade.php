@@ -233,6 +233,7 @@
         }
         var array=[];
         $('.titlec').each(function(index,ele){
+          console.log($(this))
           $(this).change(function(e){
             array[index]['title'] = e.target.value;
             console.log(array);
