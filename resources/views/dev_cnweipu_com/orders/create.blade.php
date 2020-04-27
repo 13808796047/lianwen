@@ -264,7 +264,7 @@
         }
         $('#batchBtn').click(_ => {
           $('#newelement').css('display','none')
-          $('#paymsg_containe').remove();
+          $('#paymsg_containe').children().remove();
         $('.titlec').each((index, ele) => {
           console.log(index,ele,312321)
           array[index]['title'] = ele.value;
