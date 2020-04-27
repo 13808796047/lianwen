@@ -156,9 +156,11 @@
             <p>订单确认</p>
             </div>
         </form>
-        <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile"
+        <div style="display:flex">
+        <input type="file"  id="customFile" style="width:70%;border:1px solid"
                          lang="cn" multiple
                   >批量上传
+        </div>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
         <b>1、检测结果是否准确？</b>
