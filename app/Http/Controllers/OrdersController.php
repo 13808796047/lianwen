@@ -50,15 +50,15 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
-        $disk = Storage::disk('public');
-        $directory = '/test';
-        $files = $disk->files($directory);
-        foreach($files as $file) {
-            dispatch(new FileWords($file))->delay(now()->addSeconds(2));
-        }
+//        $disk = Storage::disk('public');
+//        $directory = '/test';
+//        $files = $disk->files($directory);
+//        foreach($files as $file) {
+//            dispatch(new FileWords($file))->delay(now()->addSeconds(2));
+//        }
 //        校验权限
-//        $this->authorize('own', $order);
-//        return view('domained::orders.show', compact('order'));
+        $this->authorize('own', $order);
+        return view('domained::orders.show', compact('order'));
     }
 
     public function viewReport(Order $order, OrderApiHandler $apiHandler)
