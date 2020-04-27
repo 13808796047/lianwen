@@ -148,7 +148,7 @@
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" > -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
           <div id="newelement">
-
+            <button style="display:none" id="batchBtn">批量提交</button>
           </div>
         </form>
       </div>
@@ -223,7 +223,7 @@
             $('#progress_bar_line').html('上传成功')
             $('#progress_text').html("上传成功");
             // alert('上传成功')
-            $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' value=''>论文作者<input type='text'>检测系统<select><option value='1'>fsda</option></select></div>`);
+            $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' value='' class='titlec'>论文作者<input type='text' title='authorc'>检测系统<select><option value='1' class='options'>fsda</option></select></div>`);
           }).catch(err=>{
             index++;
             $('#progress_bar_line').css("width","100%")
@@ -231,6 +231,13 @@
             $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}><input type='text' value='请选择正确格式'>`);
           })
         }
+        var array=[];
+        $('.titlec').each(function(index,ele){
+          $(this).change(function(e){
+            array[index]['title'] = e.target.value;
+            console.log(array);
+          })
+        })
         $('.custom-file-label').html(name);
       })
      
