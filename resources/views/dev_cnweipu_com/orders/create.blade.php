@@ -260,15 +260,16 @@
           array[index]['cid']=$("select").val();
         })
         console.log(array,312,'fsdafa');
-      })
-        $('.custom-file-label').html(name);
-      for (let item of array){
+        for (let item of array){
         axios.post('{{route('orders.store')}}',item).then(res=>{
           console.log(res,3123123)
         }).catch(err=>{
           console.log(err,312312)
         })
       }
+      })
+        $('.custom-file-label').html(name);
+     
       })
      
       // $("form").submit(function(e){
