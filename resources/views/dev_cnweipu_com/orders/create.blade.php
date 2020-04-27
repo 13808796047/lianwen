@@ -149,7 +149,7 @@
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
           <div id="newelement">
           </div>
-            <button style="display:none" id="batchBtn">批量提交</button>
+            <button id="batchBtn">批量提交</button>
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
@@ -225,12 +225,6 @@
             $('#progress_text').html("上传成功");
             // alert('上传成功')
             $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' value='' class='titlec'>论文作者<input type='text' title='authorc'>检测系统<select><option value='1' class='options'>fsda</option></select></div>`);
-            console.log($('.titlec'));
-            $('.titlec').each((i, ele) => {
-              $(this).change(e => {
-                array[i]['title'] = e.targe.value;
-              })
-            })
           }).catch(err=>{
             console.log(err);
             index++;
@@ -265,7 +259,12 @@
         }
       })
       
-      
+      $('#batchBtn').click(_ => {
+        $('.titlec').each((index, ele) => {
+          array[index]['title'] = $(this).value;
+        })
+        console.log(array);
+      })
       // function checkType(e) {
       //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
       //   if ($.inArray(ext, ['docx', 'txt']) == -1) {
