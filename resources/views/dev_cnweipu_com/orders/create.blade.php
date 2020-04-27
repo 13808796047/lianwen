@@ -203,7 +203,7 @@
         $('#progress_bar').css("display","block");
         $('#progress_text').css('display',"block");
         
-        for(let (item,index) of file){
+        for((item,index) of file){
           name += item.name;
           var formData = new FormData();
           formData.append("file", item);  //上传一个files对
