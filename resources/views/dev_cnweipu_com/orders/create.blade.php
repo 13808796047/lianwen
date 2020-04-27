@@ -9,6 +9,7 @@
     .curfont {
       font-size: 16px;
     }
+    #newelement input{border:1px solid;margin-right:10px;}
   </style>
 @stop
 @section('content')
@@ -147,6 +148,9 @@
           </div>
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" > -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
+          <div id="newelement">
+          </div>
+            <div id="batchBtn">批量提交</div>
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
@@ -176,6 +180,8 @@
       //     content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
       //   })
       // })
+      let set = new Set();
+      let name = '';
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('.category>li:first-child i').addClass('selected')
@@ -190,45 +196,84 @@
       })
       $('#customFile').change(function (e) {
         //console.log(e,'312312');
-        $('.custom-file-label').html(e.target.files[0].name)
-        var file = e.target.files[0];
-        var formData = new FormData();
-        formData.append("file", file);  //上传一个files对
+
+        // $('.custom-file-label').html(e.target.files[0].name)
+        var file = e.target.files;
+        console.log(file,123123)
+        
         $('#progress_bar').css("display","block");
         $('#progress_text').css('display',"block");
-        axios.post('{{ route('files.store') }}', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(res=>{
-          console.log(res,'fsadf')
-          var file_id=res.data.data.id;
-          $("#hidden_form_id").val(file_id);
-          $("#hideen_type").val('file');
-          $('#progress_bar_line').css("width","100%")
-          $('#progress_bar_line').html('上传成功')
-          $('#progress_text').html("上传成功");
-          // alert('上传成功')
-        }).catch(err=>{
-          $('#progress_bar_line').css("width","100%")
-          $('#progress_text').html("不允许上传的文件类型");
+        var index=0;
+        var array=[{}, {}, {}, {}];
+        for(let i = 0; i < file.length; i++){
+          let item = file[i];
+          name += item.name;
+          var formData = new FormData();
+          formData.append("file", item);  //上传一个files对
+          axios.post('{{ route('files.store') }}', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }).then(res=>{
+            index++;
+            console.log(res,'fsadf')
+            let obj = {!!$categories!!}
+            for (var value of obj) {
+              console.log(value);
+            }
+            var file_id=res.data.data.id;
+            set.add(file_id);
+            $("#hidden_form_id").val(file_id);
+            $("#hideen_type").val('file');
+            $('#progress_bar_line').css("width","100%")
+            $('#progress_bar_line').html('上传成功')
+            $('#progress_text').html("上传成功");
+            // alert('上传成功')
+            $("#newelement").append(`<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value=${item.name}>论文作者<input type='text' class='authorc' value='匿名'>检测系统<select><option value='1' class='options'>fsda</option></select></div>`);
+          }).catch(err=>{
+            console.log(err);
+            index++;
+            $('#progress_bar_line').css("width","100%")
+            $('#progress_text').html("不允许上传的文件类型");
+            $("#newelement").append(`<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}><input type='text' value='请选择正确格式'>`);
+          })
+        }
+        $('#batchBtn').click(_ => {
+        $('.titlec').each((index, ele) => {
+          console.log(index,ele,312321)
+          array[index]['title'] = ele.value;
         })
-      })
-      // $("form").submit(function(e){
+        $('.authorc').each((index, ele) => {
+          console.log(index,ele,312321)
+          array[index]['writer'] = ele.value;
+        })
         
+        console.log(array);
+      })
+        $('.custom-file-label').html(name);
+      })
+     
+      // $("form").submit(function(e){
+        // <s></s>
 			// });
       $("#tosubmit").click(function(){
-        axios.post('{{route('orders.store')}}',{cid: 12,
+        let array = [...set];
+        for (let item of array) {
+          axios.post('{{route('orders.store')}}',{cid: 12,
             from: '万方PC端',
-            file_id: $("#hidden_form_id").val(),
+            file_id: item,
             type: 'file',
             content:'',
-title: '撒反倒',
-writer: '手动阀'}).then(res=>{
-        console.log(res,3123123)
-      }).catch(err=>{
-        console.log(err,3112312312)
-      })
+            title: '撒反倒',
+            writer: '手动阀'}
+            ).then(res=>{
+            console.log(res,3123123)
+            var order=res.data.data
+            //location.href='/orders/'+res.data.data.id
+          }).catch(err=>{
+            console.log(err,3112312312)
+        })
+        }
       })
       
       
