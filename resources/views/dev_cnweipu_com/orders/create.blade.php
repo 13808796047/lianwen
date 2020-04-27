@@ -107,7 +107,7 @@
                 </p>
                 <div class="custom-file my-2">
                   <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile"
-                         lang="cn" 
+                         lang="cn"
                   >
                   @error('file')
                   <span class="invalid-feedback" role="alert" style="display: block">
@@ -189,12 +189,12 @@
       // })
       let set = new Set();
       let name = '';
-      var oneid=''
+      var oneid = ''
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('.category>li:first-child i').addClass('selected')
       $('#cid').val($('.category>li:first-child').data('id'))
-      $('.category>li').click(function () {
+      $('.category>li').click(function() {
         $(this).siblings().children('i').removeClass('selected')
         $(this).children('i').addClass('selected')
         $('#cid').val($(this).data('id'))
@@ -203,158 +203,170 @@
         $('#words span').html(e.target.value.length)
       })
       //多文件上传
-      $('#customFiles').change(function (e) {
+      $('#customFiles').change(function(e) {
         //console.log(e,'312312');
-        $('#newelement').css('display','block')
+        $('#newelement').css('display', 'block')
         // $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files;
-        console.log(file,123123)
-        
-        $('#progress_bar').css("display","block");
-        $('#progress_text').css('display',"block");
-        var index=0;
-        var array=[];
-        for(let i = 0; i < file.length; i++){
+        console.log(file, 123123)
+
+        $('#progress_bar').css("display", "block");
+        $('#progress_text').css('display', "block");
+        var index = 0;
+        var array = [];
+        for (let i = 0; i < file.length; i++) {
           let item = file[i];
           name += item.name;
           var formData = new FormData();
-          formData.append("file", item);  //上传一个files对
-          axios.post('{{ route('files.store') }}', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          }).then(res=>{
-            array.push({'file_id':res.data.data.id,'from':'万方查重PC','type': 'file',
-            'content':''});
+          formData.append("file", item); //上传一个files对
+          axios.post('{{ route('
+            files.store ') }}', formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            }).then(res => {
+            array.push({
+              'file_id': res.data.data.id,
+              'from': '万方查重PC',
+              'type': 'file',
+              'content': ''
+            });
             index++;
-            console.log(res,'fsadf')
-            let obj = {!!$categories!!}
-            console.log(obj, Object.prototype.toString.call(obj));
-            console.log(obj,3123)
-            var option=""
-            for (let i = 0; i < obj.length; i++) {
-              var id=obj[i].id;
-              var name=obj[i].name;
-              option+=`<option value=${id} class='options'>${name}</option>`
+            console.log(res, 'fsadf')
+            let obj = {!!$categories!!
             }
-            console.log(option,"xixixifsaddjfa")
-            var file_id=res.data.data.id;
+            console.log(obj, Object.prototype.toString.call(obj));
+            console.log(obj, 3123)
+            var option = ""
+            for (let i = 0; i < obj.length; i++) {
+              var id = obj[i].id;
+              var name = obj[i].name;
+              option += `<option value=${id} class='options'>${name}</option>`
+            }
+            console.log(option, "xixixifsaddjfa")
+            var file_id = res.data.data.id;
             set.add(file_id);
             $("#hidden_form_id").val(file_id);
             $("#hideen_type").val('file');
-            $('#progress_bar_line').css("width","100%")
+            $('#progress_bar_line').css("width", "100%")
             $('#progress_bar_line').html('上传成功')
             $('#progress_text').html("上传成功");
             // alert('上传成功')
-            $("#newelement").prepend(`<div style='margin-bottom:10px;'><span style="margin-right:10px">订单${index}</span><input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value=${item.name}>论文作者<input type='text' class='authorc' value='匿名'>检测系统<select>${option}</select></div>`);
-          }).catch(err=>{
+            $("#newelement").prepend(
+              `<div style='margin-bottom:10px;'><span style="margin-right:10px">订单${index}</span><input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value=${item.name}>论文作者<input type='text' class='authorc' value='匿名'>检测系统<select>${option}</select></div>`
+            );
+          }).catch(err => {
             console.log(err);
             index++;
-            $('#progress_bar_line').css("width","100%")
+            $('#progress_bar_line').css("width", "100%")
             $('#progress_text').html("不允许上传的文件类型");
-            $("#newelement").prepend(`<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}><p style="margin-left:10px;">上传失败，请选择正确格式</p>`);
+            $("#newelement").prepend(
+              `<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}><p style="margin-left:10px;">上传失败，请选择正确格式</p>`
+            );
           })
         }
         $('#batchBtn').click(_ => {
-          $('#newelement').css('display','none')
-        $('.titlec').each((index, ele) => {
-          console.log(index,ele,312321)
-          array[index]['title'] = ele.value;
-        })
-        $('.authorc').each((index, ele) => {
-          console.log(index,ele,312321)
-          array[index]['writer'] = ele.value;
-        })
-        $('.options').each((index,ele)=>{
-          if(index +1 > array.length) return;
-          array[index]['cid']=$("select").val();
-        })
-        console.log(array,312,'fsdafa');
-        $('#paymsg').css('display','block')
-        for (let item of array){
-            axios.post('{{route('orders.store')}}',item).then(res=>{
-              
-              if(res.status==201){
-                var paymsg =res.data.data;
-                $('#paymsg').append(`<div><P>论文题目:${paymsg.title}</P><p>作者：${paymsg.writer}</p><p>价格:${paymsg.price}</p></div>`)
+          $('#newelement').css('display', 'none')
+          $('.titlec').each((index, ele) => {
+            console.log(index, ele, 312321)
+            array[index]['title'] = ele.value;
+          })
+          $('.authorc').each((index, ele) => {
+            console.log(index, ele, 312321)
+            array[index]['writer'] = ele.value;
+          })
+          $('.options').each((index, ele) => {
+            if (index + 1 > array.length) return;
+            array[index]['cid'] = $("select").val();
+          })
+          console.log(array, 312, 'fsdafa');
+          $('#paymsg').css('display', 'block')
+          for (let item of array) {
+            axios.post('{{route('
+              orders.store ')}}', item).then(res => {
+
+              if (res.status == 201) {
+                var paymsg = res.data.data;
+                $('#paymsg').append(
+                  `<div><P>论文题目:${paymsg.title}</P><p>作者：${paymsg.writer}</p><p>价格:${paymsg.price}</p></div>`)
               }
-             
-            }).catch(err=>{
-              console.log(err,312312)
+
+            }).catch(err => {
+              console.log(err, 312312)
             })
-        }
-      })
+          }
+        })
         $('.custom-file-label').html(name);
-        
+
       })
       //单文件上传
-      $('#customFile').change(function(e){
+      $('#customFile').change(function(e) {
         $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files[0];
         var formData = new FormData();
-        formData.append("file", file);  //上传一个files对
-        axios.post('{{ route('files.store') }}', formData, {
+        formData.append("file", file); //上传一个files对
+        axios.post('{{ route('
+          files.store ') }}', formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
-          }).then(res=>{
-            console.log(res,3123123)
-            oneid=res.data.data.id;
-          }).catch(err=>{
-            console.log(err);
-            
-          })
-      })
-     
-      // $("form").submit(function(e){
-        // <s></s>
-			// });
-      $("#tosubmit").click(function(){
-        if($('#title').val()=='') return false;
-          if($('#writer').val()=='') return false;
-          // 判断选择谁
-          if($('#contentfile').hasClass('active')){
-            if(oneid=='') return false;
-          axios.post('{{route('orders.store')}}',{
-            cid: $('#cid').val(),
-            from: '万方PC端',
-            file_id: oneid,
-            type: 'file',
-            content:'',
-            title: $('#title').val(),
-            writer: $('#writer').val()
-            }
-            ).then(res=>{
-            console.log(res,3123123)
-            var order=res.data.data
-            location.href='/orders/'+res.data.data.id
-          }).catch(err=>{
-            console.log(err,3112312312)
+          }).then(res => {
+          console.log(res, 3123123)
+          oneid = res.data.data.id;
+        }).catch(err => {
+          console.log(err);
+
         })
-          }else{
-            console.log('fdsaf')
-            axios.post('{{route('orders.store')}}',{
+      })
+
+      // $("form").submit(function(e){
+      // <s></s>
+      // });
+      $("#tosubmit").click(function() {
+        if ($('#title').val() == '') return false;
+        if ($('#writer').val() == '') return false;
+        // 判断选择谁
+        if ($('#contentfile').hasClass('active')) {
+          if (oneid == '') return false;
+          axios.post('{{route('
+            orders.store ')}}', {
               cid: $('#cid').val(),
               from: '万方PC端',
-              type: 'content',
-              content:$('#content').val(),
+              file_id: oneid,
+              type: 'file',
+              content: '',
               title: $('#title').val(),
               writer: $('#writer').val()
             }
-            ).then(res=>{
-            console.log(res,3123123)
-            var order=res.data.data
-            location.href='/orders/'+res.data.data.id
-          }).catch(err=>{
-            console.log(err,3112312312)
-        })
-          }
-          
-         
-        
+          ).then(res => {
+            console.log(res, 3123123)
+            var order = res.data.data
+            location.href = '/orders/' + res.data.data.id
+          }).catch(err => {
+            console.log(err, 3112312312)
+          })
+        } else {
+          console.log('fdsaf')
+          axios.post('{{route('
+            orders.store ')}}', {
+              cid: $('#cid').val(),
+              from: '万方PC端',
+              type: 'content',
+              content: $('#content').val(),
+              title: $('#title').val(),
+              writer: $('#writer').val()
+            }
+          ).then(res => {
+            console.log(res, 3123123)
+            var order = res.data.data
+            location.href = '/orders/' + res.data.data.id
+          }).catch(err => {
+            console.log(err, 3112312312)
+          })
+        }
       })
-      
-      
+
+
       // function checkType(e) {
       //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
       //   if ($.inArray(ext, ['docx', 'txt']) == -1) {
@@ -412,4 +424,3 @@
     })
   </script>
 @stop
-
