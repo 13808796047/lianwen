@@ -209,8 +209,7 @@
       })
       //多文件上传
       $('#customFiles').change(function (e) {
-        $('#newelement_container').children().remove()
-        $('#paymsg').children().remove();
+        $('#newelement_container').children().remove();
         //console.log(e,'312312');
         $('#newelement').css('display','block')
         // $('.custom-file-label').html(e.target.files[0].name)
