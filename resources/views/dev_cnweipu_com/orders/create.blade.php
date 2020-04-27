@@ -237,7 +237,7 @@
         console.log($('.titlec'))
         $('.titlec').each((index, ele) => {
           console.log(index,ele,312321)
-          array[index]['title'] = $(this).val();
+          array[index]['title'] = ele.value;
         })
         console.log(array);
       })
