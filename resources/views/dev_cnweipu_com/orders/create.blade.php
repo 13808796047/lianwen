@@ -256,9 +256,8 @@
         })
         $('.options').each((index,ele)=>{
           if(index +1 > array.length) return;
-          array[index]['cid']=$('.options').val();
+          array[index]['cid']=ele.value;
         })
-        
         console.log(array,312,'fsdafa');
       })
         $('.custom-file-label').html(name);
