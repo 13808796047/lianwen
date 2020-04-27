@@ -148,8 +148,8 @@
           </div>
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" > -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
-          <div id="newelement" style="display:none">
-          <div id="batchBtn" style="width: 100px;background: #3490dc;color: #fff;text-align: center;margin: 0 auto;">批量提交</div>
+          <div id="newelement" style="display:none;">
+            <div id="batchBtn" style="width: 100px;background: #3490dc;color: #fff;text-align: center;margin: 0 auto;">批量提交</div>
           </div>
            
             <div id="paymsg" style="display:none;">
