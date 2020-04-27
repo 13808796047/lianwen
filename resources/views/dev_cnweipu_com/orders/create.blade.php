@@ -215,7 +215,7 @@
               'Content-Type': 'multipart/form-data'
             }
           }).then(res=>{
-            array.push({});
+            array.push({'file_id':res.data.data.id,'from':'万方查重PC'});
             index++;
             console.log(res,'fsadf')
             let obj = {!!$categories!!}
