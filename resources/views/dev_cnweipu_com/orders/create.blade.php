@@ -217,7 +217,7 @@
           }).then(res=>{
             index++;
             console.log(res,'fsadf')
-            let obj ={{ $categories }}
+            let obj = { {{ $categories }} }
             console.log(obj,312321)
             var file_id=res.data.data.id;
             set.add(file_id);
