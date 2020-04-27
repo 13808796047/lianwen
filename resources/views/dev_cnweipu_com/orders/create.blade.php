@@ -218,7 +218,9 @@
             index++;
             console.log(res,'fsadf')
             let obj = {!!$categories!!}
-            console.log(obj,312321)
+            for (var value of obj) {
+              console.log(value);
+            }
             var file_id=res.data.data.id;
             set.add(file_id);
             $("#hidden_form_id").val(file_id);
