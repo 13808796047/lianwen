@@ -222,7 +222,7 @@
             for (let i = 0; i < obj.length; i++) {
               var id=value[i].id;
               var name=value[i].name;
-              option+=`<option value='${id[i]}' class='options'>${name[i]}</option>`
+              option+=`<option value=${id} class='options'>${name}</option>`
             }
             var file_id=res.data.data.id;
             set.add(file_id);
