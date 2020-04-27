@@ -310,8 +310,11 @@
         // <s></s>
 			// });
       $("#tosubmit").click(function(){
-          if($('#title').val()=='') return false;
+        if($('#title').val()=='') return false;
           if($('#writer').val()=='') return false;
+          // 判断选择谁
+          if($('#contentfile').hasClass('active')){
+            if(oneid=='') return false;
           axios.post('{{route('orders.store')}}',{
             cid: $('#cid').val(),
             from: '万方PC端',
@@ -328,6 +331,26 @@
           }).catch(err=>{
             console.log(err,3112312312)
         })
+          }else{
+            console.log('fdsaf')
+            axios.post('{{route('orders.store')}}',{
+              cid: $('#cid').val(),
+              from: '万方PC端',
+              type: 'content',
+              content:$('#content').val(),
+              title: $('#title').val(),
+              writer: $('#writer').val()
+            }
+            ).then(res=>{
+            console.log(res,3123123)
+            var order=res.data.data
+            location.href='/orders/'+res.data.data.id
+          }).catch(err=>{
+            console.log(err,3112312312)
+        })
+          }
+          
+         
         
       })
       
