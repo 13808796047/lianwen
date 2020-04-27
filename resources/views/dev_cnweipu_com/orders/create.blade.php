@@ -232,6 +232,7 @@
               })
             })
           }).catch(err=>{
+            console.log(err);
             index++;
             $('#progress_bar_line').css("width","100%")
             $('#progress_text').html("不允许上传的文件类型");
