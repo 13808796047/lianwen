@@ -148,8 +148,8 @@
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" > -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
           <div id="newelement">
-            <button style="display:none" id="batchBtn">批量提交</button>
           </div>
+            <button style="display:none" id="batchBtn">批量提交</button>
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
@@ -232,7 +232,7 @@
           })
         }
         var array=[{}, {}, {}, {}];
-        $('.titlec').each(function(index,ele){
+        $('.newelement').children().each(function(index,ele){
           console.log($(this), 99999)
           $(this).change(function(e){
             array[index]['title'] = e.target.value;
