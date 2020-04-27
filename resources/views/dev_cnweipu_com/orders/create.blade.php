@@ -9,7 +9,7 @@
     .curfont {
       font-size: 16px;
     }
-    #newelement input{border:1px solid}
+    #newelement input{border:1px solid;margin-right:10px;}
   </style>
 @stop
 @section('content')
@@ -231,7 +231,7 @@
             index++;
             $('#progress_bar_line').css("width","100%")
             $('#progress_text').html("不允许上传的文件类型");
-            $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}><input type='text' value='请选择正确格式'>`);
+            $("#newelement").append(`<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}><input type='text' value='请选择正确格式'>`);
           })
         }
         $('#batchBtn').click(_ => {
