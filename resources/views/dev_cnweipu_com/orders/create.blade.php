@@ -310,7 +310,7 @@
       $("#tosubmit").click(function(){
         console.log($('#cid').val(),312312)
           axios.post('{{route('orders.store')}}',{
-            cid: ,
+            cid: 13,
             from: '万方PC端',
             file_id: item,
             type: 'file',
