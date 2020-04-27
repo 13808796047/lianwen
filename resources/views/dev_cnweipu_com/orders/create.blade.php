@@ -132,7 +132,7 @@
                        alt="">
                   系统在检测时会分析论文的前后文关系， 所以请您提交论文的全部内容，如果是非全文的检测将不能保证检测的准确性。
                 </p>
-                <div class="form-group">
+                <div class="form-group" >
                   <textarea id="content" class="form-control @error('content') is-invalid @enderror" name="content"
                             placeholder="输入论文内容不少于1000字"
                             rows="10" value="{{ old('content') }}"></textarea>
@@ -146,12 +146,11 @@
               </div>
             </div>
           </div>
-          <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8">
-          <!-- <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit"> -->
+          <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8"> -->
+          <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
           <div id="newelement" style="display:none;">
             <div id="batchBtn" style="width: 100px;background: #3490dc;color: #fff;text-align: center;margin: 0 auto;">批量提交</div>
           </div>
-           
             <div id="paymsg" style="display:none;">
             <p>订单确认</p>
             </div>
@@ -299,6 +298,7 @@
             }
           }).then(res=>{
             console.log(res,3123123)
+            var file_id=res.data.
           }).catch(err=>{
             console.log(err);
         
@@ -309,9 +309,9 @@
         // <s></s>
 			// });
       $("#tosubmit").click(function(){
-        let array = [...set];
-        for (let item of array) {
-          axios.post('{{route('orders.store')}}',{cid: 12,
+        console.log($('#cid').val(),312312)
+          axios.post('{{route('orders.store')}}',{
+            cid: ,
             from: '万方PC端',
             file_id: item,
             type: 'file',
@@ -325,7 +325,7 @@
           }).catch(err=>{
             console.log(err,3112312312)
         })
-        }
+        
       })
       
       
