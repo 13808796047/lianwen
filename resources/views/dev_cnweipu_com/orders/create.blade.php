@@ -157,9 +157,8 @@
             </div>
         </form>
         <div style="display:flex">
-        <input type="file"  id="customFile" style="width:70%;border:1px solid"
-                         lang="cn" multiple
-                  >批量上传
+        <input type="file"  id="customFiles" style="width:70%;border:1px solid"
+                         lang="cn" multiple>批量上传
         </div>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
@@ -203,7 +202,8 @@
       $('#content').bind('input propertychange', (e) => {
         $('#words span').html(e.target.value.length)
       })
-      $('#customFile').change(function (e) {
+      //多文件上传
+      $('#customFiles').change(function (e) {
         //console.log(e,'312312');
         $('#newelement').css('display','block')
         // $('.custom-file-label').html(e.target.files[0].name)
@@ -286,6 +286,24 @@
       })
         $('.custom-file-label').html(name);
      
+      })
+      //单文件上传
+      $('#customFile').change(function(e){
+        $('.custom-file-label').html(e.target.files[0].name)
+        var file = e.target.files;
+        var formData = new FormData();
+          formData.append("file", formData);  //上传一个files对
+          axios.post('{{ route('files.store') }}', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }).then(res=>{
+            console.log(res,3123123)
+          }).catch(err=>{
+            console.log(err);
+        
+          })
+        }
       })
      
       // $("form").submit(function(e){
