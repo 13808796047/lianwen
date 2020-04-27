@@ -146,8 +146,8 @@
               </div>
             </div>
           </div>
-          <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" > -->
-          <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
+          <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8">
+          <!-- <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit"> -->
           <div id="newelement" style="display:none;">
             <div id="batchBtn" style="width: 100px;background: #3490dc;color: #fff;text-align: center;margin: 0 auto;">批量提交</div>
           </div>
@@ -291,7 +291,6 @@
       $('#customFile').change(function(e){
         $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files[0];
-
         var formData = new FormData();
         formData.append("file", file);  //上传一个files对
         axios.post('{{ route('files.store') }}', formData, {
