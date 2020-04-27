@@ -226,7 +226,7 @@
             // alert('上传成功')
             $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' value='' class='titlec'>论文作者<input type='text' title='authorc'>检测系统<select><option value='1' class='options'>fsda</option></select></div>`);
             $('.titlec').change(e => {
-              array[index]['title'] = e.target.value;
+              array[index-1]['title'] = e.target.value;
               console.log(array);
             })
           }).catch(err=>{
