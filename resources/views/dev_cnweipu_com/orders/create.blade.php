@@ -208,6 +208,7 @@
       //多文件上传
       $('#customFiles').change(function (e) {
         $('#newelement_container').children().remove()
+        $('#paymsg').children().remove();
         //console.log(e,'312312');
         $('#newelement').css('display','block')
         // $('.custom-file-label').html(e.target.files[0].name)
@@ -261,8 +262,8 @@
           })
         }
         $('#batchBtn').click(_ => {
-          $('#paymsg').children().remove();
           $('#newelement').css('display','none')
+          $('#paymsg').children().remove();
         $('.titlec').each((index, ele) => {
           console.log(index,ele,312321)
           array[index]['title'] = ele.value;
