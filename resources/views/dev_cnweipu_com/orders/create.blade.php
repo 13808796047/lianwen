@@ -148,9 +148,10 @@
           </div>
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" > -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
-          <div id="newelement">
+          <div id="newelement" style="display:none">
+          <div id="batchBtn" style="width: 100px;background: #3490dc;color: #fff;text-align: center;margin: 0 auto;">批量提交</div>
           </div>
-            <div id="batchBtn">批量提交</div>
+           
             <div id="paymsg" style="display:none;">
             <p>订单确认</p>
             </div>
@@ -199,7 +200,7 @@
       })
       $('#customFile').change(function (e) {
         //console.log(e,'312312');
-
+        $('#newelement').css('display','block')
         // $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files;
         console.log(file,123123)
@@ -250,6 +251,7 @@
           })
         }
         $('#batchBtn').click(_ => {
+          $('#newelement').css('display','none')
         $('.titlec').each((index, ele) => {
           console.log(index,ele,312321)
           array[index]['title'] = ele.value;
