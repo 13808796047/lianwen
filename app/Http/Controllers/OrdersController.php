@@ -48,18 +48,6 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
-//        $manager = new ImageManager(['driver' => 'gd']);
-//        $img = $manager->make('public/wp.jpg');
-//        $img->text('测试文字', 50, 50, function($font) {
-//            $font->file('public/Alibaba - PuHuiTi - Light . ttf');
-//            $font->size(24);
-//            $font->color('#000');
-//            //$font->align('center');
-//            //$font->valign('top');
-//            //$font->angle(45);
-//        });
-//        dd($img);
-
 //        $this->dispatch(new CheckOrderStatus($order));
 //        校验权限
         $this->authorize('own', $order);
