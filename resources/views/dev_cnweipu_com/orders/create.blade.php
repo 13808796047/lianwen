@@ -204,7 +204,7 @@
         $('#progress_bar').css("display","block");
         $('#progress_text').css('display',"block");
         var index=0;
-        var array=[{}, {}, {}, {}];
+        var array=[];
         for(let i = 0; i < file.length; i++){
           let item = file[i];
           name += item.name;
@@ -215,6 +215,7 @@
               'Content-Type': 'multipart/form-data'
             }
           }).then(res=>{
+            array.push({});
             index++;
             console.log(res,'fsadf')
             let obj = {!!$categories!!}
