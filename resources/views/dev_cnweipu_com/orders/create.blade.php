@@ -159,10 +159,11 @@
             <p>订单确认</p>
             <div id="paymsg_container">
             </div>
+            <div style="width:150px;background:red;color:#fff;text-align:center;" id="toSecup">再次上传</div>
             </div>
-        <div style="display:flex">
-        <input type="file"  id="customFiles" style="width:70%;border:1px solid"
-                         lang="cn" multiple>批量上传
+        <div style="display:flex;" id="manyupload">
+        批量上传<input type="file"  id="customFiles" style="width:70%;border:1px solid"
+                         lang="cn" multiple>
         </div>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
@@ -210,8 +211,6 @@
       //多文件上传
       $('#customFiles').change(function (e) {
         $('#newelement').css('display','block');
-        $('#newelement_container').children().remove();
-        $('#paymsg_container').children().remove();
         //console.log(e,'312312');
 
         // $('.custom-file-label').html(e.target.files[0].name)
@@ -295,7 +294,10 @@
         }
       })
         $('.custom-file-label').html(name);
-
+        $('#manyupload').css('display',"none")
+      });
+      $('#toSecup').click(function(){
+        window.location.reload();
       })
       //单文件上传
       $('#customFile').change(function(e){
