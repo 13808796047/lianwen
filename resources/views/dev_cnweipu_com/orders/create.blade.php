@@ -218,6 +218,7 @@
             index++;
             console.log(res,'fsadf')
             let obj = {!!$categories!!}
+            console.log(obj, Object.toString.call(obj));
             console.log(obj,3123)
             var option=""
             for (let i = 0; i < obj.length; i++) {
