@@ -303,7 +303,6 @@
             console.log(err);
         
           })
-        }
       })
      
       // $("form").submit(function(e){
