@@ -262,6 +262,7 @@
           })
         }
         $('#batchBtn').click(_ => {
+          $('#paymsg').children().remove();
           $('#newelement').css('display','none')
         $('.titlec').each((index, ele) => {
           console.log(index,ele,312321)
