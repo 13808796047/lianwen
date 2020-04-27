@@ -233,6 +233,13 @@
             $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}><input type='text' value='请选择正确格式'>`);
           })
         }
+        $('#batchBtn').click(_ => {
+        console.log($('.titlec'))
+        $('.titlec').each((index, ele) => {
+          array[index]['title'] = $(this).value;
+        })
+        console.log(array);
+      })
         $('.custom-file-label').html(name);
       })
      
@@ -259,13 +266,7 @@
         }
       })
       
-      $('#batchBtn').click(_ => {
-        console.log($('.titlec'))
-        $('.titlec').each((index, ele) => {
-          array[index]['title'] = $(this).value;
-        })
-        console.log(array);
-      })
+      
       // function checkType(e) {
       //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
       //   if ($.inArray(ext, ['docx', 'txt']) == -1) {
