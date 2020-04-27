@@ -265,9 +265,10 @@
           console.log(index,ele,312321)
           array[index]['writer'] = ele.value;
         })
-        $('.options').each((index,ele)=>{
+        $('select').each((index,ele)=>{
           if(index +1 > array.length) return;
-          array[index]['cid']=$("select").val();
+          // array[index]['cid']=$("select").val();
+          array[index]['cid']=ele.value;
         })
         console.log(array,312,'fsdafa');
         $('#paymsg').css('display','block')
