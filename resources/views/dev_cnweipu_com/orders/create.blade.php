@@ -222,8 +222,8 @@
             console.log(obj,3123)
             var option=""
             for (let i = 0; i < obj.length; i++) {
-              var id=value[i].id;
-              var name=value[i].name;
+              var id=obj[i].id;
+              var name=obj[i].name;
               option+=`<option value=${id} class='options'>${name}</option>`
             }
             var file_id=res.data.data.id;
