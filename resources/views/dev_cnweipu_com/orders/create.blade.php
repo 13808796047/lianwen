@@ -218,9 +218,12 @@
             index++;
             console.log(res,'fsadf')
             let obj = {!!$categories!!}
-            for (var value of obj) {
-              console.log(value);
+            for (let i = 0; i < obj.length; i++) {
+              var id[i]=value[i].id;
+              var name[i]=value[i].name;
+              var option=`<option value='${id[i]}' class='options'>${name[i]}</option>`
             }
+
             var file_id=res.data.data.id;
             set.add(file_id);
             $("#hidden_form_id").val(file_id);
@@ -229,7 +232,7 @@
             $('#progress_bar_line').html('上传成功')
             $('#progress_text').html("上传成功");
             // alert('上传成功')
-            $("#newelement").append(`<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value=${item.name}>论文作者<input type='text' class='authorc' value='匿名'>检测系统<select><option value='1' class='options'>fsda</option></select></div>`);
+            $("#newelement").append(`<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value=${item.name}>论文作者<input type='text' class='authorc' value='匿名'>`+`检测系统<select>${option}</select>`</div>);
           }).catch(err=>{
             console.log(err);
             index++;
