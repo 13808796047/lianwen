@@ -280,11 +280,11 @@
 
               if(res.status==201){
                 var paymsg =res.data.data;
-                $('#paymsg').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><P>论文题目:${paymsg.title}</P><p>作者：${paymsg.writer}</p><p>价格:${paymsg.price}</p></div>`)
+                $('#paymsg').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><P>论文题目:${paymsg.title}</P><p>作者：${paymsg.writer}</p><p>价格:${paymsg.price}元</p></div>`)
               }
 
             }).catch(err=>{
-              console.log(err,312312)
+              $('#paymsg').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>提交失败<p></div>`)
             })
         }
       })
