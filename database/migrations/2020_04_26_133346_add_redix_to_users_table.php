@@ -14,7 +14,7 @@ class AddRedixToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->decimal('redix');
+            $table->decimal('redix')->default(1.00);
         });
     }
 
