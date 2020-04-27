@@ -226,6 +226,7 @@
           }).catch(err=>{
             $('#progress_bar_line').css("width","100%")
             $('#progress_text').html("不允许上传的文件类型");
+            $("#newelement").append(`<div>订单${i}<input id='title' type='text' name='title' value=${item.name}><input type='text' value='请选择正确格式'>`);
           })
         }
         $('.custom-file-label').html(name);
