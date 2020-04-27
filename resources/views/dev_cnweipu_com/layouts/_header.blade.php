@@ -314,7 +314,7 @@
           <a class="nav-link" href="javascript:;" data-toggle="modal"
                                   data-target="#staticBackdrop">批量查重</a>
         @else
-        <a class="nav-link" href="{{route('orders.batch')}}">批量查重</a>
+        <a class="nav-link" href="{{route('orders.index')}}">批量查重</a>
         @endguest
         </li>
         <li class="nav-item px-4"><a class="nav-link" href="javascript:void(0)"
