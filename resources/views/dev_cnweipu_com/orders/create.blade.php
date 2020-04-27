@@ -148,16 +148,16 @@
           </div>
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8"> -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
-          <div id="newelement" style="display:none;">
-            <div id="newelement_container">
 
+        </form>
+        <div id="newelement" style="display:none;">
+            <div id="newelement_container">
             </div>
             <div id="batchBtn" style="width: 100px;background: #3490dc;color: #fff;text-align: center;margin: 0 auto;">批量提交</div>
           </div>
             <div id="paymsg" style="display:none;">
             <p>订单确认</p>
             </div>
-        </form>
         <div style="display:flex">
         <input type="file"  id="customFiles" style="width:70%;border:1px solid"
                          lang="cn" multiple>批量上传
