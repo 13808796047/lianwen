@@ -107,7 +107,7 @@
                 </p>
                 <div class="custom-file my-2">
                   <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile"
-                         lang="cn" 
+                         lang="cn"
                   >
                   @error('file')
                   <span class="invalid-feedback" role="alert" style="display: block">
@@ -209,7 +209,7 @@
         // $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files;
         console.log(file,123123)
-        
+
         $('#progress_bar').css("display","block");
         $('#progress_text').css('display',"block");
         var index=0;
@@ -273,19 +273,19 @@
         $('#paymsg').css('display','block')
         for (let item of array){
             axios.post('{{route('orders.store')}}',item).then(res=>{
-              
+
               if(res.status==201){
                 var paymsg =res.data.data;
                 $('#paymsg').append(`<div><P>论文题目:${paymsg.title}</P><p>作者：${paymsg.writer}</p><p>价格:${paymsg.price}</p></div>`)
               }
-             
+
             }).catch(err=>{
               console.log(err,312312)
             })
         }
       })
         $('.custom-file-label').html(name);
-        
+
       })
       //单文件上传
       $('#customFile').change(function(e){
@@ -302,10 +302,10 @@
             oneid=res.data.data.id;
           }).catch(err=>{
             console.log(err);
-            
+
           })
       })
-     
+
       // $("form").submit(function(e){
         // <s></s>
 			// });
@@ -332,7 +332,7 @@
             console.log(err,3112312312)
         })
           }else{
-            console.log('fdsaf')
+
             axios.post('{{route('orders.store')}}',{
               cid: $('#cid').val(),
               from: '万方PC端',
@@ -349,12 +349,12 @@
             console.log(err,3112312312)
         })
           }
-          
-         
-        
+
+
+
       })
-      
-      
+
+
       // function checkType(e) {
       //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
       //   if ($.inArray(ext, ['docx', 'txt']) == -1) {
@@ -412,4 +412,3 @@
     })
   </script>
 @stop
-
