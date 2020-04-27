@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Order\BatchQueue;
 use App\Jobs\CheckOrderStatus;
 use App\Jobs\CreateCheckOrder;
 use App\Jobs\getOrderStatus;
@@ -83,6 +84,9 @@ class OrdersController extends AdminController
         $grid->column('pay_type', '支付方式');
         $grid->column('from', '来源');
         $grid->column('created_at', '创建时间')->sortable();
+        $grid->batchActions(function($batch) {
+            $batch->add(new BatchQueue());
+        });
         // 禁用创建按钮，后台不需要创建订单
         $grid->disableCreateButton();
         return $grid;
