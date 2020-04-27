@@ -254,13 +254,11 @@
           console.log(index,ele,312321)
           array[index]['writer'] = ele.value;
         })
-        $('.options').each((index,ele)=>{
-          console.log(index,ele,444,ele.value)
-          console.log(array[index],array,32)
-          array[index]['ci'] = ele.value;
+        array.each((index,ele)=>{
+          array[index]['cid']=$('.options').val();
         })
         
-        console.log(array);
+        console.log(array,312,'fsdafa');
       })
         $('.custom-file-label').html(name);
       })
