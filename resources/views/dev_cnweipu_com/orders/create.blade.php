@@ -9,6 +9,7 @@
     .curfont {
       font-size: 16px;
     }
+    #newelement input{border:1px solid}
   </style>
 @stop
 @section('content')
@@ -242,6 +243,7 @@
           console.log(index,ele,312321)
           array[index]['writer'] = ele.value;
         })
+        
         console.log(array);
       })
         $('.custom-file-label').html(name);
