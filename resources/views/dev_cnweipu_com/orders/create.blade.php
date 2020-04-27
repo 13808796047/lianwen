@@ -269,7 +269,7 @@
               
               if(res.status==201){
                 var paymsg =res.data.data;
-                $('#paymsg').append(`<div>论文题目${paymsg.title}<p>作者：${paymsg.writer}</p><p>版本</p></div>`)
+                $('#paymsg').append(`<div><P>论文题目:${paymsg.title}</P><p>作者：${paymsg.writer}</p><p>价格:${paymsg.price}</p></div>`)
               }
              
             }).catch(err=>{
