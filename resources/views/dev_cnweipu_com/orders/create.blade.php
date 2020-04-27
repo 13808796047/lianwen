@@ -222,7 +222,7 @@
             $('#progress_bar_line').html('上传成功')
             $('#progress_text').html("上传成功");
             // alert('上传成功')
-            $("#newelement").append(`订单${i}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' value=''>论文作者<input type='text'>检测系统<select><option value='1'>fsda</option></select>`);
+            $("#newelement").append(`<div>订单${i}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' value=''>论文作者<input type='text'>检测系统<select><option value='1'>fsda</option></select></div>`);
           }).catch(err=>{
             $('#progress_bar_line').css("width","100%")
             $('#progress_text').html("不允许上传的文件类型");
