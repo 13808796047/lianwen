@@ -228,9 +228,8 @@
             console.log($('.titlec'));
             $('.titlec').each((i, ele) => {
               ele.change(e => {
-              array[i]['title'] = e.target.value;
-              console.log(array);
-            })
+                array[i]['title'] = e.targe.value;
+              })
             })
           }).catch(err=>{
             index++;
