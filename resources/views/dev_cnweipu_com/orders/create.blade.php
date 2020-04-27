@@ -149,7 +149,7 @@
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
           <div id="newelement">
           </div>
-            <button id="batchBtn">批量提交</button>
+            <div id="batchBtn">批量提交</div>
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
@@ -260,6 +260,7 @@
       })
       
       $('#batchBtn').click(_ => {
+        console.log($('.titlec'))
         $('.titlec').each((index, ele) => {
           array[index]['title'] = $(this).value;
         })
