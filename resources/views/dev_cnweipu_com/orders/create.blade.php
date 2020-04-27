@@ -224,7 +224,7 @@
             $('#progress_bar_line').html('上传成功')
             $('#progress_text').html("上传成功");
             // alert('上传成功')
-            $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' value='' class='titlec'>论文作者<input type='text' title='authorc'>检测系统<select><option value='1' class='options'>fsda</option></select></div>`);
+            $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value='fsadf'>论文作者<input type='text' title='authorc'>检测系统<select><option value='1' class='options'>fsda</option></select></div>`);
           }).catch(err=>{
             console.log(err);
             index++;
@@ -236,6 +236,10 @@
         $('#batchBtn').click(_ => {
         console.log($('.titlec'))
         $('.titlec').each((index, ele) => {
+          console.log(index,ele,312321)
+          array[index]['title'] = ele.value;
+        })
+        $('#authorc').each((index, ele) => {
           console.log(index,ele,312321)
           array[index]['title'] = ele.value;
         })
