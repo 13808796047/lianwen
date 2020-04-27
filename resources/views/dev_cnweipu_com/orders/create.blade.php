@@ -256,7 +256,7 @@
         })
         $('.options').each((index,ele)=>{
           if(index +1 > array.length) return;
-          array[index]['cid']=ele.value;
+          array[index]['cid']=$("select option:selected").val()
         })
         console.log(array,312,'fsdafa');
       })
