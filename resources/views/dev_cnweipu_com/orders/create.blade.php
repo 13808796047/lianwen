@@ -254,7 +254,8 @@
           console.log(index,ele,312321)
           array[index]['writer'] = ele.value;
         })
-        array.each((index,ele)=>{
+        $('.options').each((index,ele)=>{
+          if(index +1 > array.length) return;
           array[index]['cid']=$('.options').val();
         })
         
