@@ -147,6 +147,9 @@
           </div>
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8" > -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
+          <div id="newelement">
+
+          </div>
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
@@ -218,6 +221,7 @@
             $('#progress_bar_line').html('上传成功')
             $('#progress_text').html("上传成功");
             // alert('上传成功')
+            $("#newelement").append("<input id="title" type="text" name="title" value="id">");
           }).catch(err=>{
             $('#progress_bar_line').css("width","100%")
             $('#progress_text').html("不允许上传的文件类型");
