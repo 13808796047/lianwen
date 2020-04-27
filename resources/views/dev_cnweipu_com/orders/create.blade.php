@@ -285,7 +285,7 @@
         }
       })
         $('.custom-file-label').html(name);
-     
+        
       })
       //单文件上传
       $('#customFile').change(function(e){
@@ -302,7 +302,7 @@
             oneid=res.data.data.id;
           }).catch(err=>{
             console.log(err);
-        
+            
           })
       })
      
@@ -310,6 +310,8 @@
         // <s></s>
 			// });
       $("#tosubmit").click(function(){
+          if($('#title').val()=='') return false;
+          if($('#writer').val()=='') return false;
           axios.post('{{route('orders.store')}}',{
             cid: $('#cid').val(),
             from: '万方PC端',
@@ -317,11 +319,12 @@
             type: 'file',
             content:'',
             title: $('#title').val(),
-            writer: 'fdsf'}
+            writer: $('#writer').val()
+            }
             ).then(res=>{
             console.log(res,3123123)
             var order=res.data.data
-            //location.href='/orders/'+res.data.data.id
+            location.href='/orders/'+res.data.data.id
           }).catch(err=>{
             console.log(err,3112312312)
         })
