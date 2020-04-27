@@ -49,9 +49,9 @@
             </li>
           @endforeach
         </ul>
-        <form action="{{route('orders.store')}}" method="post" id="form">
-        <!-- <form > -->
-          @csrf
+        <!-- <form action="{{route('orders.store')}}" method="post" id="form"> -->
+        <form >
+          <!-- @csrf -->
           <input type="hidden" name="cid" id="cid" >
           <input type="hidden" name="from" value="万方PC端">
           <input type="hidden" name="file_id" value="" id="hidden_form_id">
@@ -189,6 +189,7 @@
       // })
       let set = new Set();
       let name = '';
+      var oneid=''
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('.category>li:first-child i').addClass('selected')
@@ -298,6 +299,7 @@
             }
           }).then(res=>{
             console.log(res,3123123)
+            oneid=res.data.data.id;
           }).catch(err=>{
             console.log(err);
         
@@ -308,15 +310,14 @@
         // <s></s>
 			// });
       $("#tosubmit").click(function(){
-        console.log($('#cid').val(),312312)
           axios.post('{{route('orders.store')}}',{
-            cid: 13,
+            cid: $('#cid').val(),
             from: '万方PC端',
-            file_id: item,
+            file_id: oneid,
             type: 'file',
             content:'',
-            title: '撒反倒',
-            writer: '手动阀'}
+            title: $('#title').val(),
+            writer: 'fdsf'}
             ).then(res=>{
             console.log(res,3123123)
             var order=res.data.data
