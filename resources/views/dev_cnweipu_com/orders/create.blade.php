@@ -151,6 +151,9 @@
           <div id="newelement">
           </div>
             <div id="batchBtn">批量提交</div>
+            <div id="paymsg" style="display:none;">
+            <p>订单确认</p>
+            </div>
         </form>
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
@@ -260,13 +263,19 @@
           array[index]['cid']=$("select").val();
         })
         console.log(array,312,'fsdafa');
+        $('#paymsg').css('display','block')
         for (let item of array){
-        axios.post('{{route('orders.store')}}',item).then(res=>{
-          console.log(res,3123123)
-        }).catch(err=>{
-          console.log(err,312312)
-        })
-      }
+            axios.post('{{route('orders.store')}}',item).then(res=>{
+              
+              if(res.status==201){
+                var paymsg =res.data.data;
+                $('#paymsg').append(`<div>论文题目${paymsg.title}<p>作者：${paymsg.writer}</p><p>版本</p></div>`)
+              }
+             
+            }).catch(err=>{
+              console.log(err,312312)
+            })
+        }
       })
         $('.custom-file-label').html(name);
      
