@@ -236,7 +236,7 @@
         $('#batchBtn').click(_ => {
         console.log($('.titlec'))
         $('.titlec').each((index, ele) => {
-          array[index]['title'] = $(this).value;
+          array[index]['title'] = ele.target.value;
         })
         console.log(array);
       })
