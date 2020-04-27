@@ -252,7 +252,7 @@
             index++;
             $('#progress_bar_line').css("width","100%")
             $('#progress_text').html("不允许上传的文件类型");
-            $("#newelement").prepend(`<div style='margin-bottom:10px'>订单${index}<input id='title' type='text' name='title' value=${item.name}><p style="margin-left:10px;">上传失败，请选择正确格式</p>`);
+            $("#newelement").prepend(`<div style='margin-bottom:10px'><span style="margin-right:10px">订单${index}<span><input id='title' type='text' name='title' value=${item.name}><span style="margin-left:10px;">上传失败，请选择正确格式</span>`);
           })
         }
         $('#batchBtn').click(_ => {
