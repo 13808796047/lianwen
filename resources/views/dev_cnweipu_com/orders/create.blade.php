@@ -265,7 +265,7 @@
       for (let item of array){
         axios.post('{{route('orders.store')}}',item).then(res=>{
           console.log(res,3123123)
-        })catch(err=>{
+        }).catch(err=>{
           console.log(err,312312)
         })
       }
