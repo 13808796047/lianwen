@@ -231,9 +231,9 @@
             $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}><input type='text' value='请选择正确格式'>`);
           })
         }
-        var array=[];
+        var array=[{}, {}, {}, {}];
         $('.titlec').each(function(index,ele){
-          console.log($(this))
+          console.log($(this), 99999)
           $(this).change(function(e){
             array[index]['title'] = e.target.value;
             console.log(array);
