@@ -202,7 +202,7 @@
         
         $('#progress_bar').css("display","block");
         $('#progress_text').css('display',"block");
-        
+        var index=0;
         for(let i = 0; i < file.length; i++){
           let item = file[i];
           name += item.name;
@@ -213,6 +213,7 @@
               'Content-Type': 'multipart/form-data'
             }
           }).then(res=>{
+            index++;
             console.log(res,'fsadf')
             var file_id=res.data.data.id;
             set.add(file_id);
@@ -222,11 +223,12 @@
             $('#progress_bar_line').html('上传成功')
             $('#progress_text').html("上传成功");
             // alert('上传成功')
-            $("#newelement").append(`<div>订单${i}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' value=''>论文作者<input type='text'>检测系统<select><option value='1'>fsda</option></select></div>`);
+            $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' value=''>论文作者<input type='text'>检测系统<select><option value='1'>fsda</option></select></div>`);
           }).catch(err=>{
+            index++;
             $('#progress_bar_line').css("width","100%")
             $('#progress_text').html("不允许上传的文件类型");
-            $("#newelement").append(`<div>订单${i}<input id='title' type='text' name='title' value=${item.name}><input type='text' value='请选择正确格式'>`);
+            $("#newelement").append(`<div>订单${index}<input id='title' type='text' name='title' value=${item.name}><input type='text' value='请选择正确格式'>`);
           })
         }
         $('.custom-file-label').html(name);
