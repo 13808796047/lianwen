@@ -358,7 +358,8 @@
             $('#submitBtn').css("display","none")
         })
           }else{
-
+            $('#tosubmit').css("display","none");
+            $('#submitBtn').css("display","block")
             axios.post('{{route('orders.store')}}',{
               cid: $('#cid').val(),
               from: '万方PC端',
