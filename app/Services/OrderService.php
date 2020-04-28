@@ -56,10 +56,10 @@ class OrderService
             }
             switch ($category->price_type) {
                 case Category::PRICE_TYPE_THOUSAND:
-                    $price = round($category->price * ceil($words * $user->redix == 1.00 ? 1.05 : $user->redix / 1000), 2);
+                    $price = round($category->price * ceil($words * $user->redix ?? 1.05 / 1000), 2);
                     break;
                 case Category::PRICE_TYPE_MILLION:
-                    $price = round($category->price * ceil($words * $user->redix == 1.00 ? 1.05 : $user->redix / 10000), 2);
+                    $price = round($category->price * ceil($words * $user->redix ?? 1.05 / 10000), 2);
                     break;
                 default:
                     $price = $category->price;
