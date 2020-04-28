@@ -64,7 +64,7 @@ class OrderService
                 default:
                     $price = $category->price;
             }
-            dd($result['path'], $content);
+
             //创建订单
             $order = new Order([
                 'cid' => $request->cid,
@@ -77,6 +77,7 @@ class OrderService
                 'from' => $request->from,
                 'content' => '',
             ]);
+            dd($result['path'], $content);
             $order->user()->associate($user);
             $order->save();
             $order->orderContent()->create([
