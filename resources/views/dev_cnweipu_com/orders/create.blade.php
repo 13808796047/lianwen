@@ -159,7 +159,7 @@
             正在提交
           </button>
         </form>
-      @unless(auth()->user()->phone=='13808796047')
+      @if(auth()->user()->phone=='13808796047')
         <!-- 批量上传 -->
           <div id="newelement" style="display:none;">
             <div id="newelement_container">
@@ -179,7 +179,7 @@
                        lang="cn" multiple>
           </div>
           <!-- 批量上传结束 -->
-        @endunless
+        @endif
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
         <b>1、检测结果是否准确？</b>
