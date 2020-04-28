@@ -54,7 +54,11 @@ class OrdersController extends AdminController
             $filter->scope('0', '未支付')->where('status', 0);
         });
         $grid->fixColumns(3);
-        $grid->column('orderid', '订单号')->totalRow('合计');
+        $grid->column('orderid', '订单号')->totalRow('合计')->display(function($orderid) {
+            $order = Order::query()->where('orderid', $orderid)->first();
+            return "<a href='orders/{$order->id}/download_report'>$orderid</a>";
+
+        });
         $grid->column('category.name', '分类');
         // 展示关联关系的字段时，使用 column 方法
         $grid->column('userid', '买家')->display(function($userid) {
@@ -160,7 +164,7 @@ class OrdersController extends AdminController
     public function downloadReport(Order $order)
     {
 //        return \Storage::download(storage_path() . '/app/' . $order->report_path);
-        return response()->download(storage_path() . '/app/' . $order->report_path, $order->title . '-' . $order->writer . '.zip');
+        return response()->download(storage_path() . '/app/' . $order->report_path, $order->writer . '-' . $order->title . '.zip');
     }
 
     public function show($id, Content $content)
