@@ -296,6 +296,7 @@
         $('.custom-file-label').html(name);
         $('#manyupload').css('display',"none")
       });
+      //多文件上传刷新
       $('#toSecup').click(function(){
         window.location.reload();
       })
@@ -311,16 +312,18 @@
             }
           }).then(res=>{
             console.log(res,3123123)
+            alert('上传成功')
             oneid=res.data.data.id;
           }).catch(err=>{
             console.log(err);
-
+            alert('上传失败')
           })
       })
 
       // $("form").submit(function(e){
         // <s></s>
 			// });
+      //文件上传提交论文
       $("#tosubmit").click(function(){
         if($('#title').val()=='') return false;
           if($('#writer').val()=='') return false;
