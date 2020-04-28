@@ -13,6 +13,7 @@
   </style>
 @stop
 @section('content')
+
   <div class="p-4 mb-24">
     <div class="grid grid-cols-6 gap-4">
       <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff;">
@@ -148,20 +149,28 @@
           </div>
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8"> -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
-          <div id="newelement" style="display:none;">
+          <button class="btn btn-danger" type="button" disabled style="display:none;margin:20px 0" id="submitBtn">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            正在提交
+          </button>
+        </form>
+        <!-- 批量上传 -->
+        <div id="newelement" style="display:none;">
             <div id="newelement_container">
-
             </div>
             <div id="batchBtn" style="width: 100px;background: #3490dc;color: #fff;text-align: center;margin: 0 auto;">批量提交</div>
           </div>
             <div id="paymsg" style="display:none;">
             <p>订单确认</p>
+            <div id="paymsg_container">
             </div>
-        </form>
-        <div style="display:flex">
-        <input type="file"  id="customFiles" style="width:70%;border:1px solid"
-                         lang="cn" multiple>批量上传
+            <div style="width:150px;background:red;color:#fff;text-align:center;" id="toSecup">再次上传</div>
+            </div>
+        <div style="display:flex;" id="manyupload">
+        批量上传<input type="file"  id="customFiles" style="width:70%;border:1px solid"
+                         lang="cn" multiple>
         </div>
+        <!-- 批量上传结束 -->
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
         <b>1、检测结果是否准确？</b>
@@ -207,8 +216,9 @@
       })
       //多文件上传
       $('#customFiles').change(function (e) {
+        $('#newelement').css('display','block');
         //console.log(e,'312312');
-        $('#newelement').css('display','block')
+
         // $('.custom-file-label').html(e.target.files[0].name)
         var file = e.target.files;
         console.log(file,123123)
@@ -231,7 +241,8 @@
             'content':''});
             index++;
             console.log(res,'fsadf')
-            let obj = {!!$categories!!}
+            //let obj = {!!$categories!!}
+            let obj =[{id:3,name:'维普大学生版'},{id:4,name:'维普研究生版'},{id:5,name:'维普编辑部版'},{id:6,name:'维普职称版'}]
             console.log(obj, Object.prototype.toString.call(obj));
             console.log(obj,3123)
             var option=""
@@ -280,20 +291,25 @@
 
               if(res.status==201){
                 var paymsg =res.data.data;
-                $('#paymsg').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>论文题目:${paymsg.title}</p><p>作者：${paymsg.writer}</p><p>字数:${paymsg.words}</p><p>价格:${paymsg.price}元</p></div>`)
+                $('#paymsg_container').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>论文题目:${paymsg.title}</p><p>作者：${paymsg.writer}</p><p>字数:${paymsg.words}</p><p>价格:${paymsg.price}元</p></div>`)
               }
 
             }).catch(err=>{
-              $('#paymsg').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>提交失败<p></div>`)
+              $('#paymsg_container').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>提交失败<p></div>`)
             })
         }
       })
         $('.custom-file-label').html(name);
-
+        $('#manyupload').css('display',"none")
+      });
+      //多文件上传刷新
+      $('#toSecup').click(function(){
+        window.location.reload();
       })
       //单文件上传
       $('#customFile').change(function(e){
         $('.custom-file-label').html(e.target.files[0].name)
+        $('#tosubmit').attr("disabled",true);
         var file = e.target.files[0];
         var formData = new FormData();
         formData.append("file", file);  //上传一个files对
@@ -303,22 +319,28 @@
             }
           }).then(res=>{
             console.log(res,3123123)
+            $('#tosubmit').attr("disabled",false);
+            alert('上传成功')
             oneid=res.data.data.id;
           }).catch(err=>{
             console.log(err);
-
+            alert('上传失败')
+            $('#tosubmit').attr("disabled",true);
           })
       })
 
       // $("form").submit(function(e){
         // <s></s>
 			// });
+      //文件上传提交论文
       $("#tosubmit").click(function(){
         if($('#title').val()=='') return false;
           if($('#writer').val()=='') return false;
           // 判断选择谁
           if($('#contentfile').hasClass('active')){
             if(oneid=='') return false;
+            $('#tosubmit').css("display","none");
+            $('#submitBtn').css("display","block")
           axios.post('{{route('orders.store')}}',{
             cid: $('#cid').val(),
             from: '万方PC端',
@@ -334,9 +356,13 @@
             location.href='/orders/'+res.data.data.id
           }).catch(err=>{
             console.log(err,3112312312)
+            alert('提交失败，请重试')
+            $('#tosubmit').css("display","block");
+            $('#submitBtn').css("display","none")
         })
           }else{
-
+            $('#tosubmit').css("display","none");
+            $('#submitBtn').css("display","block")
             axios.post('{{route('orders.store')}}',{
               cid: $('#cid').val(),
               from: '万方PC端',
@@ -350,7 +376,9 @@
             var order=res.data.data
             location.href='/orders/'+res.data.data.id
           }).catch(err=>{
-            console.log(err,3112312312)
+            alert('提交失败，请重试')
+            $('#tosubmit').css("display","block");
+            $('#submitBtn').css("display","none")
         })
           }
 
