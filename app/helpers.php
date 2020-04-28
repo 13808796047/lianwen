@@ -177,7 +177,7 @@ function read_docx($file)
 
     $content = str_replace('</w:r></w:p></w:tc><w:tc>', " ", $content);
     $content = str_replace('</w:r></w:p>', "\r\n", $content);
-    $content = preg_replace($pattern, '/^PEVuZE5vdGU(.*?)ADDIN EN.CITE.DATA$/', $content);;
+    $content = preg_replace($pattern, '/^PEVuZE5vdGU(.*?)ADDIN EN.CITE.DATA$/', $content);
     $striped_content = strip_tags($content);
 
     return $striped_content;
