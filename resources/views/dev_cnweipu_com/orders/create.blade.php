@@ -13,6 +13,12 @@
   </style>
 @stop
 @section('content')
+ <!-- 加载图标 -->
+ <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+          </div>
+  </div>
   <div class="p-4 mb-24">
     <div class="grid grid-cols-6 gap-4">
       <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff;">
@@ -150,12 +156,7 @@
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
 
         </form>
-        <!-- 加载图标 -->
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status">
-          <span class="sr-only">Loading...</span>
-          </div>
-        </div>
+
         <div id="newelement" style="display:none;">
             <div id="newelement_container">
             </div>
