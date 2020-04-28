@@ -149,7 +149,7 @@
           </div>
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8"> -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
-          <button class="btn btn-danger" type="button" disabled>
+          <button class="btn btn-danger" type="button" disabled style="display:none;" id="submitBtn">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             正在提交
           </button>
@@ -337,6 +337,7 @@
           if($('#contentfile').hasClass('active')){
             if(oneid=='') return false;
             $('#tosubmit').css("display","none");
+            $('#submitBtn').css("display","block")
           axios.post('{{route('orders.store')}}',{
             cid: $('#cid').val(),
             from: '万方PC端',
@@ -352,6 +353,9 @@
             location.href='/orders/'+res.data.data.id
           }).catch(err=>{
             console.log(err,3112312312)
+            alert('提交失败，请重试')
+            $('#tosubmit').css("display","block");
+            $('#submitBtn').css("display","none")
         })
           }else{
 
@@ -368,7 +372,9 @@
             var order=res.data.data
             location.href='/orders/'+res.data.data.id
           }).catch(err=>{
-            console.log(err,3112312312)
+            alert('提交失败，请重试')
+            $('#tosubmit').css("display","block");
+            $('#submitBtn').css("display","none")
         })
           }
 
