@@ -150,7 +150,7 @@
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8"> -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
           <button class="btn btn-danger" type="button" disabled>
-            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             正在提交
           </button>
         </form>
@@ -336,7 +336,7 @@
           // 判断选择谁
           if($('#contentfile').hasClass('active')){
             if(oneid=='') return false;
-            $('#tosubmit').attr("disabled",true);
+            $('#tosubmit').css("display","none");
           axios.post('{{route('orders.store')}}',{
             cid: $('#cid').val(),
             from: '万方PC端',
