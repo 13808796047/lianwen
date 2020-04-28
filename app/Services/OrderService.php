@@ -30,15 +30,15 @@ class OrderService
                     $result = File::find($fileId);
                 }
                 if($result->type == 'docx') {
-                    $content = read_docx($result->path);
-                    dd($content);
+                    $content = read_docx($result->real_path);
+
                     $words_count = $fileWordsHandler->getWords($request->title, $request->writer, $result->path);
                     $words = $words_count['data']['wordCount'];
                     if($category->classid == 4) {
                         $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
                     }
                 } else {
-                    $content = remove_spec_char(convert2utf8(file_get_contents($result->path)));
+                    $content = remove_spec_char(convert2utf8(file_get_contents($result->real_path)));
                     $words = count_words(remove_spec_char(convert2utf8($content)));
                     if($category->classid == 3) {
                         $result = $wordHandler->save($content, 'files', $user->id);
@@ -65,7 +65,6 @@ class OrderService
                 default:
                     $price = $category->price;
             }
-
             //创建订单
             $order = new Order([
                 'cid' => $request->cid,
@@ -78,7 +77,6 @@ class OrderService
                 'from' => $request->from,
                 'content' => '',
             ]);
-            dd($result['path'], $content);
             $order->user()->associate($user);
             $order->save();
             $order->orderContent()->create([
