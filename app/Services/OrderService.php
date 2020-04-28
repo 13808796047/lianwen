@@ -43,13 +43,11 @@ class OrderService
             } else {
                 $content = remove_spec_char($request->input('content', ''));
                 $words = count_words($content);
-                switch ($category->classid) {
-                    case 4:
-                        $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
-                        break;
-                    case 3:
-                        $result = $wordHandler->save($content, 'files', $user->id);
-                        break;
+                if($category->classid == 4) {
+                    $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
+                }
+                if($category->classid == 3) {
+                    $result = $wordHandler->save($content, 'files', $user->id);
                 }
             }
             if(!$words >= $category->min_words && !$words <= $category->max_words) {
