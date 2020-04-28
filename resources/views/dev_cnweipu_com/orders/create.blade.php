@@ -308,6 +308,7 @@
       //单文件上传
       $('#customFile').change(function(e){
         $('.custom-file-label').html(e.target.files[0].name)
+        $('#tosubmit').attr("disabled",true);
         var file = e.target.files[0];
         var formData = new FormData();
         formData.append("file", file);  //上传一个files对
@@ -317,6 +318,7 @@
             }
           }).then(res=>{
             console.log(res,3123123)
+            $('#tosubmit').attr("disabled",false);
             alert('上传成功')
             oneid=res.data.data.id;
           }).catch(err=>{
