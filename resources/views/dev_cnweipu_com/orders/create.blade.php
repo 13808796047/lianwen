@@ -150,6 +150,12 @@
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
 
         </form>
+        <!-- 加载图标 -->
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+          </div>
+        </div>
         <div id="newelement" style="display:none;">
             <div id="newelement_container">
             </div>
