@@ -34,22 +34,30 @@ class OrderService
                     $words = $words_count['data']['wordCount'];
                     if($category->classid == 4) {
                         $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
+                    } else {
+                        $result = $fileUploadHandle->save($content, 'files', $user->id);
                     }
                 } else {
                     $content = remove_spec_char(convert2utf8(file_get_contents($result->path)));
                     $words = count_words(remove_spec_char(convert2utf8($content)));
                     if($category->classid == 3) {
                         $result = $wordHandler->save($content, 'files', $user->id);
+                    } else {
+                        $result = $fileUploadHandle->save($content, 'files', $user->id);
                     }
                 }
             } else {
                 $content = remove_spec_char($request->input('content', ''));
                 $words = count_words($content);
-                if($category->classid == 4) {
-                    $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
-                }
-                if($category->classid == 3) {
-                    $result = $wordHandler->save($content, 'files', $user->id);
+                switch ($category->classid) {
+                    case 4:
+                        $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
+                        break;
+                    case 3:
+                        $result = $wordHandler->save($content, 'files', $user->id);
+                        break;
+                    default:
+                        $result = $fileUploadHandle->save($file, 'files', $user->id);//存本地
                 }
             }
             if(!$words >= $category->min_words && !$words <= $category->max_words) {
