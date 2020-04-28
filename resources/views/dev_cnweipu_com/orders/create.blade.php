@@ -149,12 +149,12 @@
           </div>
           <!-- <input type="submit" value="提交论文" class="btn btn-danger my-4 px-8"> -->
           <input type="button" value="提交论文" class="btn btn-danger my-4 px-8" id="tosubmit">
-          <button class="btn btn-danger" type="button" disabled style="display:none;" id="submitBtn">
+          <button class="btn btn-danger" type="button" disabled style="display:none;margin:20px 0" id="submitBtn">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             正在提交
           </button>
         </form>
-
+        <!-- 批量上传 -->
         <div id="newelement" style="display:none;">
             <div id="newelement_container">
             </div>
@@ -170,6 +170,7 @@
         批量上传<input type="file"  id="customFiles" style="width:70%;border:1px solid"
                          lang="cn" multiple>
         </div>
+        <!-- 批量上传结束 -->
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
         <b>1、检测结果是否准确？</b>
