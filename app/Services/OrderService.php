@@ -24,8 +24,11 @@ class OrderService
             $fileWordsHandler = app(FileWordsHandle::class);
             $fileUploadHandle = app(FileUploadHandler::class);
             $wordHandler = app(WordHandler::class);
-            $result = File::find($request->file_id);
+
             if($request->type == 'file') {
+                if($fileId = $request->file_id) {
+                    $result = File::find($fileId);
+                }
                 if($result->type == 'docx') {
                     $content = read_docx($result->path);
                     $words_count = $fileWordsHandler->getWords($request->title, $request->writer, $result->path);
@@ -43,11 +46,15 @@ class OrderService
             } else {
                 $content = remove_spec_char($request->input('content', ''));
                 $words = count_words($content);
-                if($category->classid == 4) {
-                    $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
-                }
-                if($category->classid == 3) {
-                    $result = $wordHandler->save($content, 'files', $user->id);
+                switch ($category->classid) {
+                    case 4:
+                        $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
+                        break;
+                    case 3:
+                        $result = $wordHandler->save($content, 'files', $user->id);
+                        break;
+                    default:
+                        $result = $wordHandler->save($content, 'files', $user->id);
                 }
             }
             if(!$words >= $category->min_words && !$words <= $category->max_words) {
