@@ -317,6 +317,7 @@
           }).catch(err=>{
             console.log(err);
             alert('上传失败')
+            $('#tosubmit').attr("disabled",true);
           })
       })
 
