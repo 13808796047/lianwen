@@ -159,7 +159,7 @@
             正在提交
           </button>
         </form>
-      @unless(auth()->phone=='13808796047')
+      @unless(auth()->user()->phone=='13808796047')
         <!-- 批量上传 -->
           <div id="newelement" style="display:none;">
             <div id="newelement_container">
