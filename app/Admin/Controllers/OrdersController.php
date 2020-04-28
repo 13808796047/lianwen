@@ -160,7 +160,7 @@ class OrdersController extends AdminController
     public function downloadReport(Order $order)
     {
 //        return \Storage::download(storage_path() . '/app/' . $order->report_path);
-        return response()->download(storage_path() . '/app/' . $order->report_path);
+        return response()->download(storage_path() . '/app/' . $order->report_path, $order->title . '-' . $order->writer . '.zip');
     }
 
     public function show($id, Content $content)
