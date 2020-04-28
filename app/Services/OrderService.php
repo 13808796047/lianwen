@@ -24,7 +24,7 @@ class OrderService
             $fileWordsHandler = app(FileWordsHandle::class);
             $fileUploadHandle = app(FileUploadHandler::class);
             $wordHandler = app(WordHandler::class);
-            $result = File::find($fileId);
+            $result = File::find($request->file_id);
             if($request->type == 'file') {
                 if($result->type == 'docx') {
                     $content = read_docx($result->path);
