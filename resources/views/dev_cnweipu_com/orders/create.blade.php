@@ -330,6 +330,7 @@
           // 判断选择谁
           if($('#contentfile').hasClass('active')){
             if(oneid=='') return false;
+            $('#tosubmit').attr("disabled",true);
           axios.post('{{route('orders.store')}}',{
             cid: $('#cid').val(),
             from: '万方PC端',
