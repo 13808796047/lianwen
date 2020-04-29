@@ -102,7 +102,8 @@
               text:'扫一扫分享到朋友圈',
               content: $(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/>`),
               showConcelButton:false,
-              confirmButtonText:'关闭'
+              closeOnCancel:true,
+              confirmButtonText: "关闭"
             })
             $('#exampleModal').modal('hide')
             })
