@@ -40,7 +40,7 @@ class OrderimgHandler
             $font->file($fontTtf);
             $font->size($fontSize);
             $font->color('#000');
-//            $font->align('center');
+            $font->align('center');
             $font->valign('top');
         });
         $img->text('检测系统:', 180, 520, function($font) use ($fontSize, $fontTtf) {
