@@ -36,7 +36,7 @@ class OrderimgHandler
             $font->align('center');
             $font->valign('top');
         });
-        $img->text($writer, 220, 450, function($font) use ($fontSize, $fontTtf) {
+        $img->text($writer, 250, 450, function($font) use ($fontSize, $fontTtf) {
             $font->file($fontTtf);
             $font->size($fontSize);
             $font->color('#000');
@@ -50,11 +50,11 @@ class OrderimgHandler
             $font->align('center');
             $font->valign('top');
         });
-        $img->text($category_name, 350, 520, function($font) use ($fontSize, $fontTtf) {
+        $img->text($category_name, 250, 520, function($font) use ($fontSize, $fontTtf) {
             $font->file($fontTtf);
             $font->size($fontSize);
             $font->color('#000');
-            $font->align('center');
+//            $font->align('center');
             $font->valign('top');
         });
         $img->text('检测时间:', 180, 590, function($font) use ($fontSize, $fontTtf) {
@@ -64,11 +64,11 @@ class OrderimgHandler
             $font->align('center');
             $font->valign('top');
         });
-        $img->text($created_at, 375, 590, function($font) use ($fontSize, $fontTtf) {
+        $img->text($created_at, 250, 590, function($font) use ($fontSize, $fontTtf) {
             $font->file($fontTtf);
             $font->size($fontSize);
             $font->color('#000');
-            $font->align('center');
+//            $font->align('center');
             $font->valign('top');
         });
         $img->text(str_replace('%', '', $rate), 509, 780, function($font) use ($fontSize, $fontTtf) {
