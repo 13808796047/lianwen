@@ -33,7 +33,7 @@
                 &emsp;
                 <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
                    class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
-                <a href="" class="bg-blue-500 px-2 rounded-sm text-white" style="margin-left:13px" id="qrcode">生成二维码</a>
+                <span class="bg-blue-500 px-2 rounded-sm text-white" style="margin-left:13px" id="qrcode">生成二维码</span>
               </div>
             </div>
             @if($order->report->content)
