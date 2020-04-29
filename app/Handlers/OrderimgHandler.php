@@ -54,7 +54,7 @@ class OrderimgHandler
             $font->align('center');
             $font->valign('top');
         });
-        $img->text($order->category->name, 350, 520, function($font) use ($fontSize, $fontTtf) {
+        $img->text($category_name, 350, 520, function($font) use ($fontSize, $fontTtf) {
             $font->file($fontTtf);
             $font->size($fontSize);
             $font->color('#000');
