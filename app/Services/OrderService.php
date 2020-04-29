@@ -31,7 +31,7 @@ class OrderService
                 }
                 if($result->type == 'docx') {
                     $content = read_docx($result->real_path);
-
+                    dd($content);
                     $words_count = $fileWordsHandler->getWords($request->title, $request->writer, $result->path);
                     $words = $words_count['data']['wordCount'];
                     if($category->classid == 4) {
