@@ -79,6 +79,7 @@
         <p>在提交检测的文章中，引用了一些内以前自己所写的内容并且被小论文系统文献库收录，需要在此次检测中排除这些；则会有“去除本人已发表文献复制比”的结果。</p>
         </div>
       </div>
+
   </div>
 @stop
 @section('scripts')
@@ -88,7 +89,7 @@
           let order = {!!$order!!};
           console.log(order,order.rate)
           //判断是否存在重复率
-          if(order.rate==0.00 ||order.rate==0.0%){
+          if(order.rate==0.00 ||order.rate=='0.0%'){
             $('#exampleModal').modal('show')
 
             $('#sure').click(function(){
