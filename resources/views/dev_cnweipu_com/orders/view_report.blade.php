@@ -36,6 +36,26 @@
                 <span class="bg-blue-500 px-2 rounded-sm text-white" style="margin-left:13px" id="qrcode">生成二维码</span>
               </div>
             </div>
+            <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
             @if($order->report->content)
               {!! $order->report->content !!}
             @else
@@ -67,13 +87,14 @@
   <script !src="">
     $(function () {
       $("#qrcode").click(function(){
-          console.log({!!$order!!},312312)
-          axios.get('{{ route('official_account.index') }}').then(res => {
-        swal({
-          // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-          content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
-        })
-      })
+          let oreder = {!!$order!!};
+          $('#exampleModal').modal('show')
+      //     axios.get('{{ route('official_account.index') }}').then(res => {
+      //   swal({
+      //     // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+      //     content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
+      //   })
+      // })
       })
 
       $('.navbar>div').removeClass('container').addClass('container-fluid')
