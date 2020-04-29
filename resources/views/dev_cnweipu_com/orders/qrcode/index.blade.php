@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>论文检测报告</title>
 </head>
-<body>
+<body style="margin:0">
 <div style="width:100%">
 <img style="width: 100vw; height: 87vh; object-fit: contain;" src="{{ $img_url }}" alt="">
 <p style="text-align: center; padding: 0; margin: 0;">长按图片保存</p>
