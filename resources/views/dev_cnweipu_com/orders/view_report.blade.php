@@ -41,8 +41,8 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-body">
-        <label for="recipient-name" class="col-form-label">请填写重复率</label>
-        <input type="number" class="form-control" id="recipient-name" min="1" max="100" step="1" >
+        <label for="validationTooltipUsername" class="col-form-label">请填写重复率</label>
+        <input type="number" class="form-control" id="recipient-name" min="1" max="100" step="1" required>
         <div class="invalid-tooltip">
           请填写正确值(0-100)
         </div>
