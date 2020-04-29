@@ -33,8 +33,25 @@
                 &emsp;
                 <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
                    class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
+                <span class="bg-blue-500 px-2 rounded-sm text-white" style="margin-left:13px" id="qrcode">生成二维码</span>
               </div>
             </div>
+            <!-- Modal -->
+  <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+        <label for="recipient-name" class="col-form-label">请填写重复率</label>
+        <input type="text" class="form-control" id="recipient-name">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-primary">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+          <!-- Modal-end -->
             @if($order->report->content)
               {!! $order->report->content !!}
             @else
@@ -65,9 +82,25 @@
 @section('scripts')
   <script !src="">
     $(function () {
+      $("#qrcode").click(function(){
+          let order = {!!$order!!};
+          console.log(order,order.rate)
+          //判断是否存在重复率
+          if(order.rate==0){
+            $('#exampleModal').modal('show')
+          }else{
+            axios.get(`/orders/${order.id}/qrcode`).then(res => {
+              console.log(res,13123)
+        // swal({
+        //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+        //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
+        // })
+      })
+          }
+      })
+
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
     })
   </script>
 @stop
-
