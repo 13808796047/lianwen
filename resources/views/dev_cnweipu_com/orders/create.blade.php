@@ -18,22 +18,18 @@
 @stop
 @section('content')
     <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-sm" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
       <div class="modal-body">
-        ...
+        <p>添加微信提醒</p>
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588164624942&di=da3c574753ca77491f96fe72ed7633ca&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D1096169562%2C802367743%26fm%3D214%26gp%3D0.jpg" alt="">
+        <p>提示：系统检测到您未添加微信提醒，请使用扫描以上二维码关注</p>
       </div>
-      <div class="modal-footer">
+
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Understood</button>
-      </div>
+
     </div>
   </div>
 </div>
