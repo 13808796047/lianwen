@@ -36,7 +36,6 @@
 
               <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
                  class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
-              <a href="" class="bg-blue-500 px-2 rounded-sm text-white">生成二维码</a>
             </div>
           </div>
         @if($order->report->content)
