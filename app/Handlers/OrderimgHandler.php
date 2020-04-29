@@ -5,7 +5,6 @@ namespace App\Handlers;
 
 
 use Intervention\Image\Facades\Image;
-use Intervention\Image\ImageManager;
 
 class OrderimgHandler
 {
@@ -80,6 +79,6 @@ class OrderimgHandler
             $font->valign('top');
             $font->angle(15);
         });
-        return $img->response('jpg');
+        return $img->encode('data-url');
     }
 }
