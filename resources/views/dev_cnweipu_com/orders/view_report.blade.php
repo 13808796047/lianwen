@@ -37,8 +37,8 @@
               <span style="color:red;">注:检查报告系统仅保存10天，请及时下载保存,如需帮助请联系客服微信(查重问题:cx5078,降重帮助:lwcheck)</span>
               <div style="margin-top:10px;">
               <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
-                   class="bg-blue-500 px-2 rounded-sm text-white" style="display: inline-block;width: 203px;">下载报告</a>
-                <span class="px-2 rounded-sm text-white" style="margin-left:13px;display: inline-block;width: 203px;background:	#32CD32" id="qrcode">生成二维码</span>
+                   class="bg-blue-500 px-2 rounded-sm text-white" style="display: inline-block;width: 203px;">下载完整报告</a>
+                <span class="px-2 rounded-sm text-white" style="margin-left:13px;display: inline-block;width: 203px;background:	#32CD32" id="qrcode">生成检测证书</span>
               </div>
             </div>
             <!-- Modal -->
