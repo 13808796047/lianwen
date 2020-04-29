@@ -24,10 +24,10 @@
       <div class="modal-body" style="padding-bottom:0;">
         <p style="text-align: center;font-weight: bold;font-size: 16px;">添加微信提醒</p>
         <img src="" alt="" style="width:200px;height:200px;margin:0 auto;" id="wximg">
-        <p style="font-size:11px;">提示：系统检测到您未添加微信提醒，请使用扫描以上二维码关注<span>关注公众号以后您可以及时收到检测完成通知,同时可以在手机上查看检测报告</span></p>
+        <p style="font-size:11px;">提示：系统检测到您未添加微信提醒，请使用扫描以上二维码关注。<span>关注公众号以后您可以及时收到检测完成通知,同时可以在手机上查看检测报告</span></p>
       </div>
       <div class="modal-footer" style="border:none;padding-top:0;padding-bottom:0;">
-        <button type="button" class="btn btn-primary">关闭</button>
+        <button type="button" class="btn btn-primary" id="closetips">关闭</button>
         </div>
     </div>
   </div>
@@ -224,6 +224,10 @@
         //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
         //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
         // })
+      })
+
+      $('#closetips').click(function(){
+        $('#staticBackdrop').modal('hide')
       })
       let set = new Set();
       let name = '';
