@@ -110,7 +110,9 @@
           }else{
             swal({
               // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+              text:'扫一扫分享到朋友圈',
               content: $(`<img src='/orders/${order.id}/qrcode' style="display: block;margin: 0 auto;"/><p>分享到朋友圈</p>`)[0],
+              buttons: [false, '关闭']
             })
           }
       })
