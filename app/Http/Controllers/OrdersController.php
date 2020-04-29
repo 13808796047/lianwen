@@ -95,7 +95,7 @@ class OrdersController extends Controller
         return response()->download(storage_path() . '/app/' . $order->report_path);
     }
 
-    public function generateQrcode(Order $order)
+    public function generateQrcode(Request $request, Order $order)
     {
         if($rate = $request->rate) {
             $order->rate = $rate;
