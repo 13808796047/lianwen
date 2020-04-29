@@ -70,6 +70,8 @@ class OrderService
                 'cid' => $request->cid,
                 'title' => $request->title,
                 'writer' => $request->writer,
+                'endDate' => $request->endDate,
+                'publishdate' => $request->publishdate,
                 'date_publish' => $request->date_publish,
                 'words' => ceil($words * $user->redix),
                 'price' => $price,
