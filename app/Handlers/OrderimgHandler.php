@@ -9,7 +9,7 @@ use Intervention\Image\ImageManager;
 
 class OrderimgHandler
 {
-    public function generate($order)
+    public function generate($title, $writer, $category_name, $created_at, $rate)
     {
         $img = Image::make(public_path('orderimg/wp.jpg'));
 
@@ -19,7 +19,7 @@ class OrderimgHandler
         $fontTtf = public_path('orderimg/msyhl.ttc');
         $fontSize = 26;
 
-        $box = autowrap($fontSize, 0, $fontTtf, $order->title, $i);
+        $box = autowrap($fontSize, 0, $fontTtf, $title, $i);
         $img->text('论文题目:', 180, 350, function($font) use ($fontSize, $fontTtf) {
             $font->file($fontTtf);
             $font->size($fontSize);
@@ -40,7 +40,7 @@ class OrderimgHandler
             $font->align('center');
             $font->valign('top');
         });
-        $img->text($order->writer, 300, 450, function($font) use ($fontSize, $fontTtf) {
+        $img->text($writer, 300, 450, function($font) use ($fontSize, $fontTtf) {
             $font->file($fontTtf);
             $font->size($fontSize);
             $font->color('#000');
@@ -68,14 +68,14 @@ class OrderimgHandler
             $font->align('center');
             $font->valign('top');
         });
-        $img->text($order->created_at, 375, 590, function($font) use ($fontSize, $fontTtf) {
+        $img->text($created_at, 375, 590, function($font) use ($fontSize, $fontTtf) {
             $font->file($fontTtf);
             $font->size($fontSize);
             $font->color('#000');
             $font->align('center');
             $font->valign('top');
         });
-        $img->text(str_replace('%', '', $order->rate), 509, 780, function($font) use ($fontSize, $fontTtf) {
+        $img->text(str_replace('%', '', $rate), 509, 780, function($font) use ($fontSize, $fontTtf) {
             $font->file(public_path('orderimg/FZSHHJW.TTF'));
             $font->size(44);
             $font->color('#f00');
