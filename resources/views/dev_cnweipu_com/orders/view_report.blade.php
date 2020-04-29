@@ -43,6 +43,9 @@
         <div class="modal-body">
         <label for="recipient-name" class="col-form-label">请填写重复率</label>
         <input type="number" class="form-control" id="recipient-name" min="1" max="100" step="1" >
+        <div class="invalid-tooltip">
+          请填写正确值(0-100)
+        </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
@@ -86,7 +89,7 @@
           let order = {!!$order!!};
           console.log(order,order.rate)
           //判断是否存在重复率
-          if(order.rate==0){
+          if(!order.rate==0){
             $('#exampleModal').modal('show')
           }else{
             swal({
