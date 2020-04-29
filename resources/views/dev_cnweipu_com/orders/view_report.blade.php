@@ -43,7 +43,7 @@
         <div class="modal-body">
         <label for="validationTooltipUsername" class="col-form-label">请填写重复率</label>
         <input type="number" class="form-control" id="recipient-name" min="1" max="100" step="0.01" >
-        <div style="color:red">
+        <div style="color:red;display:none" id="isshow">
           请填写正确值(0-100)
         </div>
         </div>
@@ -93,7 +93,15 @@
             $('#exampleModal').modal('show')
 
             $('#sure').click(function(){
-              console.log($("#recipient-name").val())
+              if($("#recipient-name").val()<0.00 ||$("#recipient-name").val()>100.00){
+                $("isshow").css('display','block')
+                return;
+              }
+              swal({
+              // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+              content: $(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/><p>分享到朋友圈</p>`)[0],
+            })
+            $('#exampleModal').modal('hide')
             })
           }else{
             swal({
