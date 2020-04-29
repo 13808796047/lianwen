@@ -92,7 +92,7 @@
             axios.get(`/orders/${order.id}/qrcode`).then(res => {
               console.log(res,13123)
         swal({
-          content: $('<img src="' + /orders/${order.id}/qrcode + '" style="display: block;margin: 0 auto;"/>')[0],
+          content: $(`<img src="{{ route('orders.qrcode', ['order' => ${orider.id}]) }}" style="display: block;margin: 0 auto;"/>`)[0],
         })
       })
           }
