@@ -103,7 +103,8 @@
               content: $(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/>`),
               showConcelButton:false,
               closeOnCancel:true,
-              confirmButtonText: "关闭"
+              confirmButtonText: "关闭",
+              cancelButtonText:"关闭",
             })
             $('#exampleModal').modal('hide')
             })
