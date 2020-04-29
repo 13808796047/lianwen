@@ -16,6 +16,8 @@ class getOrderStatus implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $order;
+    protected $timeout = 60;
+    protected $tries = 3;
 
     public function __construct(Order $order)
     {

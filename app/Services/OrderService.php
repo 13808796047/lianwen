@@ -24,19 +24,20 @@ class OrderService
             $fileWordsHandler = app(FileWordsHandle::class);
             $fileUploadHandle = app(FileUploadHandler::class);
             $wordHandler = app(WordHandler::class);
+
             if($request->type == 'file') {
                 if($fileId = $request->file_id) {
                     $result = File::find($fileId);
                 }
                 if($result->type == 'docx') {
-                    $content = read_docx($result->path);
+                    $content = read_docx($result->real_path);
                     $words_count = $fileWordsHandler->getWords($request->title, $request->writer, $result->path);
                     $words = $words_count['data']['wordCount'];
                     if($category->classid == 4) {
                         $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
                     }
                 } else {
-                    $content = remove_spec_char(convert2utf8(file_get_contents($result->path)));
+                    $content = remove_spec_char(convert2utf8(file_get_contents($result->real_path)));
                     $words = count_words(remove_spec_char(convert2utf8($content)));
                     if($category->classid == 3) {
                         $result = $wordHandler->save($content, 'files', $user->id);
@@ -47,8 +48,7 @@ class OrderService
                 $words = count_words($content);
                 if($category->classid == 4) {
                     $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
-                }
-                if($category->classid == 3) {
+                } else {
                     $result = $wordHandler->save($content, 'files', $user->id);
                 }
             }
@@ -57,10 +57,10 @@ class OrderService
             }
             switch ($category->price_type) {
                 case Category::PRICE_TYPE_THOUSAND:
-                    $price = round($category->price * ceil($words * $user->redix / 1000), 2);
+                    $price = round($category->price * ceil($words * ($user->redix ?? 1.05) / 1000), 2);
                     break;
                 case Category::PRICE_TYPE_MILLION:
-                    $price = round($category->price * ceil($words * $user->redix / 10000), 2);
+                    $price = round($category->price * ceil($words * ($user->redix ?? 1.05) / 10000), 2);
                     break;
                 default:
                     $price = $category->price;
