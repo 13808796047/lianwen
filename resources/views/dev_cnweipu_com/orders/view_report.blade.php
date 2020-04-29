@@ -86,7 +86,7 @@
           let order = {!!$order!!};
           console.log(order,order.rate)
           //判断是否存在重复率
-          if(!order.rate){
+          if(order.rate){
             $('#exampleModal').modal('show')
           }else{
             axios.get('{{ route('official_account.index') }}').then(res => {
