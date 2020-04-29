@@ -97,11 +97,8 @@ class OrdersController extends Controller
 
     public function generateQrcode(Request $request, Order $order)
     {
-        if($rate = $request->rate) {
-            $order['rate'] = $rate;
-        }
         //把要转换的字符串作为QrCode的构造函数
-        $qrCode = new QrCode(route('orders.generate.img', $order));
+        $qrCode = new QrCode(route('qcrode.img', ['title' => $order->title, 'writer' => $order->writer, 'created_at' => $order->created_at, 'rate' => $request->rate ?? $order->rate]));
         //将生成的二维码图片数据以字符串形式输出，并带上相应的响应类型
         return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
     }

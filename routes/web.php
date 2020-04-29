@@ -70,4 +70,4 @@ Auth::routes();
 Route::post('payments/baidu/notify', 'PaymentsController@baiduNotify')->name('payments.baidu.notify');
 Route::any('official_account/serve', 'OfficialAccountController@serve')->name('official_account.serve');
 //分享图片
-Route::get('orders/{order}/generate_img', 'OrdersController@generateImg')->name('orders.generate.img');
+Route::get('qcrode/generate_img', 'OrdersController@generateImg')->name('qcrode.img');
