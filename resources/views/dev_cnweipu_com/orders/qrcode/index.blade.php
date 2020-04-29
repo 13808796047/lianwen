@@ -9,7 +9,7 @@
 </head>
 <body>
 <div style="width:100%">
-<img style="width: 100vw; height: 97vh; object-fit: contain;" src="{{ $img_url }}" alt="">
+<img style="width: 100vw; height: 90vh; object-fit: contain;" src="{{ $img_url }}" alt="">
 <p style="text-align: center; padding: 0; margin: 0;">长按图片保存</p>
 </div>
 </body>
