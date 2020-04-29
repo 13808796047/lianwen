@@ -92,7 +92,8 @@
             axios.get(`/orders/${order.id}/qrcode`).then(res => {
               console.log(res,13123)
         swal({
-          content: $(`<img src="{{ route('orders.qrcode', ['order' => ${orider.id}]) }}" style="display: block;margin: 0 auto;"/>`)[0],
+          // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+          content: $('<img src="'+/orders/${order.id}/qrcode+ '" style="display: block;margin: 0 auto;"/>')[0],
         })
       })
           }
