@@ -75,7 +75,7 @@ class OrderimgHandler
             $font->align('center');
             $font->valign('top');
         });
-        $img->text($order->rate, 509, 780, function($font) use ($fontSize, $fontTtf) {
+        $img->text(str_replace('%', '', $order->rate), 509, 780, function($font) use ($fontSize, $fontTtf) {
             $font->file(public_path('orderimg/FZSHHJW.TTF'));
             $font->size(44);
             $font->color('#f00');
