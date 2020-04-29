@@ -4,14 +4,17 @@
 namespace App\Handlers;
 
 
+use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
 
 class OrderimgHandler
 {
     public function generate($order)
     {
-        $manager = new ImageManager(['driver' => 'gd']);
-        $img = $manager->make(public_path('orderimg/wp.jpg'));
+        $img = Image::make(public_path('orderimg/wp.jpg'));
+
+//        $manager = new ImageManager(['driver' => 'gd']);
+//        $img = $manager->make(public_path('orderimg/wp.jpg'));
         $i = 500;
         $fontTtf = public_path('orderimg/msyhl.ttc');
         $fontSize = 26;
