@@ -111,6 +111,7 @@ class OrdersController extends Controller
     public function generateImg(Request $request)
     {
         $orderimg = app(OrderimgHandler::class);
-        return $orderimg->generate($request->title, $request->writer, $request->category_name, $request->created_at, $request->rate);
+        $img_url = $orderimg->generate($request->title, $request->writer, $request->category_name, $request->created_at, $request->rate);
+        return view('qrcode.index', compact('img_url'));
     }
 }
