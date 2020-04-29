@@ -68,7 +68,7 @@ class OrderimgHandler
             $font->align('center');
             $font->valign('top');
         });
-        $img->text($order->created_at, 365, 590, function($font) use ($fontSize, $fontTtf) {
+        $img->text($order->created_at, 375, 590, function($font) use ($fontSize, $fontTtf) {
             $font->file($fontTtf);
             $font->size($fontSize);
             $font->color('#000');
