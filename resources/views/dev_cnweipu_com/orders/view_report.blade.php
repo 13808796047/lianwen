@@ -93,7 +93,7 @@
             $('#exampleModal').modal('show')
 
             $('#sure').click(function(){
-              if($("#recipient-name").val()<0.00 ||$("#recipient-name").val()>100.00 |||$("#recipient-name").val()==''){
+              if($("#recipient-name").val()<0.00 ||$("#recipient-name").val()>100.00 || $("#recipient-name").val()==''){
                 $("isshow").css('display','block')
                 return;
               }
