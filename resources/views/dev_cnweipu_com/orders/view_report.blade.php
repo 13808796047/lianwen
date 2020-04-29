@@ -7,7 +7,7 @@
     .card-body p {
       text-indent: 2em !important;
     }
-    .sweetAlert {
+    .curswal {
         width: 100px;
         margin: 0 auto;
         left: 0;
@@ -107,9 +107,8 @@
               // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
               text:'扫一扫分享到朋友圈',
               content: $(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/>`)[0],
-              showConcelButton:false,
-              closeOnCancel:true,
-              buttons: [false, '关闭']
+              buttons: [false, '关闭'],
+              customClass: "curswal"
             })
             $('#exampleModal').modal('hide')
             })
