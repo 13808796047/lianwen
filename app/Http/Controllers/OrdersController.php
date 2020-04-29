@@ -106,6 +106,6 @@ class OrdersController extends Controller
     public function generateImg(Request $request)
     {
         $orderimg = app(OrderimgHandler::class);
-        return $orderimg->generate($request->title, $request->writer, $request->created_at, $request->rate, $request->category_name);
+        return $orderimg->generate($request->title, $request->writer, $request->category_name, $request->created_at, $request->rate);
     }
 }
