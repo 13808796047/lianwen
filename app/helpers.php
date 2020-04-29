@@ -188,7 +188,6 @@ function read_docx($file)
     foreach($arr[1] as $value) {
         $striped_content = str_replace($value, '', $striped_content);
     }
-//    $striped_content = preg_replace('/HYPERLINK\S*l _Toc\d+\S/', '', $striped_content);
 
     return $striped_content;
 }

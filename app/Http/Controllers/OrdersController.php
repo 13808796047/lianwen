@@ -7,6 +7,7 @@ use App\Handlers\DocxConversionHandler;
 use App\Handlers\FileUploadHandler;
 use App\Handlers\FileWordsHandle;
 use App\Handlers\OrderApiHandler;
+use App\Handlers\OrderimgHandler;
 use App\Handlers\WordHandler;
 use App\Http\Requests\Api\OrderRequest;
 use App\Http\Resources\OrderResource;
@@ -18,6 +19,7 @@ use App\Mail\OrderReport;
 use App\Models\Category;
 use App\Models\Order;
 use App\Services\OrderService;
+use Endroid\QrCode\QrCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -50,6 +52,8 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
+        $orderimg = app(OrderimgHandler::class);
+        return $orderimg->generate();
 //        $disk = Storage::disk('public');
 //        $directory = '/test';
 //        $files = $disk->files($directory);
@@ -57,8 +61,8 @@ class OrdersController extends Controller
 //            dispatch(new FileWords($file))->delay(now()->addSeconds(2));
 //        }
 //        校验权限
-        $this->authorize('own', $order);
-        return view('domained::orders.show', compact('order'));
+//        $this->authorize('own', $order);
+//        return view('domained::orders.show', compact('order'));
     }
 
     public function viewReport(Order $order, OrderApiHandler $apiHandler)
@@ -91,4 +95,20 @@ class OrdersController extends Controller
         return response()->download(storage_path() . '/app/' . $order->report_path);
     }
 
+    public function generateQrcode(Order $order)
+    {
+        if($rate = $request->rate) {
+            $order->rate = $rate;
+        }
+        //把要转换的字符串作为QrCode的构造函数
+        $qrCode = new QrCode(route('orders.generate.img', $order));
+        //将生成的二维码图片数据以字符串形式输出，并带上相应的响应类型
+        return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
+    }
+
+    public function generateImg(Order $order)
+    {
+        $orderimg = app(OrderimgHandler::class);
+        return $orderimg->generate($order);
+    }
 }
