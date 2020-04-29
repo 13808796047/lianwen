@@ -11,32 +11,7 @@
 
 @stop
 @section('content')
-  <div class="main clearfix">
-      <div class="lbox fl">
-        <div>
-          <div class="card-body">
-            <div class="card-title">
-              <h2 class="text-3xl text-center">{{ $order->title }}</h2>
-              <div class="info">
-                <span>作者:</span>
-                &emsp;
-                <span>{{ $order->writer }}</span>
-                &emsp;
-                <span>提交时间:</span>
-                &emsp;
-                <span>{{ $order->created_at }}</span>
-                &emsp;
-                <span>重复率:</span>
-                &emsp;
-                <span>{{ $order->rate }}</span>
-                &emsp;
-                <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
-                   class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
-                <span class="bg-blue-500 px-2 rounded-sm text-white" style="margin-left:13px" id="qrcode">生成二维码</span>
-              </div>
-            </div>
-            <!-- Modal -->
-  <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -52,7 +27,39 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+  <div class="main clearfix">
+      <div class="lbox fl">
+        <div>
+          <div class="card-body">
+            <div class="card-title">
+              <h2 class="text-3xl text-center">{{ $order->title }}</h2>
+              <div class="info">
+                <!-- <span>作者:</span>
+                &emsp;
+                <span>{{ $order->writer }}</span>
+                &emsp;
+                <span>提交时间:</span>
+                &emsp;
+                <span>{{ $order->created_at }}</span>
+                &emsp;
+                <span>重复率:</span>
+                &emsp;
+                <span>{{ $order->rate }}</span>
+                &emsp;
+                <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
+                   class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
+                <span class="bg-blue-500 px-2 rounded-sm text-white" style="margin-left:13px" id="qrcode">生成二维码</span>
+              </div> -->
+              <span style="color:red;">注:检查报告系统仅保存10天，请及时下载保存,如需帮助请联系客服微信(查重问题:cx5078,降重帮助:lwcheck)</span>
+              <div style="margin-top:10px;">
+              <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
+                   class="bg-blue-500 px-2 rounded-sm text-white" style="display: inline-block;width: 203px;">下载完整报告</a>
+                <span class="px-2 rounded-sm text-white" style="margin-left:13px;display: inline-block;width: 203px;background:	#32CD32" id="qrcode">生成检测证书</span>
+              </div>
+            </div>
+            <!-- Modal -->
+
           <!-- Modal-end -->
             @if($order->report->content)
               {!! $order->report->content !!}
