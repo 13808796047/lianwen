@@ -36,7 +36,7 @@ class OrderimgHandler
             $font->align('center');
             $font->valign('top');
         });
-        $img->text($writer, 350, 450, function($font) use ($fontSize, $fontTtf) {
+        $img->text($writer, 280, 450, function($font) use ($fontSize, $fontTtf) {
             $font->file($fontTtf);
             $font->size($fontSize);
             $font->color('#000');
