@@ -40,7 +40,7 @@ class OrderimgHandler
             $font->align('center');
             $font->valign('top');
         });
-        $img->text($order->writer, 250, 450, function($font) use ($fontSize, $fontTtf) {
+        $img->text($order->writer, 300, 450, function($font) use ($fontSize, $fontTtf) {
             $font->file($fontTtf);
             $font->size($fontSize);
             $font->color('#000');
@@ -68,7 +68,7 @@ class OrderimgHandler
             $font->align('center');
             $font->valign('top');
         });
-        $img->text($order->created_at, 350, 590, function($font) use ($fontSize, $fontTtf) {
+        $img->text($order->created_at, 365, 590, function($font) use ($fontSize, $fontTtf) {
             $font->file($fontTtf);
             $font->size($fontSize);
             $font->color('#000');
