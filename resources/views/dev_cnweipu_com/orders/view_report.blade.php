@@ -7,6 +7,12 @@
     .card-body p {
       text-indent: 2em !important;
     }
+    .sweetAlert {
+        width: 100px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+    }
 
   </style>
 
