@@ -11,6 +11,23 @@
 
 @stop
 @section('content')
+<div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+        <label for="validationTooltipUsername" class="col-form-label">请填写重复率</label>
+        <input type="number" class="form-control" id="recipient-name" min="1" max="100" step="0.01" >
+        <div style="color:red;display:none" id="isshow">
+          请填写正确值(0-100)
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-primary" id="sure">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="main clearfix">
       <div class="lbox fl">
         <div>
@@ -42,23 +59,7 @@
               </div>
             </div>
             <!-- Modal -->
-  <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-        <label for="validationTooltipUsername" class="col-form-label">请填写重复率</label>
-        <input type="number" class="form-control" id="recipient-name" min="1" max="100" step="0.01" >
-        <div style="color:red;display:none" id="isshow">
-          请填写正确值(0-100)
-        </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-          <button type="button" class="btn btn-primary" id="sure">确定</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
           <!-- Modal-end -->
             @if($order->report->content)
               {!! $order->report->content !!}
