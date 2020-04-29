@@ -112,6 +112,6 @@ class OrdersController extends Controller
     {
         $orderimg = app(OrderimgHandler::class);
         $img_url = $orderimg->generate($request->title, $request->writer, $request->category_name, $request->created_at, $request->rate);
-        return view('orders.qrcode.index', compact('img_url'));
+        return view('domained::orders.qrcode.index', compact('img_url'));
     }
 }
