@@ -7,13 +7,6 @@
     .card-body p {
       text-indent: 2em !important;
     }
-    .curswal {
-        width: 100px;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-    }
-
   </style>
 
 @stop
@@ -86,6 +79,7 @@
         <p>在提交检测的文章中，引用了一些内以前自己所写的内容并且被小论文系统文献库收录，需要在此次检测中排除这些；则会有“去除本人已发表文献复制比”的结果。</p>
         </div>
       </div>
+
   </div>
 @stop
 @section('scripts')
@@ -95,7 +89,7 @@
           let order = {!!$order!!};
           console.log(order,order.rate)
           //判断是否存在重复率
-          if(order.rate==0.00){
+          if(order.rate==0.00 ||order.rate=='0.0%'){
             $('#exampleModal').modal('show')
 
             $('#sure').click(function(){
@@ -107,8 +101,7 @@
               // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
               text:'扫一扫分享到朋友圈',
               content: $(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/>`)[0],
-              buttons: [false, '关闭'],
-              customClass: "curswal"
+              buttons: [false, '关闭']
             })
             $('#exampleModal').modal('hide')
             })
