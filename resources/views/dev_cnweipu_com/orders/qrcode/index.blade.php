@@ -8,6 +8,6 @@
   <title>论文检测</title>
 </head>
 <body>
-<img src="{{ $img_url }}" alt="">
+<img style="width: 100vw; height: 100vh; object-fit: contain;" src="{{ $img_url }}" alt="">
 </body>
 </html>
