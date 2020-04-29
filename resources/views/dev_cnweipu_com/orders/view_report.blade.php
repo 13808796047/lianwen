@@ -33,7 +33,7 @@
                 &emsp;
                 <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
                    class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
-                <a href="" class="bg-blue-500 px-2 rounded-sm text-white" style="margin-left:13px">生成二维码</a>
+                <a href="" class="bg-blue-500 px-2 rounded-sm text-white" style="margin-left:13px" id="qrcode">生成二维码</a>
               </div>
             </div>
             @if($order->report->content)
@@ -66,6 +66,16 @@
 @section('scripts')
   <script !src="">
     $(function () {
+      $("#qrcode").click(function(){
+          axios.get('{{ route('official_account.index') }}').then(res => {
+        swal({
+
+          // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+          content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
+        })
+      })
+      })
+
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
     })
