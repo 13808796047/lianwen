@@ -100,9 +100,10 @@
               swal({
               // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
               text:'扫一扫分享到朋友圈',
-              content: $(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/>`),
+              content: $(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/>`)[0],
               showConcelButton:false,
-              confirmButtonText:'关闭'
+              closeOnCancel:true,
+              buttons: ['', '关闭']
             })
             $('#exampleModal').modal('hide')
             })
