@@ -86,7 +86,7 @@
           let order = {!!$order!!};
           console.log(order,order.rate)
           //判断是否存在重复率
-          if(order.rate){
+          if(order.rate==0){
             $('#exampleModal').modal('show')
           }else{
             axios.get(`/orders/${order.id}/qrcode`).then(res => {
