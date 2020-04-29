@@ -34,8 +34,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('files', 'FilesController@store')->name('files.store');
     //生成分享二维码
     Route::get('orders/{order}/qrcode', 'OrdersController@generateQrcode')->name('orders.qrcode');
-    //分享图片
-    Route::get('orders/{order}/generate_img', 'OrdersController@generateImg')->name('orders.generate.img');
 });
 //下载
 Route::get('orders/{orderid}/download', 'OrdersController@download')
@@ -71,3 +69,5 @@ Auth::routes();
 //百度支付
 Route::post('payments/baidu/notify', 'PaymentsController@baiduNotify')->name('payments.baidu.notify');
 Route::any('official_account/serve', 'OfficialAccountController@serve')->name('official_account.serve');
+//分享图片
+Route::get('orders/{order}/generate_img', 'OrdersController@generateImg')->name('orders.generate.img');
