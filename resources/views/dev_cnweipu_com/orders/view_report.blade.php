@@ -42,14 +42,14 @@
       <div class="modal-content">
         <div class="modal-body">
         <label for="validationTooltipUsername" class="col-form-label">请填写重复率</label>
-        <input type="number" class="form-control" id="recipient-name" min="1" max="100" step="1" required>
-        <div class="invalid-tooltip">
+        <input type="number" class="form-control" id="recipient-name" min="1" max="100" step="0.01" >
+        <div style="color:red;display:none" id="isshow">
           请填写正确值(0-100)
         </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-          <button type="button" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-primary" id="sure">确定</button>
         </div>
       </div>
     </div>
@@ -89,8 +89,20 @@
           let order = {!!$order!!};
           console.log(order,order.rate)
           //判断是否存在重复率
-          if(!order.rate==0){
+          if(order.rate==0.00){
             $('#exampleModal').modal('show')
+
+            $('#sure').click(function(){
+              if($("#recipient-name").val()<0.00 ||$("#recipient-name").val()>100.00){
+                $("isshow").css('display','block')
+                return;
+              }
+              swal({
+              // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+              content: $(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/><p>分享到朋友圈</p>`)[0],
+            })
+            $('#exampleModal').modal('hide')
+            })
           }else{
             swal({
               // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
