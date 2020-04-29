@@ -86,12 +86,12 @@
           let order = {!!$order!!};
           console.log(order,order.rate)
           //判断是否存在重复率
-          if(order.rate==0){
+          if(!order.rate==0){
             $('#exampleModal').modal('show')
           }else{
             swal({
               // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-              content: $(`<img src='/orders/${order.id}/qrcode' style="display: block;margin: 0 auto;"/>`)[0],
+              content: $(`<img src='/orders/${order.id}/qrcode' style="display: block;margin: 0 auto;"/><p>分享到朋友圈</p>`)[0],
             })
           }
       })
