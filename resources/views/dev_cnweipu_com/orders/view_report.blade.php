@@ -11,7 +11,7 @@
 
 @stop
 @section('content')
-<div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="main clearfix">
       <div class="lbox fl">
         <div>
