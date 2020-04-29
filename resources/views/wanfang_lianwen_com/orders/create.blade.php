@@ -334,7 +334,6 @@
           alert('上传成功')
           oneid = res.data.data.id;
         }).catch(err => {
-          console.log(err);
           alert('上传失败，仅支持docx和txt格式，最大支持15M')
           $('#tosubmit').attr("disabled", true);
         })
