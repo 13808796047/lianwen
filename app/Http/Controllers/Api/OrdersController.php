@@ -7,6 +7,7 @@ use App\Exceptions\InvalidRequestException;
 use App\Handlers\FileUploadHandler;
 use App\Handlers\FileWordsHandle;
 use App\Handlers\OrderApiHandler;
+use App\Handlers\OrderimgHandler;
 use App\Handlers\WordHandler;
 use App\Http\Requests\Api\OrderRequest;
 use App\Http\Resources\OrderResource;
@@ -115,5 +116,12 @@ class OrdersController extends Controller
         return response()->json([
             'message' => '邮件发送成功,请注意查收！'
         ]);
+    }
+
+    public function generateImg(Request $request)
+    {
+        $orderimg = app(OrderimgHandler::class);
+        $img_url = $orderimg->generate($request->title, $request->writer, $request->category_name, $request->created_at, $request->rate);
+        return response(compact('img_url'), 200);
     }
 }
