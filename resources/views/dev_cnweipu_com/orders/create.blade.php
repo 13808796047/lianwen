@@ -19,17 +19,16 @@
 @section('content')
     <!-- Modal -->
 <div class="modal fade bd-example-modal-sm" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <p>添加微信提醒</p>
-        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588164624942&di=da3c574753ca77491f96fe72ed7633ca&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D1096169562%2C802367743%26fm%3D214%26gp%3D0.jpg" alt="">
-        <p>提示：系统检测到您未添加微信提醒，请使用扫描以上二维码关注</p>
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content" >
+      <div class="modal-body" style="padding-bottom:0;">
+        <p style="text-align: center;font-weight: bold;font-size: 16px;">添加微信提醒</p>
+        <img src="" alt="" style="width:200px;height:200px;margin:0 auto;" id="wximg">
+        <p style="font-size:11px;">提示：系统检测到您未添加微信提醒，请使用扫描以上二维码关注。<span>关注公众号以后您可以及时收到检测完成通知,同时可以在手机上查看检测报告</span></p>
       </div>
-
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-
+      <div class="modal-footer" style="border:none;padding-top:0;padding-bottom:0;">
+        <button type="button" class="btn btn-primary" id="closetips">关闭</button>
+        </div>
     </div>
   </div>
 </div>
@@ -217,13 +216,18 @@
 @section('scripts')
   <script>
     $(() => {
-      $('#staticBackdrop').modal('show')
-      axios.get('{{ route('official_account.index') }}').then(res => {
-        swal({
 
-          // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-          content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
-        })
+      axios.get('{{ route('official_account.index') }}').then(res => {
+        $('#wximg').attr('src',res.data.url)
+        // swal({
+          $('#staticBackdrop').modal('show')
+        //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+        //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
+        // })
+      })
+
+      $('#closetips').click(function(){
+        $('#staticBackdrop').modal('hide')
       })
       let set = new Set();
       let name = '';
