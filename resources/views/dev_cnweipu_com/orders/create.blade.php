@@ -18,8 +18,8 @@
 @stop
 @section('content')
     <!-- Modal -->
-<div class="modal fade bd-example-modal-sm" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="width:400px">
     <div class="modal-content" >
       <div class="modal-body" style="padding-bottom:0;">
         <p style="text-align: center;font-weight: bold;font-size: 16px;">添加微信提醒</p>
