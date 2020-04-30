@@ -10,7 +10,7 @@ class OrderimgHandler
 {
     public function generate($title, $writer, $category_name, $created_at, $rate)
     {
-        $img = Image::make(public_path('orderimg/wp.jpg'));
+        $img = Image::make(public_path('orderimg/xx.jpg'));
         $i = 500;
         $fontTtf = public_path('orderimg/msyhl.ttc');
         $fontSize = 26;
