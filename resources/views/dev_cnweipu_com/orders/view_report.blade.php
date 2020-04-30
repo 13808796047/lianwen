@@ -11,8 +11,8 @@
 
 @stop
 @section('content')
-<div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:300px;">
       <div class="modal-content">
         <div class="modal-body">
         <label for="validationTooltipUsername" class="col-form-label">请填写重复率</label>
