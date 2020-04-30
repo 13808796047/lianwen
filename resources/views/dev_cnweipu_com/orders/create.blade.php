@@ -18,13 +18,13 @@
 @stop
 @section('content')
     <!-- Modal -->
-<div class="modal fade text-center" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document" style="display:inline-block;width:auto;">
+<div class="modal fade bd-example-modal-sm" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content" >
       <div class="modal-body" style="padding-bottom:0;">
         <p style="text-align: center;font-weight: bold;font-size: 16px;">添加微信提醒</p>
         <img src="" alt="" style="width:200px;height:200px;margin:0 auto;" id="wximg">
-        <p>提示：系统检测到您未添加微信提醒，请使用手机扫描以上二维码关注。</p>
+        <p >提示：系统检测到您未添加微信提醒，请使用手机扫描以上二维码关注。</p>
         <p>关注公众号以后您可以及时收到检测完成通知,同时可以在手机上查看检测报告</p>
       </div>
       <div class="modal-footer" style="border:none;padding-top:0;padding-bottom:0;">
