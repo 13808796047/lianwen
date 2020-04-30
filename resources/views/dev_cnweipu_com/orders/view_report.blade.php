@@ -90,7 +90,7 @@
 
   </div>
   <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="qrcodebox">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -110,7 +110,7 @@
     $(function () {
       $("#qrcode").click(function(){
           let order = {!!$order!!};
-          console.log(order,order.rate)
+          $('#qrimgs').children().remove();
           //判断是否存在重复率
           if(order.rate==0.00 ||order.rate=='0.0%'){
             $('#exampleModal').modal('show')
