@@ -38,7 +38,7 @@
 <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
 
 <!-- Then put toasts within -->
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="alert_upload">
+<!-- <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="alert_upload">
   <div class="toast-header">
     <strong class="mr-auto">提示</strong>
     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
@@ -49,7 +49,7 @@
     上传成功
   </div>
 </div>
-</div>
+</div> -->
 <!-- alert-end -->
   <div class="p-4 mb-24">
     <div class="grid grid-cols-6 gap-4">
@@ -370,8 +370,8 @@
         }).then(res => {
           console.log(res, 3123123)
           $('#tosubmit').attr("disabled", false);
-          // alert('上传成功')
-          $('#alert_upload').toast('show')
+          alert('上传成功')
+          // $('#alert_upload').toast('show')
           oneid = res.data.data.id;
         }).catch(err => {
           console.log(err);
