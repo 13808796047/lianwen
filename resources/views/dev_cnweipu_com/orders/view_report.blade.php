@@ -12,7 +12,7 @@
 @stop
 @section('content')
 <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-body">
         <label for="validationTooltipUsername" class="col-form-label">请填写重复率</label>
@@ -89,6 +89,21 @@
       </div>
 
   </div>
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="qrcodebox">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <p style='font-size: 16px;font-weight: bold;text-align: center;'>证书生成成功！</p>
+      <div id="qrimgs" style="width: 200px;height: 200px;margin: 0 auto;">
+      </div>
+      <p style="text-align: center;font-size: 13px;margin-bottom: 12px;">使用手机扫一扫，查看检测报告证书</p>
+    </div>
+  </div>
+</div>
 @stop
 @section('scripts')
   <script !src="">
@@ -105,21 +120,21 @@
                 $("#isshow").css('display','block')
                 return;
               }
-              swal({
-              // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-              text:'扫一扫分享到朋友圈',
-              content: $(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/>`)[0],
-              buttons: [false, '关闭']
-            })
+            $('#qrcodebox').modal('show')
+            $("#qrimgs").append(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/>`)
+
             $('#exampleModal').modal('hide')
             })
           }else{
-            swal({
-              // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-              text:'扫一扫分享到朋友圈',
-              content: $(`<img src='/orders/${order.id}/qrcode' style="display: block;margin: 0 auto;"/><p>分享到朋友圈</p>`)[0],
-              buttons: [false, '关闭']
-            })
+            $("#qrimgs").append(`<img src='/orders/${order.id}/qrcode' style="display: block;margin: 0 auto;"/>`)
+
+            $('#qrcodebox').modal('show')
+            // swal({
+            //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+            //   text:'扫一扫分享到朋友圈',
+            //   content: $(`<img src='/orders/${order.id}/qrcode' style="display: block;margin: 0 auto;"/><p>分享到朋友圈</p>`)[0],
+            //   buttons: [false, '关闭']
+            // })
           }
       })
 
