@@ -110,7 +110,7 @@
     $(function () {
       $("#qrcode").click(function(){
           let order = {!!$order!!};
-          console.log(order,order.rate)
+          $('#qrimgs').children().remove();
           //判断是否存在重复率
           if(order.rate==0.00 ||order.rate=='0.0%'){
             $('#exampleModal').modal('show')
