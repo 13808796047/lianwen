@@ -54,6 +54,7 @@ Route::prefix('v1')
                 ->name('user.bound.phone');
             //文件上传
             Route::post('files', 'FilesController@store')->name('files.store');
+            Route::get('qcrode/generate_img', 'OrdersController@generateImg')->name('qcrode.img');
         });
 
 

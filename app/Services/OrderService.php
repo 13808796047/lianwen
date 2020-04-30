@@ -46,27 +46,24 @@ class OrderService
             } else {
                 $content = remove_spec_char($request->input('content', ''));
                 $words = count_words($content);
-                if ($category->classid==3){
+                if($category->classid == 3) {
                     $result = $wordHandler->save($content, 'files', $user->id);
-                }else{
+                } else {
                     $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
                 }
-
-//                if($category->classid == 4) {
-//                    $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
-//                } else {
-//                    $result = $wordHandler->save($content, 'files', $user->id);
-//                }
+            }
+            if($words > 2500 && $user->redix == 1) {
+                $words = $this->calcWords($words);
             }
             if(!$words >= $category->min_words && !$words <= $category->max_words) {
                 throw new InvalidRequestException("检测字数必须在" . $category->min_words . "与" . $category->max_words . "之间", 422);
             }
             switch ($category->price_type) {
                 case Category::PRICE_TYPE_THOUSAND:
-                    $price = round($category->price * ceil($words * ($user->redix ?? 1.05) / 1000), 2);
+                    $price = round($category->price * ceil($words / 1000), 2);
                     break;
                 case Category::PRICE_TYPE_MILLION:
-                    $price = round($category->price * ceil($words * ($user->redix ?? 1.05) / 10000), 2);
+                    $price = round($category->price * ceil($words / 10000), 2);
                     break;
                 default:
                     $price = $category->price;
@@ -93,68 +90,23 @@ class OrderService
             return $order;
         });
         return $order;
-//        $order = \DB::transaction(function() use ($user, $category, $uploader, $request, $fileWords, $wordHandler) {
-//            if($file = $request->file) {
-//                if(!in_array($file->getClientOriginalExtension(), ['doc', 'docx'])) {
-//                    //读取文件内容
-////                    $content = remove_spec_char(convert2utf8(file_get_contents($file)));
-////                    if($category->classid == 4) {//只有classid==4时才是docx
-////                        $result = $uploader->save($file, 'files', $user->id);//存本地
-////                    } else {
-////                        $result = $wordHandler->save($content, 'files', $user->id);
-////                    }
-//                    $words = count_words(remove_spec_char(convert2utf8($content)));
-//                } else {
-//                    $result = $uploader->save($file, 'files', $user->id);//存本地
-//                    $content = read_docx($result['path']);
-//                    $words_count = $fileWords->getWords($request->title, $request->writer, $result['path']);
-//                    $words = $words_count['data']['wordCount'];
-////                    if($category->classid == 4) {
-////                        $content = read_docx($result['real_path']);
-////                        $result = $uploader->saveTxt($content, 'files', $user->id);
-////                    }
-//                }
-//            } else {
-//                $content = remove_spec_char($request->input('content', ''));
-//                $words = count_words($content);
-//                if($category->classid == 4 || $category->classid == 2) {
-//                    $result = $uploader->saveTxt($content, 'files', $user->id);
-//                } else {
-//                    $result = $wordHandler->save($content, 'files', $user->id);
-//                }
-//            }
-//            if(!$words <= $category->min_words && $words >= $category->max_words) {
-//                throw new InvalidRequestException("检测字数必须在" . $category->min_words . "与" . $category->max_words . "之间");
-//            }
-//            switch ($category->price_type) {
-//                case Category::PRICE_TYPE_THOUSAND:
-//                    $price = round($category->price * ceil($words * 1.05 / 1000), 2);
-//                    break;
-//                case Category::PRICE_TYPE_MILLION:
-//                    $price = round($category->price * ceil($words * 1.05 / 10000), 2);
-//                    break;
-//                default:
-//                    $price = $category->price;
-//            }
-//
-//            //创建订单
-//            $order = new Order([
-//                'cid' => $request->cid,
-//                'title' => $request->title,
-//                'writer' => $request->writer,
-//                'date_publish' => $request->date_publish,
-//                'words' => ceil($words * 1.05),
-//                'price' => $price,
-//                'paper_path' => $result['path'],
-//                'from' => $request->from,
-//                'content' => $content,
-//            ]);
-//            $order->user()->associate($user);
-//            $order->save();
-//
-//            return $order;
-//        });
-//        return $order;
+    }
+
+    //计算字数
+    public function calcWords($words)
+    {
+        $diff = 1000 - substr($words, -3);
+        switch ($diff) {
+            case $diff < 500:
+                $words = rand($words + $diff, $words + 1000 - $diff);
+                break;
+            case $diff > 500:
+                $words = rand($words + $diff, $words + 1000);
+                break;
+            default:
+                $words = $words + 525;
+        }
+        return $words;
     }
 
     public function getPdf($api_orderid)
