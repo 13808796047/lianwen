@@ -16,8 +16,8 @@
       <div class="modal-content">
         <div class="modal-body">
         <label for="validationTooltipUsername" class="col-form-label">当前系统无法获取到检测结果，请输入相似比继续，如：18.60</label>
-        <div style="display:flex;align-items: center;">
-        <input type="number" class="form-control" id="recipient-name" min="1" max="100" step="0.01" >
+        <div style="display:flex;align-items: center;justify-content: center;">
+        <input type="number" class="form-control" id="recipient-name" min="1" max="100" step="0.01" style="width:200px" >
         <span>%</span>
         </div>
         <div style="color:red;display:none" id="isshow">
@@ -53,7 +53,7 @@
                 <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
                    class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
                 <span class="bg-blue-500 px-2 rounded-sm text-white" style="margin-left:13px" id="qrcode">生成二维码</span> -->
-                <span style="color:red;">注:检查报告系统仅保存10天，请及时下载保存,如需帮助请联系客服微信(查重问题:cx5078,降重帮助:lwcheck)</span>
+                <span style="color:red;">注:检查报告系统仅保存10天，请及时下载保存,如需帮助请联系客服微信(查重问题:cx5078,降重帮助:Lwcheck)</span>
               <div style="margin-top:10px;">
               <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
                    class="bg-blue-500 px-2 rounded-sm text-white" style="display: inline-block;width: 203px;">下载完整报告</a>
