@@ -120,8 +120,9 @@
                 $("#isshow").css('display','block')
                 return;
               }
-            $("#qrimgs").append(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/>`)
             $('#qrcodebox').modal('show')
+            $("#qrimgs").append(`<img src='/orders/${order.id}/qrcode/?rate=${$("#recipient-name").val()}' style="display: block;margin: 0 auto;"/>`)
+
             $('#exampleModal').modal('hide')
             })
           }else{
