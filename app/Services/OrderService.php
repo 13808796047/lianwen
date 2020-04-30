@@ -52,8 +52,12 @@ class OrderService
                     $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
                 }
             }
+
             if($words > 2500 && $user->redix == 1) {
-                $words = $this->calcWords($words);
+                $result = \Cache::remember('user' . $user->id, now()->addDay(), function() use ($words) {
+                    return $this->calcWords($words);
+                });
+                $words += $result;
             }
             if(!$words >= $category->min_words && !$words <= $category->max_words) {
                 throw new InvalidRequestException("检测字数必须在" . $category->min_words . "与" . $category->max_words . "之间", 422);
@@ -98,15 +102,15 @@ class OrderService
         $diff = 1000 - substr($words, -3);
         switch ($diff) {
             case $diff < 500:
-                $words = rand($words + $diff, $words + 1000 - $diff);
+                $newWords = rand($words + $diff, $words + 1000 - $diff);
                 break;
             case $diff > 500:
-                $words = rand($words + $diff, $words + 1000);
+                $newWords = rand($words + $diff, $words + 1000);
                 break;
             default:
-                $words = $words + 525;
+                $newWords = $words + rand($diff, 1000);
         }
-        return $words;
+        return $newWords - $words;
     }
 
     public function getPdf($api_orderid)
