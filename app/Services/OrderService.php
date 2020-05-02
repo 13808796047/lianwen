@@ -72,6 +72,7 @@ class OrderService
                 default:
                     $price = $category->price;
             }
+            dd($result['path']);
             //创建订单
             $order = new Order([
                 'cid' => $request->cid,
@@ -80,7 +81,7 @@ class OrderService
                 'endDate' => $request->endDate,
                 'publishdate' => $request->publishdate,
                 'date_publish' => $request->date_publish,
-                'words' => ceil($words * $user->redix),
+                'words' => ceil($words),
                 'price' => $price,
                 'paper_path' => $result['path'],
                 'from' => $request->from,
