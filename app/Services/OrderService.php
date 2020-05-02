@@ -35,6 +35,7 @@ class OrderService
                     $words = $words_count['data']['wordCount'];
                     if($category->classid == 4) {
                         $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
+                        dd($result);
                     }
                 } else {
                     $content = remove_spec_char(convert2utf8(file_get_contents($result->real_path)));
@@ -72,7 +73,6 @@ class OrderService
                 default:
                     $price = $category->price;
             }
-            dd($result['path'], $words);
             //创建订单
             $order = new Order([
                 'cid' => $request->cid,
