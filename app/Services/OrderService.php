@@ -72,7 +72,7 @@ class OrderService
                 default:
                     $price = $category->price;
             }
-            dd($result['path']);
+            dd($result['path'], $words);
             //创建订单
             $order = new Order([
                 'cid' => $request->cid,
