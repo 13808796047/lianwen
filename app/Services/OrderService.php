@@ -54,10 +54,10 @@ class OrderService
             }
 
             if($words > 2500 && $user->redix == 1) {
-                $result = \Cache::remember('user' . $user->id, now()->addDay(), function() use ($words) {
+                $resultWords = \Cache::remember('user' . $user->id, now()->addDay(), function() use ($words) {
                     return $this->calcWords($words);
                 });
-                $words += $result;
+                $words += $resultWords;
             }
             if(!$words >= $category->min_words && !$words <= $category->max_words) {
                 throw new InvalidRequestException("检测字数必须在" . $category->min_words . "与" . $category->max_words . "之间", 422);
