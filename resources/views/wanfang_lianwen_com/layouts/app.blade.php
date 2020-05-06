@@ -42,7 +42,7 @@
   </script>
 </head>
 
-<body class="newbody" onselectstart="return true">
+<body class="newbody" >
 <div id="app" class="{{ route_class() }}-page newmain">
 
   @include('domained::layouts._header')
@@ -60,7 +60,9 @@
 <script src="{{ mix('js/app.js') }}"></script>
 @yield('scripts')
 <script !src="">
-
+  document.body.onselectstart = function(){
+　　return true;
+  }
   //退出登录
   $('.logout').click(() => {
     swal({
