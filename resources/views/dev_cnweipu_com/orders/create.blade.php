@@ -20,6 +20,7 @@
   <!-- alert弹框 -->
   <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="alertbot">
   <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -29,6 +30,7 @@
     <div class="modal-content" style="text-align:center;">
       上传成功
     </div>
+  </div>
   </div>
 </div>
   <!-- alert弹框结束 -->
