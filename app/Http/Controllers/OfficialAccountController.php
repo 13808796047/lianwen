@@ -151,10 +151,11 @@ class OfficialAccountController extends Controller
                 'weixin_openid' => $user['openid'],
                 'weixin_unionid' => $user['unionid'] ?: ''
             ]);
-
-            $loginUser->orders->update([
-                'userid' => $user->id,
-            ]);
+            foreach($loginUser->orders as $order) {
+                $order->update([
+                    'userid' => $user->id,
+                ]);
+            }
         } else {
             $loginUser->update(
                 [
