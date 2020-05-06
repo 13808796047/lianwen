@@ -53,7 +53,7 @@
                 <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
                    class="bg-blue-500 px-2 rounded-sm text-white">下载报告</a>
                 <span class="bg-blue-500 px-2 rounded-sm text-white" style="margin-left:13px" id="qrcode">生成二维码</span> -->
-                <span style="color:red;">注:检查报告系统仅保存10天，请及时下载保存,如需帮助请联系客服微信(查重问题:cx5078,降重帮助:13878811985)</span>
+                <span style="color:red;">注:检查报告系统仅保存10天，请及时下载保存,如需帮助请联系客服微信(查重问题:cx5078,降重帮助:Lwcheck)</span>
               <div style="margin-top:10px;">
               <a href="{{ route('orders.download',['orderid'=>$order->orderid]) }}"
                    class="bg-blue-500 px-2 rounded-sm text-white" style="display: inline-block;width: 203px;padding:5px 0;" >下载完整报告</a>
@@ -65,13 +65,12 @@
             <!-- Modal -->
 
           <!-- Modal-end -->
-           @if($order->report->content)
+            @if($order->report->content)
               {!! $order->report->content !!}
            @else
               <!-- <h2 class="text-center text-5xl">暂无内容!!!!</h2> -->
               <iframe src="https://dev.lianwen.com/pdf/{{$order->orderid}}.pdf" width="100%" height="650"></iframe>
             @endif
-          </div>
           </div>
         </div>
       </div>
@@ -131,14 +130,7 @@
             })
           }else{
             $("#qrimgs").append(`<img src='/orders/${order.id}/qrcode' style="display: block;margin: 0 auto;"/>`)
-
             $('#qrcodebox').modal('show')
-            // swal({
-            //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-            //   text:'扫一扫分享到朋友圈',
-            //   content: $(`<img src='/orders/${order.id}/qrcode' style="display: block;margin: 0 auto;"/><p>分享到朋友圈</p>`)[0],
-            //   buttons: [false, '关闭']
-            // })
           }
       })
 

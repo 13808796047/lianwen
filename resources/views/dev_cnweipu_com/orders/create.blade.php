@@ -17,7 +17,23 @@
   </style>
 @stop
 @section('content')
-
+  <!-- alert弹框 -->
+  <div class="modal fade bd-example-modal-sm" id="alertbot" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="padding:7px;">
+        <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding:0;margin:0;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="model-body-container"></p>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- alert弹框结束 -->
   <div class="p-4 mb-24">
     <div class="grid grid-cols-6 gap-4">
       <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff;">
@@ -204,7 +220,6 @@
       @unless(Auth::user()->weixin_openid)
       axios.get('{{ route('official_account.index') }}').then(res => {
         swal({
-
           // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
           content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
         })
@@ -333,10 +348,15 @@
         }).then(res => {
           console.log(res, 3123123)
           $('#tosubmit').attr("disabled", false);
-          alert('上传成功')
+          // alert('上传成功')
+          $('#model-body-container').html('上传成功')
+          $('#alertbot').modal('show')
+          setTimeout("$('#alertbot').modal('hide')",1000);
           oneid = res.data.data.id;
         }).catch(err => {
-          alert('上传失败，仅支持docx和txt格式，最大支持15M')
+          $('#model-body-container').html('上传失败，仅支持docx和txt格式，最大支持15M')
+          $('#alertbot').modal('show')
+          setTimeout("$('#alertbot').modal('hide')",2000);
           $('#tosubmit').attr("disabled", true);
         })
       })

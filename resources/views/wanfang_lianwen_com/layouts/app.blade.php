@@ -17,6 +17,7 @@
     .newbody{
       height:100%;
       margin-bottom:0;
+      user-select: auto;
     }
     .newmain{
       display:flex;
@@ -42,7 +43,7 @@
   </script>
 </head>
 
-<body class="newbody">
+<body class="newbody" >
 <div id="app" class="{{ route_class() }}-page newmain">
 
   @include('domained::layouts._header')
@@ -60,7 +61,6 @@
 <script src="{{ mix('js/app.js') }}"></script>
 @yield('scripts')
 <script !src="">
-
   //退出登录
   $('.logout').click(() => {
     swal({
