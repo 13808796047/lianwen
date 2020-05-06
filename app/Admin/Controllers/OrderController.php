@@ -42,7 +42,7 @@ class OrderController extends AdminController
                 4 => 'success',
             ]);
             $grid->column('title', '标题')->copyable()->width('220px');
-            $grid->column('writer', '作者');
+            $grid->column('writer', '作者')->width('120px');
             $grid->column('words', '字数');
             $grid->column('pay_price', '支付金额');
 //            $grid->column('pay_price', '支付金额')->totalRow(function($amount) {
@@ -73,91 +73,7 @@ class OrderController extends AdminController
                 $filter->scope('3', '检测中')->where('status', 3);
                 $filter->scope('4', '检测完成')->where('status', 4);
                 $filter->scope('0', '未支付')->where('status', 0);
-
             });
         });
     }
-
-//    /**
-//     * Make a show builder.
-//     *
-//     * @param mixed $id
-//     *
-//     * @return Show
-//     */
-//    protected function detail($id)
-//    {
-//        return Show::make($id, new Order(), function(Show $show) {
-//            $show->id;
-//            $show->orderid;
-//            $show->cid;
-//            $show->userid;
-//            $show->status;
-//            $show->title;
-//            $show->writer;
-//            $show->content;
-//            $show->date_publish;
-//            $show->words;
-//            $show->price;
-//            $show->pay_price;
-//            $show->pay_type;
-//            $show->payid;
-//            $show->date_pay;
-//            $show->paper_path;
-//            $show->report_path;
-//            $show->rate;
-//            $show->result;
-//            $show->from;
-//            $show->keyword;
-//            $show->rid;
-//            $show->del;
-//            $show->api_orderid;
-//            $show->report_pdf_path;
-//            $show->endDate;
-//            $show->publishdate;
-//            $show->created_at;
-//            $show->updated_at;
-//        });
-//    }
-//
-//    /**
-//     * Make a form builder.
-//     *
-//     * @return Form
-//     */
-//    protected function form()
-//    {
-//        return Form::make(new Order(), function(Form $form) {
-//            $form->display('id');
-//            $form->text('orderid');
-//            $form->text('cid');
-//            $form->text('userid');
-//            $form->text('status');
-//            $form->text('title');
-//            $form->text('writer');
-//            $form->text('content');
-//            $form->text('date_publish');
-//            $form->text('words');
-//            $form->text('price');
-//            $form->text('pay_price');
-//            $form->text('pay_type');
-//            $form->text('payid');
-//            $form->text('date_pay');
-//            $form->text('paper_path');
-//            $form->text('report_path');
-//            $form->text('rate');
-//            $form->text('result');
-//            $form->text('from');
-//            $form->text('keyword');
-//            $form->text('rid');
-//            $form->text('del');
-//            $form->text('api_orderid');
-//            $form->text('report_pdf_path');
-//            $form->text('endDate');
-//            $form->text('publishdate');
-//
-//            $form->display('created_at');
-//            $form->display('updated_at');
-//        });
-//    }
 }
