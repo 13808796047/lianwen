@@ -14,6 +14,8 @@ class OrderController extends AdminController
 {
     protected function grid()
     {
+        // 第二个参数为 `Column` 对象， 第三个参数是自定义参数
+
         return Grid::make(Order::with(['category']), function(Grid $grid) {
             $grid->id->sortable();
             $grid->paginate(10);
@@ -44,7 +46,10 @@ class OrderController extends AdminController
             $grid->column('title', '标题')->copyable()->width('220px');
             $grid->column('writer', '作者')->width('120px');
             $grid->column('words', '字数');
-            $grid->column('pay_price', '支付金额');
+            Grid\Column::extend('totalRow', function($value, $column, $color) {
+                return array_sum($value);
+            });
+            $grid->column('pay_price', '支付金额')->totalRow();
 //            $grid->column('pay_price', '支付金额')->totalRow(function($amount) {
 //
 //                return "<span class='text-danger text-bold'><i class='fa fa-yen'></i> {$amount} 元</span>";
