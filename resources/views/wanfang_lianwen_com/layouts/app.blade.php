@@ -17,6 +17,7 @@
     .newbody{
       height:100%;
       margin-bottom:0;
+      user-select: auto;
     }
     .newmain{
       display:flex;
@@ -60,9 +61,6 @@
 <script src="{{ mix('js/app.js') }}"></script>
 @yield('scripts')
 <script !src="">
-  document.body.onselectstart = function(){
-　　return true;
-  }
   //退出登录
   $('.logout').click(() => {
     swal({
