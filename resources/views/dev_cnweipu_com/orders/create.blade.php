@@ -351,9 +351,8 @@
           $('#tosubmit').attr("disabled", false);
           // alert('上传成功')
           $('#alertbot').modal('show')
+          setTimeout("$('#alertbot').modal('hide')",2000);
           oneid = res.data.data.id;
-          setTimeout("$('#alertbot').modal('hide')",2000);//5s延时自动关闭
-         });
         }).catch(err => {
           alert('上传失败，仅支持docx和txt格式，最大支持15M')
           $('#tosubmit').attr("disabled", true);
