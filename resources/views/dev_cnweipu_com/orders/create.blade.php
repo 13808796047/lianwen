@@ -18,20 +18,10 @@
 @stop
 @section('content')
   <!-- alert弹框 -->
-  <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
-
-  <!-- Then put toasts within -->
-  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="alertbot">
-    <div class="toast-header">
-      <img src="..." class="rounded mr-2" alt="...">
-      <strong class="mr-auto">Bootstrap</strong>
-      <small>11 mins ago</small>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="toast-body">
-      Hello, world! This is a toast message.
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="alertbot">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      上传成功
     </div>
   </div>
 </div>
@@ -352,7 +342,7 @@
           console.log(res, 3123123)
           $('#tosubmit').attr("disabled", false);
           // alert('上传成功')
-          $('#alertbot').toast('show')
+          $('#alertbot').modal('show')
           oneid = res.data.data.id;
         }).catch(err => {
           alert('上传失败，仅支持docx和txt格式，最大支持15M')
