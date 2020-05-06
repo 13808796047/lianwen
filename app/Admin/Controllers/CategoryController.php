@@ -17,10 +17,7 @@ class CategoryController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Category(), function (Grid $grid) {
-            $grid->id->sortable();
-            $grid->cid;
-            $grid->classid;
+        return Grid::make(new Category(), function(Grid $grid) {
             $grid->classname;
             $grid->status;
             $grid->name;
@@ -40,10 +37,10 @@ class CategoryController extends AdminController
             $grid->sys_ico;
             $grid->created_at;
             $grid->updated_at->sortable();
-        
-            $grid->filter(function (Grid\Filter $filter) {
+
+            $grid->filter(function(Grid\Filter $filter) {
                 $filter->equal('id');
-        
+
             });
         });
     }
@@ -57,7 +54,7 @@ class CategoryController extends AdminController
      */
     protected function detail($id)
     {
-        return Show::make($id, new Category(), function (Show $show) {
+        return Show::make($id, new Category(), function(Show $show) {
             $show->id;
             $show->cid;
             $show->classid;
@@ -90,7 +87,7 @@ class CategoryController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new Category(), function (Form $form) {
+        return Form::make(new Category(), function(Form $form) {
             $form->display('id');
             $form->text('cid');
             $form->text('classid');
@@ -111,7 +108,7 @@ class CategoryController extends AdminController
             $form->text('seo_title');
             $form->text('sys_logo');
             $form->text('sys_ico');
-        
+
             $form->display('created_at');
             $form->display('updated_at');
         });
