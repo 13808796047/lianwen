@@ -203,7 +203,18 @@
     $(() => {
       @unless(Auth::user()->weixin_openid)
       axios.get('{{ route('official_account.index') }}').then(res => {
+<<<<<<< HEAD
         swal({
+=======
+        console.log(res,312312)
+        $('#wximg').attr('src',res.data.url)
+        // swal({
+          $('#staticBackdrop').modal('show')
+        //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+        //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
+        // })
+      })
+>>>>>>> 08a67e5be9d8903c3a5de4a9e12018de51322735
 
           // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
           content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
