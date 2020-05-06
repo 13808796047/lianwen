@@ -14,7 +14,7 @@ class OrderController extends AdminController
 {
     protected function grid()
     {
-        return Grid::make(new Order(), function(Grid $grid) {
+        return Grid::make(new Order(['category']), function(Grid $grid) {
             $grid->id->sortable();
             $grid->model()->orderBy('created_at', 'desc');
             $grid->column('orderid', '订单号')->display(function($orderid) {
@@ -22,7 +22,7 @@ class OrderController extends AdminController
                 return "<a href='orders/{$order->id}/download_report'>$orderid</a>";
 
             });
-            $grid->column('category.name', '分类');
+            $grid->column('category.name');
             // 展示关联关系的字段时，使用 column 方法
             $grid->column('userid', '买家')->display(function($userid) {
                 return User::find($userid)->phone ?? '';
