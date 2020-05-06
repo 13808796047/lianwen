@@ -6,83 +6,10 @@
   <link rel="stylesheet" href="{{asset('asset/css/index.css')}}">
 @stop
 @section('content')
-  <div class="contentBox">
-    <div class="con">
       <!--左边导航-->
-      <div class="con_left" id="fixedMenu">
-        <ul class="sidebar_nav">
-          <li class="has_xiala">
-            <a>客服中心</a>
-          </li>
-          <li>
-            <table class="kefu" border="0" cellspacing="0" cellpadding="0">
-              <tbody>
-              <tr>
-                <td scope="col" width="50%">客服①：
-                  <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=318993001&site=qq&menu=yes">
-                    <img border="0" src="https://pub.idqqimg.com/qconn/wpa/button/button_111.gif" alt="点击这里给我发消息"
-                         title="点击这里给我发消息"/></a></td>
-                <td scope="col" width="50%">客服②：
-                  <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=1391581760&site=qq&menu=yes">
-                    <img border="0" src="https://pub.idqqimg.com/qconn/wpa/button/button_111.gif" alt="点击这里给我发消息"
-                         title="点击这里给我发消息"/></a></td>
-              </tr>
-              <tr>
-                <td>客服③：
-                  <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=790051001&site=qq&menu=yes">
-                    <img border="0" src="https://pub.idqqimg.com/qconn/wpa/button/button_111.gif" alt="点击这里给我发消息"
-                         title="点击这里给我发消息"/></a></td>
-                <td>投&emsp;诉：
-                  <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=813338&site=qq&menu=yes">
-                    <img border="0" src="https://pub.idqqimg.com/qconn/wpa/button/button_111.gif" alt="点击这里给我发消息"
-                         title="点击这里给我发消息"/></a></td>
-              </tr>
-              <tr>
-                <td>旺&emsp;旺：<a target="_blank" href="http://amos.alicdn.com/getcid.aw?v=2&uid=%E5%85%B0%E8%89%B2%E5%B0%8F%E7%B2%BE%E7%81%B5
-&site=cntaobao&s=1&groupid=0&charset=utf-8"><img border="0" src="https://amos.alicdn.com/online.aw?v=2&uid=%E5%85%B0%E8%89%B2%E5%B0%8F%E7%B2%BE%E7%81%B5
-&site=cntaobao&s=1&charset=utf-8" alt="点这里给我发消息"/></a>
-                </td>
-                <td>网&emsp;页：
-                  <a target="_blank" href="http://p.qiao.baidu.com/cps/chat?siteId=6477403&userId=10092912">
-                    <img border="0" src="https://css.lianwen.com/images/sq.png" width="78" height="22" alt="点击这里给我发消息"
-                         title="点击这里给我发消息"/></a></td>
-              </tr>
-              <tr>
-                <td class="tel" colspan="2">&#x260E;服务热线: 400-823-8869</td>
-              </tr>
-              <tr>
-                <td colspan="2" class="wx">
-                  <img src="https://css.lianwen.com/images/weixin.png" width="100" height="100">
-                  <br/>扫一扫，微信沟通
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </li>
-          <li class="has_xiala">
-            <a>使用帮助</a>
-          </li>
-          <li class="dropDown">
-            <ul class="log_res">
-              <li>
-                <a href="/zt/system"><span class="a_lwfb"></span>如何选择检测？</a>
-              </li>
-              <li>
-                <a href="/help#reg"><span class="a_lwfb"></span>需要注册账号吗？</a>
-              </li>
-              <li>
-                <a href="/help#pay"><span class="a_lwfb"></span>如何支付检测费用？</a>
-              </li>
-              <li>
-                <a href="/help#result"><span class="a_lwfb"></span>检测结果准确吗？</a>
-              </li>
-              <li>
-                <a href="/help#safe"><span class="a_lwfb"></span>我的论文会不会被记录？</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>            <!--右边内容-->
+      <!--右边内容-->
+    <div class="main clearfix">
+    <div class="lbox fl">
       <div class="con_right">
         <div class="lwjcBox">
           <div class="lwjc">
@@ -142,5 +69,21 @@
         </div>
       </div>
     </div>
-  </div>
+    <div class="rbox fr">
+      <div class="tit">在线客服</div>
+      <div class="box">客服微信:cx5078</div>
+      <div class="box mt10">
+        <b>1、怎么选择适合自己的论文检测系统？</b>
+        <p>只有使用和学校相同的数据库，才能保证重复率与学校、杂志社100%一致：</br>论文初次修改可使用联文检测、PaperPass，定稿再使用与学校一样的系统。</p>
+        <b>2、检测要多长时间，报告怎么还没出来？</b>
+        <p>正常检测20分钟左右，毕业高峰期，服务器检测压力大，时间会有延长，请大家提前做好时间准备。超过2小时没出结果可以联系客服处理！</p>
+        <b>3、同一篇论文可以多次检测吗？？</b>
+        <p>本站不限制论文检测次数，但检测一次需支付一次费用。</p>
+        <b>4、检测报告有网页版、pdf格式的吗？</b>
+        <p>检测完成后会提供网页版和pdf格式的检测报告，报告只是格式不同，重复率都一样的。</p>
+
+      </div>
+    </div>
+    </div>
+
 @stop
