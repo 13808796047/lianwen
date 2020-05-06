@@ -14,8 +14,9 @@ class OrderController extends AdminController
 {
     protected function grid()
     {
-        return Grid::make(new Order(['category']), function(Grid $grid) {
+        return Grid::make(Order::with(['category']), function(Grid $grid) {
             $grid->id->sortable();
+            $grid->paginate(10);
             $grid->model()->orderBy('created_at', 'desc');
             $grid->column('orderid', '订单号')->display(function($orderid) {
                 $order = Order::query()->where('orderid', $orderid)->first();
