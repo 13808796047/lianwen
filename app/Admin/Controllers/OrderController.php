@@ -23,7 +23,7 @@ class OrderController extends AdminController
                 return "<a href='orders/{$order->id}/download_report'>$orderid</a>";
 
             });
-            $grid->column('category.name');
+            $grid->column('category.name', '系统');
             // 展示关联关系的字段时，使用 column 方法
             $grid->column('userid', '买家')->display(function($userid) {
                 return User::find($userid)->phone ?? '';
@@ -44,6 +44,7 @@ class OrderController extends AdminController
             $grid->column('title', '标题')->copyable()->width('220px');
             $grid->column('writer', '作者');
             $grid->column('words', '字数');
+            $grid->column('pay_price', '支付金额');
 //            $grid->column('pay_price', '支付金额')->totalRow(function($amount) {
 //
 //                return "<span class='text-danger text-bold'><i class='fa fa-yen'></i> {$amount} 元</span>";
