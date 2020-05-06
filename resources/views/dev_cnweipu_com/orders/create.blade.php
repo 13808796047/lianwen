@@ -23,7 +23,7 @@
     <div class="modal-content">
       <div class="modal-header" style="padding:7px;">
         <h5 class="modal-title" id="exampleModalLabel">提示</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding:0;margin:0;">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -337,6 +337,7 @@
       })
       //单文件上传
       $('#customFile').change(function (e) {
+        clearTimeout(clearmodel);
         $('.custom-file-label').html(e.target.files[0].name)
         $('#tosubmit').attr("disabled", true);
         var file = e.target.files[0];
@@ -351,6 +352,9 @@
           $('#tosubmit').attr("disabled", false);
           // alert('上传成功')
           $('#alertbot').modal('show')
+          var clearmodel =setTimeout(function(){
+            $('#alertbot').modal('hide')
+          },2000);
           oneid = res.data.data.id;
         }).catch(err => {
           alert('上传失败，仅支持docx和txt格式，最大支持15M')
