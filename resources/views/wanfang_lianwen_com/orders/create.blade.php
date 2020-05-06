@@ -203,265 +203,261 @@
     $(() => {
       @unless(Auth::user()->weixin_openid)
       axios.get('{{ route('official_account.index') }}').then(res => {
-<<<<<<< HEAD
-        swal({
-=======
-        console.log(res,312312)
-        $('#wximg').attr('src',res.data.url)
-        // swal({
-          $('#staticBackdrop').modal('show')
-        //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-        //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
+        //   swal({
+        //     $('#wximg').attr('src', res.data.url)
+        //   // swal({
+        //   $('#staticBackdrop').modal('show')
+        //   //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+        //   //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
+        //   // })
         // })
-      })
->>>>>>> 08a67e5be9d8903c3a5de4a9e12018de51322735
 
-          // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-          content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
-        })
+        // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+        content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0]
       })
-        @endunless
-      let set = new Set();
-      let name = '';
-      var oneid = ''
-      $('.navbar>div').removeClass('container').addClass('container-fluid')
-      $('#headerlw').addClass('curfont')
-      $('.category>li:first-child i').addClass('selected')
-      $('#cid').val($('.category>li:first-child').data('id'))
-      $('.category>li').click(function () {
-        $(this).siblings().children('i').removeClass('selected')
-        $(this).children('i').addClass('selected')
-        $('#cid').val($(this).data('id'))
-      })
-      $('#content').bind('input propertychange', (e) => {
-        $('#words span').html(e.target.value.length)
-      })
-      //多文件上传
-      $('#customFiles').change(function (e) {
-        $('#newelement').css('display', 'block');
-        //console.log(e,'312312');
+    })
+      @endunless
+    let set = new Set();
+    let name = '';
+    var oneid = ''
+    $('.navbar>div').removeClass('container').addClass('container-fluid')
+    $('#headerlw').addClass('curfont')
+    $('.category>li:first-child i').addClass('selected')
+    $('#cid').val($('.category>li:first-child').data('id'))
+    $('.category>li').click(function () {
+      $(this).siblings().children('i').removeClass('selected')
+      $(this).children('i').addClass('selected')
+      $('#cid').val($(this).data('id'))
+    })
+    $('#content').bind('input propertychange', (e) => {
+      $('#words span').html(e.target.value.length)
+    })
+    //多文件上传
+    $('#customFiles').change(function (e) {
+      $('#newelement').css('display', 'block');
+      //console.log(e,'312312');
 
-        // $('.custom-file-label').html(e.target.files[0].name)
-        var file = e.target.files;
-        console.log(file, 123123)
+      // $('.custom-file-label').html(e.target.files[0].name)
+      var file = e.target.files;
+      console.log(file, 123123)
 
-        $('#progress_bar').css("display", "block");
-        $('#progress_text').css('display', "block");
-        var index = 0;
-        var array = [];
-        for (let i = 0; i < file.length; i++) {
-          let item = file[i];
-          name += item.name;
-          var formData = new FormData();
-          formData.append("file", item);  //上传一个files对
-          axios.post('{{ route('files.store') }}', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          }).then(res => {
-            array.push({
-              'file_id': res.data.data.id, 'from': '万方查重PC', 'type': 'file',
-              'content': ''
-            });
-            index++;
-            console.log(res, 'fsadf')
-            //let obj = {!!$categories!!}
-            let obj =[{id:3,name:'维普大学生版'},{id:4,name:'维普研究生版'},{id:5,name:'维普编辑部版'},{id:6,name:'维普职称版'}]
-            console.log(obj, Object.prototype.toString.call(obj));
-            console.log(obj, 3123)
-            var option = ""
-            for (let i = 0; i < obj.length; i++) {
-              var id = obj[i].id;
-              var name = obj[i].name;
-              option += `<option value=${id} class='options'>${name}</option>`
-            }
-            console.log(option, "xixixifsaddjfa")
-            var file_id = res.data.data.id;
-            set.add(file_id);
-            $("#hidden_form_id").val(file_id);
-            $("#hideen_type").val('file');
-            $('#progress_bar_line').css("width", "100%")
-            $('#progress_bar_line').html('上传成功')
-            $('#progress_text').html("上传成功");
-            // alert('上传成功')
-            $("#newelement_container").append(`<div style='margin-bottom:10px;'><span style="margin-right:10px">订单${index}</span><input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value=${item.name}>论文作者<input type='text' class='authorc' value='匿名'>检测系统<select>${option}</select></div>`);
-          }).catch(err => {
-            console.log(err);
-            index++;
-            $('#progress_bar_line').css("width", "100%")
-            $('#progress_text').html("不允许上传的文件类型");
-            $("#newelement_container").append(`<div style='margin-bottom:10px'><span style="margin-left:10px">订单${index}<span><input id='title' type='text' name='title' value=${item.name}><span style="margin-left:10px;">上传失败，请选择正确格式</span>`);
-          })
-        }
-        $('#batchBtn').click(_ => {
-          $('#newelement').css('display', 'none')
-          $('.titlec').each((index, ele) => {
-            console.log(index, ele, 312321)
-            array[index]['title'] = ele.value;
-          })
-          $('.authorc').each((index, ele) => {
-            console.log(index, ele, 312321)
-            array[index]['writer'] = ele.value;
-          })
-          $('select').each((index, ele) => {
-            if (index + 1 > array.length) return;
-            // array[index]['cid']=$("select").val();
-            array[index]['cid'] = ele.value;
-          })
-          console.log(array, 312, 'fsdafa');
-          $('#paymsg').css('display', 'block')
-          for (let item of array) {
-            axios.post('{{route('orders.store')}}', item).then(res => {
-
-              if (res.status == 201) {
-                var paymsg = res.data.data;
-                $('#paymsg_container').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>论文题目:${paymsg.title}</p><p>作者：${paymsg.writer}</p><p>字数:${paymsg.words}</p><p>价格:${paymsg.price}元</p></div>`)
-              }
-
-            }).catch(err => {
-              $('#paymsg_container').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>提交失败<p></div>`)
-            })
-          }
-        })
-        $('.custom-file-label').html(name);
-        $('#manyupload').css('display', "none")
-      });
-      //多文件上传刷新
-      $('#toSecup').click(function () {
-        window.location.reload();
-      })
-      //单文件上传
-      $('#customFile').change(function (e) {
-        $('.custom-file-label').html(e.target.files[0].name)
-        $('#tosubmit').attr("disabled", true);
-        var file = e.target.files[0];
+      $('#progress_bar').css("display", "block");
+      $('#progress_text').css('display', "block");
+      var index = 0;
+      var array = [];
+      for (let i = 0; i < file.length; i++) {
+        let item = file[i];
+        name += item.name;
         var formData = new FormData();
-        formData.append("file", file);  //上传一个files对
+        formData.append("file", item);  //上传一个files对
         axios.post('{{ route('files.store') }}', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         }).then(res => {
-          console.log(res, 3123123)
-          $('#tosubmit').attr("disabled", false);
-          alert('上传成功')
-          oneid = res.data.data.id;
+          array.push({
+            'file_id': res.data.data.id, 'from': '万方查重PC', 'type': 'file',
+            'content': ''
+          });
+          index++;
+          console.log(res, 'fsadf')
+          //let obj = {!!$categories!!}
+          let obj =[{id:3,name:'维普大学生版'},{id:4,name:'维普研究生版'},{id:5,name:'维普编辑部版'},{id:6,name:'维普职称版'}]
+          console.log(obj, Object.prototype.toString.call(obj));
+          console.log(obj, 3123)
+          var option = ""
+          for (let i = 0; i < obj.length; i++) {
+            var id = obj[i].id;
+            var name = obj[i].name;
+            option += `<option value=${id} class='options'>${name}</option>`
+          }
+          console.log(option, "xixixifsaddjfa")
+          var file_id = res.data.data.id;
+          set.add(file_id);
+          $("#hidden_form_id").val(file_id);
+          $("#hideen_type").val('file');
+          $('#progress_bar_line').css("width", "100%")
+          $('#progress_bar_line').html('上传成功')
+          $('#progress_text').html("上传成功");
+          // alert('上传成功')
+          $("#newelement_container").append(`<div style='margin-bottom:10px;'><span style="margin-right:10px">订单${index}</span><input id='title' type='text' name='title' value=${item.name}>论文题目<input type='text' class='titlec' value=${item.name}>论文作者<input type='text' class='authorc' value='匿名'>检测系统<select>${option}</select></div>`);
         }).catch(err => {
-          alert('上传失败，仅支持docx和txt格式，最大支持15M')
-          $('#tosubmit').attr("disabled", true);
+          console.log(err);
+          index++;
+          $('#progress_bar_line').css("width", "100%")
+          $('#progress_text').html("不允许上传的文件类型");
+          $("#newelement_container").append(`<div style='margin-bottom:10px'><span style="margin-left:10px">订单${index}<span><input id='title' type='text' name='title' value=${item.name}><span style="margin-left:10px;">上传失败，请选择正确格式</span>`);
         })
-      })
+      }
+      $('#batchBtn').click(_ => {
+        $('#newelement').css('display', 'none')
+        $('.titlec').each((index, ele) => {
+          console.log(index, ele, 312321)
+          array[index]['title'] = ele.value;
+        })
+        $('.authorc').each((index, ele) => {
+          console.log(index, ele, 312321)
+          array[index]['writer'] = ele.value;
+        })
+        $('select').each((index, ele) => {
+          if (index + 1 > array.length) return;
+          // array[index]['cid']=$("select").val();
+          array[index]['cid'] = ele.value;
+        })
+        console.log(array, 312, 'fsdafa');
+        $('#paymsg').css('display', 'block')
+        for (let item of array) {
+          axios.post('{{route('orders.store')}}', item).then(res => {
 
-      // $("form").submit(function(e){
-      // <s></s>
-      // });
-      //文件上传提交论文
-      $("#tosubmit").click(function () {
-        if ($('#title').val() == '') return false;
-        if ($('#writer').val() == '') return false;
-        // 判断选择谁
-        if ($('#contentfile').hasClass('active')) {
-          if (oneid == '') return false;
-          $('#tosubmit').css("display", "none");
-          $('#submitBtn').css("display", "block")
-          axios.post('{{route('orders.store')}}', {
-              cid: $('#cid').val(),
-              from: '万方PC端',
-              file_id: oneid,
-              type: 'file',
-              content: '',
-              title: $('#title').val(),
-              writer: $('#writer').val()
+            if (res.status == 201) {
+              var paymsg = res.data.data;
+              $('#paymsg_container').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>论文题目:${paymsg.title}</p><p>作者：${paymsg.writer}</p><p>字数:${paymsg.words}</p><p>价格:${paymsg.price}元</p></div>`)
             }
-          ).then(res => {
-            console.log(res, 3123123)
-            var order = res.data.data
-            location.href = '/orders/' + res.data.data.id
+
           }).catch(err => {
-            console.log(err, 3112312312)
-            alert('提交失败，请重试')
-            $('#tosubmit').css("display", "block");
-            $('#submitBtn').css("display", "none")
-          })
-        } else {
-          $('#tosubmit').css("display", "none");
-          $('#submitBtn').css("display", "block")
-          axios.post('{{route('orders.store')}}', {
-              cid: $('#cid').val(),
-              from: '万方PC端',
-              type: 'content',
-              content: $('#content').val(),
-              title: $('#title').val(),
-              writer: $('#writer').val()
-            }
-          ).then(res => {
-            console.log(res, 3123123)
-            var order = res.data.data
-            location.href = '/orders/' + res.data.data.id
-          }).catch(err => {
-            alert('提交失败，请重试')
-            $('#tosubmit').css("display", "block");
-            $('#submitBtn').css("display", "none")
+            $('#paymsg_container').append(`<div style='width: 602px;border: 1px solid;margin-bottom:20px;'><p>提交失败<p></div>`)
           })
         }
-
-
       })
+      $('.custom-file-label').html(name);
+      $('#manyupload').css('display', "none")
+    });
+    //多文件上传刷新
+    $('#toSecup').click(function () {
+      window.location.reload();
+    })
+    //单文件上传
+    $('#customFile').change(function (e) {
+      $('.custom-file-label').html(e.target.files[0].name)
+      $('#tosubmit').attr("disabled", true);
+      var file = e.target.files[0];
+      var formData = new FormData();
+      formData.append("file", file);  //上传一个files对
+      axios.post('{{ route('files.store') }}', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(res => {
+        console.log(res, 3123123)
+        $('#tosubmit').attr("disabled", false);
+        alert('上传成功')
+        oneid = res.data.data.id;
+      }).catch(err => {
+        alert('上传失败，仅支持docx和txt格式，最大支持15M')
+        $('#tosubmit').attr("disabled", true);
+      })
+    })
+
+    // $("form").submit(function(e){
+    // <s></s>
+    // });
+    //文件上传提交论文
+    $("#tosubmit").click(function () {
+      if ($('#title').val() == '') return false;
+      if ($('#writer').val() == '') return false;
+      // 判断选择谁
+      if ($('#contentfile').hasClass('active')) {
+        if (oneid == '') return false;
+        $('#tosubmit').css("display", "none");
+        $('#submitBtn').css("display", "block")
+        axios.post('{{route('orders.store')}}', {
+            cid: $('#cid').val(),
+            from: '万方PC端',
+            file_id: oneid,
+            type: 'file',
+            content: '',
+            title: $('#title').val(),
+            writer: $('#writer').val()
+          }
+        ).then(res => {
+          console.log(res, 3123123)
+          var order = res.data.data
+          location.href = '/orders/' + res.data.data.id
+        }).catch(err => {
+          console.log(err, 3112312312)
+          alert('提交失败，请重试')
+          $('#tosubmit').css("display", "block");
+          $('#submitBtn').css("display", "none")
+        })
+      } else {
+        $('#tosubmit').css("display", "none");
+        $('#submitBtn').css("display", "block")
+        axios.post('{{route('orders.store')}}', {
+            cid: $('#cid').val(),
+            from: '万方PC端',
+            type: 'content',
+            content: $('#content').val(),
+            title: $('#title').val(),
+            writer: $('#writer').val()
+          }
+        ).then(res => {
+          console.log(res, 3123123)
+          var order = res.data.data
+          location.href = '/orders/' + res.data.data.id
+        }).catch(err => {
+          alert('提交失败，请重试')
+          $('#tosubmit').css("display", "block");
+          $('#submitBtn').css("display", "none")
+        })
+      }
 
 
-      // function checkType(e) {
-      //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
-      //   if ($.inArray(ext, ['docx', 'txt']) == -1) {
-      //     alert('不允许上传文件类型!');
-      //   }
-      // }
+    })
 
-      // var formData = new FormData()
-      // $('.versionlist li:first').addClass('i-select')
-      // var cid = $('.versionlist li:first').data('id');
-      // $('#cid').val(cid);
-      // $(".versionlist li").click(function () {
-      //   // var isshow = $(".tips").children('span'
-      //   var index = $(this).index();
-      //   cid = $(this).data('id');
-      //   $('#cid').val(cid);
-      //   $(this).addClass("i-select").siblings().removeClass("i-select");
-      //
-      //   $('.tips').children('span').eq(index).show().siblings().hide();
-      // });
-      // $('input[type=radio][name=radio]').change(function () {
-      //   if (this.value == 'paste') {
-      //     $('#paste').show()
-      //     $('#upload').hide()
-      //   } else if (this.value == 'upload') {
-      //     $('#paste').hide()
-      //     $('#upload').show()
-      //   }
-      // });
-      // $('.txts').bind('input propertychange', (e) => {
-      //   $('.words').html(e.target.value.length)
-      // })
-      {{--$('input[name=file]').change((e) => {--}}
-      {{--  var file = e.target.files[0]--}}
 
-      {{--  formData.append('file', file);--}}
-      {{--})--}}
-      {{--$('#subBtn').click(() => {--}}
-      {{--  formData.append('cid', cid)--}}
-      {{--  formData.append('title', $('input[name=title]').val())--}}
-      {{--  formData.append('writer', $('input[name=writer]').val())--}}
-      {{--  formData.append('content', $('textarea[name=content]').val())--}}
-      {{--  axios.post('{{route('orders.store')}}', formData,--}}
-      {{--    {--}}
-      {{--      headers: {--}}
-      {{--        'Content-Type':--}}
-      {{--          'multipart/form-data'--}}
-      {{--      }--}}
-      {{--    }--}}
-      {{--  ).then(res => {--}}
-      {{--    location.href = '{{route('orders.show',['id'=>res.data.id])}}'--}}
-      {{--  })--}}
-      {{--})--}}
+    // function checkType(e) {
+    //   var ext = $('#customFile').val().split('.').pop().toLowerCase();
+    //   if ($.inArray(ext, ['docx', 'txt']) == -1) {
+    //     alert('不允许上传文件类型!');
+    //   }
+    // }
+
+    // var formData = new FormData()
+    // $('.versionlist li:first').addClass('i-select')
+    // var cid = $('.versionlist li:first').data('id');
+    // $('#cid').val(cid);
+    // $(".versionlist li").click(function () {
+    //   // var isshow = $(".tips").children('span'
+    //   var index = $(this).index();
+    //   cid = $(this).data('id');
+    //   $('#cid').val(cid);
+    //   $(this).addClass("i-select").siblings().removeClass("i-select");
+    //
+    //   $('.tips').children('span').eq(index).show().siblings().hide();
+    // });
+    // $('input[type=radio][name=radio]').change(function () {
+    //   if (this.value == 'paste') {
+    //     $('#paste').show()
+    //     $('#upload').hide()
+    //   } else if (this.value == 'upload') {
+    //     $('#paste').hide()
+    //     $('#upload').show()
+    //   }
+    // });
+    // $('.txts').bind('input propertychange', (e) => {
+    //   $('.words').html(e.target.value.length)
+    // })
+    {{--$('input[name=file]').change((e) => {--}}
+    {{--  var file = e.target.files[0]--}}
+
+    {{--  formData.append('file', file);--}}
+    {{--})--}}
+    {{--$('#subBtn').click(() => {--}}
+    {{--  formData.append('cid', cid)--}}
+    {{--  formData.append('title', $('input[name=title]').val())--}}
+    {{--  formData.append('writer', $('input[name=writer]').val())--}}
+    {{--  formData.append('content', $('textarea[name=content]').val())--}}
+    {{--  axios.post('{{route('orders.store')}}', formData,--}}
+    {{--    {--}}
+    {{--      headers: {--}}
+    {{--        'Content-Type':--}}
+    {{--          'multipart/form-data'--}}
+    {{--      }--}}
+    {{--    }--}}
+    {{--  ).then(res => {--}}
+    {{--    location.href = '{{route('orders.show',['id'=>res.data.id])}}'--}}
+    {{--  })--}}
+    {{--})--}}
 
     })
   </script>
