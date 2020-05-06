@@ -17,7 +17,21 @@
   </style>
 @stop
 @section('content')
-
+  <!-- alert弹框 -->
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="alertbot">
+  <div class="toast-header">
+    <img src="..." class="rounded mr-2" alt="...">
+    <strong class="mr-auto">Bootstrap</strong>
+    <small class="text-muted">11 mins ago</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    Hello, world! This is a toast message.
+  </div>
+</div>
+  <!-- alert弹框结束 -->
   <div class="p-4 mb-24">
     <div class="grid grid-cols-6 gap-4">
       <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff;">
@@ -333,7 +347,8 @@
         }).then(res => {
           console.log(res, 3123123)
           $('#tosubmit').attr("disabled", false);
-          alert('上传成功')
+          // alert('上传成功')
+          $('#alertbot').toast('show')
           oneid = res.data.data.id;
         }).catch(err => {
           alert('上传失败，仅支持docx和txt格式，最大支持15M')
