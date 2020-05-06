@@ -115,7 +115,7 @@ class OfficialAccountController extends Controller
     {
         $wxUser = User::whereWeixinOpenid($this->openid)->first();
         $wxUser->weixin_openid = '';
-//        $wxUser->weixin_unionid = '';
+        $wxUser->weixin_unionid = '';
         $wxUser->save();
     }
 
