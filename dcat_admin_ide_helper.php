@@ -59,6 +59,19 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection report_pdf_path
      * @property Grid\Column|Collection endDate
      * @property Grid\Column|Collection publishdate
+     * @property Grid\Column|Collection phone
+     * @property Grid\Column|Collection email
+     * @property Grid\Column|Collection email_verified_at
+     * @property Grid\Column|Collection password
+     * @property Grid\Column|Collection weixin_openid
+     * @property Grid\Column|Collection weapp_openid
+     * @property Grid\Column|Collection weixin_session_key
+     * @property Grid\Column|Collection weixin_unionid
+     * @property Grid\Column|Collection remember_token
+     * @property Grid\Column|Collection nick_name
+     * @property Grid\Column|Collection user_group
+     * @property Grid\Column|Collection consumption_amount
+     * @property Grid\Column|Collection redix
      * @property Grid\Column|Collection parent_id
      * @property Grid\Column|Collection order
      * @property Grid\Column|Collection icon
@@ -68,8 +81,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection menu_id
      * @property Grid\Column|Collection http_method
      * @property Grid\Column|Collection role_id
-     * @property Grid\Column|Collection password
-     * @property Grid\Column|Collection remember_token
      * @property Grid\Column|Collection content_before
      * @property Grid\Column|Collection content_after
      * @property Grid\Column|Collection classid
@@ -97,18 +108,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection real_path
      * @property Grid\Column|Collection order_id
      * @property Grid\Column|Collection deleted_at
-     * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
-     * @property Grid\Column|Collection phone
-     * @property Grid\Column|Collection email_verified_at
-     * @property Grid\Column|Collection weixin_openid
-     * @property Grid\Column|Collection weapp_openid
-     * @property Grid\Column|Collection weixin_session_key
-     * @property Grid\Column|Collection weixin_unionid
-     * @property Grid\Column|Collection nick_name
-     * @property Grid\Column|Collection user_group
-     * @property Grid\Column|Collection consumption_amount
-     * @property Grid\Column|Collection redix
      *
      * @method Grid\Column|Collection id(string $label = null)
      * @method Grid\Column|Collection username(string $label = null)
@@ -158,6 +158,19 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection report_pdf_path(string $label = null)
      * @method Grid\Column|Collection endDate(string $label = null)
      * @method Grid\Column|Collection publishdate(string $label = null)
+     * @method Grid\Column|Collection phone(string $label = null)
+     * @method Grid\Column|Collection email(string $label = null)
+     * @method Grid\Column|Collection email_verified_at(string $label = null)
+     * @method Grid\Column|Collection password(string $label = null)
+     * @method Grid\Column|Collection weixin_openid(string $label = null)
+     * @method Grid\Column|Collection weapp_openid(string $label = null)
+     * @method Grid\Column|Collection weixin_session_key(string $label = null)
+     * @method Grid\Column|Collection weixin_unionid(string $label = null)
+     * @method Grid\Column|Collection remember_token(string $label = null)
+     * @method Grid\Column|Collection nick_name(string $label = null)
+     * @method Grid\Column|Collection user_group(string $label = null)
+     * @method Grid\Column|Collection consumption_amount(string $label = null)
+     * @method Grid\Column|Collection redix(string $label = null)
      * @method Grid\Column|Collection parent_id(string $label = null)
      * @method Grid\Column|Collection order(string $label = null)
      * @method Grid\Column|Collection icon(string $label = null)
@@ -167,8 +180,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection menu_id(string $label = null)
      * @method Grid\Column|Collection http_method(string $label = null)
      * @method Grid\Column|Collection role_id(string $label = null)
-     * @method Grid\Column|Collection password(string $label = null)
-     * @method Grid\Column|Collection remember_token(string $label = null)
      * @method Grid\Column|Collection content_before(string $label = null)
      * @method Grid\Column|Collection content_after(string $label = null)
      * @method Grid\Column|Collection classid(string $label = null)
@@ -196,18 +207,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection real_path(string $label = null)
      * @method Grid\Column|Collection order_id(string $label = null)
      * @method Grid\Column|Collection deleted_at(string $label = null)
-     * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
-     * @method Grid\Column|Collection phone(string $label = null)
-     * @method Grid\Column|Collection email_verified_at(string $label = null)
-     * @method Grid\Column|Collection weixin_openid(string $label = null)
-     * @method Grid\Column|Collection weapp_openid(string $label = null)
-     * @method Grid\Column|Collection weixin_session_key(string $label = null)
-     * @method Grid\Column|Collection weixin_unionid(string $label = null)
-     * @method Grid\Column|Collection nick_name(string $label = null)
-     * @method Grid\Column|Collection user_group(string $label = null)
-     * @method Grid\Column|Collection consumption_amount(string $label = null)
-     * @method Grid\Column|Collection redix(string $label = null)
      */
     class Grid {}
 
@@ -262,6 +262,19 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection report_pdf_path
      * @property Show\Field|Collection endDate
      * @property Show\Field|Collection publishdate
+     * @property Show\Field|Collection phone
+     * @property Show\Field|Collection email
+     * @property Show\Field|Collection email_verified_at
+     * @property Show\Field|Collection password
+     * @property Show\Field|Collection weixin_openid
+     * @property Show\Field|Collection weapp_openid
+     * @property Show\Field|Collection weixin_session_key
+     * @property Show\Field|Collection weixin_unionid
+     * @property Show\Field|Collection remember_token
+     * @property Show\Field|Collection nick_name
+     * @property Show\Field|Collection user_group
+     * @property Show\Field|Collection consumption_amount
+     * @property Show\Field|Collection redix
      * @property Show\Field|Collection parent_id
      * @property Show\Field|Collection order
      * @property Show\Field|Collection icon
@@ -271,8 +284,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection menu_id
      * @property Show\Field|Collection http_method
      * @property Show\Field|Collection role_id
-     * @property Show\Field|Collection password
-     * @property Show\Field|Collection remember_token
      * @property Show\Field|Collection content_before
      * @property Show\Field|Collection content_after
      * @property Show\Field|Collection classid
@@ -300,18 +311,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection real_path
      * @property Show\Field|Collection order_id
      * @property Show\Field|Collection deleted_at
-     * @property Show\Field|Collection email
      * @property Show\Field|Collection token
-     * @property Show\Field|Collection phone
-     * @property Show\Field|Collection email_verified_at
-     * @property Show\Field|Collection weixin_openid
-     * @property Show\Field|Collection weapp_openid
-     * @property Show\Field|Collection weixin_session_key
-     * @property Show\Field|Collection weixin_unionid
-     * @property Show\Field|Collection nick_name
-     * @property Show\Field|Collection user_group
-     * @property Show\Field|Collection consumption_amount
-     * @property Show\Field|Collection redix
      *
      * @method Show\Field|Collection id(string $label = null)
      * @method Show\Field|Collection username(string $label = null)
@@ -361,6 +361,19 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection report_pdf_path(string $label = null)
      * @method Show\Field|Collection endDate(string $label = null)
      * @method Show\Field|Collection publishdate(string $label = null)
+     * @method Show\Field|Collection phone(string $label = null)
+     * @method Show\Field|Collection email(string $label = null)
+     * @method Show\Field|Collection email_verified_at(string $label = null)
+     * @method Show\Field|Collection password(string $label = null)
+     * @method Show\Field|Collection weixin_openid(string $label = null)
+     * @method Show\Field|Collection weapp_openid(string $label = null)
+     * @method Show\Field|Collection weixin_session_key(string $label = null)
+     * @method Show\Field|Collection weixin_unionid(string $label = null)
+     * @method Show\Field|Collection remember_token(string $label = null)
+     * @method Show\Field|Collection nick_name(string $label = null)
+     * @method Show\Field|Collection user_group(string $label = null)
+     * @method Show\Field|Collection consumption_amount(string $label = null)
+     * @method Show\Field|Collection redix(string $label = null)
      * @method Show\Field|Collection parent_id(string $label = null)
      * @method Show\Field|Collection order(string $label = null)
      * @method Show\Field|Collection icon(string $label = null)
@@ -370,8 +383,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection menu_id(string $label = null)
      * @method Show\Field|Collection http_method(string $label = null)
      * @method Show\Field|Collection role_id(string $label = null)
-     * @method Show\Field|Collection password(string $label = null)
-     * @method Show\Field|Collection remember_token(string $label = null)
      * @method Show\Field|Collection content_before(string $label = null)
      * @method Show\Field|Collection content_after(string $label = null)
      * @method Show\Field|Collection classid(string $label = null)
@@ -399,18 +410,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection real_path(string $label = null)
      * @method Show\Field|Collection order_id(string $label = null)
      * @method Show\Field|Collection deleted_at(string $label = null)
-     * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
-     * @method Show\Field|Collection phone(string $label = null)
-     * @method Show\Field|Collection email_verified_at(string $label = null)
-     * @method Show\Field|Collection weixin_openid(string $label = null)
-     * @method Show\Field|Collection weapp_openid(string $label = null)
-     * @method Show\Field|Collection weixin_session_key(string $label = null)
-     * @method Show\Field|Collection weixin_unionid(string $label = null)
-     * @method Show\Field|Collection nick_name(string $label = null)
-     * @method Show\Field|Collection user_group(string $label = null)
-     * @method Show\Field|Collection consumption_amount(string $label = null)
-     * @method Show\Field|Collection redix(string $label = null)
      */
     class Show {}
 
