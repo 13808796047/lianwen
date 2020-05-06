@@ -236,6 +236,7 @@
     $(() => {
 
       axios.get('{{ route('official_account.index') }}').then(res => {
+        console.log(res,312312)
         $('#wximg').attr('src',res.data.url)
         // swal({
           $('#staticBackdrop').modal('show')
