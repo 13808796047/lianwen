@@ -11,7 +11,6 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-    use DefaultDatetimeFormat;
     const COMMON_USER_TYPE = 0;
     const COMMON_AGENT_TYPE = 1;
     const SENIOR_AGENT_TYPE = 2;
