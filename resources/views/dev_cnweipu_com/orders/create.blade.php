@@ -18,7 +18,7 @@
 @stop
 @section('content')
   <!-- alert弹框 -->
-  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="alertbot">
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="alertbot" delay='2000'>
   <div class="toast-header">
     <img src="..." class="rounded mr-2" alt="...">
     <strong class="mr-auto">Bootstrap</strong>
