@@ -59,24 +59,37 @@ class UsersController extends Controller
         }
         $phone = $verifyData['phone'];
         //查询该手机号是否已经存在用户
-        $loginUser = $request->user();
-        $user = User::where('phone', $phone)->first() ?? User::where('weixin_unionid', $loginUser->weixin_session_key)->first();
+        $mini_program_user = $request->user();
+        $phone_user = User::where('phone', $phone)->first();
+        $weixin_user = User::where('weixin_unionid', $loginUser->weixin_session_key)->first();
         //不存在
-        if(!$user) {
+        if(!$phone_user || !$weixin_user) {
             //更新登录用户的手机号码
-            $loginUser->update([
+            $mini_program_user->update([
                 'phone' => $phone,
             ]);
-        } else {
-            $user->delete();
-            $loginUser->update([
+        }
+        if($phone_user) {
+            $phone_user->delete();
+            $mini_program_user->update([
                 'phone' => $phone,
-                'password' => $user->password ?? ""
+                'password' => $phone_user->password ?? ""
             ]);
-
-            foreach($user->orders as $order) {
+            foreach($phone_user->orders as $order) {
                 $order->update([
-                    'userid' => $loginUser->id,
+                    'userid' => $mini_program_user->id,
+                ]);
+            }
+        }
+        if($weixin_user) {
+            $weixin_user->delete();
+            $mini_program_user->update([
+                'weixin_openid' => $weixin_user->weixin_openid,
+                'weixin_unionid' => $weixin_user->weixin_unionid,
+            ]);
+            foreach($weixin_user->orders as $order) {
+                $order->update([
+                    'userid' => $mini_program_user->id,
                 ]);
             }
         }
