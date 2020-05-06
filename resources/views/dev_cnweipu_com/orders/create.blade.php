@@ -18,9 +18,9 @@
 @stop
 @section('content')
   <!-- alert弹框 -->
-  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="alertbot">
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="alertbot" aria-labelledby="提示" >
   <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
+    <div class="modal-content" style="text-align:center;">
       上传成功
     </div>
   </div>
