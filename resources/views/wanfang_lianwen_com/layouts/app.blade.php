@@ -42,7 +42,7 @@
   </script>
 </head>
 
-<body class="newbody">
+<body class="newbody" onselectstart="return true">
 <div id="app" class="{{ route_class() }}-page newmain">
 
   @include('domained::layouts._header')
