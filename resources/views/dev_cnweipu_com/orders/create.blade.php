@@ -357,7 +357,7 @@
         }).catch(err => {
           $('#model-body-container').html('上传失败，仅支持docx和txt格式，最大支持15M')
           $('#alertbot').modal('show')
-          setTimeout("$('#alertbot').modal('hide')",1000);
+          setTimeout("$('#alertbot').modal('hide')",2000);
           $('#tosubmit').attr("disabled", true);
         })
       })
