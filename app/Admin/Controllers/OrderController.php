@@ -40,7 +40,7 @@ class OrderController extends AdminController
                 3 => 'warning',
                 4 => 'success',
             ]);
-            $grid->column('title', '标题')->copyable()->width('300px');
+            $grid->column('title', '标题')->copyable()->width('220px');
             $grid->column('writer', '作者');
             $grid->column('words', '字数');
 //            $grid->column('pay_price', '支付金额')->totalRow(function($amount) {
