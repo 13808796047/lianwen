@@ -9,7 +9,7 @@
   </style>
 @stop
 @section('content')
-  <div class="main clearfix">
+  <div class="main clearfix" style="min-height:800px;">
     <div class="lbox fl">
       <table class="table table-hover table-sm text-center">
         <thead class="thead-dark">
@@ -44,10 +44,10 @@
         </tbody>
       </table>
       <div class="flex justify-between">
-        
+
         <a class="inline-block text-white py-2 px-4" id="del_item"><span style="background: red;
     padding: 5px 10px;">删除</span></a>
-      
+
         <span class="p-2">共{{$orders->total()}}条</span>
         <nav aria-label="Page navigation ">
           <ul class="pagination ">
