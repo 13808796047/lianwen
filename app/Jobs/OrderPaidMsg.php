@@ -33,7 +33,7 @@ class OrderPaidMsg implements ShouldQueue
                 'remark' => ['value' => '点击查看详情！', 'color' => '#173177']
             ];
             app('official_account')->template_message->send([
-                'touser' => $user->weixin_openid,
+                'touser' => $this->order->user->weixin_openid,
                 'template_id' => 'IKyhivjep0fGj-oaCRdfLBRkRSSvESl5lRUQVCXOM2o',
                 'url' => 'https://wanfang.lianwen.com',
                 'miniprogram' => [
