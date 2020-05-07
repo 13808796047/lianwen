@@ -196,7 +196,7 @@ class PaymentsController extends Controller
 
     protected function afterPaidMsg(Order $order)
     {
-        dispatch(new OrderPaidMsg($order))->onQueue('Wechat-Msg');
+        dispatch(new OrderPaidMsg($order));
     }
 
     protected function afterPaid(Order $order)
