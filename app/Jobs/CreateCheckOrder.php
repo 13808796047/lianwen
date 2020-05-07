@@ -37,7 +37,7 @@ class CreateCheckOrder implements ShouldQueue
             $this->order->update([
                 'api_orderid' => $result->data,
             ]);
-            dispatch(new StartCheck($this->order))->onQueue('Order-Check');
+            dispatch(new StartCheck($this->order));
             info('创建检测订单.....');
         }
     }

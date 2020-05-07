@@ -36,12 +36,12 @@ class getOrderStatus implements ShouldQueue
                     break;
                 case 9:
                     $status = OrderEnum::CHECKED;
-                    dispatch(new CheckOrderStatus($this->order))->onQueue('Order-Check');
+                    dispatch(new CheckOrderStatus($this->order));
                     info('获取检测报告.....');
                     break;
                 default:
                     $status = OrderEnum::CHECKING;
-                    dispatch(new getOrderStatus($this->order))->onQueue('Order-Check')->delay(now()->addMinutes());
+                    dispatch(new getOrderStatus($this->order))->delay(now()->addMinutes());
                     info('获取订单状态.....');
             }
             \DB::transaction(function() use ($status) {
