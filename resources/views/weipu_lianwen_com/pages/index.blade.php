@@ -405,12 +405,12 @@
     <div class="container">
       <div class=" text-center p-6">
         <h1 class="text-orange-500 text-xl mb-4">系统说明</h1>
-        <p class="p-2">维普查重提供维普大学生版、维普研究生版、维普职称认定版、维普编辑部版四个版本，分别适合不同的场景使用。<font class="text-blue-500">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
+        <p class="p-2">维普查重提供维普大学生版、维普研究生版、维普职称认定版、维普编辑部版四个版本，分别适合不同的场景使用。<font class="text-blue-500">（维普查重支持中文、英文、日文论文检测）</font>
         </p>
       </div>
       <div class="grid grid-cols-4 gap-4">
         <div class="border border-gray-300 text-center p-2">
-          <img src="{{ asset('asset/images/benke.png') }}" class="w-full"/>
+          <img src="{{ asset('asset/images/pmlc.jpg') }}" class="w-full"/>
           <h5 class="py-2"><a>维普大学生版</a></h5>
           <span class="text-red-500">3.00元/千字</span>
           <p class="my-2 text-xs">适合本科、专科、自考大学生毕业论文查重，全国多个高校在使用，与学校检测结果一致。</p>
@@ -423,7 +423,7 @@
           @endguest
         </div>
         <div class="border border-gray-300 text-center p-2">
-          <img src="{{ asset('asset/images/shuobo.png') }}" class="w-full"/>
+          <img src="{{ asset('asset/images/wpyjs.jpg') }}" class="w-full"/>
           <h5 class="py-2"><a>维普研究生版</a></h5>
           <span class="text-red-500">3.00元/千字</span>
           <p class="my-2 text-xs">含有博士/硕士学位论文全文数据库，更适合硕士和博士生论文查重，全国多个高校在使用。</p>
@@ -436,10 +436,10 @@
           @endguest
         </div>
         <div class="border border-gray-300 text-center p-2">
-          <img src=" {{ asset('asset/images/tongyong.png') }}" title="name" class="w-full"/>
+          <img src=" {{ asset('asset/images/wpbjb.jpg') }}" title="name" class="w-full"/>
           <h5 class="py-2"><a>维普编辑部版</a></h5>
           <span class="text-red-500">3.00元/千字</span>
-          <p class="my-2 text-xs">适合未正式发表的文献、会议记录、工作总结、心得体会等..文章查重。</p>
+          <p class="my-2 text-xs">适合期刊投稿、写作发表类论文查重，检测结果与期刊杂志编辑部的检测结果一致。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
                data-target="#staticBackdrop">立即使用</a>
