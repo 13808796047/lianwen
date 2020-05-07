@@ -439,7 +439,7 @@
           <img src=" {{ asset('asset/images/wpbjb.jpg') }}" title="name" class="w-full"/>
           <h5 class="py-2"><a>维普编辑部版</a></h5>
           <span class="text-red-500">3.00元/千字</span>
-          <p class="my-2 text-xs">适合未正式发表的文献、会议记录、工作总结、心得体会等..文章查重。</p>
+          <p class="my-2 text-xs">适合期刊投稿、写作发表类论文查重，检测结果与期刊杂志编辑部的检测结果一致。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
                data-target="#staticBackdrop">立即使用</a>

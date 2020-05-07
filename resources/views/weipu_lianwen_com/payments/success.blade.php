@@ -1,88 +1,54 @@
 @extends('domained::layouts.app')
 @section('title','支付结果')
 @section('styles')
-  <link href="https://css.lianwen.com/css/public_c.css?v=2018v1" type="text/css" rel="stylesheet"/>
-  <link href="https://css.lianwen.com/css/index_2017.css" type="text/css" rel="stylesheet"/>
-  <link rel="stylesheet" href="{{asset('asset/css/index.css')}}">
+  <!-- <link href="https://css.lianwen.com/css/public_c.css?v=2018v1" type="text/css" rel="stylesheet"/>
+  <link href="https://css.lianwen.com/css/index_2017.css" type="text/css" rel="stylesheet"/> -->
+  <!-- <link rel="stylesheet" href="{{asset('asset/css/index.css')}}"> -->
+  <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
+  <style>
+   .lwjc_title{overflow:hidden; padding:40px;border-bottom:solid 1px #eeeeee; }
+   .lwjc_title h4{font-size:28px; padding-left: 115px!important; height:80px!important; color:#666666; font-size:26px; line-height:96px; background:url(../images/icon_eye.png) no-repeat; float:left; padding-left:105px;}
+   .lwjc_title h3{ color:#666666;font-size:26px; line-height:36px; float:left;}
+   .lwjc_title .nav a{width:90px; height:34px; background-color:#0083cd; display:block; text-align:center; line-height:34px; color:#fff; float:right; margin-top:32px;}
+   .lwjc_title p{ float:left; color:#666666; font-size:14px; margin-top:10px; text-indent:2em; line-height:28px;}
+   .result{overflow:hidden; padding:30px 40px; padding-bottom:0px; font-size:14px; line-height:28px;}
+   .result h3{ color:#666666; font-size:26px; line-height:56px; float:left;}
+   .cbox{ padding:30px; font-size:14px;}
+   .submit dl{ clear:both; width:738px; margin:0px auto; padding:12px;}
+   .submit dt{ float:left; padding:5px; padding-right:20px;}
+   .submit dd{ float:left; text-align:left;}
+   .down{ width:738px; margin:0 auto;}
+   table.mylist {
+	border: 1px solid #CDCDCD;
+	border-collapse: collapse;
+	padding: 2px;
+	width: 756px;
+	margin: 5px 0;
+}
+
+.mylist td, .mylist th {
+	border: 1px solid #CDCDCD;
+	padding: 8px 5px;
+	text-align: center;
+}
+.mylist .td{ text-align:left !important; padding-left:10px !important; padding-top:15px !important; padding-top:15px !important;}
+.tips{ font-size:12px; color:#777; text-indent:1.5em; line-height:23px; padding-top:5px;}
+.text-error {
+  color: #b94a48;
+}
+   .submit .txt{ padding:5px 10px; width:168px;}
+   .yh0{font-family: Microsoft YaHei,"微软雅黑", STXihei,"华文细黑",SimSun,"宋体", Heiti,"黑体",sans-serif;}
+   .submit .radio input{ padding-left:0;}
+   .submit .text{ border:#C8C4C4 solid 1px; margin-top:12px; padding:11px; margin-bottom:10px; width:600px;}
+   .result_no a{width:90px; height:34px; background-color:#0083cd; display:block; text-align:center; line-height:34px; color:#fff; float:right; margin-top:10px; font-size:12px;}
+   .success { background:url('https://css.lianwen.com/images/success.png') no-repeat; margin-top:25px; margin-left:125px; width:111px; height:111px;float:left; display:inline-block;}
+  </style>
 @stop
 @section('content')
-  <div class="contentBox">
-    <div class="con">
       <!--左边导航-->
-      <div class="con_left" id="fixedMenu">
-        <ul class="sidebar_nav">
-          <li class="has_xiala">
-            <a>客服中心</a>
-          </li>
-          <li>
-            <table class="kefu" border="0" cellspacing="0" cellpadding="0">
-              <tbody>
-              <tr>
-                <td scope="col" width="50%">客服①：
-                  <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=318993001&site=qq&menu=yes">
-                    <img border="0" src="https://pub.idqqimg.com/qconn/wpa/button/button_111.gif" alt="点击这里给我发消息"
-                         title="点击这里给我发消息"/></a></td>
-                <td scope="col" width="50%">客服②：
-                  <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=1391581760&site=qq&menu=yes">
-                    <img border="0" src="https://pub.idqqimg.com/qconn/wpa/button/button_111.gif" alt="点击这里给我发消息"
-                         title="点击这里给我发消息"/></a></td>
-              </tr>
-              <tr>
-                <td>客服③：
-                  <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=790051001&site=qq&menu=yes">
-                    <img border="0" src="https://pub.idqqimg.com/qconn/wpa/button/button_111.gif" alt="点击这里给我发消息"
-                         title="点击这里给我发消息"/></a></td>
-                <td>投&emsp;诉：
-                  <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=813338&site=qq&menu=yes">
-                    <img border="0" src="https://pub.idqqimg.com/qconn/wpa/button/button_111.gif" alt="点击这里给我发消息"
-                         title="点击这里给我发消息"/></a></td>
-              </tr>
-              <tr>
-                <td>旺&emsp;旺：<a target="_blank" href="http://amos.alicdn.com/getcid.aw?v=2&uid=%E5%85%B0%E8%89%B2%E5%B0%8F%E7%B2%BE%E7%81%B5
-&site=cntaobao&s=1&groupid=0&charset=utf-8"><img border="0" src="https://amos.alicdn.com/online.aw?v=2&uid=%E5%85%B0%E8%89%B2%E5%B0%8F%E7%B2%BE%E7%81%B5
-&site=cntaobao&s=1&charset=utf-8" alt="点这里给我发消息"/></a>
-                </td>
-                <td>网&emsp;页：
-                  <a target="_blank" href="http://p.qiao.baidu.com/cps/chat?siteId=6477403&userId=10092912">
-                    <img border="0" src="https://css.lianwen.com/images/sq.png" width="78" height="22" alt="点击这里给我发消息"
-                         title="点击这里给我发消息"/></a></td>
-              </tr>
-              <tr>
-                <td class="tel" colspan="2">&#x260E;服务热线: 400-823-8869</td>
-              </tr>
-              <tr>
-                <td colspan="2" class="wx">
-                  <img src="https://css.lianwen.com/images/weixin.png" width="100" height="100">
-                  <br/>扫一扫，微信沟通
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </li>
-          <li class="has_xiala">
-            <a>使用帮助</a>
-          </li>
-          <li class="dropDown">
-            <ul class="log_res">
-              <li>
-                <a href="/zt/system"><span class="a_lwfb"></span>如何选择检测？</a>
-              </li>
-              <li>
-                <a href="/help#reg"><span class="a_lwfb"></span>需要注册账号吗？</a>
-              </li>
-              <li>
-                <a href="/help#pay"><span class="a_lwfb"></span>如何支付检测费用？</a>
-              </li>
-              <li>
-                <a href="/help#result"><span class="a_lwfb"></span>检测结果准确吗？</a>
-              </li>
-              <li>
-                <a href="/help#safe"><span class="a_lwfb"></span>我的论文会不会被记录？</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>            <!--右边内容-->
+      <!--右边内容-->
+    <div class="main clearfix">
+    <div class="lbox fl">
       <div class="con_right">
         <div class="lwjcBox">
           <div class="lwjc">
@@ -92,8 +58,8 @@
                 <div class="nav"></div>
                 <h3>{{$msg}}</h3>
               </div>
-              <div style="width:666px; float:right; text-align:left;"><font color="#0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联文检测已经收到您的付款，您现在可以关闭本页面。</font>将自动进行检测，检测成功后会通知您，请留意您的手机短信。您也可以在半个小时后打开
-                <a class="blue" href="http://www.lianwen.com/report" target="_blank">www.lianwen.com/report </a>输入8位检测编号查询<br/>检测状态或者下载检测报告，如果超过2小时还没有检测完成请联系客服处理。
+              <div style="width:666px; float:right; text-align:left;"><font color="#0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统已经收到您的付款，论文正在检测中，预计需要10分钟左右。</font>您记下报告查询网址后可以关闭本页面，如长时间未收到检测报告请联系客服微信：cx5078处理。
+                <br/>报告查询网址：<a class="blue" href="https://wanfang.lianwen.com" target="_blank">https://wanfang.lianwen.com</a>
               </div>
             </div>
 
@@ -129,7 +95,7 @@
                   </tr>
                   <tr>
                     <td>时间</td>
-                    <td>{{ $order->date_pay }}</td>
+                    <td>{{ $order->created_at }}</td>
                   </tr>
                 </table>
 
@@ -142,5 +108,24 @@
         </div>
       </div>
     </div>
-  </div>
+    <div class="rbox fr">
+      <div class="tit">在线客服</div>
+      <div class="box">客服微信:cx5078</div>
+      <div class="box mt10">
+        <b>1、检测结果是否准确？</b>
+        <p>如果你们学校也是用万方检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。</p>
+        <b>2、检测需要多少时间？</b>
+        <p>正常情况，万方检测需要10分钟左右，高峰期可能会延迟，但不会超过1个小时，如果长时间未出结果请联系客服微信：cx5078解决。</p>
+        <b>3、论文上传之后安全吗？</b>
+        <p>本系统有明确的条文规定并遵守严格的论文保密规定，对所有用户提交的送检文档仅做检测分析，绝不保留全文，承诺对用户送检的文档不做任何形式的收录和泄露。</p>
+        <b>4、提交以后能不能退款？</b>
+        <p>此系统一旦提交，系统开始检测后，即产生消费，无法退款！</p>
+        <b>5、检测内容范围？</b>
+        <p>系统不检测文章中的封面、致谢、学校(需要替换成"X")等个人信息，请在提交前自己删除，若提交后由系统自动删除时出现的任何问题责任自负！</p>
+        <b>6、检测时作者需要填吗？</b>
+        <p>在提交检测的文章中，引用了一些内以前自己所写的内容并且被小论文系统文献库收录，需要在此次检测中排除这些；则会有“去除本人已发表文献复制比”的结果。</p>
+      </div>
+    </div>
+    </div>
+
 @stop
