@@ -65,8 +65,6 @@
 
             <div class="cbox submit yh">
               <div class="down clearfix">
-
-
                 <table class="mylist">
                   <tr>
                     <td><span class="hl bred">检测编号（请牢记）</span></td>
