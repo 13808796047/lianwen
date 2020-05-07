@@ -227,7 +227,7 @@
     </ul>
     <div class="carousel-inner">
       <div class="carousel-item active" style="height: 500px">
-        <img src="{{ asset('asset/images/01.png') }}" class="d-block w-100">
+        <img src="{{ asset('asset/images/slide.jpg') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
           <h1 class="text-6xl">本科大学生 <span>毕业论文</span> 学术不端检测</h1>
           <p class="p-4">用于检测大学生毕业论文是否存在抄袭剽窃等学术不端行为，全国多个高校在使用，与学校检测结果一致。</p>
@@ -241,7 +241,8 @@
           @endguest
         </div>
       </div>
-      <div class="carousel-item bg-blue-700 " style="height: 500px">
+      <div class="carousel-item" style="height: 500px">
+      <img src="{{ asset('asset/images/slide.jpg') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
           <h1 class="text-6xl">硕博研究生 <span> 学位论文 </span> 学术不端检测</h1>
           <p class="p-4">为高校研究生院部提供检测服务，仅限检测研究生毕业论文。可检测抄袭与剽窃、伪造、篡改等学术不端行为。</p>
@@ -256,7 +257,7 @@
         </div>
       </div>
       <div class="carousel-item" style="height: 500px;">
-        <img src="{{ asset('asset/images/03.png') }}" class="d-block w-100">
+      <img src="{{ asset('asset/images/slide.jpg') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
           <h1 class="text-6xl">职称评比 <span>期刊发表</span> 学术不端检测</h1>
           <p class="p-4">为编辑部提供检测服务，可检测抄袭与剽窃、伪造、篡改、不当署名、一稿多投等学术不端文献。</p>
