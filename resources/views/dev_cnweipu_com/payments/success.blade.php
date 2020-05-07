@@ -1,10 +1,48 @@
 @extends('domained::layouts.app')
 @section('title','支付结果')
 @section('styles')
-  <link href="https://css.lianwen.com/css/public_c.css?v=2018v1" type="text/css" rel="stylesheet"/>
+  <!-- <link href="https://css.lianwen.com/css/public_c.css?v=2018v1" type="text/css" rel="stylesheet"/> -->
   <!-- <link href="https://css.lianwen.com/css/index_2017.css" type="text/css" rel="stylesheet"/> -->
   <!-- <link rel="stylesheet" href="{{asset('asset/css/index.css')}}"> -->
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
+  <style>
+   .lwjc_title{overflow:hidden; padding:40px;border-bottom:solid 1px #eeeeee; }
+   .lwjc_title h4{font-size:28px; padding-left: 115px!important; height:80px!important; color:#666666; font-size:26px; line-height:96px; background:url(../images/icon_eye.png) no-repeat; float:left; padding-left:105px;}
+   .lwjc_title h3{ color:#666666;font-size:26px; line-height:36px; float:left;}
+   .lwjc_title .nav a{width:90px; height:34px; background-color:#0083cd; display:block; text-align:center; line-height:34px; color:#fff; float:right; margin-top:32px;}
+   .lwjc_title p{ float:left; color:#666666; font-size:14px; margin-top:10px; text-indent:2em; line-height:28px;}
+   .result{overflow:hidden; padding:80px 40px; padding-bottom:0px; font-size:14px; line-height:28px;}
+   .result h3{ color:#666666; font-size:26px; line-height:56px; float:left;}
+   .cbox{ padding:30px; font-size:14px;}
+   .submit dl{ clear:both; width:738px; margin:0px auto; padding:12px;}
+   .submit dt{ float:left; padding:5px; padding-right:20px;}
+   .submit dd{ float:left; text-align:left;}
+   .down{ width:738px; margin:0 auto;}
+   table.mylist {
+	border: 1px solid #CDCDCD;
+	border-collapse: collapse;
+	padding: 2px;
+	width: 756px;
+	margin: 5px 0;
+}
+
+.mylist td, .mylist th {
+	border: 1px solid #CDCDCD;
+	padding: 8px 5px;
+	text-align: center;
+}
+.mylist .td{ text-align:left !important; padding-left:10px !important; padding-top:15px !important; padding-top:15px !important;}
+.tips{ font-size:12px; color:#777; text-indent:1.5em; line-height:23px; padding-top:5px;}
+.text-error {
+  color: #b94a48;
+}
+   .submit .txt{ padding:5px 10px; width:168px;}
+   .yh0{font-family: Microsoft YaHei,"微软雅黑", STXihei,"华文细黑",SimSun,"宋体", Heiti,"黑体",sans-serif;}
+   .submit .radio input{ padding-left:0;}
+   .submit .text{ border:#C8C4C4 solid 1px; margin-top:12px; padding:11px; margin-bottom:10px; width:600px;}
+   .result_no a{width:90px; height:34px; background-color:#0083cd; display:block; text-align:center; line-height:34px; color:#fff; float:right; margin-top:10px; font-size:12px;}
+   .success { background:url('../images/success.png') no-repeat; margin-top:5px; margin-left:30px; width:111px; height:111px;float:left; display:inline-block;}
+  </style>
 @stop
 @section('content')
       <!--左边导航-->
