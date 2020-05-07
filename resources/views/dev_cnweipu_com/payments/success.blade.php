@@ -41,7 +41,7 @@
    .submit .radio input{ padding-left:0;}
    .submit .text{ border:#C8C4C4 solid 1px; margin-top:12px; padding:11px; margin-bottom:10px; width:600px;}
    .result_no a{width:90px; height:34px; background-color:#0083cd; display:block; text-align:center; line-height:34px; color:#fff; float:right; margin-top:10px; font-size:12px;}
-   .success { background:url('https://css.lianwen.com/images/success.png') no-repeat; margin-top:5px; margin-left:30px; width:111px; height:111px;float:left; display:inline-block;}
+   .success { background:url('https://css.lianwen.com/images/success.png') no-repeat; margin-top:25px; margin-left:125px; width:111px; height:111px;float:left; display:inline-block;}
   </style>
 @stop
 @section('content')
@@ -58,8 +58,8 @@
                 <div class="nav"></div>
                 <h3>{{$msg}}</h3>
               </div>
-              <div style="width:666px; float:right; text-align:left;"><font color="#0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联文检测已经收到您的付款，您现在可以关闭本页面。</font>将自动进行检测，检测成功后会通知您，请留意您的手机短信。您也可以在半个小时后打开
-                <a class="blue" href="http://www.lianwen.com/report" target="_blank">www.lianwen.com/report </a>输入8位检测编号查询<br/>检测状态或者下载检测报告，如果超过2小时还没有检测完成请联系客服处理。
+              <div style="width:666px; float:right; text-align:left;"><font color="#0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统已经收到您的付款，论文正在检测中，预计需要10分钟左右。</font>您记下报告查询网址后可以关闭本页面，如长时间未收到检测报告请联系客服微信：cx5078处理。
+                <br/>报告查询网址：<a class="blue" href="https://wanfang.lianwen.com" target="_blank">https://wanfang.lianwen.com</a>
               </div>
             </div>
 
