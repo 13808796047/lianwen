@@ -27,7 +27,7 @@ class ResetOrderStatus extends RowAction
    <a href="javascript:void(0)">修改状态</a>
 </span>
 <span class="grid-expand"">
-   <a href="/admin/orders/{$this->getKey()}/download_paper">下载报告</a>
+   <a href="/admin/orders/{$this->getKey()}/download_paper" target="_blank">下载报告</a>
 </span>
 HTML;
     }
