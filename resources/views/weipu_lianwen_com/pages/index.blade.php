@@ -140,7 +140,7 @@
 
           </div>
           <div class="modal-footer" style="justify-content: space-between;">
-            <div style="display: flex;align-items: center;"> 
+            <div style="display: flex;align-items: center;">
                <p class="text-sm">社交账号登录</p>
                <a href="{{route('oauth',['type'=>'wechat'])}}" id="toWechat" class="block mr-4" style="padding-left:23px">
                   <svg t="1585367706568" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -155,7 +155,7 @@
                </a>
             </div>
             <p class="text-gray-500 text-xs px-8 d-flex">
-              
+
               <a class="block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
                  href="{{route('register')}}">
                 还没有账号?去注册
@@ -286,8 +286,8 @@
   <div id="ser" class="services">
     <div class="container">
       <div class="services-head text-center">
-        <h3>万方查重论文检测系统</h3>
-        <p>面向各级学生管理部门学风建设与管理的需求开发，提供针对毕业论文查重的专业论文检测服务，并辅助学校管理毕业论文，全过程检测毕业论文中是否存在抄袭剽窃等学术不端行为，建立学生诚信档案，帮助提高毕业论文质量。</p>
+        <h3>维普论文检测系统全新升级</h3>
+        <p>采用国际领先的海量论文动态语义跨域识别加指纹比对技术，通过运用最新的云检测服务部署使其能够快捷、稳定、准确地检测到文章中存在的抄袭和不当引用现象，为教育机构、科研单位、各级论文评审单位和发表单位提供了论文原创性和新颖性评价的重要依据。</p>
       </div>
       <!-----start-services-grids---->
       <div class="services-grids row">
@@ -297,8 +297,8 @@
               <a class="top-icon1" href="#"><span> </span></a>
             </div>
             <div class="col-md-9 services-grid-right">
-              <h4><a href="#">海量比对文献资源</a></h4>
-              <p>涵盖期刊、博硕士学位论文、会议论文、报纸、专利、网页资源等学术资源数据，并实现定期比对更新。</p>
+              <h4><a href="#">丰富的比对资源</a></h4>
+              <p>采用海量的论文比对数据，包含科技期刊、报纸、专利、会议、学位论文等多个论文数据库资源。</p>
             </div>
           </div>
         </div>
@@ -358,8 +358,8 @@
               <a class="top-icon6" href="#"><span> </span></a>
             </div>
             <div class="col-md-9 services-grid-right">
-              <h4><a href="#">支持繁体文献检测</a></h4>
-              <p>可自动在后台进行简繁转换，并以原始形式（繁体文献仍为繁体）显示检测结果。</p>
+              <h4><a href="#">卓越的用户体验</a></h4>
+              <p>经过不断发展和努力，已经在众多行业和部门得到了广泛使用，受到了用户的高度评价。</p>
             </div>
           </div>
           <div class="clearfix"></div>
