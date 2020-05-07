@@ -229,8 +229,8 @@
       <div class="carousel-item active" style="height: 500px">
         <img src="{{ asset('asset/images/slide.jpg') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
-          <h1 class="text-6xl">本科大学生 <span>毕业论文</span> 学术不端检测</h1>
-          <p class="p-4">用于检测大学生毕业论文是否存在抄袭剽窃等学术不端行为，全国多个高校在使用，与学校检测结果一致。</p>
+          <h1 class="text-6xl">大学生 <span style="color: #F4BB36;">毕业论文</span> 查重</h1>
+          <p class="p-4">适合本科、专科、自考大学生毕业论文查重，全国多个高校在使用，与学校检测结果一致。</p>
           @guest
             <a class="bg-orange-500 px-4 py-2 text-decoration-none" href="javascript:;"
                data-toggle="modal"
@@ -244,8 +244,8 @@
       <div class="carousel-item" style="height: 500px">
       <img src="{{ asset('asset/images/slide.jpg') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
-          <h1 class="text-6xl">硕博研究生 <span> 学位论文 </span> 学术不端检测</h1>
-          <p class="p-4">为高校研究生院部提供检测服务，仅限检测研究生毕业论文。可检测抄袭与剽窃、伪造、篡改等学术不端行为。</p>
+          <h1 class="text-6xl">研究生<span style="color: #F4BB36;"> 学位论文 </span> 查重</h1>
+          <p class="p-4">含有博士/硕士学位论文全文数据库，更适合硕士和博士生论文查重，全国多个高校在使用。</p>
           @guest
             <a class="bg-orange-500 px-4 py-2 text-decoration-none" href="javascript:;"
                data-toggle="modal"
@@ -259,8 +259,8 @@
       <div class="carousel-item" style="height: 500px;">
       <img src="{{ asset('asset/images/slide.jpg') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
-          <h1 class="text-6xl">职称评比 <span>期刊发表</span> 学术不端检测</h1>
-          <p class="p-4">为编辑部提供检测服务，可检测抄袭与剽窃、伪造、篡改、不当署名、一稿多投等学术不端文献。</p>
+          <h1 class="text-6xl">职称评比 <span style="color: #F4BB36;">期刊论文</span>查重</h1>
+          <p class="p-4">适合职称评比、已发表论文查重，可选发表时间避免出现与自己发表的论文重复的尴尬。</p>
           @guest
             <a class="bg-orange-500 px-4 py-2 text-decoration-none" href="javascript:;"
                data-toggle="modal"
