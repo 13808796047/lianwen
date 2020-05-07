@@ -348,7 +348,7 @@
             </div>
             <div class="col-md-9 services-grid-right">
               <h4><a href="#">正版数据库支持</a></h4>
-              <p>本站为万方官方授权代理，所有检测报告均支持在线验证，检测结果与官方一致。</p>
+              <p>本站为维普官方授权代理，所有检测报告均支持在线验证，检测结果与官方一致。</p>
             </div>
           </div>
           <div class="clearfix"></div>
