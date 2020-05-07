@@ -18,4 +18,5 @@ Route::group([
     $router->resource('users', 'UserController');
     $router->get('orders/{order}/download_paper', 'OrderController@downloadPaper')->name('admin.orders.download_paper');
     $router->get('orders/{order}/download_report', 'OrderController@downloadReport')->name('admin.orders.download_report');
+    $router->post('orders/{order}/receved', 'OrderController@receved')->name('admin.orders.receved');
 });

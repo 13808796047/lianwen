@@ -9,7 +9,9 @@
   </div>
   <div class="box-body">
 
-    <form class="form-horizontal" enctype="multipart/form-data">
+    <form class="form-horizontal" enctype="multipart/form-data" id="order-form" method="POST"
+          action="{{ route('admin.orders.receved',$order) }}">
+      @csrf
       <table class="table table-bordered">
         <tr>
           <td width="200">标题:</td>
@@ -88,40 +90,77 @@
 
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="button" class="btn btn-primary" id="btnSubmit">提交</button>
+          <button type="submit" class="btn btn-primary" id="btnSubmit">提交</button>
         </div>
       </div>
     </form>
   </div>
 </div>
 <script !src="">
+  Dcat.ready(function () {
+    // ajax表单提交
 
-  $(() => {
+    $('#order-form').form({
 
-    $('#btnSubmit').click(() => {
-      var formData = new FormData();
-      formData.append('file', $('#file')[0].files[0]); // 固定格式
-      formData.append('status', $("select[name='status']").val()); // 固定格式
-      formData.append('rate', $("input[name='rate']").val()); // 固定格式
-      formData.append('_token', LA.token); // 固定格式
-      $.ajax({
-        url: '{{ route('admin.orders.receved',$order) }}',
-        type: 'POST',
-        data: formData,
-        contentType: false,
-// 告诉jQuery不要去设置Content-Type请求头
-        processData: false,
-// 告诉jQuery不要去处理发送的数据
-      }).then(res => {
-        swal({
-          title: '操作成功',
-          type: 'success'
-        }).then(function () {
-          // 用户点击 swal 上的按钮时刷新页面
-          location.reload();
-        });
+      success: function (data) {
+        // data 为接口返回数据
+        if (!data.status) {
+          Dcat.error(data.message);
 
-      })
-    })
-  })
+          return false;
+        }
+
+        Dcat.success(data.message);
+
+        if (data.redirect) {
+          Dcat.reload(data.redirect)
+        }
+
+        // 中止后续逻辑（默认逻辑）
+        return false;
+      },
+      error: function (response) {
+        // 当提交表单失败的时候会有默认的处理方法，通常使用默认的方式处理即可
+        var errorData = JSON.parse(response.responseText);
+
+        if (errorData) {
+          Dcat.error(errorData.message);
+        } else {
+          console.log('提交出错', response.responseText);
+        }
+
+        // 终止后续逻辑执行
+        return false;
+      },
+    });
+
+  });
+  {{--  $(() => {--}}
+
+  {{--    $('#btnSubmit').click(() => {--}}
+  {{--      var formData = new FormData();--}}
+  {{--      formData.append('file', $('#file')[0].files[0]); // 固定格式--}}
+  {{--      formData.append('status', $("select[name='status']").val()); // 固定格式--}}
+  {{--      formData.append('rate', $("input[name='rate']").val()); // 固定格式--}}
+  {{--      formData.append('_token', LA.token); // 固定格式--}}
+  {{--      $.ajax({--}}
+  {{--        url: '{{ route('admin.orders.receved',$order) }}',--}}
+  {{--        type: 'POST',--}}
+  {{--        data: formData,--}}
+  {{--        contentType: false,--}}
+  {{--// 告诉jQuery不要去设置Content-Type请求头--}}
+  {{--        processData: false,--}}
+  {{--// 告诉jQuery不要去处理发送的数据--}}
+  {{--      }).then(res => {--}}
+  {{--        swal({--}}
+  {{--          title: '操作成功',--}}
+  {{--          type: 'success'--}}
+  {{--        }).then(function () {--}}
+  {{--          // 用户点击 swal 上的按钮时刷新页面--}}
+  {{--          location.reload();--}}
+  {{--        });--}}
+
+  {{--      })--}}
+  {{--    })--}}
+  {{--  })--}}
 </script>
