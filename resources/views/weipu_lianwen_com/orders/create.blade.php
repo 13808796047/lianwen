@@ -74,7 +74,7 @@
         <form>
         <!-- @csrf -->
           <input type="hidden" name="cid" id="cid">
-          <input type="hidden" name="from" value="万方PC端">
+          <input type="hidden" name="from" value="维普PC端">
           <input type="hidden" name="file_id" value="" id="hidden_form_id">
           <input type="hidden" name="type" value="content" id="hideen_type">
           <div class="form-group">
@@ -199,9 +199,9 @@
       </div>
       <div class="col-span-1 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff">
         <b>1、检测结果是否准确？</b>
-        <p>如果你们学校也是用万方检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。</p>
+        <p>如果你们学校也是用维普检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。</p>
         <b>2、检测需要多少时间？</b>
-        <p>正常情况，万方检测需要10分钟左右，高峰期可能会延迟，但不会超过1个小时，如果长时间未出结果请联系客服微信：cx5078解决。</p>
+        <p>正常情况，维普检测需要10分钟左右，高峰期可能会延迟，但不会超过1个小时，如果长时间未出结果请联系客服微信：cx5078解决。</p>
         <b>3、论文上传之后安全吗？</b>
         <p>本系统有明确的条文规定并遵守严格的论文保密规定，对所有用户提交的送检文档仅做检测分析，绝不保留全文，承诺对用户送检的文档不做任何形式的收录和泄露。</p>
         <b>4、提交以后能不能退款？</b>
@@ -270,7 +270,7 @@
           }
         }).then(res => {
           array.push({
-            'file_id': res.data.data.id, 'from': '万方查重PC', 'type': 'file',
+            'file_id': res.data.data.id, 'from': '维普查重PC', 'type': 'file',
             'content': ''
           });
           index++;
@@ -380,7 +380,7 @@
         $('#submitBtn').css("display", "block")
         axios.post('{{route('orders.store')}}', {
             cid: $('#cid').val(),
-            from: '万方PC端',
+            from: '维普PC端',
             file_id: oneid,
             type: 'file',
             content: '',
@@ -402,7 +402,7 @@
         $('#submitBtn').css("display", "block")
         axios.post('{{route('orders.store')}}', {
             cid: $('#cid').val(),
-            from: '万方PC端',
+            from: '维普PC端',
             type: 'content',
             content: $('#content').val(),
             title: $('#title').val(),
