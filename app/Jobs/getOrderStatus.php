@@ -30,7 +30,6 @@ class getOrderStatus implements ShouldQueue
         $api = app(OrderApiHandler::class);
         $result = $api->getOrder($this->order->api_orderid);
         if($result->code == 200) {
-            info('检测中....');
             switch ($result->data->order->status) {
                 case 7:
                     $status = OrderEnum::INLINE;
@@ -38,10 +37,12 @@ class getOrderStatus implements ShouldQueue
                 case 9:
                     $status = OrderEnum::CHECKED;
                     dispatch(new CheckOrderStatus($this->order));
+                    info('获取检测报告.....');
                     break;
                 default:
                     $status = OrderEnum::CHECKING;
                     dispatch(new getOrderStatus($this->order))->delay(now()->addMinutes());
+                    info('获取订单状态.....');
             }
             \DB::transaction(function() use ($status) {
                 $this->order->update([

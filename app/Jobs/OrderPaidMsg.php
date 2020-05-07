@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Enum\OrderEnum;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -11,7 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class OrderCheckedMsg implements ShouldQueue
+class OrderPaidMsg implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -24,9 +23,9 @@ class OrderCheckedMsg implements ShouldQueue
 
     public function handle()
     {
-        if($this->order->user->weixin_openid && $this->order->status == 4) {
+        if($this->order->user->weixin_openid && $this->order->status == 1) {
             $data = [
-                'first' => '您的论文已经检测完成,点击查看结果',
+                'first' => '您的论文已经支付成功,点击查看结果',
                 'keyword1' => ['value' => $this->order->title, 'color' => '#173177'],
                 'keyword2' => ['value' => $this->order->category->name, 'color' => '#173177'],
                 'keyword3' => ['value' => $this->order->rate, 'color' => '#173177'],
@@ -44,6 +43,5 @@ class OrderCheckedMsg implements ShouldQueue
                 'data' => $data,
             ]);
         }
-
     }
 }
