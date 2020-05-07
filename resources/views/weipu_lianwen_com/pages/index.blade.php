@@ -182,7 +182,7 @@
   {{--              <a class="btn2" href="javascript:;" data-toggle="modal"--}}
   {{--                 data-target="#staticBackdrop"><span>立即查重</span></a>--}}
   {{--            @else--}}
-  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>--}}
+  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>2])}}" target="_blank"><span>立即查重</span></a>--}}
   {{--            @endguest--}}
   {{--          </div>--}}
   {{--        </div>--}}
@@ -197,7 +197,7 @@
   {{--            </div>--}}
   {{--            <a class="btn2" href="javascript:;" id="login3"><span>立即查重</span></a>--}}
   {{--            @auth--}}
-  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" id="login3"><span>立即查重</span></a>--}}
+  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>2])}}" id="login3"><span>立即查重</span></a>--}}
   {{--            @endauth--}}
   {{--          </div>--}}
   {{--        </div>--}}
@@ -211,7 +211,7 @@
   {{--              <p>为编辑部提供检测服务，可检测抄袭与剽窃、伪造、篡改、不当署名、一稿多投等学术不端文献。</p>--}}
   {{--            </div>--}}
   {{--            @auth--}}
-  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" id="login4"><span>立即查重</span></a>--}}
+  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>2])}}" id="login4"><span>立即查重</span></a>--}}
   {{--            @endauth--}}
   {{--            <a class="btn2" href="javascript:;" id="login4"><span>立即查重</span></a>--}}
   {{--          </div>--}}
@@ -237,7 +237,7 @@
                data-target="#staticBackdrop"><span>立即查重</span></a>
           @else
             <a class="bg-orange-500 px-4 py-2 text-decoration-none"
-               href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>
+               href="{{route('categories.show',['classid'=>2])}}" target="_blank"><span>立即查重</span></a>
           @endguest
         </div>
       </div>
@@ -252,7 +252,7 @@
                data-target="#staticBackdrop"><span>立即查重</span></a>
           @else
             <a class="bg-orange-500 px-4 py-2 text-decoration-none"
-               href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>
+               href="{{route('categories.show',['classid'=>2])}}" target="_blank"><span>立即查重</span></a>
           @endguest
         </div>
       </div>
@@ -267,7 +267,7 @@
                data-target="#staticBackdrop"><span>立即查重</span></a>
           @else
             <a class="bg-orange-500 px-4 py-2 text-decoration-none"
-               href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>
+               href="{{route('categories.show',['classid'=>2])}}" target="_blank"><span>立即查重</span></a>
           @endguest
         </div>
       </div>
@@ -376,7 +376,6 @@
     <div class="container">
       <div class="about-head">
         <h4>多版本查重报告</h4>
-        <h1>自动检测论文格式</h1>
         <p>
         维普查重提供片段对照报告、比对报告、原文对照报告、简介报告、格式分析报告等5个版本报告，其中格式分析报告可以针对封面、目录、摘要、关键词、正文、声明/致谢、参考文献、附录等进行分析，校验是格式否符合规范，同时为论文自动推荐先关参考文献。</p>
       </div>
@@ -393,7 +392,7 @@
           @guest
             <a class="about-btn" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop">立即查重</a>
           @else
-            <a class="about-btn" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+            <a class="about-btn" href="{{route('categories.show',['classid'=>2])}}">立即查重</a>
           @endguest
         </div>
         <div class="clearfix"></div>
@@ -420,7 +419,7 @@
                data-target="#staticBackdrop">立即使用</a>
           @else
             <a class="bg-blue-500 text-white  py-2 block" id="login6"
-               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+               href="{{route('categories.show',['classid'=>2])}}">立即查重</a>
           @endguest
         </div>
         <div class="border border-gray-300 text-center p-2">
@@ -433,7 +432,7 @@
                data-target="#staticBackdrop">立即使用</a>
           @else
             <a class="bg-blue-500 text-white  py-2 block" id="login6"
-               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+               href="{{route('categories.show',['classid'=>2])}}">立即查重</a>
           @endguest
         </div>
         <div class="border border-gray-300 text-center p-2">
@@ -446,7 +445,7 @@
                data-target="#staticBackdrop">立即使用</a>
           @else
             <a class="bg-blue-500 text-white  py-2 block" id="login6"
-               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+               href="{{route('categories.show',['classid'=>2])}}">立即查重</a>
           @endguest
         </div>
 
@@ -460,7 +459,7 @@
                data-target="#staticBackdrop">立即使用</a>
           @else
             <a class="bg-blue-500 text-white  py-2 block" id="login6"
-               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+               href="{{route('categories.show',['classid'=>2])}}">立即查重</a>
           @endguest
         </div>
 

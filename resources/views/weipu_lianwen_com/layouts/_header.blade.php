@@ -244,7 +244,7 @@
 {{--      <ul class="top-nav">--}}
 {{--        <li class="active"><a href="/" class="scroll">首页<span> </span></a></li>--}}
 
-{{--        <li class="page-scroll"><a href="{{route('categories.show',['classid'=>4])}}" id="login1"--}}
+{{--        <li class="page-scroll"><a href="{{route('categories.show',['classid'=>2])}}" id="login1"--}}
 {{--                                   class="scroll">万方查重<span> </span></a></li>--}}
 
 {{--        <li class="page-scroll"><a href="{{route('orders.index')}}" id="down" class="scroll">查看报告<span> </span></a></li>--}}
@@ -290,18 +290,18 @@
         <li class="nav-item px-4 {{ active_class(if_route('pages.index')) }}"><a class="nav-link text-blue-300"
                                                                                  href="{{ url('/') }}">首页</a>
         </li>
-        <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 4))) }}">
+        <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 2))) }}">
         @guest
           <a class="nav-link" href="javascript:;" data-toggle="modal"
                                   data-target="#staticBackdrop">万方查重</a>
         @else
         <a
             class="nav-link"
-            href="{{route('categories.show',['classid'=>4])}}"
+            href="{{route('categories.show',['classid'=>2])}}"
             >万方查重</a>
         @endguest
         </li>
-        <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 4))) }}">
+        <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 2))) }}">
         @guest
           <a class="nav-link" href="javascript:;" data-toggle="modal"
                                   data-target="#staticBackdrop">查看报告</a>
@@ -314,7 +314,7 @@
         </li>
         {{--        <li class="active"><a href="/" class="scroll">首页<span> </span></a></li>--}}
 
-        {{--        <li class="page-scroll"><a href="{{route('categories.show',['classid'=>4])}}" id="login1"--}}
+        {{--        <li class="page-scroll"><a href="{{route('categories.show',['classid'=>2])}}" id="login1"--}}
         {{--                                   class="scroll">万方查重<span> </span></a></li>--}}
 
         {{--        <li class="page-scroll"><a href="{{route('orders.index')}}" id="down" class="scroll">查看报告<span> </span></a></li>--}}
