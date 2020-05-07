@@ -405,14 +405,14 @@
     <div class="container">
       <div class=" text-center p-6">
         <h1 class="text-orange-500 text-xl mb-4">系统说明</h1>
-        <p class="p-2">系统基于数据海量学术文献资源，对学术成果相似性检测，提供客观详实的报告，为学术出版、科研管理、学位论文管理提供支持。<font class="text-blue-500">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
+        <p class="p-2">维普查重提供维普大学生版、维普研究生版、维普职称认定版、维普编辑部版四个版本，分别适合不同的场景使用。<font class="text-blue-500">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
         </p>
       </div>
       <div class="grid grid-cols-4 gap-4">
         <div class="border border-gray-300 text-center p-2">
           <img src="{{ asset('asset/images/benke.png') }}" class="w-full"/>
-          <h5 class="py-2"><a>本科版</a></h5>
-          <span class="text-red-500">2.50元/千字</span>
+          <h5 class="py-2"><a>维普大学生版</a></h5>
+          <span class="text-red-500">3.00元/千字</span>
           <p class="my-2 text-xs">适合本科、专科、自考大学生毕业论文查重，全国多个高校在使用，与学校检测结果一致。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
@@ -424,8 +424,8 @@
         </div>
         <div class="border border-gray-300 text-center p-2">
           <img src="{{ asset('asset/images/shuobo.png') }}" class="w-full"/>
-          <h5 class="py-2"><a>硕博版</a></h5>
-          <span class="text-red-500">2.50元/千字</span>
+          <h5 class="py-2"><a>维普研究生版</a></h5>
+          <span class="text-red-500">3.00元/千字</span>
           <p class="my-2 text-xs">含有博士/硕士学位论文全文数据库，更适合硕士和博士生论文查重，全国多个高校在使用。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
@@ -437,8 +437,8 @@
         </div>
         <div class="border border-gray-300 text-center p-2">
           <img src=" {{ asset('asset/images/tongyong.png') }}" title="name" class="w-full"/>
-          <h5 class="py-2"><a>通用版</a></h5>
-          <span class="text-red-500">2.50元/千字</span>
+          <h5 class="py-2"><a>维普编辑部版</a></h5>
+          <span class="text-red-500">3.00元/千字</span>
           <p class="my-2 text-xs">适合未正式发表的文献、会议记录、工作总结、心得体会等..文章查重。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
@@ -451,8 +451,8 @@
 
         <div class="border border-gray-300 text-center p-2">
           <img src="{{ asset('asset/images/zhicheng.png') }}" title="name" class="w-full"/>
-          <h5 class="py-2"><a>职称版</a></h5>
-          <span class="text-red-500">5.00元/千字</span>
+          <h5 class="py-2"><a>维普职称版</a></h5>
+          <span class="text-red-500">30.00元/篇</span>
           <p class="my-2 text-xs">适合职称评比、已发表论文查重，可选发表时间避免出现与自己发表的论文重复的尴尬。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
