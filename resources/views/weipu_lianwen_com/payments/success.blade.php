@@ -59,7 +59,7 @@
                 <h3>{{$msg}}</h3>
               </div>
               <div style="width:666px; float:right; text-align:left;"><font color="#0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统已经收到您的付款，论文正在检测中，预计需要10分钟左右。</font>您记下报告查询网址后可以关闭本页面，如长时间未收到检测报告请联系客服微信：cx5078处理。
-                <br/>报告查询网址：<a class="blue" href="https://wanfang.lianwen.com" target="_blank">https://wanfang.lianwen.com</a>
+                <br/>报告查询网址：<a class="blue" href="https://weipu.lianwen.com" target="_blank">https://weipu.lianwen.com</a>
               </div>
             </div>
 
