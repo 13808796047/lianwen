@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 
 use App\Admin\Actions\Grid\ResetOrderStatus;
+use App\Admin\Actions\Grid\UploadOrderFile;
 use App\Models\Order;
 use App\Models\User;
 use Dcat\Admin\Form;
@@ -11,6 +12,7 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
+use Illuminate\Http\Request;
 
 class OrderController extends AdminController
 {
@@ -60,15 +62,14 @@ class OrderController extends AdminController
 //            $grid->batchActions(function($batch) {
 //                $batch->add(new BatchQueue());
 //            });
-            $grid->setActionClass(Grid\Displayers\Actions::class);
             $grid->actions(function(Grid\Displayers\Actions $actions) {
                 $actions->disableDelete();
-                $actions->disableEdit();
                 $actions->disableView();
             });
             // 禁用
             $grid->disableCreateButton();
-            $grid->actions(new ResetOrderStatus());
+//            $grid->actions(new ResetOrderStatus());
+//            $grid->actions(new UploadOrderFile());
             $grid->filter(function(Grid\Filter $filter) {
                 // 去掉默认的id过滤器
                 $filter->disableIdFilter();
@@ -86,6 +87,46 @@ class OrderController extends AdminController
                 $filter->scope('0', '未支付')->where('status', 0);
             });
         });
+    }
+
+    public function edit($id, Content $content)
+    {
+        return $content->header('编辑订单')->body(view('admin.orders.edit', ['order' => Order::find($id)]));
+    }
+
+    public function receved($id, Request $request)
+    {
+        $order = Order::findOrFail($id);
+        $data = $request->all();
+        $report_path = '';
+        if($request->hasFile('file')) {
+            $file = $request->file('file');
+            if(!$file->isValid()) {
+                abort(400, '无效的上传文件');
+            }
+            $path = 'downloads/report-' . $order->api_orderid . '.zip';
+            \Storage::delete($path);
+            $result = \Storage::putFileAs('downloads', $file, 'report-' . $order->api_orderid . '.zip');
+            if($result) {
+                $report_path = $path;
+            }
+        }
+        $order->update([
+            'status' => $data['status'],
+            'rate' => $data['rate'],
+            'report_path' => $report_path
+        ]);
+        if($order->status == 3) {
+            dispatch(new getOrderStatus($order));
+        } elseif($order->status == 1) {
+            dispatch(new UploadCheckFile($order));
+        }
+        return response([
+            'status' => 200,
+            'data' => $order,
+            'message' => '修改成功!',
+            'redirect' => '/admin/orders'
+        ]);
     }
 
     public function downloadPaper(Order $order)
