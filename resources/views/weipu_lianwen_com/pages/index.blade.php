@@ -182,7 +182,7 @@
   {{--              <a class="btn2" href="javascript:;" data-toggle="modal"--}}
   {{--                 data-target="#staticBackdrop"><span>立即查重</span></a>--}}
   {{--            @else--}}
-  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>--}}
+  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>2])}}" target="_blank"><span>立即查重</span></a>--}}
   {{--            @endguest--}}
   {{--          </div>--}}
   {{--        </div>--}}
@@ -197,7 +197,7 @@
   {{--            </div>--}}
   {{--            <a class="btn2" href="javascript:;" id="login3"><span>立即查重</span></a>--}}
   {{--            @auth--}}
-  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" id="login3"><span>立即查重</span></a>--}}
+  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>2])}}" id="login3"><span>立即查重</span></a>--}}
   {{--            @endauth--}}
   {{--          </div>--}}
   {{--        </div>--}}
@@ -211,7 +211,7 @@
   {{--              <p>为编辑部提供检测服务，可检测抄袭与剽窃、伪造、篡改、不当署名、一稿多投等学术不端文献。</p>--}}
   {{--            </div>--}}
   {{--            @auth--}}
-  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>4])}}" id="login4"><span>立即查重</span></a>--}}
+  {{--              <a class="btn2" href="{{route('categories.show',['classid'=>2])}}" id="login4"><span>立即查重</span></a>--}}
   {{--            @endauth--}}
   {{--            <a class="btn2" href="javascript:;" id="login4"><span>立即查重</span></a>--}}
   {{--          </div>--}}
@@ -227,46 +227,47 @@
     </ul>
     <div class="carousel-inner">
       <div class="carousel-item active" style="height: 500px">
-        <img src="{{ asset('asset/images/01.png') }}" class="d-block w-100">
+        <img src="{{ asset('asset/images/slide.jpg') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
-          <h1 class="text-6xl">本科大学生 <span>毕业论文</span> 学术不端检测</h1>
-          <p class="p-4">用于检测大学生毕业论文是否存在抄袭剽窃等学术不端行为，全国多个高校在使用，与学校检测结果一致。</p>
+          <h1 class="text-6xl">大学生 <span style="color: #F4BB36;">毕业论文</span> 查重</h1>
+          <p class="p-4">适合本科、专科、自考大学生毕业论文查重，全国多个高校在使用，与学校检测结果一致。</p>
           @guest
             <a class="bg-orange-500 px-4 py-2 text-decoration-none" href="javascript:;"
                data-toggle="modal"
                data-target="#staticBackdrop"><span>立即查重</span></a>
           @else
             <a class="bg-orange-500 px-4 py-2 text-decoration-none"
-               href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>
+               href="{{route('categories.show',['classid'=>2])}}" target="_blank"><span>立即查重</span></a>
           @endguest
         </div>
       </div>
-      <div class="carousel-item bg-blue-700 " style="height: 500px">
+      <div class="carousel-item" style="height: 500px">
+      <img src="{{ asset('asset/images/slide.jpg') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
-          <h1 class="text-6xl">硕博研究生 <span> 学位论文 </span> 学术不端检测</h1>
-          <p class="p-4">为高校研究生院部提供检测服务，仅限检测研究生毕业论文。可检测抄袭与剽窃、伪造、篡改等学术不端行为。</p>
+          <h1 class="text-6xl">研究生<span style="color: #F4BB36;"> 学位论文 </span> 查重</h1>
+          <p class="p-4">含有博士/硕士学位论文全文数据库，更适合硕士和博士生论文查重，全国多个高校在使用。</p>
           @guest
             <a class="bg-orange-500 px-4 py-2 text-decoration-none" href="javascript:;"
                data-toggle="modal"
                data-target="#staticBackdrop"><span>立即查重</span></a>
           @else
             <a class="bg-orange-500 px-4 py-2 text-decoration-none"
-               href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>
+               href="{{route('categories.show',['classid'=>2])}}" target="_blank"><span>立即查重</span></a>
           @endguest
         </div>
       </div>
       <div class="carousel-item" style="height: 500px;">
-        <img src="{{ asset('asset/images/03.png') }}" class="d-block w-100">
+      <img src="{{ asset('asset/images/slide.jpg') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
-          <h1 class="text-6xl">职称评比 <span>期刊发表</span> 学术不端检测</h1>
-          <p class="p-4">为编辑部提供检测服务，可检测抄袭与剽窃、伪造、篡改、不当署名、一稿多投等学术不端文献。</p>
+          <h1 class="text-6xl">职称评比 <span style="color: #F4BB36;"> 期刊论文 </span>查重</h1>
+          <p class="p-4">适合职称评比、已发表论文查重，可选发表时间避免出现与自己发表的论文重复的尴尬。</p>
           @guest
             <a class="bg-orange-500 px-4 py-2 text-decoration-none" href="javascript:;"
                data-toggle="modal"
                data-target="#staticBackdrop"><span>立即查重</span></a>
           @else
             <a class="bg-orange-500 px-4 py-2 text-decoration-none"
-               href="{{route('categories.show',['classid'=>4])}}" target="_blank"><span>立即查重</span></a>
+               href="{{route('categories.show',['classid'=>2])}}" target="_blank"><span>立即查重</span></a>
           @endguest
         </div>
       </div>
@@ -375,7 +376,6 @@
     <div class="container">
       <div class="about-head">
         <h4>多版本查重报告</h4>
-        <h1>自动检测论文格式</h1>
         <p>
         维普查重提供片段对照报告、比对报告、原文对照报告、简介报告、格式分析报告等5个版本报告，其中格式分析报告可以针对封面、目录、摘要、关键词、正文、声明/致谢、参考文献、附录等进行分析，校验是格式否符合规范，同时为论文自动推荐先关参考文献。</p>
       </div>
@@ -392,7 +392,7 @@
           @guest
             <a class="about-btn" href="javascript:;" data-toggle="modal" data-target="#staticBackdrop">立即查重</a>
           @else
-            <a class="about-btn" href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+            <a class="about-btn" href="{{route('categories.show',['classid'=>2])}}">立即查重</a>
           @endguest
         </div>
         <div class="clearfix"></div>
@@ -405,61 +405,61 @@
     <div class="container">
       <div class=" text-center p-6">
         <h1 class="text-orange-500 text-xl mb-4">系统说明</h1>
-        <p class="p-2">系统基于数据海量学术文献资源，对学术成果相似性检测，提供客观详实的报告，为学术出版、科研管理、学位论文管理提供支持。<font class="text-blue-500">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
+        <p class="p-2">维普查重提供维普大学生版、维普研究生版、维普职称认定版、维普编辑部版四个版本，分别适合不同的场景使用。<font class="text-blue-500">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
         </p>
       </div>
       <div class="grid grid-cols-4 gap-4">
         <div class="border border-gray-300 text-center p-2">
           <img src="{{ asset('asset/images/benke.png') }}" class="w-full"/>
-          <h5 class="py-2"><a>本科版</a></h5>
-          <span class="text-red-500">2.50元/千字</span>
+          <h5 class="py-2"><a>维普大学生版</a></h5>
+          <span class="text-red-500">3.00元/千字</span>
           <p class="my-2 text-xs">适合本科、专科、自考大学生毕业论文查重，全国多个高校在使用，与学校检测结果一致。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
                data-target="#staticBackdrop">立即使用</a>
           @else
             <a class="bg-blue-500 text-white  py-2 block" id="login6"
-               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+               href="{{route('categories.show',['classid'=>2])}}">立即查重</a>
           @endguest
         </div>
         <div class="border border-gray-300 text-center p-2">
           <img src="{{ asset('asset/images/shuobo.png') }}" class="w-full"/>
-          <h5 class="py-2"><a>硕博版</a></h5>
-          <span class="text-red-500">2.50元/千字</span>
+          <h5 class="py-2"><a>维普研究生版</a></h5>
+          <span class="text-red-500">3.00元/千字</span>
           <p class="my-2 text-xs">含有博士/硕士学位论文全文数据库，更适合硕士和博士生论文查重，全国多个高校在使用。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
                data-target="#staticBackdrop">立即使用</a>
           @else
             <a class="bg-blue-500 text-white  py-2 block" id="login6"
-               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+               href="{{route('categories.show',['classid'=>2])}}">立即查重</a>
           @endguest
         </div>
         <div class="border border-gray-300 text-center p-2">
           <img src=" {{ asset('asset/images/tongyong.png') }}" title="name" class="w-full"/>
-          <h5 class="py-2"><a>通用版</a></h5>
-          <span class="text-red-500">2.50元/千字</span>
+          <h5 class="py-2"><a>维普编辑部版</a></h5>
+          <span class="text-red-500">3.00元/千字</span>
           <p class="my-2 text-xs">适合未正式发表的文献、会议记录、工作总结、心得体会等..文章查重。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
                data-target="#staticBackdrop">立即使用</a>
           @else
             <a class="bg-blue-500 text-white  py-2 block" id="login6"
-               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+               href="{{route('categories.show',['classid'=>2])}}">立即查重</a>
           @endguest
         </div>
 
         <div class="border border-gray-300 text-center p-2">
           <img src="{{ asset('asset/images/zhicheng.png') }}" title="name" class="w-full"/>
-          <h5 class="py-2"><a>职称版</a></h5>
-          <span class="text-red-500">5.00元/千字</span>
+          <h5 class="py-2"><a>维普职称版</a></h5>
+          <span class="text-red-500">30.00元/篇</span>
           <p class="my-2 text-xs">适合职称评比、已发表论文查重，可选发表时间避免出现与自己发表的论文重复的尴尬。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
                data-target="#staticBackdrop">立即使用</a>
           @else
             <a class="bg-blue-500 text-white  py-2 block" id="login6"
-               href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
+               href="{{route('categories.show',['classid'=>2])}}">立即查重</a>
           @endguest
         </div>
 
