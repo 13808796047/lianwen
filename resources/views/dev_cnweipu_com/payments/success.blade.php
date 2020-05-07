@@ -1,12 +1,12 @@
 @extends('domained::layouts.app')
 @section('title','支付结果')
 @section('styles')
-  <link href="https://css.lianwen.com/css/public_c.css?v=2018v1" type="text/css" rel="stylesheet"/>
-  <link href="https://css.lianwen.com/css/index_2017.css" type="text/css" rel="stylesheet"/>
+  <!-- <link href="https://css.lianwen.com/css/public_c.css?v=2018v1" type="text/css" rel="stylesheet"/>
+  <link href="https://css.lianwen.com/css/index_2017.css" type="text/css" rel="stylesheet"/> -->
   <!-- <link rel="stylesheet" href="{{asset('asset/css/index.css')}}"> -->
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <style>
-   /* .lwjc_title{overflow:hidden; padding:40px;border-bottom:solid 1px #eeeeee; }
+   .lwjc_title{overflow:hidden; padding:40px;border-bottom:solid 1px #eeeeee; }
    .lwjc_title h4{font-size:28px; padding-left: 115px!important; height:80px!important; color:#666666; font-size:26px; line-height:96px; background:url(../images/icon_eye.png) no-repeat; float:left; padding-left:105px;}
    .lwjc_title h3{ color:#666666;font-size:26px; line-height:36px; float:left;}
    .lwjc_title .nav a{width:90px; height:34px; background-color:#0083cd; display:block; text-align:center; line-height:34px; color:#fff; float:right; margin-top:32px;}
@@ -41,7 +41,7 @@
    .submit .radio input{ padding-left:0;}
    .submit .text{ border:#C8C4C4 solid 1px; margin-top:12px; padding:11px; margin-bottom:10px; width:600px;}
    .result_no a{width:90px; height:34px; background-color:#0083cd; display:block; text-align:center; line-height:34px; color:#fff; float:right; margin-top:10px; font-size:12px;}
-   .success { background:url('../images/success.png') no-repeat; margin-top:5px; margin-left:30px; width:111px; height:111px;float:left; display:inline-block;} */
+   .success { background:url('https://css.lianwen.com/images/success.png') no-repeat; margin-top:5px; margin-left:30px; width:111px; height:111px;float:left; display:inline-block;}
   </style>
 @stop
 @section('content')
