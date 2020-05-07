@@ -1,5 +1,5 @@
 @extends('domained::layouts.app')
-@section('title', '首页')
+@section('title', '维普查重')
 @section('styles')
   <link href="{{asset('asset/css/weipu-theme.css')}}" rel="stylesheet"/>
   <style>
