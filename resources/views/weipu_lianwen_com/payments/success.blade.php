@@ -109,9 +109,9 @@
       </div>
     </div>
     <div class="rbox fr">
-      <div class="tit">在线客服</div>
-      <div class="box">客服微信:cx5078</div>
-      <div class="box mt10">
+      <!-- <div class="tit">在线客服</div>
+      <div class="box">客服微信:cx5078</div> -->
+      <div class="box">
         <b>1、检测结果是否准确？</b>
         <p>如果你们学校也是用万方检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。</p>
         <b>2、检测需要多少时间？</b>
