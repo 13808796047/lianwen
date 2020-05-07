@@ -2,8 +2,8 @@
 @section('title','支付结果')
 @section('styles')
   <!-- <link href="https://css.lianwen.com/css/public_c.css?v=2018v1" type="text/css" rel="stylesheet"/> -->
-  <!-- <link href="https://css.lianwen.com/css/index_2017.css" type="text/css" rel="stylesheet"/> -->
-  <link rel="stylesheet" href="{{asset('asset/css/index.css')}}">
+  <link href="https://css.lianwen.com/css/index_2017.css" type="text/css" rel="stylesheet"/>
+  <!-- <link rel="stylesheet" href="{{asset('asset/css/index.css')}}"> -->
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
 @stop
 @section('content')
