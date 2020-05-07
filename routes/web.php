@@ -32,15 +32,16 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('official_account', 'OfficialAccountController@index')->name('official_account.index');
     //异步上传文件
     Route::post('files', 'FilesController@store')->name('files.store');
+    //自动查重
+    Route::get('auto_check', 'AutoCheckController@index')->name('auto.check.index');
+    Route::post('auto_check', 'AutoCheckController@store')->name('auto.check.store');
 
 });
 //下载
 Route::get('orders/{orderid}/download', 'OrdersController@download')
     ->name('orders.download');
 
-//自动查重
-Route::get('auto_check', 'AutoCheckController@index')->name('auto.check.index');
-Route::post('auto_check', 'AutoCheckController@store')->name('auto.check.store');
+
 //支付宝
 Route::get('payments/{order}/alipay', 'PaymentsController@alipay')
     ->name('payments.alipay');

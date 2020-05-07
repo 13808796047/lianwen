@@ -29,7 +29,7 @@ class CategoryController extends AdminController
             $grid->check_type('检测模式')->display(function($value) {
                 return \App\Models\Category::$checkTypeMap[$value];
             });
-            $grid->staus('状态')->bool(['Y' => 1, 'N' => 0]);
+            $grid->staus('状态')->switch();
             $grid->actions(function($actions) {
                 $actions->disableView();
             });
@@ -78,7 +78,9 @@ class CategoryController extends AdminController
 
                 $form->image('sys_ico', '系统图标');
 
-                $form->switch('status', '状态');
+                $form->switch('status')->saving(function($v) {
+                    return $v ? 1 : 0;
+                });
             });
             $form->tools(function(Form\Tools $tools) {
 
