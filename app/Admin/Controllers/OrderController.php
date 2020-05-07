@@ -66,6 +66,8 @@ class OrderController extends AdminController
                 $actions->disableEdit();
                 $actions->disableView();
             });
+            // 禁用
+            $grid->disableCreateButton();
             $grid->actions(new ResetOrderStatus());
             $grid->filter(function(Grid\Filter $filter) {
                 // 去掉默认的id过滤器
@@ -89,5 +91,11 @@ class OrderController extends AdminController
     public function downloadPaper(Order $order)
     {
         return response()->download($order->paper_path);
+    }
+
+    public function downloadReport(Order $order)
+    {
+//        return \Storage::download(storage_path() . '/app/' . $order->report_path);
+        return response()->download(storage_path() . '/app/' . $order->report_path, $order->writer . '-' . $order->title . '.zip');
     }
 }
