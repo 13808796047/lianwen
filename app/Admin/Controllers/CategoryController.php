@@ -18,65 +18,21 @@ class CategoryController extends AdminController
     protected function grid()
     {
         return Grid::make(new Category(), function(Grid $grid) {
-            $grid->classname;
-            $grid->status;
-            $grid->name;
-            $grid->sname;
-            $grid->price_type;
-            $grid->price;
-            $grid->agent_price1;
-            $grid->agent_price2;
-            $grid->check_type;
-            $grid->min_words;
-            $grid->max_words;
-            $grid->intro;
-            $grid->sintro;
-            $grid->tese;
-            $grid->seo_title;
-            $grid->sys_logo;
-            $grid->sys_ico;
-            $grid->created_at;
-            $grid->updated_at->sortable();
-
-            $grid->filter(function(Grid\Filter $filter) {
-                $filter->equal('id');
-
+            $grid->id('ID');
+            $grid->name('名称');
+            $grid->price_type('计价模式')->display(function($value) {
+                return \App\Models\Category::$priceTypeMap[$value] . '/元';
             });
-        });
-    }
-
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     *
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        return Show::make($id, new Category(), function(Show $show) {
-            $show->id;
-            $show->cid;
-            $show->classid;
-            $show->classname;
-            $show->status;
-            $show->name;
-            $show->sname;
-            $show->price_type;
-            $show->price;
-            $show->agent_price1;
-            $show->agent_price2;
-            $show->check_type;
-            $show->min_words;
-            $show->max_words;
-            $show->intro;
-            $show->sintro;
-            $show->tese;
-            $show->seo_title;
-            $show->sys_logo;
-            $show->sys_ico;
-            $show->created_at;
-            $show->updated_at;
+            $grid->price('单价(元)');
+            $grid->agent_price1('代理商单价');
+            $grid->agent_price2('高级代理单价');
+            $grid->check_type('检测模式')->display(function($value) {
+                return \App\Models\Category::$checkTypeMap[$value];
+            });
+            $grid->staus('状态')->bool(['Y' => 1, 'N' => 0]);
+            $grid->actions(function($actions) {
+                $actions->disableView();
+            });
         });
     }
 
@@ -88,29 +44,52 @@ class CategoryController extends AdminController
     protected function form()
     {
         return Form::make(new Category(), function(Form $form) {
-            $form->display('id');
-            $form->text('cid');
-            $form->text('classid');
-            $form->text('classname');
-            $form->text('status');
-            $form->text('name');
-            $form->text('sname');
-            $form->text('price_type');
-            $form->text('price');
-            $form->text('agent_price1');
-            $form->text('agent_price2');
-            $form->text('check_type');
-            $form->text('min_words');
-            $form->text('max_words');
-            $form->text('intro');
-            $form->text('sintro');
-            $form->text('tese');
-            $form->text('seo_title');
-            $form->text('sys_logo');
-            $form->text('sys_ico');
 
-            $form->display('created_at');
-            $form->display('updated_at');
+// 设置默认卡片宽度
+            $form->setDefaultBlockWidth(6);
+            // 第一列占据1/2的页面宽度
+            $form->number('cid', 'cid');
+            $form->number('classid', '分类ID');
+            $form->text('classname', '分类名称')->rules('required');
+            $form->text('name', '系统名称')->rules('required');
+            $form->text('sname', '系统简称')->rules('required');
+            $form->radio('price_type', '计价方式')->options([
+                0 => '千字/元',
+                1 => '万字/元',
+                2 => '篇']);
+            $form->decimal('price', '检测单价')->default(0.00);
+            $form->decimal('agent_price1', '普通代理价')->default(0.00);
+            $form->decimal('agent_price2', '高级代理价')->default(0.00);
+            $checkTypeOption = [
+                0 => '手动',
+                1 => 'API'
+            ];
+            $form->radio('check_type', '检测方式')->options($checkTypeOption)->default(0);
+
+            $form->number('min_words', '最少字数');
+            $form->number('max_words', '最多字数');
+            $form->text('tese', '特色');
+            $form->text('seo_title', 'SEO标题');
+            $form->block(6, function(Form\BlockForm $form) {
+                $form->image('sys_logo', '系统LOGO');
+                $form->textarea('intro', '系统介绍');
+                $form->textarea('sintro', '系统简介');
+
+
+                $form->image('sys_ico', '系统图标');
+
+                $form->switch('status', '状态');
+            });
+            $form->tools(function(Form\Tools $tools) {
+
+                // 去掉`列表`按钮
+                $tools->disableList();
+
+
+                // 去掉`查看`按钮
+                $tools->disableView();
+            });
+
         });
     }
 }
