@@ -22,10 +22,12 @@ class ResetOrderStatus extends RowAction
 
         // 模态窗
         $this->modal($id);
-
         return <<<HTML
 <span class="grid-expand" data-toggle="modal" data-target="#{$id}">
    <a href="javascript:void(0)">修改状态</a>
+</span>
+<span class="grid-expand"">
+   <a href="/admin/orders/{$this->getKey()}/download_paper">下载报告</a>
 </span>
 HTML;
     }
