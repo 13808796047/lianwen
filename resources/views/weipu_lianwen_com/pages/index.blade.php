@@ -259,7 +259,7 @@
       <div class="carousel-item" style="height: 500px;">
       <img src="{{ asset('asset/images/slide.jpg') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
-          <h1 class="text-6xl">职称评比 <span style="color: #F4BB36;">期刊论文</span>查重</h1>
+          <h1 class="text-6xl">职称评比 <span style="color: #F4BB36;"> 期刊论文 </span>查重</h1>
           <p class="p-4">适合职称评比、已发表论文查重，可选发表时间避免出现与自己发表的论文重复的尴尬。</p>
           @guest
             <a class="btn2" href="javascript:;"

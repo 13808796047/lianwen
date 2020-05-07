@@ -579,7 +579,7 @@ body a {
 /*-----//End-services----*/
 /*-----start-about----*/
 .about {
-  background: #2CCDBB;
+  background: url(../images/about-bg.jpg);
   padding: 3em 0 0 0;
 }
 
