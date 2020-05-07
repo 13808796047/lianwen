@@ -418,8 +418,6 @@
           $('#submitBtn').css("display", "none")
         })
       }
-
-
     })
 
 

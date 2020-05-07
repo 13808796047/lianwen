@@ -71,6 +71,7 @@
     })
       .then((willDelete) => {
         if (willDelete) {
+          console.log('xixi')
           axios.post('{{route('logout')}}').then(res => {
             swal("注销成功!", {
               icon: "success",
