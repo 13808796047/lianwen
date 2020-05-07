@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 
+use App\Admin\Actions\Grid\ResetOrderStatus;
 use App\Models\Order;
 use App\Models\User;
 use Dcat\Admin\Form;
@@ -59,12 +60,13 @@ class OrderController extends AdminController
 //            $grid->batchActions(function($batch) {
 //                $batch->add(new BatchQueue());
 //            });
-            // 禁用创建按钮，后台不需要创建订单
-            $grid->disableCreateButton();
-            // 禁用删除按钮
-            $grid->disableDeleteButton();
-            // 禁用详情按钮
-            $grid->disableViewButton();
+            $grid->setActionClass(Grid\Displayers\Actions::class);
+            $grid->actions(function(Grid\Displayers\Actions $actions) {
+                $actions->disableDelete();
+                $actions->disableEdit();
+                $actions->disableView();
+            });
+            $grid->actions(new ResetOrderStatus());
             $grid->filter(function(Grid\Filter $filter) {
                 // 去掉默认的id过滤器
                 $filter->disableIdFilter();
@@ -82,5 +84,10 @@ class OrderController extends AdminController
                 $filter->scope('0', '未支付')->where('status', 0);
             });
         });
+    }
+
+    public function downloadPaper(Order $order)
+    {
+        return response()->download($order->paper_path);
     }
 }
