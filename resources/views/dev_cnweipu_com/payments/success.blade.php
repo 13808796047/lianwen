@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <style>
    .lwjc_title{overflow:hidden; padding:40px;border-bottom:solid 1px #eeeeee; }
-   .lwjc_title h4{font-size:28px; padding-left: 115px!important; height:80px!important; color:#666666; font-size:26px; line-height:96px; background:url(../images/icon_eye.png) no-repeat; float:left; padding-left:105px;}
+   /* .lwjc_title h4{font-size:28px; padding-left: 115px!important; height:80px!important; color:#666666; font-size:26px; line-height:96px; background:url(../images/icon_eye.png) no-repeat; float:left; padding-left:105px;} */
    .lwjc_title h3{ color:#666666;font-size:26px; line-height:36px; float:left;}
    .lwjc_title .nav a{width:90px; height:34px; background-color:#0083cd; display:block; text-align:center; line-height:34px; color:#fff; float:right; margin-top:32px;}
    .lwjc_title p{ float:left; color:#666666; font-size:14px; margin-top:10px; text-indent:2em; line-height:28px;}
