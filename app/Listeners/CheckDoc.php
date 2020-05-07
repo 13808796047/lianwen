@@ -19,9 +19,10 @@ class CheckDoc implements ShouldQueue
             'status' => 1,
         ]);
         if($order->category->check_type == 1) {
-            info($order->orderid . '启动队列了');
             //调用上传接口
-            dispatch(new UploadCheckFile($order));
+            dispatch(new UploadCheckFile($order))->onQueue('Order-Check');
+            info($order->orderid . '启动队列开始检测.....');
+
         }
     }
 }

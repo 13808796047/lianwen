@@ -91,6 +91,9 @@ class OrderService
             $order->orderContent()->create([
                 'content' => $content
             ]);
+            if($order->status == 0 && $order->user->weixin_openid) {
+                dispatch(new OrderPendingMsg($order))->onQueue('Wechat-Msg')->delay(now()->addMinutes(2));
+            }
             return $order;
         });
         return $order;

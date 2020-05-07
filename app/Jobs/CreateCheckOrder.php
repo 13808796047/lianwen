@@ -33,12 +33,12 @@ class CreateCheckOrder implements ShouldQueue
         $api = app(OrderApiHandler::class);
         //调用创建apiOrder
         $result = $api->createOrder($this->order, $this->file);
-        info('创建订单.....');
         if($result->code == 200) {
             $this->order->update([
                 'api_orderid' => $result->data,
             ]);
-            dispatch(new StartCheck($this->order));
+            dispatch(new StartCheck($this->order))->onQueue('Order-Check');
+            info('创建检测订单.....');
         }
     }
 }

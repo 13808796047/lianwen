@@ -28,7 +28,8 @@ class StartCheck implements ShouldQueue
         $result = $api->startCheck($this->order->api_orderid);
         info('开始检测....');
         if($result->code == 200 && $this->order->status == 1) {
-            dispatch(new getOrderStatus($this->order))->delay(now()->addMinutes());
+            dispatch(new getOrderStatus($this->order))->onQueue('Order-Check')->delay(now()->addMinutes());
+            info('开始检测订单.....');
             $this->order->update([
                 'status' => 3,
             ]);

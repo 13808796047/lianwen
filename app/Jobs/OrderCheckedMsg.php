@@ -24,8 +24,7 @@ class OrderCheckedMsg implements ShouldQueue
 
     public function handle()
     {
-        $user = User::FindOrFail($this->order->userid);
-        if(!$user->weixin_openid) {
+        if($this->order->user->weixin_openid && $this->order->status == 4) {
             return;
         }
         $data = [

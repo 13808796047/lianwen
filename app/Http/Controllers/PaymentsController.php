@@ -6,6 +6,7 @@ use App\Events\OrderPaid;
 use App\Exceptions\InvalidRequestException;
 use App\Handlers\OpenidHandler;
 use App\Jobs\CheckOrderStatus;
+use App\Jobs\OrderPaidMsg;
 use App\Models\Order;
 use Carbon\Carbon;
 use EasyWeChatComposer\EasyWeChat;
@@ -90,6 +91,7 @@ class PaymentsController extends Controller
             'status' => 1,
         ]);
         $this->afterPaid($order);
+        $this->afterPaidMsg($order);
         return app('alipay')->success();
     }
 
@@ -159,6 +161,7 @@ class PaymentsController extends Controller
             'status' => 1,
         ]);
         $this->afterPaid($order);
+        $this->afterPaidMsg($order);
         return app('wechat_pay')->success();
     }
 
@@ -187,7 +190,13 @@ class PaymentsController extends Controller
             'status' => 1,
         ]);
         $this->afterPaid($order);
+        $this->afterPaidMsg($order);
         return app('wechat_pay_mp')->success();
+    }
+
+    protected function afterPaidMsg(Order $order)
+    {
+        dispatch(new OrderPaidMsg($order))->onQueue('Wechat-Msg');
     }
 
     protected function afterPaid(Order $order)
@@ -260,6 +269,7 @@ class PaymentsController extends Controller
                     'status' => 1,
                 ]);
                 $this->afterPaid($order);
+                $this->afterPaidMsg($order);
                 //返回付款成功
                 $ret['errno'] = 0;
                 $ret['msg'] = 'success';

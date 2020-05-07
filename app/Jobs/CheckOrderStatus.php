@@ -85,7 +85,7 @@ class CheckOrderStatus implements ShouldQueue
                     'rate' => str_replace('%', '', $result->data->orderCheck->apiResultSemblance),
                 ]);
                 if($this->order->status == 4 && $this->order->user->weixin_openid) {
-                    dispatch(new OrderCheckedMsg($this->order));
+                    dispatch(new OrderCheckedMsg($this->order))->onQueue('Wechat-Msg');
                 }
                 try {
                     $report = $api->extractReportDetail($this->order->api_orderid);
