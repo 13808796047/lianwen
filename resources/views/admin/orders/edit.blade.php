@@ -135,32 +135,4 @@
     });
 
   });
-  {{--  $(() => {--}}
-
-  {{--    $('#btnSubmit').click(() => {--}}
-  {{--      var formData = new FormData();--}}
-  {{--      formData.append('file', $('#file')[0].files[0]); // 固定格式--}}
-  {{--      formData.append('status', $("select[name='status']").val()); // 固定格式--}}
-  {{--      formData.append('rate', $("input[name='rate']").val()); // 固定格式--}}
-  {{--      formData.append('_token', LA.token); // 固定格式--}}
-  {{--      $.ajax({--}}
-  {{--        url: '{{ route('admin.orders.receved',$order) }}',--}}
-  {{--        type: 'POST',--}}
-  {{--        data: formData,--}}
-  {{--        contentType: false,--}}
-  {{--// 告诉jQuery不要去设置Content-Type请求头--}}
-  {{--        processData: false,--}}
-  {{--// 告诉jQuery不要去处理发送的数据--}}
-  {{--      }).then(res => {--}}
-  {{--        swal({--}}
-  {{--          title: '操作成功',--}}
-  {{--          type: 'success'--}}
-  {{--        }).then(function () {--}}
-  {{--          // 用户点击 swal 上的按钮时刷新页面--}}
-  {{--          location.reload();--}}
-  {{--        });--}}
-
-  {{--      })--}}
-  {{--    })--}}
-  {{--  })--}}
 </script>

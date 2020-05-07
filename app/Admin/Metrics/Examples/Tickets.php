@@ -14,15 +14,15 @@ class Tickets extends RadialBar
     {
         parent::init();
 
-        $this->title('Tickets');
+        $this->title('订单');
         $this->height(400);
         $this->chartHeight(300);
         $this->chartLabels('Completed Tickets');
         $this->dropdown([
-            '7' => 'Last 7 Days',
-            '28' => 'Last 28 Days',
-            '30' => 'Last Month',
-            '365' => 'Last Year',
+            'today' => '今日',
+            'yesterday' => '昨日',
+            'month' => '本月',
+            'pre_month' => '上月',
         ]);
     }
 
@@ -39,7 +39,6 @@ class Tickets extends RadialBar
             case '365':
             case '30':
             case '28':
-            case '7':
             default:
                 // 卡片内容
                 $this->withContent(162);
