@@ -49,16 +49,16 @@ class OrderController extends AdminController
                 3 => 'warning',
                 4 => 'success',
             ]);
-            $grid->column('title', '标题')->copyable()->width('220px');
-            $grid->column('writer', '作者')->width('120px');
-            $grid->column('words', '字数');
-            $grid->column('pay_price', '支付金额');
+            $grid->column('title', '标题')->copyable()->width('200px');
+            $grid->column('writer', '作者')->width('100px');
+            $grid->column('words', '字数')->width('50px');
+            $grid->column('pay_price', '支付金额')->width('100px');
 //            $grid->column('pay_price', '支付金额')->totalRow(function($amount) {
 //
 //                return "<span class='text-danger text-bold'><i class='fa fa-yen'></i> {$amount} 元</span>";
 //
 //            });
-            $grid->column('pay_type', '支付方式');
+            $grid->column('pay_type', '支付方式')->width('80px');
             $grid->column('from', '来源');
             $grid->column('created_at', '创建时间')->sortable();
 //            $grid->batchActions(function($batch) {
