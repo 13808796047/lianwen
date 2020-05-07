@@ -77,8 +77,9 @@ class AuthorizationsController extends Controller
         if(isset($data['errcode'])) {
             throw new AuthenticationException('code 不正确');
         }
+        dd($data);
         // 找到 openid 对应的用户
-        $user = User::where('weapp_openid', $data['openid'])->first();
+        $user = User::where('weixin_unionid', $data['unionid'])->first();
         $attributes['weixin_session_key'] = $data['session_key'];
         $attributes['weapp_openid'] = $data['openid'];
         if(!$user) {
