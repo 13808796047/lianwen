@@ -1,7 +1,7 @@
 @extends('domained::layouts.app')
 @section('title', '首页')
 @section('styles')
-  <link href="{{asset('asset/css/theme-style.css')}}" rel="stylesheet"/>
+  <link href="{{asset('asset/css/weipu-theme.css')}}" rel="stylesheet"/>
   <style>
     .swal-modal {
       width:350px;
@@ -375,8 +375,9 @@
     <div class="container">
       <div class="about-head">
         <h4>多版本查重报告</h4>
+        <h1>自动检测论文格式</h1>
         <p>
-          万方查重提供片段对照报告、比对报告、原文对照报告、简介报告、格式分析报告等5个版本报告，其中格式分析报告可以针对封面、目录、摘要、关键词、正文、声明/致谢、参考文献、附录等进行分析，校验是格式否符合规范，同时为论文自动推荐先关参考文献。</p>
+        维普查重提供片段对照报告、比对报告、原文对照报告、简介报告、格式分析报告等5个版本报告，其中格式分析报告可以针对封面、目录、摘要、关键词、正文、声明/致谢、参考文献、附录等进行分析，校验是格式否符合规范，同时为论文自动推荐先关参考文献。</p>
       </div>
       <!----- start-about-grids----->
       <div class="about-grids row">
