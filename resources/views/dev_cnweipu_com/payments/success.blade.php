@@ -11,7 +11,7 @@
    .lwjc_title h3{ color:#666666;font-size:26px; line-height:36px; float:left;}
    .lwjc_title .nav a{width:90px; height:34px; background-color:#0083cd; display:block; text-align:center; line-height:34px; color:#fff; float:right; margin-top:32px;}
    .lwjc_title p{ float:left; color:#666666; font-size:14px; margin-top:10px; text-indent:2em; line-height:28px;}
-   .result{overflow:hidden; padding:80px 40px; padding-bottom:0px; font-size:14px; line-height:28px;}
+   .result{overflow:hidden; padding:30px 40px; padding-bottom:0px; font-size:14px; line-height:28px;}
    .result h3{ color:#666666; font-size:26px; line-height:56px; float:left;}
    .cbox{ padding:30px; font-size:14px;}
    .submit dl{ clear:both; width:738px; margin:0px auto; padding:12px;}
@@ -95,7 +95,7 @@
                   </tr>
                   <tr>
                     <td>时间</td>
-                    <td>{{ $order->date_pay }}</td>
+                    <td>{{ $order->created_at }}</td>
                   </tr>
                 </table>
 
