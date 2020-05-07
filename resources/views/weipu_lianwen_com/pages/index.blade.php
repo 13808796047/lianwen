@@ -401,11 +401,11 @@
     </div>
   </div>
   <!----start-team----->
-  <div id="team" class="mb-24">
+  <div id="team" class="team">
     <div class="container">
-      <div class=" text-center p-6">
-        <h1 class="text-orange-500 text-xl mb-4">系统说明</h1>
-        <p class="p-2">系统基于数据海量学术文献资源，对学术成果相似性检测，提供客观详实的报告，为学术出版、科研管理、学位论文管理提供支持。<font class="text-blue-500">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
+      <div class="team-head text-center">
+        <h1 >系统说明</h1>
+        <p >系统基于数据海量学术文献资源，对学术成果相似性检测，提供客观详实的报告，为学术出版、科研管理、学位论文管理提供支持。<font class="text-blue-500">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
         </p>
       </div>
       <div class="grid grid-cols-4 gap-4">
@@ -422,7 +422,7 @@
                href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
           @endguest
         </div>
-        <div class="border border-gray-300 text-center p-2">
+        <!-- <div class="border border-gray-300 text-center p-2">
           <img src="{{ asset('asset/images/shuobo.png') }}" class="w-full"/>
           <h5 class="py-2"><a>硕博版</a></h5>
           <span class="text-red-500">2.50元/千字</span>
@@ -434,7 +434,7 @@
             <a class="bg-blue-500 text-white  py-2 block" id="login6"
                href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
           @endguest
-        </div>
+        </div> -->
         <div class="border border-gray-300 text-center p-2">
           <img src=" {{ asset('asset/images/tongyong.png') }}" title="name" class="w-full"/>
           <h5 class="py-2"><a>通用版</a></h5>
