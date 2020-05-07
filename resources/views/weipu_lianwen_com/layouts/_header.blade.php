@@ -277,7 +277,7 @@
   <div class="container">
     <!-- Branding Image -->
     <a class="navbar-brand " href="{{ url('/') }}">
-      <img src="http://www.zcnki.com/asset/images/logo/wanfang.png" alt="">
+      <img src="https://www.cnweipu.com/images/weipu/vpcs-logo.png" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -293,12 +293,12 @@
         <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 2))) }}">
         @guest
           <a class="nav-link" href="javascript:;" data-toggle="modal"
-                                  data-target="#staticBackdrop">万方查重</a>
+                                  data-target="#staticBackdrop">维普查重</a>
         @else
         <a
             class="nav-link"
             href="{{route('categories.show',['classid'=>2])}}"
-            >万方查重</a>
+            >维普查重</a>
         @endguest
         </li>
         <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 2))) }}">
