@@ -220,14 +220,14 @@
   {{--    </ul>--}}
   {{--  </div>--}}
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
+    <ul class="carousel-indicators">
       <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-    </ol>
+    </ul>
     <div class="carousel-inner">
-      <div class="carousel-item active bg-blue-700 " style="height: 575px">
-        {{--        <img src="{{ asset('asset/images/01.png') }}" class="d-block w-100">--}}
+      <div class="carousel-item active" style="height: 500px">
+        <img src="{{ asset('asset/images/01.png') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
           <h1 class="text-6xl">本科大学生 <span>毕业论文</span> 学术不端检测</h1>
           <p class="p-4">用于检测大学生毕业论文是否存在抄袭剽窃等学术不端行为，全国多个高校在使用，与学校检测结果一致。</p>
@@ -241,7 +241,7 @@
           @endguest
         </div>
       </div>
-      <div class="carousel-item bg-blue-700 " style="height: 575px">
+      <div class="carousel-item bg-blue-700 " style="height: 500px">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
           <h1 class="text-6xl">硕博研究生 <span> 学位论文 </span> 学术不端检测</h1>
           <p class="p-4">为高校研究生院部提供检测服务，仅限检测研究生毕业论文。可检测抄袭与剽窃、伪造、篡改等学术不端行为。</p>
@@ -255,8 +255,8 @@
           @endguest
         </div>
       </div>
-      <div class="carousel-item bg-blue-700" style="height: 575px;">
-        {{--        <img src="{{ asset('asset/images/03.png') }}" class="d-block w-100">--}}
+      <div class="carousel-item" style="height: 500px;">
+        <img src="{{ asset('asset/images/03.png') }}" class="d-block w-100">
         <div class="carousel-caption d-none d-md-block" style="bottom: 30%">
           <h1 class="text-6xl">职称评比 <span>期刊发表</span> 学术不端检测</h1>
           <p class="p-4">为编辑部提供检测服务，可检测抄袭与剽窃、伪造、篡改、不当署名、一稿多投等学术不端文献。</p>
@@ -401,11 +401,11 @@
     </div>
   </div>
   <!----start-team----->
-  <div id="team" class="team">
+  <div id="team" class="mb-24">
     <div class="container">
-      <div class="team-head text-center">
-        <h1 >系统说明</h1>
-        <p >系统基于数据海量学术文献资源，对学术成果相似性检测，提供客观详实的报告，为学术出版、科研管理、学位论文管理提供支持。<font class="text-blue-500">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
+      <div class=" text-center p-6">
+        <h1 class="text-orange-500 text-xl mb-4">系统说明</h1>
+        <p class="p-2">系统基于数据海量学术文献资源，对学术成果相似性检测，提供客观详实的报告，为学术出版、科研管理、学位论文管理提供支持。<font class="text-blue-500">仅支持中文论文(包括简体、繁体)的检测，暂不支持英语等非中文论文的检测，请勿提交非中文论文！</font>
         </p>
       </div>
       <div class="grid grid-cols-4 gap-4">
@@ -422,7 +422,7 @@
                href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
           @endguest
         </div>
-        <!-- <div class="border border-gray-300 text-center p-2">
+        <div class="border border-gray-300 text-center p-2">
           <img src="{{ asset('asset/images/shuobo.png') }}" class="w-full"/>
           <h5 class="py-2"><a>硕博版</a></h5>
           <span class="text-red-500">2.50元/千字</span>
@@ -434,7 +434,7 @@
             <a class="bg-blue-500 text-white  py-2 block" id="login6"
                href="{{route('categories.show',['classid'=>4])}}">立即查重</a>
           @endguest
-        </div> -->
+        </div>
         <div class="border border-gray-300 text-center p-2">
           <img src=" {{ asset('asset/images/tongyong.png') }}" title="name" class="w-full"/>
           <h5 class="py-2"><a>通用版</a></h5>
