@@ -18,80 +18,34 @@ class UserController extends AdminController
     protected function grid()
     {
         return Grid::make(new User(), function(Grid $grid) {
-            $grid->id->sortable();
-            $grid->username;
-            $grid->phone;
-            $grid->user_group;
-            $grid->consumption_amount;
-            $grid->redix;
-            $grid->created_at;
-            $grid->updated_at->sortable();
-
-            $grid->filter(function(Grid\Filter $filter) {
-                $filter->equal('id');
-
+            $grid->id('ID');
+            $grid->phone('手机号');
+            $grid->nick_name('微信昵称');
+//        $grid->email_verified_at('已验证邮箱')->display(function($value) {
+//            return $value ? '是' : '否';
+//        });
+            $grid->column('user_group', '用户组')
+                ->using([
+                    0 => '普通用户',
+                    1 => '普通代理 ',
+                    2 => '高级代理 ',
+                ])->label([
+                    0 => 'default',
+                    1 => 'info',
+                    2 => 'success',
+                ]);
+            $grid->consumption_amount('消费金额');
+            $grid->created_at('注册时间');
+            // 不在页面显示 `新建` 按钮，因为我们不需要在后台新建用户
+            $grid->disableCreateButton();
+            // 同时在每一行也不显示 `编辑` 按钮
+            $grid->disableActions();
+            $grid->tools(function($tools) {
+                // 禁用批量删除按钮
+                $tools->batch(function($batch) {
+                    $batch->disableDelete();
+                });
             });
-        });
-    }
-
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     *
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        return Show::make($id, new User(), function(Show $show) {
-            $show->id;
-            $show->username;
-            $show->phone;
-            $show->email;
-            $show->email_verified_at;
-            $show->password;
-            $show->weixin_openid;
-            $show->weapp_openid;
-            $show->weixin_session_key;
-            $show->weixin_unionid;
-            $show->remember_token;
-            $show->nick_name;
-            $show->avatar;
-            $show->user_group;
-            $show->consumption_amount;
-            $show->redix;
-            $show->created_at;
-            $show->updated_at;
-        });
-    }
-
-    /**
-     * Make a form builder.
-     *
-     * @return Form
-     */
-    protected function form()
-    {
-        return Form::make(new User(), function(Form $form) {
-            $form->display('id');
-            $form->text('username');
-            $form->text('phone');
-            $form->text('email');
-            $form->text('email_verified_at');
-            $form->text('password');
-            $form->text('weixin_openid');
-            $form->text('weapp_openid');
-            $form->text('weixin_session_key');
-            $form->text('weixin_unionid');
-            $form->text('remember_token');
-            $form->text('nick_name');
-            $form->text('avatar');
-            $form->text('user_group');
-            $form->text('consumption_amount');
-            $form->text('redix');
-
-            $form->display('created_at');
-            $form->display('updated_at');
         });
     }
 }
