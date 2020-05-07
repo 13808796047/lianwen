@@ -34,7 +34,7 @@ class OrderPaidMsg implements ShouldQueue
             ];
             app('official_account')->template_message->send([
                 'touser' => $this->order->user->weixin_openid,
-                'template_id' => 'IKyhivjep0fGj-oaCRdfLBRkRSSvESl5lRUQVCXOM2o',
+                'template_id' => '8Fyk5ojTngSDx9lpETPCUYvjYte7ycubeqsTAxxERh0',
                 'url' => 'https://wanfang.lianwen.com',
                 'miniprogram' => [
                     'appid' => 'wx6340d7d2fead020b',
