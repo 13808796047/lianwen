@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\User;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
+use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
 
@@ -60,6 +61,10 @@ class OrderController extends AdminController
 //            });
             // 禁用创建按钮，后台不需要创建订单
             $grid->disableCreateButton();
+            // 禁用删除按钮
+            $grid->disableDeleteButton();
+            // 禁用详情按钮
+            $grid->disableViewButton();
             $grid->filter(function(Grid\Filter $filter) {
                 // 去掉默认的id过滤器
                 $filter->disableIdFilter();
