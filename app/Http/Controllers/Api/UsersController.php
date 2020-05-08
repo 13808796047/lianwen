@@ -61,20 +61,24 @@ class UsersController extends Controller
         //查询该手机号是否已经存在用户
         $mini_program_user = $request->user();
         $phone_user = User::where('phone', $phone)->first();
-        $weixin_user = User::where('weixin_unionid', $loginUser->weixin_session_key)->first();
+        $weixin_user = User::where('weixin_unionid', $mini_program_user->weixin_session_key)->first();
         //不存在
         if(!$phone_user || !$weixin_user) {
             //更新登录用户的手机号码
-            $mini_program_user->update([
-                'phone' => $phone,
-            ]);
+            if(!$mini_program_user->phone) {
+                $mini_program_user->update([
+                    'phone' => $phone,
+                ]);
+            }
         }
         if($phone_user) {
             $phone_user->delete();
-            $mini_program_user->update([
-                'phone' => $phone,
-                'password' => $phone_user->password ?? ""
-            ]);
+            if(!$mini_program_user->phone) {
+                $mini_program_user->update([
+                    'phone' => $phone,
+                    'password' => $phone_user->password ?? ""
+                ]);
+            }
             foreach($phone_user->orders as $order) {
                 $order->update([
                     'userid' => $mini_program_user->id,
@@ -83,10 +87,12 @@ class UsersController extends Controller
         }
         if($weixin_user) {
             $weixin_user->delete();
-            $mini_program_user->update([
-                'weixin_openid' => $weixin_user->weixin_openid,
-                'weixin_unionid' => $weixin_user->weixin_unionid,
-            ]);
+            if(!$mini_program_user->weixin_openid && !$mini_program_user->weixin_unionid) {
+                $mini_program_user->update([
+                    'weixin_openid' => $weixin_user->weixin_openid,
+                    'weixin_unionid' => $weixin_user->weixin_unionid,
+                ]);
+            }
             foreach($weixin_user->orders as $order) {
                 $order->update([
                     'userid' => $mini_program_user->id,

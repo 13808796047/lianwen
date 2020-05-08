@@ -18,6 +18,7 @@ class CategoryController extends AdminController
     protected function grid()
     {
         return Grid::make(new Category(), function(Grid $grid) {
+//            $grid->withBorder();
             $grid->id('ID');
             $grid->name('名称');
             $grid->price_type('计价模式')->display(function($value) {
@@ -29,7 +30,7 @@ class CategoryController extends AdminController
             $grid->check_type('检测模式')->display(function($value) {
                 return \App\Models\Category::$checkTypeMap[$value];
             });
-            $grid->staus('状态')->switch();
+            $grid->status('状态')->switch();
             $grid->actions(function($actions) {
                 $actions->disableView();
             });
