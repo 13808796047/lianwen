@@ -37,7 +37,7 @@
  <!-- 二维码弹窗 -->
  <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
  id="lwqrcode" >
-	<div class="modal-dialog modal-dialog-centered" role="document" style="width:700px;">
+	<div class="modal-dialog modal-dialog-centered" role="document" style="width:650px;">
 		<div class="modal-content" >
 			<div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -49,7 +49,7 @@
       <img src="" id="qrimg">
 			</div>
 			<p style="text-align: center;font-size: 13px;margin-bottom: 12px;color:#FFA500;">提示：系统检测到您未添加微信提醒，请使用手机扫描以上二维码关注</p>
-      <p style="font-size:13px;">关注公众号以后您可以及时收到检测完成通知，同时可以在手机上查看检测报告</p>
+      <p style="font-size:13px;text-align:center;">关注公众号以后您可以及时收到检测完成通知，同时可以在手机上查看检测报告</p>
 		</div>
 	</div>
 </div>
