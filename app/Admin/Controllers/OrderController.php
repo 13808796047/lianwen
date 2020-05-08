@@ -28,6 +28,15 @@ class OrderController extends AdminController
             $grid->id->sortable();
             $grid->paginate(10);
             $grid->quickSearch('title', 'orderid', 'api_orderid', 'userid');
+            $grid->selector(function(Grid\Tools\Selector $selector) {
+                $selector->select('status', '状态', [
+                    0 => '未支付',
+                    1 => '待检测',
+                    2 => '排队中',
+                    3 => '检测中',
+                    4 => '检测完成'
+                ]);
+            });
             $grid->model()->orderBy('created_at', 'desc');
             $grid->column('orderid', '订单号')->display(function($orderid) {
                 $order = Order::query()->where('orderid', $orderid)->first();
