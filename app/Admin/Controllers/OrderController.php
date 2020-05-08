@@ -27,6 +27,7 @@ class OrderController extends AdminController
         return Grid::make(Order::with(['category']), function(Grid $grid) {
             $grid->id->sortable();
             $grid->paginate(10);
+            $grid->export()->disableExportAll();
             $grid->quickSearch('title', 'orderid', 'api_orderid', 'userid');
             $grid->selector(function(Grid\Tools\Selector $selector) {
                 $selector->select('status', '状态', [
