@@ -48,8 +48,8 @@
 			<div style="width: 200px;height: 200px;margin: 0 auto;">
       <img src="" id="qrimg">
 			</div>
-			<p style="text-align: center;font-size: 13px;margin-bottom: 12px;color:#FFA500;">提示：系统检测到您未添加微信提醒，请使用手机扫描以上二维码关注</p>
-      <p style="font-size:13px;text-align:center;">关注公众号以后您可以及时收到检测完成通知，同时可以在手机上查看检测报告</p>
+			<p style="text-align: center;font-size: 13px;margin-bottom: 5px;color:#FFA500;">提示：系统检测到您未添加微信提醒，请使用手机扫描以上二维码关注</p>
+      <p style="font-size:13px;text-align:center;margin-bottom:5px;">关注公众号以后您可以及时收到检测完成通知，同时可以在手机上查看检测报告</p>
 		</div>
 	</div>
 </div>
