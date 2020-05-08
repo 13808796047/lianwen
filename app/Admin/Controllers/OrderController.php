@@ -36,7 +36,19 @@ class OrderController extends AdminController
                     3 => '检测中',
                     4 => '检测完成'
                 ]);
+                $selector->select('pay_price', '支付价格', ['0-99', '100-199', '200-299'], function($query, $value) {
+                    $between = [
+                        [0, 99],
+                        [100, 199],
+                        [200, 299],
+                    ];
+
+                    $value = current($value);
+
+                    $query->whereBetween('pay_price', $between[$value]);
+                });
             });
+
             $grid->model()->orderBy('created_at', 'desc');
             $grid->column('orderid', '订单号')->display(function($orderid) {
                 $order = Order::query()->where('orderid', $orderid)->first();
