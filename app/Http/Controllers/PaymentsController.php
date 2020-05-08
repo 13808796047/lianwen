@@ -7,6 +7,7 @@ use App\Exceptions\InvalidRequestException;
 use App\Handlers\OpenidHandler;
 use App\Jobs\CheckOrderStatus;
 use App\Jobs\OrderPaidMsg;
+use App\Jobs\OrderPendingMsg;
 use App\Models\Order;
 use Carbon\Carbon;
 use EasyWeChatComposer\EasyWeChat;
