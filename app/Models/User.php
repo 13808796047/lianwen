@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Encore\Admin\Traits\DefaultDatetimeFormat;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,6 +12,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    use HasDateTimeFormatter;
     const COMMON_USER_TYPE = 0;
     const COMMON_AGENT_TYPE = 1;
     const SENIOR_AGENT_TYPE = 2;
