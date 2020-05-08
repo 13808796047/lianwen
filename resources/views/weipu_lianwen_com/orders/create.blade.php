@@ -36,9 +36,9 @@
   <!-- alert弹框结束 -->
  <!-- 二维码弹窗 -->
  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
- id="lwqrcode" style="width:500px;">
+ id="lwqrcode" >
 	<div class="modal-dialog modal-sm modal-dialog-centered" role="document" >
-		<div class="modal-content">
+		<div class="modal-content" style="width:500px;">
 			<div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
