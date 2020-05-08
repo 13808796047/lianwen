@@ -80,14 +80,10 @@ class AuthorizationsController extends Controller
         // 找到 openid 对应的用户
         $user = User::where('weixin_unionid', $data['unionid'])->first();
         $attributes['weixin_session_key'] = $data['session_key'];
-        $attributes['weapp_openid'] = $data['openid'];
-        $attributes['weapp_unionid'] = $data['unionid'];
+        $attributes['weixin_openid'] = $data['openid'];
+        $attributes['weixin_unionid'] = $data['unionid'];
         if(!$user) {
             $user = User::create($attributes);
-        } else {
-            if(!$user->weixin_session_key && !$user->weapp_openid && !$user->weapp_unionid) {
-                $user = User::update($attributes);
-            }
         }
         $token = auth('api')->login($user);
         return response()->json([
