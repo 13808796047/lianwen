@@ -29,7 +29,7 @@ class OfficialAccountController extends Controller
         $qrCode = $this->app->qrcode;
         $accessToken = $this->app->access_token;
         $token = $accessToken->getToken();
-        dd($token);
+        dd($url = $app->qrcode->url("gQEq8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyU2VoTHNMVkhjcW0xMDAwME0wN3MAAgS5EbVeAwQAAAAA"));
 //        $result = $qrCode->temporary(auth()->user()->id, 3600 * 24);
 //        $url = $qrCode->url($result['ticket']);
 //        return response(compact('url'), 200);
