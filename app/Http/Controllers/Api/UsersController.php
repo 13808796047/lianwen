@@ -61,9 +61,9 @@ class UsersController extends Controller
         //查询该手机号是否已经存在用户
         $mini_program_user = $request->user();
         $phone_user = User::where('phone', $phone)->first();
-        $weixin_user = User::where('weixin_unionid', $mini_program_user->weixin_session_key)->first();
+        $weixin_user = User::where('weixin_unionid', $mini_program_user->weixin_unionid)->first();
         //不存在
-        if(!$phone_user || !$weixin_user) {
+        if(!$phone_user && !$weixin_user) {
             //更新登录用户的手机号码
             if(!$mini_program_user->phone) {
                 $mini_program_user->update([
