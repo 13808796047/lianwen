@@ -76,6 +76,7 @@
             swal("注销成功!", {
               icon: "success",
             }).then(willDelete => {
+              console.log(willDelete,42)
               location.reload();
             });
           })
