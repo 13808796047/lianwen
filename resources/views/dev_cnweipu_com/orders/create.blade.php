@@ -34,6 +34,25 @@
   </div>
 </div>
   <!-- alert弹框结束 -->
+  <!-- 二维码弹窗 -->
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+ id="lwqrcode">
+	<div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<p style='font-size: 16px;font-weight: bold;text-align: center;'>证书生成成功！</p>
+			<div style="width: 200px;height: 200px;margin: 0 auto;">
+      <img src="" id="qrimg">
+			</div>
+			<p style="text-align: center;font-size: 13px;margin-bottom: 12px;">使用手机扫一扫，查看检测报告证书</p>
+		</div>
+	</div>
+</div>
+  <!-- 二维码弹窗结束 -->
   <div class="p-4 mb-24">
     <div class="grid grid-cols-6 gap-4">
       <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff;">
@@ -219,10 +238,12 @@
     $(() => {
       @unless(Auth::user()->weixin_openid)
       axios.get('{{ route('official_account.index') }}').then(res => {
-        swal({
-          // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-          content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
-        })
+        // swal({
+        //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+        //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
+        // })
+        $('#qrimg').attr('src',res.data.url)
+        $('#lwqrcode').modal('show')
       })
       @endunless
       let set = new Set();
