@@ -27,6 +27,7 @@ class OrderController extends AdminController
         return Grid::make(Order::with(['category']), function(Grid $grid) {
             $grid->id->sortable();
             $grid->paginate(10);
+            $grid->quickSearch('title', 'orderid', 'api_orderid', 'userid');
             $grid->model()->orderBy('created_at', 'desc');
             $grid->column('orderid', '订单号')->display(function($orderid) {
                 $order = Order::query()->where('orderid', $orderid)->first();
@@ -51,9 +52,8 @@ class OrderController extends AdminController
                 3 => 'warning',
                 4 => 'success',
             ]);
-            $grid->column('title', '标题')->display(function($title) {
-                return "<span style='color:blue'>$title</span>";
-            })->copyable()->width('200px');
+            $grid->column('title', '标题')->copyable()->width('200px');
+//            $grid->model()->sum("pay_price");
             $grid->column('writer', '作者')->width('100px');
             $grid->column('words', '字数')->width('50px');
             $grid->column('pay_price', '支付金额')->width('100px');
