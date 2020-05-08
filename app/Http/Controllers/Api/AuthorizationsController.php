@@ -84,6 +84,10 @@ class AuthorizationsController extends Controller
         $attributes['weapp_unionid'] = $data['unionid'];
         if(!$user) {
             $user = User::create($attributes);
+        } else {
+            if(!$user->weixin_session_key && !$user->weapp_openid && !$user->weapp_unionid) {
+                $user = User::update($attributes);
+            }
         }
         $token = auth('api')->login($user);
         return response()->json([
