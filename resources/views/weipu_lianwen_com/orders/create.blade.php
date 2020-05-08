@@ -17,7 +17,7 @@
   </style>
 @stop
 @section('content')
-     <!-- alert弹框 -->
+  <!-- alert弹框 -->
   <div class="modal fade bd-example-modal-sm" id="alertbot" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
@@ -34,6 +34,9 @@
   </div>
 </div>
   <!-- alert弹框结束 -->
+  <!-- 二维码弹框 -->
+
+  <!-- 二维码弹框结束 -->
   <div class="p-4 mb-24">
     <div class="grid grid-cols-6 gap-4">
       <div class="col-span-5 p-4" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);background:#fff;">
