@@ -73,6 +73,7 @@ class AuthorizationsController extends Controller
         $app = Factory::miniProgram($config);
         $code = $request->code;
         $data = $app->auth->session($code);
+        dd($data);
         // 如果结果错误，说明 code 已过期或不正确，返回 401 错误
         if(isset($data['errcode'])) {
             throw new AuthenticationException('code 不正确');
