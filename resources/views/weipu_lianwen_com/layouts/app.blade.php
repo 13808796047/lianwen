@@ -78,7 +78,7 @@
             }).then(willDelete => {
               // console.log(willDelete,42)
               // location.reload();
-              location.href('https://weipu.lianwen.com/')
+              location.href='https://weipu.lianwen.com'
             });
           })
         }
