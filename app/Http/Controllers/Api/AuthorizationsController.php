@@ -81,7 +81,7 @@ class AuthorizationsController extends Controller
         $user = User::where('weixin_unionid', $data['unionid'])->first();
         $attributes['weixin_session_key'] = $data['session_key'];
         $attributes['weapp_openid'] = $data['openid'];
-        $attributes['weixin_unionid'] = $data['unionid'];
+        $attributes['weapp_unionid'] = $data['unionid'];
         if(!$user) {
             $user = User::create($attributes);
         }

@@ -14,7 +14,7 @@ class AddWeappUnionidToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            //
+            $table->string('weapp_unionid')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddWeappUnionidToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function(Blueprint $table) {
-            //
+            $table->dropColumn('weapp_unionid');
         });
     }
 }
