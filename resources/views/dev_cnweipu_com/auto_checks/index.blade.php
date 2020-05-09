@@ -89,7 +89,7 @@
       //点击降重
       $('#reduce').click(function(){
         let words =  $('#words span').text();
-        let contents = $('#content').text()
+        let contents = document.getElementById('#content').value
         console.log(words,contents,31)
         if(words>5000){
           alert('字数大于5000')
