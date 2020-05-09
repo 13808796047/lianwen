@@ -10,7 +10,7 @@ class AutoCheckObserver
     public function created(AutoCheck $autoCheck)
     {
         if(!$autoCheck->content_after) {
-            dispatch(new TranslateEN($autoCheck));
+            dispatch(new TranslateEN($autoCheck))->delay(now()->addSeconds(3));
         }
     }
 }
