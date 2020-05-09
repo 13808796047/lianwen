@@ -95,11 +95,26 @@
           alert('字数大于5000')
           return
         }
-        axios.post('{{ route('auto_check.store') }}',{content:contents}).then(res => {
-          console.log(res, 3123123)
-        }).catch(err => {
-          console.log(err,312)
-        })
+        axios.post('{{ route('auto_check.store') }}',{content:contents})
+          .then(res => {
+            let id = res.data.id;
+            console.log(res);
+            if (!id) return;
+            return new Promise((r, rej) => {
+              let timer = setInterval(() => {
+                axios('/auto_check/' + id).then(resp => {
+                  if (resp.data.content_after) {
+                    // clear timer
+                    clearInterval(timer);
+                    r(resp);
+                  }
+                })
+              }, 1000);
+            })
+          }).then(res => {
+            console.log(res,3123123123);
+          })
+          .catch(err => console.log(err));
       })
     })
   </script>
