@@ -25,7 +25,7 @@ class TranslateEN implements ShouldQueue
     public function handle()
     {
         $result = app(AutoCheckHandler::class)->translate_en($this->autoCheck->content_before);
-        if($result_en['trans_result'][0]['dst']) {
+        if($result['trans_result'][0]['dst']) {
             dispatch(new TranslateCN($this->autoCheck))->delay(now()->addSeconds());
         }
     }

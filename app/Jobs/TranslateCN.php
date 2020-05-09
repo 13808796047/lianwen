@@ -27,8 +27,8 @@ class TranslateCN implements ShouldQueue
     public function handle()
     {
         $result = app(AutoCheckHandler::class)->translate_cn($this->autoCheck->content_before);
-        if($result_en['trans_result'][0]['dst']) {
-            DB::table('auto_checks')->where('id', $this->autoCheck->id)->update(['content_after' => $result_en['trans_result'][0]['dst']]);
+        if($result['trans_result'][0]['dst']) {
+            DB::table('auto_checks')->where('id', $this->autoCheck->id)->update(['content_after' => $result['trans_result'][0]['dst']]);
         }
     }
 }
