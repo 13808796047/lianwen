@@ -10,7 +10,6 @@ class AutoCheckObserver
     public function created(AutoCheck $autoCheck)
     {
         if(!$autoCheck->content_after) {
-            dd('dklfjalk');
             dispatch(new TranslateEN($autoCheck));
         }
     }
