@@ -6,7 +6,9 @@
   <!-- <link rel="stylesheet" href="{{asset('asset/css/index.css')}}"> -->
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <style>
-
+    .curfont {
+      font-size: 16px;
+    }
   </style>
 @stop
 @section('content')
@@ -39,5 +41,12 @@
       </div>
     </div>
     </div>
-
+@stop
+@section('scripts')
+  <script>
+    $(() => {
+      $('.navbar>div').removeClass('container').addClass('container-fluid')
+      $('#headerlw').addClass('curfont')
+    })
+  </script>
 @stop
