@@ -15,12 +15,11 @@ class AutoCheckController extends Controller
         return view('domained::auto_checks.index');
     }
 
-    public function store(AutoCheckRequest $request, AutoCheck $autoCheck)
+    public function store(AutoCheckRequest $request)
     {
-        $content = $request->input('content');
-        $data = $autoCheck->create([
-            'content_before' => $content,
-            'user_id' => $request->user()->id,
+        $data = AutoCheck::create([
+            'content_before' => $request->input('content'),
+            'user_id' => $request->user->id,
         ]);
         return response()->json([
             'data' => $data
