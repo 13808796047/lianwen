@@ -19,7 +19,7 @@ class AutoCheckController extends Controller
     {
         $data = AutoCheck::create([
             'content_before' => $request->input('content'),
-            'user_id' => $request->user->id,
+            'user_id' => $request->user()->id,
         ]);
         return response()->json([
             'data' => $data
