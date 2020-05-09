@@ -95,7 +95,7 @@
           alert('字数大于5000')
           return
         }
-        axios.post('{{ route('auto_check') }}',{content:contents}).then(res => {
+        axios.post('{{ route('auto_check.store') }}',{content:contents}).then(res => {
           console.log(res, 3123123)
         }).catch(err => {
           console.log(err,312)
