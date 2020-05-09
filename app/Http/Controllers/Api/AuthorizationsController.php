@@ -85,6 +85,11 @@ class AuthorizationsController extends Controller
         if(!$user) {
             $user = User::create($attributes);
         }
+        if(!$user->weapp_openid) {
+            $user->update([
+                'weapp_openid' => $data['openid'],
+            ]);
+        }
         $token = auth('api')->login($user);
         return response()->json([
             'access_token' => $token,
