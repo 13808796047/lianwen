@@ -18,7 +18,7 @@ class AutoCheckController extends Controller
     public function store(AutoCheckRequest $request, AutoCheck $autoCheck)
     {
         $content = $request->input('content');
-        $data = new AutoCheck([
+        $data = $autoCheck->create([
             'content_before' => $content,
             'user_id' => $request->user()->id,
         ]);
