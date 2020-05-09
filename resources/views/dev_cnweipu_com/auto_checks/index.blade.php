@@ -100,9 +100,9 @@
             let id = res.data.data.id;
             console.log(id,"fjsdkjfksaddfj");
             let timer = setInterval(() => {
-              debugger;
               axios('/auto_check/' + id).then(resp => {
-                if (resp.data.content_after) {
+                debugger;
+                if (resp.data.autoCheck.content_after) {
                   // clear timer
                   clearInterval(timer);
                   console.log(resp);
