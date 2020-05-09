@@ -6,22 +6,59 @@
   <!-- <link rel="stylesheet" href="{{asset('asset/css/index.css')}}"> -->
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <style>
-
+    .curfont {
+      font-size: 16px;
+    }
   </style>
 @stop
 @section('content')
-      <!--左边导航-->
-      <!--右边内容-->
+  <!-- 模态框 -->
+  <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="text-align:center;">
+          <p>本次操作将消耗1次降重次数</p>
+          <span>剩余次数：100</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="surecheck">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 模态框结束 -->
+   <!-- 模态框2 -->
+   <div class="modal fade bd-example-modal-sm" id="beingModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body" style="text-align:center;">
+          <div style="padding:20px 0">正在降重中，请勿刷新页面</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 模态框2结束-->
+    <!--左边导航-->
     <div class="main clearfix" id="jcafter">
       <div class="lbox fl">
       <p style="font-size: 20px;">请输入你要降重的内容。<span style="font-size:16px;color:#757575;">（最大支持5000字）</span></p>
-      <textarea name="" id=""
+      <textarea name="content" id="content"
         style="width:97%;height: 500px;padding:20px;box-sizing:border-box;font-size:20px;outline: none;border:1px solid #ddd;margin-top:20px"></textarea>
-      <p style="float: right;font-size: 13px;padding-right: 30px;">当前输入1000字</p>
+      <p style="float: right;font-size: 13px;padding-right: 30px;" id="words">当前输入<span>0</span>字</p>
       <p style="background-color: #4876FF;display: inline;padding: 5px 20px;color:#fff;text-align: center;font-size:15px;"
         id="reduce">
         一键降重</p>
     </div>
+    <!--右边内容-->
     <div class="rbox fr" style="min-height:900px;">
       <div class="box">
         <b>1、检测结果是否准确？</b>
@@ -39,5 +76,31 @@
       </div>
     </div>
     </div>
-
+@stop
+@section('scripts')
+  <script>
+    $(() => {
+      $('.navbar>div').removeClass('container').addClass('container-fluid')
+      $('#headerlw').addClass('curfont')
+      //获取字数
+      $("#content").bind('input',(e)=>{
+        $('#words span').html(e.target.value.length)
+      })
+      //点击降重
+      $('#reduce').click(function(){
+        let words =  $('#words span').text();
+        let contents = $('#content').val();
+        console.log(words,contents,31)
+        if(words>5000){
+          alert('字数大于5000')
+          return
+        }
+        axios.post('{{ route('auto_check.store') }}',{content:contents}).then(res => {
+          console.log(res, 3123123)
+        }).catch(err => {
+          console.log(err,312)
+        })
+      })
+    })
+  </script>
 @stop
