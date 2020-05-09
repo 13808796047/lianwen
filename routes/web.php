@@ -33,8 +33,8 @@ Route::group(['middleware' => 'auth'], function() {
     //异步上传文件
     Route::post('files', 'FilesController@store')->name('files.store');
     //自动查重
-    Route::get('auto_check', 'AutoCheckController@index')->name('auto.check.index');
-    Route::post('auto_check', 'AutoCheckController@store')->name('auto.check.store');
+    Route::get('auto_check', 'AutoCheckController@index')->name('auto_check.index');
+    Route::post('auto_check', 'AutoCheckController@store')->name('auto_check.store');
 
 });
 //下载
