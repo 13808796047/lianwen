@@ -82,8 +82,18 @@
     $(() => {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
+      //获取字数
       $("#content").bind('input',(e)=>{
         $('#words span').html(e.target.value.length)
+      })
+      //点击降重
+      $('#reduce').click(function(){
+        let words =  $('#words span').text();
+        console.log(words,31)
+        if(words>5000){
+          alert('字数大于5000')
+          return
+        }
       })
     })
   </script>
