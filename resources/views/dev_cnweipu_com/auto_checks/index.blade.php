@@ -100,19 +100,15 @@
             let id = res.data.id;
             console.log(res);
             if (!id) return;
-            return new Promise((r, rej) => {
-              let timer = setInterval(() => {
-                axios('/auto_check/' + id).then(resp => {
-                  if (resp.data.content_after) {
-                    // clear timer
-                    clearInterval(timer);
-                    r(resp);
-                  }
-                })
-              }, 1000);
-            })
-          }).then(res => {
-            console.log(res,3123123123);
+            let timer = setInterval(() => {
+              axios('/auto_check/' + id).then(resp => {
+                if (resp.data.content_after) {
+                  // clear timer
+                  clearInterval(timer);
+                  console.log(resp);
+                }
+              })
+            }, 1000);
           })
           .catch(err => console.log(err));
       })
