@@ -90,7 +90,7 @@
       $('#reduce').click(function(){
         let words =  $('#words span').text();
         let contents = $('#content').text()
-        console.log(words,31)
+        console.log(words,contents,31)
         if(words>5000){
           alert('字数大于5000')
           return
