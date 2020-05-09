@@ -21,6 +21,7 @@ class AutoCheckController extends Controller
             'content_before' => $request->input('content'),
             'user_id' => $request->user()->id,
         ]);
+        sleep(3);
         return response()->json([
             'data' => $data
         ]);
