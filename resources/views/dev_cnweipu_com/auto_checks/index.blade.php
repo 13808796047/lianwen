@@ -97,10 +97,10 @@
         }
         axios.post('{{ route('auto_check.store') }}',{content:contents})
           .then(res => {
-            let id = res.data.id;
-            console.log(res);
-            if (!id) return;
+            let id = res.data.data.id;
+            console.log(id,"fjsdkjfksaddfj");
             let timer = setInterval(() => {
+              debugger;
               axios('/auto_check/' + id).then(resp => {
                 if (resp.data.content_after) {
                   // clear timer
