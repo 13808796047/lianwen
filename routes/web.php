@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'], function() {
     //自动查重
     Route::get('auto_check', 'AutoCheckController@index')->name('auto_check.index');
     Route::post('auto_check', 'AutoCheckController@store')->name('auto_check.store');
-
+    Route::get('auto_check/{autoCheck}', 'AutoCheckController@show')->name('auto_check.show');
 });
 //下载
 Route::get('orders/{orderid}/download', 'OrdersController@download')

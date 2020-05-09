@@ -95,9 +95,9 @@ class OfficialAccountController extends Controller
                 'weixin_unionid' => $user['unionid'] ?: ''
             ]);
 
-            $loginUser->orders->update([
-                'userid' => $user->id,
-            ]);
+            foreach($user->orders as $order) {
+                $order->userid = $loginUser->id;
+            }
         } else {
             $loginUser->update(
                 [

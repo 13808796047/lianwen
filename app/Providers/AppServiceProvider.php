@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Handlers\BaiduPayHandler;
+use App\Models\AutoCheck;
+use App\Observers\AutoCheckObserver;
 use EasyWeChat\Factory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -143,5 +145,6 @@ class AppServiceProvider extends ServiceProvider
             $categories = DB::table('categories')->where('status', 1)->distinct()->select(['classname', 'classid'])->get();
             $view->with('categories', $categories);
         });
+        AutoCheck::observe(AutoCheckObserver::class);
     }
 }

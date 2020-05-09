@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Handlers\AutoCheckHandler;
+use App\Models\AutoCheck;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -14,19 +15,17 @@ class TranslateEN implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $autoCheck;
-    protected $autoHandle;
 
-    public function __construct()
+    public function __construct(AutoCheck $autoCheck)
     {
         $this->autoCheck = $autoCheck;
-        $this->autoHandle = app(AutoCheckHandler::class);
     }
 
 
     public function handle()
     {
-        $result = $this->autoHandle->translate_en($this->autoCheck->content_before);
-        if($result_en['trans_result'][0]['dst']) {
+        $result = app(AutoCheckHandler::class)->translate_en($this->autoCheck->content_before);
+        if($result['trans_result'][0]['dst']) {
             dispatch(new TranslateCN($this->autoCheck))->delay(now()->addSeconds());
         }
     }
