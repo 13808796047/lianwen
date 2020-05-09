@@ -106,8 +106,8 @@
                     clearInterval(timer);
                     r(resp);
                   }
-                }
-              }), 1000);
+                })
+              }, 1000);
             })
           }).then(res => {
             console.log(res,3123123123);
