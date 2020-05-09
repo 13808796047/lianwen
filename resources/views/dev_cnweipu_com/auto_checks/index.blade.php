@@ -89,11 +89,17 @@
       //点击降重
       $('#reduce').click(function(){
         let words =  $('#words span').text();
+        let contents = $('content').text()
         console.log(words,31)
         if(words>5000){
           alert('字数大于5000')
           return
         }
+        axios.post('{{ route('auto_check') }}',{content:contents}).then(res => {
+          console.log(res, 3123123)
+        }).catch(err => {
+          console.log(err,312)
+        })
       })
     })
   </script>
