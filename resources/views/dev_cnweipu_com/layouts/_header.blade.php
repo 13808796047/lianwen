@@ -304,9 +304,9 @@
         <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 4))) }}">
         @guest
           <a class="nav-link" href="javascript:;" data-toggle="modal"
-                                  data-target="#staticBackdrop">查看报告</a>
+                                  data-target="#staticBackdrop">查看是报告</a>
         @else
-        <a class="nav-link" href="{{route('orders.index')}}">查看报告</a>
+        <a class="nav-link" href="{{route('orders.index')}}">查看是报告</a>
         @endguest
         </li>
         <li class="nav-item px-4 {{ active_class((if_route('categories.show') && if_route_param('classid', 4))) }}">
