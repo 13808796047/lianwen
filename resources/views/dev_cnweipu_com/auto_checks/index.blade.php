@@ -12,13 +12,18 @@
 @section('content')
       <!--左边导航-->
       <!--右边内容-->
-    <div class="main clearfix">
-      石首市发生
+    <div class="main clearfix" id="jcafter">
+      <div class="lbox fl">
+      <p style="font-size: 20px;">请输入你要降重的内容。<span style="font-size:16px;color:#757575;">（最大支持5000字）</span></p>
+      <textarea name="" id=""
+        style="width:97%;height: 500px;padding:20px;box-sizing:border-box;font-size:20px;outline: none;border:1px solid #ddd;margin-top:20px"></textarea>
+      <p style="float: right;font-size: 13px;padding-right: 30px;">当前输入1000字</p>
+      <p style="background-color: #4876FF;display: inline;padding: 5px 20px;color:#fff;text-align: center;font-size:15px;"
+        id="reduce">
+        一键降重</p>
     </div>
-    <div class="rbox fr">
-      <div class="tit">在线客服</div>
-      <div class="box">客服微信:cx5078</div>
-      <div class="box mt10">
+    <div class="rbox fr" style="min-height:900px;">
+      <div class="box">
         <b>1、检测结果是否准确？</b>
         <p>如果你们学校也是用万方检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。</p>
         <b>2、检测需要多少时间？</b>
