@@ -85,7 +85,6 @@ class AuthorizationsController extends Controller
         if(!$user) {
             $user = User::create($attributes);
         }
-        dd($data['openid']);
         if($user->weapp_openid == '') {
             $user->update([
                 'weapp_openid' => $data['openid'],
