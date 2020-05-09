@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Handlers\AutoCheckHandler;
+use App\Models\AutoCheck;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -15,7 +16,7 @@ class TranslateEN implements ShouldQueue
 
     protected $autoCheck;
 
-    public function __construct()
+    public function __construct(AutoCheck $autoCheck)
     {
         $this->autoCheck = $autoCheck;
     }
