@@ -27,6 +27,29 @@ class OrderController extends AdminController
         return Grid::make(Order::with(['category']), function(Grid $grid) {
             $grid->id->sortable();
             $grid->paginate(10);
+            $grid->export()->disableExportAll();
+            $grid->quickSearch('title', 'orderid', 'api_orderid', 'userid');
+            $grid->selector(function(Grid\Tools\Selector $selector) {
+                $selector->select('status', '状态', [
+                    0 => '未支付',
+                    1 => '待检测',
+                    2 => '排队中',
+                    3 => '检测中',
+                    4 => '检测完成'
+                ]);
+                $selector->select('pay_price', '支付价格', ['0-99', '100-199', '200-299'], function($query, $value) {
+                    $between = [
+                        [0, 99],
+                        [100, 199],
+                        [200, 299],
+                    ];
+
+                    $value = current($value);
+
+                    $query->whereBetween('pay_price', $between[$value]);
+                });
+            });
+
             $grid->model()->orderBy('created_at', 'desc');
             $grid->column('orderid', '订单号')->display(function($orderid) {
                 $order = Order::query()->where('orderid', $orderid)->first();
@@ -51,9 +74,8 @@ class OrderController extends AdminController
                 3 => 'warning',
                 4 => 'success',
             ]);
-            $grid->column('title', '标题')->display(function($title) {
-                return "<span style='color:blue'>$title</span>";
-            })->copyable()->width('200px');
+            $grid->column('title', '标题')->copyable()->width('200px');
+//            $grid->model()->sum("pay_price");
             $grid->column('writer', '作者')->width('100px');
             $grid->column('words', '字数')->width('50px');
             $grid->column('pay_price', '支付金额')->width('100px');
