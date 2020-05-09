@@ -97,22 +97,18 @@
         }
         axios.post('{{ route('auto_check.store') }}',{content:contents})
           .then(res => {
-            let id = res.data.id;
-            console.log(res);
-            if (!id) return;
-            return new Promise((r, rej) => {
-              let timer = setInterval(() => {
-                axios('/auto_check/' + id).then(resp => {
-                  if (resp.data.content_after) {
-                    // clear timer
-                    clearInterval(timer);
-                    r(resp);
-                  }
-                })
-              }, 1000);
-            })
-          }).then(res => {
-            console.log(res,3123123123);
+            let id = res.data.data.id;
+            console.log(id,"fjsdkjfksaddfj");
+            let timer = setInterval(() => {
+              axios('/auto_check/' + id).then(resp => {
+                debugger;
+                if (resp.data.autoCheck.content_after) {
+                  // clear timer
+                  clearInterval(timer);
+                  console.log(resp);
+                }
+              })
+            }, 1000);
           })
           .catch(err => console.log(err));
       })
