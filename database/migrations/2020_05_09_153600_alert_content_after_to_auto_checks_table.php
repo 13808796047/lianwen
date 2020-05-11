@@ -14,7 +14,7 @@ class AlertContentAfterToAutoChecksTable extends Migration
     public function up()
     {
         Schema::table('auto_checks', function(Blueprint $table) {
-            $table->string('content_after')->nullable()->change();
+            $table->longText('content_after')->nullable()->change();
         });
     }
 
