@@ -25,7 +25,7 @@
         </div>
         <div class="modal-body" style="text-align:center;">
           <p>本次操作将消耗1次降重次数</p>
-          <span>剩余次数：100</span>
+          <span>剩余次数：{{ auth()->user()->jc_times}}</span>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
