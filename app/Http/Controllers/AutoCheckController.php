@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InternalException;
 use App\Handlers\AutoCheckHandler;
 use App\Http\Requests\AutoCheckRequest;
 use App\Models\AutoCheck;
@@ -20,7 +21,7 @@ class AutoCheckController extends Controller
     public function store(AutoCheckRequest $request)
     {
         if(Auth::user()->jc_times <= 0) {
-            throw new InvalidArgumentException('您的降重次数不足!');
+            throw new InternalException('您的降重次数不足!');
         }
         $data = AutoCheck::create([
             'content_before' => $request->input('content'),
