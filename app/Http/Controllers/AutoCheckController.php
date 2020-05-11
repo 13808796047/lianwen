@@ -26,7 +26,6 @@ class AutoCheckController extends Controller
             'content_before' => $request->input('content'),
             'user_id' => $request->user()->id,
         ]);
-
         return response(compact('data'), 200);
     }
 
