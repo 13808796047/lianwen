@@ -30,6 +30,12 @@ class User extends Authenticatable implements JWTSubject
         return $this->id == $model->userid;
     }
 
+    //减少降重次数
+    public function decreaseJcTimes()
+    {
+        return $this->decrement('jc_times', 1);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
