@@ -77,7 +77,7 @@
     </div>
     </div>
     <!-- 降重成功后 -->
-    <div style="padding: 50px; display: none;" id="jclater">
+    <div style="padding: 50px; display: none;min-height:1000px;" id="jclater">
     <div style="display: flex;">
       <div style="width: 50%;">
         <p style="font-size: 17px;font-weight: bold;">降重前</p>
