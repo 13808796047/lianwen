@@ -101,6 +101,7 @@
   </div>
 @stop
 @section('scripts')
+<script type="text/javascript" src="{{ asset('asset/js/diff.js') }}"></script>
   <script>
     $(() => {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
