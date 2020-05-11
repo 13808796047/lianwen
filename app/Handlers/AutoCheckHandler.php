@@ -32,30 +32,50 @@ class AutoCheckHandler
     {
         $sign = md5($this->appid . $text . $this->salt . $this->key);
 
-        $query = http_build_query([
-            'q' => $text,
-            "from" => 'zh',
-            "to" => "en",
-            "appid" => $this->appid,
-            "salt" => $this->salt,
-            "sign" => $sign
-        ]);
-        $response = $this->http->request("POST", $this->api, [$query]);
+//        $query = http_build_query([
+//            'q' => $text,
+//            "from" => 'zh',
+//            "to" => "en",
+//            "appid" => $this->appid,
+//            "salt" => $this->salt,
+//            "sign" => $sign
+//        ]);
+        $form = [
+            'form_params' => [
+                'q' => $text,
+                "from" => 'zh',
+                "to" => "en",
+                "appid" => $this->appid,
+                "salt" => $this->salt,
+                "sign" => $sign
+            ]
+        ];
+        $response = $this->http->request("POST", $this->api, $form);
         return json_decode($response->getBody(), true);
     }
 
     public function translate_cn($text)
     {
         $sign = md5($this->appid . $text . $this->salt . $this->key);
-        $query = http_build_query([
-            'q' => $text,
-            "from" => 'en',
-            "to" => "zh",
-            "appid" => $this->appid,
-            "salt" => $this->salt,
-            "sign" => $sign
-        ]);
-        $response = $this->http->request("POST", $this->api, [$query]);
+//        $query = http_build_query([
+//            'q' => $text,
+//            "from" => 'en',
+//            "to" => "zh",
+//            "appid" => $this->appid,
+//            "salt" => $this->salt,
+//            "sign" => $sign
+//        ]);
+        $form = [
+            'form_params' => [
+                'q' => $text,
+                "from" => 'en',
+                "to" => "zh",
+                "appid" => $this->appid,
+                "salt" => $this->salt,
+                "sign" => $sign
+            ]
+        ];
+        $response = $this->http->request("POST", $this->api, $form);
         return json_decode($response->getBody(), true);
     }
 }
