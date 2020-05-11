@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Handlers\AutoCheckHandler;
 use App\Http\Requests\AutoCheckRequest;
 use App\Models\AutoCheck;
+use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class AutoCheckController extends Controller
 {
@@ -21,6 +23,9 @@ class AutoCheckController extends Controller
             'content_before' => $request->input('content'),
             'user_id' => $request->user()->id,
         ]);
+        if(Auth::user()->decreaseJcTimes() <= 0) {
+            throw new InvalidArgumentException('您的降重次数不足!');
+        }
         return response(compact('data'), 200);
     }
 
