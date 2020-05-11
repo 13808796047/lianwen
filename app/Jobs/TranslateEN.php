@@ -29,6 +29,6 @@ class TranslateEN implements ShouldQueue
         foreach($result['trans_result'] as $value) {
             $enContent .= $value['dst'];
         }
-        dispatch(new TranslateCN($this->autoCheck, $enContent))->delay(now()->addSeconds(1));
+        dispatch(new TranslateCN($this->autoCheck, $enContent))->delay(now()->addSeconds(3));
     }
 }
