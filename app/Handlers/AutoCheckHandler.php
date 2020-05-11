@@ -19,7 +19,7 @@ class AutoCheckHandler
     public function __construct()
     {
         $this->http = new Client;
-        $this->api = 'http://api.fanyi.baidu.com/api/trans/vip/translate?';
+        $this->api = 'http://api.fanyi.baidu.com/api/trans/vip/translate';
         $config_arr = ['baidu_translate_one', 'baidu_translate_two', 'baidu_translate_tree', 'baidu_translate_four'];
         $config = array_rand($config_arr, 1);
         $this->appid = config('services.' . $config_arr[$config] . '.appid');
@@ -40,7 +40,7 @@ class AutoCheckHandler
             "salt" => $this->salt,
             "sign" => $sign
         ]);
-        $response = $this->http->get($this->api . $query);
+        $response = $this->http->request("POST", $this->api, [$query]);
         return json_decode($response->getBody(), true);
     }
 
@@ -55,7 +55,7 @@ class AutoCheckHandler
             "salt" => $this->salt,
             "sign" => $sign
         ]);
-        $response = $this->http->get($this->api . $query);
+        $response = $this->http->request("POST", $this->api, [$query]);
         return json_decode($response->getBody(), true);
     }
 }
