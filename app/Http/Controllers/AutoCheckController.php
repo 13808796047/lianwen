@@ -6,6 +6,7 @@ use App\Exceptions\InternalException;
 use App\Exceptions\InvalidRequestException;
 use App\Handlers\AutoCheckHandler;
 use App\Http\Requests\AutoCheckRequest;
+use App\Http\Resources\AutoCheckResource;
 use App\Models\AutoCheck;
 use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
@@ -35,6 +36,6 @@ class AutoCheckController extends Controller
 
     public function show(AutoCheck $autoCheck)
     {
-        return response(compact('autoCheck'), 200);
+        return new AutoCheckResource($autoCheck);
     }
 }
