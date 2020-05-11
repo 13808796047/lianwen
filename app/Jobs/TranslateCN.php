@@ -17,6 +17,7 @@ class TranslateCN implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $autoCheck;
+    public $tries = 2;
 
     public function __construct(AutoCheck $autoCheck)
     {
