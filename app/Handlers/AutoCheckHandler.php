@@ -33,7 +33,7 @@ class AutoCheckHandler
         $sign = md5($this->appid . $text . $this->salt . $this->key);
 
         $array = [
-            'json' => [
+            'form_params' => [
                 'q' => $text,
                 "from" => 'zh',
                 "to" => "en",
@@ -50,7 +50,7 @@ class AutoCheckHandler
     {
         $sign = md5($this->appid . $text . $this->salt . $this->key);
         $array = [
-            'json' => [
+            'form_params' => [
                 'q' => $text,
                 "from" => 'en',
                 "to" => "zh",
