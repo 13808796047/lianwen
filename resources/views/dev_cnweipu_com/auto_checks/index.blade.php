@@ -95,23 +95,52 @@
           alert('字数大于5000')
           return
         }
-        axios.post('{{ route('auto_check.store') }}',{content:contents})
+        // axios.post('{{ route('auto_check.store') }}',{content:contents})
+        //   .then(res => {
+        //     let id = res.data.data.id;
+        //     let timer = setInterval(() => {
+        //       axios('/auto_check/' + id).then(resp => {
+        //         // debugger;
+        //         if (resp.data.autoCheck.content_after) {
+        //           // clear timer
+        //           clearInterval(timer);
+        //           console.log(resp);
+        //         }
+        //       })
+        //     }, 1000);
+        //   })
+        //   .catch(err => console.log(err));
+        $('#exampleModal').modal('show')
+      })
+       //点击确认显示正在降重弹框
+      $("#surecheck").click(function () {
+        $('#exampleModal').modal('hide')
+        $('#beingModal').modal('show')
+        // setInterval(() => {
+        //   $('#beingModal').modal('hide')
+        //   $('#jcafter').css('display', 'none')
+        //   $("#jclater").css('display', 'block')
+        // }, 3000);
+        let contents = $('#content').val();
+         axios.post('{{ route('auto_check.store') }}',{content:contents})
           .then(res => {
             let id = res.data.data.id;
-            console.log(id,"fjsdkjfksaddfj");
             let timer = setInterval(() => {
               axios('/auto_check/' + id).then(resp => {
-                debugger;
+                // debugger;
                 if (resp.data.autoCheck.content_after) {
                   // clear timer
                   clearInterval(timer);
                   console.log(resp);
+                  $('#beingModal').modal('hide')
+                  $('#jcafter').css('display', 'none')
+                  $("#jclater").css('display', 'block')
                 }
               })
             }, 1000);
           })
           .catch(err => console.log(err));
-      })
+  })
     })
   </script>
 @stop
