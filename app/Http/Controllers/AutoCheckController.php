@@ -35,6 +35,7 @@ class AutoCheckController extends Controller
 
     public function show(AutoCheck $autoCheck)
     {
-        return response(compact('autoCheck'), 200);
+        $user = Auth::user();
+        return response(compact('autoCheck', 'user'), 200);
     }
 }
