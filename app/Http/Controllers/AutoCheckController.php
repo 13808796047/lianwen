@@ -31,7 +31,7 @@ class AutoCheckController extends Controller
             'user_id' => $user->id,
         ]);
         $user->decreaseJcTimes();
-        return response(compact('data'), 200);
+        return new AutoCheckResource($data);
     }
 
     public function show(AutoCheck $autoCheck)

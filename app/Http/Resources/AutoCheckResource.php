@@ -15,7 +15,7 @@ class AutoCheckResource extends JsonResource
     public function toArray($request)
     {
         $data = parent::toArray($request);
-        $data['user'] = $this->user();
+        $data['jc_times'] = $this->user->jc_times;
         $data['content_after'] = $this->content_after ?? '';
         return $data;
     }
