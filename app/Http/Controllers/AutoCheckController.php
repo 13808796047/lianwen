@@ -19,14 +19,17 @@ class AutoCheckController extends Controller
 
     public function store(AutoCheckRequest $request)
     {
-        $data = AutoCheck::create([
-            'content_before' => $request->input('content'),
-            'user_id' => $request->user()->id,
-        ]);
         if(Auth::user()->decreaseJcTimes() <= 0) {
-            throw new InvalidArgumentException('您的降重次数不足!');
+            return response([
+                'message' => '您的降重次数不足!'
+            ], 500);
+        } else {
+            $data = AutoCheck::create([
+                'content_before' => $request->input('content'),
+                'user_id' => $request->user()->id,
+            ]);
+            return response(compact('data'), 200);
         }
-        return response(compact('data'), 200);
     }
 
     public function show(AutoCheck $autoCheck)
