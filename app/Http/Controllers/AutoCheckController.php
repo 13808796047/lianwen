@@ -18,6 +18,7 @@ class AutoCheckController extends Controller
     public function store(AutoCheckRequest $request)
     {
         $result = app(AutoCheckHandler::class)->translate_en($request->input('content'));
+        dd($result);
         $enContent = '';
         foreach($result['trans_result'] as $value) {
             $enContent .= $value['dst'];
