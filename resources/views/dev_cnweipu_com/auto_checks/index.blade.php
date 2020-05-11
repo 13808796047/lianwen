@@ -96,7 +96,7 @@
     <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
-      <p>剩余次数:<span id="jc_times"></span></p><span style="color:#4876FF;margin-left: 10px;">增加次数</span>
+      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;">增加次数</span>
     </div>
   </div>
 @stop
@@ -159,7 +159,7 @@
                   $('#jcafter').css('display', 'none')
                   $("#content_after").val(resp.data.content_before)
                   $("#content_later").val(resp.data.content_after)
-                  $('#jc_times').val(resp.data.jc_times)
+                  $('#jc_time').val(resp.data.jc_times)
                   $("#jclater").css('display', 'block')
                 }
               })
