@@ -32,16 +32,8 @@ class AutoCheckHandler
     {
         $sign = md5($this->appid . $text . $this->salt . $this->key);
 
-//        $query = http_build_query([
-//            'q' => $text,
-//            "from" => 'zh',
-//            "to" => "en",
-//            "appid" => $this->appid,
-//            "salt" => $this->salt,
-//            "sign" => $sign
-//        ]);
-        $form = [
-            'form_params' => [
+        $array = [
+            'json' => [
                 'q' => $text,
                 "from" => 'zh',
                 "to" => "en",
@@ -50,23 +42,15 @@ class AutoCheckHandler
                 "sign" => $sign
             ]
         ];
-        $response = $this->http->request("POST", $this->api, $form);
+        $response = $this->http->request("POST", $this->api, $array);
         return json_decode($response->getBody(), true);
     }
 
     public function translate_cn($text)
     {
         $sign = md5($this->appid . $text . $this->salt . $this->key);
-//        $query = http_build_query([
-//            'q' => $text,
-//            "from" => 'en',
-//            "to" => "zh",
-//            "appid" => $this->appid,
-//            "salt" => $this->salt,
-//            "sign" => $sign
-//        ]);
-        $form = [
-            'form_params' => [
+        $array = [
+            'json' => [
                 'q' => $text,
                 "from" => 'en',
                 "to" => "zh",
@@ -75,7 +59,7 @@ class AutoCheckHandler
                 "sign" => $sign
             ]
         ];
-        $response = $this->http->request("POST", $this->api, $form);
+        $response = $this->http->request("POST", $this->api, $array);
         return json_decode($response->getBody(), true);
     }
 }
