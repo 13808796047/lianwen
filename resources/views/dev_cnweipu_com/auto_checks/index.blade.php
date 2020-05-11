@@ -79,7 +79,7 @@
     <!-- 降重成功后 -->
     <div style="padding: 50px; display: none;min-height:1000px;" id="jclater">
     <div style="display: flex;">
-      <div style="width: 50%;">
+      <!-- <div style="width: 50%;">
         <p style="font-size: 17px;font-weight: bold;">降重前</p>
         <textarea name="" id="content_after"
           style="width:100%;height: 550px;box-sizing: border-box;overflow-x:visible;border:1px solid #ccc;outline: none;"></textarea>
@@ -88,7 +88,13 @@
         <p style="font-size: 17px;font-weight: bold;">降重后</p>
         <textarea name="" id="content_later" style="width: 100%;height: 550px;border: none;outline: none;border:1px solid #ccc"
           readonly></textarea>
-      </div>
+      </div> -->
+      <table>
+        <tr>
+            <td id="content_after"></td>
+            <td id="content_later"></td>
+        </tr>
+      </table>
     </div>
     <p style="font-size: 13px;margin-top: 10px;text-align: center;">
       注：本工具是通过运用AI技术对原文进行降重，结果仅供参考，需要稍作调整让语句更通顺。如需高质量人工降重请联系微信：13878811985
