@@ -159,7 +159,7 @@
                   $('#jcafter').css('display', 'none')
                   $("#content_after").val(resp.data.data.content_before)
                   $("#content_later").val(resp.data.data.content_after)
-                  $('#jc_time').val(resp.data.data.jc_times)
+                  $('#jc_time').html(resp.data.data.jc_times)
                   $("#jclater").css('display', 'block')
                 }
               })
