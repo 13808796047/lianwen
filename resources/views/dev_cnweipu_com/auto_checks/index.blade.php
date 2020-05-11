@@ -76,6 +76,29 @@
       </div>
     </div>
     </div>
+    <!-- 降重成功后 -->
+    <div style="padding: 50px; display: none;" id="jclater">
+    <div style="display: flex;">
+      <div style="width: 50%;">
+        <p style="font-size: 17px;font-weight: bold;">降重前</p>
+        <textarea name="" id="content_after"
+          style="width:100%;height: 550px;box-sizing: border-box;overflow-x:visible;border:1px solid #ccc;outline: none;"></textarea>
+      </div>
+      <div style="width: 50%;">
+        <p style="font-size: 17px;font-weight: bold;">降重后</p>
+        <textarea name="" id="content_later" style="width: 100%;height: 550px;border: none;outline: none;border:1px solid #ccc"
+          readonly></textarea>
+      </div>
+    </div>
+    <p style="font-size: 13px;margin-top: 10px;text-align: center;">
+      注：本工具是通过运用AI技术对原文进行降重，结果仅供参考，需要稍作调整让语句更通顺。如需高质量人工降重请联系微信：13878811985
+    </p>
+    <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;">
+      再来一篇</p>
+    <div style="display: flex;justify-content: center;margin-top: 15px;">
+      <p>剩余次数:99</p><span style="color:#4876FF;margin-left: 10px;">增加次数</span>
+    </div>
+  </div>
 @stop
 @section('scripts')
   <script>
@@ -122,7 +145,7 @@
         //   $("#jclater").css('display', 'block')
         // }, 3000);
         let contents = $('#content').val();
-         axios.post('{{ route('auto_check.store') }}',{content:contents})
+        axios.post('{{ route('auto_check.store') }}',{content:contents})
           .then(res => {
             let id = res.data.data.id;
             let timer = setInterval(() => {
@@ -134,6 +157,8 @@
                   console.log(resp);
                   $('#beingModal').modal('hide')
                   $('#jcafter').css('display', 'none')
+                  $("#content_after").val(resp.data.autoCheck.content_before)
+                  $("#content_before").val(resp.data.autoCheck.content_after)
                   $("#jclater").css('display', 'block')
                 }
               })
