@@ -121,6 +121,7 @@
         //   $('#jcafter').css('display', 'none')
         //   $("#jclater").css('display', 'block')
         // }, 3000);
+        let contents = $('#content').val();
          axios.post('{{ route('auto_check.store') }}',{content:contents})
           .then(res => {
             let id = res.data.data.id;
