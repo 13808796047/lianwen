@@ -17,7 +17,6 @@ class AutoCheckController extends Controller
 
     public function store(AutoCheckRequest $request)
     {
-        dd(app(AutoCheckHandler::class)->translate_en($request->input('content')));
         $data = AutoCheck::create([
             'content_before' => $request->input('content'),
             'user_id' => $request->user()->id,
