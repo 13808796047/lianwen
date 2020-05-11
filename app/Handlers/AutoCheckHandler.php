@@ -30,6 +30,7 @@ class AutoCheckHandler
 
     public function translate_en($text)
     {
+        dd($this->appid);
         $sign = md5($this->appid . $text . $this->salt . $this->key);
 
         $array = [
