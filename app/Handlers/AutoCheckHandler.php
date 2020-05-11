@@ -20,17 +20,16 @@ class AutoCheckHandler
     {
         $this->http = new Client;
         $this->api = 'http://api.fanyi.baidu.com/api/trans/vip/translate';
-        $config_arr = ['baidu_translate_one', 'baidu_translate_two', 'baidu_translate_tree', 'baidu_translate_four'];
-        $config = array_rand($config_arr, 1);
-        $this->appid = config('services.' . $config_arr[$config] . '.appid');
-        $this->key = config('services.' . $config_arr[$config] . '.key');
+//        $config_arr = ['baidu_translate_one', 'baidu_translate_two', 'baidu_translate_tree', 'baidu_translate_four'];
+        $config = random_int(1, 4);
+        $this->appid = config('services.baidu_translate_' . $config . '.appid');
+        $this->key = config('services.baidu_translate_' . $config . '.key');
         //根据文档生成sign
         $this->salt = time();
     }
 
     public function translate_en($text)
     {
-        dd($this->appid);
         $sign = md5($this->appid . $text . $this->salt . $this->key);
 
         $array = [
