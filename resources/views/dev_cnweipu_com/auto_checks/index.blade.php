@@ -151,15 +151,15 @@
             let timer = setInterval(() => {
               axios('/auto_check/' + id).then(resp => {
                 // debugger;
-                if (resp.data.content_after) {
+                if (resp.data.data.content_after) {
                   // clear timer
                   clearInterval(timer);
                   console.log(resp);
                   $('#beingModal').modal('hide')
                   $('#jcafter').css('display', 'none')
-                  $("#content_after").val(resp.data.content_before)
-                  $("#content_later").val(resp.data.content_after)
-                  $('#jc_time').val(resp.data.jc_times)
+                  $("#content_after").val(resp.data.data.content_before)
+                  $("#content_later").val(resp.data.data.content_after)
+                  $('#jc_time').val(resp.data.data.jc_times)
                   $("#jclater").css('display', 'block')
                 }
               })
