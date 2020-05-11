@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InternalException;
+use App\Exceptions\InvalidRequestException;
 use App\Handlers\AutoCheckHandler;
 use App\Http\Requests\AutoCheckRequest;
+use App\Http\Resources\AutoCheckResource;
 use App\Models\AutoCheck;
 use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
@@ -19,18 +22,20 @@ class AutoCheckController extends Controller
 
     public function store(AutoCheckRequest $request)
     {
+        $user = $request->user();
+        if($user->jc_times <= 0) {
+            throw new InvalidRequestException('您的降重次数不足!');
+        }
         $data = AutoCheck::create([
             'content_before' => $request->input('content'),
-            'user_id' => $request->user()->id,
+            'user_id' => $user->id,
         ]);
-        if(Auth::user()->decreaseJcTimes() <= 0) {
-            throw new InvalidArgumentException('您的降重次数不足!');
-        }
-        return response(compact('data'), 200);
+        $user->decreaseJcTimes();
+        return new AutoCheckResource($data);
     }
 
     public function show(AutoCheck $autoCheck)
     {
-        return response(compact('autoCheck'), 200);
+        return new AutoCheckResource($autoCheck);
     }
 }
