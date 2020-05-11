@@ -158,7 +158,7 @@
                   $('#beingModal').modal('hide')
                   $('#jcafter').css('display', 'none')
                   $("#content_after").val(resp.data.autoCheck.content_before)
-                  $("#content_before").val(resp.data.autoCheck.content_after)
+                  $("#content_later").val(resp.data.autoCheck.content_after)
                   $("#jclater").css('display', 'block')
                 }
               })
