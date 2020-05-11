@@ -30,19 +30,19 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     //百度翻译
-    "baidu_translate_one" => [
+    "baidu_translate_1" => [
         "appid" => env('BAIDU_TRANSLATE_APPID_ONE'),
         "key" => env("BAIDU_TRANSLATE_KEY_ONE"),
     ],
-    "baidu_translate_two" => [
+    "baidu_translate_2" => [
         "appid" => env('BAIDU_TRANSLATE_APPID_TWO'),
         "key" => env("BAIDU_TRANSLATE_KEY_TWO"),
     ],
-    "baidu_translate_three" => [
+    "baidu_translate_3" => [
         "appid" => env('BAIDU_TRANSLATE_APPID_THREE'),
         "key" => env("BAIDU_TRANSLATE_KEY_THREE"),
     ],
-    "baidu_translate_four" => [
+    "baidu_translate_4" => [
         "appid" => env('BAIDU_TRANSLATE_APPID_FOUR'),
         "key" => env("BAIDU_TRANSLATE_KEY_FOUR"),
     ],

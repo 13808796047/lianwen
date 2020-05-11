@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlertContentAfterToAutoChecksTable extends Migration
+class AddJcTimesToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AlertContentAfterToAutoChecksTable extends Migration
      */
     public function up()
     {
-        Schema::table('auto_checks', function(Blueprint $table) {
-            $table->longText('content_after')->nullable()->change();
+        Schema::table('users', function(Blueprint $table) {
+            $table->unsignedInteger('jc_times')->default(2);
         });
     }
 
@@ -25,8 +25,8 @@ class AlertContentAfterToAutoChecksTable extends Migration
      */
     public function down()
     {
-        Schema::table('auto_checks', function(Blueprint $table) {
-            $table->string('content_after')->change();
+        Schema::table('users', function(Blueprint $table) {
+            $table->dropColumn('jc_times');
         });
     }
 }

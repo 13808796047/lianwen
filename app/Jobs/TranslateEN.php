@@ -15,7 +15,6 @@ class TranslateEN implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $autoCheck;
-    public $tries = 2;
 
     public function __construct(AutoCheck $autoCheck)
     {
@@ -26,8 +25,10 @@ class TranslateEN implements ShouldQueue
     public function handle()
     {
         $result = app(AutoCheckHandler::class)->translate_en($this->autoCheck->content_before);
-        if($result['trans_result'][0]['dst']) {
-            dispatch(new TranslateCN($this->autoCheck))->delay(now()->addSeconds(1));
+        $enContent = '';
+        foreach($result['trans_result'] as $value) {
+            $enContent .= $value['dst'];
         }
+        dispatch(new TranslateCN($this->autoCheck, $enContent))->delay(now()->addSeconds(1));
     }
 }
