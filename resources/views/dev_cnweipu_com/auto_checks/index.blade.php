@@ -79,7 +79,7 @@
     <!-- 降重成功后 -->
     <div style="padding: 50px; display: none;min-height:1000px;" id="jclater">
     <div style="display: flex;">
-      <div style="width: 50%;">
+      <!-- <div style="width: 50%;">
         <p style="font-size: 17px;font-weight: bold;">降重前</p>
         <textarea name="" id="content_after"
           style="width:100%;height: 550px;box-sizing: border-box;overflow-x:visible;border:1px solid #ccc;outline: none;"></textarea>
@@ -88,7 +88,17 @@
         <p style="font-size: 17px;font-weight: bold;">降重后</p>
         <textarea name="" id="content_later" style="width: 100%;height: 550px;border: none;outline: none;border:1px solid #ccc"
           readonly></textarea>
-      </div>
+      </div> -->
+      <table>
+        <tr>
+            <td height="100px" style="over-flow:auto" id="content_after">
+
+            </td>
+            <td height="100px" style="over-flow:auto" id="content_later">
+
+            </td>
+        </tr>
+      </table>
     </div>
     <p style="font-size: 13px;margin-top: 10px;text-align: center;">
       注：本工具是通过运用AI技术对原文进行降重，结果仅供参考，需要稍作调整让语句更通顺。如需高质量人工降重请联系微信：13878811985
@@ -96,11 +106,12 @@
     <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
-      <p>剩余次数:<span id="jc_times"></span></p><span style="color:#4876FF;margin-left: 10px;">增加次数</span>
+      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;">增加次数</span>
     </div>
   </div>
 @stop
 @section('scripts')
+<script type="text/javascript" src="{{ asset('asset/js/diff.js') }}"></script>
   <script>
     $(() => {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
@@ -151,15 +162,15 @@
             let timer = setInterval(() => {
               axios('/auto_check/' + id).then(resp => {
                 // debugger;
-                if (resp.data.content_after) {
+                if (resp.data.data.content_after) {
                   // clear timer
                   clearInterval(timer);
                   console.log(resp);
                   $('#beingModal').modal('hide')
                   $('#jcafter').css('display', 'none')
-                  $("#content_after").val(resp.data.content_before)
-                  $("#content_later").val(resp.data.content_after)
-                  $('#jc_times').val(resp.data.jc_times)
+                  $("#content_after").text(resp.data.data.content_before)
+                  $("#content_later").text(resp.data.data.content_after)
+                  $('#jc_time').html(resp.data.data.jc_times)
                   $("#jclater").css('display', 'block')
                 }
               })
