@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\InternalException;
 use App\Exceptions\InvalidRequestException;
+use App\Handlers\AiWriterHandler;
 use App\Handlers\AutoCheckHandler;
 use App\Http\Requests\AutoCheckRequest;
 use App\Http\Resources\AutoCheckResource;
@@ -22,11 +23,14 @@ class AutoCheckController extends Controller
 
     public function store(AutoCheckRequest $request)
     {
-        $this->dispatch();
-//        $user = $request->user();
-//        if($user->jc_times <= 0) {
-//            throw new InvalidRequestException('您的降重次数不足!');
-//        }
+        $user = $request->user();
+        if($user->jc_times <= 0) {
+            throw new InvalidRequestException('您的降重次数不足!');
+        }
+        $result = app(AiWriterHandler::class)->getContent($request->input('content', ''));
+        $user->decreaseJcTimes();
+        return response(compact('result'), 200);
+
 //        $data = AutoCheck::create([
 //            'content_before' => $request->input('content'),
 //            'user_id' => $user->id,
