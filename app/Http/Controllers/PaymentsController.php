@@ -235,7 +235,6 @@ class PaymentsController extends Controller
             return 'fail';
         }
         try {
-            info("【接收到的notify通知】:\n" . json_encode($notify_arr) . "\n");
             //因签名类是sign字段 所以替换一下
 //            $rsaSign = $notify_arr['rsaSign'];
 //            $notify_arr['sign'] = $rsaSign;
@@ -255,9 +254,7 @@ class PaymentsController extends Controller
 //                $pay_time = $notify_arr['payTime']; //支付时间
 //                $orderId = $notify_arr['orderId']; //百度平台订单ID
                 //检查订单状态 检查支付状态 检查订单号  检查金额
-                info($notify_arr);
                 $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
-                info('order', [$order]);
                 // 订单不存在则告知微信支付
                 if(!$order) {
                     return 'fail';
