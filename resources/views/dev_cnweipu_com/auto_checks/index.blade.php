@@ -92,10 +92,12 @@
       <table>
         <tr>
             <td style="width:48%;">
+              <div>降重前</div>
               <div style="height:500px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;margin-right:5px;" id="content_after">
               </div>
             </td>
             <td style="width:48%;">
+              <div>降重后</div>
               <div style="height:500px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;" id="content_later">
               </div>
             </td>
@@ -148,6 +150,39 @@
         //   .catch(err => console.log(err));
         $('#exampleModal').modal('show')
       })
+       //对比diff方法
+       function changed(a,b) {
+            console.log(a,b)
+            var oldContent = a
+            var content1 = b
+            var diff = JsDiff['diffLines'](oldContent, content1);
+            var arr = new Array();
+            for (var i = 0; i < diff.length; i++) {
+                if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
+                    var swap = diff[i];
+                    diff[i] = diff[i + 1];
+                    diff[i + 1] = swap;
+                }
+                console.log(diff[i]);
+                var diffObj = diff[i];
+                var content = diffObj.value;
+                if (content.indexOf("\n") >= 0) {
+                    //console.log("有换行符");
+                    //替换为<br/>
+                    var reg = new RegExp('\n', 'g');
+                    content = content.replace(reg, '<br/>');
+                }
+                if (diffObj.removed) {
+                    arr.push('<del title="删除的部分">' + content + '</del>');
+                } else if (diffObj.added) {
+                    arr.push('<ins title="新增的部分">' + content + '</ins>');
+                } else {
+                    arr.push('<span title="没有改动的部分">' + content + '</span>');
+                }
+            }
+            var html = arr.join('');
+            result.innerHTML = html;
+        }
        //点击确认显示正在降重弹框
       $("#surecheck").click(function () {
         $('#exampleModal').modal('hide')
@@ -165,6 +200,10 @@
             $('#jcafter').css('display', 'none')
             $("#content_after").text(contents)
             $("#content_later").html(res.data.result.new_content)
+            //去除html标签
+            var htmlstring=res.data.result.new_content;
+            var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
+            changed(contents,stringtemp)
             $('#jc_time').html(res.data.user.jc_times)
             $("#jclater").css('display', 'block')
             // let id = res.data.data.id;
