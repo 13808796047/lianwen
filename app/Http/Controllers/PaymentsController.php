@@ -282,7 +282,7 @@ class PaymentsController extends Controller
             $ret['errno'] = 0;
             $ret['msg'] = 'success';
             $ret['data'] = ['isErrorOrder' => 1, 'isConsumed' => 2];
-            return $e->getMessage();
+            return response()->json($ret);
         }
     }
 }
