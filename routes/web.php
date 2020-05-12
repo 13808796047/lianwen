@@ -67,7 +67,7 @@ Route::post('payments/wechat/mp_notify', 'PaymentsController@wechatMpNotify')
 Route::get('payments/{order}/return', 'PaymentsController@wechatReturn')->name('payments.wechat.return');
 Auth::routes();
 //百度支付
-Route::post('payments/baidu/notify', 'PaymentsController@baiduNotify')->name('payments.baidu.notify');
+Route::any('payments/baidu/notify', 'PaymentsController@baiduNotify')->name('payments.baidu.notify');
 Route::any('official_account/serve', 'OfficialAccountController@serve')->name('official_account.serve');
 //生成分享二维码
 Route::get('orders/{order}/qrcode', 'OrdersController@generateQrcode')->name('orders.qrcode');

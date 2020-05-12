@@ -250,7 +250,6 @@ class PaymentsController extends Controller
 //            }
             if($notify_arr['status'] == 2) {
                 $notify_arr['returnData'] = json_decode($notify_arr['returnData'], true);//这是携带的参数
-                info($notify_arr);
 //                $out_trade_no = $notify_arr['tpOrderId']; //订单号
 //                $price = $notify_arr['totalMoney']; //金额
 //                $pay_time = $notify_arr['payTime']; //支付时间

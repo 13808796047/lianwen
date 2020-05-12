@@ -22,16 +22,17 @@ class AutoCheckController extends Controller
 
     public function store(AutoCheckRequest $request)
     {
-        $user = $request->user();
-        if($user->jc_times <= 0) {
-            throw new InvalidRequestException('您的降重次数不足!');
-        }
-        $data = AutoCheck::create([
-            'content_before' => $request->input('content'),
-            'user_id' => $user->id,
-        ]);
-        $user->decreaseJcTimes();
-        return new AutoCheckResource($data);
+        $this->dispatch();
+//        $user = $request->user();
+//        if($user->jc_times <= 0) {
+//            throw new InvalidRequestException('您的降重次数不足!');
+//        }
+//        $data = AutoCheck::create([
+//            'content_before' => $request->input('content'),
+//            'user_id' => $user->id,
+//        ]);
+//        $user->decreaseJcTimes();
+//        return new AutoCheckResource($data);
     }
 
     public function show(AutoCheck $autoCheck)
