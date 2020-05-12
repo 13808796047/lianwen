@@ -278,6 +278,10 @@ class PaymentsController extends Controller
             }
 
         } catch (\Exception $e) {
+            //返回付款成功
+            $ret['errno'] = 0;
+            $ret['msg'] = 'success';
+            $ret['data'] = ['isErrorOrder' => 1, 'isConsumed' => 2];
             return $e->getMessage();
         }
     }
