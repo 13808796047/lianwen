@@ -154,7 +154,7 @@
       })
        //对比diff方法
        function changed(a,b) {
-            console.log(a,'xixi',b,'haha')
+            console.log(a,'xixi')
             var oldContent = a
             var content1 = b
             var diff = JsDiff['diffLines'](oldContent, content1);
