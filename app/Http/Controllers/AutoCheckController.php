@@ -32,7 +32,7 @@ class AutoCheckController extends Controller
             throw new InvalidRequestException('字数超限!');
         }
         $user->decreaseJcTimes();
-        return response(compact('result'), 200);
+        return response(compact('result', 'user'), 200);
 
 //        $data = AutoCheck::create([
 //            'content_before' => $request->input('content'),
