@@ -73,3 +73,5 @@ Route::any('official_account/serve', 'OfficialAccountController@serve')->name('o
 Route::get('orders/{order}/qrcode', 'OrdersController@generateQrcode')->name('orders.qrcode');
 //分享图片
 Route::get('qcrode/generate_img', 'OrdersController@generateImg')->name('qcrode.img');
+//充值
+Route::get('recharges', 'RechargesController@index')->name('recharges.index');
