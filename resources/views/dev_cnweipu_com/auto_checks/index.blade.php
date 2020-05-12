@@ -9,6 +9,8 @@
     .curfont {
       font-size: 16px;
     }
+    del { background: #ff0000; }
+    ins { background: #00ff21; }
   </style>
 @stop
 @section('content')
