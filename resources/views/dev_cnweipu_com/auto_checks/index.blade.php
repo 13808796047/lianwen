@@ -161,23 +161,29 @@
         axios.post('{{ route('auto_check.store') }}',{content:contents})
           .then(res => {
             console.log(res,1323122321)
-            let id = res.data.data.id;
-            let timer = setInterval(() => {
-              axios('/auto_check/' + id).then(resp => {
-                // debugger;
-                if (resp.data.data.content_after) {
-                  // clear timer
-                  clearInterval(timer);
-                  console.log(resp);
-                  $('#beingModal').modal('hide')
-                  $('#jcafter').css('display', 'none')
-                  $("#content_after").text(resp.data.data.content_before)
-                  $("#content_later").text(resp.data.data.content_after)
-                  $('#jc_time').html(resp.data.data.jc_times)
-                  $("#jclater").css('display', 'block')
-                }
-              })
-            }, 1000);
+            $('#beingModal').modal('hide')
+            $('#jcafter').css('display', 'none')
+            $("#content_after").text(contents)
+            $("#content_later").text(res.data.result.new_content)
+            // $('#jc_time').html(resp.data.data.jc_times)
+            $("#jclater").css('display', 'block')
+            // let id = res.data.data.id;
+            // let timer = setInterval(() => {
+            //   axios('/auto_check/' + id).then(resp => {
+            //     // debugger;
+            //     if (resp.data.data.content_after) {
+            //       // clear timer
+            //       clearInterval(timer);
+            //       console.log(resp);
+            //       $('#beingModal').modal('hide')
+            //       $('#jcafter').css('display', 'none')
+            //       $("#content_after").text(resp.data.data.content_before)
+            //       $("#content_later").text(resp.data.data.content_after)
+            //       $('#jc_time').html(resp.data.data.jc_times)
+            //       $("#jclater").css('display', 'block')
+            //     }
+            //   })
+            // }, 1000);
           })
           .catch(err => console.log(err));
   })
