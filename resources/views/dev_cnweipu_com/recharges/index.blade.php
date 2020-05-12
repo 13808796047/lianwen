@@ -5,6 +5,7 @@
   <link href="https://css.lianwen.com/css/index_2017.css" type="text/css" rel="stylesheet"/> -->
   <!-- <link rel="stylesheet" href="{{asset('asset/css/index.css')}}"> -->
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
+  <link href="{{asset('asset/css/theme.css')}}" rel="stylesheet"/>
   <style>
     .curfont {
       font-size: 16px;
@@ -17,13 +18,63 @@
     <!--左边导航-->
     <div class="main clearfix" id="jcafter">
       <div class="lbox fl">
-      <p style="font-size: 20px;">请输入你要降重的内容。<span style="font-size:16px;color:#757575;">（最大支持5000字）</span></p>
-      <textarea name="content" id="content"
-        style="width:97%;height: 500px;padding:20px;box-sizing:border-box;font-size:20px;outline: none;border:1px solid #ddd;margin-top:20px"></textarea>
-      <p style="float: right;font-size: 13px;padding-right: 30px;" id="words">当前输入<span>0</span>字</p>
-      <p style="background-color: #4876FF;display: inline;padding: 5px 20px;color:#fff;text-align: center;font-size:15px;"
-        id="reduce">
-        一键降重</p>
+      <div>
+			<div class="cbox submit yh">
+				<div class="down clearfix">
+					<!-- <form action="{{route('payments.alipay',['order'=>$order->orderid])}}" method="get"> -->
+						<table class="mylist" style="line-height: 30px">
+							<tr>
+								<td width="149">
+									<span>购买次数</span>
+								</td>
+								<td style="text-align: left;">
+									<span>13</span>
+								</td>
+							</tr>
+							<tr>
+								<td width="">价格</td>
+								<td style="text-align: left;">
+									￥177
+								</td>
+							</tr>
+							<tr bgcolor="#D0EAFF">
+								<td colspan="2" align="center">
+									<b>
+										<font color="#BF2020">支付检测费用（请选择以下任意一种方式支付）</font>
+									</b>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="td">
+									在线支付<font color="#FF0004">(推荐)</font>
+								</td>
+								<td class="td">
+									<div style="display:flex;align-items: center">
+										<input type="radio" name="paytype" value="alipay" checked="checked" />
+										<img src="{{asset('asset/images/alipay.png')}}" style="margin-left:17px;" />
+									</div>
+									&nbsp;&nbsp;
+									<!--<label><input type="radio" name="paytype" value="tenpay" > <img src="./asset/imgs/tenpay.png" /></label> -->
+									<div style="display:flex;align-items: center">
+										<input type="radio" name="paytype" value="wxpay" />
+										<img src="{{asset('asset/images/wxpay.png')}}" style="width:99px;margin-left:17px;" />
+									</div>
+									<div class="tips">
+										直接使用支付宝或者微信支付，即时返回支付结果，方便快捷，推荐使用。
+									</div>
+								</td>
+							</tr>
+						</table>
+						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="{{ route('payments.alipay', ['order' => $order->id])}}"
+						 class="btn btn-primary btn-sm sbtn">提交</a>
+						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
+						 class="btn btn-primary btn-sm sbtn">提交</a>
+					<!-- </form> -->
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
     </div>
     <!--右边内容-->
     <div class="rbox fr" style="min-height:900px;">
