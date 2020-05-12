@@ -91,12 +91,12 @@
       </div> -->
       <table>
         <tr>
-            <td>
-              <div style="height:500px;overflow-y:auto;" id="content_after">
+            <td style="width:48%;">
+              <div style="height:500px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;margin-right:5px;" id="content_after">
               </div>
             </td>
-            <td>
-              <div style="height:500px;overflow-y:auto;" id="content_later">
+            <td style="width:48%;">
+              <div style="height:500px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;" id="content_later">
               </div>
             </td>
         </tr>
@@ -164,8 +164,8 @@
             $('#beingModal').modal('hide')
             $('#jcafter').css('display', 'none')
             $("#content_after").text(contents)
-            $("#content_later").text(res.data.result.new_content)
-            // $('#jc_time').html(resp.data.data.jc_times)
+            $("#content_later").html(res.data.result.new_content)
+            $('#jc_time').html(res.data.user.jc_times)
             $("#jclater").css('display', 'block')
             // let id = res.data.data.id;
             // let timer = setInterval(() => {
