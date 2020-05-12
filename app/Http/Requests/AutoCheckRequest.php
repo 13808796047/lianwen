@@ -10,7 +10,7 @@ class AutoCheckRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required'
+            'content' => 'required|min:1|max:2000'
         ];
     }
 

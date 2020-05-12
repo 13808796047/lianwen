@@ -16,11 +16,10 @@ class AiWriter implements ShouldQueue
 
     public function __construct()
     {
-        
+
     }
 
     public function handle()
     {
-        $ai_writer = app(AiWriterHandler::class);
     }
 }
