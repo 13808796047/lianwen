@@ -153,10 +153,10 @@
         $('#exampleModal').modal('show')
       })
        //对比diff方法
-       function changed(a,b,c) {
+       function changed(a,b) {
             console.log(a,b)
             var oldContent = a
-            var content1 = c
+            var content1 = b
             var diff = JsDiff['diffLines'](oldContent, content1);
             var arr = new Array();
             for (var i = 0; i < diff.length; i++) {
@@ -182,9 +182,10 @@
                 }
             }
             var html = arr.join('');
+            console.log(html,"xixi")
            document.getElementById('content_after').innerHTML = html;
             // $("#content_later").html(res.data.result.new_content)
-            document.getElementById('content_later').innerHTML = c;
+            document.getElementById('content_later').innerHTML = b;
         }
        //点击确认显示正在降重弹框
       $("#surecheck").click(function () {
@@ -206,7 +207,7 @@
             //去除html标签
             var htmlstring=res.data.result.new_content;
             var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
-            changed(contents,stringtemp,htmlstring)
+            changed(contents,stringtemp)
             $('#jc_time').html(res.data.user.jc_times)
             $("#jclater").css('display', 'block')
             // let id = res.data.data.id;
