@@ -49,6 +49,30 @@
     </div>
   </div>
   <!-- 模态框2结束-->
+  <!-- 购买降重字数模态框 -->
+  <div class="modal fade bd-example-modal-sm" id="jctimeModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="text-align:center;">
+          <p>购买自动降重次数</p>
+          <span>(价格:1元/次)</span>
+          <p>请输入购买次数<span>-</span><span>99</span><span>+</span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="surecheck">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 购买降重字数模态框结束 -->
     <!--左边导航-->
     <div class="main clearfix" id="jcafter">
       <div class="lbox fl">
@@ -112,7 +136,7 @@
     <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
-      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;">增加次数</span>
+      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="addjctime">增加次数</span>
     </div>
   </div>
 @stop
@@ -125,6 +149,10 @@
       //获取字数
       $("#content").bind('input',(e)=>{
         $('#words span').html(e.target.value.length)
+      })
+      //增加降重次数
+      $("#addjctime").click(function(){
+        $("#jctimeModal").modal('show')
       })
       //点击降重
       $('#reduce').click(function(){
