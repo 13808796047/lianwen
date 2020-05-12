@@ -33,7 +33,6 @@ class getOrderStatus implements ShouldQueue
             switch ($result->data->order->status) {
                 case 7:
                     $status = OrderEnum::INLINE;
-                    return;
                     break;
                 case 9:
                     $status = OrderEnum::CHECKED;
