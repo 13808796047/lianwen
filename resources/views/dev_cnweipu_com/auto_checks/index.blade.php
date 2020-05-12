@@ -163,7 +163,6 @@
                     diff[i] = diff[i + 1];
                     diff[i + 1] = swap;
                 }
-                console.log(diff[i]);
                 var diffObj = diff[i];
                 var content = diffObj.value;
                 if (content.indexOf("\n") >= 0) {
@@ -181,7 +180,9 @@
                 }
             }
             var html = arr.join('');
-            result.innerHTML = html;
+           document.getElementById('content_after').innerHTML = html;
+            // $("#content_later").html(res.data.result.new_content)
+            document.getElementById('content_later').innerHTML = b;
         }
        //点击确认显示正在降重弹框
       $("#surecheck").click(function () {
@@ -198,8 +199,8 @@
             console.log(res,1323122321)
             $('#beingModal').modal('hide')
             $('#jcafter').css('display', 'none')
-            $("#content_after").text(contents)
-            $("#content_later").html(res.data.result.new_content)
+
+            // $("#content_later").html(res.data.result.new_content)
             //去除html标签
             var htmlstring=res.data.result.new_content;
             var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
