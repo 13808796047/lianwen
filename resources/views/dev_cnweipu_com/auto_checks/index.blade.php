@@ -91,11 +91,11 @@
       </div> -->
       <table>
         <tr>
-            <td>
-              <div style="over-flow:auto;height：500px;" id="content_after"></div>
+            <td height="100px" style="over-flow:auto" id="content_after">
+
             </td>
-            <td>
-              <div style="over-flow:auto;height:500px;"  id="content_later"></div>
+            <td height="100px" style="over-flow:auto" id="content_later">
+
             </td>
         </tr>
       </table>
