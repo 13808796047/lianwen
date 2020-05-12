@@ -235,7 +235,6 @@ class PaymentsController extends Controller
             return 'fail';
         }
         try {
-            info("【接收到的notify通知】:\n" . json_encode($notify_arr) . "\n");
             //因签名类是sign字段 所以替换一下
             $rsaSign = $notify_arr['rsaSign'];
             $notify_arr['sign'] = $rsaSign;
