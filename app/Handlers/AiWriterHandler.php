@@ -32,6 +32,7 @@ class AiWriterHandler
             ]
         ];
         $response = $this->http->request("POST", $this->api, $array);
+        dd($response);
         return json_decode($response->getBody(), true);
     }
 }
