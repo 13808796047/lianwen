@@ -62,8 +62,8 @@
         </div>
         <div class="modal-body" style="text-align:center;">
           <p>购买自动降重次数</p>
-          <span>(价格:1元/次)</span>
-          <p>请输入购买次数<span>-</span><span>99</span><span>+</span></p>
+          <p style="margin: 6px 0;font-size: 11px;color: #F4A460;">(价格:1元/次)</p>
+          <p>请输入购买次数<span style="padding:0 10px;">-</span><span style="border: 1px solid;padding: 3px;">99</span><span style="padding:0 10px;">+</span></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
