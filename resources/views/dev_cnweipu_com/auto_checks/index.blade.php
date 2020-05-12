@@ -157,32 +157,41 @@
             console.log(a,'xixi')
             var oldContent = a
             var content1 = b
-            var diff = JsDiff['diffLines'](oldContent, content1);
-            var arr = new Array();
-            for (var i = 0; i < diff.length; i++) {
-                if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
-                    var swap = diff[i];
-                    diff[i] = diff[i + 1];
-                    diff[i + 1] = swap;
-                }
-                var diffObj = diff[i];
-                var content = diffObj.value;
-                if (content.indexOf("\n") >= 0) {
-                    //console.log("有换行符");
-                    //替换为<br/>
-                    var reg = new RegExp('\n', 'g');
-                    content = content.replace(reg, '<br/>');
-                }
-                if (diffObj.removed) {
-                    arr.push('<del title="删除的部分">' + content + '</del>');
-                } else if (diffObj.added) {
-                    arr.push('<ins title="新增的部分">' + content + '</ins>');
-                } else {
-                    arr.push('<span title="没有改动的部分">' + content + '</span>');
-                }
-            }
-            var html = arr.join('');
-            console.log(html,"xixi")
+            var diff = JsDiff['diffChars'](oldContent, content1);
+      var arr = new Array();
+      for (var i = 0; i < diff.length; i++) {
+        if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
+          var swap = diff[i];
+          diff[i] = diff[i + 1];
+          diff[i + 1] = swap;
+        }
+        console.log(diff[i]);
+        var diffObj = diff[i];
+        var content = diffObj.value;
+
+        //可以考虑启用，特别是后台清理HTML标签后的文本
+        if (content.indexOf("\n") >= 0) {
+          //console.log("有换行符");
+          //替换为<br/>
+          var reg = new RegExp('\n', 'g');
+          content = content.replace(reg, '<br/>');
+        }
+
+        //var reg2 = new RegExp('##em2', 'g');
+        //var reg3 = new RegExp('replace##', 'g');
+        //content = content.replace(reg2, '');
+        //content = content.replace(reg3, '');
+
+        if (diffObj.removed) {
+          arr.push('<del title="删除的部分">' + content + '</del>');
+        } else if (diffObj.added) {
+          arr.push('<ins title="新增的部分">' + content + '</ins>');
+        } else {
+          //没有改动的部分
+          arr.push('<span title="没有改动的部分">' + content + '</span>');
+        }
+      }
+          var html = arr.join('');
            document.getElementById('content_after').innerHTML = html;
             // $("#content_later").html(res.data.result.new_content)
             document.getElementById('content_later').innerHTML = b;
