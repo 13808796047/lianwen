@@ -28,8 +28,10 @@ class AutoCheckController extends Controller
             throw new InvalidRequestException('您的降重次数不足!');
         }
         $result = app(AiWriterHandler::class)->getContent($request->input('content', ''));
-        dd($result);
         $user->decreaseJcTimes();
+        if($result['status'] == 0) {
+            throw new InvalidRequestException('字数超限!');
+        }
         return response(compact('result'), 200);
 
 //        $data = AutoCheck::create([
