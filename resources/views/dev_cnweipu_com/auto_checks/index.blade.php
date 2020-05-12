@@ -9,8 +9,8 @@
     .curfont {
       font-size: 16px;
     }
-    del { background: #ff0000; }
-    ins { background: #00ff21; }
+    del { background: #FF4040; }
+    ins { background: #00ff21;text-decoration:none }
   </style>
 @stop
 @section('content')
@@ -153,8 +153,7 @@
         $('#exampleModal').modal('show')
       })
        //对比diff方法
-       function changed(a,b) {
-            console.log(a,'xixi')
+       function changed(a,b,c) {
             var oldContent = a
             var content1 = b
             var diff = JsDiff['diffChars'](oldContent, content1);
@@ -171,17 +170,10 @@
 
         //可以考虑启用，特别是后台清理HTML标签后的文本
         if (content.indexOf("\n") >= 0) {
-          //console.log("有换行符");
-          //替换为<br/>
+
           var reg = new RegExp('\n', 'g');
           content = content.replace(reg, '<br/>');
         }
-
-        //var reg2 = new RegExp('##em2', 'g');
-        //var reg3 = new RegExp('replace##', 'g');
-        //content = content.replace(reg2, '');
-        //content = content.replace(reg3, '');
-
         if (diffObj.removed) {
           arr.push('<del title="删除的部分">' + content + '</del>');
         } else if (diffObj.added) {
@@ -192,9 +184,9 @@
         }
       }
           var html = arr.join('');
-           document.getElementById('content_after').innerHTML = html;
-            // $("#content_later").html(res.data.result.new_content)
-            document.getElementById('content_later').innerHTML = b;
+          document.getElementById('content_after').innerHTML = html;
+
+          document.getElementById('content_later').innerHTML = c;
         }
        //点击确认显示正在降重弹框
       $("#surecheck").click(function () {
@@ -216,7 +208,7 @@
             //去除html标签
             var htmlstring=res.data.result.new_content;
             var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
-            changed(contents,stringtemp)
+            changed(contents,stringtemp,htmlstring)
             $('#jc_time').html(res.data.user.jc_times)
             $("#jclater").css('display', 'block')
             // let id = res.data.data.id;
