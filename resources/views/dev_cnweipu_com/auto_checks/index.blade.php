@@ -156,16 +156,16 @@
       })
       //点击增加降重次数
       $("#addjctime").click(function(){
-        let current = $("#curjctime").val()+1;
-        $("#curjctime").val(current)
+        let current = $("#curjctime").text()+1;
+        $("#curjctime").text(current)
 
       })
       //点击减少降重次数
       $("#cutjctime").click(function(){
-        let current = $("#curjctime").val();
+        let current = $("#curjctime").text();
         if(current==1) return;
         let cur =current-1;
-        $("#curjctime").val(cur)
+        $("#curjctime").text(cur)
       })
       //点击降重
       $('#reduce').click(function(){
