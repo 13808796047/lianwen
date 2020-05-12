@@ -74,4 +74,4 @@ Route::get('orders/{order}/qrcode', 'OrdersController@generateQrcode')->name('or
 //分享图片
 Route::get('qcrode/generate_img', 'OrdersController@generateImg')->name('qcrode.img');
 //充值
-Route::get('recharges', 'RechargesController@index')->name('recharges.index');
+Route::resource('recharges', 'RechargesController@index')->name('recharges.index');
