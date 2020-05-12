@@ -237,24 +237,25 @@ class PaymentsController extends Controller
         try {
             info("【接收到的notify通知】:\n" . json_encode($notify_arr) . "\n");
             //因签名类是sign字段 所以替换一下
-            $rsaSign = $notify_arr['rsaSign'];
-            $notify_arr['sign'] = $rsaSign;
-            unset($notify_arr['rsaSign']);
+//            $rsaSign = $notify_arr['rsaSign'];
+//            $notify_arr['sign'] = $rsaSign;
+//            unset($notify_arr['rsaSign']);
             //验签
-            $result = app('baidu_pay')->checkSign($notify_arr);
-            info($result);
+//            $result = app('baidu_pay')->checkSign($notify_arr);
+//            info($result);
 //            if(!$result) {
 //                return response()->json([
 //                    'message' => '验签失败!',
 //                ], 403);
 //            }
             if($notify_arr['status'] == 2) {
-                $notify_arr['returnData'] = json_decode($notify_arr['returnData'], true);//这是携带的参数
+//                $notify_arr['returnData'] = json_decode($notify_arr['returnData'], true);//这是携带的参数
 //                $out_trade_no = $notify_arr['tpOrderId']; //订单号
 //                $price = $notify_arr['totalMoney']; //金额
 //                $pay_time = $notify_arr['payTime']; //支付时间
 //                $orderId = $notify_arr['orderId']; //百度平台订单ID
                 //检查订单状态 检查支付状态 检查订单号  检查金额
+                info($notify_arr);
                 $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
                 info('order', [$order]);
                 // 订单不存在则告知微信支付
