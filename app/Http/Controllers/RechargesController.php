@@ -8,6 +8,6 @@ class RechargesController extends Controller
 {
     public function index()
     {
-        return view('recharges.index');
+        return view('domained::recharges.index');
     }
 }
