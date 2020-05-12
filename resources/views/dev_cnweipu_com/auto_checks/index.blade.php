@@ -164,7 +164,7 @@
             $('#beingModal').modal('hide')
             $('#jcafter').css('display', 'none')
             $("#content_after").text(contents)
-            $("#content_later").text(res.data.result.new_content)
+            $("#content_later").html(res.data.result.new_content)
             $('#jc_time').html(res.data.user.jc_times)
             $("#jclater").css('display', 'block')
             // let id = res.data.data.id;
