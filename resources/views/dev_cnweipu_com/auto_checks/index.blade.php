@@ -156,7 +156,7 @@
        function changed(a,b,c) {
             console.log(a,b)
             var oldContent = a
-            var content1 = b
+            var content1 = c
             var diff = JsDiff['diffLines'](oldContent, content1);
             var arr = new Array();
             for (var i = 0; i < diff.length; i++) {
