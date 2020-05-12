@@ -156,13 +156,13 @@
       })
       //点击增加降重次数
       $("#addjctime").click(function(){
-        let current = $("#curjctime").text()+1;
+        let current = Number($("#curjctime").text())+1;
         $("#curjctime").text(current)
 
       })
       //点击减少降重次数
       $("#cutjctime").click(function(){
-        let current = $("#curjctime").text();
+        let current = Number($("#curjctime").text());
         if(current==1) return;
         let cur =current-1;
         $("#curjctime").text(cur)
