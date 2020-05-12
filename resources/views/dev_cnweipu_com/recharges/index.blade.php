@@ -21,7 +21,6 @@
       <div>
 			<div class="cbox submit yh">
 				<div class="down clearfix">
-					<!-- <form action="{{route('payments.alipay',['order'=>$order->orderid])}}" method="get"> -->
 						<table class="mylist" style="line-height: 30px">
 							<tr>
 								<td width="149">
@@ -55,7 +54,6 @@
 										<img src="{{asset('asset/images/alipay.png')}}" style="margin-left:17px;" />
 									</div>
 									&nbsp;&nbsp;
-									<!--<label><input type="radio" name="paytype" value="tenpay" > <img src="./asset/imgs/tenpay.png" /></label> -->
 									<div style="display:flex;align-items: center">
 										<input type="radio" name="paytype" value="wxpay" />
 										<img src="{{asset('asset/images/wxpay.png')}}" style="width:99px;margin-left:17px;" />
@@ -70,7 +68,6 @@
 						 class="btn btn-primary btn-sm sbtn">提交</a>
 						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
-					<!-- </form> -->
 					<div class="clearfix"></div>
 				</div>
 			</div>
