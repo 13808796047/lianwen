@@ -10,7 +10,7 @@
       font-size: 16px;
     }
     del { background: #FF4040; }
-    ins { background: #00ff21;text-decoration:none }
+    ins { background: #00ff21;text-decoration:none; }
   </style>
 @stop
 @section('content')
