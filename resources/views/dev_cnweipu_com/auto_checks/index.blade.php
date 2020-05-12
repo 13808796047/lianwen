@@ -153,7 +153,7 @@
         $('#exampleModal').modal('show')
       })
        //对比diff方法
-       function changed(a,b) {
+       function changed(a,b,c) {
             console.log(a,b)
             var oldContent = a
             var content1 = b
@@ -184,7 +184,7 @@
             var html = arr.join('');
            document.getElementById('content_after').innerHTML = html;
             // $("#content_later").html(res.data.result.new_content)
-            document.getElementById('content_later').innerHTML = b;
+            document.getElementById('content_later').innerHTML = c;
         }
        //点击确认显示正在降重弹框
       $("#surecheck").click(function () {
@@ -206,7 +206,7 @@
             //去除html标签
             var htmlstring=res.data.result.new_content;
             var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
-            changed(contents,stringtemp)
+            changed(contents,stringtemp,htmlstring)
             $('#jc_time').html(res.data.user.jc_times)
             $("#jclater").css('display', 'block')
             // let id = res.data.data.id;
