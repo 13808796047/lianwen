@@ -160,6 +160,7 @@
         let contents = $('#content').val();
         axios.post('{{ route('auto_check.store') }}',{content:contents})
           .then(res => {
+            console.log(res,1323122321)
             let id = res.data.data.id;
             let timer = setInterval(() => {
               axios('/auto_check/' + id).then(resp => {
