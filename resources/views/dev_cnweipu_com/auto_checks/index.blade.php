@@ -9,6 +9,8 @@
     .curfont {
       font-size: 16px;
     }
+    del { background: #FF4040; }
+    ins { background: #00ff21;text-decoration:none; }
   </style>
 @stop
 @section('content')
@@ -47,6 +49,30 @@
     </div>
   </div>
   <!-- 模态框2结束-->
+  <!-- 购买降重字数模态框 -->
+  <div class="modal fade bd-example-modal-sm" id="jctimeModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="text-align:center;">
+          <p>购买自动降重次数</p>
+          <span>(价格:1元/次)</span>
+          <p>请输入购买次数<span>-</span><span>99</span><span>+</span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="surecheck">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 购买降重字数模态框结束 -->
     <!--左边导航-->
     <div class="main clearfix" id="jcafter">
       <div class="lbox fl">
@@ -92,10 +118,12 @@
       <table>
         <tr>
             <td style="width:48%;">
+              <div>降重前</div>
               <div style="height:500px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;margin-right:5px;" id="content_after">
               </div>
             </td>
             <td style="width:48%;">
+              <div>降重后</div>
               <div style="height:500px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;" id="content_later">
               </div>
             </td>
@@ -108,7 +136,7 @@
     <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
-      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;">增加次数</span>
+      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="addjctime">增加次数</span>
     </div>
   </div>
 @stop
@@ -121,6 +149,10 @@
       //获取字数
       $("#content").bind('input',(e)=>{
         $('#words span').html(e.target.value.length)
+      })
+      //增加降重次数
+      $("#addjctime").click(function(){
+        $("#jctimeModal").modal('show')
       })
       //点击降重
       $('#reduce').click(function(){
@@ -148,6 +180,42 @@
         //   .catch(err => console.log(err));
         $('#exampleModal').modal('show')
       })
+       //对比diff方法
+       function changed(a,b,c) {
+            var oldContent = a
+            var content1 = b
+            var diff = JsDiff['diffChars'](oldContent, content1);
+      var arr = new Array();
+      for (var i = 0; i < diff.length; i++) {
+        if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
+          var swap = diff[i];
+          diff[i] = diff[i + 1];
+          diff[i + 1] = swap;
+        }
+        console.log(diff[i]);
+        var diffObj = diff[i];
+        var content = diffObj.value;
+
+        //可以考虑启用，特别是后台清理HTML标签后的文本
+        if (content.indexOf("\n") >= 0) {
+
+          var reg = new RegExp('\n', 'g');
+          content = content.replace(reg, '<br/>');
+        }
+        if (diffObj.removed) {
+          arr.push('<del title="删除的部分">' + content + '</del>');
+        } else if (diffObj.added) {
+          arr.push('<ins title="新增的部分">' + content + '</ins>');
+        } else {
+          //没有改动的部分
+          arr.push('<span title="没有改动的部分">' + content + '</span>');
+        }
+      }
+          var html = arr.join('');
+          document.getElementById('content_after').innerHTML = html;
+
+          document.getElementById('content_later').innerHTML = c;
+        }
        //点击确认显示正在降重弹框
       $("#surecheck").click(function () {
         $('#exampleModal').modal('hide')
@@ -163,8 +231,12 @@
             console.log(res,1323122321)
             $('#beingModal').modal('hide')
             $('#jcafter').css('display', 'none')
-            $("#content_after").text(contents)
-            $("#content_later").html(res.data.result.new_content)
+
+            // $("#content_later").html(res.data.result.new_content)
+            //去除html标签
+            var htmlstring=res.data.result.new_content;
+            var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
+            changed(contents,stringtemp,htmlstring)
             $('#jc_time').html(res.data.user.jc_times)
             $("#jclater").css('display', 'block')
             // let id = res.data.data.id;
