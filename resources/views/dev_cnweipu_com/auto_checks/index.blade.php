@@ -92,11 +92,11 @@
       <table>
         <tr>
             <td>
-              <div style="height:500px;overflow-y:auto;" id="content_after">
+              <div style="height:500px;overflow-y:auto;background:#fff;" id="content_after">
               </div>
             </td>
             <td>
-              <div style="height:500px;overflow-y:auto;" id="content_later">
+              <div style="height:500px;overflow-y:auto;background:#fff;" id="content_later">
               </div>
             </td>
         </tr>
