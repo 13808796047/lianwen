@@ -136,7 +136,7 @@
     <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
-      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="addjctime">增加次数</span>
+      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
     </div>
   </div>
 @stop
@@ -151,7 +151,7 @@
         $('#words span').html(e.target.value.length)
       })
       //增加降重次数
-      $("#addjctime").click(function(){
+      $("#shopjctime").click(function(){
         $("#jctimeModal").modal('show')
       })
       //点击增加降重次数
