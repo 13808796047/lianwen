@@ -128,10 +128,10 @@
           console.log('xixixi',312123)
           $("#wxModal").modal('show')
       });
-      changeurl(){
+      function changeurl(){
         console.log('xixi,12')
           $("#bottonsubmit").attr("href",`/payments/6/alipay/recharge`);
-        }
+      }
 
     })
   </script>
