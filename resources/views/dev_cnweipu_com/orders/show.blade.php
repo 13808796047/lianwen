@@ -178,7 +178,7 @@
           .then(function (result) {
             // 如果用户点击了 已完成付款 按钮，则重新加载页面
             if (result) {
-              location.href = '{{ route('payments.wechat.return',$order) }}';
+
             }
           })
         ;
