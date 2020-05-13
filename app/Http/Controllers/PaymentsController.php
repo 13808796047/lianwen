@@ -102,7 +102,7 @@ class PaymentsController extends Controller
         if(!in_array($data->trade_status, ['TRADE_SUCCESS', 'TRADE_FINISHED'])) {
             return app('alipay')->success();
         }
-        $type = explode('-', $result->out_trade_no);
+        $type = explode('-', $data->out_trade_no);
         // $data->out_trade_no 拿到订单流水号，并在数据库中查询
         switch ($type[0]) {
             case 'recharge':
