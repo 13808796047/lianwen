@@ -11,26 +11,25 @@
 @stop
 @section('content')
 <div class="main clearfix" style="flex:1">
-	<div class="lbox fl">
-		<div>
-			<div class="cbox submit yh">
+<div class="lbox fl">
+      <div>
+			<div class="cbox submit yh" >
 				<div class="down clearfix">
-
 						<table class="mylist" style="line-height: 30px">
-
 							<tr>
-								<td width="">论文标题</td>
+								<td width="149">
+									<span>购买次数</span>
+								</td>
 								<td style="text-align: left;">
-								sfdsaffs
+									<span>{{$recharge->amount}}</span>
 								</td>
 							</tr>
-              <tr>
-								<td width="">作者</td>
+							<tr>
+								<td width="">价格</td>
 								<td style="text-align: left;">
-								sfasafsfafs
+									￥{{ $recharge->total_amount}}
 								</td>
 							</tr>
-
 							<tr bgcolor="#D0EAFF">
 								<td colspan="2" align="center">
 									<b>
@@ -39,7 +38,7 @@
 								</td>
 							</tr>
 
-
+							<tr>
 								<td class="td">
 									在线支付<font color="#FF0004">(推荐)</font>
 								</td>
@@ -49,7 +48,6 @@
 										<img src="{{asset('asset/images/alipay.png')}}" style="margin-left:17px;" />
 									</div>
 									&nbsp;&nbsp;
-									<!--<label><input type="radio" name="paytype" value="tenpay" > <img src="./asset/imgs/tenpay.png" /></label> -->
 									<div style="display:flex;align-items: center">
 										<input type="radio" name="paytype" value="wxpay" />
 										<img src="{{asset('asset/images/wxpay.png')}}" style="width:99px;margin-left:17px;" />
@@ -60,16 +58,15 @@
 								</td>
 							</tr>
 						</table>
-						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="#"
+						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
 						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
-
 					<div class="clearfix"></div>
 				</div>
 			</div>
 		</div>
-	</div>
+    </div>
 	<div class="rbox fr">
 		<div style="background:#fff;padding:20px;">
 		    <b>1、检测结果是否准确？</b>
@@ -96,7 +93,6 @@
     $(document).ready(function () {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
-      $('#lwfooter').removeClass('absolute');
       $("input[name='paytype']").change(() => {
         $('#bottonsubmit').toggle();
         $('#btn-wechat').toggle();
