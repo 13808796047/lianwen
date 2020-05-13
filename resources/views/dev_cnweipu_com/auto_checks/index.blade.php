@@ -169,6 +169,10 @@
           amount:totalprice
         }).then(res => {
           console.log(res,312312)
+          let number = res.data.data.amount;
+          let id =res.data.data.id;
+          let price=res.data.data.total_amount;
+          location.href=`/recharges/${id}`
         }).catch(err => {
           console.log(err,31312)
         })
