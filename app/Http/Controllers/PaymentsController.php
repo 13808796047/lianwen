@@ -55,7 +55,6 @@ class PaymentsController extends Controller
     public function alipayRecharge($id)
     {
         $recharge = Recharge::find($id);
-        dd($recharge);
         //校验权限
         $this->authorize('ownRecharge', $recharge);
         // 订单已支付或者已关闭
