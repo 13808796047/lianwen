@@ -72,7 +72,6 @@ class PaymentsController extends Controller
     {
         try {
             $result = app('alipay')->verify();
-            info('result', [$result->out_trade_no]);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => '支付失败!'
@@ -103,7 +102,7 @@ class PaymentsController extends Controller
         if(!in_array($data->trade_status, ['TRADE_SUCCESS', 'TRADE_FINISHED'])) {
             return app('alipay')->success();
         }
-        $type = explode('-', $data->out_trade_no);
+        $type = explode('-', $result->out_trade_no);
         // $data->out_trade_no 拿到订单流水号，并在数据库中查询
         switch ($type[0]) {
             case 'recharge':
