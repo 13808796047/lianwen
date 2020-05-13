@@ -30,6 +30,6 @@ class RechargesController extends Controller
             $recharge->save();
             return $recharge;
         });
-        return redirect()->route('domained::recharges.show', compact('recharge'));
+        return response(compact('recharge'), 200);
     }
 }
