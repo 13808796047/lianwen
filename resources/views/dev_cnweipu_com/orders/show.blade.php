@@ -169,7 +169,7 @@
       $('#btn-wechat').click(function () {
 
           let order = {!!$order!!};
-          axios.get(`payments/${order.id}/wechat/order`).then(res => {
+          axios.get(`/payments/${order.id}/wechat/order`).then(res => {
               console.log(res,31213)
           }).catch(err=>{
             console.log(err,312321)
