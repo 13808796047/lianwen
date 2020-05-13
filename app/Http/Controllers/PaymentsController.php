@@ -38,7 +38,6 @@ class PaymentsController extends Controller
                     'out_trade_no' => $recharge->no, // 订单编号，需保证在商户端不重复
                     'total_amount' => $recharge->total_amount, // 订单金额，单位元，支持小数点后两位
                     'subject' => '支付充值降重次数的订单:' . $recharge->no, // 订单标题
-                    'passback_params' => 'recharge',
                 ]);
                 break;
             default:
@@ -53,7 +52,6 @@ class PaymentsController extends Controller
                     'out_trade_no' => $order->orderid, // 订单编号，需保证在商户端不重复
                     'total_amount' => $order->price, // 订单金额，单位元，支持小数点后两位
                     'subject' => '支付' . $order->category->name . '的订单：' . $order->orderid, // 订单标题,
-                    'type' => 'order'
                 ]);
         }
     }
@@ -79,7 +77,8 @@ class PaymentsController extends Controller
                 'message' => '支付失败!'
             ], 500);
         }
-        switch ($result->passback_params) {
+        $type = explode('-', $result->out_trade_no);
+        switch ($type[0]) {
             case 'recharge':
                 $recharge = Recharge::where('no', $result->out_trade_no)->first();
                 return view('domained::auto_checks.index');
@@ -103,8 +102,9 @@ class PaymentsController extends Controller
         if(!in_array($data->trade_status, ['TRADE_SUCCESS', 'TRADE_FINISHED'])) {
             return app('alipay')->success();
         }
+        $type = explode('-', $data->out_trade_no);
         // $data->out_trade_no 拿到订单流水号，并在数据库中查询
-        switch ($data->passback_params) {
+        switch ($type) {
             case 'recharge':
                 $recharge = Recharge::where('no', $data->out_trade_no)->first();
                 // 正常来说不太可能出现支付了一笔不存在的订单，这个判断只是加强系统健壮性。
