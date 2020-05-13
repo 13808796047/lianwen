@@ -52,7 +52,7 @@ Route::get('payments/alipay/return', 'PaymentsController@alipayReturn')
 Route::post('payments/alipay/notify', 'PaymentsController@alipayNotify')
     ->name('payments.alipay.notify');
 //微信
-Route::get('payments/{order}/wechat', 'PaymentsController@wechatPay')
+Route::get('payments/{id}/wechat/{type}', 'PaymentsController@wechatPay')
     ->name('payments.wechat');
 Route::get('payments/{order}/wechat_wap', 'PaymentsController@wechatPayWap')
     ->name('payments.wechat_wap');
