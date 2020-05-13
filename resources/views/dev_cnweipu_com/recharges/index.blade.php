@@ -27,13 +27,13 @@
 									<span>购买次数</span>
 								</td>
 								<td style="text-align: left;">
-									<span>{{$recharges->amount}}</span>
+									<span>{{$recharges}}</span>
 								</td>
 							</tr>
 							<tr>
 								<td width="">价格</td>
 								<td style="text-align: left;">
-									￥{{ $recharges->total_amount }}
+									￥{{ $recharges}}
 								</td>
 							</tr>
 							<tr bgcolor="#D0EAFF">
