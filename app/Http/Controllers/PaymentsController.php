@@ -71,7 +71,7 @@ class PaymentsController extends Controller
     {
         try {
             $result = app('alipay')->verify();
-            info('result', [$result]);
+            info('result', [$result->out_trade_no]);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => '支付失败!'
