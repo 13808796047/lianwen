@@ -125,7 +125,7 @@
 							</tr>
 						</table>
 
-             <a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="/payments/1038/alipay/order"
+             <a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
 						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
@@ -182,12 +182,12 @@
           })
       });
       //支付宝
-    //   $('#bottonsubmit').click(function(){
-    //    let order = {!!$order!!};
-    //    console.log(order.id,31231)
-    //   // /payments/7/alipay/recharge
-    //   location.href=`/payments/${order.id}/alipay/order`
-    //  })
+      $('#bottonsubmit').click(function(){
+       let order = {!!$order!!};
+       console.log(order.id,31231)
+      // /payments/7/alipay/recharge
+      location.href=`/payments/${order.id}/alipay/order`
+     })
     });
     // $(function () {
     //   setInterval("checkpaied()", 1000);
