@@ -208,9 +208,16 @@ class PaymentsController extends Controller
         return app('wechat_pay_wap')->wap($attributes);
     }
 
-    public function wechatReturn(Order $order)
+    public function wechatReturn(Request $request)
     {
-        return view('domained::payments.success', ['order' => $order, 'msg' => '支付成功!']);
+        $id = $request->id;
+        switch ($request->type) {
+            case 'recharge':
+                return view('domained::auto_checks.index');
+                break;
+            default:
+                return view('domained::payments.success', ['order' => $order, 'msg' => '支付成功!']);
+        }
     }
 
     public function wechatNotify()

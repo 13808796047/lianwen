@@ -64,7 +64,7 @@ Route::post('payments/wechat/notify', 'PaymentsController@wechatNotify')
 Route::post('payments/wechat/mp_notify', 'PaymentsController@wechatMpNotify')
     ->name('payments.wechat.mp_notify');
 
-Route::get('payments/{order}/return', 'PaymentsController@wechatReturn')->name('payments.wechat.return');
+Route::get('payments/{id}/wechat/return/{type}', 'PaymentsController@wechatReturn')->name('payments.wechat.return');
 Auth::routes();
 //百度支付
 Route::any('payments/baidu/notify', 'PaymentsController@baiduNotify')->name('payments.baidu.notify');
