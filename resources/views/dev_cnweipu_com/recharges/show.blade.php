@@ -10,6 +10,30 @@
   </style>
 @stop
 @section('content')
+<!-- 购买降重字数模态框 -->
+<div class="modal fade bd-example-modal-sm" id="wxModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="text-align:center;">
+          <p>购买自动降重次数</p>
+          <p style="margin: 6px 0;font-size: 11px;color: #F4A460;">(价格:1元/次)</p>
+          <p>请输入购买次数<span style="padding:0 10px;" id="cutjctime">-</span><span style="border: 1px solid;padding: 3px;" id="curjctime">1</span><span style="padding:0 10px;" id="addjctime">+</span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="sureshop">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 购买降重字数模态框结束 -->
 <div class="main clearfix" style="flex:1">
 <div class="lbox fl">
       <div>
@@ -101,6 +125,7 @@
       $('#btn-wechat').click(function () {
           // 微信支付
           console.log('xixixi',312123)
+          $("#wxModal").modal('show')
       });
     })
   </script>
