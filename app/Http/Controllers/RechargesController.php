@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RechargeResource;
 use App\Models\Recharge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,6 @@ class RechargesController extends Controller
             $recharge->save();
             return $recharge;
         });
-        return response(compact('recharge'), 200);
+        return new RechargeResource($recharge);
     }
 }

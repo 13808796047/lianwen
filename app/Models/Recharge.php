@@ -8,6 +8,7 @@ class Recharge extends Model
 {
     protected $fillable = [
         'no',
+        'amount',
         'total_amount',
         'remark',
         'paid_at',
