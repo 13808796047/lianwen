@@ -46,7 +46,7 @@ class Recharge extends Model
             // 随机生成 6 位的数字
             $no = $prefix . str_pad(random_int(0, 9999), 5, '0', STR_PAD_LEFT);
             // 判断是否已经存在
-            if(!static::query()->where('orderid', $no)->exists()) {
+            if(!static::query()->where('no', $no)->exists()) {
                 return $no;
             }
         }
