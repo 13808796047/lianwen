@@ -19,6 +19,7 @@ class CreateRechargesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->decimal('total_amount', 10, 2);
+            $table->unsignedInteger('amount');
             $table->text('remark')->nullable();
             $table->dateTime('paid_at')->nullable();
             $table->string('payment_mothod')->nullable();
