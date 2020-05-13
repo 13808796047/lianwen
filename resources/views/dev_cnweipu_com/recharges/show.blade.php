@@ -16,10 +16,10 @@
 @stop
 @section('content')
     <!--左边导航-->
-    <div class="main clearfix" id="jcafter">
+    <div class="main clearfix" id="jcafter" style="flex:1">
       <div class="lbox fl">
       <div>
-			<div class="cbox submit yh">
+			<div class="cbox submit yh" >
 				<div class="down clearfix">
 						<table class="mylist" style="line-height: 30px">
 							<tr>
@@ -98,6 +98,7 @@
     $(() => {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
+      $('#lwfooter').removeClass('absolute');
     })
   </script>
 @stop
