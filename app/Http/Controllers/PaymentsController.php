@@ -9,6 +9,7 @@ use App\Jobs\CheckOrderStatus;
 use App\Jobs\OrderPaidMsg;
 use App\Jobs\OrderPendingMsg;
 use App\Models\Order;
+use App\Models\Recharge;
 use Carbon\Carbon;
 use EasyWeChatComposer\EasyWeChat;
 use Endroid\QrCode\QrCode;
@@ -20,8 +21,22 @@ use Yansongda\Pay\Pay;
 
 class PaymentsController extends Controller
 {
-    public function alipay(Order $order, Request $request)
+    public function alipay(Request $request)
     {
+        $id = $request->id;
+        switch ($request->type) {
+            case 'recharge':
+                $this->alipayRecharge($id);
+                break;
+            default:
+                $this->alipayOrder($id);
+        }
+    }
+
+//下单
+    public function alipayOrder($id)
+    {
+        $order = Order::find($id);
         //校验权限
         $this->authorize('own', $order);
         if($order->status == 1 || $order->del) {
@@ -31,10 +46,29 @@ class PaymentsController extends Controller
         return app('alipay')->web([
             'out_trade_no' => $order->orderid, // 订单编号，需保证在商户端不重复
             'total_amount' => $order->price, // 订单金额，单位元，支持小数点后两位
-            'subject' => '支付' . $order->category->name . '的订单：' . $order->orderid, // 订单标题
+            'subject' => '支付' . $order->category->name . '的订单：' . $order->orderid, // 订单标题,
+            'type' => 'order',
         ]);
     }
 
+//充值
+    public function alipayRecharge($id)
+    {
+        $recharge = Recharge::find($id);
+        //校验权限
+        $this->authorize('own', $recharge);
+        // 订单已支付或者已关闭
+        if($recharge->paid_at || $recharge->closed) {
+            throw new InvalidRequestException('订单状态不正确');
+        }
+        // 调用支付宝的网页支付
+        return app('alipay')->web([
+            'out_trade_no' => $recharge->no, // 订单编号，需保证在商户端不重复
+            'total_amount' => $recharge->total_amount, // 订单金额，单位元，支持小数点后两位
+            'subject' => '支付充值降重次数的订单：' . $recharge->no, // 订单标题
+            'type' => 'recharge',
+        ]);
+    }
 
 //wap支付
     public function alipayWap(Order $order, Request $request)
