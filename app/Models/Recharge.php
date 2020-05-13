@@ -8,6 +8,7 @@ class Recharge extends Model
 {
     protected $fillable = [
         'no',
+        'amount',
         'total_amount',
         'remark',
         'paid_at',
@@ -17,6 +18,18 @@ class Recharge extends Model
         'refund_no',
         'closed',
         'reviewed',
+    ];
+    const REFUND_STATUS_PENDING = 'pending';
+    const REFUND_STATUS_APPLIED = 'applied';
+    const REFUND_STATUS_PROCESSING = 'processing';
+    const REFUND_STATUS_SUCCESS = 'success';
+    const REFUND_STATUS_FAILED = 'failed';
+    public static $refundStatusMap = [
+        self::REFUND_STATUS_PENDING => '未退款',
+        self::REFUND_STATUS_APPLIED => '已申请退款',
+        self::REFUND_STATUS_PROCESSING => '退款中',
+        self::REFUND_STATUS_SUCCESS => '退款成功',
+        self::REFUND_STATUS_FAILED => '退款失败',
     ];
 
     public function user()
@@ -46,7 +59,7 @@ class Recharge extends Model
             // 随机生成 6 位的数字
             $no = $prefix . str_pad(random_int(0, 9999), 5, '0', STR_PAD_LEFT);
             // 判断是否已经存在
-            if(!static::query()->where('orderid', $no)->exists()) {
+            if(!static::query()->where('no', $no)->exists()) {
                 return $no;
             }
         }

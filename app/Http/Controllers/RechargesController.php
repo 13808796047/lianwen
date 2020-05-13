@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RechargeResource;
 use App\Models\Recharge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,6 @@ class RechargesController extends Controller
             $recharge->save();
             return $recharge;
         });
-        return redirect()->route('domained::recharges.show', compact('recharge'));
+        return new RechargeResource($recharge);
     }
 }

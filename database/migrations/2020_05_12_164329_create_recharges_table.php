@@ -19,12 +19,12 @@ class CreateRechargesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->decimal('total_amount', 10, 2);
-            $table->unsignedInteger('amount');
+            $table->unsignedInteger('amount')->default(0);
             $table->text('remark')->nullable();
             $table->dateTime('paid_at')->nullable();
             $table->string('payment_mothod')->nullable();
             $table->string('payment_no')->nullable();
-            $table->string('refund_status');
+            $table->string('refund_status')->default(\App\Models\Recharge::REFUND_STATUS_PENDING);
             $table->string('refund_no')->unique()->nullable();
             $table->boolean('closed')->default(false);
             $table->boolean('reviewed')->default(false);
