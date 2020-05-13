@@ -62,12 +62,12 @@
         </div>
         <div class="modal-body" style="text-align:center;">
           <p>购买自动降重次数</p>
-          <span>(价格:1元/次)</span>
-          <p>请输入购买次数<span>-</span><span>99</span><span>+</span></p>
+          <p style="margin: 6px 0;font-size: 11px;color: #F4A460;">(价格:1元/次)</p>
+          <p>请输入购买次数<span style="padding:0 10px;" id="cutjctime">-</span><span style="border: 1px solid;padding: 3px;" id="curjctime">1</span><span style="padding:0 10px;" id="addjctime">+</span></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" id="surecheck">确定</button>
+          <button type="button" class="btn btn-primary" id="sureshop">确定</button>
         </div>
       </div>
     </div>
@@ -136,7 +136,7 @@
     <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
-      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="addjctime">增加次数</span>
+      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
     </div>
   </div>
 @stop
@@ -151,8 +151,34 @@
         $('#words span').html(e.target.value.length)
       })
       //增加降重次数
-      $("#addjctime").click(function(){
+      $("#shopjctime").click(function(){
         $("#jctimeModal").modal('show')
+      })
+      //点击增加降重次数
+      $("#addjctime").click(function(){
+        let current = Number($("#curjctime").text())+1;
+        $("#curjctime").text(current)
+
+      })
+      //确认购买
+      $("#sureshop").click(function(){
+        let totalprice=$("#curjctime").text();
+        console.log(totalprice,3131)
+        axios.post('{{ route('recharges.store') }}',{
+          total_amount:totalprice
+        }).then(res => {
+          console.log(res,312312)
+        }).catch(err => {
+          console.log(err,31312)
+        })
+      })
+      })
+      //点击减少降重次数
+      $("#cutjctime").click(function(){
+        let current = Number($("#curjctime").text());
+        if(current==1) return;
+        let cur =current-1;
+        $("#curjctime").text(cur)
       })
       //点击降重
       $('#reduce').click(function(){

@@ -18,8 +18,61 @@
     <!--左边导航-->
     <div class="main clearfix" id="jcafter">
       <div class="lbox fl">
+      <div>
+			<div class="cbox submit yh">
+				<div class="down clearfix">
+						<table class="mylist" style="line-height: 30px">
+							<tr>
+								<td width="149">
+									<span>购买次数</span>
+								</td>
+								<td style="text-align: left;">
+									<span>13</span>
+								</td>
+							</tr>
+							<tr>
+								<td width="">价格</td>
+								<td style="text-align: left;">
+									￥177
+								</td>
+							</tr>
+							<tr bgcolor="#D0EAFF">
+								<td colspan="2" align="center">
+									<b>
+										<font color="#BF2020">支付检测费用（请选择以下任意一种方式支付）</font>
+									</b>
+								</td>
+							</tr>
 
-      </div>
+							<tr>
+								<td class="td">
+									在线支付<font color="#FF0004">(推荐)</font>
+								</td>
+								<td class="td">
+									<div style="display:flex;align-items: center">
+										<input type="radio" name="paytype" value="alipay" checked="checked" />
+										<img src="{{asset('asset/images/alipay.png')}}" style="margin-left:17px;" />
+									</div>
+									&nbsp;&nbsp;
+									<div style="display:flex;align-items: center">
+										<input type="radio" name="paytype" value="wxpay" />
+										<img src="{{asset('asset/images/wxpay.png')}}" style="width:99px;margin-left:17px;" />
+									</div>
+									<div class="tips">
+										直接使用支付宝或者微信支付，即时返回支付结果，方便快捷，推荐使用。
+									</div>
+								</td>
+							</tr>
+						</table>
+						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="javascript:;"
+						 class="btn btn-primary btn-sm sbtn">提交</a>
+						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
+						 class="btn btn-primary btn-sm sbtn">提交</a>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+    </div>
     <!--右边内容-->
     <div class="rbox fr" style="min-height:900px;">
       <div class="box">
