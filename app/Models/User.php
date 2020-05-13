@@ -41,6 +41,12 @@ class User extends Authenticatable implements JWTSubject
         return $this->decrement('jc_times', 1);
     }
 
+    //增加次数
+    public function increaseJcTimes($times)
+    {
+        $this->increment('jc_times', $times);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();

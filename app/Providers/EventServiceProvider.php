@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\OrderPaid;
+use App\Events\RechargePaid;
 use App\Listeners\CheckDoc;
+use App\Listeners\UpdateUserJctimes;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -26,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderPaid::class => [
             CheckDoc::class
+        ],
+        RechargePaid::class => [
+            UpdateUserJctimes::class,
         ]
     ];
 

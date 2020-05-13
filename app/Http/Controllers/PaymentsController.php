@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\OrderPaid;
+use App\Events\RechargePaid;
 use App\Exceptions\InvalidRequestException;
 use App\Handlers\OpenidHandler;
 use App\Jobs\CheckOrderStatus;
@@ -71,7 +72,6 @@ class PaymentsController extends Controller
     {
         try {
             $result = app('alipay')->verify();
-            info('result', [$result->out_trade_no]);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => '支付失败!'
@@ -104,7 +104,7 @@ class PaymentsController extends Controller
         }
         $type = explode('-', $data->out_trade_no);
         // $data->out_trade_no 拿到订单流水号，并在数据库中查询
-        switch ($type) {
+        switch ($type[0]) {
             case 'recharge':
                 $recharge = Recharge::where('no', $data->out_trade_no)->first();
                 // 正常来说不太可能出现支付了一笔不存在的订单，这个判断只是加强系统健壮性。
@@ -121,6 +121,7 @@ class PaymentsController extends Controller
                     'payment_method' => '支付宝支付',
                     'payment_no' => $data->trade_no,
                 ]);
+                $this->afterRechargePaid($recharge);
                 return app('alipay')->success();
                 break;
             default:
@@ -212,7 +213,7 @@ class PaymentsController extends Controller
             'pay_price' => $data->total_fee / 100,//支付金额
             'status' => 1,
         ]);
-        $this->afterPaid($order);
+        $this->afterOrderPaid($order);
         $this->afterPaidMsg($order);
         return app('wechat_pay')->success();
     }
@@ -241,7 +242,7 @@ class PaymentsController extends Controller
             'pay_price' => $data->total_fee / 100,//支付金额
             'status' => 1,
         ]);
-        $this->afterPaid($order);
+        $this->afterOrderPaid($order);
         $this->afterPaidMsg($order);
         return app('wechat_pay_mp')->success();
     }
@@ -251,11 +252,15 @@ class PaymentsController extends Controller
         dispatch(new OrderPaidMsg($order));
     }
 
-    protected function afterPaid(Order $order)
+    protected function afterOrderPaid(Order $order)
     {
         event(new OrderPaid($order));
     }
 
+    protected function afterRechargePaid(Recharge $recharge)
+    {
+        event(new RechargePaid($recharge));
+    }
     //百度回调
     /*
      *   [unitPrice] => 100 //单价分
@@ -318,7 +323,7 @@ class PaymentsController extends Controller
                     'pay_price' => $notify_arr['totalMoney'] / 100,//支付金额
                     'status' => 1,
                 ]);
-                $this->afterPaid($order);
+                $this->afterOrderPaid($order);
                 $this->afterPaidMsg($order);
                 //返回付款成功
                 $ret['errno'] = 0;
