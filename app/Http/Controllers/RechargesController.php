@@ -24,6 +24,7 @@ class RechargesController extends Controller
         $recharge = DB::transaction(function() use ($user, $request) {
             $recharge = new Recharge([
                 'total_amount' => $request->total_amount,
+                'amount' => $request->amount,
             ]);
             $recharge->user()->associate($user);
             $recharge->save();
