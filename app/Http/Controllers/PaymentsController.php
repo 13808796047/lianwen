@@ -26,47 +26,34 @@ class PaymentsController extends Controller
         $id = $request->id;
         switch ($request->type) {
             case 'recharge':
-                $this->alipayRecharge($id);
+                $recharge = Recharge::find($id);
+                //校验权限
+                $this->authorize('ownRecharge', $recharge);
+                // 订单已支付或者已关闭
+                if($recharge->paid_at || $recharge->closed) {
+                    throw new InvalidRequestException('订单状态不正确');
+                }
+                // 调用支付宝的网页支付
+                return app('alipay')->web([
+                    'out_trade_no' => $recharge->no, // 订单编号，需保证在商户端不重复
+                    'total_amount' => $recharge->total_amount, // 订单金额，单位元，支持小数点后两位
+                    'subject' => '支付充值降重次数的订单:' . $recharge->no, // 订单标题
+                ]);
                 break;
             default:
-                $this->alipayOrder($id);
+                $order = Order::find($id);
+                //校验权限
+                $this->authorize('own', $order);
+                if($order->status == 1 || $order->del) {
+                    throw new InvalidRequestException('订单状态不正确!');
+                }
+                // 调用支付宝的网页支付
+                return app('alipay')->web([
+                    'out_trade_no' => $order->orderid, // 订单编号，需保证在商户端不重复
+                    'total_amount' => $order->price, // 订单金额，单位元，支持小数点后两位
+                    'subject' => '支付' . $order->category->name . '的订单：' . $order->orderid, // 订单标题,
+                ]);
         }
-    }
-
-//下单
-    public function alipayOrder($id)
-    {
-        $order = Order::find($id);
-        //校验权限
-        $this->authorize('own', $order);
-        if($order->status == 1 || $order->del) {
-            throw new InvalidRequestException('订单状态不正确!');
-        }
-        // 调用支付宝的网页支付
-        return app('alipay')->web([
-            'out_trade_no' => $order->orderid, // 订单编号，需保证在商户端不重复
-            'total_amount' => $order->price, // 订单金额，单位元，支持小数点后两位
-            'subject' => '支付' . $order->category->name . '的订单：' . $order->orderid, // 订单标题,
-            'type' => 'order',
-        ]);
-    }
-
-//充值s
-    public function alipayRecharge($id)
-    {
-        $recharge = Recharge::find($id);
-        //校验权限
-        $this->authorize('ownRecharge', $recharge);
-        // 订单已支付或者已关闭
-        if($recharge->paid_at || $recharge->closed) {
-            throw new InvalidRequestException('订单状态不正确');
-        }
-        // 调用支付宝的网页支付
-        return app('alipay')->web([
-            'out_trade_no' => $recharge->no, // 订单编号，需保证在商户端不重复
-            'total_amount' => $recharge->total_amount, // 订单金额，单位元，支持小数点后两位
-            'subject' => '支付充值降重次数的订单:' . $recharge->no, // 订单标题
-        ]);
     }
 
 //wap支付
@@ -84,14 +71,24 @@ class PaymentsController extends Controller
     {
         try {
             $result = app('alipay')->verify();
+            info('result', [$result->out_trade_no]);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => '支付失败!'
             ], 500);
         }
-        $order = Order::where('payid', $result->out_trade_no)->first();
-        $orders = auth()->user()->orders()->with('category:id,name')->latest()->paginate(10);
-        return view('domained::orders.index', compact('orders'));
+        $type = explode('-', $result->out_trade_no);
+        switch ($type[0]) {
+            case 'recharge':
+                $recharge = Recharge::where('no', $result->out_trade_no)->first();
+                return view('domained::auto_checks.index');
+                break;
+            default:
+                $order = Order::where('payid', $result->out_trade_no)->first();
+                $orders = auth()->user()->orders()->with('category:id,name')->latest()->paginate(10);
+                return view('domained::orders.index', compact('orders'));
+        }
+
     }
 
     // 服务器端回调
@@ -99,34 +96,55 @@ class PaymentsController extends Controller
     {
         // 校验输入参数
         $data = app('alipay')->verify();
+        info('data', [$data]);
         // 如果订单状态不是成功或者结束，则不走后续的逻辑
         // 所有交易状态：https://docs.open.alipay.com/59/103672
         if(!in_array($data->trade_status, ['TRADE_SUCCESS', 'TRADE_FINISHED'])) {
             return app('alipay')->success();
         }
+        $type = explode('-', $data->out_trade_no);
         // $data->out_trade_no 拿到订单流水号，并在数据库中查询
-        $order = Order::where('orderid', $data->out_trade_no)->first();
-
-        // 正常来说不太可能出现支付了一笔不存在的订单，这个判断只是加强系统健壮性。
-        if(!$order) {
-            return 'fail';
+        switch ($type) {
+            case 'recharge':
+                $recharge = Recharge::where('no', $data->out_trade_no)->first();
+                // 正常来说不太可能出现支付了一笔不存在的订单，这个判断只是加强系统健壮性。
+                if(!$recharge) {
+                    return 'fail';
+                }
+                // 如果这笔订单的状态已经是已支付
+                if($recharge->paid_at) {
+                    // 返回数据给支付宝
+                    return app('alipay')->success();
+                }
+                $recharge->update([
+                    'paid_at' => Carbon::now(),
+                    'payment_method' => '支付宝支付',
+                    'payment_no' => $data->trade_no,
+                ]);
+                return app('alipay')->success();
+                break;
+            default:
+                $order = Order::where('orderid', $data->out_trade_no)->first();
+                // 正常来说不太可能出现支付了一笔不存在的订单，这个判断只是加强系统健壮性。
+                if(!$order) {
+                    return 'fail';
+                }
+                // 如果这笔订单的状态已经是已支付
+                if($order->status == 1) {
+                    // 返回数据给支付宝
+                    return app('alipay')->success();
+                }
+                $order->update([
+                    'date_pay' => Carbon::now(), // 支付时间
+                    'pay_type' => '支付宝支付', // 支付方式
+                    'payid' => $data->out_trade_no, // 支付宝订单号
+                    'pay_price' => $data->total_amount,//支付金额
+                    'status' => 1,
+                ]);
+                $this->afterPaid($order);
+                $this->afterPaidMsg($order);
+                return app('alipay')->success();
         }
-        // 如果这笔订单的状态已经是已支付
-        if($order->status == 1) {
-            // 返回数据给支付宝
-            return app('alipay')->success();
-        }
-
-        $order->update([
-            'date_pay' => Carbon::now(), // 支付时间
-            'pay_type' => '支付宝支付', // 支付方式
-            'payid' => $data->out_trade_no, // 支付宝订单号
-            'pay_price' => $data->total_amount,//支付金额
-            'status' => 1,
-        ]);
-        $this->afterPaid($order);
-        $this->afterPaidMsg($order);
-        return app('alipay')->success();
     }
 
     //微信支付
