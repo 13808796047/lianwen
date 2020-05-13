@@ -43,7 +43,7 @@ Route::get('orders/{orderid}/download', 'OrdersController@download')
 
 
 //支付宝
-Route::get('payments/{order}/alipay', 'PaymentsController@alipay')
+Route::get('payments/{id}/alipay/{type}', 'PaymentsController@alipay')
     ->name('payments.alipay');
 Route::get('payments/{order}/alipay_wap', 'PaymentsController@alipayWap')
     ->name('payments.alipay_wap');
