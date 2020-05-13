@@ -61,6 +61,7 @@ class PaymentsController extends Controller
         if($recharge->paid_at || $recharge->closed) {
             throw new InvalidRequestException('订单状态不正确');
         }
+        dd(config('pay.alipay'));
         // 调用支付宝的网页支付
         return app('alipay')->web([
             'out_trade_no' => $recharge->no, // 订单编号，需保证在商户端不重复
