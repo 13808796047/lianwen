@@ -51,12 +51,12 @@ class PaymentsController extends Controller
         ]);
     }
 
-//充值
+//充值s
     public function alipayRecharge($id)
     {
         $recharge = Recharge::find($id);
-//        //校验权限
-//        $this->authorize('ownRecharge', $recharge);
+        //校验权限
+        $this->authorize('ownRecharge', $recharge);
         // 订单已支付或者已关闭
         if($recharge->paid_at || $recharge->closed) {
             throw new InvalidRequestException('订单状态不正确');
@@ -65,7 +65,7 @@ class PaymentsController extends Controller
         return app('alipay')->web([
             'out_trade_no' => $recharge->no, // 订单编号，需保证在商户端不重复
             'total_amount' => $recharge->total_amount, // 订单金额，单位元，支持小数点后两位
-            'subject' => '支付充值降重次数的订单：' . $recharge->no, // 订单标题
+            'subject' => '支付充值降重次数的订单:' . $recharge->no, // 订单标题
         ]);
     }
 
