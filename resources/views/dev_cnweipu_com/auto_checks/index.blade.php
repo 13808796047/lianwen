@@ -165,7 +165,8 @@
         let totalprice=$("#curjctime").text();
         console.log(totalprice,3131)
         axios.post('{{ route('recharges.store') }}',{
-          total_amount:totalprice
+          total_amount:totalprice,
+          amount:totalprice
         }).then(res => {
           console.log(res,312312)
         }).catch(err => {
