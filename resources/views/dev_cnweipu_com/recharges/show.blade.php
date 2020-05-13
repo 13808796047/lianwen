@@ -82,7 +82,7 @@
 								</td>
 							</tr>
 						</table>
-						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="javascript:;"
+						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="/payments/6/alipay/recharge"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
 						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
@@ -115,6 +115,7 @@
 @section('scripts')
   <script>
     $(document).ready(function () {
+
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $("input[name='paytype']").change(() => {
@@ -127,6 +128,11 @@
           console.log('xixixi',312123)
           $("#wxModal").modal('show')
       });
+      // function changeurl(){
+      //   console.log('xixi,12')
+      //     $("#bottonsubmit").attr("href",`/payments/6/alipay/recharge`);
+      // }
+
     })
   </script>
 @stop
