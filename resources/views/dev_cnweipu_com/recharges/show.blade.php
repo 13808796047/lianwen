@@ -97,5 +97,11 @@
         $('#bottonsubmit').toggle();
         $('#btn-wechat').toggle();
       })
+      //微信支付
+      $('#btn-wechat').click(function () {
+          // 微信支付
+          console.log('xixixi',312123)
+      });
+    })
   </script>
 @stop
