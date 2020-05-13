@@ -23,14 +23,27 @@ class PaymentsController extends Controller
 {
     public function alipay(Request $request)
     {
-        $id = $request->id;
-        switch ($request->type) {
-            case 'recharge':
-                $this->alipayRecharge($id);
-                break;
-            default:
-                $this->alipayOrder($id);
+        $order = Order::find($request->id);
+        //校验权限
+        $this->authorize('own', $order);
+        if($order->status == 1 || $order->del) {
+            throw new InvalidRequestException('订单状态不正确!');
         }
+        // 调用支付宝的网页支付
+        return app('alipay')->web([
+            'out_trade_no' => $order->orderid, // 订单编号，需保证在商户端不重复
+            'total_amount' => $order->price, // 订单金额，单位元，支持小数点后两位
+            'subject' => '支付' . $order->category->name . '的订单：' . $order->orderid, // 订单标题,
+            'type' => 'order'
+        ]);
+        /* $id = $request->id;
+         switch ($request->type) {
+             case 'recharge':
+                 $this->alipayRecharge($id);
+                 break;
+             default:
+                 $this->alipayOrder($id);
+         }*/
     }
 
 //下单
