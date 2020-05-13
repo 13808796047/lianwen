@@ -83,6 +83,9 @@
       <p style="background-color: #4876FF;display: inline;padding: 5px 20px;color:#fff;text-align: center;font-size:15px;"
         id="reduce">
         一键降重</p>
+      <div style="display: flex;justify-content: center;margin-top: 15px;">
+      <p>剩余次数:<span id="jc_time">{{ auth()->user()->jc_times}}</span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
+    </div>
     </div>
     <!--右边内容-->
     <div class="rbox fr" style="min-height:900px;">
