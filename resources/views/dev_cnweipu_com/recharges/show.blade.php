@@ -115,6 +115,7 @@
 @section('scripts')
   <script>
     $(document).ready(function () {
+
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $("input[name='paytype']").change(() => {
@@ -127,6 +128,9 @@
           console.log('xixixi',312123)
           $("#wxModal").modal('show')
       });
+      $("#bottonsubmit").click(function(){
+        loction.href=`/payments/6/alipay/recharge`
+      })
     })
   </script>
 @stop
