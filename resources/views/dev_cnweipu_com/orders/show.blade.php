@@ -187,7 +187,7 @@
       //支付宝
       $('#bottonsubmit').click(function(){
        let order = {!!$order!!};
-       console.log(id)
+       console.log(order.id,31231)
       // /payments/7/alipay/recharge
       location.href=`/payments/${order.id}/alipay/order`
      })
