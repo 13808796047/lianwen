@@ -173,6 +173,7 @@ class PaymentsController extends Controller
                 return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
                 break;
             default:
+                $order = Order::find($id);
                 // 校验订单状态
                 if($order->status == 1 || $order->del) {
                     throw new InvalidRequestException('订单状态不正确');
