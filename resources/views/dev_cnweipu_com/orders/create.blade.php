@@ -406,7 +406,7 @@
           ).then(res => {
             console.log(res, 3123123)
             var order = res.data.data
-            location.href =`/payments/${res.data.data.id}/alipay/order`
+            location.href = '/orders/' + res.data.data.id
           }).catch(err => {
             console.log(err, 3112312312)
             alert('提交失败，请重试')
@@ -427,8 +427,7 @@
           ).then(res => {
             console.log(res, 3123123)
             var order = res.data.data
-            // location.href = '/orders/' + res.data.data.id
-            location.href =`/payments/${res.data.data.id}/alipay/order`
+            location.href = '/orders/' + res.data.data.id
           }).catch(err => {
             alert('提交失败，请重试')
             $('#tosubmit').css("display", "block");
