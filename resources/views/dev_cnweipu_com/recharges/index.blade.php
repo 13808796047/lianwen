@@ -27,13 +27,13 @@
 									<span>购买次数</span>
 								</td>
 								<td style="text-align: left;">
-									<span>13</span>
+									<span>{{$item->amount}}</span>
 								</td>
 							</tr>
 							<tr>
 								<td width="">价格</td>
 								<td style="text-align: left;">
-									￥177
+									￥{{ $item->total_amount }}
 								</td>
 							</tr>
 							<tr bgcolor="#D0EAFF">
