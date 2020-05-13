@@ -56,7 +56,7 @@ class PaymentsController extends Controller
     {
         $recharge = Recharge::find($id);
         //校验权限
-        $this->authorize('own', $recharge);
+        $this->authorize('ownRecharge', $recharge);
         // 订单已支付或者已关闭
         if($recharge->paid_at || $recharge->closed) {
             throw new InvalidRequestException('订单状态不正确');

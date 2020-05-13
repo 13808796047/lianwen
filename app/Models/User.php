@@ -30,6 +30,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->id == $model->userid;
     }
 
+    public function isBelongOf($model)
+    {
+        return $this->id == $model->user_id;
+    }
+
     //减少降重次数
     public function decreaseJcTimes()
     {
