@@ -30,7 +30,6 @@ class AppServiceProvider extends ServiceProvider
                     break;
                 default:
                     $config = config('pay.alipay');
-                    break;
             }
             $config['notify_url'] = route('payments.alipay.notify');
             $config['return_url'] = route('payments.alipay.return');
