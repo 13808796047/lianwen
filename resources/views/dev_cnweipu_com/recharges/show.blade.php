@@ -42,7 +42,7 @@
 						<table class="mylist" style="line-height: 30px">
 							<tr>
 								<td width="149">
-									<span>购买次数</span>
+									<span>购买次数ss</span>
 								</td>
 								<td style="text-align: left;">
 									<span>{{$recharge->amount}}</span>
