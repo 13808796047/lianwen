@@ -183,7 +183,6 @@
           })
       });
     });
-
     // $(function () {
     //   setInterval("checkpaied()", 1000);
     //   $("#usedeposit").click(function () {
