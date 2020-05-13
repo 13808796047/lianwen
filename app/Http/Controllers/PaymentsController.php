@@ -23,10 +23,22 @@ class PaymentsController extends Controller
 {
     public function alipay(Request $request)
     {
-        $order = Order::find($request->id);
+        $id = $request->id;
         switch ($request->type) {
             case 'recharge':
-                $this->alipayRecharge($id);
+                $recharge = Recharge::find($id);
+                //校验权限
+                $this->authorize('ownRecharge', $recharge);
+                // 订单已支付或者已关闭
+                if($recharge->paid_at || $recharge->closed) {
+                    throw new InvalidRequestException('订单状态不正确');
+                }
+                // 调用支付宝的网页支付
+                return app('alipay')->web([
+                    'out_trade_no' => $recharge->no, // 订单编号，需保证在商户端不重复
+                    'total_amount' => $recharge->total_amount, // 订单金额，单位元，支持小数点后两位
+                    'subject' => '支付充值降重次数的订单:' . $recharge->no, // 订单标题
+                ]);
                 break;
             default:
                 $order = Order::find($id);
@@ -73,19 +85,7 @@ class PaymentsController extends Controller
 //充值s
     public function alipayRecharge($id)
     {
-        $recharge = Recharge::find($id);
-        //校验权限
-        $this->authorize('ownRecharge', $recharge);
-        // 订单已支付或者已关闭
-        if($recharge->paid_at || $recharge->closed) {
-            throw new InvalidRequestException('订单状态不正确');
-        }
-        // 调用支付宝的网页支付
-        return app('alipay')->web([
-            'out_trade_no' => $recharge->no, // 订单编号，需保证在商户端不重复
-            'total_amount' => $recharge->total_amount, // 订单金额，单位元，支持小数点后两位
-            'subject' => '支付充值降重次数的订单:' . $recharge->no, // 订单标题
-        ]);
+
     }
 
 //wap支付
