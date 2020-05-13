@@ -16,7 +16,7 @@
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -82,7 +82,7 @@
 								</td>
 							</tr>
 						</table>
-						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="/payments/6/alipay/recharge"
+						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="javascript:;" target="_blank"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
 						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
@@ -128,11 +128,13 @@
           console.log('xixixi',312123)
           $("#wxModal").modal('show')
       });
-      // function changeurl(){
-      //   console.log('xixi,12')
-      //     $("#bottonsubmit").attr("href",`/payments/6/alipay/recharge`);
-      // }
-
+     //支付宝支付
+     $('#bottonsubmit').click(function(){
+       let id = {!!$recharge!!};
+       console.log(id)
+      // /payments/7/alipay/recharge
+      location.href=`/payments/${id.id}/alipay/recharge`
+     })
     })
   </script>
 @stop
