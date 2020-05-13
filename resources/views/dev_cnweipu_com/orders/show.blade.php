@@ -24,7 +24,6 @@
 		<div>
 			<div class="cbox submit yh">
 				<div class="down clearfix">
-					<form action="{{route('payments.alipay',['order'=>$order->orderid])}}" method="get">
 						<table class="mylist" style="line-height: 30px">
 							<tr>
 								<td width="149">
@@ -125,11 +124,11 @@
 								</td>
 							</tr>
 						</table>
-						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="{{ route('payments.alipay', ['order' => $order->id])}}"
+
+             <a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="/payments/1038/alipay/order"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
 						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
-					</form>
 					<div class="clearfix"></div>
 				</div>
 			</div>
@@ -171,7 +170,7 @@
         swal({
           title: "打开微信使用扫一扫完成付款",
           // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-          content: $('<img src="{{ route('payments.wechat', ['order' => $order->id]) }}" style="display: block;margin: 0 auto;"/>')[0],
+          // content: $('<img src="{{ route('payments.wechat', ['order' => $order->id]) }}" style="display: block;margin: 0 auto;"/>')[0],
           // buttons 参数可以设置按钮显示的文案
           buttons: ['关闭', '已完成付款'],
         })
@@ -182,6 +181,13 @@
             }
           })
       });
+      //支付宝
+    //   $('#bottonsubmit').click(function(){
+    //    let order = {!!$order!!};
+    //    console.log(order.id,31231)
+    //   // /payments/7/alipay/recharge
+    //   location.href=`/payments/${order.id}/alipay/order`
+    //  })
     });
     // $(function () {
     //   setInterval("checkpaied()", 1000);
