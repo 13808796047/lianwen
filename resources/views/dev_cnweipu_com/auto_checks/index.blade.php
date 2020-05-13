@@ -67,7 +67,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" id="surecheck">确定</button>
+          <button type="button" class="btn btn-primary" id="sureshop">确定</button>
         </div>
       </div>
     </div>
@@ -159,6 +159,19 @@
         let current = Number($("#curjctime").text())+1;
         $("#curjctime").text(current)
 
+      })
+      //确认购买
+      $("#sureshop").click(function(){
+        let totalprice=$("#curjctime").text();
+        console.log(totalprice,3131)
+        axios.post('{{ route('recharges.store') }}',{
+          total_amount:totalprice
+        }).then(res => {
+          console.log(res,312312)
+        }).catch(err => {
+          console.log(err,31312)
+        })
+      })
       })
       //点击减少降重次数
       $("#cutjctime").click(function(){
