@@ -22,7 +22,7 @@ class CreateRechargesTable extends Migration
             $table->unsignedInteger('amount')->default(0);
             $table->text('remark')->nullable();
             $table->dateTime('paid_at')->nullable();
-            $table->string('payment_mothod')->nullable();
+            $table->string('payment_method')->nullable();
             $table->string('payment_no')->nullable();
             $table->string('refund_status')->default(\App\Models\Recharge::REFUND_STATUS_PENDING);
             $table->string('refund_no')->unique()->nullable();
