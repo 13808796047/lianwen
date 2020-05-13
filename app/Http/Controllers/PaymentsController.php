@@ -66,7 +66,6 @@ class PaymentsController extends Controller
             'out_trade_no' => $recharge->no, // 订单编号，需保证在商户端不重复
             'total_amount' => $recharge->total_amount, // 订单金额，单位元，支持小数点后两位
             'subject' => '支付充值降重次数的订单：' . $recharge->no, // 订单标题
-            'type' => 'recharge',
         ]);
     }
 
