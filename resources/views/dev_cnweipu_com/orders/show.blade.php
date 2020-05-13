@@ -125,7 +125,9 @@
 								</td>
 							</tr>
 						</table>
-						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="{{ route('payments.alipay', ['order' => $order->id])}}"
+						<!-- <a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="{{ route('payments.alipay', ['order' => $order->id])}}"
+						 class="btn btn-primary btn-sm sbtn">提交</a> -->
+             <a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="javascript:;" target="_blank"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
 						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
@@ -183,6 +185,12 @@
           })
       });
     });
+    $('#bottonsubmit').click(function(){
+       let order= {!!$order!!};
+       console.log(order)
+      // /payments/7/alipay/recharge
+      location.href=`/payments/${order.id}/alipay/recharge`
+     })
 
     // $(function () {
     //   setInterval("checkpaied()", 1000);
