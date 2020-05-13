@@ -36,6 +36,7 @@ class PaymentsController extends Controller
 //下单
     public function alipayOrder($id)
     {
+        dd('order');
         $order = Order::find($id);
         //校验权限
         $this->authorize('own', $order);
@@ -54,6 +55,7 @@ class PaymentsController extends Controller
 //充值
     public function alipayRecharge($id)
     {
+        dd('recharge');
         $recharge = Recharge::find($id);
         //校验权限
         $this->authorize('ownRecharge', $recharge);
