@@ -39,7 +39,7 @@
     <div class="row">
       <div class="col-md-6">
         <h3 class="">按系统统计</h3>
-        <table class="table custom-data-table  category">
+        <table class="table custom-data-table dataTable category">
           <thead>
           <tr>
             <th>系统名称</th>
