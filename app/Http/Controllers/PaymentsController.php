@@ -241,14 +241,14 @@ class PaymentsController extends Controller
                 }
                 $recharge->update([
                     'paid_at' => Carbon::now(),
-                    'payment_method' => '支付宝支付',
+                    'payment_method' => '微信支付',
                     'payment_no' => $data->out_trade_no,
                 ]);
                 $this->afterRechargePaid($recharge);
                 return app('wechat_pay')->success();
                 break;
             default:
-                // 找到对应的订单
+                // 找到对应的订单:
                 $order = Order::where('orderid', $data->out_trade_no)->first();
                 // 订单不存在则告知微信支付
                 if(!$order) {
