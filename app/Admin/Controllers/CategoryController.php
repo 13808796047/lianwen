@@ -73,6 +73,8 @@ class CategoryController extends AdminController
             $form->text('seo_title', 'SEO标题');
             $form->block(6, function(Form\BlockForm $form) {
                 $form->image('sys_logo', '系统LOGO');
+//                $form->image('sys_logo');
+//                $form->image('sys_logo', '系统LOGO');
                 $form->textarea('intro', '系统介绍');
                 $form->textarea('sintro', '系统简介');
 
@@ -83,15 +85,16 @@ class CategoryController extends AdminController
                     return $v ? 1 : 0;
                 });
             });
-            $form->tools(function(Form\Tools $tools) {
-
-                // 去掉`列表`按钮
-                $tools->disableList();
-
-
-                // 去掉`查看`按钮
-                $tools->disableView();
-            });
+            $form->disableResetButton();
+//            $form->tools(function(Form\Tools $tools) {
+//
+//                // 去掉`列表`按钮
+//                $tools->disableList();
+//
+//
+//                // 去掉`查看`按钮
+//                $tools->disableView();
+//            });
 
         });
     }

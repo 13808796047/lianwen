@@ -39,7 +39,7 @@ class Category extends Model
         if(Str::startsWith($this->attributes['sys_logo'], ['http://', 'https://'])) {
             return $this->attributes['sys_logo'];
         }
-//        return \Storage::disk('public')->url($this->attributes['sys_logo']);
-        return config('app.url') . '/uploads/' . $this->attributes['sys_logo'];
+        return \Storage::disk('public')->url($this->attributes['sys_logo']);
+//        return config('app.url') . '/uploads/' . $this->attributes['sys_logo'];
     }
 }

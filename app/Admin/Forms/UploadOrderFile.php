@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UploadOrderFile extends Form
 {
-    use HasUploadedFile;
 
     public function handle(array $input)
     {
