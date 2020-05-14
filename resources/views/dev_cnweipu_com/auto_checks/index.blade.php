@@ -96,7 +96,7 @@
           </div>
           <p style="font-size: 13px;margin-top: 5px;">微信扫码分享</p>
         </div>
-        <div class="modal-footer" style="border:none;display:block;style:13px;">
+        <div class="modal-footer" style="border:none;display:block;font-size:13px;">
           <p>活动规则</p>
           <p>1、每推荐1名好友成功注册（微信登录或绑定手机号），推荐人和注册人各获得5次自动降重次数，获得的次数可叠加，无上限；</p>
           <p>2、所获得降重次数不可提现，仅用于使用自动降重服务时抵扣；</p>
