@@ -72,12 +72,12 @@ class CategoryController extends AdminController
             $form->text('tese', '特色');
             $form->text('seo_title', 'SEO标题');
             $form->block(6, function(Form\BlockForm $form) {
-                $form->image('sys_logo', '系统LOGO')->disableRemove();
+                $form->image('sys_logo', '系统LOGO');
                 $form->textarea('intro', '系统介绍');
                 $form->textarea('sintro', '系统简介');
 
 
-                $form->image('sys_ico', '系统图标')->disableRemove();
+                $form->image('sys_ico', '系统图标');
 
                 $form->switch('status')->saving(function($v) {
                     return $v ? 1 : 0;
