@@ -14,6 +14,7 @@
   </style>
 @stop
 @section('content')
+{{ dd(auth()->user()->toArray()) }}
   <!-- 模态框 -->
   <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
