@@ -242,7 +242,7 @@ class PaymentsController extends Controller
                 $recharge->update([
                     'paid_at' => Carbon::now(),
                     'payment_method' => '支付宝支付',
-                    'payment_no' => $data->trade_no,
+                    'payment_no' => $data->out_trade_no,
                 ]);
                 $this->afterRechargePaid($recharge);
                 return app('wechat_pay')->success();
