@@ -94,6 +94,7 @@
           <div style="display:flex;justify-content: center;">
             <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1589423547&di=d87ddb2e0e438a1ea626f3874161c1f6&src=http://bpic.588ku.com/element_origin_min_pic/01/37/30/36573c45d2efb52.jpg" alt="" style="width:150px;height:150px;">
           </div>
+          <p>微信扫码分享</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
