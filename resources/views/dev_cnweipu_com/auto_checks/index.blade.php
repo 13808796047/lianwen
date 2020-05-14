@@ -73,6 +73,15 @@
     </div>
   </div>
   <!-- 购买降重字数模态框结束 -->
+  <!-- 推荐弹框 -->
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="tjModal">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
+  <!-- 推荐弹框结束 -->
     <!--左边导航-->
     <div class="main clearfix" id="jcafter">
       <div class="lbox fl">
@@ -149,6 +158,7 @@
     $(() => {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
+      $('#tjModal').modal('show')
       //获取字数
       $("#content").bind('input',(e)=>{
         $('#words span').html(e.target.value.length)
