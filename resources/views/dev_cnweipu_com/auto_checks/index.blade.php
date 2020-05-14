@@ -83,14 +83,14 @@
           </button>
         </div>
         <div class="modal-body" style="padding:0;text-align:center;">
-          <p>推荐注册，赠送自动降重次数</p>
-          <p>双方各送5次</p>
-          <p>方式1：分享地址，邀请好友注册（适合电脑此操作）</p>
+          <p style="font-weight: bold;font-size: 18px;">推荐注册，赠送自动降重次数</p>
+          <p style="font-size: 13px;color: #FFA54F;">双方各送5次</p>
+          <p style="margin:10px 0;">方式1：分享地址，邀请好友注册（适合电脑此操作）</p>
           <div style="display:flex;justify-content: center;">
             <p style="border: 1px solid;padding: 0 10px;">https://dev.lianwen.com</p>
             <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;">复制链接</p>
           </div>
-          <p>方式2：微信扫码，邀请好友注册（适合手机操作）</p>
+          <p style="margin:10px 0;">方式2：微信扫码，邀请好友注册（适合手机操作）</p>
           <div style="display:flex;justify-content: center;">
             <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1589423547&di=d87ddb2e0e438a1ea626f3874161c1f6&src=http://bpic.588ku.com/element_origin_min_pic/01/37/30/36573c45d2efb52.jpg" alt="" style="width:150px;height:150px;">
           </div>
