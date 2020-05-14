@@ -89,8 +89,10 @@ class OrdersController extends Controller
 
             $order = Order::where('orderid', $orderid)->first();
         }
+        // 校验权限
+        $this->authorize('own', $order);
         //校验权限
-        return response()->download(storage_path() . '/app/' . $order->report_path);
+        return response()->download(storage_path() . '/app/' . $order->report_path, $order->writer . '-' . $order->title . '.zip');
     }
 
     public function generateQrcode(Request $request, Order $order)
