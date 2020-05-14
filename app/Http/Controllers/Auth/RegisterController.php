@@ -74,6 +74,7 @@ class RegisterController extends Controller
             //邀请人
             $inviter = User::findOrFail($request->uid);
             $inviter->increaseJcTimes(5);
+            $user->increaseJcTimes(5);
         }
         $this->guard()->login($user);
 

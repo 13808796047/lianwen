@@ -14,7 +14,7 @@ class AddJcTimesToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->unsignedInteger('jc_times')->default(2);
+            $table->unsignedInteger('jc_times')->default(0);
         });
     }
 
