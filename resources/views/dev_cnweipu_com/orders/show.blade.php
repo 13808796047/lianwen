@@ -167,11 +167,11 @@
       })
       // 微信支付按钮事件
       $('#btn-wechat').click(function () {
-        let ss = {!!$order!!}
+        let order = {!!$order!!}
         swal({
           title: "打开微信使用扫一扫完成付款",
           // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-          content: $(`<img src="/payments/${ss.id}/wechat/order" style="display: block;margin: 0 auto;"/>`)[0],
+          content: $(`<img src="/payments/${order.id}/wechat/order" style="display: block;margin: 0 auto;"/>`)[0],
           // buttons 参数可以设置按钮显示的文案
           buttons: ['关闭', '已完成付款'],
         })
@@ -179,7 +179,7 @@
             // 如果用户点击了 已完成付款 按钮，则重新加载页面
             if (result) {
 
-             location.href=`/payments/${ss.id}/wechat/return/order`
+             location.href=`/payments/${order.id}/wechat/return/order`
             }
           })
         ;
