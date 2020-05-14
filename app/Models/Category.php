@@ -40,6 +40,6 @@ class Category extends Model
             return $this->attributes['sys_logo'];
         }
 //        return \Storage::disk('public')->url($this->attributes['sys_logo']);
-        return public_path('upload' . $this->attributes['sys_logo']);
+        return config('app_url') . '/upload/' . $this->attributes['sys_logo'];
     }
 }
