@@ -14,34 +14,62 @@
   </div>
   <div class="box-body">
     <ul class="nav nav-pills">
-      <li role="presentation" class="{{ system_nav_active('cid','today') }}"><a
-          href="{{ route('admin.home.index',['type'=>'cid','date'=>'today']) }}">今天</a></li>
-      <li role="presentation" class="{{ system_nav_active('cid','yesterday') }}"><a
-          href="{{ route('admin.home.index',['type'=>'cid','date'=>'yesterday']) }}">昨天</a></li>
-      <li role="presentation" class="{{ system_nav_active('cid','month') }}"><a
-          href="{{ route('admin.home.index', ['type'=>'cid','date'=>'month']) }}">本月</a></li>
-      <li role="presentation" class="{{ system_nav_active('cid','pre_month') }}"><a
-          href="{{ route('admin.home.index', ['type'=>'cid','date'=>'pre_month']) }}">上月</a></li>
+      <li class="nav-item">
+        @if(request()->date)
+          <a class="nav-link {{ system_nav_active('cid','today') }}"
+             href="{{ route('admin.home.index',['type'=>'cid','date'=>'today']) }}">今天</a>
+        @else
+          <a class="nav-link {{ active_class(if_route('admin.home.index')) }}"
+             href="{{ route('admin.home.index') }}">今天</a>
+        @endif
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ system_nav_active('cid','yesterday') }}"
+           href="{{ route('admin.home.index',['type'=>'cid','date'=>'yesterday']) }}">昨天</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ system_nav_active('cid','month') }}"
+           href="{{ route('admin.home.index', ['type'=>'cid','date'=>'month']) }}">本月</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ system_nav_active('cid','pre_month') }}"
+           href="{{ route('admin.home.index', ['type'=>'cid','date'=>'pre_month']) }}">上月</a>
+      </li>
     </ul>
     <div class="row">
       <div class="col-md-6">
-        <h3>按系统统计</h3>
+        <h3 class="">按系统统计</h3>
+        <table class="table custom-data-table dataTable category">
+          <thead>
 
-        <table class="table-bordered table text-center category">
           <tr>
             <th>系统名称</th>
             <th>付款订单数/总订单数</th>
             <th>付款率</th>
             <th>付款金额</th>
           </tr>
+          </thead>
+          <tbody>
           @foreach($class_orders as $order)
             <tr>
               <td>{{ $order->name }}</td>
-              <td>{{$order->orders->count().'/'.$order->orders()->count()}}</td>
+              @switch(request()->date)
+                @case('yesterday')
+                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])->count()}}</td>
+                @break
+                @case('month')
+                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth()])->count()}}</td>
+                @break
+                @case('pre_month')
+                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subMonth()->startOfMonth(), \Carbon\Carbon::now()->subMonth()->endOfMonth()])->count()}}</td>
+                @break
+                @default
+                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfDay(), \Carbon\Carbon::now()->endOfDay()])->count()}}</td>
+              @endswitch
               <td>{{@number_format(($order->orders->count()/(\App\Models\Order::query()->whereNotNull('date_pay')->count()) *100),2)}}
                 %
               </td>
-              <td>{{ $order->orders->sum('pay_price')}}元</td>
+              <td>{{ @number_format($order->orders->sum('pay_price'),2) }}元</td>
             </tr>
 
           @endforeach
@@ -51,25 +79,41 @@
             <td></td>
             <td id="total_price" class="text-danger fontsize-ensurer">0</td>
           </tr>
+          </tbody>
         </table>
       </div>
       <div class="col-md-6">
         <h3>按来源统计</h3>
-        <table class="table table-bordered source">
+        <table class="table custom-data-table dataTable source">
+          <thead>
           <tr>
             <th>来源</th>
             <th>付款订单数/总订单数</th>
             <th>付款率</th>
             <th>付款金额</th>
           </tr>
+          </thead>
+          <tbody>
           @foreach($source_orders as $source=> $order)
             <tr>
               <td>{{ $source }}</td>
-              <td>{{$order->count().'/'.\App\Models\Order::query()->whereNotNull('date_pay')->count()}}</td>
+              @switch(request()->date)
+                @case('yesterday')
+                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])->count()}}</td>
+                @break
+                @case('month')
+                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth()])->count()}}</td>
+                @break
+                @case('pre_month')
+                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subMonth()->startOfMonth(), \Carbon\Carbon::now()->subMonth()->endOfMonth()])->count()}}</td>
+                @break
+                @default
+                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfDay(), \Carbon\Carbon::now()->endOfDay()])->count()}}</td>
+              @endswitch
               <td>{{@number_format($order->count()/(\App\Models\Order::query()->whereNotNull('date_pay')->count()) *100,2)}}
                 %
               </td>
-              <td>{{ $order->sum('pay_price')}}元</td>
+              <td>{{ @number_format($order->sum('pay_price'),2) }}元</td>
             </tr>
 
           @endforeach
@@ -79,6 +123,7 @@
             <td></td>
             <td id="source_total_price" class="text-danger fontsize-ensurer">0</td>
           </tr>
+          </tbody>
         </table>
       </div>
     </div>
