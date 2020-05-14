@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\RechargePaid;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -59,6 +63,27 @@ class RegisterController extends Controller
             'phone' => ['required', 'string', 'max:255', 'regex:/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199)\d{8}$/', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $user = $this->create($request->all());
+        event(new Registered($user));
+        if($request->has('uid')) {
+            //邀请人
+            $inviter = User::findOrFail($request->uid);
+            $inviter->increaseJcTimes(5);
+        }
+        $this->guard()->login($user);
+
+        if($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new Response('', 201)
+            : redirect($this->redirectPath());
     }
 
     /**
