@@ -188,7 +188,6 @@
           // }).catch(err=>{
           //   console.log(err,312321)
           // })
-          axios.get(``)
       });
       //支付宝
       $('#bottonsubmit').click(function(){
