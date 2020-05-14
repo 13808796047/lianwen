@@ -73,6 +73,27 @@
     </div>
   </div>
   <!-- 购买降重字数模态框结束 -->
+  <!-- 推荐弹框 -->
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="tjModal">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="text-align:center;">
+          <p>推荐注册，赠送自动降重次数</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="sureshop">确定</button>
+        </div>
+    </div>
+  </div>
+</div>
+  <!-- 推荐弹框结束 -->
     <!--左边导航-->
     <div class="main clearfix" id="jcafter">
       <div class="lbox fl">
@@ -149,6 +170,7 @@
     $(() => {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
+      $('#tjModal').modal('show')
       //获取字数
       $("#content").bind('input',(e)=>{
         $('#words span').html(e.target.value.length)
