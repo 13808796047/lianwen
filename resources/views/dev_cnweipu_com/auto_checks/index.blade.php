@@ -82,7 +82,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" tyle="padding:0;">
+        <div class="modal-body" style="padding:0;">
           <p>推荐注册，赠送自动降重次数</p>
           <p>双方各送5次</p>
         </div>
