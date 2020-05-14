@@ -39,7 +39,7 @@
     <div class="row">
       <div class="col-md-6">
         <h3 class="">按系统统计</h3>
-        <table class="table custom-data-table dataTable category">
+        <table class="table custom-data-table  category">
           <thead>
           <tr>
             <th>系统名称</th>
@@ -68,7 +68,7 @@
               <td>{{@number_format(($order->orders->count()/(\App\Models\Order::query()->whereNotNull('date_pay')->count()) *100),2)}}
                 %
               </td>
-              <td>{{ @number_format($order->orders->sum('pay_price'),2) }}元</td>
+              <td>{{ $order->orders->sum('pay_price') }}元</td>
             </tr>
 
           @endforeach
@@ -112,7 +112,7 @@
               <td>{{@number_format($order->count()/(\App\Models\Order::query()->whereNotNull('date_pay')->count()) *100,2)}}
                 %
               </td>
-              <td>{{ @number_format($order->sum('pay_price'),2) }}元</td>
+              <td>{{ $order->sum('pay_price') }}元</td>
             </tr>
 
           @endforeach
