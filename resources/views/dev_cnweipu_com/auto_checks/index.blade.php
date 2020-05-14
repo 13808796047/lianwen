@@ -77,14 +77,24 @@
   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="tjModal">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
-        <div class="modal-header" style="padding:10px;border-bottom:0;">
+        <div class="modal-header" style="padding:5px 10px;border-bottom:0;">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" tyle="padding:0;">
+        <div class="modal-body" style="padding:0;text-align:center;">
           <p>推荐注册，赠送自动降重次数</p>
           <p>双方各送5次</p>
+          <p>方式1：分享地址，邀请好友注册（适合电脑此操作）</p>
+          <div style="display:flex;justify-content: center;">
+            <p style="border: 1px solid;padding: 0 10px;">https://dev.lianwen.com</p>
+            <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;">复制链接</p>
+          </div>
+          <p>方式2：微信扫码，邀请好友注册（适合手机操作）</p>
+          <div style="display:flex;justify-content: center;">
+            <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1589423547&di=d87ddb2e0e438a1ea626f3874161c1f6&src=http://bpic.588ku.com/element_origin_min_pic/01/37/30/36573c45d2efb52.jpg" alt="" style="width:150px;height:150px;">
+          </div>
+          <p>微信扫码分享</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
