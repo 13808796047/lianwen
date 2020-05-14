@@ -125,7 +125,7 @@
 								</td>
 							</tr>
 						</table>
-						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="{{ route('payments.alipay', ['order' => $order->id])}}"
+						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
 						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
@@ -158,7 +158,7 @@
 @endsection
 @section('scripts')
   <script>
-    $(document).ready(function () {
+     $(document).ready(function () {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('#lwfooter').removeClass('absolute');
@@ -168,31 +168,25 @@
       })
       // 微信支付按钮事件
       $('#btn-wechat').click(function () {
+        let order = {!!$order!!}
         swal({
           title: "打开微信使用扫一扫完成付款",
-          // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-          content: $('<img src="{{ route('payments.wechat', ['order' => $order->id]) }}" style="display: block;margin: 0 auto;"/>')[0],
+          content: $(`<img src="/payments/${order.id}/wechat/order" style="display: block;margin: 0 auto;"/>`)[0],
           // buttons 参数可以设置按钮显示的文案
           buttons: ['关闭', '已完成付款'],
         })
           .then(function (result) {
-            // 如果用户点击了 已完成付款 按钮，则重新加载页面
             if (result) {
-              location.href = '{{ route('payments.wechat.return',$order) }}';
+             location.href=`/payments/${order.id}/wechat/return/order`
             }
           })
       });
+      //支付宝
+      $('#bottonsubmit').click(function(){
+       let order = {!!$order!!};
+       console.log(order.id,31231)
+      location.href=`/payments/${order.id}/alipay/order`
+     })
     });
-
-    // $(function () {
-    //   setInterval("checkpaied()", 1000);
-    //   $("#usedeposit").click(function () {
-    //     if ($(this).is(":checked")) {
-    //       $("#depositinfo").show();
-    //     } else {
-    //       $("#depositinfo").hide();
-    //     }
-    //   });
-    // });
   </script>
 @stop
