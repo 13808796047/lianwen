@@ -37,7 +37,19 @@
           @foreach($class_orders as $order)
             <tr>
               <td>{{ $order->name }}</td>
-              <td>{{$order->orders->count().'/'.$order->orders()->count()}}</td>
+              @switch(request()->date)
+                @case('yesterday')
+                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])->count()}}</td>
+                @break
+                @case('month')
+                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth()])->count()}}</td>
+                @break
+                @case('pre_month')
+                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subMonth()->startOfMonth(), \Carbon\Carbon::now()->subMonth()->endOfMonth()])->count()}}</td>
+                @break
+                @default
+                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfDay(), \Carbon\Carbon::now()->endOfDay()])->count()}}</td>
+              @endswitch
               <td>{{@number_format(($order->orders->count()/(\App\Models\Order::query()->whereNotNull('date_pay')->count()) *100),2)}}
                 %
               </td>
