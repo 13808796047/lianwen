@@ -217,8 +217,8 @@ class PaymentsController extends Controller
                 return view('domained::auto_checks.index');
                 break;
             default:
-                $order = Order::find($id);
-                return view('domained::payments.success', ['order' => $order, 'msg' => '支付成功!']);
+                $orders = $request->user()->orders;
+                return view('domained::orders.index', compact('orders'));
         }
     }
 
