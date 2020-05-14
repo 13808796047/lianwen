@@ -177,19 +177,23 @@ function read_docx($file)
 
     $content = str_replace('</w:r></w:p></w:tc><w:tc>', " ", $content);
     $content = str_replace('</w:r></w:p>', "\r\n", $content);
-//    $content = preg_replace($pattern, '/^PEVuZE5vdGU(.*?)ADDIN EN.CITE.DATA$/', $content);
-//    $content = preg_replace('/^ZQBKAHoAdABYAGUAO(.*?)ADDIN CNKISM.UserStyle-{d+}$/', '', $content);
+
     $content = preg_replace('/^PEVuZE5vdGU(.*?)ADDIN EN.CITE.DATA$/', '', $content);
     $content = preg_replace('/HYPERLINK .l _Toc\d+/', '', $content);
     $content = preg_replace('/PAGEREF _Toc\d+ /', '', $content);
 
     $striped_content = strip_tags($content);
-
+    $array = explode('ADDIN CNKISM.', $striped_content);
+    foreach($array as &$value) {
+        $value = preg_replace('/Ref\..{34}/', '', $value);
+        $value = preg_replace('/UserStyle/', '', $value);
+        $value = preg_replace('/[\w\s\/\+-=]{200,}/', '', $value);
+    }
+    $striped_content = implode('', $array);
     preg_match_all('/\s(.*)摘要/', $striped_content, $arr);
     foreach($arr[1] as $value) {
         $striped_content = str_replace($value, '', $striped_content);
     }
-
     return $striped_content;
 }
 
