@@ -196,7 +196,7 @@ class PaymentsController extends Controller
     public function wechatPayWap(Order $order, Request $request)
     {
         //校验权限
-        $this->authorize('own', $order);
+//        $this->authorize('own', $order);
         // 校验订单状态
         if($order->status == 1 || $order->del) {
             throw new InvalidRequestException('订单状态不正确');
