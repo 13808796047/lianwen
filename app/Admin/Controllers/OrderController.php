@@ -85,6 +85,7 @@ class OrderController extends AdminController
 //                return "<span class='text-danger text-bold'><i class='fa fa-yen'></i> {$amount} 元</span>";
 //
 //            });
+//            $grid->combine('top', ['pay_price', 'pay_type'])->responsive()->style('color:#1867c0');
             $grid->column('pay_type', '支付方式')->width('80px');
             $grid->column('from', '来源');
             $grid->column('created_at', '创建时间')->sortable();
