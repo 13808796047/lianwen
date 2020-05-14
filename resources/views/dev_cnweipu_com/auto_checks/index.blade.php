@@ -96,9 +96,11 @@
           </div>
           <p>微信扫码分享</p>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" id="sureshop">确定</button>
+        <div class="modal-footer" style="border:none;display:block;">
+          <p>活动规则</p>
+          <p>1、每推荐1名好友成功注册（微信登录或绑定手机号），推荐人和注册人各获得5次自动降重次数，获得的次数可叠加，无上限；</p>
+          <p>2、所获得降重次数不可提现，仅用于使用自动降重服务时抵扣；</p>
+          <p>3、严禁使用非法手段获取，对于问题账号本站有权撤销相应数据或封禁账号。</p>
         </div>
     </div>
   </div>
