@@ -167,7 +167,7 @@
       })
       // 微信支付按钮事件
       $('#btn-wechat').click(function () {
-        var order = {!!$order!!}
+        let order = {!!$order!!}
         swal({
           title: "打开微信使用扫一扫完成付款",
           // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
@@ -188,7 +188,6 @@
           // }).catch(err=>{
           //   console.log(err,312321)
           // })
-          axios.get(``)
       });
       //支付宝
       $('#bottonsubmit').click(function(){
