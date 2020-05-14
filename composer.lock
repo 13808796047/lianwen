@@ -467,16 +467,16 @@
         },
         {
             "name": "dcat/laravel-admin",
-            "version": "1.3.0",
+            "version": "1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jqhph/dcat-admin.git",
-                "reference": "ae989b7300d24cc1e4d3aa0ca6071348d8a0fe21"
+                "reference": "ca3b9352ea4ee1f45010f8cac2350d039e29e51e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/ae989b7300d24cc1e4d3aa0ca6071348d8a0fe21",
-                "reference": "ae989b7300d24cc1e4d3aa0ca6071348d8a0fe21",
+                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/ca3b9352ea4ee1f45010f8cac2350d039e29e51e",
+                "reference": "ca3b9352ea4ee1f45010f8cac2350d039e29e51e",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -535,7 +535,7 @@
                 "laravel",
                 "laravel admin"
             ],
-            "time": "2020-05-06T13:56:27+00:00"
+            "time": "2020-05-12T16:06:14+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

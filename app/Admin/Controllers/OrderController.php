@@ -6,6 +6,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\BatchQueue;
 use App\Admin\Actions\Grid\ResetOrderStatus;
 use App\Admin\Actions\Grid\UploadOrderFile;
+use App\Admin\Actions\OrderBatchDelete;
 use App\Jobs\getOrderStatus;
 use App\Jobs\UploadCheckFile;
 use App\Models\Order;
@@ -94,7 +95,10 @@ class OrderController extends AdminController
             });
             $grid->batchActions(function($batch) {
                 $batch->add(new BatchQueue('批量启动队列'));
+                $batch->add(new OrderBatchDelete());
             });
+            // 禁用批量删除按钮
+            $grid->disableBatchDelete();
             // 禁用
             $grid->disableCreateButton();
 //            $grid->actions(new ResetOrderStatus());
