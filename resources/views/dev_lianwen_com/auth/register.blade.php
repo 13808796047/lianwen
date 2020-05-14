@@ -93,7 +93,7 @@
               </div>
             </div>
             <div style="text-align:center">
-              <p>已有账号? <a href="{{route('pages.index')}}">登录</a></p>
+              <p>已有账号? <a href="{{route('domained::pages.index')}}">登录</a></p>
             </div>
           </div><!--/row-fluid-->
         </div><!--/span10-->
@@ -165,7 +165,7 @@
           'verification_code': $('#code').val()
         }).then(res => {
           swal("注册成功!");
-          location.href = '{{route('pages.index')}}'
+          location.href = '{{route('domained::pages.index')}}'
         }).catch(err => {
           if (err.response.status == 422) {
             $('#message').show();

@@ -178,6 +178,7 @@ function read_docx($file)
     $content = str_replace('</w:r></w:p></w:tc><w:tc>', " ", $content);
     $content = str_replace('</w:r></w:p>', "\r\n", $content);
 //    $content = preg_replace($pattern, '/^PEVuZE5vdGU(.*?)ADDIN EN.CITE.DATA$/', $content);
+//    $content = preg_replace('/^ZQBKAHoAdABYAGUAO(.*?)ADDIN CNKISM.UserStyle-{d+}$/', '', $content);
     $content = preg_replace('/^PEVuZE5vdGU(.*?)ADDIN EN.CITE.DATA$/', '', $content);
     $content = preg_replace('/HYPERLINK .l _Toc\d+/', '', $content);
     $content = preg_replace('/PAGEREF _Toc\d+ /', '', $content);

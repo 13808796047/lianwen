@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('pages.index');
+        return view('domained::pages.index');
     }
 
     public function login(Request $request)
@@ -24,7 +24,7 @@ class LoginController extends Controller
         $credentials['password'] = $request->password;
         if(\Auth::attempt($credentials)) {
             session()->flash('success', '欢迎回来！');
-            return redirect()->route('pages.index');
+            return redirect()->route('domained::pages.index');
         } else {
             session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
             return redirect()->back()->withInput();
