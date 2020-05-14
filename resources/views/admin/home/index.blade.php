@@ -137,7 +137,7 @@
         category_total += parseFloat($(this).text());
       });
     });
-    $('#total_price').text(category_total)
+    $('#total_price').text(category_total.toFixed(2))
     var source_total = 0;
     $(".source tr").each(function () {
       //td:eq(3)从0开始计数
@@ -145,7 +145,7 @@
         source_total += parseFloat($(this).text());
       });
     });
-    $('#source_total_price').text(source_total)
+    $('#source_total_price').text(source_total.toFixed(2))
   })
 
   {{--$(() => {--}}
