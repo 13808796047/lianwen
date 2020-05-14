@@ -41,7 +41,6 @@
         <h3 class="">按系统统计</h3>
         <table class="table custom-data-table dataTable category">
           <thead>
-
           <tr>
             <th>系统名称</th>
             <th>付款订单数/总订单数</th>

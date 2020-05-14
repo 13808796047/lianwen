@@ -93,7 +93,7 @@
               </div>
             </div>
             <div style="text-align:center">
-              <p>已有账号? <a href="{{route('domained::pages.index')}}">登录</a></p>
+              <p>已有账号? <a href="{{route('pages.index')}}">登录</a></p>
             </div>
           </div><!--/row-fluid-->
         </div><!--/span10-->
@@ -126,7 +126,7 @@
       function getcode(index) {
         index.setAttribute("disabled", true);
         var phone = $("input[name='phone']").val();
-        var reg = /^1[34578]\d{9}$/;
+        var reg = /^1[345678]\d{9}$/;
         if (!reg.test(phone)) {
           index.removeAttribute("disabled");
           $("input[name='phone']").focus();
@@ -165,7 +165,7 @@
           'verification_code': $('#code').val()
         }).then(res => {
           swal("注册成功!");
-          location.href = '{{route('domained::pages.index')}}'
+          location.href = '{{route('pages.index')}}'
         }).catch(err => {
           if (err.response.status == 422) {
             $('#message').show();

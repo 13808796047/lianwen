@@ -30,7 +30,6 @@ class AuthenticationsController extends Controller
 
     public function oauth($type, Request $request)
     {
-
         return $this->app->driver($type)->redirect();
     }
 
