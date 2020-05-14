@@ -53,7 +53,7 @@
               <td>{{@number_format(($order->orders->count()/(\App\Models\Order::query()->whereNotNull('date_pay')->count()) *100),2)}}
                 %
               </td>
-              <td>{{ $order->orders->sum('pay_price')}}元</td>
+              <td>{{ @number_format($order->orders->sum('pay_price'),2) }}元</td>
             </tr>
 
           @endforeach
@@ -77,11 +77,23 @@
           @foreach($source_orders as $source=> $order)
             <tr>
               <td>{{ $source }}</td>
-              <td>{{$order->count().'/'.\App\Models\Order::query()->whereNotNull('date_pay')->count()}}</td>
+              @switch(request()->date)
+                @case('yesterday')
+                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])->count()}}</td>
+                @break
+                @case('month')
+                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth()])->count()}}</td>
+                @break
+                @case('pre_month')
+                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subMonth()->startOfMonth(), \Carbon\Carbon::now()->subMonth()->endOfMonth()])->count()}}</td>
+                @break
+                @default
+                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfDay(), \Carbon\Carbon::now()->endOfDay()])->count()}}</td>
+              @endswitch
               <td>{{@number_format($order->count()/(\App\Models\Order::query()->whereNotNull('date_pay')->count()) *100,2)}}
                 %
               </td>
-              <td>{{ $order->sum('pay_price')}}元</td>
+              <td>{{ @number_format($order->sum('pay_price'),2) }}元</td>
             </tr>
 
           @endforeach
