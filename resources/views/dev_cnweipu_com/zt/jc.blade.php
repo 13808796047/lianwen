@@ -1,4 +1,86 @@
-<section class="foraml-box register" id="web">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .foraml-box.register {
+    background: url(https://s0.5118img.com/assist/images/formal/invite/bk_4.jpg?v=d5596a1a6d) top no-repeat, url(https://s0.5118img.com/assist/images/formal/invite/bk_4.jpg?v=d5596a1a6d) center 380px no-repeat;
+    background-color: #f54c15;
+  }
+
+  .bk.register {
+    background: url(https://s0.5118img.com/assist/images/formal/invite/bk_4.jpg?v=d5596a1a6d) no-repeat #f44b12;
+    background-color: #f54c15;
+    background-size: 100% auto;
+  }
+
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .foraml-box {
+    padding: 300px 0 1px;
+  }
+
+  .foraml-box.register .envelope {
+
+    width: 901px;
+    height: 480px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .foraml-box .t {
+    font-size: 36px;
+    color: #fbf0a6;
+    text-align: center;
+    margin: 80px 0 35px;
+  }
+
+  .foraml-box .card {
+    margin: 0 auto;
+    width: 880px;
+    font-family: SourceHanSansCN-Normal;
+    background-color: #fff3e3;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 40px;
+    color: #7b3015;
+  }
+
+  #app {
+    width: 100%;
+    height: 100%;
+  }
+
+  .bk.register .envelope .line {
+    height: 1px;
+    border-bottom: 1px solid #ccc;
+    width: 60vw;
+    margin: 5vw auto;
+  }
+
+  .bk .card {
+    margin: 0 auto;
+    width: 80%;
+    font-family: SourceHanSansCN-Normal;
+    background-color: #fff3e3;
+    border-radius: 3vw;
+    text-align: center;
+    font-size: 5vw;
+
+    color: #7b3015;
+  }
+</style>
+
+<body>
+  <section class="foraml-box register" id="web">
     <div style="margin:0 auto;">
       <p style="font-size:123px;text-align:center;font-weight:bold;color:#fbf0a6">立即注册送查重次数</p>
     </div>
@@ -14,6 +96,7 @@
         </div>
       </div>
     </div>
+
     <p class="t">简单三步<span></span>即送代金券</p>
     <div class="card" style="padding: 60px 0 50px;">
       <p>1、分享给好友</p>
@@ -69,4 +152,27 @@
         <p style="color: #fbf0a6;text-align:center;padding:5vw 0">活动最终解释权归5118官方</p>
       </div>
     </section>
+
   </div>
+</body>
+<script>
+  !function () {
+    var devices = ["iPhone", "Android", "Windows Phone"]
+    var ua = window.navigator.userAgent
+    for (var i = 0; i < devices.length; i++) {
+      if (ua.indexOf(devices[i]) != -1) {
+        console.log(1)
+        document.getElementById('app').style.display = "block";
+        document.getElementById('web').style.display = "none";
+        return;
+      } else {
+        console.log(2)
+        document.getElementById('app').style.display = "none";
+        document.getElementById('web').style.display = "block";
+
+      }
+    }
+  }()
+</script>
+
+</html>
