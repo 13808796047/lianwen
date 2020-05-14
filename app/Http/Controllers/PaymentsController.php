@@ -217,7 +217,7 @@ class PaymentsController extends Controller
                 return view('domained::auto_checks.index');
                 break;
             default:
-                $orders = $request->user()->orders;
+                $orders = $request->user()->orders()->with('category:id,name')->latest()->paginate(10);
                 return view('domained::orders.index', compact('orders'));
         }
     }
