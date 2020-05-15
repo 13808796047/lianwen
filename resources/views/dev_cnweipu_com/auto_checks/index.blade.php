@@ -14,6 +14,10 @@
   </style>
 @stop
 @section('content')
+  <!-- aleart弹框 -->
+  <div class="alert alert-primary" role="alert">
+    降重失败，请重试
+ </div>
   <!-- 模态框 -->
   <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -154,12 +158,12 @@
       <table>
         <tr>
             <td style="width:48%;">
-              <div>降重前</div>
+              <div style="font-size:19px;font-weight:bold;">降重前</div>
               <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;margin-right:5px;" id="content_after">
               </div>
             </td>
             <td style="width:48%;">
-              <div>降重后</div>
+              <div style="font-size:19px;font-weight:bold;">降重后</div>
               <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;" id="content_later">
               </div>
             </td>
@@ -242,7 +246,7 @@
         let contents = $('#content').val();
         console.log(words,contents,31)
         if(words>5000){
-          alert('字数大于5000')
+          alert('字数大于1000')
           return
         }
         // axios.post('{{ route('auto_check.store') }}',{content:contents})
@@ -339,7 +343,9 @@
             //   })
             // }, 1000);
           })
-          .catch(err => console.log(err));
+          .catch(err =>
+           $('.alert').alert()
+          );
           })
 
   </script>
