@@ -14,10 +14,6 @@
   </style>
 @stop
 @section('content')
-  <!-- aleart弹框 -->
-  <div class="alert alert-danger" role="alert">
-    降重失败请重试
-  </div>
   <!-- 模态框 -->
   <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
