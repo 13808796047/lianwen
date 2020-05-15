@@ -80,16 +80,10 @@ class OrderController extends AdminController
             $grid->column('writer', '作者')->width('100px');
             $grid->column('words', '字数')->width('50px');
             $grid->column('pay_price', '支付金额')->width('100px');
-//            $grid->column('pay_price', '支付金额')->totalRow(function($amount) {
-//
-//                return "<span class='text-danger text-bold'><i class='fa fa-yen'></i> {$amount} 元</span>";
-//
-//            });
-//            $grid->combine('top', ['pay_price', 'pay_type'])->responsive()->style('color:#1867c0');
             $grid->footer(function($collection) {
-                // 查出统计数据
-                $data = $collection->sum('pay_price');
 
+                // 查出统计数据
+                $data = Order::all()->sum('pay_price');
                 return "<div style='padding: 10px;'>总收入 ： $data</div>";
             });
             $grid->column('pay_type', '支付方式')->width('80px');
