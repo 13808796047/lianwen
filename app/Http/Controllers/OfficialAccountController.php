@@ -83,7 +83,7 @@ class OfficialAccountController extends Controller
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
 
         if($eventKey) {
-            info('uid', $eventKey);
+            info('uid', [$eventKey]);
             if(!$user) {
                 $user = User::create([
                     'nick_name' => $wxUser['nickname'],
