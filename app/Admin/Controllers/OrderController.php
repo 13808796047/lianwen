@@ -27,8 +27,8 @@ class OrderController extends AdminController
 
         return Grid::make(Order::with(['category']), function(Grid $grid) {
             $grid->id->sortable()->display(function($id) {
-                $order = Order::find();
-                return "<a href='orders/{$order->id}/download_report'>$orderid</a>";
+                $order = Order::find($id);
+                return "<a href='orders/{$order->id}/download_report'>$id</a>";
             });
             $grid->paginate(10);
             $grid->export()->disableExportAll();
@@ -55,10 +55,6 @@ class OrderController extends AdminController
             });
 
             $grid->model()->orderBy('created_at', 'desc');
-            $grid->column('orderid', '订单号')->display(function($orderid) {
-                $order = Order::query()->where('orderid', $orderid)->first();
-                return "<a href='orders/{$order->id}/download_report'>$orderid</a>";
-            });
             $grid->column('category.name', '系统');
             // 展示关联关系的字段时，使用 column 方法
             $grid->column('userid', '买家')->display(function($userid) {
@@ -87,8 +83,9 @@ class OrderController extends AdminController
                 $data = Order::all()->sum('pay_price');
                 return "<div style='padding: 10px; color: red'>总收入 ： $data 元</div>";
             });
-            $grid->column('pay_type', '支付方式')->width('80px');
             $grid->column('from', '来源');
+            $grid->column('referer', '来路');
+            $grid->column('keyword', '关键字');
             $grid->column('created_at', '创建时间')->sortable();
 
             $grid->actions(function(Grid\Displayers\Actions $actions) {
