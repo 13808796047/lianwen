@@ -154,12 +154,12 @@
       <table>
         <tr>
             <td style="width:48%;">
-              <div>降重前</div>
+              <div style="font-size:19px;font-weight:bold;">降重前</div>
               <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;margin-right:5px;" id="content_after">
               </div>
             </td>
             <td style="width:48%;">
-              <div>降重后</div>
+              <div style="font-size:19px;font-weight:bold;">降重后</div>
               <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;" id="content_later">
               </div>
             </td>
