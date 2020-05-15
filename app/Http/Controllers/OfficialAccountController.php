@@ -80,22 +80,23 @@ class OfficialAccountController extends Controller
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
-        $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        info('user', [$user]);
-
+        $invit_user = User::where('weixin_unionid', $wxUser['unionid'])->first();
+        $un_user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         $loginUser = User::find($eventKey)->makeVisible('password');
-        info('loginUser', [$loginUser]);
-        if(!$user) {
-            $user = User::create([
-                'nick_name' => $wxUser['nickname'],
-                'avatar' => $wxUser['headimgurl'],
-                'weixin_openid' => $wxUser['openid'],
-                'weixin_unionid' => $wxUser['unionid'] ?: ''
-            ]);
+//        info('loginUser', [$loginUser]);
+//        if(!$invit_user) {
+//            $user = User::create([
+//                'nick_name' => $wxUser['nickname'],
+//                'avatar' => $wxUser['headimgurl'],
+//                'weixin_openid' => $wxUser['openid'],
+//                'weixin_unionid' => $wxUser['unionid'] ?: ''
+//            ]);
 //            auth('web')->login($user);
-            //邀请人
-            $loginUser->increaseJcTimes(5);
-            $user->increaseJcTimes(5);
+//            //邀请人
+//            $loginUser->increaseJcTimes(5);
+//            $user->increaseJcTimes(5);
+//        }
+        if(!$un_user) {
             $loginUser->update(
                 [
                     'nick_name' => $wxUser['nickname'],
