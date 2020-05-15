@@ -25,13 +25,8 @@ class OfficialAccountController extends Controller
     public function index(Request $request)
     {
         // 有效期 1 天的二维码
-        if($request->uid) {
-            $uid = $request->uid;
-        } else {
-            $uid = auth()->user()->id;
-        }
         $qrCode = $this->app->qrcode;
-        $result = $qrCode->temporary($uid, 3600 * 24);
+        $result = $qrCode->temporary(auth()->user()->id, 3600 * 24);
         $url = $qrCode->url($result['ticket']);
         return response(compact('url'), 200);
     }
