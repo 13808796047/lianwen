@@ -81,16 +81,17 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        if(!$user) {
-            $user = User::create([
-                'nick_name' => $wxUser['nickname'],
-                'avatar' => $wxUser['headimgurl'],
-                'weixin_openid' => $wxUser['openid'],
-                'weixin_unionid' => $wxUser['unionid'] ?: ''
-            ]);
-            auth('web')->login($user);
-        }
+
         if($request->has('uid')) {
+            if(!$user) {
+                $user = User::create([
+                    'nick_name' => $wxUser['nickname'],
+                    'avatar' => $wxUser['headimgurl'],
+                    'weixin_openid' => $wxUser['openid'],
+                    'weixin_unionid' => $wxUser['unionid'] ?: ''
+                ]);
+                auth('web')->login($user);
+            }
             //邀请人
             $inviter = User::findOrFail($request->uid);
             $inviter->increaseJcTimes(5);
