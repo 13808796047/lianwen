@@ -71,6 +71,7 @@ class OfficialAccountController extends Controller
      */
     public function eventSCAN($event)
     {
+        info('uid', [$event['EventKey']]);
         if(empty($event['EventKey'])) {
             return;
         }
