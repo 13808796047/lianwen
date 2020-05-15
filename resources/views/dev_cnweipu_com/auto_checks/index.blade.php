@@ -15,9 +15,20 @@
 @stop
 @section('content')
   <!-- aleart弹框 -->
-  <div class="alert alert-primary" role="alert">
-    降重失败，请重试
- </div>
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="alert">
+    <div class="toast-header">
+      <img src="..." class="rounded mr-2" alt="...">
+      <strong class="mr-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+     降重失败，请重试
+    </div>
+  </div>
+</div>
   <!-- 模态框 -->
   <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -343,8 +354,10 @@
             //   })
             // }, 1000);
           })
-          .catch(err =>
-           $('.alert').alert()
+          .catch(err =>{
+              console.log(err,3131312312s)
+              $('#alert').toast('show')
+            }
           );
           })
 
