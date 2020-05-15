@@ -156,6 +156,7 @@
 
   </div>
 </body>
+<script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script>
   !function () {
     var devices = ["iPhone", "Android", "Windows Phone"]
