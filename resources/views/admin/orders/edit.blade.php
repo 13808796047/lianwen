@@ -12,27 +12,53 @@
     <form class="form-horizontal" enctype="multipart/form-data" id="order-form" method="POST"
           action="{{ route('admin.orders.receved',$order) }}">
       @csrf
-      <table class="table table-bordered">
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for='title'>First name</label>
+          <input type="text" class="form-control" value="{{ $order->title }}" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationServer02">Last name</label>
+          <input type="text" class="form-control is-valid" id="validationServer02" value="Otto" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationServerUsername">Username</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend3">@</span>
+            </div>
+            <input type="text" class="form-control is-invalid" id="validationServerUsername"
+                   aria-describedby="inputGroupPrepend3" required>
+            <div class="invalid-feedback">
+              Please choose a username.
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="table  custom-data-table dataTable">
         <tr>
-          <td width="200">标题:</td>
+          <td>标题:</td>
           <td>{{ $order->title }}</td>
-        </tr>
-        <tr>
+
           <td>作者:</td>
           <td>{{ $order->writer }}</td>
 
-        </tr>
-        <tr>
+
           <td>字数:</td>
           <td>{{ $order->words }}</td>
-        </tr>
-        <tr>
+
           <td>价格:</td>
           <td>{{ $order->price }}</td>
         </tr>
         <tr>
           <td>状态</td>
-          <td>
+          <td width="100px">
             <div class="form-group">
               <select name="status" id="" class="form-control">
                 <option value="0" {{ $order->status==0?'selected':'' }} }}>待支付</option>
@@ -46,23 +72,17 @@
               </select>
             </div>
           </td>
-
-        </tr>
-        <tr>
           <td>重复率</td>
-          <td>
+          <td width="150px">
             <div class="form-group">
               <input type="text" class="form-control" id="rate" name="rate" value="{{ $order->rate }}">
             </div>
           </td>
-        </tr>
-        <tr>
-          <td>支付详情</td>
+
+          <td>支付方式</td>
           <td>在线支付:{{ $order->pay_type }}</td>
           <td>支付:</td>
           <td>{{ $order->pay_price }}</td>
-          <td>单号:</td>
-          <td>{{ $order->orderid }}</td>
           <td>支付时间:</td>
           <td>{{ $order->date_pay }}</td>
         </tr>
