@@ -83,7 +83,7 @@ class OfficialAccountController extends Controller
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         info('user', [$user]);
 
-        $loginUser = User::FindOrFail($eventKey)->makeVisible('password');
+        $loginUser = User::find($eventKey)->makeVisible('password');
         info('loginUser', [$loginUser]);
         if(!$user) {
             $user = User::create([
