@@ -196,7 +196,7 @@
       //     colorLight: '#ffffff',//背景色
       //     correctLevel: QRCode.CorrectLevel.H
       // })
-      console.log({!!$auth!!},1313123123123123123)
+      console.log({{auth()->user()->id}},1313123123123123123)
       //获取字数
       $("#content").bind('input',(e)=>{
         $('#words span').html(e.target.value.length)
