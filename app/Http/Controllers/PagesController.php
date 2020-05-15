@@ -13,7 +13,7 @@ class PagesController extends Controller
         //在搜索引擎搜索个关键词，进入网站
         $word = search_word_from(URL::previous());
         if(!empty($word['from'])) {
-            session('word', $word);
+            \Cache::put('word', $word, now()->addDay());
         }
         return view('domained::pages.index');
     }
