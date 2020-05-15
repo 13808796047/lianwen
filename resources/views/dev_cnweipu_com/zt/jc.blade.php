@@ -133,6 +133,7 @@
               id="qrimg">
             <p>微信扫码分享</p>
             <p style="line-height: 3vw;font-size: 2.8vw;">(可长按二维码自动识别)</p>
+            <p id="tests"></p>
           </div>
         </div>
         <div>
@@ -181,12 +182,29 @@
     }
   }()
   // 二维码
-  axios.get('{{ route('official_account.index') }}').then(res => {
+  var search = window.location.search
+  var id = getSearchString('uid', search);
+  function getSearchString(key, Url) {
+    var str = Url;
+    str = str.substring(1, str.length); // 获取URL中?之后的字符（去掉第一位的问号）
+    // 以&分隔字符串，获得类似name=xiaoli这样的元素数组
+    var arr = str.split("&");
+    var obj = new Object();
+    // 将每一个数组元素以=分隔并赋给obj对象
+    for (var i = 0; i < arr.length; i++) {
+        var tmp_arr = arr[i].split("=");
+        obj[decodeURIComponent(tmp_arr[0])] = decodeURIComponent(tmp_arr[1]);
+    }
+    return obj[key];
+}
+  console.log(id,312312)
+  axios.get('/official_account?uid='+id).then(res => {
         // swal({
         //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
         //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
         // })
        document.getElementById("qrimg").src = res.data.url
+       document.getElementById("tests").innerText=res.data
   })
 </script>
 
