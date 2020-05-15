@@ -177,6 +177,7 @@
   </div>
 @stop
 @section('scripts')
+<script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('asset/js/diff.js') }}"></script>
   <script>
     $(() => {
