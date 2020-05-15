@@ -139,7 +139,7 @@
     </div>
     </div>
     <!-- 降重成功后 -->
-    <div style="padding: 50px; display: none;min-height:1000px;" id="jclater">
+    <div style="padding: 50px; display: none;min-height:800px;" id="jclater">
     <div style="display: flex;">
       <!-- <div style="width: 50%;">
         <p style="font-size: 17px;font-weight: bold;">降重前</p>
@@ -155,12 +155,12 @@
         <tr>
             <td style="width:48%;">
               <div>降重前</div>
-              <div style="height:500px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;margin-right:5px;" id="content_after">
+              <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;margin-right:5px;" id="content_after">
               </div>
             </td>
             <td style="width:48%;">
               <div>降重后</div>
-              <div style="height:500px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;" id="content_later">
+              <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;" id="content_later">
               </div>
             </td>
         </tr>

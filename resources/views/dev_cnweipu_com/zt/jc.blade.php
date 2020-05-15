@@ -206,8 +206,6 @@
        document.getElementById("qrimg").src = res.data.url
        document.getElementById("tests").innerText=res.data.url
   })
-
-
   })
 
 </script>
