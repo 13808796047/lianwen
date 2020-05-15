@@ -71,20 +71,20 @@ class OfficialAccountController extends Controller
      */
     public function eventSCAN($event)
     {
-        info('uid', [$event['EventKey']]);
         if(empty($event['EventKey'])) {
             return;
         }
         $eventKey = $event['EventKey'];
-        info('uid', [$eventKey]);
+
         $openId = $this->openid;
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         info('user', [$user]);
-        info('uid', [$eventKey]);
+
         $loginUser = User::FindOrFail($eventKey)->makeVisible('password');
+        info('loginUser', [$loginUser]);
         if(!$user) {
             $user = User::create([
                 'nick_name' => $wxUser['nickname'],
