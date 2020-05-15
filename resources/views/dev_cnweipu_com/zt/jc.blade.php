@@ -126,8 +126,9 @@
           <div class="line"></div>
           <div style="text-align:center">
             <img
-              src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQFW8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyYnZaN1lHRVFjeTIxU1lNQTF1Y0UAAgS847xeAwQAjScA"
-              style="width:35vw;height:35vw;">
+              src=""
+              style="width:35vw;height:35vw;"
+              id="qrimg">
             <p>微信扫码分享</p>
             <p style="line-height: 3vw;font-size: 2.8vw;">(可长按二维码自动识别)</p>
           </div>
@@ -158,6 +159,7 @@
 </body>
 <script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script>
+ $(() => {
   !function () {
     var devices = ["iPhone", "Android", "Windows Phone"]
     var ua = window.navigator.userAgent
@@ -175,6 +177,15 @@
       }
     }
   }()
+  // 二维码
+  axios.get('{{ route('official_account.index') }}').then(res => {
+        // swal({
+        //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+        //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
+        // })
+        $('#qrimg').attr('src',res.data.url)
+  })
+})
 </script>
 
 </html>
