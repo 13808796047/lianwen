@@ -83,6 +83,7 @@ class OfficialAccountController extends Controller
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
 
         if($request->has('uid')) {
+            info('uid', $request->uid);
             if(!$user) {
                 $user = User::create([
                     'nick_name' => $wxUser['nickname'],
@@ -90,8 +91,8 @@ class OfficialAccountController extends Controller
                     'weixin_openid' => $wxUser['openid'],
                     'weixin_unionid' => $wxUser['unionid'] ?: ''
                 ]);
-                auth('web')->login($user);
             }
+            auth('web')->login($user);
             //邀请人
             $inviter = User::findOrFail($request->uid);
             $inviter->increaseJcTimes(5);
