@@ -91,10 +91,9 @@ class OfficialAccountController extends Controller
                 'weixin_openid' => $wxUser['openid'],
                 'weixin_unionid' => $wxUser['unionid'] ?: ''
             ]);
-            auth('web')->login($user);
+//            auth('web')->login($user);
             //邀请人
-            $inviter = User::findOrFail($eventKey);
-            $inviter->increaseJcTimes(5);
+            $loginUser->increaseJcTimes(5);
             $user->increaseJcTimes(5);
             $loginUser->update(
                 [
