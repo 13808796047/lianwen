@@ -11,7 +11,6 @@ class CategoriesController extends Controller
 {
     public function show($classid, Request $request, CategoryService $categoryService)
     {
-        dd(\Cache::get('word'));
         $user = $request->user();
         $categories = Category::where(['classid' => $classid, 'status' => 1])->with(['users' => function($query) use ($user) {
             return $query->where('users.id', $user->id);

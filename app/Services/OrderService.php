@@ -72,6 +72,7 @@ class OrderService
                 default:
                     $price = $category->price;
             }
+            $referer = \Cache::get('word');
             //创建订单
             $order = new Order([
                 'cid' => $request->cid,
@@ -85,9 +86,12 @@ class OrderService
                 'paper_path' => $result['path'],
                 'from' => $request->from,
                 'content' => '',
+                'referer' => $referer['from'],
+                'keyword' => $referer['keyword']
             ]);
             $order->user()->associate($user);
             $order->save();
+            \Cache::forget('word');
             $order->orderContent()->create([
                 'content' => $content
             ]);
