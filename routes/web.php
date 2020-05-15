@@ -77,3 +77,4 @@ Route::get('qcrode/generate_img', 'OrdersController@generateImg')->name('qcrode.
 Route::resource('recharges', 'RechargesController', ['only' => ['show', 'store', 'index']]);
 //邀请注册
 Route::get('zt/jc', 'InvitsController@index')->name('invit.index');
+Route::get('invit_official', 'InvitOfficialController@index')->name('invit_official.index');

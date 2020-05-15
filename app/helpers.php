@@ -265,23 +265,23 @@ function search_word_from($referer)
     if(strstr($referer, 'baidu.com')) { //百度
         preg_match("|baidu.+wo?r?d=([^\\&]*)|is", $referer, $tmp);
         $keyword = urldecode($tmp[1]);
-        $from = 'baidu';
+        $from = 'www.baidu.com';
     } elseif(strstr($referer, 'google.com') or strstr($referer, 'google.cn')) { //谷歌
         preg_match("|google.+q=([^\\&]*)|is", $referer, $tmp);
         $keyword = urldecode($tmp[1]);
-        $from = 'google';
+        $from = 'www.google.com';
     } elseif(strstr($referer, 'so.com')) { //360搜索
         preg_match("|so.+q=([^\\&]*)|is", $referer, $tmp);
         $keyword = urldecode($tmp[1]);
-        $from = '360';
+        $from = 'www.360.com';
     } elseif(strstr($referer, 'sogou.com')) { //搜狗
         preg_match("|sogou.com.+query=([^\\&]*)|is", $referer, $tmp);
         $keyword = urldecode($tmp[1]);
-        $from = 'sogou';
+        $from = 'www.sogou.com';
     } elseif(strstr($referer, 'soso.com')) { //搜搜
         preg_match("|soso.com.+w=([^\\&]*)|is", $referer, $tmp);
         $keyword = urldecode($tmp[1]);
-        $from = 'soso';
+        $from = 'www.soso.com';
     } else {
         $keyword = '';
         $from = '';
