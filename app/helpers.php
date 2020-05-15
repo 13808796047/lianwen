@@ -262,7 +262,6 @@ function docx2html($source)
 //获取关键词
 function search_word_from($referer)
 {
-    dd($referer);
     if(strstr($referer, 'baidu.com')) { //百度
         preg_match("|baidu.+wo?r?d=([^\\&]*)|is", $referer, $tmp);
         $keyword = urldecode($tmp[1]);
