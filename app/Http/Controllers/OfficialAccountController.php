@@ -22,15 +22,16 @@ class OfficialAccountController extends Controller
      * 获取二维码图片
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         // 有效期 1 天的二维码
-
+        if($request->uid) {
+            $uid = $request->uid;
+        } else {
+            $uid = auth()->user()->id;
+        }
         $qrCode = $this->app->qrcode;
-//        $accessToken = $this->app->access_token;
-//        $token = $accessToken->getToken();
-//        dd($url = $this->app->qrcode->url("gQEq8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyU2VoTHNMVkhjcW0xMDAwME0wN3MAAgS5EbVeAwQAAAAA"));
-        $result = $qrCode->temporary(auth()->user()->id, 3600 * 24);
+        $result = $qrCode->temporary($uid, 3600 * 24);
         $url = $qrCode->url($result['ticket']);
         return response(compact('url'), 200);
     }
@@ -85,6 +86,21 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
+        if(!$user) {
+            $user = User::create([
+                'nick_name' => $wxUser['nickname'],
+                'avatar' => $wxUser['headimgurl'],
+                'weixin_openid' => $wxUser['openid'],
+                'weixin_unionid' => $wxUser['unionid'] ?: ''
+            ]);
+            auth('web')->login($user);
+        }
+        if($request->has('uid')) {
+            //邀请人
+            $inviter = User::findOrFail($request->uid);
+            $inviter->increaseJcTimes(5);
+            $user->increaseJcTimes(5);
+        }
         $loginUser = User::FindOrFail($eventKey)->makeVisible('password');
         if($user) {
             $user->delete();

@@ -46,7 +46,7 @@ class CategoryController extends AdminController
     {
         return Form::make(new Category(), function(Form $form) {
             // 显示记录id
-            $form->display('id', 'ID');
+            $form->hidden('id', 'ID');
             // 第一列占据1/2的页面宽度
             $form->number('cid', 'cid');
             $form->number('classid', '分类ID');
