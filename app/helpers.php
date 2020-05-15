@@ -272,7 +272,7 @@ function search_word_from($referer)
         $from = 'www.google.com';
     } elseif(strstr($referer, 'so.com')) { //360搜索
         preg_match("|so.+q=([^\\&]*)|is", $referer, $tmp);
-        $keyword = urldecode($tmp[1]) ?? '';
+        $keyword = urldecode($tmp[1]) ?: '';
         $from = 'www.so.com';
     } elseif(strstr($referer, 'sogou.com')) { //搜狗
         preg_match("|sogou.com.+query=([^\\&]*)|is", $referer, $tmp);
