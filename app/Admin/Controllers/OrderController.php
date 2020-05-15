@@ -86,6 +86,12 @@ class OrderController extends AdminController
 //
 //            });
 //            $grid->combine('top', ['pay_price', 'pay_type'])->responsive()->style('color:#1867c0');
+            $grid->footer(function($collection) {
+                // 查出统计数据
+                $data = $collection->sum('pay_price');
+
+                return "<div style='padding: 10px;'>总收入 ： $data</div>";
+            });
             $grid->column('pay_type', '支付方式')->width('80px');
             $grid->column('from', '来源');
             $grid->column('created_at', '创建时间')->sortable();
