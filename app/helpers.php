@@ -258,3 +258,36 @@ function docx2html($source)
 
     return mb_convert_encoding($html, 'UTF-8', 'GBK');
 }
+
+//获取关键词
+function search_word_from($referer)
+{
+
+    if(strstr($referer, 'baidu.com')) { //百度
+        preg_match("|baidu.+wo?r?d=([^\\&]*)|is", $referer, $tmp);
+        $keyword = urldecode($tmp[1]);
+        $from = 'baidu';
+    } elseif(strstr($referer, 'google.com') or strstr($referer, 'google.cn')) { //谷歌
+        preg_match("|google.+q=([^\\&]*)|is", $referer, $tmp);
+        $keyword = urldecode($tmp[1]);
+        $from = 'google';
+    } elseif(strstr($referer, 'so.com')) { //360搜索
+        preg_match("|so.+q=([^\\&]*)|is", $referer, $tmp);
+        $keyword = urldecode($tmp[1]);
+        $from = '360';
+    } elseif(strstr($referer, 'sogou.com')) { //搜狗
+        preg_match("|sogou.com.+query=([^\\&]*)|is", $referer, $tmp);
+        $keyword = urldecode($tmp[1]);
+        $from = 'sogou';
+    } elseif(strstr($referer, 'soso.com')) { //搜搜
+        preg_match("|soso.com.+w=([^\\&]*)|is", $referer, $tmp);
+        $keyword = urldecode($tmp[1]);
+        $from = 'soso';
+    } else {
+        $keyword = '';
+        $from = '';
+    }
+
+    return ['keyword' => $keyword, 'from' => $from];
+}
+
