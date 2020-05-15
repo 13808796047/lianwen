@@ -75,7 +75,7 @@ class OfficialAccountController extends Controller
             return;
         }
         $eventKey = $event['EventKey'];
-//
+        info('uid', [$eventKey]);
         $openId = $this->openid;
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
@@ -84,6 +84,7 @@ class OfficialAccountController extends Controller
 
         if($eventKey) {
             info('uid', [$eventKey]);
+            $loginUser = User::FindOrFail($eventKey)->makeVisible('password');
             if(!$user) {
                 $user = User::create([
                     'nick_name' => $wxUser['nickname'],
@@ -96,10 +97,15 @@ class OfficialAccountController extends Controller
                 $inviter = User::findOrFail($eventKey);
                 $inviter->increaseJcTimes(5);
                 $user->increaseJcTimes(5);
+                $loginUser->update(
+                    [
+                        'nick_name' => $wxUser['nickname'],
+                        'avatar' => $wxUser['headimgurl'],
+                        'weixin_openid' => $wxUser['openid'],
+                        'weixin_unionid' => $wxUser['unionid'] ?: ''
+                    ]
+                );
             }
-        }
-        $loginUser = User::FindOrFail($eventKey)->makeVisible('password');
-        if($user) {
             $user->delete();
             $loginUser->update([
                 'nick_name' => $user['nickname'],
@@ -111,16 +117,8 @@ class OfficialAccountController extends Controller
             foreach($user->orders as $order) {
                 $order->userid = $loginUser->id;
             }
-        } else {
-            $loginUser->update(
-                [
-                    'nick_name' => $wxUser['nickname'],
-                    'avatar' => $wxUser['headimgurl'],
-                    'weixin_openid' => $wxUser['openid'],
-                    'weixin_unionid' => $wxUser['unionid'] ?: ''
-                ]
-            );
         }
+
     }
 
     /**
