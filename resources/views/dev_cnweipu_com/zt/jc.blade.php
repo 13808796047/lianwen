@@ -159,7 +159,7 @@
 </body>
 <script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script>
- $(() => {
+
   !function () {
     var devices = ["iPhone", "Android", "Windows Phone"]
     var ua = window.navigator.userAgent
@@ -183,9 +183,8 @@
         //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
         //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
         // })
-        $('#qrimg').attr('src',res.data.url)
+       document.getElementById("qrimg").src = res.data.url
   })
-})
 </script>
 
 </html>
