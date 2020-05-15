@@ -204,7 +204,7 @@
         //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
         // })
        document.getElementById("qrimg").src = res.data.url
-       document.getElementById("tests").innerText=res.data
+       document.getElementById("tests").innerText=res.data.url
   })
 </script>
 
