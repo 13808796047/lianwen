@@ -14,8 +14,8 @@ class AddRefererAndKeywordToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function(Blueprint $table) {
-            $table->string('referer')->index()->nullable();
-            $table->string('keyword')->index()->nullable();
+            $table->string('referer')->index()->default('');
+            $table->string('keyword')->index()->default('');
         });
     }
 
