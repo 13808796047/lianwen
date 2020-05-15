@@ -26,7 +26,10 @@ class OrderController extends AdminController
         // 第二个参数为 `Column` 对象， 第三个参数是自定义参数
 
         return Grid::make(Order::with(['category']), function(Grid $grid) {
-            $grid->id->sortable();
+            $grid->id->sortable()->display(function($id) {
+                $order = Order::find();
+                return "<a href='orders/{$order->id}/download_report'>$orderid</a>";
+            });
             $grid->paginate(10);
             $grid->export()->disableExportAll();
             $grid->quickSearch('title', 'orderid', 'api_orderid', 'userid');
@@ -55,7 +58,6 @@ class OrderController extends AdminController
             $grid->column('orderid', '订单号')->display(function($orderid) {
                 $order = Order::query()->where('orderid', $orderid)->first();
                 return "<a href='orders/{$order->id}/download_report'>$orderid</a>";
-
             });
             $grid->column('category.name', '系统');
             // 展示关联关系的字段时，使用 column 方法
