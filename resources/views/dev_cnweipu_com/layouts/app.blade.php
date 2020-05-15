@@ -62,7 +62,7 @@
 <script !src="">
 
   //退出登录
-  $('.logout').click(() => {
+  $('.logout').click(function() {
     swal({
       title: "您确认要退出登录吗?",
       icon: "warning",

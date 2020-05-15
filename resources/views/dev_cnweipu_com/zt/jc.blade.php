@@ -163,8 +163,8 @@
 <script src="{{ mix('js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script>
-
-  !function () {
+  $(document).ready(function(){
+    !function () {
     var devices = ["iPhone", "Android", "Windows Phone"]
     var ua = window.navigator.userAgent
     for (var i = 0; i < devices.length; i++) {
@@ -196,7 +196,7 @@
         obj[decodeURIComponent(tmp_arr[0])] = decodeURIComponent(tmp_arr[1]);
     }
     return obj[key];
-}
+  }
   console.log(id,312312)
   axios.get('/official_account?uid='+id).then(res => {
         // swal({
@@ -204,8 +204,12 @@
         //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
         // })
        document.getElementById("qrimg").src = res.data.url
-       document.getElementById("tests").innerText=res.data
+       document.getElementById("tests").innerText=res.data.url
   })
+
+
+  })
+
 </script>
 
 </html>
