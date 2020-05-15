@@ -21,7 +21,7 @@ class InvitOfficialController extends Controller
     public function index(Request $request)
     {
         // 有效期 1 天的二维码
-        if($request->uid) {
+        if($request->has('uid')) {
             $uid = $request->uid;
         }
         $qrCode = $this->app->qrcode;
