@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRefererAndKeywordToOrdersTable extends Migration
+class AddRefererToOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddRefererAndKeywordToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function(Blueprint $table) {
-            $table->string('referer')->index()->default('');
-            $table->string('keyword')->index()->default('');
+            $table->string('referer')->index()->nullable();
         });
     }
 
@@ -28,7 +27,6 @@ class AddRefererAndKeywordToOrdersTable extends Migration
     {
         Schema::table('orders', function(Blueprint $table) {
             $table->dropColumn('referer');
-            $table->dropColumn('keyword');
         });
     }
 }
