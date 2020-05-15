@@ -75,51 +75,49 @@ class OfficialAccountController extends Controller
             return;
         }
         $eventKey = $event['EventKey'];
-        info('uid', [$eventKey]);
+
         $openId = $this->openid;
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
+        info('user', [$user]);
 
-        if($eventKey) {
-            info('uid', [$eventKey]);
-            $loginUser = User::FindOrFail($eventKey)->makeVisible('password');
-            if(!$user) {
-                $user = User::create([
+        $loginUser = User::find($eventKey)->makeVisible('password');
+        info('loginUser', [$loginUser]);
+        if(!$user) {
+            $user = User::create([
+                'nick_name' => $wxUser['nickname'],
+                'avatar' => $wxUser['headimgurl'],
+                'weixin_openid' => $wxUser['openid'],
+                'weixin_unionid' => $wxUser['unionid'] ?: ''
+            ]);
+//            auth('web')->login($user);
+            //邀请人
+            $loginUser->increaseJcTimes(5);
+            $user->increaseJcTimes(5);
+            $loginUser->update(
+                [
                     'nick_name' => $wxUser['nickname'],
                     'avatar' => $wxUser['headimgurl'],
                     'weixin_openid' => $wxUser['openid'],
                     'weixin_unionid' => $wxUser['unionid'] ?: ''
-                ]);
-                auth('web')->login($user);
-                //邀请人
-                $inviter = User::findOrFail($eventKey);
-                $inviter->increaseJcTimes(5);
-                $user->increaseJcTimes(5);
-                $loginUser->update(
-                    [
-                        'nick_name' => $wxUser['nickname'],
-                        'avatar' => $wxUser['headimgurl'],
-                        'weixin_openid' => $wxUser['openid'],
-                        'weixin_unionid' => $wxUser['unionid'] ?: ''
-                    ]
-                );
-            }
-            $user->delete();
-            $loginUser->update([
-                'nick_name' => $user['nickname'],
-                'avatar' => $user['headimgurl'],
-                'weixin_openid' => $user['openid'],
-                'weixin_unionid' => $user['unionid'] ?: ''
-            ]);
-
-            foreach($user->orders as $order) {
-                $order->userid = $loginUser->id;
-            }
+                ]
+            );
         }
+        $user->delete();
+        $loginUser->update([
+            'nick_name' => $user['nickname'],
+            'avatar' => $user['headimgurl'],
+            'weixin_openid' => $user['openid'],
+            'weixin_unionid' => $user['unionid'] ?: ''
+        ]);
 
+        foreach($user->orders as $order) {
+            $order->userid = $loginUser->id;
+        }
     }
+
 
     /**
      * 取消订阅
