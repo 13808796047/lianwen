@@ -184,7 +184,7 @@
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('#tjModal').modal('show')
-      生成分享二维码
+      //生成分享二维码
       var qrcode = document.getElementById('qrcode')
 
       /*也可以配置二维码的宽高等*/
