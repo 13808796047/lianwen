@@ -5,6 +5,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Document</title>
 </head>
 <style>
@@ -126,10 +128,12 @@
           <div class="line"></div>
           <div style="text-align:center">
             <img
-              src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQFW8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyYnZaN1lHRVFjeTIxU1lNQTF1Y0UAAgS847xeAwQAjScA"
-              style="width:35vw;height:35vw;">
+              src=""
+              style="width:35vw;height:35vw;"
+              id="qrimg">
             <p>微信扫码分享</p>
             <p style="line-height: 3vw;font-size: 2.8vw;">(可长按二维码自动识别)</p>
+            <p id="tests"></p>
           </div>
         </div>
         <div>
@@ -156,8 +160,10 @@
 
   </div>
 </body>
+<script src="{{ mix('js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script>
+
   !function () {
     var devices = ["iPhone", "Android", "Windows Phone"]
     var ua = window.navigator.userAgent
@@ -175,6 +181,31 @@
       }
     }
   }()
+  // 二维码
+  var search = window.location.search
+  var id = getSearchString('uid', search);
+  function getSearchString(key, Url) {
+    var str = Url;
+    str = str.substring(1, str.length); // 获取URL中?之后的字符（去掉第一位的问号）
+    // 以&分隔字符串，获得类似name=xiaoli这样的元素数组
+    var arr = str.split("&");
+    var obj = new Object();
+    // 将每一个数组元素以=分隔并赋给obj对象
+    for (var i = 0; i < arr.length; i++) {
+        var tmp_arr = arr[i].split("=");
+        obj[decodeURIComponent(tmp_arr[0])] = decodeURIComponent(tmp_arr[1]);
+    }
+    return obj[key];
+}
+  console.log(id,312312)
+  axios.get('/official_account?uid='+id).then(res => {
+        // swal({
+        //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
+        //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
+        // })
+       document.getElementById("qrimg").src = res.data.url
+       document.getElementById("tests").innerText=res.data
+  })
 </script>
 
 </html>
