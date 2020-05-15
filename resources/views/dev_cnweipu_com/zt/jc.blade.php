@@ -160,7 +160,7 @@
 
   </div>
 </body>
-<script src="{{ mix('js/app.js') }}"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
 <script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script>
   $(document).ready(function(){
@@ -198,7 +198,8 @@
     return obj[key];
   }
   console.log(id,312312)
-  axios.get('/official_account?uid='+id).then(res => {
+  axios.get('/invit_official?uid='+id).then(res => {
+       console.log(res,313131311331)
         // swal({
         //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
         //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
