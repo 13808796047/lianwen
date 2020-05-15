@@ -184,18 +184,18 @@
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('#tjModal').modal('show')
-      //生成分享二维码
-      // var qrcode = document.getElementById('qrcode')
+      生成分享二维码
+      var qrcode = document.getElementById('qrcode')
 
-      // /*也可以配置二维码的宽高等*/
-      //  var qrcodeObj = new QRCode('qrcode', {
-      //     text: 'http://dev.cnweipu.com/zt/jc?uid=1',
-      //     width: 120,
-      //     height: 120,
-      //     colorDark: '#000000', //前景色
-      //     colorLight: '#ffffff',//背景色
-      //     correctLevel: QRCode.CorrectLevel.H
-      // })
+      /*也可以配置二维码的宽高等*/
+       var qrcodeObj = new QRCode('qrcode', {
+          text: 'http://dev.cnweipu.com/zt/jc?uid='+{{auth()->user()->id}},
+          width: 120,
+          height: 120,
+          colorDark: '#000000', //前景色
+          colorLight: '#ffffff',//背景色
+          correctLevel: QRCode.CorrectLevel.H
+      })
       console.log({{auth()->user()->id}},1313123123123123123)
       //获取字数
       $("#content").bind('input',(e)=>{
