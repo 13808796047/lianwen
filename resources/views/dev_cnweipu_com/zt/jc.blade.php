@@ -77,17 +77,87 @@
     border-radius: 3vw;
     text-align: center;
     font-size: 5vw;
-
     color: #7b3015;
+  }
+
+  .modalcontainer {
+    margin: 0 auto;
+  }
+
+  .modalcontainer div {
+    display: flex;
+
+    width: 80%;
+    align-items: center;
+    margin: 0 auto;
+    height: 50px;
+  }
+
+  .modalcontainer div p {
+    width: 19%;
+    text-align: right;
+    margin-left: 30px;
+    margin-bottom: 0;
+  }
+
+  .modalcontainer div input {
+    width: 70%;
+    margin-left: 10px;
   }
 </style>
 
 <body>
-<div class="foraml-box register" id="web">
+ <!-- 二维码弹窗 -->
+ <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+    id="registerModel">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div>
+          <div class="alert alert-danger" role="alert" id="message" style="display: none"></div>
+          <p style="font-size:23px;font-weight:bold;text-align:center;">注册</p>
+
+          <div class="modalcontainer">
+            <div>
+              <p>手机号</p>
+              <input type="text" name="phone" id="phone">
+            </div>
+            <div>
+              <p>密码</p>
+              <input type="text" id="password">
+            </div>
+            <div>
+              <p>确认密码</p>
+              <input type="text" id="password-confirm">
+            </div>
+            <div>
+              <p>验证码</p>
+              <input type="text" style="width: 130px;" id="code">
+              <!-- <span  id="yzm">发送验证码</span> -->
+              <input type="button" id="yzm" value="获取验证码" style="font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;width:120px;
+                outline: none;border: 0;">
+            </div>
+          </div>
+          <div style="display: flex;justify-content: center;">
+            <span style="text-align: center;background-color: #4876FF;color: #fff;padding: 7px 13px;margin: 15px 0;"
+              id='submitBtn'>立即注册</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- 二维码弹窗结束 -->
+  <div class="foraml-box register" id="web">
     <p style="font-size: 123px;text-align: center;font-weight: bold;color: #fbf0a6;">立即查重 送降重次数</p>
-    <div style="padding: 70px;display: flex;justify-content: center;">
-      <p
-        style="text-align: center;background: #4876FF;font-size: 50px;color:#fff;padding: 10px 30px;letter-spacing:20px">
+    <div style="padding: 20px;display: flex;justify-content: center;">
+      <p style="text-align: center;background: #4876FF;font-size: 50px;color:#fff;padding: 10px 30px;letter-spacing:20px"
+        id="tjregister">
         一键注册</p>
     </div>
     <div>
@@ -106,6 +176,7 @@
         <p>双方各获得5次自动降重次数</p>
       </div>
     </div>
+  </div>
   </div>
   <div id="app" style="display: none;">
     <section>
@@ -189,12 +260,78 @@
   console.log(id,312312)
   axios.get('/invit_official?uid='+id).then(res => {
        console.log(res,313131311331)
-        // swal({
-        //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-        //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
-        // })
        document.getElementById("qrimg").src = res.data.url
        document.getElementById("tests").innerText=res.data.url
+  })
+
+  var wait = 60;
+  var verification_key = '';
+
+  function time(o) {
+    console.log(o, 123)
+    if (wait == 0) {
+      o.removeAttribute("disabled");
+      o.value = "点击获取验证码";
+      wait = 60;
+    } else {
+      o.setAttribute("disabled", true);
+      o.value = "重新发送(" + wait + ")";
+      wait--;
+      setTimeout(function () {
+        time(o)
+      },
+        1000)
+    }
+  }
+  $('#registerModel').modal('show')
+  $('#yzm').click(function () {
+    getcode(this)
+  })
+  function getcode(index) {
+    index.setAttribute("disabled", true);
+    var phone = $("input[name='phone']").val();
+    var reg = /^1[3456789]\d{9}$/;
+    if (!reg.test(phone)) {
+      index.removeAttribute("disabled");
+      $("input[name='phone']").focus();
+      $('#message').show();
+      $('#message').html('<strong>请输入正确的手机号码</strong>');
+      return;
+    }
+    axios.post('https://dev.lianwen.com/api/v1/verificationCodes', {
+      phone: phone,
+    }).then(res => {
+      // swal('验证码已发送成功!,请注意查收!')
+      time(index);
+      verification_key = res.data.key;
+    }).catch(err => {
+      index.removeAttribute("disabled");
+      if (err.response.status == 422) {
+        $('#message').show();
+        $.each(err.response.data.errors, (field, errors) => {
+          $('#message').html('<strong>' + errors[0] + '</strong>');
+        })
+      }
+    })
+  }
+
+  $('#submitBtn').click(() => {
+    axios.post('https://dev.cnweipu.com/register', {
+      'verification_key': verification_key,
+      'phone': $('#phone').val(),
+      'password': $('#password').val(),
+      'password_confirmation': $('#password-confirm').val(),
+      'verification_code': $('#code').val()
+    }).then(res => {
+      alert("注册成功")
+    }).catch(err => {
+      // if (err.response.status == 422) {
+      $('#message').show();
+      // $.each(err.response.data.errors, (field, errors) => {
+      //   $('#message').append('<strong>' + errors + '</strong> </br>');
+      // })
+      // }
+    })
   })
 
 
