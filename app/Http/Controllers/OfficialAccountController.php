@@ -88,6 +88,7 @@ class OfficialAccountController extends Controller
         $loginUser = User::find($params_array[1]);
         if($params_array[0] == 'uid') {
             if(!$user) {
+                info('dsakdj');
                 $invit_user = User::create([
                     'nick_name' => $wxUser['nickname'],
                     'avatar' => $wxUser['headimgurl'],
