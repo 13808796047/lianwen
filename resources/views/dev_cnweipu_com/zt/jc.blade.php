@@ -94,7 +94,7 @@
   }
 
   .modalcontainer-p {
-    width: 19%;
+    width: 14%;
     text-align: right;
     margin-left: 30px;
     margin-bottom: 0;
