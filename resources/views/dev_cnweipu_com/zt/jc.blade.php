@@ -8,6 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>推荐活动</title>
+    <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.css') }}">
 </head>
 <style>
   .foraml-box.register {
@@ -221,6 +222,7 @@
   </div>
 </body>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
+<script type="text/javascript" src="{{ asset('asset/js/bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script>
 
