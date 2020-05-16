@@ -14,6 +14,10 @@
   </style>
 @stop
 @section('content')
+  <!-- alert提示框 -->
+  <div class="alert alert-danger">
+    <strong>降重失败，请重试</strong>
+  </div>
   <!-- 模态框 -->
   <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
