@@ -75,16 +75,20 @@ class LoginController extends Controller
                     throw new AuthenticationException('验证码错误');
                 }
                 $phone = $verifyData['phone'];
+
                 $user = User::where('phone', $phone)->first();
                 if(!$user) {
-                    return response()->json([
-                        'message' => '用户不存在!'
-                    ], 401);
-                } else {
+                    $user->create([
+                        'phone' => $phone,
+                    ]);
                     // 清除验证码缓存
-                    \Cache::forget($verification_key);
-                    return $this->guard()->login($user);
+//                    return response()->json([
+//                        'message' => '用户不存在!'
+//                    ], 401);
                 }
+                // 清除验证码缓存
+                \Cache::forget($verification_key);
+                return $this->guard()->login($user);
             }
 
         }
