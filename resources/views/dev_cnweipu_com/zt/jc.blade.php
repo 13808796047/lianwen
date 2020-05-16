@@ -8,7 +8,8 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>推荐活动</title>
-  <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.css') }}"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <style>
   .foraml-box.register {
@@ -192,7 +193,6 @@
               id="qrimg">
             <p>微信扫码分享</p>
             <p style="line-height: 3vw;font-size: 2.8vw;">(可长按二维码自动识别)</p>
-            <p id="tests"></p>
           </div>
         </div>
         <div>
@@ -262,7 +262,7 @@
   axios.get('/invit_official?uid='+id).then(res => {
        console.log(res,313131311331)
        document.getElementById("qrimg").src = res.data.url
-       document.getElementById("tests").innerText=res.data.url
+
   })
 
   var wait = 60;
