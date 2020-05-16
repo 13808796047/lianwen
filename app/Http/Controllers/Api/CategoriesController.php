@@ -14,6 +14,7 @@ class CategoriesController extends Controller
         //以下为测试
         //在搜索引擎搜索个关键词，进入网站
         $word = search_word_from(URL::previous());
+        dd($word);
         if(!empty($word['from'])) {
             \Cache::put('word', $word, now()->addDay());
         }
