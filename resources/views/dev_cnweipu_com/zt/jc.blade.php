@@ -136,10 +136,10 @@
             </div>
             <div class="modalcontainer-div">
               <p class='modalcontainer-p'>验证码</p>
-              <input type="text" style="width: 130px;" id="code" >
+              <input type="text" style="width: 130px;" id="code" class="modalcontainer-input" >
               <!-- <span  id="yzm">发送验证码</span> -->
               <input type="button" id="yzm" value="获取验证码" style="font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;width:120px;
-                outline: none;border: 0;">
+                outline: none;border: 0;" class="modalcontainer-input">
             </div>
           </div>
           <div style="display: flex;justify-content: center;">
