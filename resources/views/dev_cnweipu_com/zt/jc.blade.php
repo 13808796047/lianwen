@@ -322,7 +322,7 @@
   }
 
   $('#submitBtn').click(() => {
-    axios.post('/register', {
+    axios.post('{{route('register')}}', {
       'verification_key': verification_key,
       'phone': $('#phone').val(),
       'password': $('#password').val(),
