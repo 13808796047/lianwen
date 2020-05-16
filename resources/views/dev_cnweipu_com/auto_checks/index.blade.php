@@ -4,6 +4,7 @@
   <!-- <link href="https://css.lianwen.com/css/public_c.css?v=2018v1" type="text/css" rel="stylesheet"/>
   <link href="https://css.lianwen.com/css/index_2017.css" type="text/css" rel="stylesheet"/> -->
   <!-- <link rel="stylesheet" href="{{asset('asset/css/index.css')}}"> -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <style>
     .curfont {
@@ -15,19 +16,7 @@
 @stop
 @section('content')
   <!-- alert提示框 -->
-  <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
-  <div class="toast-header">
-    <img src="..." class="rounded mr-2" alt="...">
-    <strong class="mr-auto">Bootstrap</strong>
-    <small>11 mins ago</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    Hello, world! This is a toast message.
-  </div>
-</div>
+
   <!-- 模态框 -->
   <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -191,6 +180,7 @@
   </div>
 @stop
 @section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('asset/js/diff.js') }}"></script>
   <script>
@@ -354,8 +344,7 @@
             // }, 1000);
           })
           .catch(err =>{
-            console.log(err,312312)
-            $('.alert').alert()
+            toastr.error('Error');
           }
           );
           })
