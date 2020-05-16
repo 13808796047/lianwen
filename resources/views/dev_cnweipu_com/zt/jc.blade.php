@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Document</title>
+  <title>推荐活动</title>
 </head>
 <style>
   .foraml-box.register {
@@ -90,13 +90,7 @@
     <div class="envelope" style="padding:10px 100px">
       <div style="display:flex;justify-content: center;align-items: center;">
         <p style="background:#4876FF;font-size:50px;color:#fff;padding: 10px 40px;margin-right:90px;">PC一键注册</p>
-        <div style="text-align:center;">
 
-          <img
-            src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQGR8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyQUxyNFp4RVFjeTIxUlhBQWh1YzIAAgR717xeAwQAjScA"
-            style="width:300px;height:300px;">
-          <p style="line-height: 50px;font-size: 16px;color: #7b3015;">微信扫码注册</p>
-        </div>
       </div>
     </div>
 
