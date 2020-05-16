@@ -82,9 +82,7 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        info('user', [$user]);
         $params_array = explode('=', $eventKey);
-        info('params', [$params_array]);
         $loginUser = User::find($params_array[1]);
         if($params_array[0] == 'uid') {
             if(!$user) {
@@ -92,7 +90,8 @@ class OfficialAccountController extends Controller
                     'nick_name' => $wxUser['nickname'],
                     'avatar' => $wxUser['headimgurl'],
                     'weixin_openid' => $wxUser['openid'],
-                    'weixin_unionid' => $wxUser['unionid'] ?: ''
+                    'weixin_unionid' => $wxUser['unionid'] ?: '',
+                    'inviter' => $params_array[1],
                 ]);
                 auth('web')->login($invit_user);
                 //邀请人
@@ -102,7 +101,6 @@ class OfficialAccountController extends Controller
                 $message = new Text('您已经注册过账号了!');
 
                 $result = $this->app->customer_service->message($message)->to($openId)->send();
-                info('result', [$result]);
             }
         }
         if($params_array[0] == 'aid') {
