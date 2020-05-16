@@ -91,7 +91,7 @@ class OfficialAccountController extends Controller
                     'avatar' => $wxUser['headimgurl'],
                     'weixin_openid' => $wxUser['openid'],
                     'weixin_unionid' => $wxUser['unionid'] ?: '',
-                    'inviter' => $params_array[1],
+                    'inviter' => $loginUser->id,
                 ]);
                 auth('web')->login($invit_user);
                 //邀请人
