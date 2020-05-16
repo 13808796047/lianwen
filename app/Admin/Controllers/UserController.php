@@ -19,6 +19,7 @@ class UserController extends AdminController
     {
         return Grid::make(new User(), function(Grid $grid) {
             $grid->id('ID')->sortable();
+            $grid->model()->orderBy('created_at', 'desc');
             $grid->phone('手机号');
             $grid->nick_name('微信昵称');
             $grid->column('user_group', '用户组')
