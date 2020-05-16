@@ -285,7 +285,11 @@
         1000)
     }
   }
-  $('#registerModel').modal('show')
+  $('#tjregister').click(function(){
+    console.log(1112)
+    $('#registerModel').modal('show')
+  })
+
   $('#yzm').click(function () {
     getcode(this)
   })
