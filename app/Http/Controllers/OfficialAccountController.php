@@ -80,52 +80,7 @@ class OfficialAccountController extends Controller
         $openId = $this->openid;
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
-        //如果先授权登录,存在unionid
-        $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        $params_array = explode('=', $eventKey);
-        $loginUser = User::find($params_array[1]);
-        if($params_array[0] == 'uid') {
-            if(!$user) {
-                $invit_user = User::create([
-                    'nick_name' => $wxUser['nickname'],
-                    'avatar' => $wxUser['headimgurl'],
-                    'weixin_openid' => $wxUser['openid'],
-                    'weixin_unionid' => $wxUser['unionid'] ?: '',
-                    'inviter' => $loginUser->id,
-                ]);
-                auth('web')->login($invit_user);
-                //邀请人
-                $loginUser->increaseJcTimes(5);
-                $invit_user->increaseJcTimes(5);
-            } else {
-                $message = new Text('您已经注册过账号了!');
-
-                $result = $this->app->customer_service->message($message)->to($openId)->send();
-            }
-        }
-        if($params_array[0] == 'aid') {
-            if(!$user) {
-                $loginUser->update(
-                    [
-                        'nick_name' => $wxUser['nickname'],
-                        'avatar' => $wxUser['headimgurl'],
-                        'weixin_openid' => $wxUser['openid'],
-                        'weixin_unionid' => $wxUser['unionid'] ?: ''
-                    ]
-                );
-            }
-            $user->delete();
-            $loginUser->update([
-                'nick_name' => $user['nickname'],
-                'avatar' => $user['headimgurl'],
-                'weixin_openid' => $user['openid'],
-                'weixin_unionid' => $user['unionid'] ?: ''
-            ]);
-
-            foreach($user->orders as $order) {
-                $order->userid = $loginUser->id;
-            }
-        }
+        $this->handleUser($wxUser, $eventKey);
     }
 
 
@@ -162,42 +117,43 @@ class OfficialAccountController extends Controller
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         // 注册
+        $this->handleUser($wxUser, $eventKey);
 
+    }
+
+    public function handleUser($wxUser, $eventKey)
+    {
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        $loginUser = User::FindOrFail($eventKey);
-        $params_array = explode('=', $eventKey);
-        $loginUser = User::find($params_array[1]);
-        if($params_array[0] == 'uid') {
+        [$type, $id] = explode('=', $eventKey);
+        $loginUser = User::find($id);
+        if($type == 'uid') {
             if(!$user) {
-                $user = User::create([
+                $invit_user = User::create([
                     'nick_name' => $wxUser['nickname'],
                     'avatar' => $wxUser['headimgurl'],
                     'weixin_openid' => $wxUser['openid'],
                     'weixin_unionid' => $wxUser['unionid'] ?: '',
-                    'subscribe' => $wxUser['subscribe'],
-                    'subscribe_time' => $wxUser['subscribe_time'],
+                    'inviter' => $loginUser->id,
                 ]);
-                auth('web')->login($user);
+                auth('web')->login($invit_user);
                 //邀请人
                 $loginUser->increaseJcTimes(5);
-                $user->increaseJcTimes(5);
-            }
-            $message = new Text('您已经注册过账号了!');
+                $invit_user->increaseJcTimes(5);
+            } else {
+                $message = new Text('您已经注册过账号了!');
 
-            $result = $this->app->customer_service->message($message)->to($openId)->send();
-            info('result', [$result]);
+                $result = $this->app->customer_service->message($message)->to($openId)->send();
+            }
         }
-        if($params_array[0] == 'aid') {
+        if($type == 'aid') {
             if(!$user) {
                 $loginUser->update(
                     [
                         'nick_name' => $wxUser['nickname'],
                         'avatar' => $wxUser['headimgurl'],
                         'weixin_openid' => $wxUser['openid'],
-                        'weixin_unionid' => $wxUser['unionid'] ?: '',
-                        'subscribe' => $wxUser['subscribe'],
-                        'subscribe_time' => $wxUser['subscribe_time'],
+                        'weixin_unionid' => $wxUser['unionid'] ?: ''
                     ]
                 );
             }
@@ -206,37 +162,12 @@ class OfficialAccountController extends Controller
                 'nick_name' => $user['nickname'],
                 'avatar' => $user['headimgurl'],
                 'weixin_openid' => $user['openid'],
-                'weixin_unionid' => $user['unionid'] ?: '',
-                'subscribe' => $wxUser['subscribe'],
-                'subscribe_time' => $wxUser['subscribe_time'],
+                'weixin_unionid' => $user['unionid'] ?: ''
             ]);
 
             foreach($user->orders as $order) {
                 $order->userid = $loginUser->id;
             }
         }
-//        if($user) {
-//            $user->delete();
-//            $loginUser->update([
-//                'nick_name' => $user['nickname'],
-//                'avatar' => $user['headimgurl'],
-//                'weixin_openid' => $user['openid'],
-//                'weixin_unionid' => $user['unionid'] ?: ''
-//            ]);
-//            foreach($loginUser->orders as $order) {
-//                $order->update([
-//                    'userid' => $user->id,
-//                ]);
-//            }
-//        } else {
-//            $loginUser->update(
-//                [
-//                    'nick_name' => $wxUser['nickname'],
-//                    'avatar' => $wxUser['headimgurl'],
-//                    'weixin_openid' => $wxUser['openid'],
-//                    'weixin_unionid' => $wxUser['unionid'] ?: ''
-//                ]
-//            );
-//        }
     }
 }
