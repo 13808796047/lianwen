@@ -340,7 +340,7 @@
           .catch(err =>{
             num--;
             if(num>=0){
-              togetjc()
+              togetJc(num)
               return;
             }else{
               $('#beingModal').modal('hide')
