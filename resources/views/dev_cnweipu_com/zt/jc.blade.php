@@ -327,7 +327,8 @@
       'phone': $('#phone').val(),
       'password': $('#password').val(),
       'password_confirmation': $('#password-confirm').val(),
-      'verification_code': $('#code').val()
+      'verification_code': $('#code').val(),
+      'uid':id
     }).then(res => {
       alert("注册成功")
     }).catch(err => {
