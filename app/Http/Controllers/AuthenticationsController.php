@@ -30,6 +30,9 @@ class AuthenticationsController extends Controller
 
     public function oauth($type, Request $request)
     {
+        if($request->has('uid')) {
+            \Cache::put('uid', $request->uid, now()->addDay());
+        }
         return $this->app->driver($type)->redirect();
     }
 
@@ -56,6 +59,15 @@ class AuthenticationsController extends Controller
                         'weixin_openid' => $oauthUser->getOriginal()['openid'],
                         'weixin_unionid' => $unionid,
                     ]);
+                    $uid = \Cache::get('uid');
+                    //邀请人
+                    if($uid) {
+                        $inviter = User::findOrFail($uid);
+                        $inviter->increaseJcTimes(5);
+                        $user->increaseJcTimes(5);
+                        \Cache::forget('uid');
+                    }
+
                 }
                 break;
         }
