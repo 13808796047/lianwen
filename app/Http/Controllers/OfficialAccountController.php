@@ -82,6 +82,7 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
+        info('user', [$user]);
         $params_array = explode('=', $eventKey);
         info('params', [$params_array]);
         $loginUser = User::find($params_array[1]);
