@@ -108,7 +108,7 @@
 
 <body>
  <!-- 二维码弹窗 -->
- <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+ <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
     id="registerModel">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
