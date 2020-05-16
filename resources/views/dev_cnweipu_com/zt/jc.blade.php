@@ -27,6 +27,9 @@
     padding: 0;
     margin: 0;
   }
+  html, body {
+    min-height: 100%;
+  }
 
   .foraml-box {
     padding: 150px 0 1px;
