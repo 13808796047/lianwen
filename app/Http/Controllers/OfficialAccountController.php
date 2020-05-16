@@ -135,6 +135,8 @@ class OfficialAccountController extends Controller
                     'weixin_openid' => $wxUser['openid'],
                     'weixin_unionid' => $wxUser['unionid'] ?: '',
                     'inviter' => $loginUser->id,
+                    'subscribe' => $wxUser['subscribe'],
+                    'subscribe_time' => $wxUser['subscribe_time'],
                 ]);
                 auth('web')->login($invit_user);
                 //邀请人
@@ -153,7 +155,9 @@ class OfficialAccountController extends Controller
                         'nick_name' => $wxUser['nickname'],
                         'avatar' => $wxUser['headimgurl'],
                         'weixin_openid' => $wxUser['openid'],
-                        'weixin_unionid' => $wxUser['unionid'] ?: ''
+                        'weixin_unionid' => $wxUser['unionid'] ?: '',
+                        'subscribe' => $wxUser['subscribe'],
+                        'subscribe_time' => $wxUser['subscribe_time'],
                     ]
                 );
             } else {
@@ -162,7 +166,9 @@ class OfficialAccountController extends Controller
                     'nick_name' => $user['nickname'],
                     'avatar' => $user['headimgurl'],
                     'weixin_openid' => $user['openid'],
-                    'weixin_unionid' => $user['unionid'] ?: ''
+                    'weixin_unionid' => $user['unionid'] ?: '',
+                    'subscribe' => $wxUser['subscribe'],
+                    'subscribe_time' => $wxUser['subscribe_time'],
                 ]);
 
                 foreach($user->orders as $order) {
