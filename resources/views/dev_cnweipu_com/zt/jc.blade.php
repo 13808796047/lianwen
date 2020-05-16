@@ -27,7 +27,7 @@
   }
 
   .foraml-box {
-    padding: 300px 0 1px;
+    padding: 150px 0 1px;
   }
 
   .foraml-box.register .envelope {
