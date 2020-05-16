@@ -83,6 +83,7 @@ class OfficialAccountController extends Controller
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         $params_array = explode('=', $eventKey);
+        info('params', [$params_array]);
         $loginUser = User::find($params_array[1]);
         if($params_array[0] == 'uid') {
             if(!$user) {
