@@ -319,44 +319,36 @@
         //   $('#jcafter').css('display', 'none')
         //   $("#jclater").css('display', 'block')
         // }, 3000);
+
+        let num = 3;
+        togetJc(num)
+      })
+
+      function togetJc(num){
         let contents = $('#content').val();
         axios.post('{{ route('auto_check.store') }}',{content:contents})
           .then(res => {
             console.log(res,1323122321)
             $('#beingModal').modal('hide')
             $('#jcafter').css('display', 'none')
-
-            // $("#content_later").html(res.data.result.new_content)
-            //去除html标签
             var htmlstring=res.data.result.new_content;
             var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
             changed(contents,stringtemp,htmlstring)
             $('#jc_time').html(res.data.user.jc_times)
             $("#jclater").css('display', 'block')
-            // let id = res.data.data.id;
-            // let timer = setInterval(() => {
-            //   axios('/auto_check/' + id).then(resp => {
-            //     // debugger;
-            //     if (resp.data.data.content_after) {
-            //       // clear timer
-            //       clearInterval(timer);
-            //       console.log(resp);
-            //       $('#beingModal').modal('hide')
-            //       $('#jcafter').css('display', 'none')
-            //       $("#content_after").text(resp.data.data.content_before)
-            //       $("#content_later").text(resp.data.data.content_after)
-            //       $('#jc_time').html(resp.data.data.jc_times)
-            //       $("#jclater").css('display', 'block')
-            //     }
-            //   })
-            // }, 1000);
           })
           .catch(err =>{
-            $('#beingModal').modal('hide')
-            toastr.error('降重失败，请重试');
+            num--;
+            if(num>=0){
+              togetjc()
+              return;
+            }else{
+              $('#beingModal').modal('hide')
+              toastr.error('降重失败，请重试');
+            }
           }
           );
-          })
+      }
 
   </script>
 @stop
