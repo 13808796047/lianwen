@@ -8,6 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>推荐活动</title>
+  <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.css') }}">
 </head>
 <style>
   .foraml-box.register {
@@ -84,23 +85,22 @@
     margin: 0 auto;
   }
 
-  .modalcontainer div {
+  .modalcontainer-div {
     display: flex;
-
     width: 80%;
     align-items: center;
     margin: 0 auto;
     height: 50px;
   }
 
-  .modalcontainer div p {
+  .modalcontainer-p {
     width: 19%;
     text-align: right;
     margin-left: 30px;
     margin-bottom: 0;
   }
 
-  .modalcontainer div input {
+  .modalcontainer-input {
     width: 70%;
     margin-left: 10px;
   }
@@ -122,21 +122,21 @@
           <p style="font-size:23px;font-weight:bold;text-align:center;">注册</p>
 
           <div class="modalcontainer">
-            <div>
-              <p>手机号</p>
-              <input type="text" name="phone" id="phone">
+            <div class="modalcontainer-div">
+              <p class='modalcontainer-p'>手机号</p>
+              <input type="text" name="phone" id="phone" class="modalcontainer-input">
             </div>
-            <div>
-              <p>密码</p>
-              <input type="text" id="password">
+            <div class="modalcontainer-div">
+              <p class='modalcontainer-p'>密码</p>
+              <input type="text" id="password" class="modalcontainer-input">
             </div>
-            <div>
-              <p>确认密码</p>
-              <input type="text" id="password-confirm">
+            <div class="modalcontainer-div">
+              <p class='modalcontainer-p'>确认密码</p>
+              <input type="text" id="password-confirm" class="modalcontainer-input">
             </div>
-            <div>
-              <p>验证码</p>
-              <input type="text" style="width: 130px;" id="code">
+            <div class="modalcontainer-div">
+              <p class='modalcontainer-p'>验证码</p>
+              <input type="text" style="width: 130px;" id="code" >
               <!-- <span  id="yzm">发送验证码</span> -->
               <input type="button" id="yzm" value="获取验证码" style="font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;width:120px;
                 outline: none;border: 0;">
@@ -221,6 +221,8 @@
   </div>
 </body>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
+<script type="text/javascript" src="{{ asset('asset/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('asset/js/bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script>
 
@@ -283,7 +285,11 @@
         1000)
     }
   }
-  $('#registerModel').modal('show')
+  $('#tjregister').click(function(){
+    console.log(1112)
+    $('#registerModel').modal('show')
+  })
+
   $('#yzm').click(function () {
     getcode(this)
   })
@@ -316,7 +322,7 @@
   }
 
   $('#submitBtn').click(() => {
-    axios.post('https://dev.cnweipu.com/register', {
+    axios.post('{{route('register')}}', {
       'verification_key': verification_key,
       'phone': $('#phone').val(),
       'password': $('#password').val(),
