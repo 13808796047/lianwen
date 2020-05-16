@@ -331,6 +331,8 @@
       'uid':id
     }).then(res => {
       alert("注册成功")
+      $('#registerModel').modal('hide')
+      location.href="https://dev.lianwen.com"
     }).catch(err => {
       if (err.response.status == 422) {
       $('#message').show();
