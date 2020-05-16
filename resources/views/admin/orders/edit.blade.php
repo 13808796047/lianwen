@@ -69,19 +69,20 @@
           <a class="btn btn-danger" href="{{ $order->paper_path }}" target="_blank">下载</a>(订单支付后才能下载论文)
         </div>
         <label for="title" class="col-sm-1 col-form-label">实际路径</label>
-        <div class="col-sm-3">
-          <a class="btn-danger">{{ $order->paper_path }}</a>
+        <div class="col-sm-7">
+          <a>{{ $order->paper_path }}</a>
         </div>
-        <label for="title" class="col-sm-1 col-form-label">论文</label>
-        <div class="col-sm-3">
-          <a class="btn btn-danger" href="{{ route('admin.orders.download_report',$order) }}" target="_blank">下载</a>(订单支付后才能下载论文)
-        </div>
+
       </div>
 
       <div class="form-row mt-3 mb-3">
         <label for="file" class="col-sm-1 col-form-label">支付时间</label>
         <div class="col-sm-3">
           <input type="file" class="form-control" id="file">
+        </div>
+        <label for="title" class="col-sm-1 col-form-label">论文</label>
+        <div class="col-sm-3">
+          <a class="btn btn-danger" href="{{ route('admin.orders.download_report',$order) }}" target="_blank">下载</a>(订单支付后才能下载论文)
         </div>
       </div>
       <div class="form-group">
