@@ -331,12 +331,12 @@
     }).then(res => {
       alert("注册成功")
     }).catch(err => {
-      // if (err.response.status == 422) {
+      if (err.response.status == 422) {
       $('#message').show();
-      // $.each(err.response.data.errors, (field, errors) => {
-      //   $('#message').append('<strong>' + errors + '</strong> </br>');
-      // })
-      // }
+      $.each(err.response.data.errors, (field, errors) => {
+        $('#message').append('<strong>' + errors + '</strong> </br>');
+      })
+      }
     })
   })
 
