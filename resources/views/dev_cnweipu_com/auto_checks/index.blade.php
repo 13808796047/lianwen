@@ -344,7 +344,8 @@
             // }, 1000);
           })
           .catch(err =>{
-            toastr.error('Error');
+            $('#beingModal').modal('hide')
+            toastr.error('降重失败，请重试');
           }
           );
           })
