@@ -154,13 +154,13 @@
       <table style="width:100%;">
         <tr>
             <td style="width:48%;">
-              <div style="font-size:19px;font-weight:bold;">降重前</div>
+              <div style="font-size:19px;font-weight:bold;margin-left:10px;">降重前</div>
               <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;margin-right:5px;" id="content_after">
               </div>
             </td>
             <td style="width:48%;">
-              <div style="font-size:19px;font-weight:bold;">降重后</div>
-              <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;" id="content_later">
+              <div style="font-size:19px;font-weight:bold;margin-left:10px;">降重后</div>
+              <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;margin-left:5px;" id="content_later">
               </div>
             </td>
         </tr>
@@ -169,7 +169,7 @@
     <p style="font-size: 13px;margin-top: 10px;text-align: center;">
       注：本工具是通过运用AI技术对原文进行降重，结果仅供参考，需要稍作调整让语句更通顺。如需高质量人工降重请联系微信：13878811985
     </p>
-    <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;">
+    <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;margin-top:16px;">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
       <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
