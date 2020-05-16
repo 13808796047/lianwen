@@ -70,7 +70,7 @@
         </div>
         <label for="title" class="col-sm-1 col-form-label">实际路径</label>
         <div class="col-sm-7">
-          <a class="btn-danger">{{ $order->paper_path }}</a>
+          <a>{{ $order->paper_path }}</a>
         </div>
 
       </div>
