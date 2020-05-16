@@ -270,7 +270,7 @@
         //   .catch(err => console.log(err));
         $('#exampleModal').modal('show')
       })
-      //点击再来一篇
+      //再来一篇
       $('#againjc').click(function(){
         window.location.reload()
       })
