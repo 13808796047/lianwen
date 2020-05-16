@@ -90,6 +90,7 @@
     <div class="envelope" style="padding:10px 100px">
       <div style="display:flex;justify-content: center;align-items: center;">
         <p style="background:#4876FF;font-size:50px;color:#fff;padding: 10px 40px;margin-right:90px;">PC一键注册</p>
+
       </div>
     </div>
 
