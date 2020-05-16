@@ -45,7 +45,7 @@
     margin: 80px 0 35px;
   }
 
-  .foraml-box .card {
+  .cards {
     margin: 0 auto;
     width: 880px;
     font-family: SourceHanSansCN-Normal;
@@ -83,35 +83,30 @@
 </style>
 
 <body>
-  <section class="foraml-box register" id="web">
-    <div style="margin:0 auto;">
-      <p style="font-size:123px;text-align:center;font-weight:bold;color:#fbf0a6">立即注册送查重次数</p>
+<div class="foraml-box register" id="web">
+    <p style="font-size: 123px;text-align: center;font-weight: bold;color: #fbf0a6;">立即查重 送降重次数</p>
+    <div style="padding: 70px;display: flex;justify-content: center;">
+      <p
+        style="text-align: center;background: #4876FF;font-size: 50px;color:#fff;padding: 10px 30px;letter-spacing:20px">
+        一键注册</p>
     </div>
-    <div class="envelope" style="padding:10px 100px">
-      <div style="display:flex;justify-content: center;align-items: center;">
-        <p style="background:#4876FF;font-size:50px;color:#fff;padding: 10px 40px;margin-right:90px;">PC一键注册</p>
-
+    <div>
+      <p class="t">简单三步送降重次数</p>
+      <div class="cards">
+        <p>1.分享给好友</p>
+        <p>2.好友成功注册</p>
+        <p>3.双方各获得5次自动降重次数</p>
       </div>
     </div>
-
-    <p class="t">简单三步<span></span>即送代金券</p>
-    <div class="card" style="padding: 60px 0 50px;">
-      <p>1、分享给好友</p>
-      <p>2、好友成功注册</p>
-      <p>3、双方各获得各5次自动降重次数</p>
+    <div style="padding-bottom: 150px;">
+      <p class="t">推荐注册活动规则</p>
+      <div class="cards">
+        <p>1、分享给好友</p>
+        <p>2.好友成功注册</p>
+        <p>双方各获得5次自动降重次数</p>
+      </div>
     </div>
-    <p class="t">推荐注册<span></span>活动规则</p>
-    <div class="card" style="text-align:left;padding: 40px 40px;">
-      <p>1、每推荐1名好友成功注册（绑定微信或手机号码），推荐人/注册人各获得10元无门槛代金券；代金券获得数量无上限</p>
-      <p>2、代金券有效期为1个月；</p>
-      <p>3、代金券不能提现，仅用于购买5118服务时消费抵扣，无门槛代金券最多可叠加10张抵扣；</p>
-      <p>4、注册过程中使用了多人的推荐链接，以最后使用的推荐链接为准；</p>
-      <p>5、对不符合活动规则的问题数据，5118有权撤销推荐和对应的代金券。</p>
-      <p style="text-align:right;margin-top:40px;">活动最终解释权归5118官方</p>
-    </div>
-    <br>
-    <br>
-  </section>
+  </div>
   <div id="app" style="display: none;">
     <section>
       <div class="bk register">
