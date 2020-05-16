@@ -18,12 +18,10 @@ class UserController extends AdminController
     protected function grid()
     {
         return Grid::make(new User(), function(Grid $grid) {
-            $grid->id('ID');
+            $grid->id('ID')->sortable();
+            $grid->model()->orderBy('created_at', 'desc');
             $grid->phone('手机号');
             $grid->nick_name('微信昵称');
-//        $grid->email_verified_at('已验证邮箱')->display(function($value) {
-//            return $value ? '是' : '否';
-//        });
             $grid->column('user_group', '用户组')
                 ->using([
                     0 => '普通用户',
@@ -36,6 +34,7 @@ class UserController extends AdminController
                 ]);
             $grid->consumption_amount('消费金额');
             $grid->created_at('注册时间');
+            $grid->inviter('邀请人id');
             // 不在页面显示 `新建` 按钮，因为我们不需要在后台新建用户
             $grid->disableCreateButton();
             // 同时在每一行也不显示 `编辑` 按钮
