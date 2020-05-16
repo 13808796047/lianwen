@@ -354,6 +354,9 @@
           .catch(err =>{
             $('#beingModal').modal('hide')
             toastr.error('降重失败，请重试');
+            if(err.result.status==0){
+              console.log('xixixi')
+            }
           }
           );
           })
