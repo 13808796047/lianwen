@@ -314,12 +314,6 @@
       $("#surecheck").click(function () {
         $('#exampleModal').modal('hide')
         $('#beingModal').modal('show')
-        // setInterval(() => {
-        //   $('#beingModal').modal('hide')
-        //   $('#jcafter').css('display', 'none')
-        //   $("#jclater").css('display', 'block')
-        // }, 3000);
-
         let num = 3;
         togetJc(num)
       })
