@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use EasyWeChat\Factory;
+use EasyWeChat\Kernel\Messages\Text;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,7 @@ class OfficialAccountController extends Controller
     {
         // 有效期 1 天的二维码
         $qrCode = $this->app->qrcode;
-        $result = $qrCode->temporary(auth()->user()->id, 3600 * 24);
+        $result = $qrCode->temporary('aid=' . auth()->user()->id, 3600 * 24);
         $url = $qrCode->url($result['ticket']);
         return response(compact('url'), 200);
     }
@@ -71,7 +72,6 @@ class OfficialAccountController extends Controller
      */
     public function eventSCAN($event)
     {
-        info('event', [$event]);
         if(empty($event['EventKey'])) {
             return;
         }
@@ -82,53 +82,54 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
+        info('user', [$user]);
         $params_array = explode('=', $eventKey);
         info('params', [$params_array]);
-//        $loginUser = User::find($eventKey);
-//        if($user) {
-//            if($loginUser->unionid == $user->unionid) {
-//                $user->delete();
-//                $loginUser->update([
-//                    'nick_name' => $user['nickname'],
-//                    'avatar' => $user['headimgurl'],
-//                    'weixin_openid' => $user['openid'],
-//                    'weixin_unionid' => $user['unionid'] ?: ''
-//                ]);
-//
-//                foreach($user->orders as $order) {
-//                    $order->userid = $loginUser->id;
-//                }
-//            } else {
-//
-//            }
-//        }
-//        if($user && $loginUser->unionid == $user->unionid) {
-//
-//        } else {
-//            $loginUser->update(
-//                [
-//                    'nick_name' => $wxUser['nickname'],
-//                    'avatar' => $wxUser['headimgurl'],
-//                    'weixin_openid' => $wxUser['openid'],
-//                    'weixin_unionid' => $wxUser['unionid'] ?: ''
-//                ]
-//            );
-//        }
-//        info('loginUser', [$loginUser]);
-//        if(!$invit_user) {
-//            $user = User::create([
-//                'nick_name' => $wxUser['nickname'],
-//                'avatar' => $wxUser['headimgurl'],
-//                'weixin_openid' => $wxUser['openid'],
-//                'weixin_unionid' => $wxUser['unionid'] ?: ''
-//            ]);
-//            auth('web')->login($user);
-//            //邀请人
-//            $loginUser->increaseJcTimes(5);
-//            $user->increaseJcTimes(5);
-//        }
+        $loginUser = User::find($params_array[1]);
+        if($params_array[0] == 'uid') {
+            if(!$user) {
+                info('dsakdj');
+                $invit_user = User::create([
+                    'nick_name' => $wxUser['nickname'],
+                    'avatar' => $wxUser['headimgurl'],
+                    'weixin_openid' => $wxUser['openid'],
+                    'weixin_unionid' => $wxUser['unionid'] ?: ''
+                ]);
+                info('new User', [$invit_user]);
+                auth('web')->login($user);
+                //邀请人
+                $loginUser->increaseJcTimes(5);
+                $invit_user->increaseJcTimes(5);
+            } else {
+                $message = new Text('您已经注册过账号了!');
 
+                $result = $this->app->customer_service->message($message)->to($openId)->send();
+                info('result', [$result]);
+            }
+        }
+        if($params_array[0] == 'aid') {
+            if(!$user) {
+                $loginUser->update(
+                    [
+                        'nick_name' => $wxUser['nickname'],
+                        'avatar' => $wxUser['headimgurl'],
+                        'weixin_openid' => $wxUser['openid'],
+                        'weixin_unionid' => $wxUser['unionid'] ?: ''
+                    ]
+                );
+            }
+            $user->delete();
+            $loginUser->update([
+                'nick_name' => $user['nickname'],
+                'avatar' => $user['headimgurl'],
+                'weixin_openid' => $user['openid'],
+                'weixin_unionid' => $user['unionid'] ?: ''
+            ]);
 
+            foreach($user->orders as $order) {
+                $order->userid = $loginUser->id;
+            }
+        }
     }
 
 
@@ -169,7 +170,37 @@ class OfficialAccountController extends Controller
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         $loginUser = User::FindOrFail($eventKey);
-        if($user) {
+        $params_array = explode('=', $eventKey);
+        $loginUser = User::find($params_array[1]);
+        if($params_array[0] == 'uid') {
+            if(!$user) {
+                $user = User::create([
+                    'nick_name' => $wxUser['nickname'],
+                    'avatar' => $wxUser['headimgurl'],
+                    'weixin_openid' => $wxUser['openid'],
+                    'weixin_unionid' => $wxUser['unionid'] ?: ''
+                ]);
+                auth('web')->login($user);
+                //邀请人
+                $loginUser->increaseJcTimes(5);
+                $user->increaseJcTimes(5);
+            }
+            $message = new Text('您已经注册过账号了!');
+
+            $result = $this->app->customer_service->message($message)->to($openId)->send();
+            info('result', [$result]);
+        }
+        if($params_array[0] == 'aid') {
+            if(!$user) {
+                $loginUser->update(
+                    [
+                        'nick_name' => $wxUser['nickname'],
+                        'avatar' => $wxUser['headimgurl'],
+                        'weixin_openid' => $wxUser['openid'],
+                        'weixin_unionid' => $wxUser['unionid'] ?: ''
+                    ]
+                );
+            }
             $user->delete();
             $loginUser->update([
                 'nick_name' => $user['nickname'],
@@ -177,20 +208,33 @@ class OfficialAccountController extends Controller
                 'weixin_openid' => $user['openid'],
                 'weixin_unionid' => $user['unionid'] ?: ''
             ]);
-            foreach($loginUser->orders as $order) {
-                $order->update([
-                    'userid' => $user->id,
-                ]);
+
+            foreach($user->orders as $order) {
+                $order->userid = $loginUser->id;
             }
-        } else {
-            $loginUser->update(
-                [
-                    'nick_name' => $wxUser['nickname'],
-                    'avatar' => $wxUser['headimgurl'],
-                    'weixin_openid' => $wxUser['openid'],
-                    'weixin_unionid' => $wxUser['unionid'] ?: ''
-                ]
-            );
         }
+//        if($user) {
+//            $user->delete();
+//            $loginUser->update([
+//                'nick_name' => $user['nickname'],
+//                'avatar' => $user['headimgurl'],
+//                'weixin_openid' => $user['openid'],
+//                'weixin_unionid' => $user['unionid'] ?: ''
+//            ]);
+//            foreach($loginUser->orders as $order) {
+//                $order->update([
+//                    'userid' => $user->id,
+//                ]);
+//            }
+//        } else {
+//            $loginUser->update(
+//                [
+//                    'nick_name' => $wxUser['nickname'],
+//                    'avatar' => $wxUser['headimgurl'],
+//                    'weixin_openid' => $wxUser['openid'],
+//                    'weixin_unionid' => $wxUser['unionid'] ?: ''
+//                ]
+//            );
+//        }
     }
 }
