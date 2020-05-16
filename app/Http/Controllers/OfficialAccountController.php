@@ -88,16 +88,17 @@ class OfficialAccountController extends Controller
         $loginUser = User::find($params_array[1]);
         if($params_array[0] == 'uid') {
             if(!$user) {
-                $user = User::create([
+                $invit_user = User::create([
                     'nick_name' => $wxUser['nickname'],
                     'avatar' => $wxUser['headimgurl'],
                     'weixin_openid' => $wxUser['openid'],
                     'weixin_unionid' => $wxUser['unionid'] ?: ''
                 ]);
+                info('new User', [$invit_user]);
                 auth('web')->login($user);
                 //邀请人
                 $loginUser->increaseJcTimes(5);
-                $user->increaseJcTimes(5);
+                $invit_user->increaseJcTimes(5);
             }
             $message = new Text('您已经注册过账号了!');
 
