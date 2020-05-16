@@ -111,6 +111,49 @@
 
 <body>
   <div class="foraml-box register" id="web">
+   <!-- 二维码弹窗 -->
+ <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="registerModel">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div>
+						<div class="alert alert-danger" role="alert" id="message" style="display: none"></div>
+						<p style="font-size:23px;font-weight:bold;text-align:center;">注册</p>
+
+						<div class="modalcontainer">
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">手机号</p>
+								<input type="text" name="phone" id="phone" class="modalcontainer-input">
+							</div>
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">密码</p>
+								<input type="text" id="password" class="modalcontainer-input">
+							</div>
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">确认密码</p>
+								<input type="text" id="password-confirm" class="modalcontainer-input">
+							</div>
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">验证码</p>
+								<input type="text" style="width: 130px;" id="code" class="modalcontainer-input">
+								<!-- <span  id="yzm">发送验证码</span> -->
+								<input type="button" id="yzm" value="获取验证码" style="font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;width:120px;
+		                outline: none;border: 0;"
+								 class="modalcontainer-input">
+							</div>
+						</div>
+						<div style="display: flex;justify-content: center;">
+							<span style="text-align: center;background-color: #4876FF;color: #fff;padding: 7px 13px;margin: 15px 0;" id='submitBtn'>立即注册</span>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+  <!-- 二维码弹窗结束 -->
     <p style="font-size: 123px;text-align: center;font-weight: bold;color: #fbf0a6;">立即查重 送降重次数</p>
     <div style="padding: 20px;display: flex;justify-content: center;">
       <p style="text-align: center;background: #4876FF;font-size: 50px;color:#fff;padding: 10px 30px;letter-spacing:20px"
@@ -174,49 +217,7 @@
     </section>
 
   </div>
-   <!-- 二维码弹窗 -->
- <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="registerModel">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div>
-						<div class="alert alert-danger" role="alert" id="message" style="display: none"></div>
-						<p style="font-size:23px;font-weight:bold;text-align:center;">注册</p>
 
-						<div class="modalcontainer">
-							<div class="modalcontainer-div">
-								<p class="modalcontainer-p">手机号</p>
-								<input type="text" name="phone" id="phone" class="modalcontainer-input">
-							</div>
-							<div class="modalcontainer-div">
-								<p class="modalcontainer-p">密码</p>
-								<input type="text" id="password" class="modalcontainer-input">
-							</div>
-							<div class="modalcontainer-div">
-								<p class="modalcontainer-p">确认密码</p>
-								<input type="text" id="password-confirm" class="modalcontainer-input">
-							</div>
-							<div class="modalcontainer-div">
-								<p class="modalcontainer-p">验证码</p>
-								<input type="text" style="width: 130px;" id="code" class="modalcontainer-input">
-								<!-- <span  id="yzm">发送验证码</span> -->
-								<input type="button" id="yzm" value="获取验证码" style="font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;width:120px;
-		                outline: none;border: 0;"
-								 class="modalcontainer-input">
-							</div>
-						</div>
-						<div style="display: flex;justify-content: center;">
-							<span style="text-align: center;background-color: #4876FF;color: #fff;padding: 7px 13px;margin: 15px 0;" id='submitBtn'>立即注册</span>
-						</div>
-					</div>
-				</div>
-			</div>
-	</div>
-  <!-- 二维码弹窗结束 -->
 </body>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
 <script type="text/javascript" src="{{ asset('asset/js/jquery.min.js') }}"></script>
