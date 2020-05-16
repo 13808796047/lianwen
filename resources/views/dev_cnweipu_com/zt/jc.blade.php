@@ -8,7 +8,8 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>推荐活动</title>
-  <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('asset/css/bootstrap4.css') }}">
+
 </head>
 <style>
   .foraml-box.register {
@@ -25,6 +26,9 @@
   * {
     padding: 0;
     margin: 0;
+  }
+  html, body {
+    min-height: 100%;
   }
 
   .foraml-box {
@@ -107,53 +111,50 @@
 </style>
 
 <body>
- <!-- 二维码弹窗 -->
- <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
-    id="registerModel">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div>
-          <div class="alert alert-danger" role="alert" id="message" style="display: none"></div>
-          <p style="font-size:23px;font-weight:bold;text-align:center;">注册</p>
-
-          <div class="modalcontainer">
-            <div>
-              <p>手机号</p>
-              <input type="text" name="phone" id="phone">
-            </div>
-            <div>
-              <p>密码</p>
-              <input type="text" id="password">
-            </div>
-            <div>
-              <p>确认密码</p>
-              <input type="text" id="password-confirm">
-            </div>
-            <div>
-              <p>验证码</p>
-              <input type="text" style="width: 130px;" id="code">
-              <!-- <span  id="yzm">发送验证码</span> -->
-              <input type="button" id="yzm" value="获取验证码" style="font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;width:120px;
-                outline: none;border: 0;">
-            </div>
-          </div>
-          <div style="display: flex;justify-content: center;">
-            <span style="text-align: center;background-color: #4876FF;color: #fff;padding: 7px 13px;margin: 15px 0;"
-              id='submitBtn'>立即注册</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  </div>
-  <!-- 二维码弹窗结束 -->
   <div class="foraml-box register" id="web">
+   <!-- 二维码弹窗 -->
+ <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true" id="registerModel">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div>
+						<div class="alert alert-danger" role="alert" id="message" style="display: none"></div>
+						<p style="font-size:23px;font-weight:bold;text-align:center;">注册</p>
+
+						<div class="modalcontainer">
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">手机号</p>
+								<input type="text" name="phone" id="phone" class="modalcontainer-input">
+							</div>
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">密码</p>
+								<input type="text" id="password" class="modalcontainer-input">
+							</div>
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">确认密码</p>
+								<input type="text" id="password-confirm" class="modalcontainer-input">
+							</div>
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">验证码</p>
+								<input type="text" style="width: 130px;" id="code" class="modalcontainer-input">
+								<!-- <span  id="yzm">发送验证码</span> -->
+								<input type="button" id="yzm" value="获取验证码" style="font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;width:120px;
+		                outline: none;border: 0;"
+								 class="modalcontainer-input">
+							</div>
+						</div>
+						<div style="display: flex;justify-content: center;">
+							<span style="text-align: center;background-color: #4876FF;color: #fff;padding: 7px 13px;margin: 15px 0;" id='submitBtn'>立即注册</span>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+  <!-- 二维码弹窗结束 -->
     <p style="font-size: 123px;text-align: center;font-weight: bold;color: #fbf0a6;">立即查重 送降重次数</p>
     <div style="padding: 20px;display: flex;justify-content: center;">
       <p style="text-align: center;background: #4876FF;font-size: 50px;color:#fff;padding: 10px 30px;letter-spacing:20px"
@@ -192,7 +193,6 @@
               id="qrimg">
             <p>微信扫码分享</p>
             <p style="line-height: 3vw;font-size: 2.8vw;">(可长按二维码自动识别)</p>
-            <p id="tests"></p>
           </div>
         </div>
         <div>
@@ -213,15 +213,16 @@
           <p>3、严禁使用非法手段获取，对于问题账号本站有权撤销相应数据或封禁账号。</p>
         </div>
 
-        <p style="color: #fbf0a6;text-align:center;padding:5vw 0">活动最终解释权归5118官方</p>
+        <p style="color: #fbf0a6;text-align:center;padding:5vw 0;margin-bottom:0;">活动最终解释权归联文检测</p>
       </div>
     </section>
 
   </div>
+
 </body>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
-<script type="text/javascript" src="{{ asset('asset/js/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('asset/js/bootstrap.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script>
 
@@ -262,7 +263,7 @@
   axios.get('/invit_official?uid='+id).then(res => {
        console.log(res,313131311331)
        document.getElementById("qrimg").src = res.data.url
-       document.getElementById("tests").innerText=res.data.url
+
   })
 
   var wait = 60;
