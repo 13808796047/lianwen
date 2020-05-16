@@ -78,7 +78,7 @@ class LoginController extends Controller
 
                 $user = User::where('phone', $phone)->first();
                 if(!$user) {
-                    User::create([
+                    $user = User::create([
                         'phone' => $phone,
                     ]);
                     // 清除验证码缓存
