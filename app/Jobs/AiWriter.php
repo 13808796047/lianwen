@@ -21,5 +21,6 @@ class AiWriter implements ShouldQueue
 
     public function handle()
     {
+
     }
 }
