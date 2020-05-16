@@ -12,44 +12,31 @@
     <form class="form-horizontal" enctype="multipart/form-data" id="order-form" method="POST"
           action="{{ route('admin.orders.receved',$order) }}">
       @csrf
-      <div class="form-row">
-        <div class="col-md-4 mb-3">
-          <label for='title'>标题</label>
-          <input type="text" class="form-control" value="{{ $order->title }}" disabled>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+      <div class="form-group row">
+        <label for="title" class="col-sm-1 col-form-label">标题</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" id="title" value="{{ $order->title }}">
         </div>
-        <div class="col-md-1 mb-3">
-          <label for='title'>作者</label>
-          <input type="text" class="form-control" value="{{ $order->writer }}" disabled>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+        <label for="title" class="col-sm-1 col-form-label">作者</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" id="title" value="{{ $order->writer }}">
         </div>
-        <div class="col-md-1 mb-3">
-          <label for='title'>字数</label>
-          <input type="text" class="form-control" value="{{ $order->words }}" disabled>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+        <label for="title" class="col-sm-1 col-form-label">字数</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" id="title" value="{{ $order->words }}">
         </div>
-        <div class="col-md-1 mb-3">
-          <label for='title'>价格</label>
-          <input type="text" class="form-control" value="{{ $order->price }}" disabled>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+      </div>
+      <div class="form-group row">
+        <label for="title" class="col-sm-1 col-form-label">价格</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" id="title" value="{{ $order->price }}">
         </div>
-        <div class="col-md-1 mb-3">
-          <label for='title'>重复率</label>
-          <input type="text" class="form-control" value="{{ $order->rate }}">
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+        <label for="title" class="col-sm-1 col-form-label">重复率</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" id="title" value="{{ $order->rate }}">
         </div>
-        <div class="col-md-1 mb-3">
-          <label for='title'>状态</label>
+        <label for="title" class="col-sm-1 col-form-label">字数</label>
+        <div class="col-sm-3">
           <select name="status" id="" class="form-control">
             <option value="0" {{ $order->status==0?'selected':'' }} }}>待支付</option>
             <option value="1" {{ $order->status==1?'selected':'' }} }}>待检测</option>
@@ -60,55 +47,43 @@
             <option value="6" {{ $order->status==6?'selected':'' }} }}>取消</option>
             <option value="7" {{ $order->status==7?'selected':'' }} }}>已退款</option>
           </select>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
         </div>
-        <div class="col-md-1 mb-3">
-          <label for='title'>支付方式</label>
-          <input type="text" class="form-control" value="{{ $order->pay_type }}">
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+      </div>
+      <div class="form-group row">
+        <label for="title" class="col-sm-1 col-form-label">支付方式</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" id="title" value="{{ $order->pay_type }}">
         </div>
-        <div class="col-md-1 mb-3">
-          <label for='title'>支付金额</label>
-          <input type="text" class="form-control" value="{{ $order->pay_price }}">
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+        <label for="title" class="col-sm-1 col-form-label">支付金额</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" id="title" value="{{ $order->pay_price }}">
         </div>
-        <div class="col-md-1 mb-3">
-          <label for='title'>支付时间</label>
-          <input type="text" class="form-control" value="{{ $order->date_pay }}">
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+        <label for="title" class="col-sm-1 col-form-label">支付时间</label>
+        <div class="col-sm-3">
+          <input type="text" readonly class="form-control" id="title" value="{{ $order->date_pay }}">
         </div>
       </div>
       <div class="form-row">
-        <div class="col-md-2">
-          <label for='title'>论文</label>
+        <label for="title" class="col-sm-1 col-form-label">论文</label>
+        <div class="col-sm-3">
           <a class="btn btn-danger" href="{{ $order->paper_path }}" target="_blank">下载</a>(订单支付后才能下载论文)
         </div>
-        <div class="col-md-4">
-          <label for='title'>实际路径</label>
+        <label for="title" class="col-sm-1 col-form-label">实际路径</label>
+        <div class="col-sm-3">
           <a class="btn-danger">{{ $order->paper_path }}</a>
         </div>
-        <div class="col-md-2">
-          <label for='title'>论文</label>
-          <a class="btn btn-danger" href="{{ route('admin.orders.download_report',$order) }}" target="_blank">下载</a>
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for='title'>重新上传报告</label>
-          <input type="file" name="file" id="file" class="form-control">(上传报告后状态自动更新为'检测完成')
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+        <label for="title" class="col-sm-1 col-form-label">论文</label>
+        <div class="col-sm-3">
+          <a class="btn btn-danger" href="{{ route('admin.orders.download_report',$order) }}" target="_blank">下载</a>(订单支付后才能下载论文)
         </div>
       </div>
 
-
+      <div class="form-row mt-3 mb-3">
+        <label for="file" class="col-sm-1 col-form-label">支付时间</label>
+        <div class="col-sm-3">
+          <input type="file" class="form-control" id="file">
+        </div>
+      </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" class="btn btn-primary" id="btnSubmit">提交</button>
