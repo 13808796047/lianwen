@@ -14,7 +14,7 @@ class AddSubscribeAndSubscribeTimeToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->boolean('subscribe')->default(0);
+            $table->boolean('subscribe')->default(false);
             $table->dateTime('subscribe_time')->nullable();
         });
     }
