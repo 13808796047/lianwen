@@ -86,6 +86,7 @@ class OfficialAccountController extends Controller
         $params_array = explode('=', $eventKey);
         info('params', [$params_array]);
         $loginUser = User::find($params_array[1]);
+        info('uid', [$params_array[0]]);
         if($params_array[0] == 'uid') {
             if(!$user) {
                 $invit_user = User::create([
