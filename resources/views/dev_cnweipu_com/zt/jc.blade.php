@@ -322,7 +322,7 @@
   }
 
   $('#submitBtn').click(() => {
-    axios.post('https://dev.cnweipu.com/register', {
+    axios.post('/register', {
       'verification_key': verification_key,
       'phone': $('#phone').val(),
       'password': $('#password').val(),
