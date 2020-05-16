@@ -319,12 +319,13 @@
         //   $('#jcafter').css('display', 'none')
         //   $("#jclater").css('display', 'block')
         // }, 3000);
-        let contents = $('#content').val();
+
         let num = 3;
         togetJc(num)
       })
 
       function togetJc(num){
+        let contents = $('#content').val();
         axios.post('{{ route('auto_check.store') }}',{content:contents})
           .then(res => {
             console.log(res,1323122321)
