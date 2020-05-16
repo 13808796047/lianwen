@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>推荐活动</title>
-  <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('asset/css/bootstrap4.css') }}">
 
 </head>
 <style>
