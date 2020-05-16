@@ -94,7 +94,7 @@
   }
 
   .modalcontainer-p {
-    width: 19%;
+    width: 14%;
     text-align: right;
     margin-left: 30px;
     margin-bottom: 0;
@@ -122,21 +122,21 @@
           <p style="font-size:23px;font-weight:bold;text-align:center;">注册</p>
 
           <div class="modalcontainer">
-            <div class="modalcontainer-div">
-              <p class='modalcontainer-p'>手机号</p>
-              <input type="text" name="phone" id="phone" class="modalcontainer-input">
+            <div>
+              <p>手机号</p>
+              <input type="text" name="phone" id="phone">
             </div>
-            <div class="modalcontainer-div">
-              <p class='modalcontainer-p'>密码</p>
-              <input type="text" id="password" class="modalcontainer-input">
+            <div>
+              <p>密码</p>
+              <input type="text" id="password">
             </div>
-            <div class="modalcontainer-div">
-              <p class='modalcontainer-p'>确认密码</p>
-              <input type="text" id="password-confirm" class="modalcontainer-input">
+            <div>
+              <p>确认密码</p>
+              <input type="text" id="password-confirm">
             </div>
-            <div class="modalcontainer-div">
-              <p class='modalcontainer-p'>验证码</p>
-              <input type="text" style="width: 130px;" id="code" >
+            <div>
+              <p>验证码</p>
+              <input type="text" style="width: 130px;" id="code">
               <!-- <span  id="yzm">发送验证码</span> -->
               <input type="button" id="yzm" value="获取验证码" style="font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;width:120px;
                 outline: none;border: 0;">
@@ -176,7 +176,6 @@
         <p>双方各获得5次自动降重次数</p>
       </div>
     </div>
-  </div>
   </div>
   <div id="app" style="display: none;">
     <section>
@@ -327,16 +326,17 @@
       'phone': $('#phone').val(),
       'password': $('#password').val(),
       'password_confirmation': $('#password-confirm').val(),
-      'verification_code': $('#code').val()
+      'verification_code': $('#code').val(),
+      'uid':id
     }).then(res => {
       alert("注册成功")
     }).catch(err => {
-      // if (err.response.status == 422) {
+      if (err.response.status == 422) {
       $('#message').show();
-      // $.each(err.response.data.errors, (field, errors) => {
-      //   $('#message').append('<strong>' + errors + '</strong> </br>');
-      // })
-      // }
+      $.each(err.response.data.errors, (field, errors) => {
+        $('#message').append('<strong>' + errors + '</strong> </br>');
+      })
+      }
     })
   })
 
