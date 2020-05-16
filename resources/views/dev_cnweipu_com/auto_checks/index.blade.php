@@ -30,7 +30,7 @@
         </div>
         <div class="modal-body" style="text-align:center;">
           <p>本次操作将消耗1次降重次数</p>
-          <span>剩余次数：{{ auth()->user()->jc_times}}</span>
+          <p>剩余次数：{{ auth()->user()->jc_times}}<span style="color:#4876FF;margin-left:10px;" id="addjctimes">增加次数</span></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -207,6 +207,10 @@
       })
       //增加降重次数
       $("#shopjctime").click(function(){
+        $("#jctimeModal").modal('show')
+      })
+      $("#addjctimes").click(function(){
+        $('#exampleModal').modal('hide')
         $("#jctimeModal").modal('show')
       })
       //点击增加降重次数
