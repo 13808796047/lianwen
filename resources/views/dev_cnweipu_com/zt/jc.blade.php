@@ -108,7 +108,7 @@
 
 <body>
  <!-- 二维码弹窗 -->
- <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+ <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
     id="registerModel">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -122,24 +122,24 @@
           <p style="font-size:23px;font-weight:bold;text-align:center;">注册</p>
 
           <div class="modalcontainer">
-            <div class="modalcontainer-div">
-              <p class='modalcontainer-p'>手机号</p>
-              <input type="text" name="phone" id="phone" class="modalcontainer-input">
+            <div>
+              <p>手机号</p>
+              <input type="text" name="phone" id="phone">
             </div>
-            <div class="modalcontainer-div">
-              <p class='modalcontainer-p'>密码</p>
-              <input type="text" id="password" class="modalcontainer-input">
+            <div>
+              <p>密码</p>
+              <input type="text" id="password">
             </div>
-            <div class="modalcontainer-div">
-              <p class='modalcontainer-p'>确认密码</p>
-              <input type="text" id="password-confirm" class="modalcontainer-input">
+            <div>
+              <p>确认密码</p>
+              <input type="text" id="password-confirm">
             </div>
-            <div class="modalcontainer-div">
-              <p class='modalcontainer-p'>验证码</p>
-              <input type="text" style="width: 130px;" id="code" class="modalcontainer-input" >
+            <div>
+              <p>验证码</p>
+              <input type="text" style="width: 130px;" id="code">
               <!-- <span  id="yzm">发送验证码</span> -->
               <input type="button" id="yzm" value="获取验证码" style="font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;width:120px;
-                outline: none;border: 0;" class="modalcontainer-input">
+                outline: none;border: 0;">
             </div>
           </div>
           <div style="display: flex;justify-content: center;">
@@ -176,7 +176,6 @@
         <p>双方各获得5次自动降重次数</p>
       </div>
     </div>
-  </div>
   </div>
   <div id="app" style="display: none;">
     <section>
