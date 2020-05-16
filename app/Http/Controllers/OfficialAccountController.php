@@ -156,18 +156,20 @@ class OfficialAccountController extends Controller
                         'weixin_unionid' => $wxUser['unionid'] ?: ''
                     ]
                 );
-            }
-            $user->delete();
-            $loginUser->update([
-                'nick_name' => $user['nickname'],
-                'avatar' => $user['headimgurl'],
-                'weixin_openid' => $user['openid'],
-                'weixin_unionid' => $user['unionid'] ?: ''
-            ]);
+            } else {
+                $user->delete();
+                $loginUser->update([
+                    'nick_name' => $user['nickname'],
+                    'avatar' => $user['headimgurl'],
+                    'weixin_openid' => $user['openid'],
+                    'weixin_unionid' => $user['unionid'] ?: ''
+                ]);
 
-            foreach($user->orders as $order) {
-                $order->userid = $loginUser->id;
+                foreach($user->orders as $order) {
+                    $order->userid = $loginUser->id;
+                }
             }
+
         }
     }
 }
