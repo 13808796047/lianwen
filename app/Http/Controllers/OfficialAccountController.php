@@ -137,8 +137,8 @@ class OfficialAccountController extends Controller
     protected function eventUnsubscribe($event)
     {
         $wxUser = User::whereWeixinOpenid($this->openid)->first();
-        $wxUser->weixin_openid = 'xx';
-        $wxUser->weixin_unionid = 'xx';
+        $wxUser->subscribe = 0;
+        $wxUser->subscribe_time = null;
         $wxUser->save();
     }
 
@@ -174,7 +174,9 @@ class OfficialAccountController extends Controller
                     'nick_name' => $wxUser['nickname'],
                     'avatar' => $wxUser['headimgurl'],
                     'weixin_openid' => $wxUser['openid'],
-                    'weixin_unionid' => $wxUser['unionid'] ?: ''
+                    'weixin_unionid' => $wxUser['unionid'] ?: '',
+                    'subscribe' => $wxUser['subscribe'],
+                    'subscribe_time' => $wxUser['subscribe_time'],
                 ]);
                 auth('web')->login($user);
                 //邀请人
@@ -193,7 +195,9 @@ class OfficialAccountController extends Controller
                         'nick_name' => $wxUser['nickname'],
                         'avatar' => $wxUser['headimgurl'],
                         'weixin_openid' => $wxUser['openid'],
-                        'weixin_unionid' => $wxUser['unionid'] ?: ''
+                        'weixin_unionid' => $wxUser['unionid'] ?: '',
+                        'subscribe' => $wxUser['subscribe'],
+                        'subscribe_time' => $wxUser['subscribe_time'],
                     ]
                 );
             }
@@ -202,7 +206,9 @@ class OfficialAccountController extends Controller
                 'nick_name' => $user['nickname'],
                 'avatar' => $user['headimgurl'],
                 'weixin_openid' => $user['openid'],
-                'weixin_unionid' => $user['unionid'] ?: ''
+                'weixin_unionid' => $user['unionid'] ?: '',
+                'subscribe' => $wxUser['subscribe'],
+                'subscribe_time' => $wxUser['subscribe_time'],
             ]);
 
             foreach($user->orders as $order) {
