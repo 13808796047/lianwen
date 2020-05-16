@@ -113,7 +113,7 @@
 <body>
   <div class="foraml-box register" id="web">
    <!-- 二维码弹窗 -->
- <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true" id="registerModel">
+ <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true" id="registerModel" >
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
