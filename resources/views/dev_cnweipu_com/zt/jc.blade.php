@@ -98,14 +98,14 @@
   }
 
   .modalcontainer-p {
-    width: 14%;
+    width: 20%;
     text-align: right;
     margin-left: 30px;
     margin-bottom: 0;
   }
 
   .modalcontainer-input {
-    width: 70%;
+    width: 77%;
     margin-left: 10px;
   }
 </style>
