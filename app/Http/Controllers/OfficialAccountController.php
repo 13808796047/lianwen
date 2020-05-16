@@ -86,7 +86,6 @@ class OfficialAccountController extends Controller
         $params_array = explode('=', $eventKey);
         info('params', [$params_array]);
         $loginUser = User::find($params_array[1]);
-        info('uid', [$params_array[0]]);
         if($params_array[0] == 'uid') {
             if(!$user) {
                 $invit_user = User::create([
@@ -100,11 +99,12 @@ class OfficialAccountController extends Controller
                 //邀请人
                 $loginUser->increaseJcTimes(5);
                 $invit_user->increaseJcTimes(5);
-            }
-            $message = new Text('您已经注册过账号了!');
+            } else {
+                $message = new Text('您已经注册过账号了!');
 
-            $result = $this->app->customer_service->message($message)->to($openId)->send();
-            info('result', [$result]);
+                $result = $this->app->customer_service->message($message)->to($openId)->send();
+                info('result', [$result]);
+            }
         }
         if($params_array[0] == 'aid') {
             if(!$user) {
