@@ -314,7 +314,7 @@
           <a class="nav-link" href="javascript:;" data-toggle="modal"
                                   data-target="#staticBackdrop">智能降重</a>
         @else
-        <a class="nav-link" href="{{route('auto_check.index')}}">智能降重</a>
+        <a class="nav-link" href="{{route('ai_rewrite.index')}}">智能降重</a>
         @endguest
         </li>
         <li class="nav-item px-4"><a class="nav-link" href="javascript:void(0)"
