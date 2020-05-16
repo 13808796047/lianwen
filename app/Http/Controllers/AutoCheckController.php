@@ -18,7 +18,7 @@ class AutoCheckController extends Controller
 {
     public function index()
     {
-        return view('domained::auto_checks.index');
+        return view('domained::ai_rewrite.index');
     }
 
     public function store(AutoCheckRequest $request)
