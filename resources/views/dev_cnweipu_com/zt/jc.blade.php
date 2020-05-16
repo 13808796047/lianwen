@@ -216,7 +216,7 @@
           <p>3、严禁使用非法手段获取，对于问题账号本站有权撤销相应数据或封禁账号。</p>
         </div>
 
-        <p style="color: #fbf0a6;text-align:center;padding:5vw 0">活动最终解释权归5118官方</p>
+        <p style="color: #fbf0a6;text-align:center;padding:5vw 0;margin-bottom:0;">活动最终解释权归联文检测</p>
       </div>
     </section>
 
