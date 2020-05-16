@@ -26,7 +26,7 @@ class StartCheck implements ShouldQueue
     {
         $api = app(OrderApiHandler::class);
         $result = $api->startCheck($this->order->api_orderid);
-        if($this->order == 2) {
+        if($this->order->status == 2) {
             return;
         }
         if($result->code == 200 && $this->order->status == 1) {
