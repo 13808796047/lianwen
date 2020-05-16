@@ -71,18 +71,47 @@ class OfficialAccountController extends Controller
      */
     public function eventSCAN($event)
     {
-        if(empty($event['EventKey'])) {
-            return;
-        }
-        $eventKey = $event['EventKey'];
-
-        $openId = $this->openid;
-        // 微信用户信息
-        $wxUser = $this->app->user->get($openId);
-        //如果先授权登录,存在unionid
-        $invit_user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        $un_user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        $loginUser = User::find($eventKey)->makeVisible('password');
+        info('event', [$event]);
+//        if(empty($event['EventKey'])) {
+//            return;
+//        }
+//        $eventKey = $event['EventKey'];
+//
+//        $openId = $this->openid;
+//        // 微信用户信息
+//        $wxUser = $this->app->user->get($openId);
+//        //如果先授权登录,存在unionid
+//        $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
+//        $loginUser = User::find($eventKey);
+//        if($user) {
+//            if($loginUser->unionid == $user->unionid) {
+//                $user->delete();
+//                $loginUser->update([
+//                    'nick_name' => $user['nickname'],
+//                    'avatar' => $user['headimgurl'],
+//                    'weixin_openid' => $user['openid'],
+//                    'weixin_unionid' => $user['unionid'] ?: ''
+//                ]);
+//
+//                foreach($user->orders as $order) {
+//                    $order->userid = $loginUser->id;
+//                }
+//            } else {
+//
+//            }
+//        }
+//        if($user && $loginUser->unionid == $user->unionid) {
+//
+//        } else {
+//            $loginUser->update(
+//                [
+//                    'nick_name' => $wxUser['nickname'],
+//                    'avatar' => $wxUser['headimgurl'],
+//                    'weixin_openid' => $wxUser['openid'],
+//                    'weixin_unionid' => $wxUser['unionid'] ?: ''
+//                ]
+//            );
+//        }
 //        info('loginUser', [$loginUser]);
 //        if(!$invit_user) {
 //            $user = User::create([
@@ -96,27 +125,8 @@ class OfficialAccountController extends Controller
 //            $loginUser->increaseJcTimes(5);
 //            $user->increaseJcTimes(5);
 //        }
-        if(!$un_user) {
-            $loginUser->update(
-                [
-                    'nick_name' => $wxUser['nickname'],
-                    'avatar' => $wxUser['headimgurl'],
-                    'weixin_openid' => $wxUser['openid'],
-                    'weixin_unionid' => $wxUser['unionid'] ?: ''
-                ]
-            );
-        }
-        $user->delete();
-        $loginUser->update([
-            'nick_name' => $user['nickname'],
-            'avatar' => $user['headimgurl'],
-            'weixin_openid' => $user['openid'],
-            'weixin_unionid' => $user['unionid'] ?: ''
-        ]);
 
-        foreach($user->orders as $order) {
-            $order->userid = $loginUser->id;
-        }
+
     }
 
 
