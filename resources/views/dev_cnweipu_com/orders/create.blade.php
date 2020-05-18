@@ -127,7 +127,7 @@
               @enderror
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" style="display:none" id="isfbtime">
             <div class="input-group mt-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">发表时间</span>
@@ -268,6 +268,9 @@
         $(this).children('i').addClass('selected')
         $('#cid').val($(this).data('id'))
         console.log($(this).data('id'),3123)
+        if($(this).data('id')==15){
+            $('#isfbtime').css('display','block')
+        }
       })
       $('#content').bind('input propertychange', (e) => {
         $('#words span').html(e.target.value.length)
