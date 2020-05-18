@@ -164,6 +164,9 @@ class OrderController extends AdminController
 
     public function downloadPaper(Order $order)
     {
+        if(!$order->paper_path) {
+            return admin_error('标题', '没有文件!');
+        }
         return response()->download($order->paper_path);
     }
 
