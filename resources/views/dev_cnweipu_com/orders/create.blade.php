@@ -270,6 +270,8 @@
         console.log($(this).data('id'),3123)
         if($(this).data('id')==15){
             $('#isfbtime').css('display','block')
+        }else{
+            $('#isfbtime').css('display','none')
         }
       })
       $('#content').bind('input propertychange', (e) => {
