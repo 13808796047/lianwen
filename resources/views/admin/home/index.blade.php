@@ -55,10 +55,18 @@
               @switch(request()->date)
                 @case('yesterday')
                 @php
-                  $todayData = $order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])->where('cid',$order->id)->count()
+                  $pay_orders = $order->orders->count();
+                    $today_orders = \App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])->where('cid',$order->id)->count();
+                    try {
+                    $today_data = $pay_orders/$today_data;
+                }catch (){
+                    $today_data=0;
+                }
                 @endphp
-                <td>{{$todayData}}</td>
-                <td>{{@number_format(eval($todayData),2)}}
+                <td>
+                  {{$pay_orders .'/'.$today_orders}}
+                </td>
+                <td>{{@number_format( $today_data*100,2)}}
                   %
                 </td>
                 @break
