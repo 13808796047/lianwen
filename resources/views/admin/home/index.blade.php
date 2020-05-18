@@ -46,7 +46,7 @@
                 $start = \Carbon\Carbon::now()->startOfMonth();
                  $end = \Carbon\Carbon::now()->endOfMonth();
                  break;
-                  case 'month':
+                  case 'pre_month':
                 $start =\Carbon\Carbon::now()->subMonth()->startOfMonth();
                  $end = \Carbon\Carbon::now()->subMonth()->endOfMonth();
                  break;
