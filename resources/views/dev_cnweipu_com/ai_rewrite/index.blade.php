@@ -253,21 +253,6 @@
           alert('字数大于1000')
           return
         }
-        // axios.post('{{ route('auto_check.store') }}',{content:contents})
-        //   .then(res => {
-        //     let id = res.data.data.id;
-        //     let timer = setInterval(() => {
-        //       axios('/auto_check/' + id).then(resp => {
-        //         // debugger;
-        //         if (resp.data.autoCheck.content_after) {
-        //           // clear timer
-        //           clearInterval(timer);
-        //           console.log(resp);
-        //         }
-        //       })
-        //     }, 1000);
-        //   })
-        //   .catch(err => console.log(err));
         $('#exampleModal').modal('show')
       })
       //再来一篇
@@ -320,7 +305,7 @@
 
       function togetJc(num){
         let contents = $('#content').val();
-        axios.post('{{ route('auto_check.store') }}',{content:contents})
+        axios.post('{{ route('ai_rewrite.store') }}',{content:contents})
           .then(res => {
             console.log(res,1323122321)
             $('#beingModal').modal('hide')

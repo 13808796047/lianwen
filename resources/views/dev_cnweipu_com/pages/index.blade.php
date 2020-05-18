@@ -606,6 +606,40 @@
       // });
       // $().UItoTop({easingType: 'easeOutQuart'});
       // Tab切换
+      console.log('上发射')
+      var refer=document.referrer;
+      console.log(refer,3123123)
+      var sosuo=refer.split('.')[1];
+      var grep=null;
+      var str=null;
+      var keyword=null;
+      console.log(sosuo,13123)
+      switch(sosuo){
+        case 'baidu':
+        grep=/wd\=.*\&/i;
+        str=refer.match(grep)
+        keyword=str.toString().split('=')[1].split('&')[0];
+        document.write(decodeURIComponent(keyword));
+        break;
+        case 'so':
+        grep=/&q\=.*\&/i;
+        str=refer.match(grep)
+        console.log(refer,'lli')
+        console.log('xixix',3123212,{{ json_encode(request()->all()) }} )
+        keyword=str.toString().split('&')[1].split('=')[1];
+        document.write(decodeURIComponent(keyword));
+        break;
+        case "sogou":
+        grep=/query\=.*\&/i;
+        str=refer.match(grep)
+        console.log(str[0],3123123)
+        keyword=str.toString().split("&")[1].split("&")[2];
+        console.log(keyword,1332)
+        // document.write(decodeURIComponent(keyword));
+        break;
+      }
+
+
       $('.banner-li').click(function () {
         $(this)
           .addClass('li-current')

@@ -126,6 +126,16 @@
               @enderror
             </div>
           </div>
+          <div class="form-group">
+            <div class="input-group mt-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">发表时间</span>
+              </div>
+              <input id="writer" type="text" name="writer" class="form-control @error('writer') is-invalid @enderror"
+                     placeholder="必须填写，在检测报告中显示" value="{{ old('writer') }}"
+              >
+            </div>
+          </div>
           <div class="mt-3">
             <ul class="nav nav-tabs tab-list" role="tablist" id="navbarText">
               <li class="nav-item">

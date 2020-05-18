@@ -7,7 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Document</title>
+  <title>推荐活动</title>
+  <link rel="stylesheet" href="{{ asset('asset/css/bootstrap4.css') }}">
+
 </head>
 <style>
   .foraml-box.register {
@@ -25,9 +27,12 @@
     padding: 0;
     margin: 0;
   }
+  html, body {
+    min-height: 100%;
+  }
 
   .foraml-box {
-    padding: 300px 0 1px;
+    padding: 150px 0 1px;
   }
 
   .foraml-box.register .envelope {
@@ -45,7 +50,7 @@
     margin: 80px 0 35px;
   }
 
-  .foraml-box .card {
+  .cards {
     margin: 0 auto;
     width: 880px;
     font-family: SourceHanSansCN-Normal;
@@ -77,47 +82,102 @@
     border-radius: 3vw;
     text-align: center;
     font-size: 5vw;
-
     color: #7b3015;
+  }
+
+  .modalcontainer {
+    margin: 0 auto;
+  }
+
+  .modalcontainer-div {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    margin: 0 auto;
+    height: 50px;
+  }
+
+  .modalcontainer-p {
+    width: 20%;
+    text-align: right;
+    margin-left: 30px;
+    margin-bottom: 0;
+  }
+
+  .modalcontainer-input {
+    width: 77%;
+    margin-left: 10px;
   }
 </style>
 
 <body>
-  <section class="foraml-box register" id="web">
-    <div style="margin:0 auto;">
-      <p style="font-size:123px;text-align:center;font-weight:bold;color:#fbf0a6">立即注册送查重次数</p>
-    </div>
-    <div class="envelope" style="padding:10px 100px">
-      <div style="display:flex;justify-content: center;align-items: center;">
-        <p style="background:#4876FF;font-size:50px;color:#fff;padding: 10px 40px;margin-right:90px;">PC一键注册</p>
-        <div style="text-align:center;">
+  <div class="foraml-box register" id="web">
+   <!-- 二维码弹窗 -->
+ <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true" id="registerModel" >
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="border-bottom: none;padding-top: 0;padding-bottom: 0;">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div>
+						<div class="alert alert-danger" role="alert" id="message" style="display: none"></div>
+						<p style="font-size:23px;font-weight:bold;text-align:center;">注册</p>
 
-          <img
-            src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQGR8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyQUxyNFp4RVFjeTIxUlhBQWh1YzIAAgR717xeAwQAjScA"
-            style="width:300px;height:300px;">
-          <p style="line-height: 50px;font-size: 16px;color: #7b3015;">微信扫码注册</p>
-        </div>
+						<div class="modalcontainer">
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">手机号</p>
+								<input type="text" name="phone" id="phone" class="modalcontainer-input">
+							</div>
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">密码</p>
+								<input type="text" id="password" class="modalcontainer-input">
+							</div>
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">确认密码</p>
+								<input type="text" id="password-confirm" class="modalcontainer-input">
+							</div>
+							<div class="modalcontainer-div">
+								<p class="modalcontainer-p">验证码</p>
+								<input type="text" style="width: 130px;" id="code" class="modalcontainer-input">
+								<!-- <span  id="yzm">发送验证码</span> -->
+								<input type="button" id="yzm" value="获取验证码" style="font-size: 14px;line-height: 20px;height:30px;background:#7CCD7C;color:#fff;padding:0 20px;width:120px;
+		                outline: none;border: 0;"
+								 class="modalcontainer-input">
+							</div>
+						</div>
+						<div style="display: flex;justify-content: center;">
+							<span style="text-align: center;background-color: #4876FF;color: #fff;padding: 7px 13px;margin: 15px 0;" id='submitBtn'>立即注册</span>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+  <!-- 二维码弹窗结束 -->
+    <p style="font-size: 123px;text-align: center;font-weight: bold;color: #fbf0a6;">立即查重 送降重次数</p>
+    <div style="padding: 20px;display: flex;justify-content: center;">
+      <p style="text-align: center;background: #4876FF;font-size: 50px;color:#fff;padding: 10px 30px;letter-spacing:20px"
+        id="tjregister">
+        一键注册</p>
+    </div>
+    <div>
+      <p class="t">简单三步送降重次数</p>
+      <div class="cards">
+        <p>1.分享给好友</p>
+        <p>2.好友成功注册</p>
+        <p>3.双方各获得5次自动降重次数</p>
       </div>
     </div>
-
-    <p class="t">简单三步<span></span>即送代金券</p>
-    <div class="card" style="padding: 60px 0 50px;">
-      <p>1、分享给好友</p>
-      <p>2、好友成功注册</p>
-      <p>3、双方各获得各5次自动降重次数</p>
+    <div style="padding-bottom: 150px;">
+      <p class="t">推荐注册活动规则</p>
+      <div class="cards">
+        <p>1、分享给好友</p>
+        <p>2.好友成功注册</p>
+        <p>双方各获得5次自动降重次数</p>
+      </div>
     </div>
-    <p class="t">推荐注册<span></span>活动规则</p>
-    <div class="card" style="text-align:left;padding: 40px 40px;">
-      <p>1、每推荐1名好友成功注册（绑定微信或手机号码），推荐人/注册人各获得10元无门槛代金券；代金券获得数量无上限</p>
-      <p>2、代金券有效期为1个月；</p>
-      <p>3、代金券不能提现，仅用于购买5118服务时消费抵扣，无门槛代金券最多可叠加10张抵扣；</p>
-      <p>4、注册过程中使用了多人的推荐链接，以最后使用的推荐链接为准；</p>
-      <p>5、对不符合活动规则的问题数据，5118有权撤销推荐和对应的代金券。</p>
-      <p style="text-align:right;margin-top:40px;">活动最终解释权归5118官方</p>
-    </div>
-    <br>
-    <br>
-  </section>
+  </div>
   <div id="app" style="display: none;">
     <section>
       <div class="bk register">
@@ -133,7 +193,6 @@
               id="qrimg">
             <p>微信扫码分享</p>
             <p style="line-height: 3vw;font-size: 2.8vw;">(可长按二维码自动识别)</p>
-            <p id="tests"></p>
           </div>
         </div>
         <div>
@@ -154,13 +213,16 @@
           <p>3、严禁使用非法手段获取，对于问题账号本站有权撤销相应数据或封禁账号。</p>
         </div>
 
-        <p style="color: #fbf0a6;text-align:center;padding:5vw 0">活动最终解释权归5118官方</p>
+        <p style="color: #fbf0a6;text-align:center;padding:5vw 0;margin-bottom:0;">活动最终解释权归联文检测</p>
       </div>
     </section>
 
   </div>
+
 </body>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script>
 
@@ -200,12 +262,85 @@
   console.log(id,312312)
   axios.get('/invit_official?uid='+id).then(res => {
        console.log(res,313131311331)
-        // swal({
-        //   // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
-        //   content: $('<img src="' + res.data.url + '" style="display: block;margin: 0 auto;"/>')[0],
-        // })
        document.getElementById("qrimg").src = res.data.url
-       document.getElementById("tests").innerText=res.data.url
+
+  })
+
+  var wait = 60;
+  var verification_key = '';
+
+  function time(o) {
+    console.log(o, 123)
+    if (wait == 0) {
+      o.removeAttribute("disabled");
+      o.value = "点击获取验证码";
+      wait = 60;
+    } else {
+      o.setAttribute("disabled", true);
+      o.value = "重新发送(" + wait + ")";
+      wait--;
+      setTimeout(function () {
+        time(o)
+      },
+        1000)
+    }
+  }
+  $('#tjregister').click(function(){
+    console.log(1112)
+    $('#registerModel').modal('show')
+  })
+
+  $('#yzm').click(function () {
+    getcode(this)
+  })
+  function getcode(index) {
+    index.setAttribute("disabled", true);
+    var phone = $("input[name='phone']").val();
+    var reg = /^1[3456789]\d{9}$/;
+    if (!reg.test(phone)) {
+      index.removeAttribute("disabled");
+      $("input[name='phone']").focus();
+      $('#message').show();
+      $('#message').html('<strong>请输入正确的手机号码</strong>');
+      return;
+    }
+    axios.post('https://dev.lianwen.com/api/v1/verificationCodes', {
+      phone: phone,
+    }).then(res => {
+      // swal('验证码已发送成功!,请注意查收!')
+      time(index);
+      verification_key = res.data.key;
+    }).catch(err => {
+      index.removeAttribute("disabled");
+      if (err.response.status == 422) {
+        $('#message').show();
+        $.each(err.response.data.errors, (field, errors) => {
+          $('#message').html('<strong>' + errors[0] + '</strong>');
+        })
+      }
+    })
+  }
+
+  $('#submitBtn').click(() => {
+    axios.post('{{route('register')}}', {
+      'verification_key': verification_key,
+      'phone': $('#phone').val(),
+      'password': $('#password').val(),
+      'password_confirmation': $('#password-confirm').val(),
+      'verification_code': $('#code').val(),
+      'uid':id
+    }).then(res => {
+      alert("注册成功")
+      $('#registerModel').modal('hide')
+      location.href="https://dev.lianwen.com"
+    }).catch(err => {
+      if (err.response.status == 422) {
+      $('#message').show();
+      $.each(err.response.data.errors, (field, errors) => {
+        $('#message').append('<strong>' + errors + '</strong> </br>');
+      })
+      }
+    })
   })
 
 

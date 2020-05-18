@@ -4,6 +4,7 @@
   <!-- <link href="https://css.lianwen.com/css/public_c.css?v=2018v1" type="text/css" rel="stylesheet"/>
   <link href="https://css.lianwen.com/css/index_2017.css" type="text/css" rel="stylesheet"/> -->
   <!-- <link rel="stylesheet" href="{{asset('asset/css/index.css')}}"> -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
   <style>
     .curfont {
@@ -14,6 +15,8 @@
   </style>
 @stop
 @section('content')
+  <!-- alert提示框 -->
+
   <!-- 模态框 -->
   <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -27,7 +30,7 @@
         </div>
         <div class="modal-body" style="text-align:center;">
           <p>本次操作将消耗1次降重次数</p>
-          <span>剩余次数：{{ auth()->user()->jc_times}}</span>
+          <p>剩余次数：{{ auth()->user()->jc_times}}<span style="color:#4876FF;margin-left:10px;" id="addjctimes">增加次数</span></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -39,7 +42,7 @@
   <!-- 模态框结束 -->
    <!-- 模态框2 -->
    <div class="modal fade bd-example-modal-sm" id="beingModal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-body" style="text-align:center;">
@@ -109,7 +112,7 @@
     <!--左边导航-->
     <div class="main clearfix" id="jcafter">
       <div class="lbox fl">
-      <p style="font-size: 20px;">请输入你要降重的内容。<span style="font-size:16px;color:#757575;">（最大支持5000字）</span></p>
+      <p style="font-size: 20px;">请输入你要降重的内容。<span style="font-size:16px;color:#757575;">（最大支持1000字）</span></p>
       <textarea name="content" id="content"
         style="width:97%;height: 500px;padding:20px;box-sizing:border-box;font-size:20px;outline: none;border:1px solid #ddd;margin-top:20px"></textarea>
       <p style="float: right;font-size: 13px;padding-right: 30px;" id="words">当前输入<span>0</span>字</p>
@@ -154,13 +157,13 @@
       <table style="width:100%;">
         <tr>
             <td style="width:48%;">
-              <div style="font-size:19px;font-weight:bold;">降重前</div>
+              <div style="font-size:19px;font-weight:bold;margin-left:10px;">降重前</div>
               <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;margin-right:5px;" id="content_after">
               </div>
             </td>
             <td style="width:48%;">
-              <div style="font-size:19px;font-weight:bold;">降重后</div>
-              <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;" id="content_later">
+              <div style="font-size:19px;font-weight:bold;margin-left:10px;">降重后</div>
+              <div style="height:650px;overflow-y:auto;background:#fff;border: 1px solid #ddd;padding: 19px;margin-left:5px;" id="content_later">
               </div>
             </td>
         </tr>
@@ -169,7 +172,7 @@
     <p style="font-size: 13px;margin-top: 10px;text-align: center;">
       注：本工具是通过运用AI技术对原文进行降重，结果仅供参考，需要稍作调整让语句更通顺。如需高质量人工降重请联系微信：13878811985
     </p>
-    <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;">
+    <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;margin-top:16px;" id="againjc">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
       <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
@@ -177,6 +180,7 @@
   </div>
 @stop
 @section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script type="text/javascript" src="{{ asset('asset/js/qrcode.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('asset/js/diff.js') }}"></script>
   <script>
@@ -203,6 +207,10 @@
       })
       //增加降重次数
       $("#shopjctime").click(function(){
+        $("#jctimeModal").modal('show')
+      })
+      $("#addjctimes").click(function(){
+        $('#exampleModal').modal('hide')
         $("#jctimeModal").modal('show')
       })
       //点击增加降重次数
@@ -241,26 +249,15 @@
         let words =  $('#words span').text();
         let contents = $('#content').val();
         console.log(words,contents,31)
-        if(words>5000){
+        if(words>1000){
           alert('字数大于1000')
           return
         }
-        // axios.post('{{ route('auto_check.store') }}',{content:contents})
-        //   .then(res => {
-        //     let id = res.data.data.id;
-        //     let timer = setInterval(() => {
-        //       axios('/auto_check/' + id).then(resp => {
-        //         // debugger;
-        //         if (resp.data.autoCheck.content_after) {
-        //           // clear timer
-        //           clearInterval(timer);
-        //           console.log(resp);
-        //         }
-        //       })
-        //     }, 1000);
-        //   })
-        //   .catch(err => console.log(err));
         $('#exampleModal').modal('show')
+      })
+      //再来一篇
+      $('#againjc').click(function(){
+        window.location.reload()
       })
        //对比diff方法
        function changed(a,b,c) {
@@ -302,49 +299,35 @@
       $("#surecheck").click(function () {
         $('#exampleModal').modal('hide')
         $('#beingModal').modal('show')
-        // setInterval(() => {
-        //   $('#beingModal').modal('hide')
-        //   $('#jcafter').css('display', 'none')
-        //   $("#jclater").css('display', 'block')
-        // }, 3000);
+        let num = 3;
+        togetJc(num)
+      })
+
+      function togetJc(num){
         let contents = $('#content').val();
-        axios.post('{{ route('auto_check.store') }}',{content:contents})
+        axios.post('{{ route('ai_rewrite.store') }}',{content:contents})
           .then(res => {
             console.log(res,1323122321)
             $('#beingModal').modal('hide')
             $('#jcafter').css('display', 'none')
-
-            // $("#content_later").html(res.data.result.new_content)
-            //去除html标签
             var htmlstring=res.data.result.new_content;
             var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
             changed(contents,stringtemp,htmlstring)
             $('#jc_time').html(res.data.user.jc_times)
             $("#jclater").css('display', 'block')
-            // let id = res.data.data.id;
-            // let timer = setInterval(() => {
-            //   axios('/auto_check/' + id).then(resp => {
-            //     // debugger;
-            //     if (resp.data.data.content_after) {
-            //       // clear timer
-            //       clearInterval(timer);
-            //       console.log(resp);
-            //       $('#beingModal').modal('hide')
-            //       $('#jcafter').css('display', 'none')
-            //       $("#content_after").text(resp.data.data.content_before)
-            //       $("#content_later").text(resp.data.data.content_after)
-            //       $('#jc_time').html(resp.data.data.jc_times)
-            //       $("#jclater").css('display', 'block')
-            //     }
-            //   })
-            // }, 1000);
           })
           .catch(err =>{
-            console.log(err,312312)
-            $('.alert').alert()
+            num--;
+            if(num>=0){
+              togetJc(num)
+              return;
+            }else{
+              $('#beingModal').modal('hide')
+              toastr.error('降重失败，请重试');
+            }
           }
           );
-          })
+      }
 
   </script>
 @stop
