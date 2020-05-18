@@ -606,40 +606,80 @@
       // });
       // $().UItoTop({easingType: 'easeOutQuart'});
       // Tab切换
-      console.log('xhaha')
-      var refer = document.referrer;
-    //判断来源
-    var sosuo = refer.split(".")[1];
-    var grep = null;
-    var str = null;
-    var keyword = null;
-    switch (sosuo) {
-      case "baidu":
-        grep = /wd\=.*\&/i;
-        str = refer.match(grep);
-        keyword = str
-          .split("=")[1]
-          .split("&")[0];
-        console.log(decodeURIComponent(keyword));
-        break;
-      case "google":
-        grep = /&q\=.*\&/i;
-        str = refer.match(grep);
-        keyword = str
+      console.log('xhaha上发射')
+      function getDomainQuery(url) {
 
-          .split("&")[1]
-          .split("=")[1];
-        console.log(decodeURIComponent(keyword));
-        break;
-      case "sogou":
-        grep = /&q\=.*\&/i;
-        str = refer.match(grep);
-        keyword = str
-          .split("&")[1]
-          .split("=")[1];
-        console.log(decodeURIComponent(keyword));
-        break;
-    }
+ var d = [];
+
+ var st = url.indexOf('//', 1);
+
+ var _domain = url.substring(st + 1, url.length);
+
+ var et = _domain.indexOf('/', 1);
+
+ d.push(_domain.substring(1, et));
+
+ d.push(_domain.substring(et + 1, url.length));
+
+ return d
+
+}
+
+function route() {
+
+ var eg = [];
+
+ eg.push(['baidu', 'wd']);
+
+ eg.push(['google', 'q']);
+
+ eg.push(['soso', 'w']);
+
+ eg.push(['yodao', 'q']);
+
+ eg.push(['bing', 'q']);
+
+ eg.push(['yahoo', 'q']);
+
+ eg.push(['sogou', 'query']);
+
+ eg.push(['gougou', 'search']);
+
+ eg.push(['360', 'q']);
+
+ var dq = getDomainQuery(document.referrer);
+
+ var keyword=null;
+
+ var grep=null;
+
+ var str=null;
+
+ for(var el in eg){
+
+     var s = eg[el];
+
+     var DandQ=String(s).split(","); //字符分割
+
+     if (dq[0].indexOf(DandQ[0])>0){
+
+         eval("grep=/"+DandQ[1]+"\=.*\&/i;");
+
+         str = dq[1].match(grep);
+
+         keyword = str.toString().split("=")[1].split("&")[0];
+
+         keyword = decodeURIComponent(keyword);
+
+         alert(keyword);
+
+         return false;
+
+     }
+
+ }
+}
+route();
       $('.banner-li').click(function () {
         $(this)
           .addClass('li-current')
