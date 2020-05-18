@@ -606,7 +606,42 @@
       // });
       // $().UItoTop({easingType: 'easeOutQuart'});
       // Tab切换
-      console.log('xixi')
+      console.log('xhaha')
+      var refer = document.referrer;
+    //判断来源
+    var sosuo = refer.split(".")[1];
+    var grep = null;
+    var str = null;
+    var keyword = null;
+    switch (sosuo) {
+      case "baidu":
+        grep = /wd\=.*\&/i;
+        str = refer.match(grep);
+        keyword = str
+          .toString()
+          .split("=")[1]
+          .split("&")[0];
+        console.log(decodeURIComponent(keyword));
+        break;
+      case "google":
+        grep = /&q\=.*\&/i;
+        str = refer.match(grep);
+        keyword = str
+          .toString()
+          .split("&")[1]
+          .split("=")[1];
+        console.log(decodeURIComponent(keyword));
+        break;
+      case "sogou":
+        grep = /&q\=.*\&/i;
+        str = refer.match(grep);
+        keyword = str
+          .toString()
+          .split("&")[1]
+          .split("=")[1];
+        console.log(decodeURIComponent(keyword));
+        break;
+    }
       $('.banner-li').click(function () {
         $(this)
           .addClass('li-current')
