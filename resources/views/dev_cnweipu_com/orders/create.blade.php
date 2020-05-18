@@ -438,7 +438,8 @@
               type: 'file',
               content: '',
               title: $('#title').val(),
-              writer: $('#writer').val()
+              writer: $('#writer').val(),
+              publishdate:$('#element_id').val()
             }
           ).then(res => {
             console.log(res, 3123123)
@@ -459,7 +460,8 @@
               type: 'content',
               content: $('#content').val(),
               title: $('#title').val(),
-              writer: $('#writer').val()
+              writer: $('#writer').val(),
+              publishdate:$('#element_id').val()
             }
           ).then(res => {
             console.log(res, 3123123)
