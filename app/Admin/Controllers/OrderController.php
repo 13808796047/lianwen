@@ -28,8 +28,7 @@ class OrderController extends AdminController
 
         return Grid::make(Order::with(['category']), function(Grid $grid) {
             $grid->id->sortable()->display(function($id) {
-                $order = Order::find($id);
-                return "<a href='orders/{$order->id}/download_report'>$id</a>";
+                return "<a href='orders/{$this->id}/download_report'>$id</a>";
             });
             $grid->paginate(10);
             $grid->export()->disableExportAll();
@@ -74,7 +73,9 @@ class OrderController extends AdminController
                 3 => 'warning',
                 4 => 'success',
             ]);
-            $grid->column('title', '标题')->copyable()->width('200px');
+            $grid->column('title', '标题')->link(function($title) {
+                return admin_url('/orders/' . $this->id . '/edit');
+            })->copyable()->width('200px');
 //            $grid->model()->sum("pay_price");
             $grid->column('writer', '作者')->width('100px');
             $grid->column('words', '字数')->width('50px');
