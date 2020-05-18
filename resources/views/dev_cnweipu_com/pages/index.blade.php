@@ -632,7 +632,7 @@
         str=refer.match(grep)
         console.log(str,3123123)
         keyword=str.toString().split("&")[1].split("&")[2];
-        document.write(decodeURIComponent(keyword));
+        // document.write(decodeURIComponent(keyword));
         break;
       }
 
