@@ -70,9 +70,9 @@
       buttons: ['取消','确定'],
       dangerMode: true,
     })
-      .then((willDelete) => {
+      .then(function(willDelete){
         if (willDelete) {
-          axios.post('{{route('logout')}}').then(res => {
+          axios.post('{{route('logout')}}').then(function(res){
             swal("注销成功!", {
               icon: "success",
             }).then(willDelete => {

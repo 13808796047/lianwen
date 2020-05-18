@@ -166,8 +166,6 @@
       </div>
     </div>
   @endguest
-  <!----//End-slider-script---->
-  <!-- Slideshow 4 -->
   {{--  <div id="top" class="callbacks_container">--}}
   {{--    <ul class="rslides" id="slider4">--}}
   {{--      <li>--}}
@@ -673,12 +671,12 @@
           }
         }).catch(function(err){
           if (err.response.status == 422) {
-            $.each(err.response.data.errors, (field, errors) => {
+            $.each(err.response.data.errors, function(field, errors){
               swal("提示", errors[0]);
             })
           }
           if (err.response.status == 401) {
-            $.each(err.response.data, (field, errors) => {
+            $.each(err.response.data, function(field, errors){
               swal("提示", errors);
             })
           }
