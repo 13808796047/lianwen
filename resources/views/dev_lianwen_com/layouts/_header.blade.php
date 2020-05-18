@@ -3,30 +3,25 @@
     <a href="/"><img src="https://css.lianwen.com/logo/2019/weipudx.png" alt=""></a>
   </div>
   <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto">
-    <div class="text-sm lg:flex-grow" id="categories">
-      @foreach($categories as $category)
-        <a href="{{route('categories.show',['classid'=>$category->classid])}}"
-           class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
-          {{$category->classname}}
-        </a>
-      @endforeach
-      <a href="{{route('orders.index')}}"
-         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
-        查看报告
-      </a>
-      <ul class="nav nav-tabs">
+  <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
       <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-  </li>
-      </ul>
-    </div>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    <ul>
     @auth
       <div class="flex justify-content-around w-25 align-items-center">
         <span>{{auth()->user()->phone??auth()->user()->nickname}}</span>
