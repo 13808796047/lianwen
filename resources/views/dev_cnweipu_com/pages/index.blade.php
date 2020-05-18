@@ -606,7 +606,7 @@
       // });
       // $().UItoTop({easingType: 'easeOutQuart'});
       // Tab切换
-      console.log('xhaha上发射')
+      console.log('111上发射')
       function getDomainQuery(url) {
 
  var d = [];
@@ -658,6 +658,7 @@ function route() {
  for(var el in eg){
 
      var s = eg[el];
+    console.log(s,3112123)
 
      var DandQ=String(s).split(","); //字符分割
 
