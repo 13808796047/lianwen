@@ -127,7 +127,7 @@ class OfficialAccountController extends Controller
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         [$type, $id] = explode('=', $eventKey);
         $loginUser = User::find($id);
-        if($type == 'uid') {
+        if(\Str::startsWith($eventKey, 'JC')) {
             if(!$user) {
                 $invit_user = User::create([
                     'nick_name' => $wxUser['nickname'],
@@ -148,7 +148,7 @@ class OfficialAccountController extends Controller
                 $result = $this->app->customer_service->message($message)->to($openId)->send();
             }
         }
-        if($type == 'aid') {
+        if(\Str::startsWith($eventKey, 'CC')) {
             if(!$user) {
                 $loginUser->update(
                     [
