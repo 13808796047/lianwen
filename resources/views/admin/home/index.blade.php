@@ -118,7 +118,7 @@
           @foreach($source_orders as $source=> $order)
             @php
               $orders_count = $order->count();
-                $total = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('from',$source?:'')->count();
+                $total = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('from',$source??'')->count();
                        try {
                     $sorce_data = $orders_count/$total;
                 }catch (\Exception $e){
