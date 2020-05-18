@@ -166,8 +166,6 @@
       </div>
     </div>
   @endguest
-  <!----//End-slider-script---->
-  <!-- Slideshow 4 -->
   {{--  <div id="top" class="callbacks_container">--}}
   {{--    <ul class="rslides" id="slider4">--}}
   {{--      <li>--}}
