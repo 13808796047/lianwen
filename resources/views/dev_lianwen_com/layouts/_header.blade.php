@@ -37,6 +37,14 @@
          class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
         查看报告
       </a>
+      <a href="/"
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
+        自动降重
+      </a>
+      <a href="javascript:void(0)"
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none" onclick="window.open('http://p.qiao.baidu.com/cps/chat?siteId=12623578&userId=26512539&cp=lianwen&cr=lianwen&cw=PC',height='680',width='900')">
+        在线客服
+      </a>
     </div>
     @auth
       <div class="flex justify-content-around w-25 align-items-center">
