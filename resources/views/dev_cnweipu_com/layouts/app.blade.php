@@ -75,7 +75,7 @@
           axios.post('{{route('logout')}}').then(function(res){
             swal("注销成功!", {
               icon: "success",
-            }).then(willDelete => {
+            }).then(function(willDelete){
               location.reload();
             });
           })

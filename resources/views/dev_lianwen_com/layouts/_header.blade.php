@@ -29,4 +29,7 @@
     @endauth
   </div>
 </nav>
+<script>
+  console.log({!! json_encode($categories) !!});
+</script>
 <!----- start-header---->

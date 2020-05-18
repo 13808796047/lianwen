@@ -159,13 +159,13 @@
               'password': $('#password').val(),
               'password_confirmation': $('#password-confirm').val(),
               'verification_code': $('#code').val()
-            }).then(res => {
+            }).then(function(res){
               swal("注册成功!");
               location.href = '{{route('pages.index')}}'
             }).catch(err => {
               if (err.response.status == 422) {
                 $('#message').show();
-                $.each(err.response.data.errors, (field, errors) => {
+                $.each(err.response.data.errors, function(field, errors){
                   $('#message').append('<strong>' + errors + '</strong> </br>');
                 })
               }
