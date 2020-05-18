@@ -621,9 +621,10 @@
         keyword=str.toString().split('=')[1].split('&')[0];
         document.write(decodeURIComponent(keyword));
         break;
-        case 'google':
+        case 'so':
         grep=/&q\=.*\&/i;
         str=refer.match(grep)
+        console.log('xixix',3123212)
         keyword=str.toString().split('&')[1].split('=')[1];
         document.write(decodeURIComponent(keyword));
         break;
