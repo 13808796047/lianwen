@@ -303,7 +303,7 @@ return [
     */
     'layout' => [
         // indigo, blue, blue-light, blue-dark, green
-        'color' => 'blue-dark',
+        'color' => 'green',
 
         'body_class' => '',
 
