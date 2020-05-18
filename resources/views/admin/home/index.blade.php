@@ -120,7 +120,7 @@
             <tr>
               <td>{{ $source }}</td>
               @php
-                $pay_orders = $order->orders->count();
+                $pay_orders = $order->count();
                   $total = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('from',$source)->count();
                          try {
                       $data = $pay_orders/$total;
