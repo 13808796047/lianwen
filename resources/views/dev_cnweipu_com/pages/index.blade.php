@@ -630,6 +630,7 @@
         case 'sogou':
         grep=/&q\=.*\&/i;
         str=refer.match(grep)
+        console.log(str,3212312)
         keyword=str.toString().split('&')[1].split('=')[1];
         document.write(decodeURIComponent(keyword));
         break;
