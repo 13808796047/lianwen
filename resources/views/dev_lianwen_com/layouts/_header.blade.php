@@ -37,7 +37,7 @@
          class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
         查看报告
       </a>
-      <a href="/"
+      <a href="/ai_rewrite"
          class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
         自动降重
       </a>
