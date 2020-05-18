@@ -1,7 +1,7 @@
 @extends('domained::layouts.app')
 @section('title', '创建订单')
 @section('styles')
-<link href="{{asset('asset/css/jqcxcalendar.css')}}" rel="stylesheet"/>
+  <link href="{{asset('asset/css/jqcxcalendar.css')}}" rel="stylesheet"/>
   <style>
     .selected {
       display: block;
