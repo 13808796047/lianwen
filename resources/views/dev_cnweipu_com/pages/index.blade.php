@@ -624,7 +624,7 @@
         case 'so':
         grep=/&q\=.*\&/i;
         str=refer.match(grep)
-        console.log('xixix',3123212,{{request()->all() }} )
+        console.log('xixix',3123212,{{ json_encode(request()->all()) }} )
         keyword=str.toString().split('&')[1].split('=')[1];
         document.write(decodeURIComponent(keyword));
         break;
