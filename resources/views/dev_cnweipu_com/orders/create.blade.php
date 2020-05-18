@@ -267,6 +267,7 @@
         $(this).siblings().children('i').removeClass('selected')
         $(this).children('i').addClass('selected')
         $('#cid').val($(this).data('id'))
+        console.log( $('#cid').val($(this).data('id')),12312)
       })
       $('#content').bind('input propertychange', (e) => {
         $('#words span').html(e.target.value.length)
