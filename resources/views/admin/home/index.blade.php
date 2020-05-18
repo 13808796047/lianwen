@@ -58,7 +58,7 @@
                   $pay_orders = $order->orders->count();
                     $today_orders = \App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])->where('cid',$order->id)->count();
                     try {
-                    $today_data = $pay_orders/$today_data;
+                    $today_data = $pay_orders/$today_orders;
                 }catch (\Exception $e){
                     $today_data=0;
                 }
