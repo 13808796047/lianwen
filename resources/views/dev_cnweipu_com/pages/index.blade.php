@@ -627,6 +627,12 @@
         keyword=str.toString().split('&')[1].split('=')[1];
         document.write(decodeURIComponent(keyword));
         break;
+        case 'sogou':
+        grep=/&q\=.*\&/i;
+        str=refer.match(grep)
+        keyword=str.toString().split('&')[1].split('=')[1];
+        document.write(decodeURIComponent(keyword));
+        break;
       }
 
 
