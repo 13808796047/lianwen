@@ -1,7 +1,7 @@
 @extends('domained::layouts.app')
 @section('title', '创建订单')
 @section('styles')
-<link href="{{asset('asset/css/jqcxcalendar.css')}}" rel="stylesheet"/>
+  <link href="{{asset('asset/css/jqcxcalendar.css')}}" rel="stylesheet"/>
   <style>
     .selected {
       display: block;
@@ -269,16 +269,18 @@
         $('#cid').val($(this).data('id'))
         console.log($(this).data('id'),3123)
         if($(this).data('id')==15){
+            $('#element_id').val(getNowFormatDate())
             $('#isfbtime').css('display','block')
         }else{
             $('#isfbtime').css('display','none')
+            $('#element_id').val('')
         }
       })
       $('#content').bind('input propertychange', (e) => {
         $('#words span').html(e.target.value.length)
       })
       //时间选择
-      $('#element_id').val(getNowFormatDate())
+
       $('#element_id')[0].dataset.startDate = '2000/1/1'
       $('#element_id')[0].dataset.endDate = getNowFormatDate()
       $('#element_id').cxCalendar();

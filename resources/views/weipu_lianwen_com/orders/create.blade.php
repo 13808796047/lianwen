@@ -1,6 +1,7 @@
 @extends('domained::layouts.app')
 @section('title', '创建订单')
 @section('styles')
+<link href="{{asset('asset/css/jqcxcalendar.css')}}" rel="stylesheet"/>
   <style>
     .selected {
       display: block;
@@ -127,6 +128,14 @@
               @enderror
             </div>
           </div>
+          <div class="form-group" style="display:none" id="isfbtime">
+            <div class="input-group mt-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">发表时间</span>
+              </div>
+              <input id="element_id" type="text" name="element_id" class="form-control @error('writer') is-invalid @enderror">
+            </div>
+          </div>
           <div class="mt-3">
             <ul class="nav nav-tabs tab-list" role="tablist" id="navbarText">
               <li class="nav-item">
@@ -235,6 +244,7 @@
   </div>
 @stop
 @section('scripts')
+<script type="text/javascript" src="{{ asset('asset/js/jquery-cxcalendar.js') }}"></script>
   <script>
     $(() => {
       @unless(Auth::user()->weixin_openid)
@@ -265,10 +275,37 @@
       $(this).siblings().children('i').removeClass('selected')
       $(this).children('i').addClass('selected')
       $('#cid').val($(this).data('id'))
+      if($(this).data('id')==6){
+            $('#element_id').val(getNowFormatDate())
+            $('#isfbtime').css('display','block')
+        }else{
+            $('#isfbtime').css('display','none')
+            $('#element_id').val('')
+        }
     })
     $('#content').bind('input propertychange', (e) => {
       $('#words span').html(e.target.value.length)
     })
+     //时间选择
+     $('#element_id')[0].dataset.startDate = '2000/1/1'
+      $('#element_id')[0].dataset.endDate = getNowFormatDate()
+      $('#element_id').cxCalendar();
+      function getNowFormatDate() {
+         var date = new Date();
+         var seperator1 = "-";
+         var year = date.getFullYear();
+         var month = date.getMonth() + 1;
+         var strDate = date.getDate();
+         if (month >= 1 && month <= 9) {
+           month = "0" + month;
+         }
+         if (strDate >= 0 && strDate <= 9) {
+           strDate = "0" + strDate;
+         }
+         var currentdate = year + seperator1 + month + seperator1 + strDate
+         return currentdate;
+      }
+      //时间选择结束
     //多文件上传
     $('#customFiles').change(function (e) {
       $('#newelement').css('display', 'block');
@@ -408,7 +445,8 @@
             type: 'file',
             content: '',
             title: $('#title').val(),
-            writer: $('#writer').val()
+            writer: $('#writer').val(),
+            endDate:$('#element_id').val()
           }
         ).then(res => {
           console.log(res, 3123123)
@@ -429,7 +467,8 @@
             type: 'content',
             content: $('#content').val(),
             title: $('#title').val(),
-            writer: $('#writer').val()
+            writer: $('#writer').val(),
+            endDate:$('#element_id').val()
           }
         ).then(res => {
           console.log(res, 3123123)
