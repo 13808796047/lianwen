@@ -78,7 +78,7 @@
       <div class="form-row mt-3 mb-3">
         <label for="file" class="col-sm-1 col-form-label">上传</label>
         <div class="col-sm-3">
-          <input type="file" class="form-control" id="file">
+          <input type="file" class="form-control" name="file" id="file">
         </div>
         <label for="title" class="col-sm-1 col-form-label">论文</label>
         <div class="col-sm-3">
