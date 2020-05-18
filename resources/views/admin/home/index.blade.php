@@ -38,7 +38,6 @@
     </ul>
     @php
       switch (request()->date){
-
               case 'yesterday':
                 $start = \Carbon\Carbon::now()->subDay()->startOfDay();
                 $end = \Carbon\Carbon::now()->subDay()->endOfDay();
@@ -47,7 +46,7 @@
                 $start = \Carbon\Carbon::now()->startOfMonth();
                  $end = \Carbon\Carbon::now()->endOfMonth();
                  break;
-                  case 'month':
+                  case 'pre_month':
                 $start =\Carbon\Carbon::now()->subMonth()->startOfMonth();
                  $end = \Carbon\Carbon::now()->subMonth()->endOfMonth();
                  break;
@@ -72,10 +71,10 @@
           @foreach($class_orders as $order)
             <tr>
               @php
-                $pay_orders = $order->orders->count();
+                $orders_count = $order->orders->count();
                   $total = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('cid',$order->id)->count();
                          try {
-                      $data = $pay_orders/$total;
+                      $data = $orders_count/$total;
                   }catch (\Exception $e){
                       $data=0;
                   }
@@ -85,7 +84,7 @@
               <td>{{ $order->name }}</td>
 
               <td>
-                {{$pay_orders .'/'.$total}}
+                {{$orders_count .'/'.$total}}
               </td>
               <td>{{@number_format( $data*100,2)}}
                 %
@@ -120,16 +119,16 @@
             <tr>
               <td>{{ $source }}</td>
               @php
-                $pay_orders = $order->count();
-                  $total = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('from',$source)->count();
+                $total = $order->count();
+                  $orders_count = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('from',$source)->count();
                          try {
-                      $data = $pay_orders/$total;
+                      $data = $orders_count/$total;
                   }catch (\Exception $e){
                       $data=0;
                   }
               @endphp
               <td>
-                {{$pay_orders .'/'.$total}}
+                {{$orders_count .'/'.$total}}
               </td>
               <td>{{@number_format( $data*100,2)}}
                 %
