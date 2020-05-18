@@ -18,6 +18,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class OrderController extends AdminController
 {
