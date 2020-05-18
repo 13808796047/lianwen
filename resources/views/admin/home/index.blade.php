@@ -116,21 +116,21 @@
           </thead>
           <tbody>
           @foreach($source_orders as $source=> $order)
+            @php
+              $source_total = $order->count();
+                $source_orders_count = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('from',$source)->count();
+                       try {
+                    $sorce_data = $orders_count/$total;
+                }catch (\Exception $e){
+                    $sorce_data=0;
+                }
+            @endphp
             <tr>
               <td>{{ $source }}</td>
-              @php
-                $total = $order->count();
-                  $orders_count = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('from',$source)->count();
-                         try {
-                      $data = $orders_count/$total;
-                  }catch (\Exception $e){
-                      $data=0;
-                  }
-              @endphp
               <td>
-                {{$orders_count .'/'.$total}}
+                {{$source_orders_count .'/'.$source_total}}
               </td>
-              <td>{{@number_format( $data*100,2)}}
+              <td>{{@number_format( $sorce_data*100,2)}}
                 %
               </td>
               <td>{{ $order->sum('pay_price') }}元</td>
