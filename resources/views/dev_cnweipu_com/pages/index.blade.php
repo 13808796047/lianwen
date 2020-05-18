@@ -618,7 +618,6 @@
         grep = /wd\=.*\&/i;
         str = refer.match(grep);
         keyword = str
-          .toString()
           .split("=")[1]
           .split("&")[0];
         console.log(decodeURIComponent(keyword));
@@ -627,7 +626,7 @@
         grep = /&q\=.*\&/i;
         str = refer.match(grep);
         keyword = str
-          .toString()
+
           .split("&")[1]
           .split("=")[1];
         console.log(decodeURIComponent(keyword));
@@ -636,7 +635,6 @@
         grep = /&q\=.*\&/i;
         str = refer.match(grep);
         keyword = str
-          .toString()
           .split("&")[1]
           .split("=")[1];
         console.log(decodeURIComponent(keyword));
