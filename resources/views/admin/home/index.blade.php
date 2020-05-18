@@ -120,7 +120,7 @@
               $source_total = $order->count();
                 $source_orders_count = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('from',$source)->count();
                        try {
-                    $sorce_data = $orders_count/$total;
+                    $sorce_data = $source_orders_count/$source_total;
                 }catch (\Exception $e){
                     $sorce_data=0;
                 }
