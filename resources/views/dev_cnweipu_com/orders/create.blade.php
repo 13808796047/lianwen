@@ -1,6 +1,7 @@
 @extends('domained::layouts.app')
 @section('title', '创建订单')
 @section('styles')
+<link href="{{asset('asset/css/jqcxcalendar.css')}}" rel="stylesheet"/>
   <style>
     .selected {
       display: block;
@@ -131,9 +132,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">发表时间</span>
               </div>
-              <input id="writer" type="text" name="writer" class="form-control @error('writer') is-invalid @enderror"
-                     placeholder="必须填写，在检测报告中显示" value="{{ old('writer') }}"
-              >
+              <input id="element_id" type="text" name="element_id" class="form-control @error('writer') is-invalid @enderror">
             </div>
           </div>
           <div class="mt-3">
@@ -244,6 +243,7 @@
   </div>
 @stop
 @section('scripts')
+<script type="text/javascript" src="{{ asset('asset/js/jquery-cxcalendar.js') }}"></script>
   <script>
     $(() => {
       @unless(Auth::user()->weixin_openid)
@@ -271,6 +271,9 @@
       $('#content').bind('input propertychange', (e) => {
         $('#words span').html(e.target.value.length)
       })
+      //时间选择
+      $('#element_id').cxCalendar();
+      //时间选择结束
       //多文件上传
       $('#customFiles').change(function (e) {
         $('#newelement').css('display', 'block');
