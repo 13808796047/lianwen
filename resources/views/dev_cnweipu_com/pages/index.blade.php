@@ -606,7 +606,9 @@
       // });
       // $().UItoTop({easingType: 'easeOutQuart'});
       // Tab切换
-      console.log('111上发射')
+      console.log('22221上发射')
+      var refer=document.referrer;
+      console.log(refer,3123123)
 
 
       $('.banner-li').click(function () {
