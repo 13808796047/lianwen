@@ -3,7 +3,7 @@
     <a href="/"><img src="https://css.lianwen.com/logo/2019/weipudx.png" alt=""></a>
   </div>
   <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto">
-    <div class="text-sm lg:flex-grow">
+    <div class="text-sm lg:flex-grow" id="categories">
       @foreach($categories as $category)
         <a href="{{route('categories.show',['classid'=>$category->classid])}}"
            class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
@@ -14,6 +14,7 @@
          class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
         查看报告
       </a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
     </div>
     @auth
       <div class="flex justify-content-around w-25 align-items-center">
@@ -30,6 +31,9 @@
   </div>
 </nav>
 <script>
+$(function(){
+
+})
   console.log({!! json_encode($categories) !!});
 </script>
 <!----- start-header---->
