@@ -3,6 +3,7 @@
     border-bottom: 2px solid red;
   }
 </style>
+
 <div class="box box-info">
   <div class="box-header with-border">
     <h3 class="box-title">统计</h3>
@@ -12,30 +13,40 @@
       </div>
     </div>
   </div>
+
   <div class="box-body">
-    <ul class="nav nav-pills">
-      <li class="nav-item">
-        @if(request()->date)
-          <a class="nav-link {{ system_nav_active('cid','today') }}"
-             href="{{ route('admin.home.index',['type'=>'cid','date'=>'today']) }}">今天</a>
-        @else
-          <a class="nav-link {{ active_class(if_route('admin.home.index')) }}"
-             href="{{ route('admin.home.index') }}">今天</a>
-        @endif
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {{ system_nav_active('cid','yesterday') }}"
-           href="{{ route('admin.home.index',['type'=>'cid','date'=>'yesterday']) }}">昨天</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {{ system_nav_active('cid','month') }}"
-           href="{{ route('admin.home.index', ['type'=>'cid','date'=>'month']) }}">本月</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {{ system_nav_active('cid','pre_month') }}"
-           href="{{ route('admin.home.index', ['type'=>'cid','date'=>'pre_month']) }}">上月</a>
-      </li>
-    </ul>
+    <div class="row mb-3">
+      <div class="col-6">
+
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            @if(request()->date)
+              <a class="nav-link {{ system_nav_active('cid','today') }}"
+                 href="{{ route('admin.home.index',['type'=>'cid','date'=>'today']) }}">今天</a>
+            @else
+              <a class="nav-link {{ active_class(if_route('admin.home.index')) }}"
+                 href="{{ route('admin.home.index') }}">今天</a>
+            @endif
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ system_nav_active('cid','yesterday') }}"
+               href="{{ route('admin.home.index',['type'=>'cid','date'=>'yesterday']) }}">昨天</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ system_nav_active('cid','month') }}"
+               href="{{ route('admin.home.index', ['type'=>'cid','date'=>'month']) }}">本月</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ system_nav_active('cid','pre_month') }}"
+               href="{{ route('admin.home.index', ['type'=>'cid','date'=>'pre_month']) }}">上月</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-6">
+        <h4>合计:<span id="total_price" class="pl-3 text-danger fontsize-ensurer">0</span></h4>
+      </div>
+    </div>
+
     @php
       switch (request()->date){
               case 'yesterday':
@@ -94,12 +105,12 @@
               <td>{{ $order->orders->sum('pay_price') }}元</td>
             </tr>
           @endforeach
-          <tr>
-            <td>总计</td>
-            <td></td>
-            <td></td>
-            <td id="total_price" class="text-danger fontsize-ensurer">0</td>
-          </tr>
+          {{--          <tr>--}}
+          {{--            <td>总计</td>--}}
+          {{--            <td></td>--}}
+          {{--            <td></td>--}}
+          {{--            <td id="total_price" class="text-danger fontsize-ensurer">0</td>--}}
+          {{--          </tr>--}}
           </tbody>
         </table>
       </div>
@@ -137,12 +148,12 @@
             </tr>
 
           @endforeach
-          <tr>
-            <td>总计</td>
-            <td></td>
-            <td></td>
-            <td id="source_total_price" class="text-danger fontsize-ensurer">0</td>
-          </tr>
+          {{--          <tr>--}}
+          {{--            <td>总计</td>--}}
+          {{--            <td></td>--}}
+          {{--            <td></td>--}}
+          {{--            <td id="source_total_price" class="text-danger fontsize-ensurer">0</td>--}}
+          {{--          </tr>--}}
           </tbody>
         </table>
       </div>
