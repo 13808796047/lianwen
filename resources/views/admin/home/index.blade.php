@@ -54,7 +54,7 @@
               <td>{{ $order->name }}</td>
               @switch(request()->date)
                 @case('yesterday')
-                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])->count()}}</td>
+                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])->with('category')->count()}}</td>
                 @break
                 @case('month')
                 <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth()])->count()}}</td>

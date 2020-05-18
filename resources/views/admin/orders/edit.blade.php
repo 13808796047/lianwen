@@ -31,9 +31,9 @@
         <div class="col-sm-3">
           <input type="text" readonly class="form-control" id="title" value="{{ $order->price }}">
         </div>
-        <label for="title" class="col-sm-1 col-form-label">重复率</label>
+        <label for="rate" class="col-sm-1 col-form-label">重复率</label>
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="title" value="{{ $order->rate }}">
+          <input type="text" class="form-control" name="rate" id="rate" value="{{ $order->rate }}">
         </div>
         <label for="title" class="col-sm-1 col-form-label">字数</label>
         <div class="col-sm-3">
@@ -76,7 +76,7 @@
       </div>
 
       <div class="form-row mt-3 mb-3">
-        <label for="file" class="col-sm-1 col-form-label">支付时间</label>
+        <label for="file" class="col-sm-1 col-form-label">上传</label>
         <div class="col-sm-3">
           <input type="file" class="form-control" id="file">
         </div>
