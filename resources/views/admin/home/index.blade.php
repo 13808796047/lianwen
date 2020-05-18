@@ -117,10 +117,10 @@
           <tbody>
           @foreach($source_orders as $source=> $order)
             @php
-              $source_total = $order->count();
-                $source_orders_count = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('from',$source)->count();
+              $orders_count = $order->count();
+                $total = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('from',$source)->count();
                        try {
-                    $sorce_data = $source_orders_count/$source_total;
+                    $sorce_data = $orders_count/$total;
                 }catch (\Exception $e){
                     $sorce_data=0;
                 }
@@ -128,7 +128,7 @@
             <tr>
               <td>{{ $source }}</td>
               <td>
-                {{$source_orders_count .'/'.$source_total}}
+                {{$orders_count .'/'.$total}}
               </td>
               <td>{{@number_format( $sorce_data*100,2)}}
                 %
