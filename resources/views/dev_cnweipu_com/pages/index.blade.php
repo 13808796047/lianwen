@@ -609,7 +609,7 @@
       console.log('上发射')
       var refer=document.referrer;
       console.log(refer,3123123)
-      var sosuo=refer.split(“.”)[1];
+      var sosuo=refer.split('.')[1];
       var grep=null;
       var str=null;
       var keyword=null;
@@ -618,13 +618,13 @@
         case 'baidu':
         grep=/wd\=.*\&/i;
         str=refer.match(grep)
-        keyword=str.toString().split(“=”)[1].split(“&”)[0];
+        keyword=str.toString().split('=')[1].split('&')[0];
         document.write(decodeURIComponent(keyword));
         break;
         case 'google':
         grep=/&q\=.*\&/i;
         str=refer.match(grep)
-        keyword=str.toString().split(“&”)[1].split(“=”)[1];
+        keyword=str.toString().split('&')[1].split('=')[1];
         document.write(decodeURIComponent(keyword));
         break;
       }
