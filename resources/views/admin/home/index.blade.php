@@ -98,7 +98,7 @@
               <td>{{ $source }}</td>
               @switch(request()->date)
                 @case('yesterday')
-                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])>count()->groupBy($source)-}}</td>
+                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])>count()->groupBy($source)}}</td>
                 @break
                 @case('month')
                 <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth()])->count()->groupBy($source)}}</td>
