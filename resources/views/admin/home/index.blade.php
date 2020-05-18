@@ -36,6 +36,26 @@
            href="{{ route('admin.home.index', ['type'=>'cid','date'=>'pre_month']) }}">上月</a>
       </li>
     </ul>
+    @php
+      switch (request()->date){
+
+              case 'yesterday':
+                $start = \Carbon\Carbon::now()->subDay()->startOfDay();
+                $end = \Carbon\Carbon::now()->subDay()->endOfDay();
+                  break;
+              case 'month':
+                $start = \Carbon\Carbon::now()->startOfMonth();
+                 $end = \Carbon\Carbon::now()->endOfMonth();
+                 break;
+                  case 'month':
+                $start =\Carbon\Carbon::now()->subMonth()->startOfMonth();
+                 $end = \Carbon\Carbon::now()->subMonth()->endOfMonth();
+                 break;
+                 default:
+                       $start =\Carbon\Carbon::now()->startOfDay();
+                       $end =\Carbon\Carbon::now()->endOfDay();
+          }
+    @endphp
     <div class="row">
       <div class="col-md-6">
         <h3 class="">按系统统计</h3>
@@ -51,38 +71,29 @@
           <tbody>
           @foreach($class_orders as $order)
             <tr>
+              @php
+                $pay_orders = $order->orders->count();
+                  $total = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('cid',$order->id)->count();
+                         try {
+                      $data = $pay_orders/$total;
+                  }catch (\Exception $e){
+                      $data=0;
+                  }
+              @endphp
+
+
               <td>{{ $order->name }}</td>
-              @switch(request()->date)
-                @case('yesterday')
-                @php
-                  $pay_orders = $order->orders->count();
-                    $today_orders = \App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])->where('cid',$order->id)->count();
-                    try {
-                    $today_data = $pay_orders/$today_orders;
-                }catch (\Exception $e){
-                    $today_data=0;
-                }
-                @endphp
-                <td>
-                  {{$pay_orders .'/'.$today_orders}}
-                </td>
-                <td>{{@number_format( $today_data*100,2)}}
-                  %
-                </td>
-                @break
-                @case('month')
-                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth()])->where('cid',$order->id)->count()}}</td>
-                @break
-                @case('pre_month')
-                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subMonth()->startOfMonth(), \Carbon\Carbon::now()->subMonth()->endOfMonth()])->where('cid',$order->id)->count()}}</td>
-                @break
-                @default
-                <td>{{$order->orders->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfDay(), \Carbon\Carbon::now()->endOfDay()])->where('cid',$order->id)->count()}}</td>
-              @endswitch
+
+              <td>
+                {{$pay_orders .'/'.$total}}
+              </td>
+              <td>{{@number_format( $data*100,2)}}
+                %
+              </td>
+
 
               <td>{{ $order->orders->sum('pay_price') }}元</td>
             </tr>
-
           @endforeach
           <tr>
             <td>总计</td>
@@ -108,20 +119,19 @@
           @foreach($source_orders as $source=> $order)
             <tr>
               <td>{{ $source }}</td>
-              @switch(request()->date)
-                @case('yesterday')
-                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subDay()->startOfDay(), \Carbon\Carbon::now()->subDay()->endOfDay()])->where('from',$source)->count()}}</td>
-                @break
-                @case('month')
-                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth()])->where('from',$source)->count()}}</td>
-                @break
-                @case('pre_month')
-                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->subMonth()->startOfMonth(), \Carbon\Carbon::now()->subMonth()->endOfMonth()])->where('from',$source)->count()}}</td>
-                @break
-                @default
-                <td>{{$order->count().'/'.\App\Models\Order::whereBetween('created_at',[\Carbon\Carbon::now()->startOfDay(), \Carbon\Carbon::now()->endOfDay()])->where('from',$source)->count()}}</td>
-              @endswitch
-              <td>{{@number_format($order->count()/(\App\Models\Order::query()->whereNotNull('date_pay')->count()) *100,2)}}
+              @php
+                $pay_orders = $order->orders->count();
+                  $total = \App\Models\Order::whereBetween('created_at',[$start, $end])->where('from',$source)->count();
+                         try {
+                      $data = $pay_orders/$total;
+                  }catch (\Exception $e){
+                      $data=0;
+                  }
+              @endphp
+              <td>
+                {{$pay_orders .'/'.$total}}
+              </td>
+              <td>{{@number_format( $data*100,2)}}
                 %
               </td>
               <td>{{ $order->sum('pay_price') }}元</td>
