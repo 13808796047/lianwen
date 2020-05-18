@@ -94,7 +94,6 @@
           </thead>
           <tbody>
           @foreach($source_orders as $source=> $order)
-            {{ $order }}
             <tr>
               <td>{{ $source }}</td>
               @switch(request()->date)
