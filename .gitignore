@@ -3,6 +3,7 @@
 /public/pdf
 /public/storage
 /storage/*.key
+/storage/baidu_pay/*
 /resources/wechat_pay
 /resources/views/lianwen_test
 /vendor
