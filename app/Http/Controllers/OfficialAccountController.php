@@ -145,7 +145,7 @@ class OfficialAccountController extends Controller
             } else {
                 $message = new Text('您已经注册过账号了!');
 
-                $result = $this->app->customer_service->message($message)->to($openId)->send();
+                $result = $this->app->customer_service->message($message)->to($invit_user->weixin_openid)->send();
             }
         }
         if($type == 'CC') {
@@ -161,7 +161,7 @@ class OfficialAccountController extends Controller
             );
             $message = new Text('关注成功!');
 
-            $result = $this->app->customer_service->message($message)->to($openId)->send();
+            $result = $this->app->customer_service->message($message)->to($loginUser->weixin_openid)->send();
         }
     }
 }
