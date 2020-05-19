@@ -12,13 +12,11 @@
 
 </head>
 <style>
-  .foraml-box.register {
-    background: url(https://s0.5118img.com/assist/images/formal/invite/bk_4.jpg?v=d5596a1a6d) top no-repeat, url(https://s0.5118img.com/assist/images/formal/invite/bk_4.jpg?v=d5596a1a6d) center 380px no-repeat;
+   .foraml-box.register {
     background-color: #f54c15;
   }
 
   .bk.register {
-    background: url(https://s0.5118img.com/assist/images/formal/invite/bk_4.jpg?v=d5596a1a6d) no-repeat #f44b12;
     background-color: #f54c15;
     background-size: 100% auto;
   }
@@ -56,11 +54,13 @@
     font-family: SourceHanSansCN-Normal;
     background-color: #fff3e3;
     border-radius: 16px;
-    text-align: center;
+    text-align: left;
+	padding:25px;
     font-size: 16px;
     line-height: 40px;
     color: #7b3015;
   }
+
 
   #app {
     width: 100%;
@@ -111,7 +111,7 @@
 </style>
 
 <body>
-  <div class="foraml-box register" id="web">
+<div class="foraml-box register" id="web">
    <!-- 二维码弹窗 -->
  <div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true" id="registerModel" >
 			<div class="modal-dialog modal-dialog-centered" role="document">
@@ -155,26 +155,26 @@
 			</div>
 	</div>
   <!-- 二维码弹窗结束 -->
-    <p style="font-size: 123px;text-align: center;font-weight: bold;color: #fbf0a6;">立即查重 送降重次数</p>
+    <p style="font-size: 100px;text-align: center;font-weight: bold;color: #fbf0a6;">AI智能降重助手，一键自动降重</p>
     <div style="padding: 20px;display: flex;justify-content: center;">
-      <p style="text-align: center;background: #4876FF;font-size: 50px;color:#fff;padding: 10px 30px;letter-spacing:20px"
+      <p style="text-align: center;background: #4876FF;font-size: 50px;color:#fff;padding: 10px 30px;letter-spacing:10px;border-radius: 8px;"
         id="tjregister">
-        一键注册</p>
+        免费体验</p>
     </div>
     <div>
-      <p class="t">简单三步送降重次数</p>
+      <p class="t">—— AI智能降重原理 ——</p>
       <div class="cards">
-        <p>1.分享给好友</p>
-        <p>2.好友成功注册</p>
-        <p>3.双方各获得5次自动降重次数</p>
+        <p>1、采用百度强大自然语言语义分析技术对论文进行分割;</p>
+        <p>2、通过自主研发的中文分词、句法分析、语义联想和实体识别技术，对文章内容进行重组替换，在不改变原文语义的前提下生成原创内容，从而降低查重率。</p>
       </div>
     </div>
     <div style="padding-bottom: 150px;">
-      <p class="t">推荐注册活动规则</p>
+      <p class="t">—— 简单三步自动降重 ——</p>
       <div class="cards">
-        <p>1、分享给好友</p>
-        <p>2.好友成功注册</p>
-        <p>双方各获得5次自动降重次数</p>
+          <p>1、将飘红段落复制到降重工具，点击“一键降重”。</p>
+          <p>2、对检测结果进行调整。</p>
+          <p>3、将结果复制回论文文档，完成降重。</p>
+		  <img src="https://dev.lianwen.com/asset/images/jcanli.png" width="830" />
       </div>
     </div>
   </div>
@@ -183,7 +183,7 @@
       <div class="bk register">
         <div class="envelope">
           <div style="display:flex;padding:30vw 10vw 0;justify-content: center;color:#fbf0a6">
-            <p style="font-size:6.7vw;font-weight:bold;">立即注册，送查重次数</p>
+            <p style="font-size:6.7vw;font-weight:bold;">智能降重助手，免费体验</p>
           </div>
           <div class="line"></div>
           <div style="text-align:center">
@@ -191,34 +191,33 @@
               src=""
               style="width:35vw;height:35vw;"
               id="qrimg">
-            <p>微信扫码分享</p>
-            <p style="line-height: 3vw;font-size: 2.8vw;">(可长按二维码自动识别)</p>
+            <p style="line-height: 6vw;font-size: 2.8vw;">(长按二维码自动识别)</p>
+            <p>扫码关注公众号体验</p>
+
           </div>
         </div>
         <div>
-          <p style="color: #fbf0a6;text-align:center;margin:7vw 0;font-size:6vw;">—— 简单三步送查重次数 ——</p>
+          <p style="color: #fbf0a6;text-align:center;margin:7vw 0;font-size:6vw;">—— AI智能降重原理 ——</p>
         </div>
         <div class="card" style="padding: 5vw 8vw;text-align:left;font-weight:100">
-          <p>1、分享给好友</p>
-          <p>2、好友成功注册</p>
-          <p>3、双方各获得各5次自动降重次数</p>
+          <p>1、采用百度强大自然语言语义分析技术对论文进行分割;</p>
+		  <p>2、通过自主研发的中文分词、句法分析、语义联想和实体识别技术，对文章内容进行重组替换，在不改变原文语义的前提下生成原创内容，从而降低查重率。</p>
         </div>
 
         <div>
-          <p style="color: #fbf0a6;text-align:center;margin:7vw 0;font-size:6vw;">—— 推荐注册活动规则 ——</p>
+          <p style="color: #fbf0a6;text-align:center;margin:7vw 0;font-size:6vw;">—— 简单三步自动降重 ——</p>
         </div>
         <div class="card" style="padding: 5vw 8vw;text-align:left;font-weight:100">
-          <p>1、每推荐1名好友成功注册（微信登录或绑定手机号），推荐人和注册人各获得5次自动降重次数，获得的次数可叠加，无上限；</p>
-          <p>2、所获得降重次数不可提现，仅用于使用自动降重服务时抵扣；</p>
-          <p>3、严禁使用非法手段获取，对于问题账号本站有权撤销相应数据或封禁账号。</p>
+          <p>1、将飘红段落复制到降重工具，点击“一键降重”。</p>
+          <p>2、对检测结果进行调整。</p>
+          <p>3、将结果复制回论文文档，完成降重。</p>
         </div>
 
-        <p style="color: #fbf0a6;text-align:center;padding:5vw 0;margin-bottom:0;">活动最终解释权归联文检测</p>
+        <p style="color: #fbf0a6;text-align:center;padding:5vw 0;margin-bottom:0;">技术支持：联文网</p>
       </div>
     </section>
 
   </div>
-
 </body>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
