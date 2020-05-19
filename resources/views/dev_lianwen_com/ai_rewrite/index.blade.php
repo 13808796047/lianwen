@@ -249,11 +249,9 @@
 
       })
       //复制链接
-      var copycontents = $("#urladdress").html();
-      console.log(copycontents)
       var clipboard = new Clipboard('#copyurl', {
         text: function () {
-        return copycontents;
+        return $("#urladdress").html()
         }
       });
       clipboard.on('success', function (e) {
