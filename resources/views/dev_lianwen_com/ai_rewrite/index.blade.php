@@ -205,10 +205,11 @@
       })
       toastr.options = {
 
-        "closeButton": false, //是否显示关闭按钮
+        "closeButton": true, //是否显示关闭按钮
 
         "debug": false, //是否使用debug模式
-        "showDuration": "300",//显示的动画时间
+
+        "showDuration": "30000",//显示的动画时间
 
         "hideDuration": "1000",//消失的动画时间
 
