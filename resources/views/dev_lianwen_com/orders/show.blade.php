@@ -155,6 +155,7 @@
 
 @endsection
 @section('scripts')
+
   <script>
     $(document).ready(function () {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
