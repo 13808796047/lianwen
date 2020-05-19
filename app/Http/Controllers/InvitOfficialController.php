@@ -24,7 +24,7 @@ class InvitOfficialController extends Controller
         if($request->has('uid')) {
             $uid = $request->uid;
         }
-        $params = 'JC' . $uid;
+        $params = 'JC=' . $uid;
         $qrCode = $this->app->qrcode;
         $result = $qrCode->temporary($params, 3600 * 24);
         $url = $qrCode->url($result['ticket']);

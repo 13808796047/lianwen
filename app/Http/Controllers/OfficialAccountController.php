@@ -27,7 +27,7 @@ class OfficialAccountController extends Controller
     {
         // 有效期 1 天的二维码
         $qrCode = $this->app->qrcode;
-        $result = $qrCode->temporary('CC' . auth()->user()->id, 3600 * 24);
+        $result = $qrCode->temporary('CC=' . auth()->user()->id, 3600 * 24);
         $url = $qrCode->url($result['ticket']);
         return response(compact('url'), 200);
     }
@@ -127,7 +127,7 @@ class OfficialAccountController extends Controller
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         [$type, $id] = explode('=', $eventKey);
         $loginUser = User::find($id);
-        if(\Str::startsWith($eventKey, 'JC')) {
+        if($type == 'JC') {
             if(!$user) {
                 $invit_user = User::create([
                     'nick_name' => $wxUser['nickname'],
@@ -148,7 +148,7 @@ class OfficialAccountController extends Controller
                 $result = $this->app->customer_service->message($message)->to($openId)->send();
             }
         }
-        if(\Str::startsWith($eventKey, 'CC')) {
+        if($type == 'CC') {
             if(!$user) {
                 $loginUser->update(
                     [
