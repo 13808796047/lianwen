@@ -159,6 +159,9 @@ class OfficialAccountController extends Controller
                     'subscribe_time' => $wxUser['subscribe_time'],
                 ]
             );
+            $message = new Text('关注成功!');
+
+            $result = $this->app->customer_service->message($message)->to($openId)->send();
         }
     }
 }
