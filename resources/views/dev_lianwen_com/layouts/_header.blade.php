@@ -1,8 +1,8 @@
 <nav class="flex items-center justify-between flex-wrap bg-white-100 shadow-2xl">
   <div class="flex items-center flex-shrink-0 text-white mr-6 bg-blue-600 p-2">
-    <a href="/"><img src="https://css.lianwen.com/logo/2019/weipudx.png" alt=""></a>
+    <a href="/"><img src="https://css.lianwen.com/images/logo.png" alt=""></a>
   </div>
-  <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto">
+  <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto" style="margin-left:30px;">
     <div class="text-sm lg:flex-grow" id="categories">
 
       <a href="/"
@@ -34,8 +34,16 @@
       </li>
 
       <a href="{{route('orders.index')}}"
-         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none" style="margin-left:15px;">
         查看报告
+      </a>
+      <a href="/ai_rewrite"
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none" style="margin-left:15px;">
+        自动降重
+      </a>
+      <a href="javascript:void(0)" style="margin-left:15px;"
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none" onclick="window.open('http://p.qiao.baidu.com/cps/chat?siteId=12623578&userId=26512539&cp=lianwen&cr=lianwen&cw=PC',height='680',width='900')">
+        在线客服
       </a>
     </div>
     @auth
@@ -53,9 +61,5 @@
   </div>
 </nav>
 <script>
-$(function(){
-
-})
-  console.log({!! json_encode($categories) !!});
 </script>
 <!----- start-header---->

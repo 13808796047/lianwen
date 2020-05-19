@@ -11,4 +11,5 @@
       left: 50%;
       margin-top: -25px;
       margin-left: -150px;
+      z-index:99999;
   }
