@@ -228,7 +228,7 @@
         }
       });
       clipboard.on('success', function (e) {
-        alert("复制成功");
+        toastr.success('复制成功')
       });
       //确认购买
       $("#sureshop").click(function(){
