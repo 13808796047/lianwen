@@ -14,7 +14,7 @@ class BaiduPayHandler
     public function __construct(array $options = [])
     {
         $this->rsaPubKeyStr = $options['rsaPubKeyStr'] ?? '';
-        $this->rsaPriKeyStr = $options['reaPriKeyStr'] ?? '';
+        $this->rsaPriKeyStr = file_get_contents($options['reaPriKeyStr']) ?? '';
     }
 
     public function getSign(array $assocArr)
