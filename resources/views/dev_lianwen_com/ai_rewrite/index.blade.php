@@ -249,7 +249,7 @@
 
       })
       //复制链接
-      var urladd = $("#urladdress").text();
+      var urladd = $("#urladdress").html();
       var clipboard = new Clipboard('#copyurl', {
         text: function () {
         return urladd;
