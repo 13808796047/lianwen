@@ -77,9 +77,9 @@ class PaymentsController extends Controller
                 'message' => '支付失败!'
             ], 500);
         }
-        $type = explode('-', $result->out_trade_no);
-        switch ($type[0]) {
-            case 'recharge':
+        $type = substr($result->out_trade_no, 0, 2);
+        switch ($type) {
+            case 'JC':
                 $recharge = Recharge::where('no', $result->out_trade_no)->first();
                 return view('domained::auto_checks.index');
                 break;
@@ -101,9 +101,9 @@ class PaymentsController extends Controller
         if(!in_array($data->trade_status, ['TRADE_SUCCESS', 'TRADE_FINISHED'])) {
             return app('alipay')->success();
         }
-        $type = explode('-', $data->out_trade_no);
+        $type = substr($data->out_trade_no, 0, 2);
         // $data->out_trade_no 拿到订单流水号，并在数据库中查询
-        switch ($type[0]) {
+        switch ($type) {
             case 'recharge':
                 $recharge = Recharge::where('no', $data->out_trade_no)->first();
                 // 正常来说不太可能出现支付了一笔不存在的订单，这个判断只是加强系统健壮性。
@@ -225,9 +225,9 @@ class PaymentsController extends Controller
     {
         // 校验回调参数是否正确
         $data = app('wechat_pay')->verify();
-        $type = explode('-', $data->out_trade_no);
-        switch ($type[0]) {
-            case 'recharge':
+        $type = substr($data->out_trade_no, 0, 2);
+        switch ($type) {
+            case 'JC':
                 $recharge = Recharge::where('no', $data->out_trade_no)->first();
                 // 正常来说不太可能出现支付了一笔不存在的订单，这个判断只是加强系统健壮性。
                 if(!$recharge) {
