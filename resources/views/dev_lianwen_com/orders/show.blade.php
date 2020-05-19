@@ -9,6 +9,9 @@
     .curfont{
       font-size:16px;
     }
+    .footers{
+      bottom:0;
+    }
   </style>
 @stop
 @section('content')
@@ -160,7 +163,7 @@
      $(document).ready(function () {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
-      $('#lwfooter').removeClass('absolute');
+      $('#lwfoot').addClass('footers')
       $("input[name='paytype']").change(() => {
         $('#bottonsubmit').toggle();
         $('#btn-wechat').toggle();
