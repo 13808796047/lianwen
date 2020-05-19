@@ -226,6 +226,8 @@
         "showMethod": "fadeIn",//显示时的动画方式
 
         "hideMethod": "fadeOut" //消失时的动画方式
+
+
       };
 
       //获取字数
@@ -247,7 +249,7 @@
 
       })
       //复制链接
-      var urladd = $("#urladdress").html();
+      var urladd = $("#urladdress").text();
       var clipboard = new Clipboard('#copyurl', {
         text: function () {
         return urladd;
