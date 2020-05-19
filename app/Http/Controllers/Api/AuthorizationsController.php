@@ -74,7 +74,7 @@ class AuthorizationsController extends Controller
         $app = Factory::miniProgram($config);
         $code = $request->code;
         if(!$code) {
-            throw new InvalidRequestException('参数错误', 500);
+            throw new AuthenticationException('参数code错误，未获取用户信息');
         }
         $data = $app->auth->session($code);
         // 如果结果错误，说明 code 已过期或不正确，返回 401 错误
