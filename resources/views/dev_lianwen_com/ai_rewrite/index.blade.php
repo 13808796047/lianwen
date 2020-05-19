@@ -91,7 +91,7 @@
           <p style="margin:10px 0;">方式1：分享地址，邀请好友注册（适合电脑此操作）</p>
           <div style="display:flex;justify-content: center;">
             <p style="border: 1px solid;padding: 0 10px;" id="urladdress">https://dev.lianwen.com/zt/jc?uid={{auth()->user()->id}}</p>
-            <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;" calss="copyurl">复制链接</p>
+            <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;" class="copyurl">复制链接</p>
           </div>
           <p style="margin:10px 0;">方式2：微信扫码，邀请好友注册（适合手机操作）</p>
           <div style="display:flex;justify-content: center;" id="qrcode">
