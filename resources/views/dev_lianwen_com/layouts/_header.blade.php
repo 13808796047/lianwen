@@ -61,9 +61,5 @@
   </div>
 </nav>
 <script>
-$(function(){
-
-})
-  console.log({!! json_encode($categories) !!});
 </script>
 <!----- start-header---->
