@@ -213,7 +213,9 @@
 
         "hideDuration": "1000",//消失的动画时间
 
-        "timeOut": "5000", //展现时间
+        "positionClass": "toast-center-center",//弹出窗的位置
+
+        "timeOut": "50000", //展现时间
 
         "extendedTimeOut": "1000",//加长展示时间
 
