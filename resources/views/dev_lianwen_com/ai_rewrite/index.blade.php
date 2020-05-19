@@ -249,10 +249,11 @@
 
       })
       //复制链接
-      var urladd = $("#urladdress").html();
+      var copycontents = $("#urladdress").html();
+      console.log(copycontents)
       var clipboard = new Clipboard('#copyurl', {
         text: function () {
-        return urladd;
+        return copycontents;
         }
       });
       clipboard.on('success', function (e) {
