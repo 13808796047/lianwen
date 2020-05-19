@@ -149,33 +149,16 @@ class OfficialAccountController extends Controller
             }
         }
         if($type == 'CC') {
-            if(!$user) {
-                $loginUser->update(
-                    [
-                        'nick_name' => $wxUser['nickname'],
-                        'avatar' => $wxUser['headimgurl'],
-                        'weixin_openid' => $wxUser['openid'],
-                        'weixin_unionid' => $wxUser['unionid'] ?: '',
-                        'subscribe' => $wxUser['subscribe'],
-                        'subscribe_time' => $wxUser['subscribe_time'],
-                    ]
-                );
-            } else {
-                $user->delete();
-                $loginUser->update([
-                    'nick_name' => $user['nickname'],
-                    'avatar' => $user['headimgurl'],
-                    'weixin_openid' => $user['openid'],
-                    'weixin_unionid' => $user['unionid'] ?: '',
+            $loginUser->update(
+                [
+                    'nick_name' => $wxUser['nickname'],
+                    'avatar' => $wxUser['headimgurl'],
+                    'weixin_openid' => $wxUser['openid'],
+                    'weixin_unionid' => $wxUser['unionid'] ?: '',
                     'subscribe' => $wxUser['subscribe'],
                     'subscribe_time' => $wxUser['subscribe_time'],
-                ]);
-
-                foreach($user->orders as $order) {
-                    $order->userid = $loginUser->id;
-                }
-            }
-
+                ]
+            );
         }
     }
 }
