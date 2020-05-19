@@ -254,6 +254,7 @@
         }
       });
       clipboard.on('success', function (e) {
+        $('#tjModal').modal('hide')
         toastr.success('复制成功')
       });
       //确认购买
