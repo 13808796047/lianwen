@@ -90,7 +90,7 @@
           <p style="font-size: 13px;color: #FFA54F;">双方各送5次</p>
           <p style="margin:10px 0;">方式1：分享地址，邀请好友注册（适合电脑此操作）</p>
           <div style="display:flex;justify-content: center;">
-            <p style="border: 1px solid;padding: 0 10px;" id="urladdress">https://dev.lianwen.com/zt/jc?uid={{auth()->user()->id}}</p>
+            <p id="demo" style="border: 1px solid;padding: 0 10px;" >https://dev.lianwen.com/zt/jc?uid={{auth()->user()->id}}</p>
             <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;" class="btn">复制链接</p>
           </div>
           <p style="margin:10px 0;">方式2：微信扫码，邀请好友注册（适合手机操作）</p>
@@ -112,13 +112,15 @@
     <!--左边导航-->
     <div class="main clearfix" id="jcafter">
       <div class="lbox fl">
-      <p style="font-size: 20px;">请输入你要降重的内容。<span style="font-size:16px;color:#757575;">（最大支持5000字）</span></p>
+      <p style="font-size: 20px;">请输入你要降重的内容。<span style="font-size:16px;color:#757575;">（最大支持1000字）</span></p>
       <textarea name="content" id="content"
         style="width:97%;height: 500px;padding:20px;box-sizing:border-box;font-size:20px;outline: none;border:1px solid #ddd;margin-top:20px"></textarea>
-      <p style="float: right;font-size: 13px;padding-right: 30px;" id="words">当前输入<span>0</span>字</p>
+      <div style="display:flex;align-items: center;justify-content: space-between;">
       <p style="background-color: #4876FF;display: inline;padding: 5px 20px;color:#fff;text-align: center;font-size:15px;"
         id="reduce">
         一键降重</p>
+        <p style="float: right;font-size: 13px;padding-right: 30px;" id="words">当前输入<span>0</span>字</p>
+      </div>
       <div style="display: flex;justify-content: center;margin-top: 15px;">
       <p>剩余次数:<span id="jc_time">{{ auth()->user()->jc_times}}</span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
     </div>
@@ -294,6 +296,7 @@
         $("#curjctime").text(cur)
       })
       //点击降重
+
       $('#reduce').click(function(){
         let words =  $('#words span').text();
         let contents = $('#content').val();

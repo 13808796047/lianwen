@@ -2,6 +2,14 @@
 @section('title', '检测报告')
 @section('styles')
   <link rel="stylesheet" href="{{asset('asset/css/check.css')}}">
+  <style>
+    .curfont {
+      font-size: 16px;
+    }
+    .footers{
+      bottom:0;
+    }
+  </style>
 @stop
 @section('content')
   <div class="main clearfix">
@@ -128,6 +136,8 @@
 @section('scripts')
   <script>
     $(function () {
+      $('#headerlw').addClass('curfont')
+      $('#lwfoot').addClass('footers')
       // 全选
       $('#allcheck').click(function () {
         $("input[name='delete']").prop("checked", this.checked);
