@@ -251,7 +251,8 @@
       //复制链接
       var clipboard = new Clipboard('#copyurl', {
         text: function () {
-        return $("#urladdress").html()
+        var copycontents = $("#urladdress").html();
+        return copycontents;
         }
       });
       clipboard.on('success', function (e) {
