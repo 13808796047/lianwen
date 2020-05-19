@@ -115,7 +115,7 @@
       <p style="font-size: 20px;">请输入你要降重的内容。<span style="font-size:16px;color:#757575;">（最大支持1000字）</span></p>
       <textarea name="content" id="content"
         style="width:97%;height: 500px;padding:20px;box-sizing:border-box;font-size:20px;outline: none;border:1px solid #ddd;margin-top:20px"></textarea>
-      <div style="display:flex;">
+      <div style="display:flex;align-items: center;justify-content: space-between;">
       <p style="background-color: #4876FF;display: inline;padding: 5px 20px;color:#fff;text-align: center;font-size:15px;"
         id="reduce">
         一键降重</p>
