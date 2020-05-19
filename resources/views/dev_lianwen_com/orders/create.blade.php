@@ -15,6 +15,9 @@
       border: 1px solid;
       margin-right: 10px;
     }
+    .footers{
+      bottom:0;
+    }
   </style>
 @stop
 @section('content')
@@ -271,6 +274,7 @@
       var oneid = ''
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
+      $('#lwfoot').addClass('footers')
       $('.category>li:first-child i').addClass('selected')
       $('#cid').val($('.category>li:first-child').data('id'))
       $('.category>li').click(function () {
