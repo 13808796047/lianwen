@@ -207,17 +207,17 @@
 
         "closeButton": true, //是否显示关闭按钮
 
-        "debug": false, //是否使用debug模式
+        "debug": true, //是否使用debug模式
 
-        "showDuration": "30000",//显示的动画时间
+        "showDuration": "300000",//显示的动画时间
 
-        "hideDuration": "1000",//消失的动画时间
+        "hideDuration": "500000",//消失的动画时间
 
         "positionClass": "toast-center-center",//弹出窗的位置
 
-        "timeOut": "50000", //展现时间
+        "timeOut": "500000", //展现时间
 
-        "extendedTimeOut": "1000",//加长展示时间
+        "extendedTimeOut": "100000",//加长展示时间
 
         "showEasing": "swing",//显示时的动画缓冲方式
 
