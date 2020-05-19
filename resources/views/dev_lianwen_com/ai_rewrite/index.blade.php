@@ -294,6 +294,7 @@
         $("#curjctime").text(cur)
       })
       //点击降重
+
       $('#reduce').click(function(){
         let words =  $('#words span').text();
         let contents = $('#content').val();
