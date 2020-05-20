@@ -149,17 +149,13 @@ class OfficialAccountController extends Controller
             }
         }
         if($type == 'CC') {
-            info([$type]);
-            $loginUser->update(
-                [
-                    'nick_name' => $wxUser['nickname'],
-                    'avatar' => $wxUser['headimgurl'],
-                    'weixin_openid' => $wxUser['openid'],
-                    'weixin_unionid' => $wxUser['unionid'] ?: '',
-                    'subscribe' => $wxUser['subscribe'],
-                    'subscribe_time' => $wxUser['subscribe_time'],
-                ]
-            );
+            $loginUser->nick_name = $wxUser['nickname'];
+            $loginUser->avatar = $wxUser['avatar'];
+            $loginUser->weixin_openid = $wxUser['weixin_openid'];
+            $loginUser->weixin_unionid = $wxUser['weixin_unionid'];
+            $loginUser->subscribe = $wxUser['subscribe'];
+            $loginUser->subscribe_time = $wxUser['subscribe_time'];
+            $loginUser->save();
             $message = new Text('关注成功!');
 
             $result = $this->app->customer_service->message($message)->to($loginUser->weixin_openid)->send();
