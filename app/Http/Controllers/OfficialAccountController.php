@@ -149,7 +149,7 @@ class OfficialAccountController extends Controller
             }
         }
         if($type == 'CC') {
-            info([$wxUser['nickname']], [$wxUser->nickname]);
+            info([$wxUser['nickname']]);
             $loginUser->nick_name = $wxUser['nickname'];
             $loginUser->avatar = $wxUser['avatar'];
             $loginUser->weixin_openid = $wxUser['weixin_openid'];
