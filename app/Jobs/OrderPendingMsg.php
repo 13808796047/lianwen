@@ -39,10 +39,10 @@ class OrderPendingMsg implements ShouldQueue
                 'touser' => $this->order->user->weixin_openid,
                 'template_id' => '8Fyk5ojTngSDx9lpETPCUYvjYte7ycubeqsTAxxERh0',
                 'url' => 'https://wap.lianwen.com/bading?openid=' . $this->order->user->weixin_openid,
-                'miniprogram' => [
-                    'appid' => 'wx6340d7d2fead020b',
-                    'pagepath' => 'pages/lookup/lookup',
-                ],
+//                'miniprogram' => [
+//                    'appid' => 'wx6340d7d2fead020b',
+//                    'pagepath' => 'pages/lookup/lookup',
+//                ],
                 'data' => $data,
             ]);
         }
