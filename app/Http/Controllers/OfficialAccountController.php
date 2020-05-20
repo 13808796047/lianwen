@@ -123,6 +123,7 @@ class OfficialAccountController extends Controller
 
     public function handleUser($wxUser, $eventKey)
     {
+        info([$wxUser]);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         [$type, $id] = explode('=', $eventKey);
