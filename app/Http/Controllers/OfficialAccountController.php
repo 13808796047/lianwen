@@ -149,7 +149,7 @@ class OfficialAccountController extends Controller
             }
         }
         if($type == 'CC') {
-            info($wxUser['nickname']);
+            info($loginUser->toArray());
             $loginUser->nick_name = $wxUser['nickname'];
             $loginUser->avatar = $wxUser['avatar'];
             $loginUser->weixin_openid = $wxUser['weixin_openid'];
@@ -157,6 +157,7 @@ class OfficialAccountController extends Controller
             $loginUser->subscribe = $wxUser['subscribe'];
             $loginUser->subscribe_time = $wxUser['subscribe_time'];
             $loginUser->save();
+            info($loginUser->toArray());
             $message = new Text('关注成功!');
 
             $result = $this->app->customer_service->message($message)->to($loginUser->weixin_openid)->send();
