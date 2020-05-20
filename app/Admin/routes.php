@@ -16,7 +16,8 @@ Route::group([
     $router->resource('orders', 'OrderController');
     $router->resource('categories', 'CategoryController');
     $router->resource('users', 'UserController');
-    $router->resource('jc_settings', 'JcSettingController');
+    $router->get('jc_settings', 'JcSettingController@index')->name('admin.jcsetting.index');
+    $router->post('jc_settings/update', 'JcSettingController@updateJcSetting')->name('admin.jcsetting.update');
     $router->get('orders/{order}/download_paper', 'OrderController@downloadPaper')->name('admin.orders.download_paper');
     $router->get('orders/{order}/download_report', 'OrderController@downloadReport')->name('admin.orders.download_report');
     $router->post('orders/{order}/receved', 'OrderController@receved')->name('admin.orders.receved');
