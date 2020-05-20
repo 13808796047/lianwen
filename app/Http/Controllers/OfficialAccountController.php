@@ -149,16 +149,20 @@ class OfficialAccountController extends Controller
             }
         }
         if($type == 'CC') {
-            $loginUser->nick_name = $wxUser['nickname'];
-            $loginUser->avatar = $wxUser['avatar'];
-            $loginUser->weixin_openid = $wxUser['weixin_openid'];
-            $loginUser->weixin_unionid = $wxUser['weixin_unionid'];
-            $loginUser->subscribe = $wxUser['subscribe'];
-            $loginUser->subscribe_time = $wxUser['subscribe_time'];
-            $loginUser->save();
-            $message = new Text('关注成功!');
+            try {
+                $loginUser->nick_name = $wxUser['nickname'];
+                $loginUser->avatar = $wxUser['avatar'];
+                $loginUser->weixin_openid = $wxUser['weixin_openid'];
+                $loginUser->weixin_unionid = $wxUser['weixin_unionid'];
+                $loginUser->subscribe = $wxUser['subscribe'];
+                $loginUser->subscribe_time = $wxUser['subscribe_time'];
+                $loginUser->save();
+                $message = new Text('关注成功!');
 
-            $result = $this->app->customer_service->message($message)->to($loginUser->weixin_openid)->send();
+                $result = $this->app->customer_service->message($message)->to($loginUser->weixin_openid)->send();
+            } catch (\Exception $e) {
+                info($e->getMessage());
+            }
         }
     }
 }
