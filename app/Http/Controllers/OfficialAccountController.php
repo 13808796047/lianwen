@@ -152,8 +152,8 @@ class OfficialAccountController extends Controller
             try {
                 $loginUser->nick_name = $wxUser['nickname'];
                 $loginUser->avatar = $wxUser['headimgurl'];
-                $loginUser->weixin_openid = $wxUser['weixin_openid'];
-                $loginUser->weixin_unionid = $wxUser['weixin_unionid'];
+                $loginUser->weixin_openid = $wxUser['openid'];
+                $loginUser->weixin_unionid = $wxUser['unionid'];
                 $loginUser->subscribe = $wxUser['subscribe'];
                 $loginUser->subscribe_time = $wxUser['subscribe_time'];
                 $loginUser->save();
