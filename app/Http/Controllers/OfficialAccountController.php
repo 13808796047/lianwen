@@ -128,6 +128,7 @@ class OfficialAccountController extends Controller
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         [$type, $id] = explode('=', $eventKey);
         $loginUser = User::find($id);
+        info([$loginUser]);
         if($type == 'JC') {
             if(!$user) {
                 $invit_user = User::create([
