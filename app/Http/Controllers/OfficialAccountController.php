@@ -151,7 +151,7 @@ class OfficialAccountController extends Controller
         if($type == 'CC') {
             try {
                 $loginUser->nick_name = $wxUser['nickname'];
-                $loginUser->avatar = $wxUser['avatar'];
+                $loginUser->avatar = $wxUser['headimgurl'];
                 $loginUser->weixin_openid = $wxUser['weixin_openid'];
                 $loginUser->weixin_unionid = $wxUser['weixin_unionid'];
                 $loginUser->subscribe = $wxUser['subscribe'];
