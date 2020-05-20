@@ -123,12 +123,10 @@ class OfficialAccountController extends Controller
 
     public function handleUser($wxUser, $eventKey)
     {
-        info([$wxUser]);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         [$type, $id] = explode('=', $eventKey);
         $loginUser = User::find($id);
-        info([$loginUser]);
         if($type == 'JC') {
             if(!$user) {
                 $invit_user = User::create([
@@ -151,6 +149,7 @@ class OfficialAccountController extends Controller
             }
         }
         if($type == 'CC') {
+            info([$type]);
             $loginUser->update(
                 [
                     'nick_name' => $wxUser['nickname'],
