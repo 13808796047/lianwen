@@ -20,12 +20,12 @@ class UserService
             $bindUser->phone = $phone;
             $bindUser->save();
         }
-        $phone_user->delete();
+        $phoneUser->delete();
         $bindUser->update([
             'phone' => $phone,
-            'password' => $phone_user->password ?? ""
+            'password' => $phoneUser->password ?? ""
         ]);
-        foreach($phone_user->orders as $order) {
+        foreach($phoneUser->orders as $order) {
             $order->update([
                 'userid' => $bindUser->id,
             ]);
