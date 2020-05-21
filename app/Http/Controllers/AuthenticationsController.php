@@ -21,11 +21,13 @@ class AuthenticationsController extends Controller
                 $config = config('services.dev_lianwen_com');
                 $this->uri = 'dev';
                 break;
-            case 'wanfang.lianwen.com':
+            case env('WF_WECHAT_OFFICIAL_ACCOUNT_DOMAIN'):
                 $config = config('services.wanfang_lianwen_com');
+                $this->uri = 'wf';
                 break;
-            case 'weipu.lianwen.com':
+            case env('WP_WECHAT_OFFICIAL_ACCOUNT_DOMAIN'):
                 $config = config('services.weipu_lianwen_com');
+                $this->uri = 'wp';
                 break;
             default:
                 $config = config('services.dev_lianwen_com');
@@ -66,6 +68,12 @@ class AuthenticationsController extends Controller
                     switch ($this->uri) {
                         case 'dev':
                             $attributes['dev_weixin_openid'] = $oauthUser->getOriginal()['openid'];
+                            break;
+                        case 'wf':
+                            $attributes['wf_weixin_openid'] = $oauthUser->getOriginal()['openid'];
+                            break;
+                        case 'wp':
+                            $attributes['wp_weixin_openid'] = $oauthUser->getOriginal()['openid'];
                             break;
                     }
                     $user = User::create($attributes);
