@@ -299,7 +299,7 @@
             <label for="message-text" class="col-form-label">验证码:</label>
             <div style="display:flex;">
               <input type="text" class="form-control" id="recipient-name" style="width:50%;">
-              <p style="margin-left: 18px;background:#66CD00;color: #fff;font-size: 13px;padding: 7px 10px;">获取验证码</p>
+              <p style="margin-left: 18px;background:#66CD00;color: #fff;font-size: 13px;padding:7px 10px;">获取验证码</p>
             </div>
           </div>
         </form>
