@@ -604,8 +604,7 @@
       // });
       // $().UItoTop({easingType: 'easeOutQuart'});
       // Tab切换
-       let xixi =
-        console.log()
+
       $('.banner-li').click(function () {
         $(this)
           .addClass('li-current')
@@ -624,7 +623,8 @@
         }
       })
       @auth
-      let isphone ={{auth()->user()}}
+      let isphone ={{auth()->user()->phone}}
+      console.log(isphone,312312)
       if(!isphone){
         console.log('xixi',1323)
       }
