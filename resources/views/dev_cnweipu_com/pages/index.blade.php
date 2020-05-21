@@ -646,7 +646,10 @@
       @auth
       let isphone ={{auth()->user()->phone}}
       console.log(isphone,312312)
-      if(isphone){
+      if(!isphone){
+        // $('#badingphone').modal('show')
+        console.log('xixi')
+      }else{
         $('#badingphone').modal('show')
       }
       @endauth
