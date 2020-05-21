@@ -624,7 +624,7 @@
           $("#btnSubmit").click()
         }
       })
-      let isphone ={{auth()}}
+      let isphone ={{auth()->user}}
       console.log(isphone,123123)
       //账号登录
       $('#accountLogin').click(function () {
