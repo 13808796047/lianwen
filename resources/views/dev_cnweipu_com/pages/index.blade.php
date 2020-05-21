@@ -626,7 +626,7 @@
       @auth
       let isphone ={{auth()->user()}}
       if(!isphone){
-        console.log('xixi')
+        console.log('xixi',1323)
       }
       @endauth
 
