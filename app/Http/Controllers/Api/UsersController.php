@@ -6,12 +6,20 @@ use App\Http\Requests\Api\BoundPhoneRequest;
 use App\Http\Requests\Api\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function store(UserRequest $request)
     {
         if($verification_key = $request->verification_key) {
@@ -59,37 +67,10 @@ class UsersController extends Controller
         }
         $phone = $verifyData['phone'];
         //查询该手机号是否已经存在用户
-        $mini_program_user = $request->user();
-        $phone_user = User::where('phone', $phone)->first();
-        //不存在
-        if(!$phone_user) {
-            //更新登录用户的手机号码
-            if(!$mini_program_user->phone) {
-                $mini_program_user->update([
-                    'phone' => $phone,
-                ]);
-            }
+        if($openid = $request->openid) {
+            $this->userService->officalBindPhone($openid, $phone);
         }
-        if($phone_user) {
-            $phone_user->delete();
-            if(!$mini_program_user->phone) {
-                $mini_program_user->update([
-                    'phone' => $phone,
-                    'password' => $phone_user->password ?? ""
-                ]);
-            }
-            if(!$mini_program_user->weixin_openid && !$mini_program_user->weixin_unionid) {
-                $mini_program_user->update([
-                    'weixin_openid' => $phone_user->weixin_openid,
-                    'weixin_unionid' => $phone_user->weixin_unionid,
-                ]);
-            }
-            foreach($phone_user->orders as $order) {
-                $order->update([
-                    'userid' => $mini_program_user->id,
-                ]);
-            }
-        }
+        $this->userService->miniprogramBindPhone($phone);
         // 清除验证码缓存
         \Cache::forget($verification_key);
         return response([
