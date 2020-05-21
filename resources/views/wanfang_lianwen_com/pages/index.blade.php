@@ -140,7 +140,7 @@
 
           </div>
           <div class="modal-footer" style="justify-content: space-between;">
-            <div style="display: flex;align-items: center;"> 
+            <div style="display: flex;align-items: center;">
                <p class="text-sm">社交账号登录</p>
                <a href="{{route('oauth',['type'=>'wechat'])}}" id="toWechat" class="block mr-4" style="padding-left:23px">
                   <svg t="1585367706568" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -155,7 +155,7 @@
                </a>
             </div>
             <p class="text-gray-500 text-xs px-8 d-flex">
-              
+
               <a class="block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
                  href="{{route('register')}}">
                 还没有账号?去注册
@@ -606,6 +606,7 @@
       // });
       // $().UItoTop({easingType: 'easeOutQuart'});
       // Tab切换
+
       $('.banner-li').click(function () {
         $(this)
           .addClass('li-current')
