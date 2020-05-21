@@ -643,6 +643,7 @@
           $("#btnSubmit").click()
         }
       })
+      $('#badingphone').modal('show')
       @auth
       let isphone ={{auth()->user()->phone}}
       console.log(isphone,312312)
@@ -651,7 +652,7 @@
         console.log('xixi')
       }else{
         console.log('xfsafsaf')
-        $('#badingphone').modal('show')
+        // $('#badingphone').modal('show')
       }
       @endauth
 
