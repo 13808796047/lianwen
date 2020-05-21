@@ -299,7 +299,7 @@
             <label for="message-text" class="col-form-label">验证码:</label>
             <div style="display:flex;">
               <input type="text" class="form-control" id="recipient-name" style="width:50%;">
-              <p style="margin-left: 18px;background:#66CD00;color: #fff;font-size: 13px;padding:7px 10px;">获取验证码</p>
+              <p style="margin-left: 18px;background:#66CD00;color: #fff;font-size: 13px;padding:7px 10px;" id="getcodes">获取验证码</p>
             </div>
           </div>
         </form>
@@ -655,7 +655,12 @@
           $("#btnSubmit").click()
         }
       })
+      // 新加入
+      $("#getcodes").click(function(){
+        console.log('sfaqe')
+      })
       $('#badingphone').modal('show')
+
       @auth
       let isphone ={{auth()->user()->phone}}
       console.log(isphone,312312)
@@ -667,7 +672,7 @@
         // $('#badingphone').modal('show')
       }
       @endauth
-
+      // 新加入结束
       //账号登录
       $('#accountLogin').click(function () {
         axios.post('{{route('login') }}', {
