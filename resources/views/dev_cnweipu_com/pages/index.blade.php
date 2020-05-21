@@ -623,6 +623,12 @@
           $("#btnSubmit").click()
         }
       })
+      @auth
+      let isphone ={{auth()->user()}}
+      if(!isphone){
+        console.log('xixi')
+      }
+      @endauth
 
       //账号登录
       $('#accountLogin').click(function () {
