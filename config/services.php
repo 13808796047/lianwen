@@ -49,9 +49,9 @@ return [
     //微信登录
     'dev_lianwen_com' => [
         'wechat' => [
-            'client_id' => 'wxdaab22b871fc3982',
-            'client_secret' => '6680c8ec8bd33997d3f709b889f36d17',
-            'redirect' => 'https://dev.lianwen.com/oauth/wechat/callback',
+            'client_id' => env('DEV_WEIXIN_KEY'),
+            'client_secret' => env('DEV_WEIXIN_SECRET'),
+            'redirect' => env('DEV_WEIXIN_REDIRECT'),
         ]
     ],
     'wanfang_lianwen_com' => [

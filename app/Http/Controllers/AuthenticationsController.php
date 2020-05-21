@@ -11,8 +11,7 @@ use Overtrue\Socialite\SocialiteManager;
 class AuthenticationsController extends Controller
 {
     protected $app;
-    protected $openid;
-    protected $unionid;
+    protected $uri;
 
     public function __construct()
     {
@@ -20,13 +19,15 @@ class AuthenticationsController extends Controller
         switch ($host) {
             case env('DEV_WECHAT_OFFICIAL_ACCOUNT_DOMAIN'):
                 $config = config('services.dev_lianwen_com');
-                $this->openid = 'dev_weixin_openid';
+                $this->uri = 'dev';
                 break;
-            case 'wanfang.lianwen.com':
+            case env('WF_WECHAT_OFFICIAL_ACCOUNT_DOMAIN'):
                 $config = config('services.wanfang_lianwen_com');
+                $this->uri = 'wf';
                 break;
-            case 'weipu.lianwen.com':
+            case env('WP_WECHAT_OFFICIAL_ACCOUNT_DOMAIN'):
                 $config = config('services.weipu_lianwen_com');
+                $this->uri = 'wp';
                 break;
             default:
                 $config = config('services.dev_lianwen_com');
@@ -52,7 +53,6 @@ class AuthenticationsController extends Controller
         switch ($type) {
             case 'wechat':
                 $unionid = $oauthUser->getOriginal()['unionid'] ?: null;
-                info($this->unionid);
                 if($unionid) {
                     $user = User::where('weixin_unionid', $unionid)->first();
                 } else {
@@ -60,12 +60,23 @@ class AuthenticationsController extends Controller
                 }
                 // 没有用户，默认创建一个用户
                 if(!$user) {
-                    $user = User::create([
+                    $attributes = [
                         'nick_name' => $oauthUser['nickname'],
                         'avatar' => $oauthUser['avatar'],
-                        $this->openid => $oauthUser->getOriginal()['openid'],
                         'weixin_unionid' => $unionid,
-                    ]);
+                    ];
+                    switch ($this->uri) {
+                        case 'dev':
+                            $attributes['dev_weixin_openid'] = $oauthUser->getOriginal()['openid'];
+                            break;
+                        case 'wf':
+                            $attributes['wf_weixin_openid'] = $oauthUser->getOriginal()['openid'];
+                            break;
+                        case 'wp':
+                            $attributes['wp_weixin_openid'] = $oauthUser->getOriginal()['openid'];
+                            break;
+                    }
+                    $user = User::create($attributes);
                     $uid = \Cache::get('uid');
                     //邀请人
                     if($uid) {
