@@ -53,6 +53,7 @@ class AuthenticationsController extends Controller
         switch ($type) {
             case 'wechat':
                 $unionid = $oauthUser->getOriginal()['unionid'] ?: null;
+                info($this->unionid);
                 if($unionid) {
                     $user = User::where($this->unionid, $unionid)->first();
                 } else {
