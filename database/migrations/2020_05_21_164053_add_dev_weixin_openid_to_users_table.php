@@ -16,6 +16,12 @@ class AddDevWeixinOpenidToUsersTable extends Migration
         Schema::table('users', function(Blueprint $table) {
             $table->string('dev_weixin_openid')->unique()->nullable();
             $table->string('dev_weixin_unionid')->unique()->nullable();
+            $table->string('wf_weixin_openid')->unique()->nullable();
+            $table->string('wf_weixin_unionid')->unique()->nullable();
+            $table->string('weipu_weixin_openid')->unique()->nullable();
+            $table->string('weipu_weixin_unionid')->unique()->nullable();
+            $table->string('paperpass_weixin_openid')->unique()->nullable();
+            $table->string('paperpass_weixin_unionid')->unique()->nullable();
         });
     }
 
