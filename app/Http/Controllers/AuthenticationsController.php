@@ -45,13 +45,13 @@ class AuthenticationsController extends Controller
     {
         try {
             $oauthUser = $this->app->driver($type)->user();
+            dd($oauthUser);
         } catch (\Exception $e) {
             throw new AuthenticationException('参数错误，未获取用户信息');
         }
         switch ($type) {
             case 'wechat':
                 $unionid = $oauthUser->getOriginal()['unionid'] ?: null;
-                info($this->unionid);
                 if($unionid) {
                     $user = User::where('weixin_unionid', $unionid)->first();
                 } else {
