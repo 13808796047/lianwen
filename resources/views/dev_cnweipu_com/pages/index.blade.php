@@ -284,20 +284,23 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">绑定手机号</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form>
+      <div class="modal-body" style="padding: 10px 99px;">
+        <form novalidate>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">手机号:</label>
             <input type="text" class="form-control" id="recipient-name">
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">验证码:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <div style="display:flex;">
+              <input type="text" class="form-control" id="recipient-name">
+              <p>获取验证码</p>
+            </div>
           </div>
         </form>
       </div>
