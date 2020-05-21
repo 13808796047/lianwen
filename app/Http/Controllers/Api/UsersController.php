@@ -28,7 +28,6 @@ class UsersController extends Controller
                 abort(403, '验证码已失效');
             }
             if(!hash_equals($verifyData['code'], $request->verification_code)) {
-                // 返回401
                 throw new AuthenticationException('验证码错误');
             }
             $phone = $verifyData['phone'];
@@ -40,7 +39,6 @@ class UsersController extends Controller
             'phone' => $phone,
             'password' => Hash::make($request->password),
         ]);
-        // 清除验证码缓存
         \Cache::forget($verification_key);
         return new UserResource($user);
     }
@@ -62,12 +60,10 @@ class UsersController extends Controller
             abort(403, '验证码已失效');
         }
         if(!hash_equals($verifyData['code'], $request->verification_code)) {
-            // 返回401
             throw new AuthenticationException('验证码错误');
         }
         $phone = $verifyData['phone'];
         $this->userService->miniprogramBindPhone($phone);
-        // 清除验证码缓存
         \Cache::forget($verification_key);
         return response([
             'message' => '绑定成功!'
@@ -76,7 +72,6 @@ class UsersController extends Controller
 
     public function officalBoundPhone(BoundPhoneRequest $request)
     {
-        //查询该手机号是否已经存在用户
         if(!$openid = $request->openid) {
             throw new AuthenticationException('参数错误!');
         }
@@ -90,12 +85,10 @@ class UsersController extends Controller
             abort(403, '验证码已失效');
         }
         if(!hash_equals($verifyData['code'], $request->verification_code)) {
-            // 返回401
             throw new AuthenticationException('验证码错误');
         }
         $phone = $verifyData['phone'];
         $this->userService->officalBindPhone($openid, $phone);
-        // 清除验证码缓存
         \Cache::forget($verification_key);
         return response([
             'message' => '绑定成功!'
