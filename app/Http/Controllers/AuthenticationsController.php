@@ -18,10 +18,9 @@ class AuthenticationsController extends Controller
     {
         $host = \request()->getHost();
         switch ($host) {
-            case 'dev.lianwen.com':
+            case env('DEV_WECHAT_OFFICIAL_ACCOUNT_DOMAIN'):
                 $config = config('services.dev_lianwen_com');
                 $this->openid = 'dev_weixin_openid';
-                $this->unionid = 'dev_weixin_unionid';
                 break;
             case 'wanfang.lianwen.com':
                 $config = config('services.wanfang_lianwen_com');
@@ -53,8 +52,9 @@ class AuthenticationsController extends Controller
         switch ($type) {
             case 'wechat':
                 $unionid = $oauthUser->getOriginal()['unionid'] ?: null;
+                info($this->unionid);
                 if($unionid) {
-                    $user = User::where($this->unionid, $unionid)->first();
+                    $user = User::where('weixin_unionid', $unionid)->first();
                 } else {
                     $user = User::where($this->openid, $oauthUser->getOriginal()['openid'])->first();
                 }
@@ -64,7 +64,7 @@ class AuthenticationsController extends Controller
                         'nick_name' => $oauthUser['nickname'],
                         'avatar' => $oauthUser['avatar'],
                         $this->openid => $oauthUser->getOriginal()['openid'],
-                        $this->unionid => $unionid,
+                        'weixin_unionid' => $unionid,
                     ]);
                     $uid = \Cache::get('uid');
                     //邀请人

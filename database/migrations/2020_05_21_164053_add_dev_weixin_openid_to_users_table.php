@@ -15,7 +15,9 @@ class AddDevWeixinOpenidToUsersTable extends Migration
     {
         Schema::table('users', function(Blueprint $table) {
             $table->string('dev_weixin_openid')->unique()->nullable();
-            $table->string('dev_weixin_unionid')->unique()->nullable();
+            $table->string('wf_weixin_openid')->unique()->nullable();
+            $table->string('wp_weixin_openid')->unique()->nullable();
+            $table->string('pp_weixin_openid')->unique()->nullable();
         });
     }
 
@@ -28,7 +30,6 @@ class AddDevWeixinOpenidToUsersTable extends Migration
     {
         Schema::table('users', function(Blueprint $table) {
             $table->dropColumn('dev_weixin_openid');
-            $table->dropColumn('dev_weixin_unionid');
         });
     }
 }
