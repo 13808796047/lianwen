@@ -11,6 +11,8 @@ use Overtrue\Socialite\SocialiteManager;
 class AuthenticationsController extends Controller
 {
     protected $app;
+    protected $openid;
+    protected $unionid;
 
     public function __construct()
     {
@@ -18,6 +20,8 @@ class AuthenticationsController extends Controller
         switch ($host) {
             case 'dev.lianwen.com':
                 $config = config('services.dev_lianwen_com');
+                $this->openid = 'dev_weixin_openid';
+                $this->unionid = 'dev_weixin_unionid';
                 break;
             case 'wanfang.lianwen.com':
                 $config = config('services.wanfang_lianwen_com');
@@ -50,17 +54,17 @@ class AuthenticationsController extends Controller
             case 'wechat':
                 $unionid = $oauthUser->getOriginal()['unionid'] ?: null;
                 if($unionid) {
-                    $user = User::where('weixin_unionid', $unionid)->first();
+                    $user = User::where($this->unionid, $unionid)->first();
                 } else {
-                    $user = User::where('weixin_openid', $oauthUser->getOriginal()['openid'])->first();
+                    $user = User::where($this->openid, $oauthUser->getOriginal()['openid'])->first();
                 }
                 // 没有用户，默认创建一个用户
                 if(!$user) {
                     $user = User::create([
                         'nick_name' => $oauthUser['nickname'],
                         'avatar' => $oauthUser['avatar'],
-                        'weixin_openid' => $oauthUser->getOriginal()['openid'],
-                        'weixin_unionid' => $unionid,
+                        $this->openid => $oauthUser->getOriginal()['openid'],
+                        $this->unionid => $unionid,
                     ]);
                     $uid = \Cache::get('uid');
                     //邀请人

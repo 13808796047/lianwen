@@ -120,12 +120,13 @@ class AppServiceProvider extends ServiceProvider
         //公众号
         $this->app->singleton('official_account', function() {
             $domain = \request()->getHost();
+            $dev_uri = env('DEV_WECHAT_OFFICIAL_ACCOUNT_DOMAIN');
             switch ($domain) {
-                case 'mp.cnweipu.com':
-                    $config = config('wechat.official_account.default');
+                case $dev_uri:
+                    $config = config('wechat.official_account.dev');
                     break;
                 default:
-                    $config = config('wechat.official_account.default');
+                    $config = config('wechat.official_account.mp');
             }
             return Factory::officialAccount($config);
         });

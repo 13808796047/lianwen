@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Subscribed;
 use App\Models\User;
 use EasyWeChat\Factory;
 use EasyWeChat\Kernel\Messages\Text;
@@ -13,9 +14,19 @@ use Illuminate\Support\Facades\Log;
 class OfficialAccountController extends Controller
 {
     protected $app;
+    protected $prefix;
 
     public function __construct()
     {
+        $domain = \request()->getHost();
+        $dev_uri = env('DEV_WECHAT_OFFICIAL_ACCOUNT_DOMAIN');
+        switch ($domain) {
+            case $dev_uri:
+                $this->prefix = 'dev-cc-';
+                break;
+            default:
+                $this->prefix = 'wf-cc-';
+        }
         $this->app = app('official_account');
     }
 
@@ -27,7 +38,8 @@ class OfficialAccountController extends Controller
     {
         // 有效期 1 天的二维码
         $qrCode = $this->app->qrcode;
-        $result = $qrCode->temporary('CC=' . auth()->user()->id, 3600 * 24);
+//        $prefix  = 'dev_order';
+        $result = $qrCode->temporary($this->prefix . auth()->user()->id, 3600 * 24);
         $url = $qrCode->url($result['ticket']);
         return response(compact('url'), 200);
     }
@@ -116,17 +128,20 @@ class OfficialAccountController extends Controller
         }
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
-        // 注册
-        $this->handleUser($wxUser, $eventKey);
-
-    }
-
-    public function handleUser($wxUser, $eventKey)
-    {
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        [$type, $id] = explode('=', $eventKey);
+        [$uri, $type, $id] = explode('-', $eventKey);
         $loginUser = User::find($id);
+        // 注册
+        $this->handleUser($loginUser, $uri, $type, $wxUser);
+        if(!$loginUser->phone) {
+            $this->dispatch(new Subscribed($uri, $loginUser));
+        }
+    }
+
+    public function handleUser($loginUser, $uri, $type, $wxUser)
+    {
+
         if($type == 'JC') {
             if(!$user) {
                 $invit_user = User::create([
@@ -148,28 +163,24 @@ class OfficialAccountController extends Controller
                 $result = $this->app->customer_service->message($message)->to($invit_user->weixin_openid)->send();
             }
         }
-        if($type == 'CC') {
-            if(!$loginUser) {
-                $loginUser = User::create([
-                    'nick_name' => $wxUser['nickname'],
-                    'avatar' => $wxUser['headimgurl'],
-                    'weixin_openid' => $wxUser['openid'],
-                    'weixin_unionid' => $wxUser['unionid'] ?: '',
-                    'subscribe' => $wxUser['subscribe'],
-                    'subscribe_time' => $wxUser['subscribe_time'],
-                ]);
-            } else {
-                $loginUser->update([
-                    'nick_name' => $wxUser['nickname'],
-                    'avatar' => $wxUser['headimgurl'],
-                    'weixin_openid' => $wxUser['openid'],
-                    'weixin_unionid' => $wxUser['unionid'] ?: '',
-                    'subscribe' => $wxUser['subscribe'],
-                    'subscribe_time' => $wxUser['subscribe_time'],
-                ]);
+        if($type == 'cc') {
+            $attributes = [
+                'nick_name' => $wxUser['nickname'],
+                'avatar' => $wxUser['headimgurl'],
+                'subscribe' => $wxUser['subscribe'],
+                'subscribe_time' => $wxUser['subscribe_time'],
+            ];
+            switch ($uri) {
+                case 'dev':
+                    $attributes['dev_weixin_openid'] = $wxUser['openid'];
+                    $attributes['dev_weixin_unionid'] = $wxUser['unionid'];
+                    break;
             }
-            $message = new Text('关注成功!');
-            $result = $this->app->customer_service->message($message)->to($user->weixin_openid)->send();
+            if(!$loginUser) {
+                $loginUser = User::create($attributes);
+            } else {
+                $loginUser->update($attributes);
+            }
         }
     }
 }
