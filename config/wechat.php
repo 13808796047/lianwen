@@ -58,12 +58,12 @@ return [
      * 公众号
      */
     'official_account' => [
-        'default' =>
+        'dev' =>
             [
-                'app_id' => env('WECHAT_OFFICIAL_ACCOUNT_APPID', 'your-app-id'),         // AppID
-                'secret' => env('WECHAT_OFFICIAL_ACCOUNT_SECRET', 'your-app-secret'),    // AppSecret
-                'token' => env('WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
-                'aes_key' => env('WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'app_id' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_APPID', 'your-app-id'),         // AppID
+                'secret' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_SECRET', 'your-app-secret'),    // AppSecret
+                'token' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
+                'aes_key' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
             ],
         'mp' =>
             [
