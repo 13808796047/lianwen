@@ -11,8 +11,7 @@ use Overtrue\Socialite\SocialiteManager;
 class AuthenticationsController extends Controller
 {
     protected $app;
-    protected $openid;
-    protected $unionid;
+    protected $uri;
 
     public function __construct()
     {
@@ -20,7 +19,7 @@ class AuthenticationsController extends Controller
         switch ($host) {
             case env('DEV_WECHAT_OFFICIAL_ACCOUNT_DOMAIN'):
                 $config = config('services.dev_lianwen_com');
-                $this->openid = 'dev_weixin_openid';
+                $this->uri = 'dev';
                 break;
             case 'wanfang.lianwen.com':
                 $config = config('services.wanfang_lianwen_com');
@@ -60,12 +59,17 @@ class AuthenticationsController extends Controller
                 }
                 // 没有用户，默认创建一个用户
                 if(!$user) {
-                    $user = User::create([
+                    $attributes = [
                         'nick_name' => $oauthUser['nickname'],
                         'avatar' => $oauthUser['avatar'],
-                        $this->openid => $oauthUser->getOriginal()['openid'],
                         'weixin_unionid' => $unionid,
-                    ]);
+                    ];
+                    switch ($this->uri) {
+                        case 'dev':
+                            $attributes['dev_weixin_openid'] = $oauthUser->getOriginal()['openid'];
+                            break;
+                    }
+                    $user = User::create($attributes);
                     $uid = \Cache::get('uid');
                     //邀请人
                     if($uid) {
