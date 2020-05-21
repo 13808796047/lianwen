@@ -35,7 +35,7 @@
     if (_tag != 'web') {
       for (var i = 0; i < mobileAgent.length; i++) {
         if (browser.indexOf(mobileAgent[i]) != -1) {
-          window.location.href = 'https://wap.lianwen.com/wanfang';
+          window.location.href = 'https://wap.lianwen.com/weipu';
           break;
         }
       }
