@@ -68,6 +68,7 @@ class AuthenticationsController extends Controller
                             $attributes['dev_weixin_openid'] = $oauthUser->getOriginal()['openid'];
                             break;
                     }
+                    dd($attributes);
                     $user = User::create($attributes);
                     $uid = \Cache::get('uid');
                     //邀请人
