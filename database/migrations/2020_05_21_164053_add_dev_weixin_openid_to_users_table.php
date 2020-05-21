@@ -14,10 +14,10 @@ class AddDevWeixinOpenidToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->string('dev_weixin_openid')->unique()->nullable();
-            $table->string('wf_weixin_openid')->unique()->nullable();
-            $table->string('wp_weixin_openid')->unique()->nullable();
-            $table->string('pp_weixin_openid')->unique()->nullable();
+            $table->string('dev_weixin_openid', '64')->unique()->nullable();
+            $table->string('wf_weixin_openid', '64')->unique()->nullable();
+            $table->string('wp_weixin_openid', '64')->unique()->nullable();
+            $table->string('pp_weixin_openid', '64')->unique()->nullable();
         });
     }
 
