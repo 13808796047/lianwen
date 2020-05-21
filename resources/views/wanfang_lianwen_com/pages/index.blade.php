@@ -624,8 +624,10 @@
           $("#btnSubmit").click()
         }
       })
-      let isphone ={{auth()->user}}
-      console.log(isphone,123123)
+      let isphone ={{auth()->user()}}
+      if(!isphone){
+        console.log('xixi')
+      }
       //账号登录
       $('#accountLogin').click(function () {
         axios.post('{{route('login') }}', {
