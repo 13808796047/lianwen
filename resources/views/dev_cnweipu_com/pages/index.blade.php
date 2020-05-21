@@ -665,6 +665,7 @@
         }).then(function(res) {
           if (res.status == 200) {
             swal("提示", res.data.message, "success");
+            console.log(res,"weixin")
             location.reload();
           } else {
             swal("提示", res.data.message);
