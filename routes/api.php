@@ -82,5 +82,6 @@ Route::prefix('v1')
                     ->name('mini_program.store');
                 //分类
                 Route::get('categories', 'CategoriesController@index')->name('categories.index');
+                Route::post('user/offical_bound_phone', 'UsersController@officalBoundPhone')->name('user.offical_bound_phone');
             });
     });

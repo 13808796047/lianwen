@@ -66,11 +66,35 @@ class UsersController extends Controller
             throw new AuthenticationException('验证码错误');
         }
         $phone = $verifyData['phone'];
-        //查询该手机号是否已经存在用户
-        if($openid = $request->openid) {
-            $this->userService->officalBindPhone($openid, $phone);
-        }
         $this->userService->miniprogramBindPhone($phone);
+        // 清除验证码缓存
+        \Cache::forget($verification_key);
+        return response([
+            'message' => '绑定成功!'
+        ], 200);
+    }
+
+    public function officalBoundPhone(BoundPhoneRequest $request)
+    {
+        //查询该手机号是否已经存在用户
+        if(!$openid = $request->openid) {
+            throw new AuthenticationException('验证码错误!');
+        }
+        $verification_key = $request->verification_key;
+        if(!$verification_key) {
+            throw new AuthenticationException('验证码错误!');
+        }
+
+        $verifyData = \Cache::get($verification_key);
+        if(!$verifyData) {
+            abort(403, '验证码已失效');
+        }
+        if(!hash_equals($verifyData['code'], $request->verification_code)) {
+            // 返回401
+            throw new AuthenticationException('验证码错误');
+        }
+        $phone = $verifyData['phone'];
+        $this->userService->officalBindPhone($openid, $phone);
         // 清除验证码缓存
         \Cache::forget($verification_key);
         return response([
