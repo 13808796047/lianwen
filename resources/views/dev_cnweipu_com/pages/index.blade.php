@@ -650,6 +650,7 @@
         // $('#badingphone').modal('show')
         console.log('xixi')
       }else{
+        console.log('xfsafsaf')
         $('#badingphone').modal('show')
       }
       @endauth
