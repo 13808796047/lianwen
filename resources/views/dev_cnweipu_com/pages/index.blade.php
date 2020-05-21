@@ -298,15 +298,15 @@
           <div class="form-group">
             <label for="message-text" class="col-form-label">验证码:</label>
             <div style="display:flex;">
-              <input type="text" class="form-control" id="recipient-name">
-              <p>获取验证码</p>
+              <input type="text" class="form-control" id="recipient-name" style="width:50%;">
+              <p style="margin-left: 18px;background:#66CD00;color: #fff;font-size: 13px;padding: 7px 10px;">获取验证码</p>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">暂不绑定</button>
+        <button type="button" class="btn btn-primary">绑定</button>
       </div>
     </div>
   </div>
