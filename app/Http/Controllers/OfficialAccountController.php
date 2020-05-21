@@ -149,20 +149,27 @@ class OfficialAccountController extends Controller
             }
         }
         if($type == 'CC') {
-            try {
-                $loginUser->nick_name = $wxUser['nickname'];
-                $loginUser->avatar = $wxUser['headimgurl'];
-                $loginUser->weixin_openid = $wxUser['openid'];
-                $loginUser->weixin_unionid = $wxUser['unionid'];
-                $loginUser->subscribe = $wxUser['subscribe'];
-                $loginUser->subscribe_time = $wxUser['subscribe_time'];
-                $loginUser->save();
-                $message = new Text('关注成功!');
-
-                $result = $this->app->customer_service->message($message)->to($loginUser->weixin_openid)->send();
-            } catch (\Exception $e) {
-                info($e->getMessage());
+            if(!$loginUser) {
+                $loginUser = User::create([
+                    'nick_name' => $wxUser['nickname'],
+                    'avatar' => $wxUser['headimgurl'],
+                    'weixin_openid' => $wxUser['openid'],
+                    'weixin_unionid' => $wxUser['unionid'] ?: '',
+                    'subscribe' => $wxUser['subscribe'],
+                    'subscribe_time' => $wxUser['subscribe_time'],
+                ]);
+            } else {
+                $loginUser->update([
+                    'nick_name' => $wxUser['nickname'],
+                    'avatar' => $wxUser['headimgurl'],
+                    'weixin_openid' => $wxUser['openid'],
+                    'weixin_unionid' => $wxUser['unionid'] ?: '',
+                    'subscribe' => $wxUser['subscribe'],
+                    'subscribe_time' => $wxUser['subscribe_time'],
+                ]);
             }
+            $message = new Text('关注成功!');
+            $result = $this->app->customer_service->message($message)->to($user->weixin_openid)->send();
         }
     }
 }
