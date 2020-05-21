@@ -606,6 +606,8 @@
       // });
       // $().UItoTop({easingType: 'easeOutQuart'});
       // Tab切换
+      let xixi ={!!$auth!!}
+      console.log(xixi,312312)
       $('.banner-li').click(function () {
         $(this)
           .addClass('li-current')
