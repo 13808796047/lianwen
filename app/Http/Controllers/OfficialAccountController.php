@@ -134,9 +134,9 @@ class OfficialAccountController extends Controller
             [$type, $id] = explode('-', $eventKey);
             $loginUser = User::find($id);
         }
-        info('关注了');
         // 注册
         $loginUser = $this->handleUser($type ?? 'CC', $wxUser, $user, $loginUser ?? (new User()));
+        info($loginUser);
         if(!$loginUser->phone) {
             $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
