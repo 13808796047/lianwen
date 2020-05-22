@@ -84,7 +84,10 @@ class OfficialAccountController extends Controller
         $openId = $this->openid;
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
-        $this->handleUser($wxUser, $eventKey);
+        $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
+        [$type, $id] = explode('-', $eventKey);
+        $loginUser = User::find($id);
+        $this->handleUser($wxUser, $loginUser);
     }
 
 
