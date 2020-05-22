@@ -159,8 +159,6 @@ class OfficialAccountController extends Controller
             }
         }
         if($type == 'CC') {
-            info($loginUser->toArray());
-            info($wxUser);
             $loginUser->nick_name = $wxUser['nickname'];
             $loginUser->avatar = $wxUser['headimgurl'];
             $loginUser->subscribe = $wxUser['subscribe'];
