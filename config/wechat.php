@@ -127,7 +127,7 @@ return [
             'token' => env('DEV_WECHAT_MINI_PROGRAM_TOKEN', ''),
             'aes_key' => env('DEV_WECHAT_MINI_PROGRAM_AES_KEY', ''),
             'mch_id' => env('DEV_WECHAT_MINI_PROGRAM_MCH_ID'),
-            'key' => env('DEV_WECHAT_MINI_PROGRAM_SECRET'),
+            'key' => env('DEV_WECHAT_MINI_PROGRAM_KEY'),
         ],
         'wf' => [
             'app_id' => env('WF_WECHAT_MINI_PROGRAM_APPID', ''),
@@ -135,7 +135,7 @@ return [
             'token' => env('WF_WECHAT_MINI_PROGRAM_TOKEN', ''),
             'aes_key' => env('WF_WECHAT_MINI_PROGRAM_AES_KEY', ''),
             'mch_id' => env('WF_WECHAT_MINI_PROGRAM_MCH_ID'),
-            'key' => env('WF_WECHAT_MINI_PROGRAM_SECRET'),
+            'key' => env('WF_WECHAT_MINI_PROGRAM_KEY'),
         ],
         'wp' => [
             'app_id' => env('WP_WECHAT_MINI_PROGRAM_APPID', ''),
@@ -143,7 +143,7 @@ return [
             'token' => env('WP_WECHAT_MINI_PROGRAM_TOKEN', ''),
             'aes_key' => env('WP_WECHAT_MINI_PROGRAM_AES_KEY', ''),
             'mch_id' => env('WP_WECHAT_MINI_PROGRAM_MCH_ID'),
-            'key' => env('WP_WECHAT_MINI_PROGRAM_SECRET'),
+            'key' => env('WP_WECHAT_MINI_PROGRAM_KEY'),
         ],
         'pp' => [
             'app_id' => env('PP_WECHAT_MINI_PROGRAM_APPID', ''),
@@ -151,7 +151,7 @@ return [
             'token' => env('PP_WECHAT_MINI_PROGRAM_TOKEN', ''),
             'aes_key' => env('PP_WECHAT_MINI_PROGRAM_AES_KEY', ''),
             'mch_id' => env('PP_WECHAT_MINI_PROGRAM_MCH_ID'),
-            'key' => env('PP_WECHAT_MINI_PROGRAM_SECRET'),
+            'key' => env('PP_WECHAT_MINI_PROGRAM_KEY'),
         ],
         'cn' => [
             'app_id' => env('CN_WECHAT_MINI_PROGRAM_APPID', ''),
@@ -159,7 +159,7 @@ return [
             'token' => env('CN_WECHAT_MINI_PROGRAM_TOKEN', ''),
             'aes_key' => env('CN_WECHAT_MINI_PROGRAM_AES_KEY', ''),
             'mch_id' => env('CN_WECHAT_MINI_PROGRAM_MCH_ID'),
-            'key' => env('CN_WECHAT_MINI_PROGRAM_SECRET'),
+            'key' => env('CN_WECHAT_MINI_PROGRAM_KEY'),
         ],
     ],
 
