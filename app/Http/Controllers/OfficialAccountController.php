@@ -159,36 +159,33 @@ class OfficialAccountController extends Controller
             }
         }
         if($type == 'CC') {
-            $attributes = [
-                'nick_name' => $wxUser['nickname'],
-                'avatar' => $wxUser['headimgurl'],
-                'subscribe' => $wxUser['subscribe'],
-                'subscribe_time' => $wxUser['subscribe_time'],
-                'weixin_unionid' => $wxUser['unionid'],
-            ];
+            $loginUser->nick_name = $wxUser['nickname'];
+            $loginUser->avatar = $wxUser['headimgurl'];
+            $loginUser->subscribe = $wxUser['subscribe'];
+            $loginUser->subscribe_time = $wxUser['subscribe_time'];
+            $loginUser->weixin_unionid = $wxUser['weixin_unionid'];
             switch ($this->officialAccount) {
                 case 'gh_192a416dfc80':
-                    $attributes['dev_weixin_openid'] = $wxUser['openid'];
+                    $loginUser->dev_weixin_openid = $wxUser['openid'];
                     break;
                 case 'gh_caf405e63bb3':
-                    $attributes['wf_weixin_openid'] = $wxUser['openid'];
+                    $loginUser->wf_weixin_openid = $wxUser['openid'];
                     break;
                 case 'gh_1a157bde21a9':
-                    $attributes['wp_weixin_openid'] = $wxUser['openid'];
+                    $loginUser->wp_weixin_openid = $wxUser['openid'];
                     break;
                 default:
-                    $attributes['cn_weixin_openid'] = $wxUser['openid'];
+                    $loginUser->cn_weixin_openid = $wxUser['openid'];
             }
-            if(!$loginUser) {
-                $loginUser = User::create($attributes);
-            } else {
-                try {
-
-                    $loginUser->update($attributes);
-                } catch (\Exception $e) {
-                    info($e->getMessage());
-                }
+//            if(!$loginUser) {
+//                $loginUser = User::create($attributes);
+//            } else {
+            try {
+                $loginUser->save();
+            } catch (\Exception $e) {
+                info($e->getMessage());
             }
         }
+//        }
     }
 }
