@@ -136,7 +136,7 @@ class OfficialAccountController extends Controller
         }
         info('关注了');
         // 注册
-        $this->handleUser($type ?? 'CC', $wxUser, $user, $loginUser ?? (new User()));
+        $loginUser = $this->handleUser($type ?? 'CC', $wxUser, $user, $loginUser ?? (new User()));
         if(!$loginUser->phone) {
             $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
@@ -144,7 +144,6 @@ class OfficialAccountController extends Controller
 
     public function handleUser($type, $wxUser, $user, $loginUser = null)
     {
-        info($loginUser, ['1111']);
         if($type == 'JC') {
             if(!$user) {
                 $invit_user = User::create([
@@ -194,5 +193,6 @@ class OfficialAccountController extends Controller
 //            }
             $loginUser->save($data);
         }
+        return $loginUser;
     }
 }
