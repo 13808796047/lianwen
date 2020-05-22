@@ -163,7 +163,7 @@ class OfficialAccountController extends Controller
             $loginUser->avatar = $wxUser['headimgurl'];
             $loginUser->subscribe = $wxUser['subscribe'];
             $loginUser->subscribe_time = $wxUser['subscribe_time'];
-            $loginUser->weixin_unionid = $wxUser['weixin_unionid'];
+            $loginUser->weixin_unionid = $wxUser['unionid'];
             switch ($this->officialAccount) {
                 case 'gh_192a416dfc80':
                     $loginUser->dev_weixin_openid = $wxUser['openid'];
