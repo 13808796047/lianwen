@@ -124,6 +124,12 @@ return [
             'token' => env('PP_WECHAT_MINI_PROGRAM_TOKEN', ''),
             'aes_key' => env('PP_WECHAT_MINI_PROGRAM_AES_KEY', ''),
         ],
+        'cn' => [
+            'app_id' => env('CN_WECHAT_MINI_PROGRAM_APPID', ''),
+            'secret' => env('CN_WECHAT_MINI_PROGRAM_SECRET', ''),
+            'token' => env('CN_WECHAT_MINI_PROGRAM_TOKEN', ''),
+            'aes_key' => env('CN_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+        ],
     ],
 
     /*

@@ -73,8 +73,11 @@ class AuthorizationsController extends Controller
             case config('app.host.wp_host'):
                 $config = config('wechat.mini_program.wp');
                 break;
-            default:
+            case config('app.host.pp_host'):
                 $config = config('wechat.mini_program.pp');
+                break;
+            default:
+                $config = config('wechat.mini_program.cn');
         }
         $app = Factory::miniProgram($config);
         if(!$code = $request->code) {
