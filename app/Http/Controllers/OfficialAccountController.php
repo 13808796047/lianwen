@@ -126,11 +126,16 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        [$type, $id] = explode('-', $eventKey);
+        if(!$eventKey) {
+            $type = 'CC';
+            $loginUser = new User();
+        } else {
+            [$type, $id] = explode('-', $eventKey);
+            $loginUser = User::find($id);
+        }
         info('关注了');
-        $loginUser = User::find($id) ?? new User();
         // 注册
-        $this->handleUser($type ?? 'CC', $wxUser, $user, $loginUser);
+        $this->handleUser($type, $wxUser, $user, $loginUser);
         if(!$loginUser->phone) {
             $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
