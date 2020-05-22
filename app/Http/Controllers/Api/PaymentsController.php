@@ -25,7 +25,24 @@ class PaymentsController extends Controller
         if($order->status == 1 || $order->del) {
             throw new InvalidRequestException('订单状态不正确');
         }
-        $openid = $request->user()->weapp_openid;
+        $domain = $request->getHost();
+        switch ($domain) {
+            case config('app.host.dev_host'):
+                $openid = $request->user()->dev_weapp_openid;
+                break;
+            case config('app.host.wf_host'):
+                $openid = $request->user()->wf_weapp_openid;
+                break;
+            case config('app.host.wp_host'):
+                $openid = $request->user()->wp_weapp_openid;
+                break;
+            case config('app.host.pp_host'):
+                $openid = $request->user()->pp_weapp_openid;
+                break;
+            default:
+                $openid = $request->user()->cn_weapp_openid;
+        }
+
         return app('wechat_pay_mp')->mp([
             'out_trade_no' => $order->orderid,  // 商户订单流水号，与支付宝 out_trade_no 一样
             'total_fee' => $order->price * 100, // 与支付宝不同，微信支付的金额单位是分。
