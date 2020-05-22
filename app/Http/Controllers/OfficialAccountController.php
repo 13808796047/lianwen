@@ -130,7 +130,7 @@ class OfficialAccountController extends Controller
         info('关注了');
         $loginUser = User::find($id) ?? new User();
         // 注册
-        $this->handleUser($type, $wxUser, $user, $loginUser);
+        $this->handleUser($type ?? 'CC', $wxUser, $user, $loginUser);
         if(!$loginUser->phone) {
             $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
