@@ -94,7 +94,7 @@ class AppServiceProvider extends ServiceProvider
             return Pay::wechat($config);
         });
         $this->app->singleton('wechat_pay_mp', function() {
-            $domain = $request->getHost();
+            $domain = request()->getHost();
             switch ($domain) {
                 case config('app.host.dev_host'):
                     $config = config('wechat.mini_program.dev');
