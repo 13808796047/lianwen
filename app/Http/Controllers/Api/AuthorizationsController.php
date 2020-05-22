@@ -79,6 +79,7 @@ class AuthorizationsController extends Controller
             default:
                 $config = config('wechat.mini_program.cn');
         }
+        dd($config);
         $app = Factory::miniProgram($config);
         if(!$code = $request->code) {
             throw new AuthenticationException('参数code错误，未获取用户信息');
