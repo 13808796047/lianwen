@@ -177,6 +177,7 @@ class OfficialAccountController extends Controller
                 default:
                     $loginUser->cn_weixin_openid = $wxUser['openid'];
             }
+            info($loginUser);
             $loginUser->save();
         }
     }
