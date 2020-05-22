@@ -64,6 +64,13 @@ return [
                 'secret' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_SECRET', 'your-app-secret'),    // AppSecret
                 'token' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
                 'aes_key' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'templates' => [
+                    'subscribed' => [
+                        'template_id' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_BOUNDPHONE_TEMPLATE_ID'),
+                        'appid' => env('DEV_MINIPROGRAM_APPID'),
+                        'page_path' => env('DEV_MINIPROGRAM_BINDPHONE_URL'),
+                    ]
+                ]
             ],
         'wf' =>
             [
@@ -71,6 +78,13 @@ return [
                 'secret' => env('WF_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
                 'token' => env('WF_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
                 'aes_key' => env('WF_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'templates' => [
+                    'subscribed' => [
+                        'template_id' => env('WF_WECHAT_OFFICIAL_ACCOUNT_BOUNDPHONE_TEMPLATE_ID'),
+                        'appid' => env('WF_MINIPROGRAM_APPID'),
+                        'page_path' => env('WF_MINIPROGRAM_BINDPHONE_URL'),
+                    ]
+                ]
             ],
         'wp' =>
             [
@@ -78,6 +92,13 @@ return [
                 'secret' => env('WP_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
                 'token' => env('WP_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
                 'aes_key' => env('WP_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'templates' => [
+                    'subscribed' => [
+                        'template_id' => env('WP_WECHAT_OFFICIAL_ACCOUNT_BOUNDPHONE_TEMPLATE_ID'),
+                        'appid' => env('WP_MINIPROGRAM_APPID'),
+                        'page_path' => env('WP_MINIPROGRAM_BINDPHONE_URL'),
+                    ]
+                ]
             ],
         'pp' =>
             [
@@ -85,6 +106,13 @@ return [
                 'secret' => env('PP_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
                 'token' => env('PP_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
                 'aes_key' => env('PP_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'templates' => [
+                    'subscribed' => [
+                        'template_id' => env('PP_WECHAT_OFFICIAL_ACCOUNT_BOUNDPHONE_TEMPLATE_ID'),
+                        'appid' => env('PP_MINIPROGRAM_APPID'),
+                        'page_path' => env('PP_MINIPROGRAM_BINDPHONE_URL'),
+                    ]
+                ]
             ],
         'cn' =>
             [
@@ -92,6 +120,13 @@ return [
                 'secret' => env('CN_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
                 'token' => env('CN_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
                 'aes_key' => env('CN_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'templates' => [
+                    'subscribed' => [
+                        'template_id' => env('CN_WECHAT_OFFICIAL_ACCOUNT_BOUNDPHONE_TEMPLATE_ID'),
+                        'appid' => env('CN_MINIPROGRAM_APPID'),
+                        'page_path' => env('CN_MINIPROGRAM_BINDPHONE_URL'),
+                    ]
+                ]
             ],
         /*
  * OAuth 配置

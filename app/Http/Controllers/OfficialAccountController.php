@@ -127,7 +127,7 @@ class OfficialAccountController extends Controller
         // 注册
         $this->handleUser($loginUser, $type, $wxUser);
         if(!$loginUser->phone) {
-            $this->dispatch(new Subscribed($uri, $loginUser));
+            $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
     }
 
@@ -173,6 +173,8 @@ class OfficialAccountController extends Controller
                 case 'gh_1a157bde21a9':
                     $attributes['wp_weixin_openid'] = $wxUser['openid'];
                     break;
+                default:
+                    $attributes['cn_weixin_openid'] = $wxUser['openid'];
             }
             if(!$loginUser) {
                 $loginUser = User::create($attributes);

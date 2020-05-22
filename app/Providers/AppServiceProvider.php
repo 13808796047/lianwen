@@ -136,14 +136,22 @@ class AppServiceProvider extends ServiceProvider
         });
         //公众号
         $this->app->singleton('official_account', function() {
-            $domain = \request()->getHost();
-            $dev_uri = env('DEV_WECHAT_OFFICIAL_ACCOUNT_DOMAIN');
+            $domain = request()->getHost();
             switch ($domain) {
-                case $dev_uri:
+                case config('app.host.dev_host'):
                     $config = config('wechat.official_account.dev');
                     break;
+                case config('app.host.wf_host'):
+                    $config = config('wechat.official_account.wf');
+                    break;
+                case config('app.host.wp_host'):
+                    $config = config('wechat.official_account.wp');
+                    break;
+                case config('app.host.pp_host'):
+                    $config = config('wechat.official_account.pp');
+                    break;
                 default:
-                    $config = config('wechat.official_account.mp');
+                    $config = config('wechat.official_account.cn');
             }
             return Factory::officialAccount($config);
         });
