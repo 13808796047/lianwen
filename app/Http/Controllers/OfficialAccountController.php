@@ -131,7 +131,6 @@ class OfficialAccountController extends Controller
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         if(!$eventKey) {
             $type = 'CC';
-            $loginUser = new User();
         } else {
             [$type, $id] = explode('-', $eventKey);
             $loginUser = User::find($id);
@@ -144,7 +143,7 @@ class OfficialAccountController extends Controller
         }
     }
 
-    public function handleUser($type, $wxUser, $user, $loginUser)
+    public function handleUser($type, $wxUser, $user, $loginUser = null)
     {
         info($loginUser, ['1111']);
         if($type == 'JC') {
@@ -169,25 +168,28 @@ class OfficialAccountController extends Controller
             }
         }
         if($type == 'CC') {
-            $loginUser->nick_name = $wxUser['nickname'];
-            $loginUser->avatar = $wxUser['headimgurl'];
-            $loginUser->subscribe = $wxUser['subscribe'];
-            $loginUser->subscribe_time = $wxUser['subscribe_time'];
-            $loginUser->weixin_unionid = $wxUser['unionid'];
+            $data = [
+                'nick_name' => $wxUser['nickname'],
+                'avatar' => $wxUser['headimgurl'],
+                'subscribe' => $wxUser['subscribe'],
+                'subscribe_time' => $wxUser['subscribe_time'],
+                'weixin_unionid' => $wxUser['unionid'],
+            ];
             switch ($this->officialAccount) {
                 case 'gh_192a416dfc80':
-                    $loginUser->dev_weixin_openid = $wxUser['openid'];
+                    $data['dev_weixin_openid'] = $wxUser['openid'];
                     break;
                 case 'gh_caf405e63bb3':
-                    $loginUser->wf_weixin_openid = $wxUser['openid'];
+                    $data['wf_weixin_openid'] = $wxUser['openid'];
                     break;
                 case 'gh_1a157bde21a9':
-                    $loginUser->wp_weixin_openid = $wxUser['openid'];
+                    $data['wp_weixin_openid'] = $wxUser['openid'];
                     break;
                 default:
-                    $loginUser->cn_weixin_openid = $wxUser['openid'];
+                    $data['cn_weixin_openid'] = $wxUser['openid'];
             }
-            $loginUser->save();
+            info($data, $loginUser);
+//            $loginUser->save();
         }
     }
 }
