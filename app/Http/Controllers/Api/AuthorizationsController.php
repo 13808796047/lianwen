@@ -66,18 +66,23 @@ class AuthorizationsController extends Controller
         switch ($domain) {
             case config('app.host.dev_host'):
                 $config = config('wechat.mini_program.dev');
+                $this->uri = 'dev';
                 break;
             case config('app.host.wf_host'):
                 $config = config('wechat.mini_program.wf');
+                $this->uri = 'wf';
                 break;
             case config('app.host.wp_host'):
                 $config = config('wechat.mini_program.wp');
+                $this->uri = 'wp';
                 break;
             case config('app.host.pp_host'):
                 $config = config('wechat.mini_program.pp');
+                $this->uri = 'pp';
                 break;
             default:
                 $config = config('wechat.mini_program.cn');
+                $this->uri = 'cn';
         }
         $app = Factory::miniProgram($config);
         if(!$code = $request->code) {
@@ -91,16 +96,31 @@ class AuthorizationsController extends Controller
         // 找到 openid 对应的用户
         $user = User::where('weixin_unionid', $data['unionid'])->first();
         $attributes['weixin_session_key'] = $data['session_key'];
-        $attributes['weapp_openid'] = $data['openid'];
+        switch ($this->uri) {
+            case 'dev':
+                $attributes['dev_weapp_openid'] = $data['openid'];
+                break;
+            case 'wf':
+                $attributes['wf_weapp_openid'] = $data['openid'];
+                break;
+            case 'wp':
+                $attributes['wp_weapp_openid'] = $data['openid'];
+                break;
+            case 'pp':
+                $attributes['pp_weapp_openid'] = $data['openid'];
+                break;
+            default:
+                $attributes['cn_weapp_openid'] = $data['openid'];
+        }
         $attributes['weixin_unionid'] = $data['unionid'];
         if(!$user) {
             $user = User::create($attributes);
         }
-        if($user->weapp_openid == '') {
-            $user->update([
-                'weapp_openid' => $data['openid'],
-            ]);
-        }
+//        if($user->weapp_openid == '') {
+//            $user->update([
+//                'weapp_openid' => $data['openid'],
+//            ]);
+//        }
         $token = auth('api')->login($user);
         return response()->json([
             'access_token' => $token,
