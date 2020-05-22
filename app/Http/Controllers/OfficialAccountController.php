@@ -118,6 +118,7 @@ class OfficialAccountController extends Controller
      */
     protected function eventSubscribe($event)
     {
+        info(123123);
         $openId = $this->openid;
         if(empty($event['EventKey'])) {
             return;
