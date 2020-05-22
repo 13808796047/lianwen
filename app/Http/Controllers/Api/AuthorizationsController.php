@@ -64,16 +64,20 @@ class AuthorizationsController extends Controller
     {
         $domain = $request->getHost();
         switch ($domain) {
-            case 'mp.cnweipu.com':
-                $config = config('wechat.mini_program.mp');
+            case config('app.host.dev_host'):
+                $config = config('wechat.mini_program.dev');
+                break;
+            case config('app.host.wf_host'):
+                $config = config('wechat.mini_program.wf');
+                break;
+            case config('app.host.wp_host'):
+                $config = config('wechat.mini_program.wp');
                 break;
             default:
-                $config = config('wechat.mini_program.mp');
-                break;
+                $config = config('wechat.mini_program.pp');
         }
         $app = Factory::miniProgram($config);
-        $code = $request->code;
-        if(!$code) {
+        if(!$code = $request->code) {
             throw new AuthenticationException('参数code错误，未获取用户信息');
         }
         $data = $app->auth->session($code);

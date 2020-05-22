@@ -46,10 +46,10 @@ return [
          */
         // 'open_platform' => [
         //     'uri' => 'serve',
-        //     'action' => Overtrue\LaravelWeChat\Controllers\OpenPlatformController::class,
+        //     'action' => Overeltrue\LaravWeChat\Controllers\OpenPlatformController::class,
         //     'attributes' => [
         //         'prefix' => 'open-platform',
-        //         'middleware' => null,
+        //         'middle' => nwareull,
         //     ],
         // ],
     ],
@@ -100,17 +100,29 @@ return [
      * 小程序
      */
     'mini_program' => [
-        'default' => [
-            'app_id' => env('WECHAT_MINI_PROGRAM_APPID', ''),
-            'secret' => env('WECHAT_MINI_PROGRAM_SECRET', ''),
-            'token' => env('WECHAT_MINI_PROGRAM_TOKEN', ''),
-            'aes_key' => env('WECHAT_MINI_PROGRAM_AES_KEY', ''),
+        'dev' => [
+            'app_id' => env('DEV_WECHAT_MINI_PROGRAM_APPID', ''),
+            'secret' => env('DEV_WECHAT_MINI_PROGRAM_SECRET', ''),
+            'token' => env('DEV_WECHAT_MINI_PROGRAM_TOKEN', ''),
+            'aes_key' => env('DEV_WECHAT_MINI_PROGRAM_AES_KEY', ''),
         ],
-        'mp' => [
-            'app_id' => env('MP_WECHAT_MINI_PROGRAM_APPID', ''),
-            'secret' => env('MP_WECHAT_MINI_PROGRAM_SECRET', ''),
-            'token' => env('MP_WECHAT_MINI_PROGRAM_TOKEN', ''),
-            'aes_key' => env('MP_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+        'wf' => [
+            'app_id' => env('WF_WECHAT_MINI_PROGRAM_APPID', ''),
+            'secret' => env('WF_WECHAT_MINI_PROGRAM_SECRET', ''),
+            'token' => env('WF_WECHAT_MINI_PROGRAM_TOKEN', ''),
+            'aes_key' => env('WF_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+        ],
+        'wp' => [
+            'app_id' => env('WP_WECHAT_MINI_PROGRAM_APPID', ''),
+            'secret' => env('WP_WECHAT_MINI_PROGRAM_SECRET', ''),
+            'token' => env('WP_WECHAT_MINI_PROGRAM_TOKEN', ''),
+            'aes_key' => env('WP_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+        ],
+        'pp' => [
+            'app_id' => env('PP_WECHAT_MINI_PROGRAM_APPID', ''),
+            'secret' => env('PP_WECHAT_MINI_PROGRAM_SECRET', ''),
+            'token' => env('PP_WECHAT_MINI_PROGRAM_TOKEN', ''),
+            'aes_key' => env('PP_WECHAT_MINI_PROGRAM_AES_KEY', ''),
         ],
     ],
 
