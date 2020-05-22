@@ -136,7 +136,7 @@ class OfficialAccountController extends Controller
 
     public function handleUser($type, $wxUser, $user, $loginUser)
     {
-        info($loginUser);
+        info($loginUser, ['1111']);
         if($type == 'JC') {
             if(!$user) {
                 $invit_user = User::create([
