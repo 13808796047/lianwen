@@ -130,15 +130,13 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        if(!$eventKey) {
-            $type = 'CC';
-        } else {
+        if($eventKey) {
             [$type, $id] = explode('-', $eventKey);
             $loginUser = User::find($id);
         }
         info('关注了');
         // 注册
-        $this->handleUser($type, $wxUser, $user, $loginUser);
+        $this->handleUser($type ?? 'CC', $wxUser, $user, $loginUser ?? (new User()));
         if(!$loginUser->phone) {
             $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
@@ -189,8 +187,12 @@ class OfficialAccountController extends Controller
                 default:
                     $data['cn_weixin_openid'] = $wxUser['openid'];
             }
-            info($data, $loginUser);
-//            $loginUser->save();
+//            if($loginUser) {
+//                $loginUser->update($data);
+//            } else {
+//                User::create($data);
+//            }
+            $loginUser->save($data);
         }
     }
 }
