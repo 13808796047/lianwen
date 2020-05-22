@@ -94,14 +94,31 @@ class AppServiceProvider extends ServiceProvider
             return Pay::wechat($config);
         });
         $this->app->singleton('wechat_pay_mp', function() {
-            switch (config('pay.dev_min_wechat.app_id')) {
-                case 'wx6340d7d2fead020b':
-                    $config = config('pay.dev_min_wechat');
+            $domain = $request->getHost();
+            switch ($domain) {
+                case config('app.host.dev_host'):
+                    $config = config('wechat.mini_program.dev');
+                    break;
+                case config('app.host.wf_host'):
+                    $config = config('wechat.mini_program.wf');
+                    break;
+                case config('app.host.wp_host'):
+                    $config = config('wechat.mini_program.wp');
+                    break;
+                case config('app.host.pp_host'):
+                    $config = config('wechat.mini_program.pp');
                     break;
                 default:
-                    $config = config('pay.dev_min_wechat');
-                    break;
+                    $config = config('wechat.mini_program.cn');
             }
+//            switch (config('pay.dev_min_wechat.app_id')) {
+//                case 'wx6340d7d2fead020b':
+//                    $config = config('pay.dev_min_wechat');
+//                    break;
+//                default:
+//                    $config = config('pay.dev_min_wechat');
+//                    break;
+//            }
             $config['notify_url'] = route('payments.wechat.mp_notify');
             return Pay::wechat($config);
         });

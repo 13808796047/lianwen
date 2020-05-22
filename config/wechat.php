@@ -65,12 +65,33 @@ return [
                 'token' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
                 'aes_key' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
             ],
-        'mp' =>
+        'wf' =>
             [
-                'app_id' => env('MP_WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
-                'secret' => env('MP_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
-                'token' => env('MP_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
-                'aes_key' => env('MP_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'app_id' => env('WF_WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
+                'secret' => env('WF_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
+                'token' => env('WF_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
+                'aes_key' => env('WF_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+            ],
+        'wp' =>
+            [
+                'app_id' => env('WP_WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
+                'secret' => env('WP_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
+                'token' => env('WP_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
+                'aes_key' => env('WP_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+            ],
+        'pp' =>
+            [
+                'app_id' => env('PP_WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
+                'secret' => env('PP_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
+                'token' => env('PP_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
+                'aes_key' => env('PP_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+            ],
+        'cn' =>
+            [
+                'app_id' => env('CN_WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
+                'secret' => env('CN_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
+                'token' => env('CN_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
+                'aes_key' => env('CN_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
             ],
         /*
  * OAuth 配置
@@ -105,30 +126,40 @@ return [
             'secret' => env('DEV_WECHAT_MINI_PROGRAM_SECRET', ''),
             'token' => env('DEV_WECHAT_MINI_PROGRAM_TOKEN', ''),
             'aes_key' => env('DEV_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+            'mch_id' => env('DEV_WECHAT_MINI_PROGRAM_MCH_ID'),
+            'key' => env('DEV_WECHAT_MINI_PROGRAM_SECRET'),
         ],
         'wf' => [
             'app_id' => env('WF_WECHAT_MINI_PROGRAM_APPID', ''),
             'secret' => env('WF_WECHAT_MINI_PROGRAM_SECRET', ''),
             'token' => env('WF_WECHAT_MINI_PROGRAM_TOKEN', ''),
             'aes_key' => env('WF_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+            'mch_id' => env('WF_WECHAT_MINI_PROGRAM_MCH_ID'),
+            'key' => env('WF_WECHAT_MINI_PROGRAM_SECRET'),
         ],
         'wp' => [
             'app_id' => env('WP_WECHAT_MINI_PROGRAM_APPID', ''),
             'secret' => env('WP_WECHAT_MINI_PROGRAM_SECRET', ''),
             'token' => env('WP_WECHAT_MINI_PROGRAM_TOKEN', ''),
             'aes_key' => env('WP_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+            'mch_id' => env('WP_WECHAT_MINI_PROGRAM_MCH_ID'),
+            'key' => env('WP_WECHAT_MINI_PROGRAM_SECRET'),
         ],
         'pp' => [
             'app_id' => env('PP_WECHAT_MINI_PROGRAM_APPID', ''),
             'secret' => env('PP_WECHAT_MINI_PROGRAM_SECRET', ''),
             'token' => env('PP_WECHAT_MINI_PROGRAM_TOKEN', ''),
             'aes_key' => env('PP_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+            'mch_id' => env('PP_WECHAT_MINI_PROGRAM_MCH_ID'),
+            'key' => env('PP_WECHAT_MINI_PROGRAM_SECRET'),
         ],
         'cn' => [
             'app_id' => env('CN_WECHAT_MINI_PROGRAM_APPID', ''),
             'secret' => env('CN_WECHAT_MINI_PROGRAM_SECRET', ''),
             'token' => env('CN_WECHAT_MINI_PROGRAM_TOKEN', ''),
             'aes_key' => env('CN_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+            'mch_id' => env('CN_WECHAT_MINI_PROGRAM_MCH_ID'),
+            'key' => env('CN_WECHAT_MINI_PROGRAM_SECRET'),
         ],
     ],
 
