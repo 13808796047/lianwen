@@ -159,6 +159,8 @@ class OfficialAccountController extends Controller
             }
         }
         if($type == 'CC') {
+            info($loginUser->toArray());
+            info($wxUser);
             $loginUser->nick_name = $wxUser['nickname'];
             $loginUser->avatar = $wxUser['headimgurl'];
             $loginUser->subscribe = $wxUser['subscribe'];
@@ -177,15 +179,7 @@ class OfficialAccountController extends Controller
                 default:
                     $loginUser->cn_weixin_openid = $wxUser['openid'];
             }
-//            if(!$loginUser) {
-//                $loginUser = User::create($attributes);
-//            } else {
-            try {
-                $loginUser->save();
-            } catch (\Exception $e) {
-                info($e->getMessage());
-            }
+            $loginUser->save();
         }
-//        }
     }
 }
