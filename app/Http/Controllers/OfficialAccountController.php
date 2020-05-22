@@ -179,6 +179,7 @@ class OfficialAccountController extends Controller
                 default:
                     $attributes['cn_weixin_openid'] = $wxUser['openid'];
             }
+            info($loginUser);
             if(!$loginUser) {
                 $loginUser = User::create($attributes);
             } else {
