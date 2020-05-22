@@ -38,17 +38,20 @@ class OfficialAccountController extends Controller
     public function serve()
     {
         $this->app->server->push(function($message) {
-            info($message);
-            if($message) {
-                $method = \Str::camel('handle_' . $message['MsgType']);
-                if(method_exists($this, $method)) {
-                    $this->openid = $message['FromUserName'];
-                    $this->officialAccount = $message['ToUserName'];
-                    return call_user_func_array([$this, $method], [$message]);
+            try {
+                if($message) {
+                    $method = \Str::camel('handle_' . $message['MsgType']);
+                    if(method_exists($this, $method)) {
+                        $this->openid = $message['FromUserName'];
+                        $this->officialAccount = $message['ToUserName'];
+                        return call_user_func_array([$this, $method], [$message]);
+                    }
                 }
-
+                return "您好！欢迎使用论文检测服务";
+            } catch (\Exception $e) {
+                info($e->getMessage());
             }
-            return "您好！欢迎使用论文检测服务";
+
         });
 
         return $this->app->server->serve();
