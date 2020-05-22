@@ -126,9 +126,9 @@ class OfficialAccountController extends Controller
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         [$type, $id] = explode('-', $eventKey);
-        $loginUser = User::find($id);
+        $loginUser = User::find($id) ?? new User();
         // 注册
-        $this->handleUser($type, $wxUser, $user, $loginUser ?? (new User()));
+        $this->handleUser($type, $wxUser, $user, $loginUser);
         if(!$loginUser->phone) {
             $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
