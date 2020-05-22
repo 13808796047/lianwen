@@ -18,6 +18,7 @@ class AddDevWeixinOpenidToUsersTable extends Migration
             $table->string('wf_weixin_openid', '64')->unique()->nullable();
             $table->string('wp_weixin_openid', '64')->unique()->nullable();
             $table->string('pp_weixin_openid', '64')->unique()->nullable();
+            $table->string('cn_weixin_openid', '64')->unique()->nullable();
         });
     }
 
