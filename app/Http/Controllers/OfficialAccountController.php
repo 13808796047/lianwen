@@ -37,8 +37,8 @@ class OfficialAccountController extends Controller
 
     public function serve()
     {
-        info('fdjkasl');
         $this->app->server->push(function($message) {
+            dd($message);
             if($message) {
                 $method = \Str::camel('handle_' . $message['MsgType']);
                 if(method_exists($this, $method)) {
