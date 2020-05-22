@@ -47,6 +47,7 @@ class OfficialAccountController extends Controller
     public function serve()
     {
         $this->app->server->push(function($message) {
+            info($message);
             if($message) {
                 $method = \Str::camel('handle_' . $message['MsgType']);
                 if(method_exists($this, $method)) {
@@ -169,11 +170,11 @@ class OfficialAccountController extends Controller
                 'avatar' => $wxUser['headimgurl'],
                 'subscribe' => $wxUser['subscribe'],
                 'subscribe_time' => $wxUser['subscribe_time'],
+                'weixin_unionid' => $wxUser['unionid'],
             ];
             switch ($uri) {
                 case 'dev':
                     $attributes['dev_weixin_openid'] = $wxUser['openid'];
-                    $attributes['dev_weixin_unionid'] = $wxUser['unionid'];
                     break;
             }
             if(!$loginUser) {
