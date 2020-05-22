@@ -136,7 +136,7 @@ class OfficialAccountController extends Controller
 
     public function handleUser($type, $wxUser, $user, $loginUser)
     {
-
+        info($loginUser);
         if($type == 'JC') {
             if(!$user) {
                 $invit_user = User::create([
@@ -177,7 +177,6 @@ class OfficialAccountController extends Controller
                 default:
                     $loginUser->cn_weixin_openid = $wxUser['openid'];
             }
-            info($loginUser);
             $loginUser->save();
         }
     }
