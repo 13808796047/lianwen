@@ -119,15 +119,13 @@ class OfficialAccountController extends Controller
     protected function eventSubscribe($event)
     {
         $openId = $this->openid;
-        if(empty($event['EventKey'])) {
-            return;
-        }
+//        if(empty($event['EventKey'])) {
+//            return;
+//        }
         // 关注事件的场景值会带一个前缀需要去掉
         if($event['Event'] == 'subscribe') {
-            info(456456);
             $eventKey = \Str::after($event['EventKey'], 'qrscene_');
         }
-        info(123123);
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
