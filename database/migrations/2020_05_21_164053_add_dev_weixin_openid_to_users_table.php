@@ -14,11 +14,11 @@ class AddDevWeixinOpenidToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->string('dev_weixin_openid', '64')->unique()->nullable();
-            $table->string('wf_weixin_openid', '64')->unique()->nullable();
-            $table->string('wp_weixin_openid', '64')->unique()->nullable();
-            $table->string('pp_weixin_openid', '64')->unique()->nullable();
-            $table->string('cn_weixin_openid', '64')->unique()->nullable();
+            $table->string('dev_weixin_openid', '64')->nullable();
+            $table->string('wf_weixin_openid', '64')->nullable();
+            $table->string('wp_weixin_openid', '64')->nullable();
+            $table->string('pp_weixin_openid', '64')->nullable();
+            $table->string('cn_weixin_openid', '64')->nullable();
         });
     }
 
@@ -34,6 +34,7 @@ class AddDevWeixinOpenidToUsersTable extends Migration
             $table->dropColumn('wf_weixin_openid');
             $table->dropColumn('wp_weixin_openid');
             $table->dropColumn('pp_weixin_openid');
+            $table->dropColumn('cn_weixin_openid');
         });
     }
 }
