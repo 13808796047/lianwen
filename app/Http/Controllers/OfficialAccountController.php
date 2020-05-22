@@ -44,7 +44,7 @@ class OfficialAccountController extends Controller
                     if(method_exists($this, $method)) {
                         $this->openid = $message['FromUserName'];
                         $this->officialAccount = $message['ToUserName'];
-                        info(123123);
+                        info([$this, $method], [$message]);
                         return call_user_func_array([$this, $method], [$message]);
                     }
                 }
