@@ -128,7 +128,7 @@ class OfficialAccountController extends Controller
         [$type, $id] = explode('-', $eventKey);
         $loginUser = User::find($id);
         // 注册
-        $this->handleUser($type, $wxUser, $user, $loginUser);
+        $this->handleUser($type, $wxUser, $user, $loginUser ?? (new User()));
         if(!$loginUser->phone) {
             $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
