@@ -136,14 +136,14 @@ class OfficialAccountController extends Controller
         }
         $loginUser = $loginUser ?? new User();
         // 注册
-        $this->handleUser($type ?? 'CC', $wxUser, $user, &$loginUser);
+        $this->handleUser($type ?? 'CC', $wxUser, $user, $loginUser);
         info($loginUser);
         if(!$loginUser->phone) {
             $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
     }
 
-    public function handleUser($type, $wxUser, $user, $loginUser)
+    public function handleUser($type, $wxUser, $user, &$loginUser)
     {
         if($type == 'JC') {
             if(!$user) {
