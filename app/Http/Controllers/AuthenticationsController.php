@@ -55,7 +55,6 @@ class AuthenticationsController extends Controller
                 $unionid = $oauthUser->getOriginal()['unionid'] ?: null;
                 if($unionid) {
                     $user = User::where('weixin_unionid', $unionid)->first();
-                    info($user);
                 } else {
                     $user = User::where($this->openid, $oauthUser->getOriginal()['openid'])->first();
                 }
@@ -68,13 +67,13 @@ class AuthenticationsController extends Controller
                     ];
                     switch ($this->uri) {
                         case 'dev':
-                            $attributes['dev_weapp_openid'] = $oauthUser->getOriginal()['openid'];
+                            $attributes['dev_weixin_openid'] = $oauthUser->getOriginal()['openid'];
                             break;
                         case 'wf':
-                            $attributes['wf_weapp_openid'] = $oauthUser->getOriginal()['openid'];
+                            $attributes['wf_weixin_openid'] = $oauthUser->getOriginal()['openid'];
                             break;
                         case 'wp':
-                            $attributes['wp_weapp_openid'] = $oauthUser->getOriginal()['openid'];
+                            $attributes['wp_weixin_openid'] = $oauthUser->getOriginal()['openid'];
                             break;
                     }
                     $user = User::create($attributes);
@@ -87,16 +86,9 @@ class AuthenticationsController extends Controller
                         \Cache::forget('uid');
                     }
 
-                } else {
-                    try {
-                        $user->update($attributes);
-                    } catch (\Exception $e) {
-                        info($e->getMessage());
-                    }
                 }
                 break;
         }
-        info($user);
         auth('web')->login($user);
         return redirect()->to('/');
     }

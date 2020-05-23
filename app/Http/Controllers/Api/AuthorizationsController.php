@@ -115,6 +115,8 @@ class AuthorizationsController extends Controller
         $attributes['weixin_unionid'] = $data['unionid'];
         if(!$user) {
             $user = User::create($attributes);
+        } else {
+            $user->update($attributes);
         }
 //        if($user->weapp_openid == '') {
 //            $user->update([
