@@ -84,7 +84,7 @@ class CheckOrderStatus implements ShouldQueue
                     'report_pdf_path' => $report_pdf_path,
                     'rate' => str_replace('%', '', $result->data->orderCheck->apiResultSemblance),
                 ]);
-                if($this->order->status == 4 && $this->order->user->weixin_openid) {
+                if($this->order->status == 4) {
                     dispatch(new OrderCheckedMsg($this->order));
                 }
                 try {

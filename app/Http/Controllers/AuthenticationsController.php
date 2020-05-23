@@ -21,16 +21,16 @@ class AuthenticationsController extends Controller
                 $config = config('services.dev_lianwen_com');
                 $this->uri = 'dev';
                 break;
-            case config('app.host.dev_host'):
+            case config('app.host.wf_host'):
                 $config = config('services.wanfang_lianwen_com');
                 $this->uri = 'wf';
                 break;
-            case config('app.host.dev_host'):
+            case config('app.host.wp_host'):
                 $config = config('services.weipu_lianwen_com');
                 $this->uri = 'wp';
                 break;
             default:
-                $config = config('services.dev_lianwen_com');
+                $config = config('services.pp_lianwen_com');
         }
         $this->app = new SocialiteManager($config);
     }

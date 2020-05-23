@@ -64,5 +64,6 @@ class UserService
                 ]);
             }
         }
+        return $mini_program_user;
     }
 }

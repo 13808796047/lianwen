@@ -108,14 +108,6 @@ class AppServiceProvider extends ServiceProvider
                 default:
                     $config = config('wechat.mini_program.dev');
             }
-//            switch (config('pay.dev_min_wechat.app_id')) {
-//                case 'wx6340d7d2fead020b':
-//                    $config = config('pay.dev_min_wechat');
-//                    break;
-//                default:
-//                    $config = config('pay.dev_min_wechat');
-//                    break;
-//            }
             $config['notify_url'] = route('payments.wechat.mp_notify');
             return Pay::wechat($config);
         });
@@ -147,7 +139,6 @@ class AppServiceProvider extends ServiceProvider
                 default:
                     $config = config('wechat.official_account.dev');
             }
-            info($config, [$domain]);
             return Factory::officialAccount($config);
         });
     }

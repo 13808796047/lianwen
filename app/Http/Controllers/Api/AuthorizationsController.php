@@ -115,6 +115,8 @@ class AuthorizationsController extends Controller
         $attributes['weixin_unionid'] = $data['unionid'];
         if(!$user) {
             $user = User::create($attributes);
+        } else {
+            $user->update($attributes);
         }
 //        if($user->weapp_openid == '') {
 //            $user->update([
@@ -150,9 +152,12 @@ class AuthorizationsController extends Controller
             }
 
             if(!$user = User::where('phone', $verifyData['phone'])->first()) {
-                return response()->json([
-                    'error' => '用户不存在',
-                ], 401);
+//                return response()->json([
+//                    'error' => '用户不存在',
+//                ], 401);
+                $user = User::create([
+                    'phone' => $verifyData['phone']
+                ]);
             }
             $token = auth('api')->login($user);
             // 清除验证码缓存

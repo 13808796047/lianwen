@@ -90,7 +90,7 @@ class OfficialAccountController extends Controller
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
         [$type, $id] = explode('-', $eventKey);
         $loginUser = User::find($id);
-        $this->handleUser($wxUser, $loginUser);
+        $this->handleUser($type, $wxUser, $user, $loginUser);
     }
 
 
