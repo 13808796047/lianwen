@@ -42,19 +42,21 @@ class Subscribed implements ShouldQueue
                 $template_id = config('wechat.official_account.dev.templates.subscribed.template_id');
                 $appid = config('wechat.official_account.dev.templates.subscribed.appid');
                 $pagePath = config('wechat.official_account.dev.templates.subscribed.page_path');
+                info([$template_id, $appid, $pagePath], ['dev']);
                 break;
             case 'gh_caf405e63bb3':
                 $openid = $this->user->wf_weixin_openid;
                 $template_id = config('wechat.official_account.wf.templates.subscribed.template_id');
                 $appid = config('wechat.official_account.wf.templates.subscribed.appid');
                 $pagePath = config('wechat.official_account.wf.templates.subscribed.page_path');
-                info([$template_id, $appid, $pagePath]);
+                info([$template_id, $appid, $pagePath], ['wf']);
                 break;
             case 'gh_192a416dfc80':
                 $openid = $this->user->wp_weixin_openid;
                 $template_id = config('wechat.official_account.wp.templates.subscribed.template_id');
                 $appid = config('wechat.official_account.wp.templates.subscribed.appid');
                 $pagePath = config('wechat.official_account.wp.templates.subscribed.page_path');
+                info([$template_id, $appid, $pagePath], ['wp']);
                 break;
             default:
                 $openid = $this->user->cn_weixin_openid;
@@ -62,7 +64,7 @@ class Subscribed implements ShouldQueue
                 $appid = config('wechat.official_account.cn.templates.subscribed.appid');
                 $pagePath = config('wechat.official_account.cn.templates.subscribed.page_path');
         }
-        info([$template_id, $appid, $pagePath]);
+        info($openid, [$template_id, $appid, $pagePath]);
         if($openid) {
             $send = [
                 'touser' => $openid,
