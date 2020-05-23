@@ -67,13 +67,13 @@ class AuthenticationsController extends Controller
                     ];
                     switch ($this->uri) {
                         case 'dev':
-                            $attributes['dev_weixin_openid'] = $oauthUser->getOriginal()['openid'];
+                            $attributes['dev_weapp_openid'] = $oauthUser->getOriginal()['openid'];
                             break;
                         case 'wf':
-                            $attributes['wf_weixin_openid'] = $oauthUser->getOriginal()['openid'];
+                            $attributes['wf_weapp_openid'] = $oauthUser->getOriginal()['openid'];
                             break;
                         case 'wp':
-                            $attributes['wp_weixin_openid'] = $oauthUser->getOriginal()['openid'];
+                            $attributes['wp_weapp_openid'] = $oauthUser->getOriginal()['openid'];
                             break;
                     }
                     $user = User::create($attributes);
