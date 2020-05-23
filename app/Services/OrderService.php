@@ -95,7 +95,7 @@ class OrderService
             $order->orderContent()->create([
                 'content' => $content
             ]);
-            if($order->status == 0 && $order->user->weixin_openid) {
+            if($order->status == 0) {
                 dispatch(new OrderPendingMsg($order))->delay(now()->addMinutes(2));
             }
             return $order;
