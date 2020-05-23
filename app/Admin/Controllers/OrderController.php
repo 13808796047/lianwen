@@ -125,7 +125,7 @@ class OrderController extends AdminController
 
     public function edit($id, Content $content)
     {
-        return $content->header('编辑订单')->body(view('admin.orders.edit', ['order' => Order::find($id)]));
+        return $content->body(view('admin.orders.edit', ['order' => Order::find($id)]));
     }
 
     public function receved($id, Request $request)
