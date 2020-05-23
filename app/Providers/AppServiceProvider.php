@@ -96,9 +96,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('wechat_pay_mp', function() {
             $domain = request()->getHost();
             switch ($domain) {
-                case config('app.host.dev_host'):
-                    $config = config('wechat.mini_program.dev');
-                    break;
                 case config('app.host.wf_host'):
                     $config = config('wechat.mini_program.wf');
                     break;
@@ -109,7 +106,7 @@ class AppServiceProvider extends ServiceProvider
                     $config = config('wechat.mini_program.pp');
                     break;
                 default:
-                    $config = config('wechat.mini_program.cn');
+                    $config = config('wechat.mini_program.dev');
             }
 //            switch (config('pay.dev_min_wechat.app_id')) {
 //                case 'wx6340d7d2fead020b':

@@ -38,13 +38,6 @@ class Subscribed implements ShouldQueue
         ];
 
         switch ($this->officialAccount) {
-            case 'gh_192a416dfc80':
-                $send['touser'] = $this->user->dev_weixin_openid;
-                $send['template_id'] = config('wechat.official_account.dev.templates.subscribed.template_id');
-                $send['miniprogram']['appid'] = config('wechat.official_account.dev.templates.subscribed.appid');
-                $send['miniprogram']['pagepath'] = config('wechat.official_account.dev.templates.subscribed.page_path');
-
-                break;
             case 'gh_caf405e63bb3':
                 $send['touser'] = $this->user->wf_weixin_openid;
                 $send['template_id'] = config('wechat.official_account.wf.templates.subscribed.template_id');
@@ -59,14 +52,12 @@ class Subscribed implements ShouldQueue
                 break;
             default:
                 $send['touser'] = $this->user->cn_weixin_openid;
-                $send['template_id'] = config('wechat.official_account.cn.templates.subscribed.template_id');
-                $send['miniprogram']['appid'] = config('wechat.official_account.cn.templates.subscribed.appid');
-                $send['miniprogram']['pagepath'] = config('wechat.official_account.cn.templates.subscribed.page_path');
+                $send['template_id'] = config('wechat.official_account.dev.templates.subscribed.template_id');
+                $send['miniprogram']['appid'] = config('wechat.official_account.dev.templates.subscribed.appid');
+                $send['miniprogram']['pagepath'] = config('wechat.official_account.dev.templates.subscribed.page_path');
         }
-        info($send, [1111111]);
         if($send['touser']) {
             app('official_account')->template_message->send($send);
-            info(23238782);
         }
     }
 }
