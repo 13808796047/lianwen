@@ -153,6 +153,7 @@ class AppServiceProvider extends ServiceProvider
                 default:
                     $config = config('wechat.official_account.cn');
             }
+            info($config);
             return Factory::officialAccount($config);
         });
     }

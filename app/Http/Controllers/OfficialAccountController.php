@@ -66,6 +66,7 @@ class OfficialAccountController extends Controller
     protected function handleEvent($event)
     {
         $method = \Str::camel('event_' . $event['Event']);
+
         if(method_exists($this, $method)) {
             return call_user_func_array([$this, $method], [$event]);
         }
