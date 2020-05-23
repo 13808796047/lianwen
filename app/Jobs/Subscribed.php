@@ -61,6 +61,7 @@ class Subscribed implements ShouldQueue
                 $appid = config('wechat.official_account.cn.templates.subscribed.appid');
                 $pagePath = config('wechat.official_account.cn.templates.subscribed.page_path');
         }
+        info($data, [$openid]);
         if($openid) {
             app('official_account')->template_message->send([
                 'touser' => $openid,
