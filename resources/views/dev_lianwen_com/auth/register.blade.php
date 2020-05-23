@@ -9,7 +9,7 @@
 
 @section('content')
 
-  <div class="main clearfix" style="background:#fff;">
+  <div class="main clearfix" style="background:rgb(235,237,243);">
     <div style="padding:25px 500px;">
       <div>
         <div class="alert alert-danger" role="alert" id="message" style="display: none">
@@ -96,7 +96,7 @@
 @section('scripts')
       <script !src="">
         $(() => {
-          $("#headernav").css('background','#ccc')
+
           $('#categories').css('font-size','16px')
           $('#categories a').css('color','black')
           $('#lwfoot').css('font-size','16px')
