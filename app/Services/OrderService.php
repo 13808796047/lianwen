@@ -96,7 +96,8 @@ class OrderService
                 'content' => $content
             ]);
             if($order->status == 0) {
-                dispatch(new OrderPendingMsg($order))->delay(now()->addMinutes(2));
+//                dispatch(new OrderPendingMsg($order))->delay(now()->addMinutes(2));
+                dispatch(new OrderPendingMsg($order));
             }
             return $order;
         });
