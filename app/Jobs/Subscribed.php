@@ -51,7 +51,7 @@ class Subscribed implements ShouldQueue
                 $send['miniprogram']['pagepath'] = config('wechat.official_account.wp.templates.subscribed.page_path');
                 break;
             default:
-                $send['touser'] = $this->user->cn_weixin_openid;
+                $send['touser'] = $this->user->dev_weixin_openid;
                 $send['template_id'] = config('wechat.official_account.dev.templates.subscribed.template_id');
                 $send['miniprogram']['appid'] = config('wechat.official_account.dev.templates.subscribed.appid');
                 $send['miniprogram']['pagepath'] = config('wechat.official_account.dev.templates.subscribed.page_path');
