@@ -103,9 +103,23 @@ class OfficialAccountController extends Controller
      */
     protected function eventUnsubscribe($event)
     {
-        $wxUser = User::whereWeixinOpenid($this->openid)->first();
-        $wxUser->subscribe = 0;
-        $wxUser->subscribe_time = null;
+        switch ($this->officialAccount) {
+            case 'gh_192a416dfc80':
+                $wxUser = User::where('dev_weixin_openid', $this->openid)->first();
+                $wxUser->dev_weixin_openid = '';
+                break;
+            case 'gh_caf405e63bb3':
+                $wxUser = User::where('wf_weixin_openid', $this->openid)->first();
+                $wxUser->wf_weixin_openid = '';
+                break;
+            case 'gh_1a157bde21a9':
+                $wxUser = User::where('wp_weixin_openid', $this->openid)->first();
+                $wxUser->wp_weixin_openid = '';
+                break;
+            default:
+                $wxUser = User::where('pp_weixin_openid', $this->openid)->first();
+                $wxUser->pp_weixin_openid = '';
+        }
         $wxUser->save();
     }
 
@@ -137,7 +151,6 @@ class OfficialAccountController extends Controller
         $loginUser = $loginUser ?? new User();
         // 注册
         $this->handleUser($type ?? 'CC', $wxUser, $user, $loginUser);
-        info($loginUser);
         if(!$loginUser->phone) {
             $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
@@ -169,8 +182,8 @@ class OfficialAccountController extends Controller
         if($type == 'CC') {
             $loginUser->nick_name = $wxUser['nickname'];
             $loginUser->avatar = $wxUser['headimgurl'];
-            $loginUser->subscribe = $wxUser['subscribe'];
-            $loginUser->subscribe_time = $wxUser['subscribe_time'];
+//            $loginUser->subscribe = $wxUser['subscribe'];
+//            $loginUser->subscribe_time = $wxUser['subscribe_time'];
             $loginUser->weixin_unionid = $wxUser['unionid'];
             switch ($this->officialAccount) {
                 case 'gh_192a416dfc80':
@@ -183,7 +196,7 @@ class OfficialAccountController extends Controller
                     $loginUser->wp_weixin_openid = $wxUser['openid'];
                     break;
                 default:
-                    $loginUser->cn_weixin_openid = $wxUser['openid'];
+                    $loginUser->pp_weixin_openid = $wxUser['openid'];
             }
             $loginUser->save();
         }
