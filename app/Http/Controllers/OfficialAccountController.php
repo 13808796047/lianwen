@@ -18,15 +18,6 @@ class OfficialAccountController extends Controller
 
     public function __construct()
     {
-        $domain = \request()->getHost();
-        $dev_uri = env('DEV_WECHAT_OFFICIAL_ACCOUNT_DOMAIN');
-        switch ($domain) {
-            case $dev_uri:
-                $this->prefix = 'dev-cc-';
-                break;
-            default:
-                $this->prefix = 'wf-cc-';
-        }
         $this->app = app('official_account');
     }
 
@@ -39,7 +30,7 @@ class OfficialAccountController extends Controller
         // 有效期 1 天的二维码
         $qrCode = $this->app->qrcode;
 //        $prefix  = 'dev_order';
-        $result = $qrCode->temporary($this->prefix . auth()->user()->id, 3600 * 24);
+        $result = $qrCode->temporary('CC-' . auth()->user()->id, 3600 * 24);
         $url = $qrCode->url($result['ticket']);
         return response(compact('url'), 200);
     }
@@ -47,15 +38,19 @@ class OfficialAccountController extends Controller
     public function serve()
     {
         $this->app->server->push(function($message) {
-            if($message) {
-                $method = \Str::camel('handle_' . $message['MsgType']);
-                if(method_exists($this, $method)) {
-                    $this->openid = $message['FromUserName'];
-                    return call_user_func_array([$this, $method], [$message]);
+            try {
+                if($message) {
+                    $method = \Str::camel('handle_' . $message['MsgType']);
+                    if(method_exists($this, $method)) {
+                        $this->openid = $message['FromUserName'];
+                        $this->officialAccount = $message['ToUserName'];
+                        return call_user_func_array([$this, $method], [$message]);
+                    }
                 }
-
+                return "您好！欢迎使用论文检测服务";
+            } catch (\Exception $e) {
             }
-            return "您好！欢迎使用论文检测服务";
+
         });
 
         return $this->app->server->serve();
@@ -92,7 +87,10 @@ class OfficialAccountController extends Controller
         $openId = $this->openid;
         // 微信用户信息
         $wxUser = $this->app->user->get($openId);
-        $this->handleUser($wxUser, $eventKey);
+        $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
+        [$type, $id] = explode('-', $eventKey);
+        $loginUser = User::find($id);
+        $this->handleUser($wxUser, $loginUser);
     }
 
 
@@ -103,9 +101,23 @@ class OfficialAccountController extends Controller
      */
     protected function eventUnsubscribe($event)
     {
-        $wxUser = User::whereWeixinOpenid($this->openid)->first();
-        $wxUser->subscribe = 0;
-        $wxUser->subscribe_time = null;
+        switch ($this->officialAccount) {
+            case 'gh_192a416dfc80':
+                $wxUser = User::where('dev_weixin_openid', $this->openid)->first();
+                $wxUser->dev_weixin_openid = '';
+                break;
+            case 'gh_caf405e63bb3':
+                $wxUser = User::where('wf_weixin_openid', $this->openid)->first();
+                $wxUser->wf_weixin_openid = '';
+                break;
+            case 'gh_1a157bde21a9':
+                $wxUser = User::where('wp_weixin_openid', $this->openid)->first();
+                $wxUser->wp_weixin_openid = '';
+                break;
+            default:
+                $wxUser = User::where('pp_weixin_openid', $this->openid)->first();
+                $wxUser->pp_weixin_openid = '';
+        }
         $wxUser->save();
     }
 
@@ -119,9 +131,9 @@ class OfficialAccountController extends Controller
     protected function eventSubscribe($event)
     {
         $openId = $this->openid;
-        if(empty($event['EventKey'])) {
-            return;
-        }
+//        if(empty($event['EventKey'])) {
+//            return;
+//        }
         // 关注事件的场景值会带一个前缀需要去掉
         if($event['Event'] == 'subscribe') {
             $eventKey = \Str::after($event['EventKey'], 'qrscene_');
@@ -130,18 +142,21 @@ class OfficialAccountController extends Controller
         $wxUser = $this->app->user->get($openId);
         //如果先授权登录,存在unionid
         $user = User::where('weixin_unionid', $wxUser['unionid'])->first();
-        [$uri, $type, $id] = explode('-', $eventKey);
-        $loginUser = User::find($id);
+
+        $loginUser = $user ?? new User();
+        if($eventKey) {
+            [$type, $id] = explode('-', $eventKey);
+            $loginUser = User::find($id);
+        }
         // 注册
-        $this->handleUser($loginUser, $uri, $type, $wxUser);
+        $this->handleUser($type ?? 'CC', $wxUser, $user, $loginUser);
         if(!$loginUser->phone) {
-            $this->dispatch(new Subscribed($uri, $loginUser));
+            $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
     }
 
-    public function handleUser($loginUser, $uri, $type, $wxUser)
+    public function handleUser($type, $wxUser, $user, &$loginUser)
     {
-
         if($type == 'JC') {
             if(!$user) {
                 $invit_user = User::create([
@@ -163,24 +178,27 @@ class OfficialAccountController extends Controller
                 $result = $this->app->customer_service->message($message)->to($invit_user->weixin_openid)->send();
             }
         }
-        if($type == 'cc') {
-            $attributes = [
-                'nick_name' => $wxUser['nickname'],
-                'avatar' => $wxUser['headimgurl'],
-                'subscribe' => $wxUser['subscribe'],
-                'subscribe_time' => $wxUser['subscribe_time'],
-            ];
-            switch ($uri) {
-                case 'dev':
-                    $attributes['dev_weixin_openid'] = $wxUser['openid'];
-                    $attributes['dev_weixin_unionid'] = $wxUser['unionid'];
+        if($type == 'CC') {
+            $loginUser->nick_name = $wxUser['nickname'];
+            $loginUser->avatar = $wxUser['headimgurl'];
+//            $loginUser->subscribe = $wxUser['subscribe'];
+//            $loginUser->subscribe_time = $wxUser['subscribe_time'];
+            $loginUser->weixin_unionid = $wxUser['unionid'];
+            switch ($this->officialAccount) {
+                case 'gh_192a416dfc80':
+                    $loginUser->dev_weixin_openid = $wxUser['openid'];
                     break;
+                case 'gh_caf405e63bb3':
+                    $loginUser->wf_weixin_openid = $wxUser['openid'];
+                    break;
+                case 'gh_1a157bde21a9':
+                    $loginUser->wp_weixin_openid = $wxUser['openid'];
+                    break;
+                default:
+                    $loginUser->pp_weixin_openid = $wxUser['openid'];
             }
-            if(!$loginUser) {
-                $loginUser = User::create($attributes);
-            } else {
-                $loginUser->update($attributes);
-            }
+            $loginUser->save();
         }
+        return $loginUser;
     }
 }

@@ -46,10 +46,10 @@ return [
          */
         // 'open_platform' => [
         //     'uri' => 'serve',
-        //     'action' => Overtrue\LaravelWeChat\Controllers\OpenPlatformController::class,
+        //     'action' => Overeltrue\LaravWeChat\Controllers\OpenPlatformController::class,
         //     'attributes' => [
         //         'prefix' => 'open-platform',
-        //         'middleware' => null,
+        //         'middle' => nwareull,
         //     ],
         // ],
     ],
@@ -64,13 +64,69 @@ return [
                 'secret' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_SECRET', 'your-app-secret'),    // AppSecret
                 'token' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
                 'aes_key' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'templates' => [
+                    'subscribed' => [
+                        'template_id' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_BOUNDPHONE_TEMPLATE_ID'),
+                        'appid' => env('DEV_MINIPROGRAM_APPID'),
+                        'page_path' => env('DEV_MINIPROGRAM_BINDPHONE_URL'),
+                    ]
+                ]
             ],
-        'mp' =>
+        'wf' =>
             [
-                'app_id' => env('MP_WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
-                'secret' => env('MP_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
-                'token' => env('MP_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
-                'aes_key' => env('MP_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'app_id' => env('WF_WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
+                'secret' => env('WF_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
+                'token' => env('WF_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
+                'aes_key' => env('WF_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'templates' => [
+                    'subscribed' => [
+                        'template_id' => env('WF_WECHAT_OFFICIAL_ACCOUNT_BOUNDPHONE_TEMPLATE_ID'),
+                        'appid' => env('WF_MINIPROGRAM_APPID'),
+                        'page_path' => env('WF_MINIPROGRAM_BINDPHONE_URL'),
+                    ]
+                ]
+            ],
+        'wp' =>
+            [
+                'app_id' => env('WP_WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
+                'secret' => env('WP_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
+                'token' => env('WP_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
+                'aes_key' => env('WP_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'templates' => [
+                    'subscribed' => [
+                        'template_id' => env('WP_WECHAT_OFFICIAL_ACCOUNT_BOUNDPHONE_TEMPLATE_ID'),
+                        'appid' => env('WP_MINIPROGRAM_APPID'),
+                        'page_path' => env('WP_MINIPROGRAM_BINDPHONE_URL'),
+                    ]
+                ]
+            ],
+        'pp' =>
+            [
+                'app_id' => env('PP_WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
+                'secret' => env('PP_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
+                'token' => env('PP_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
+                'aes_key' => env('PP_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'templates' => [
+                    'subscribed' => [
+                        'template_id' => env('PP_WECHAT_OFFICIAL_ACCOUNT_BOUNDPHONE_TEMPLATE_ID'),
+                        'appid' => env('PP_MINIPROGRAM_APPID'),
+                        'page_path' => env('PP_MINIPROGRAM_BINDPHONE_URL'),
+                    ]
+                ]
+            ],
+        'cn' =>
+            [
+                'app_id' => env('CN_WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
+                'secret' => env('CN_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
+                'token' => env('CN_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
+                'aes_key' => env('CN_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
+                'templates' => [
+                    'subscribed' => [
+                        'template_id' => env('CN_WECHAT_OFFICIAL_ACCOUNT_BOUNDPHONE_TEMPLATE_ID'),
+                        'appid' => env('CN_MINIPROGRAM_APPID'),
+                        'page_path' => env('CN_MINIPROGRAM_BINDPHONE_URL'),
+                    ]
+                ]
             ],
         /*
  * OAuth 配置
@@ -100,17 +156,45 @@ return [
      * 小程序
      */
     'mini_program' => [
-        'default' => [
-            'app_id' => env('WECHAT_MINI_PROGRAM_APPID', ''),
-            'secret' => env('WECHAT_MINI_PROGRAM_SECRET', ''),
-            'token' => env('WECHAT_MINI_PROGRAM_TOKEN', ''),
-            'aes_key' => env('WECHAT_MINI_PROGRAM_AES_KEY', ''),
+        'dev' => [
+            'app_id' => env('DEV_WECHAT_MINI_PROGRAM_APPID', ''),
+            'secret' => env('DEV_WECHAT_MINI_PROGRAM_SECRET', ''),
+            'token' => env('DEV_WECHAT_MINI_PROGRAM_TOKEN', ''),
+            'aes_key' => env('DEV_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+            'mch_id' => env('DEV_WECHAT_MINI_PROGRAM_MCH_ID'),
+            'key' => env('DEV_WECHAT_MINI_PROGRAM_KEY'),
         ],
-        'mp' => [
-            'app_id' => env('MP_WECHAT_MINI_PROGRAM_APPID', ''),
-            'secret' => env('MP_WECHAT_MINI_PROGRAM_SECRET', ''),
-            'token' => env('MP_WECHAT_MINI_PROGRAM_TOKEN', ''),
-            'aes_key' => env('MP_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+        'wf' => [
+            'app_id' => env('WF_WECHAT_MINI_PROGRAM_APPID', ''),
+            'secret' => env('WF_WECHAT_MINI_PROGRAM_SECRET', ''),
+            'token' => env('WF_WECHAT_MINI_PROGRAM_TOKEN', ''),
+            'aes_key' => env('WF_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+            'mch_id' => env('WF_WECHAT_MINI_PROGRAM_MCH_ID'),
+            'key' => env('WF_WECHAT_MINI_PROGRAM_KEY'),
+        ],
+        'wp' => [
+            'app_id' => env('WP_WECHAT_MINI_PROGRAM_APPID', ''),
+            'secret' => env('WP_WECHAT_MINI_PROGRAM_SECRET', ''),
+            'token' => env('WP_WECHAT_MINI_PROGRAM_TOKEN', ''),
+            'aes_key' => env('WP_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+            'mch_id' => env('WP_WECHAT_MINI_PROGRAM_MCH_ID'),
+            'key' => env('WP_WECHAT_MINI_PROGRAM_KEY'),
+        ],
+        'pp' => [
+            'app_id' => env('PP_WECHAT_MINI_PROGRAM_APPID', ''),
+            'secret' => env('PP_WECHAT_MINI_PROGRAM_SECRET', ''),
+            'token' => env('PP_WECHAT_MINI_PROGRAM_TOKEN', ''),
+            'aes_key' => env('PP_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+            'mch_id' => env('PP_WECHAT_MINI_PROGRAM_MCH_ID'),
+            'key' => env('PP_WECHAT_MINI_PROGRAM_KEY'),
+        ],
+        'cn' => [
+            'app_id' => env('CN_WECHAT_MINI_PROGRAM_APPID', ''),
+            'secret' => env('CN_WECHAT_MINI_PROGRAM_SECRET', ''),
+            'token' => env('CN_WECHAT_MINI_PROGRAM_TOKEN', ''),
+            'aes_key' => env('CN_WECHAT_MINI_PROGRAM_AES_KEY', ''),
+            'mch_id' => env('CN_WECHAT_MINI_PROGRAM_MCH_ID'),
+            'key' => env('CN_WECHAT_MINI_PROGRAM_KEY'),
         ],
     ],
 

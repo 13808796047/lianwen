@@ -17,15 +17,15 @@ class AuthenticationsController extends Controller
     {
         $host = \request()->getHost();
         switch ($host) {
-            case env('DEV_WECHAT_OFFICIAL_ACCOUNT_DOMAIN'):
+            case config('app.host.dev_host'):
                 $config = config('services.dev_lianwen_com');
                 $this->uri = 'dev';
                 break;
-            case env('WF_WECHAT_OFFICIAL_ACCOUNT_DOMAIN'):
+            case config('app.host.dev_host'):
                 $config = config('services.wanfang_lianwen_com');
                 $this->uri = 'wf';
                 break;
-            case env('WP_WECHAT_OFFICIAL_ACCOUNT_DOMAIN'):
+            case config('app.host.dev_host'):
                 $config = config('services.weipu_lianwen_com');
                 $this->uri = 'wp';
                 break;

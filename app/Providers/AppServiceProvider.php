@@ -94,14 +94,28 @@ class AppServiceProvider extends ServiceProvider
             return Pay::wechat($config);
         });
         $this->app->singleton('wechat_pay_mp', function() {
-            switch (config('pay.dev_min_wechat.app_id')) {
-                case 'wx6340d7d2fead020b':
-                    $config = config('pay.dev_min_wechat');
+            $domain = request()->getHost();
+            switch ($domain) {
+                case config('app.host.wf_host'):
+                    $config = config('wechat.mini_program.wf');
+                    break;
+                case config('app.host.wp_host'):
+                    $config = config('wechat.mini_program.wp');
+                    break;
+                case config('app.host.pp_host'):
+                    $config = config('wechat.mini_program.pp');
                     break;
                 default:
-                    $config = config('pay.dev_min_wechat');
-                    break;
+                    $config = config('wechat.mini_program.dev');
             }
+//            switch (config('pay.dev_min_wechat.app_id')) {
+//                case 'wx6340d7d2fead020b':
+//                    $config = config('pay.dev_min_wechat');
+//                    break;
+//                default:
+//                    $config = config('pay.dev_min_wechat');
+//                    break;
+//            }
             $config['notify_url'] = route('payments.wechat.mp_notify');
             return Pay::wechat($config);
         });
@@ -119,15 +133,21 @@ class AppServiceProvider extends ServiceProvider
         });
         //公众号
         $this->app->singleton('official_account', function() {
-            $domain = \request()->getHost();
-            $dev_uri = env('DEV_WECHAT_OFFICIAL_ACCOUNT_DOMAIN');
+            $domain = request()->getHost();
             switch ($domain) {
-                case $dev_uri:
-                    $config = config('wechat.official_account.dev');
+                case config('app.host.wf_host'):
+                    $config = config('wechat.official_account.wf');
+                    break;
+                case config('app.host.wp_host'):
+                    $config = config('wechat.official_account.wp');
+                    break;
+                case config('app.host.pp_host'):
+                    $config = config('wechat.official_account.pp');
                     break;
                 default:
-                    $config = config('wechat.official_account.mp');
+                    $config = config('wechat.official_account.dev');
             }
+            info($config, [$domain]);
             return Factory::officialAccount($config);
         });
     }

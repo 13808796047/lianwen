@@ -12,7 +12,12 @@ return [
     | any other location as required by the application or its packages.
     |
     */
-
+    'host' => [
+        'dev_host' => env('DEV_HOST'),
+        'wf_host' => env('WF_HOST'),
+        'wp_host' => env('WP_HOST'),
+        'pp_host' => env('PP_HOST'),
+    ],
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
