@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Api\BoundPhoneRequest;
 use App\Http\Requests\Api\UserRequest;
 use App\Http\Resources\UserResource;
+use App\Jobs\BindPhoneSuccess;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Auth\AuthenticationException;
@@ -63,10 +64,12 @@ class UsersController extends Controller
             throw new AuthenticationException('验证码错误');
         }
         $phone = $verifyData['phone'];
-        $this->userService->miniprogramBindPhone($phone);
+        $user = $this->userService->miniprogramBindPhone($phone);
+        $this->dispatch(new BindPhoneSuccess($user));
         \Cache::forget($verification_key);
         return response([
-            'message' => '绑定成功!'
+            'message' => '绑定成功!',
+            'data' => $user
         ], 200);
     }
 

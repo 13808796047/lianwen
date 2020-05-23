@@ -84,6 +84,11 @@ return [
                         'template_id' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_CHECKED_TEMPLATE_ID'),
                         'appid' => env('DEV_MINIPROGRAM_APPID'),
                         'page_path' => env('DEV_MINIPROGRAM_CHECKED_URL'),
+                    ],
+                    'binded' => [
+                        'template_id' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_BINDED_TEMPLATE_ID'),
+                        'appid' => env('DEV_MINIPROGRAM_APPID'),
+                        'page_path' => env('DEV_MINIPROGRAM_BINDED_URL'),
                     ]
                 ]
             ],
@@ -113,6 +118,11 @@ return [
                         'template_id' => env('WF_WECHAT_OFFICIAL_ACCOUNT_CHECKED_TEMPLATE_ID'),
                         'appid' => env('WF_MINIPROGRAM_APPID'),
                         'page_path' => env('WF_MINIPROGRAM_CHECKED_URL'),
+                    ],
+                    'binded' => [
+                        'template_id' => env('WF_WECHAT_OFFICIAL_ACCOUNT_BINDED_TEMPLATE_ID'),
+                        'appid' => env('WF_MINIPROGRAM_APPID'),
+                        'page_path' => env('WF_MINIPROGRAM_BINDED_URL'),
                     ]
                 ]
             ],
@@ -142,6 +152,11 @@ return [
                         'template_id' => env('WP_WECHAT_OFFICIAL_ACCOUNT_CHECKED_TEMPLATE_ID'),
                         'appid' => env('WP_MINIPROGRAM_APPID'),
                         'page_path' => env('WP_MINIPROGRAM_CHECKED_URL'),
+                    ],
+                    'binded' => [
+                        'template_id' => env('WP_WECHAT_OFFICIAL_ACCOUNT_BINDED_TEMPLATE_ID'),
+                        'appid' => env('WP_MINIPROGRAM_APPID'),
+                        'page_path' => env('WP_MINIPROGRAM_BINDED_URL'),
                     ]
                 ]
             ],
@@ -171,6 +186,11 @@ return [
                         'template_id' => env('PP_WECHAT_OFFICIAL_ACCOUNT_CHECKED_TEMPLATE_ID'),
                         'appid' => env('PP_MINIPROGRAM_APPID'),
                         'page_path' => env('PP_MINIPROGRAM_CHECKED_URL'),
+                    ],
+                    'binded' => [
+                        'template_id' => env('PP_WECHAT_OFFICIAL_ACCOUNT_BINDED_TEMPLATE_ID'),
+                        'appid' => env('PP_MINIPROGRAM_APPID'),
+                        'page_path' => env('PP_MINIPROGRAM_BINDED_URL'),
                     ]
                 ]
             ],
