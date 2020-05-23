@@ -61,9 +61,8 @@ class Subscribed implements ShouldQueue
                 $appid = config('wechat.official_account.cn.templates.subscribed.appid');
                 $pagePath = config('wechat.official_account.cn.templates.subscribed.page_path');
         }
-        info([$template_id, $appid, $pagePath]);
         if($openid) {
-            app('official_account')->template_message->send([
+            $send = [
                 'touser' => $openid,
                 'template_id' => $template_id,
 //                'url' => 'https://wap.lianwen.com/bading?openid=' . $this->order->user->weixin_openid,
@@ -72,7 +71,9 @@ class Subscribed implements ShouldQueue
                     'pagepath' => $pagePath,
                 ],
                 'data' => $data,
-            ]);
+            ];
+            info($send);
+            app('official_account')->template_message->send($send);
         }
     }
 }
