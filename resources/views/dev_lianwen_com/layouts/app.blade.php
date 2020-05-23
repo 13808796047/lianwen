@@ -13,18 +13,6 @@
 
   <!-- Styles -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-  <style>
-    .newbody{
-      height:100%;
-      margin-bottom:0;
-      user-select: auto;
-    }
-    .newmain{
-      display:flex;
-      flex-direction:column;
-      height:100%;
-    }
-  </style>
   @yield('styles')
   <script>
     //H5移动版自适应跳转js
@@ -43,8 +31,8 @@
   </script>
 </head>
 
-<body class="newbody">
-<div id="app" class="{{ route_class() }}-page newmain">
+<body class="text-xs" style="user-select: auto;">
+<div id="app" class="{{ route_class() }}-page">
 
   @include('domained::layouts._header')
 
