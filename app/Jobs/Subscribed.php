@@ -48,6 +48,7 @@ class Subscribed implements ShouldQueue
                 $template_id = config('wechat.official_account.wf.templates.subscribed.template_id');
                 $appid = config('wechat.official_account.wf.templates.subscribed.appid');
                 $pagePath = config('wechat.official_account.wf.templates.subscribed.page_path');
+                info([$template_id, $appid, $pagePath]);
                 break;
             case 'gh_192a416dfc80':
                 $openid = $this->user->wp_weixin_openid;
