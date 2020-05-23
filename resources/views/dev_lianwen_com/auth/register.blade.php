@@ -9,7 +9,7 @@
 
 @section('content')
 
-  <div class="main clearfix" style="background:#fff">
+  <div class="main clearfix" style="background:#fff;min-height:1000px">
     <div style="padding:25px 500px;">
       <div>
         <div class="alert alert-danger" role="alert" id="message" style="display: none">
