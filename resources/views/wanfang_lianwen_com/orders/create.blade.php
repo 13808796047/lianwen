@@ -97,7 +97,7 @@
         <form>
         <!-- @csrf -->
           <input type="hidden" name="cid" id="cid">
-          <input type="hidden" name="from" value="万方PC端">
+          <input type="hidden" name="from" value="wf-pc">
           <input type="hidden" name="file_id" value="" id="hidden_form_id">
           <input type="hidden" name="type" value="content" id="hideen_type">
           <div class="form-group">
@@ -335,7 +335,7 @@
             }
           }).then(res => {
             array.push({
-              'file_id': res.data.data.id, 'from': '万方查重PC', 'type': 'file',
+              'file_id': res.data.data.id, 'from': 'wf-pc', 'type': 'file',
               'content': ''
             });
             index++;
@@ -445,7 +445,7 @@
           $('#submitBtn').css("display", "block")
           axios.post('{{route('orders.store')}}', {
               cid: $('#cid').val(),
-              from: '万方PC端',
+              from: 'wf-pc',
               file_id: oneid,
               type: 'file',
               content: '',
@@ -468,7 +468,7 @@
           $('#submitBtn').css("display", "block")
           axios.post('{{route('orders.store')}}', {
               cid: $('#cid').val(),
-              from: '万方PC端',
+              from: 'wf-pc',
               type: 'content',
               content: $('#content').val(),
               title: $('#title').val(),
