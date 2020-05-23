@@ -87,7 +87,7 @@ class AuthenticationsController extends Controller
                     }
 
                 } else {
-                    $user = User::update($attributes);
+                    $user->update($attributes);
                 }
                 break;
         }
