@@ -86,6 +86,8 @@ class AuthenticationsController extends Controller
                         \Cache::forget('uid');
                     }
 
+                } else {
+                    $user = User::update($attributes);
                 }
                 break;
         }
