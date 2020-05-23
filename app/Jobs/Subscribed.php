@@ -19,7 +19,7 @@ class Subscribed implements ShouldQueue
 
     public function __construct($officialAccount, User $user)
     {
-        $this->$officialAccount = $officialAccount;
+        $this->officialAccount = $officialAccount;
         $this->user = $user;
     }
 
