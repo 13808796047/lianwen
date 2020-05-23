@@ -67,7 +67,7 @@ class Subscribed implements ShouldQueue
                 $send['miniprogram']['pagepath'] = config('wechat.official_account.cn.templates.subscribed.page_path');
                 $config = config('wechat.official_account.cn');
         }
-
+        info($config);
         if($send['touser']) {
             Factory::officialAccount($config)->template_message->send($send);
         }
