@@ -135,9 +135,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('official_account', function() {
             $domain = request()->getHost();
             switch ($domain) {
-                case config('app.host.dev_host'):
-                    $config = config('wechat.official_account.dev');
-                    break;
                 case config('app.host.wf_host'):
                     $config = config('wechat.official_account.wf');
                     break;
@@ -148,7 +145,7 @@ class AppServiceProvider extends ServiceProvider
                     $config = config('wechat.official_account.pp');
                     break;
                 default:
-                    $config = config('wechat.official_account.cn');
+                    $config = config('wechat.official_account.dev');
             }
             info($config, [$domain]);
             return Factory::officialAccount($config);
