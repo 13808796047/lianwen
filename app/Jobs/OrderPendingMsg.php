@@ -38,6 +38,7 @@ class OrderPendingMsg implements ShouldQueue
                 'keyword5' => ['value' => $this->order->price, 'color' => '#173177'],
                 'remark' => ['value' => '绑定手机号！', 'color' => '#173177']
             ];
+            info($this->host);
             switch ($this->host) {
                 case config('app.host.wf_host'):
                     $touser = $this->order->user->wf_weixin_openid;
