@@ -74,6 +74,11 @@ return [
                         'template_id' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_PENDING_TEMPLATE_ID'),
                         'appid' => env('DEV_MINIPROGRAM_APPID'),
                         'page_path' => env('DEV_MINIPROGRAM_PENDING_URL'),
+                    ],
+                    'paid' => [
+                        'template_id' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_PAID_TEMPLATE_ID'),
+                        'appid' => env('DEV_MINIPROGRAM_APPID'),
+                        'page_path' => env('DEV_MINIPROGRAM_PAID_URL'),
                     ]
                 ]
             ],
@@ -93,6 +98,11 @@ return [
                         'template_id' => env('WF_WECHAT_OFFICIAL_ACCOUNT_PENDING_TEMPLATE_ID'),
                         'appid' => env('WF_MINIPROGRAM_APPID'),
                         'page_path' => env('WF_MINIPROGRAM_PENDING_URL'),
+                    ],
+                    'paid' => [
+                        'template_id' => env('WF_WECHAT_OFFICIAL_ACCOUNT_PAID_TEMPLATE_ID'),
+                        'appid' => env('WF_MINIPROGRAM_APPID'),
+                        'page_path' => env('WF_MINIPROGRAM_PAID_URL'),
                     ]
                 ]
             ],
@@ -112,6 +122,11 @@ return [
                         'template_id' => env('WP_WECHAT_OFFICIAL_ACCOUNT_PENDING_TEMPLATE_ID'),
                         'appid' => env('WP_MINIPROGRAM_APPID'),
                         'page_path' => env('WP_MINIPROGRAM_PENDING_URL'),
+                    ],
+                    'paid' => [
+                        'template_id' => env('WP_WECHAT_OFFICIAL_ACCOUNT_PAID_TEMPLATE_ID'),
+                        'appid' => env('WP_MINIPROGRAM_APPID'),
+                        'page_path' => env('WP_MINIPROGRAM_PAID_URL'),
                     ]
                 ]
             ],
@@ -131,6 +146,11 @@ return [
                         'template_id' => env('PP_WECHAT_OFFICIAL_ACCOUNT_PENDING_TEMPLATE_ID'),
                         'appid' => env('PP_MINIPROGRAM_APPID'),
                         'page_path' => env('PP_MINIPROGRAM_PENDING_URL'),
+                    ],
+                    'paid' => [
+                        'template_id' => env('PP_WECHAT_OFFICIAL_ACCOUNT_PAID_TEMPLATE_ID'),
+                        'appid' => env('PP_MINIPROGRAM_APPID'),
+                        'page_path' => env('PP_MINIPROGRAM_PAID_URL'),
                     ]
                 ]
             ],
