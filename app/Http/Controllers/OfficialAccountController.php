@@ -44,13 +44,11 @@ class OfficialAccountController extends Controller
                     if(method_exists($this, $method)) {
                         $this->openid = $message['FromUserName'];
                         $this->officialAccount = $message['ToUserName'];
-                        info($method, $message);
                         return call_user_func_array([$this, $method], [$message]);
                     }
                 }
                 return "您好！欢迎使用论文检测服务";
             } catch (\Exception $e) {
-                info($e->getMessage());
             }
 
         });
@@ -68,7 +66,6 @@ class OfficialAccountController extends Controller
     protected function handleEvent($event)
     {
         $method = \Str::camel('event_' . $event['Event']);
-        info($method, $event);
         if(method_exists($this, $method)) {
             return call_user_func_array([$this, $method], [$event]);
         }
