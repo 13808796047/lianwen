@@ -21,7 +21,6 @@ class Subscribed implements ShouldQueue
     {
         $this->officialAccount = $officialAccount;
         $this->user = $user;
-        info(45645645);
     }
 
     /**
@@ -31,21 +30,12 @@ class Subscribed implements ShouldQueue
      */
     public function handle()
     {
-        info(123123456456);
         $send['data'] = [
             'first' => '您未绑定手机号，绑定手机号后可接收网站订单状态。',
             'keyword1' => ['value' => $this->user->nick_name, 'color' => '#173177'],
             'keyword2' => ['value' => '未绑定', 'color' => '#173177'],
             'remark' => ['value' => '绑定手机号！', 'color' => '#173177']
         ];
-
-//        'touser' => $send['touser'],
-//        'template_id' => $send['template_id'],
-////                'url' => 'https://wap.lianwen.com/bading?openid=' . $this->order->user->weixin_openid,
-//        'miniprogram' => [
-//            'appid' => $send['miniprogram']['appid'],
-//            'pagepath' => $send['miniprogram']['pagepath'],
-//        ],
 
         switch ($this->officialAccount) {
             case 'gh_192a416dfc80':
@@ -72,9 +62,8 @@ class Subscribed implements ShouldQueue
                 $send['miniprogram']['appid'] = config('wechat.official_account.cn.templates.subscribed.appid');
                 $send['miniprogram']['pagepath'] = config('wechat.official_account.cn.templates.subscribed.page_path');
         }
-        info($send);
-//        if($send['touser']) {
-//            app('official_account')->template_message->send($send);
-//        }
+        if($send['touser']) {
+            app('official_account')->template_message->send($send);
+        }
     }
 }
