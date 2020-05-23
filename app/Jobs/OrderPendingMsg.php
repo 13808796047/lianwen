@@ -36,7 +36,7 @@ class OrderPendingMsg implements ShouldQueue
                 'keyword3' => ['value' => $this->order->created_at->format("Y-m-d H:i:s"), 'color' => '#173177'],
                 'keyword4' => ['value' => $this->order->category->name, 'color' => '#173177'],
                 'keyword5' => ['value' => $this->order->price, 'color' => '#173177'],
-                'remark' => ['value' => '绑定手机号！', 'color' => '#173177']
+                'remark' => ['value' => '订单未支付！', 'color' => '#173177']
             ];
             info($this->host);
             switch ($this->host) {
