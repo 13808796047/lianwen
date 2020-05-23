@@ -9,7 +9,7 @@
 
 @section('content')
 
-  <div class="main clearfix" style="background:#fff;min-height:1000px">
+  <div class="main clearfix" style="background:#fff;">
     <div style="padding:25px 500px;">
       <div>
         <div class="alert alert-danger" role="alert" id="message" style="display: none">
@@ -96,6 +96,7 @@
 @section('scripts')
       <script !src="">
         $(() => {
+          $("headernav").css('background','#ccc')
           var wait = 60;
           var verification_key = '';
 
