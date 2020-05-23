@@ -99,7 +99,7 @@
 
           $('#categories').css('font-size','16px')
           $('#categories a').css('color','black')
-          $('#lwfoot').css('font-size','16px')
+          $('#lwfoot').css('font-size','14px')
           $('#lwfoot').css('bottom','0')
           var wait = 60;
           var verification_key = '';
