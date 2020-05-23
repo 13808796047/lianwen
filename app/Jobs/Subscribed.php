@@ -36,6 +36,7 @@ class Subscribed implements ShouldQueue
             'keyword2' => ['value' => '未绑定', 'color' => '#173177'],
             'remark' => ['value' => '绑定手机号！', 'color' => '#173177']
         ];
+        info($this->officialAccount);
         switch ($this->officialAccount) {
             case 'gh_192a416dfc80':
                 $openid = $this->user->dev_weixin_openid;
