@@ -30,7 +30,6 @@ class Subscribed implements ShouldQueue
      */
     public function handle()
     {
-        info($this->officialAccount);
         $data = [
             'first' => '您未绑定手机号，绑定手机号后可接收网站订单状态。',
             'keyword1' => ['value' => $this->user->nick_name, 'color' => '#173177'],
@@ -62,7 +61,7 @@ class Subscribed implements ShouldQueue
                 $appid = config('wechat.official_account.cn.templates.subscribed.appid');
                 $pagePath = config('wechat.official_account.cn.templates.subscribed.page_path');
         }
-        info($data, [$openid]);
+        info([$template_id, $appid, $pagePath]);
         if($openid) {
             app('official_account')->template_message->send([
                 'touser' => $openid,
