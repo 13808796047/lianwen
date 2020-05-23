@@ -43,7 +43,7 @@ class Subscribed implements ShouldQueue
                 $send['template_id'] = config('wechat.official_account.dev.templates.subscribed.template_id');
                 $send['miniprogram']['appid'] = config('wechat.official_account.dev.templates.subscribed.appid');
                 $send['miniprogram']['pagepath'] = config('wechat.official_account.dev.templates.subscribed.page_path');
-                
+
                 break;
             case 'gh_caf405e63bb3':
                 $send['touser'] = $this->user->wf_weixin_openid;
@@ -51,7 +51,7 @@ class Subscribed implements ShouldQueue
                 $send['miniprogram']['appid'] = config('wechat.official_account.wf.templates.subscribed.appid');
                 $send['miniprogram']['pagepath'] = config('wechat.official_account.wf.templates.subscribed.page_path');
                 break;
-            case 'gh_192a416dfc80':
+            case 'gh_1a157bde21a9':
                 $send['touser'] = $this->user->wp_weixin_openid;
                 $send['template_id'] = config('wechat.official_account.wp.templates.subscribed.template_id');
                 $send['miniprogram']['appid'] = config('wechat.official_account.wp.templates.subscribed.appid');
