@@ -87,7 +87,12 @@ class AuthenticationsController extends Controller
                     }
 
                 } else {
-                    $user->update($attributes);
+                    try {
+
+                        $user->update($attributes);
+                    } catch (\Exception $e) {
+                        info($e->getMessage());
+                    }
                 }
                 break;
         }
