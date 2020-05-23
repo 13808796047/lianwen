@@ -88,7 +88,6 @@ class AuthenticationsController extends Controller
 
                 } else {
                     try {
-
                         $user->update($attributes);
                     } catch (\Exception $e) {
                         info($e->getMessage());
@@ -96,6 +95,7 @@ class AuthenticationsController extends Controller
                 }
                 break;
         }
+        info($user);
         auth('web')->login($user);
         return redirect()->to('/');
     }
