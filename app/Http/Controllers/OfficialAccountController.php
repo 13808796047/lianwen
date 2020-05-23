@@ -153,8 +153,7 @@ class OfficialAccountController extends Controller
         // 注册
         $this->handleUser($type ?? 'CC', $wxUser, $user, $loginUser);
         if(!$loginUser->phone) {
-            info([1231232323]);
-//            $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
+            $this->dispatch(new Subscribed($this->officialAccount, $loginUser));
         }
     }
 

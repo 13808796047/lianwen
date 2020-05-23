@@ -30,6 +30,7 @@ class Subscribed implements ShouldQueue
      */
     public function handle()
     {
+        info(123123456456);
         $send['data'] = [
             'first' => '您未绑定手机号，绑定手机号后可接收网站订单状态。',
             'keyword1' => ['value' => $this->user->nick_name, 'color' => '#173177'],
