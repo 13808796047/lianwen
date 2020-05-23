@@ -96,7 +96,9 @@
 @section('scripts')
       <script !src="">
         $(() => {
-          $("headernav").css('background','#ccc')
+          $("#headernav").css('background','#ccc')
+          $('#categories').css('font-size','16px;')
+          $('#categories a').css('color','black')
           var wait = 60;
           var verification_key = '';
 
