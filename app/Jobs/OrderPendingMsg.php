@@ -40,21 +40,21 @@ class OrderPendingMsg implements ShouldQueue
             ];
             switch ($this->host) {
                 case config('app.host.wf_host'):
-                    $touser = $this->user->wf_weixin_openid;
+                    $touser = $this->order->user->wf_weixin_openid;
                     $template_id = config('wechat.official_account.wf.templates.pending.template_id');
                     $appid = config('wechat.official_account.wf.templates.pending.appid');
                     $pagepath = config('wechat.official_account.wf.templates.pending.page_path');
                     $config = config('wechat.official_account.wf');
                     break;
                 case config('app.host.wp_host'):
-                    $touser = $this->user->wp_weixin_openid;
+                    $touser = $this->order->user->wp_weixin_openid;
                     $template_id = config('wechat.official_account.wp.templates.pending.template_id');
                     $appid = config('wechat.official_account.wp.templates.pending.appid');
                     $pagepath = config('wechat.official_account.wp.templates.pending.page_path');
                     $config = config('wechat.official_account.wp');
                     break;
                 default:
-                    $touser = $this->user->dev_weixin_openid;
+                    $touser = $this->order->user->dev_weixin_openid;
                     $template_id = config('wechat.official_account.dev.templates.pending.template_id');
                     $appid = config('wechat.official_account.dev.templates.pending.appid');
                     $pagepath = config('wechat.official_account.dev.templates.pending.page_path');
