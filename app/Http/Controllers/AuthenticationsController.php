@@ -55,6 +55,7 @@ class AuthenticationsController extends Controller
                 $unionid = $oauthUser->getOriginal()['unionid'] ?: null;
                 if($unionid) {
                     $user = User::where('weixin_unionid', $unionid)->first();
+                    info($user);
                 } else {
                     $user = User::where($this->openid, $oauthUser->getOriginal()['openid'])->first();
                 }
