@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Models\Enum\OrderEnum;
 use App\Models\User;
-use EasyWeChat\Factory;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -44,32 +43,29 @@ class Subscribed implements ShouldQueue
                 $send['template_id'] = config('wechat.official_account.dev.templates.subscribed.template_id');
                 $send['miniprogram']['appid'] = config('wechat.official_account.dev.templates.subscribed.appid');
                 $send['miniprogram']['pagepath'] = config('wechat.official_account.dev.templates.subscribed.page_path');
-                $config = config('wechat.official_account.dev');
+                
                 break;
             case 'gh_caf405e63bb3':
                 $send['touser'] = $this->user->wf_weixin_openid;
                 $send['template_id'] = config('wechat.official_account.wf.templates.subscribed.template_id');
                 $send['miniprogram']['appid'] = config('wechat.official_account.wf.templates.subscribed.appid');
                 $send['miniprogram']['pagepath'] = config('wechat.official_account.wf.templates.subscribed.page_path');
-                $config = config('wechat.official_account.wf');
                 break;
             case 'gh_192a416dfc80':
                 $send['touser'] = $this->user->wp_weixin_openid;
                 $send['template_id'] = config('wechat.official_account.wp.templates.subscribed.template_id');
                 $send['miniprogram']['appid'] = config('wechat.official_account.wp.templates.subscribed.appid');
                 $send['miniprogram']['pagepath'] = config('wechat.official_account.wp.templates.subscribed.page_path');
-                $config = config('wechat.official_account.wp');
                 break;
             default:
                 $send['touser'] = $this->user->cn_weixin_openid;
                 $send['template_id'] = config('wechat.official_account.cn.templates.subscribed.template_id');
                 $send['miniprogram']['appid'] = config('wechat.official_account.cn.templates.subscribed.appid');
                 $send['miniprogram']['pagepath'] = config('wechat.official_account.cn.templates.subscribed.page_path');
-                $config = config('wechat.official_account.cn');
         }
-        info($config);
+
         if($send['touser']) {
-            Factory::officialAccount($config)->template_message->send($send);
+            app('official_account')->template_message->send($send);
         }
     }
 }
