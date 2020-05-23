@@ -21,6 +21,7 @@ class Subscribed implements ShouldQueue
     {
         $this->officialAccount = $officialAccount;
         $this->user = $user;
+        info(45645645);
     }
 
     /**
