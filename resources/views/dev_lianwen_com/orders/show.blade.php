@@ -107,11 +107,11 @@
 									</div>
 								</td>
 							</tr>
+              @if($order->price!==0.00)
 							<tr>
 								<td class="td">
 									在线支付<font color="#FF0004">(推荐)</font>
 								</td>
-                @if($order->price!==0.00)
 								<td class="td">
 									<div style="display:flex;align-items: center">
 										<input type="radio" name="paytype" value="alipay" checked="checked" />
@@ -127,8 +127,8 @@
 										直接使用支付宝或者微信支付，即时返回支付结果，方便快捷，推荐使用。
 									</div>
 								</td>
-                @endif
 							</tr>
+              @endif
 						</table>
 
             @if($order->price!==0.00)
