@@ -354,13 +354,16 @@
         let contents = $('#content').val();
         axios.post('{{ route('ai_rewrite.store') }}',{content:contents})
           .then(res => {
-            console.log(res.data.user.jc_times,1323122321)
+            if(res.data.user.jc_times){
+              console.log(res.data.user.jc_times,1323122321)
+              $('#jc_time').html(res.data.user.jc_times)
+            }
             $('#beingModal').modal('hide')
             $('#jcafter').css('display', 'none')
             var htmlstring=res.data.result.new_content;
             var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
             changed(contents,stringtemp,htmlstring)
-            $('#jc_time').val(res.data.user.jc_times)
+
             $("#jclater").css('display', 'block')
           })
           .catch(err =>{
