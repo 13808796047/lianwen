@@ -81,7 +81,6 @@ class OrderService
                 'endDate' => $request->endDate ?? "",
                 'publishdate' => $request->publishdate ?? "",
                 'date_publish' => $request->date_publish,
-                'price' => $price,
                 'words' => ceil($words),
                 'paper_path' => $result['path'],
                 'from' => $request->from,
@@ -90,14 +89,12 @@ class OrderService
                 'keyword' => $referer['keyword']
             ]);
             $order->user()->associate($user);
-            if($user->is_free && $category->id == 12) {
+            if($user->is_free && $category->id == 1) {
                 if($user->dev_weixin_openid || $user->dev_weapp_openid) {
                     if($price -= 3 < 0) $price = 0;
-                    $order->price = $price;
                 }
             }
-
-            dd($order);
+            $order->price = $price;
             $order->save();
             \Cache::forget('word');
             $order->orderContent()->create([

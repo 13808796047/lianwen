@@ -56,7 +56,7 @@ class PaymentsController extends Controller
                 ]);
         }
     }
-    
+
 //wap支付
     public function alipayWap(Order $order, Request $request)
     {
@@ -65,6 +65,27 @@ class PaymentsController extends Controller
             'total_amount' => $order->price, // 订单金额，单位元，支持小数点后两位
             'subject' => '支付' . $order->category->name . '的订单：' . $order->orderid, // 订单标题
         ]);
+    }
+
+    public function freePay(Order $order)
+    {
+        $this->authorize('own', $order);
+        if($order->status == 1 || $order->del) {
+            throw new InvalidRequestException('订单状态不正确!');
+        }
+        if($order->category->id != 1 || !$order->user->is_free) {
+            throw new InvalidRequestException('订单状态不正确!');
+        }
+        $order->update([
+            'date_pay' => Carbon::now(), // 支付时间
+            'pay_type' => '免费检测', // 支付方式
+            'payid' => time(), // 支付宝订单号
+            'pay_price' => $$order->price,//支付金额
+            'status' => 1,
+        ]);
+        $this->afterOrderPaid($order);
+        $this->afterPaidMsg($order);
+        return response(compact('order'), 200);
     }
 
     // 前端回调页面
