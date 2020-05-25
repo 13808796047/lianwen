@@ -165,6 +165,7 @@
       $('#headerlw').addClass('curfont')
       $('#categories').css('font-size','16px')
       $('#categories a').css('color','black')
+
       $('#lwfoot').css('font-size','14px')
       $("input[name='paytype']").change(() => {
         $('#bottonsubmit').toggle();
