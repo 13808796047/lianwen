@@ -249,9 +249,11 @@
 
       })
       //复制链接
-      var clipboard = new Clipboard("#copybtn");
-      var containe = $('#demo').html();
-      console.log(containe,3123)
+      var clipboard = new Clipboard("#copybtn",{
+        target:function(){
+          return document.querySelector('#demo');
+        }
+      });
       clipboardData.getData(containe)
       //复制成功执行的回调
       clipboard.on('success', function(e) {
