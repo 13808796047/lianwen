@@ -44,7 +44,7 @@
   <!-- 模态框结束 -->
    <!-- 模态框2 -->
    <div class="modal fade bd-example-modal-sm" id="beingModal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-body" style="text-align:center;">
@@ -71,6 +71,7 @@
           <p>请输入购买次数<span style="padding:0 10px;" id="cutjctime">-</span><span style="border: 1px solid;padding: 3px;" id="curjctime">1</span><span style="padding:0 10px;" id="addjctime">+</span></p>
         </div>
         <div class="modal-footer">
+          <p style="color:#4876FF;margin-right:25%;" id="freeadd">免费增加</p>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
           <button type="button" class="btn btn-primary" id="sureshop">确定</button>
         </div>
