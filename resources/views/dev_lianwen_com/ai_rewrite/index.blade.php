@@ -34,7 +34,7 @@
 
         </div>
         <div class="modal-footer">
-          <p style="color:#4876FF;margin-right:25%;" id="freeadd">免费增加</p>
+          <p style="color:#4876FF;margin-right:25%;" id="freeadds">免费增加</p>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
           <button type="button" class="btn btn-primary" id="surecheck">确定</button>
         </div>
@@ -194,6 +194,9 @@
       $('#headerlw').addClass('curfont')
 
       $('#freeadd').click(function(){
+        $('#tjModal').modal('show')
+      })
+      $('#freeadds').click(function(){
         $('#tjModal').modal('show')
       })
       //生成分享二维码
