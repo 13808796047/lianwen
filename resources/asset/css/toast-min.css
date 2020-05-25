@@ -7,9 +7,9 @@
 
 
  .toast-center-center {
-      top: 10%;
+     /* top: 5%;
       left: 50%;
       margin-top: -20px;
       margin-left: -150px;
-      z-index:99999;
+      z-index:99999; */
   }
