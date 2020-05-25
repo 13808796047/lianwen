@@ -188,8 +188,6 @@
 <script type="text/javascript" src="{{ asset('asset/js/diff.js') }}"></script>
   <script>
     $(() => {
-
-
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
 
@@ -251,7 +249,6 @@
       $("#addjctime").click(function(){
         let current = Number($("#curjctime").text())+1;
         $("#curjctime").text(current)
-
       })
       //复制链接
       var clipboard = new Clipboard("#copybtn",{
