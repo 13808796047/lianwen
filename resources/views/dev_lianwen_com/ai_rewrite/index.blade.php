@@ -175,7 +175,10 @@
     <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;margin-top:16px;" id="againjc">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
-      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
+      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">购买次数</span>
+    </div>
+    <div style="display: flex;justify-content: center;margin-top: 15px;">
+      <span style="color:#4876FF;margin-left: 10px;" id="freeadd">免费增加</span>
     </div>
   </div>
 @stop
@@ -190,7 +193,10 @@
 
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
-      $('#tjModal').modal('show')
+
+      $('#freeadd').click(function(){
+        $('#tjModal').modal('show')
+      })
       //生成分享二维码
       var qrcode = document.getElementById('qrcode')
 
@@ -209,13 +215,13 @@
 
         "debug": true, //是否使用debug模式
 
-        "showDuration": "2000",//显示的动画时间
+        "showDuration": "1000",//显示的动画时间
 
-        "hideDuration": "2000",//消失的动画时间
+        "hideDuration": "1000",//消失的动画时间
 
         "positionClass": "toast-center-center",//弹出窗的位置
 
-        "timeOut": "2000", //展现时间
+        "timeOut": "1000", //展现时间
 
         "extendedTimeOut": "1000",//加长展示时间
 
