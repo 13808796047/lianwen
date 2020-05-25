@@ -60,7 +60,7 @@ Route::get('payments/{order}/wechat_mp', 'PaymentsController@wechatPayMp')
     ->name('payments.wechat_mp');
 Route::post('payments/wechat/notify', 'PaymentsController@wechatNotify')
     ->name('payments.wechat.notify');
-Route::get('payments/{$order}free_pay', 'PaymentsController@freePay')->name('payments.freePay');
+Route::get('payments/{order}free_pay', 'PaymentsController@freePay')->name('payments.freePay');
 Route::post('payments/wechat/mp_notify', 'PaymentsController@wechatMpNotify')
     ->name('payments.wechat.mp_notify');
 
