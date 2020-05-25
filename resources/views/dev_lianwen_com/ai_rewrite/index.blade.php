@@ -91,7 +91,7 @@
           <p style="margin:10px 0;">方式1：分享地址，邀请好友注册（适合电脑此操作）</p>
           <div style="display:flex;justify-content: center;">
             <p id="demo" style="border: 1px solid;padding: 0 10px;" >https://dev.lianwen.com/zt/jc?uid={{auth()->user()->id}}</p>
-            <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;" class="btn" id="copybtn" data-cliboard-target="#demo">复制链接</p>
+            <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;" class="btn" id="copybtn" >复制链接</p>
           </div>
           <p style="margin:10px 0;">方式2：微信扫码，邀请好友注册（适合手机操作）</p>
           <div style="display:flex;justify-content: center;" id="qrcode">
@@ -250,6 +250,9 @@
       })
       //复制链接
       var clipboard = new Clipboard("#copybtn");
+      var containe = $('#demo').html();
+      console.log(containe,3123)
+      clipboardData.getData(containe)
       //复制成功执行的回调
       clipboard.on('success', function(e) {
 　　    console.log(e); //返回值类型给控制台 没什么用 可以注释掉
