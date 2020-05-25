@@ -115,7 +115,7 @@
       {{--      </table>--}}
     </div>
 
-    <div class="rbox fr">
+    <div class="rbox fr" style="font-size:13px;">
       <div class="tit">在线客服</div>
       <div class="box">客服微信:cx5078</div>
       <div class="box mt10">
