@@ -83,6 +83,8 @@ class PaymentsController extends Controller
             'pay_price' => $$order->price,//支付金额
             'status' => 1,
         ]);
+        $order->user->is_free = false;
+        $order->user->save();
         $this->afterOrderPaid($order);
         $this->afterPaidMsg($order);
         return response(compact('order'), 200);
