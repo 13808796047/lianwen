@@ -67,6 +67,29 @@ class PaymentsController extends Controller
         ]);
     }
 
+    public function freePay(Order $order)
+    {
+        $this->authorize('own', $order);
+        if($order->status == 1 || $order->del) {
+            throw new InvalidRequestException('订单状态不正确!');
+        }
+        if($order->category->id != 1 || !$order->user->is_free) {
+            throw new InvalidRequestException('订单状态不正确!');
+        }
+        $order->update([
+            'date_pay' => Carbon::now(), // 支付时间
+            'pay_type' => '免费检测', // 支付方式
+            'payid' => time(), // 支付宝订单号
+            'pay_price' => $$order->price,//支付金额
+            'status' => 1,
+        ]);
+        $order->user->is_free = false;
+        $order->user->save();
+        $this->afterOrderPaid($order);
+        $this->afterPaidMsg($order);
+        return response(compact('order'), 200);
+    }
+
     // 前端回调页面
     public function alipayReturn()
     {
