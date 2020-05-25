@@ -81,6 +81,7 @@ class OrderService
                 'endDate' => $request->endDate ?? "",
                 'publishdate' => $request->publishdate ?? "",
                 'date_publish' => $request->date_publish,
+                'price' => $price,
                 'words' => ceil($words),
                 'paper_path' => $result['path'],
                 'from' => $request->from,
