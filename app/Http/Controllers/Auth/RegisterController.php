@@ -76,6 +76,7 @@ class RegisterController extends Controller
             $inviter->increaseJcTimes(5);
             $user->increaseJcTimes(5);
         }
+        $user->increaseJcTimes(2);
         $this->guard()->login($user);
 
         if($response = $this->registered($request, $user)) {

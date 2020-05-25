@@ -115,6 +115,7 @@ class AuthorizationsController extends Controller
         $attributes['weixin_unionid'] = $data['unionid'];
         if(!$user) {
             $user = User::create($attributes);
+            $user->increaseJcTimes(2);
         } else {
             $user->update($attributes);
         }
@@ -158,6 +159,7 @@ class AuthorizationsController extends Controller
                 $user = User::create([
                     'phone' => $verifyData['phone']
                 ]);
+                $user->increaseJcTimes(2);
             }
             $token = auth('api')->login($user);
             // 清除验证码缓存

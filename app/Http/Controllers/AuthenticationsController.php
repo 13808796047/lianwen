@@ -85,6 +85,7 @@ class AuthenticationsController extends Controller
                         $user->increaseJcTimes(5);
                         \Cache::forget('uid');
                     }
+                    $user->increaseJcTimes(2);
 
                 }
                 break;
