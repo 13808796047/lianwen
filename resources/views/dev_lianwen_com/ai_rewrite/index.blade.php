@@ -254,7 +254,6 @@
           return document.querySelector('#demo');
         }
       });
-      clipboardData.getData(containe)
       //复制成功执行的回调
       clipboard.on('success', function(e) {
 　　    console.log(e); //返回值类型给控制台 没什么用 可以注释掉
