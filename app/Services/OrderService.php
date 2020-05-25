@@ -95,7 +95,6 @@ class OrderService
                 }
             }
             $order->price = $price;
-            dd($order);
             $order->save();
             \Cache::forget('word');
             $order->orderContent()->create([
