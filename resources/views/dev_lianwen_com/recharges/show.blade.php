@@ -40,6 +40,14 @@
 			<div class="cbox submit yh" >
 				<div class="down clearfix">
 						<table class="mylist" style="line-height: 30px">
+            <tr>
+								<td width="149">
+									<span>订单号</span>
+								</td>
+								<td style="text-align: left;">
+									<span>{{$recharge->no}}</span>
+								</td>
+							</tr>
 							<tr>
 								<td width="149">
 									<span>购买次数</span>
