@@ -179,7 +179,7 @@
     <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;margin-top:16px;" id="againjc">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
-      <p>剩余次数:<span id="jc_time"></span></p>
+      <p>剩余次数:<span id="jc_timeend"></span></p>
       <span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
     </div>
 
@@ -356,7 +356,7 @@
           .then(res => {
             if(res.data.user.jc_times){
               console.log(res.data.user.jc_times,1323122321)
-              $('#jc_time').html(res.data.user.jc_times)
+              $('#jc_timeend').html(res.data.user.jc_times)
             }
             $('#beingModal').modal('hide')
             $('#jcafter').css('display', 'none')
