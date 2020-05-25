@@ -94,8 +94,9 @@ class OrderService
                     if($price -= 3 < 0) $price = 0;
                 }
             }
-            dd($order);
+
             $order->price = $price;
+            dd($order);
             $order->save();
             \Cache::forget('word');
             $order->orderContent()->create([
