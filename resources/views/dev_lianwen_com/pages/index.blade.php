@@ -28,11 +28,11 @@
           <ul class="nav nav-pills mt-4 d-flex justify-content-center" id="pills-tab" role="tablist">
             <li class="nav-item mr-4">
               <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-                 aria-controls="pills-home" aria-selected="true">账号登录</a>
+                 aria-controls="pills-home" aria-selected="true" style="font-size:15px;">账号登录</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
-                 aria-controls="pills-profile" aria-selected="false">手机登录</a>
+                 aria-controls="pills-profile" aria-selected="false" style="font-size:15px;">手机登录</a>
             </li>
           </ul>
           <div class="tab-content" id="pills-tabContent">
@@ -47,7 +47,7 @@
                     <input
                       class="appearance-none border rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       name="phone"
-                      id="phone" type="text" placeholder="请输入手机号码" value="{{ old('phone') }}">
+                      id="phone" type="text" placeholder="请输入手机号码" value="{{ old('phone') }}" style="font-size:14px;">
 
 
                   </div>
@@ -58,13 +58,13 @@
                     <input
                       class="appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                       name="password"
-                      id="password" type="password" placeholder="请输入密码" value="{{ old('password') }}">
+                      id="password" type="password" placeholder="请输入密码" value="{{ old('password') }}" style="font-size:14px;">
 
                   </div>
                   <div class="flex items-center justify-between my-2">
                     <button
                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full px-4 rounded focus:outline-none focus:shadow-outline"
-                      type="button" id="accountLogin">
+                      type="button" id="accountLogin" style="font-size:15px;">
                       登录
                     </button>
                   </div>
