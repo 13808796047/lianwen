@@ -68,6 +68,8 @@
               {!! $order->report->content !!}
            @else
               <!-- <h2 class="text-center text-5xl">暂无内容!!!!</h2> -->
+
+
               <iframe src="https://dev.lianwen.com/pdf/{{$order->orderid}}.pdf" width="100%" height="650"></iframe>
             @endif
           </div>
@@ -132,7 +134,6 @@
             $('#qrcodebox').modal('show')
           }
       })
-
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
     })
