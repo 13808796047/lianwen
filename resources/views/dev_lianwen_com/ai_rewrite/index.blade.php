@@ -129,7 +129,7 @@
     </div>
     </div>
     <!--右边内容-->
-    <div class="rbox fr" style="min-height:900px;">
+    <div class="rbox fr" style="min-height:900px;font-size:14px;">
       <div class="box">
         <b>1、工具说明</b>
         <p>本工具具有强大的自然语言语义分析能力，通过自主研发的中文分词、句法分析、语义联想和实体识别技术，结合海量行业语料，在不改变原文语义的情况下对原文进行替换和重组，从而达到降低文章重复率的效果。</p>
