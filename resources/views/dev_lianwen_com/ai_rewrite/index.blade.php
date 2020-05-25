@@ -31,9 +31,10 @@
         <div class="modal-body" style="text-align:center;">
           <p>本次操作将消耗1次降重次数</p>
           <p>剩余次数：{{ auth()->user()->jc_times}}<span style="color:#4876FF;margin-left:10px;" id="addjctimes">增加次数</span></p>
-          <p style="color:#4876FF;" id="freeadd">免费增加</p>
+
         </div>
         <div class="modal-footer">
+          <p style="color:#4876FF;" id="freeadd">免费增加</p>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
           <button type="button" class="btn btn-primary" id="surecheck">确定</button>
         </div>
