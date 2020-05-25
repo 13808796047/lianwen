@@ -82,7 +82,6 @@ class OrderService
                 'publishdate' => $request->publishdate ?? "",
                 'date_publish' => $request->date_publish,
                 'words' => ceil($words),
-                'price' => $price,
                 'paper_path' => $result['path'],
                 'from' => $request->from,
                 'content' => '',
@@ -97,6 +96,8 @@ class OrderService
                 }
                 dd($new_price);
                 $order->price = $new_price;
+            } else {
+                $order->price = $price;
             }
 
             dd($order);
