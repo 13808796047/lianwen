@@ -61,11 +61,13 @@
 								</td>
 							</tr>
 							<tr bgcolor="#D0EAFF">
+              @if($order->price!=0.00)
 								<td colspan="2" align="center">
 									<b>
 										<font color="#BF2020">支付检测费用（请选择以下任意一种方式支付）</font>
 									</b>
 								</td>
+              @endif
 							</tr>
 							<tr style="display: none">
 								<td class="td">②、淘宝订单号支付</td>
@@ -107,6 +109,7 @@
 									</div>
 								</td>
 							</tr>
+              @if($order->price!=0.00)
 							<tr>
 								<td class="td">
 									在线支付<font color="#FF0004">(推荐)</font>
@@ -127,11 +130,18 @@
 									</div>
 								</td>
 							</tr>
+              @endif
 						</table>
+
+            @if($order->price!=0.00)
 						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
 						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
+            @else
+            <a type="button" id="btn-freebtn" style="height:33px; margin-left:20px; margin-left:320px;" href="javascript:;"
+						 class="btn btn-primary btn-sm sbtn">提交</a>
+            @endif
 					<div class="clearfix"></div>
 				</div>
 			</div>
@@ -191,6 +201,14 @@
        let order = {!!$order!!};
        console.log(order.id,31231)
       location.href=`/payments/${order.id}/alipay/order`
+     })
+     //免费支付
+     $('#btn-freebtn').click(function(){
+      let order = {!!$order!!}
+      console.log(order,31312)
+       axios.get(`/payments/${order.id}/free_pay`).then(res=>{
+         console.log(res,123123)
+       })
      })
     });
   </script>
