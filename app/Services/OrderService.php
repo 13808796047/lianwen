@@ -92,9 +92,9 @@ class OrderService
             $order->user()->associate($user);
             if($user->is_free && $category->id == 1) {
                 if($user->dev_weixin_openid || $user->dev_weapp_openid) {
-                    $new_price = $price - 3;
+                    $price = $price - 3;
                     if($new_price < 0) $new_price = 0;
-                    $order->price = $new_price;
+                    $order->price = $price;
                 }
             }
 
