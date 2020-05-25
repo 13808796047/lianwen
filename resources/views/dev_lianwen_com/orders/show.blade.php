@@ -111,6 +111,7 @@
 								<td class="td">
 									在线支付<font color="#FF0004">(推荐)</font>
 								</td>
+                @if({{$order->price!==0.00}})
 								<td class="td">
 									<div style="display:flex;align-items: center">
 										<input type="radio" name="paytype" value="alipay" checked="checked" />
@@ -126,10 +127,11 @@
 										直接使用支付宝或者微信支付，即时返回支付结果，方便快捷，推荐使用。
 									</div>
 								</td>
+                @endif
 							</tr>
 						</table>
 
-            @if($order->price!==0.00)
+            @if({{$order->price!==0.00}})
 						<a type="button" id="bottonsubmit" style="height:33px; margin-left:20px; margin-left:320px;" href="javascript:;"
 						 class="btn btn-primary btn-sm sbtn">提交</a>
 						<a type="button" id="btn-wechat" style="height:33px; margin-left:20px; margin-left:320px;display: none" href="javascript:;"
