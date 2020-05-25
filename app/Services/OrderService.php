@@ -95,8 +95,9 @@ class OrderService
                     $new_price = $price - 3;
                     $new_price < 0 ? 0 : $new_price;
                 }
+                $order->price = $new_price;
             }
-            $order->price = $new_price;
+
             dd($order);
             $order->save();
             \Cache::forget('word');
