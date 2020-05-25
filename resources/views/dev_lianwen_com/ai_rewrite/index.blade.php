@@ -256,7 +256,7 @@
       });
       clipboard.on('success', function(e) {
 　　    console.log(e); //返回值类型给控制台 没什么用 可以注释掉
-　　    alert("复制成功，去粘贴看看吧！");
+　　    toastr.error('复制成功');
       });
       //确认购买
       $("#sureshop").click(function(){
