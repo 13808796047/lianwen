@@ -14,7 +14,7 @@
       <div class="lbox fl">
         <div class="alert alert-danger" role="alert" id="message" style="display: none">
         </div>
-        <form action="{{route('register')}}" method="post" accept-charset="utf-8">
+        <form action="{{route('register')}}" method="post" accept-charset="utf-8" style="padding: 3% 23% 5%;">
         @csrf
         <!--	<div style="padding:10px 0">
                           <a style="" href="#" class="btn btn-large btn-block btn-primary"><i class="icon-facebook-sign"></i> 使用QQ关联注册</a>
