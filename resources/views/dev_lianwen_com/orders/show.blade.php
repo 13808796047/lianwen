@@ -163,7 +163,6 @@
      $(document).ready(function () {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
-      $('#lwfoot').addClass('footers')
       $("input[name='paytype']").change(() => {
         $('#bottonsubmit').toggle();
         $('#btn-wechat').toggle();
