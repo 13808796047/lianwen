@@ -2,6 +2,7 @@
 @section('styles')
 
   <link href="{{asset('asset/css/bootstrap.css')}}" rel="stylesheet"/>
+  <link href="{{asset('asset/css/check.css')}}" rel="stylesheet"/>
   <link href="{{asset('asset/css/theme.css')}}" rel="stylesheet"/>
   <link href="{{asset('asset/css/alertify.css')}}" rel="stylesheet"/>
   <link href="{{asset('asset/css/index.css')}}" rel="stylesheet"/>
