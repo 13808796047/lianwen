@@ -31,6 +31,7 @@
         <div class="modal-body" style="text-align:center;">
           <p>本次操作将消耗1次降重次数</p>
           <p>剩余次数：{{ auth()->user()->jc_times}}<span style="color:#4876FF;margin-left:10px;" id="addjctimes">增加次数</span></p>
+          <p style="color:#4876FF;" id="freeadd">免费增加</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -175,11 +176,9 @@
     <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;margin-top:16px;" id="againjc">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
-      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">购买次数</span>
+      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
     </div>
-    <div style="display: flex;justify-content: center;margin-top: 15px;">
-      <span style="color:#4876FF;margin-left: 10px;" id="freeadd">免费增加</span>
-    </div>
+
   </div>
 @stop
 @section('scripts')
