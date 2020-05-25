@@ -275,7 +275,6 @@
           total_amount:totalprice,
           amount:totalprice
         }).then(res => {
-          console.log(res,312312)
           let number = res.data.data.amount;
           let id =res.data.data.id;
           let price=res.data.data.total_amount;
@@ -320,7 +319,6 @@
           diff[i] = diff[i + 1];
           diff[i + 1] = swap;
         }
-        console.log(diff[i]);
         var diffObj = diff[i];
         var content = diffObj.value;
 
@@ -356,13 +354,13 @@
         let contents = $('#content').val();
         axios.post('{{ route('ai_rewrite.store') }}',{content:contents})
           .then(res => {
-            console.log(res,1323122321)
+            console.log(res.data.user.jc_times,1323122321)
             $('#beingModal').modal('hide')
             $('#jcafter').css('display', 'none')
             var htmlstring=res.data.result.new_content;
             var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
             changed(contents,stringtemp,htmlstring)
-            $('#jc_time').html(res.data.user.jc_times)
+            $('#jc_time').val(res.data.user.jc_times)
             $("#jclater").css('display', 'block')
           })
           .catch(err =>{
