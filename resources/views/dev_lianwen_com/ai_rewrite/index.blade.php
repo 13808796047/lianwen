@@ -31,8 +31,10 @@
         <div class="modal-body" style="text-align:center;">
           <p>本次操作将消耗1次降重次数</p>
           <p>剩余次数：{{ auth()->user()->jc_times}}<span style="color:#4876FF;margin-left:10px;" id="addjctimes">增加次数</span></p>
+
         </div>
         <div class="modal-footer">
+          <p style="color:#4876FF;margin-right:25%;" id="freeadds">免费增加</p>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
           <button type="button" class="btn btn-primary" id="surecheck">确定</button>
         </div>
@@ -42,7 +44,7 @@
   <!-- 模态框结束 -->
    <!-- 模态框2 -->
    <div class="modal fade bd-example-modal-sm" id="beingModal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-body" style="text-align:center;">
@@ -69,6 +71,7 @@
           <p>请输入购买次数<span style="padding:0 10px;" id="cutjctime">-</span><span style="border: 1px solid;padding: 3px;" id="curjctime">1</span><span style="padding:0 10px;" id="addjctime">+</span></p>
         </div>
         <div class="modal-footer">
+          <p style="color:#4876FF;margin-right:25%;" id="freeadd">免费增加</p>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
           <button type="button" class="btn btn-primary" id="sureshop">确定</button>
         </div>
@@ -91,7 +94,7 @@
           <p style="margin:10px 0;">方式1：分享地址，邀请好友注册（适合电脑此操作）</p>
           <div style="display:flex;justify-content: center;">
             <p id="demo" style="border: 1px solid;padding: 0 10px;" >https://dev.lianwen.com/zt/jc?uid={{auth()->user()->id}}</p>
-            <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;" class="btn">复制链接</p>
+            <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;" class="btn" id="copybtn" >复制链接</p>
           </div>
           <p style="margin:10px 0;">方式2：微信扫码，邀请好友注册（适合手机操作）</p>
           <div style="display:flex;justify-content: center;" id="qrcode">
@@ -126,7 +129,7 @@
     </div>
     </div>
     <!--右边内容-->
-    <div class="rbox fr" style="min-height:900px;">
+    <div class="rbox fr" style="min-height:900px;font-size:14px;">
       <div class="box">
         <b>1、工具说明</b>
         <p>本工具具有强大的自然语言语义分析能力，通过自主研发的中文分词、句法分析、语义联想和实体识别技术，结合海量行业语料，在不改变原文语义的情况下对原文进行替换和重组，从而达到降低文章重复率的效果。</p>
@@ -138,6 +141,7 @@
         <p>本工具实时处理，所有内容均不保存数据库，用户需要自己保存结果，关闭页面后无法找回。</p>
         <b>5、专业的人工降重服务</b>
         <p>联系微信：13878811985</p>
+        <div style="height:247px;"></div>
       </div>
     </div>
     </div>
@@ -175,8 +179,10 @@
     <p style="background-color: #4876FF;padding: 5px 20px;color:#fff;text-align: center;margin:0 auto;width:100px;margin-top:16px;" id="againjc">
       再来一篇</p>
     <div style="display: flex;justify-content: center;margin-top: 15px;">
-      <p>剩余次数:<span id="jc_time"></span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
+      <p>剩余次数:<span id="jc_timeend"></span></p>
+      <span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
     </div>
+
   </div>
 @stop
 @section('scripts')
@@ -186,11 +192,15 @@
 <script type="text/javascript" src="{{ asset('asset/js/diff.js') }}"></script>
   <script>
     $(() => {
-
-
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
-      $('#tjModal').modal('show')
+
+      $('#freeadd').click(function(){
+        $('#tjModal').modal('show')
+      })
+      $('#freeadds').click(function(){
+        $('#tjModal').modal('show')
+      })
       //生成分享二维码
       var qrcode = document.getElementById('qrcode')
 
@@ -209,15 +219,15 @@
 
         "debug": true, //是否使用debug模式
 
-        "showDuration": "300000",//显示的动画时间
+        "showDuration": "1000",//显示的动画时间
 
-        "hideDuration": "500000",//消失的动画时间
+        "hideDuration": "1000",//消失的动画时间
 
         "positionClass": "toast-center-center",//弹出窗的位置
 
-        "timeOut": "500000", //展现时间
+        "timeOut": "1000", //展现时间
 
-        "extendedTimeOut": "100000",//加长展示时间
+        "extendedTimeOut": "1000",//加长展示时间
 
         "showEasing": "swing",//显示时的动画缓冲方式
 
@@ -246,27 +256,16 @@
       $("#addjctime").click(function(){
         let current = Number($("#curjctime").text())+1;
         $("#curjctime").text(current)
-
       })
       //复制链接
-      // var clipboard = new Clipboard('.copyurl', {
-      //   text: function () {
-      //   return $("#urladdress").html();
-      //   }
-      // });
-      // clipboard.on('success', function (e) {
-      //   console.log(e,312312)
-      //   $('#tjModal').modal('hide')
-      //   toastr.success('复制成功')
-      // });
-      var clipboard = new Clipboard('.btn', {
-        text: function () {
-        return $("#urladdress").html();
+      var clipboard = new Clipboard("#copybtn",{
+        target:function(){
+          return document.querySelector('#demo');
         }
       });
-      clipboard.on('success', function (e) {
-        $('#tjModal').modal('hide')
-        toastr.success('复制成功')
+      clipboard.on('success', function(e) {
+　　    console.log(e); //返回值类型给控制台 没什么用 可以注释掉
+　　    toastr.success('复制成功');
       });
       //确认购买
       $("#sureshop").click(function(){
@@ -276,7 +275,6 @@
           total_amount:totalprice,
           amount:totalprice
         }).then(res => {
-          console.log(res,312312)
           let number = res.data.data.amount;
           let id =res.data.data.id;
           let price=res.data.data.total_amount;
@@ -321,7 +319,6 @@
           diff[i] = diff[i + 1];
           diff[i + 1] = swap;
         }
-        console.log(diff[i]);
         var diffObj = diff[i];
         var content = diffObj.value;
 
@@ -357,13 +354,16 @@
         let contents = $('#content').val();
         axios.post('{{ route('ai_rewrite.store') }}',{content:contents})
           .then(res => {
-            console.log(res,1323122321)
+            if(res.data.user.jc_times){
+              console.log(res.data.user.jc_times,1323122321)
+              $('#jc_timeend').html(res.data.user.jc_times)
+            }
             $('#beingModal').modal('hide')
             $('#jcafter').css('display', 'none')
             var htmlstring=res.data.result.new_content;
             var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
             changed(contents,stringtemp,htmlstring)
-            $('#jc_time').html(res.data.user.jc_times)
+
             $("#jclater").css('display', 'block')
           })
           .catch(err =>{

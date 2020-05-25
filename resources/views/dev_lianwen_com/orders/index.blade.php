@@ -14,7 +14,7 @@
 @section('content')
   <div class="main clearfix">
     <div class="lbox fl">
-      <table class="table table-hover table-sm text-center">
+      <table class="table table-hover table-sm text-center" style="font-size:13px;">
         <thead class="thead-dark">
         <tr>
           <th scope="col"><input type="checkbox" id="allcheck"></th>
@@ -115,7 +115,7 @@
       {{--      </table>--}}
     </div>
 
-    <div class="rbox fr">
+    <div class="rbox fr" style="font-size:14px;">
       <div class="tit">在线客服</div>
       <div class="box">客服微信:cx5078</div>
       <div class="box mt10">

@@ -34,15 +34,23 @@
     </div>
   </div>
   <!-- 购买降重字数模态框结束 -->
-<div class="main clearfix" style="flex:1">
+<div class="main clearfix" style="flex:1;background: rgb(235,237,243)">
 <div class="lbox fl">
       <div>
 			<div class="cbox submit yh" >
 				<div class="down clearfix">
 						<table class="mylist" style="line-height: 30px">
+            <tr>
+								<td width="149">
+									<span>订单号</span>
+								</td>
+								<td style="text-align: left;">
+									<span>{{$recharge->no}}</span>
+								</td>
+							</tr>
 							<tr>
 								<td width="149">
-									<span>购买次数ss</span>
+									<span>购买次数</span>
 								</td>
 								<td style="text-align: left;">
 									<span>{{$recharge->amount}}</span>
@@ -92,7 +100,7 @@
 		</div>
     </div>
 	<div class="rbox fr">
-		<div style="background:#fff;padding:20px;">
+		<div style="background:#fff;padding:20px;font-size:14px;min-height:1000px;">
 		    <b>1、检测结果是否准确？</b>
         <p>如果你们学校也是用万方检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。</p>
         <b>2、检测需要多少时间？</b>
@@ -115,16 +123,18 @@
 @section('scripts')
   <script>
     $(document).ready(function () {
-
+      $('#categories a').css('color','black')
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $("input[name='paytype']").change(() => {
         $('#bottonsubmit').toggle();
         $('#btn-wechat').toggle();
       })
+      $('#lwfoot').removeClass('footers')
       //微信支付
       $('#btn-wechat').click(function () {
         let order = {!!$recharge!!}
+        console.log(order,213)
         swal({
           title: "打开微信使用扫一扫完成付款",
           // content 参数可以是一个 DOM 元素，这里我们用 jQuery 动态生成一个 img 标签，并通过 [0] 的方式获取到 DOM 元素
