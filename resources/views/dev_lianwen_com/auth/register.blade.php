@@ -21,8 +21,8 @@
                       </div>
                        <br>
                       <legend style="font-size: 16px; color:#555;" class=""><i class="icon-envelope"></i> 您也可以使用邮箱注册</legend> -->
-          <div>注册账号</div>
-          <div class="control-group" style="margin-bottom: 13px;">
+          <div style="text-align: center;font-size: 21px;font-weight: bold;margin-bottom: 13px;">注册账号</div>
+          <div class="control-group" style="margin-bottom: 13px;font-size:13px;">
             <label for="phone">手机号码:</label>
             <div class="controls"><input type="text" name="phone" value="{{old('phone')}}" id="phone"
                                          placeholder="请输入手机号码"
@@ -39,7 +39,7 @@
             </div>
 
           </div>
-          <div class="control-group" style="margin-bottom: 13px;">
+          <div class="control-group" style="margin-bottom: 13px;font-size:13px;">
             <label for="password">密码:</label>
             <div class="controls"><input type="password" name="password" value="{{old('password')}}"
                                          id="password"
@@ -52,7 +52,7 @@
               @enderror
             </div>
           </div>
-          <div class="control-group" style="margin-bottom: 13px;">
+          <div class="control-group" style="margin-bottom: 13px;font-size:13px;">
             <label for="password-confirm">重复密码:</label>
             <div class="controls"><input type="password" name="password_confirmation" value=""
                                          id="password-confirm"
@@ -73,7 +73,7 @@
           {{--                    </div>--}}
           {{--                  </div>--}}
           {{--                  <div id="sjh" style="color:red;display: none">手机号已存在</div>--}}
-          <div class="control-group" style="margin-bottom: 13px;">
+          <div class="control-group" style="margin-bottom: 13px;font-size:13px;">
             <label for="phone">验证码:</label>
             <div class="controls"><input type="text" name="code" value="" id="code"
                                          placeholder="请输入验证码"
@@ -86,13 +86,13 @@
           </div>
 
 
-          <button type="button" class="btn btn-large btn-block" id="submitBtn" style="background:#26AEF2;color:#fff;">
+          <button type="button" class="btn btn-large btn-block" id="submitBtn" style="background:#26AEF2;color:#fff;font-size:13px;">
             提交注册
           </button>
         </form>
       </div>
       <div class="rbox fr">
-	    	<div style="background:#fff;padding:20px;">
+	    	<div style="background:#fff;padding:20px;font-size:13px;">
 		    <b>1、检测结果是否准确？</b>
         <p>如果你们学校也是用维普检测，那结果是一致的。同一个的系统、同样的比对库、同样的算法，所以只要在本系统提交的内容和学校的一致，那检测结果是一致的。</p>
         <b>2、检测需要多少时间？</b>
