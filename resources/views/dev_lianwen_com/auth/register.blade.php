@@ -10,7 +10,7 @@
 
 @section('content')
 
-<div class="clearfix" style="flex:1">
+<div class="main clearfix" style="flex:1;padding:0">
       <div class="lbox fl">
         <div class="alert alert-danger" role="alert" id="message" style="display: none">
         </div>
