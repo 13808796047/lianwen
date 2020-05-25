@@ -14,7 +14,7 @@
 @section('content')
   <div class="main clearfix">
     <div class="lbox fl">
-      <table class="table table-hover table-sm text-center">
+      <table class="table table-hover table-sm text-center" style="font-size:13px;">
         <thead class="thead-dark">
         <tr>
           <th scope="col"><input type="checkbox" id="allcheck"></th>
