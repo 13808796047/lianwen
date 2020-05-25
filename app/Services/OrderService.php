@@ -92,7 +92,7 @@ class OrderService
             if($user->is_free && $category->id == 12) {
                 if($user->dev_weixin_openid || $user->dev_weapp_openid) {
                     $price = $price - 3;
-                    if($price) $price = 0;
+                    if($price < 0) $price = 0;
                 }
             }
 
