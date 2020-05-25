@@ -209,13 +209,13 @@
 
         "debug": true, //是否使用debug模式
 
-        "showDuration": "3000",//显示的动画时间
+        "showDuration": "2000",//显示的动画时间
 
-        "hideDuration": "5000",//消失的动画时间
+        "hideDuration": "2000",//消失的动画时间
 
         "positionClass": "toast-center-center",//弹出窗的位置
 
-        "timeOut": "5000", //展现时间
+        "timeOut": "2000", //展现时间
 
         "extendedTimeOut": "1000",//加长展示时间
 
