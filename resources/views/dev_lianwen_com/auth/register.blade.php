@@ -21,6 +21,7 @@
                       </div>
                        <br>
                       <legend style="font-size: 16px; color:#555;" class=""><i class="icon-envelope"></i> 您也可以使用邮箱注册</legend> -->
+          <div>注册账号</div>
           <div class="control-group" style="margin-bottom: 13px;">
             <label for="phone">手机号码:</label>
             <div class="controls"><input type="text" name="phone" value="{{old('phone')}}" id="phone"
