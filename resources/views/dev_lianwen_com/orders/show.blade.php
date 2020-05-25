@@ -205,6 +205,7 @@
      //免费支付
      $('#btn-freebtn').click(function(){
       let order = {!!$order!!}
+      console.log(order,31312)
        axios.get(`/payments/${order.id}/free_pay`).then(res=>{
          console.log(res,123123)
        })
