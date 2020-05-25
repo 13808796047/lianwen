@@ -90,7 +90,7 @@ class OrderService
                 'keyword' => $referer['keyword']
             ]);
             $order->user()->associate($user);
-            if($user->is_free && $category->id == 1) {
+            if($user->is_free && $category->id == 12) {
                 if($user->dev_weixin_openid || $user->dev_weapp_openid) {
                     $new_price = $price - 3;
                     $new_price < 0 ? 0 : $new_price;
