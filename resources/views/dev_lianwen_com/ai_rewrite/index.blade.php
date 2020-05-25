@@ -209,15 +209,15 @@
 
         "debug": true, //是否使用debug模式
 
-        "showDuration": "300000",//显示的动画时间
+        "showDuration": "3000",//显示的动画时间
 
-        "hideDuration": "500000",//消失的动画时间
+        "hideDuration": "5000",//消失的动画时间
 
         "positionClass": "toast-center-center",//弹出窗的位置
 
-        "timeOut": "500000", //展现时间
+        "timeOut": "5000", //展现时间
 
-        "extendedTimeOut": "100000",//加长展示时间
+        "extendedTimeOut": "1000",//加长展示时间
 
         "showEasing": "swing",//显示时的动画缓冲方式
 
@@ -256,7 +256,7 @@
       });
       clipboard.on('success', function(e) {
 　　    console.log(e); //返回值类型给控制台 没什么用 可以注释掉
-　　    toastr.error('复制成功');
+　　    toastr.success('复制成功');
       });
       //确认购买
       $("#sureshop").click(function(){
