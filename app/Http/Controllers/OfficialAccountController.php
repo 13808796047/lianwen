@@ -159,15 +159,23 @@ class OfficialAccountController extends Controller
     {
         if($type == 'JC') {
             if(!$user) {
-                $invit_user = User::create([
-                    'nick_name' => $wxUser['nickname'],
-                    'avatar' => $wxUser['headimgurl'],
-                    'weixin_openid' => $wxUser['openid'],
-                    'weixin_unionid' => $wxUser['unionid'] ?: '',
-                    'inviter' => $loginUser->id,
-                    'subscribe' => $wxUser['subscribe'],
-                    'subscribe_time' => $wxUser['subscribe_time'],
-                ]);
+                $invit_user->nick_name = $wxUser['nickname'];
+                $invit_user->avatar = $wxUser['headimgurl'];
+                $invit_user->weixin_unionid = $wxUser['unionid'];
+                switch ($this->officialAccount) {
+                    case 'gh_192a416dfc80':
+                        $invit_user->dev_weixin_openid = $wxUser['openid'];
+                        break;
+                    case 'gh_caf405e63bb3':
+                        $invit_user->wf_weixin_openid = $wxUser['openid'];
+                        break;
+                    case 'gh_1a157bde21a9':
+                        $invit_user->wp_weixin_openid = $wxUser['openid'];
+                        break;
+                    default:
+                        $invit_user->pp_weixin_openid = $wxUser['openid'];
+                }
+                $invit_user->save();
                 auth('web')->login($invit_user);
                 //邀请人
                 $loginUser->increaseJcTimes(5);
@@ -181,8 +189,6 @@ class OfficialAccountController extends Controller
         if($type == 'CC') {
             $loginUser->nick_name = $wxUser['nickname'];
             $loginUser->avatar = $wxUser['headimgurl'];
-//            $loginUser->subscribe = $wxUser['subscribe'];
-//            $loginUser->subscribe_time = $wxUser['subscribe_time'];
             $loginUser->weixin_unionid = $wxUser['unionid'];
             switch ($this->officialAccount) {
                 case 'gh_192a416dfc80':
