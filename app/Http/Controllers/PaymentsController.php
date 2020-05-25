@@ -56,7 +56,7 @@ class PaymentsController extends Controller
                 ]);
         }
     }
-
+    
 //wap支付
     public function alipayWap(Order $order, Request $request)
     {
