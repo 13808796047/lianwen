@@ -80,7 +80,7 @@ class PaymentsController extends Controller
             'date_pay' => Carbon::now(), // 支付时间
             'pay_type' => '免费检测', // 支付方式
             'payid' => time(), // 支付宝订单号
-            'pay_price' => $$order->price,//支付金额
+            'pay_price' => $order->price,//支付金额
             'status' => 1,
         ]);
         $order->user->is_free = false;

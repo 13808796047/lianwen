@@ -91,11 +91,9 @@ class OrderService
             $order->user()->associate($user);
             if($user->is_free && $category->id == 1) {
                 if($user->dev_weixin_openid || $user->dev_weapp_openid) {
-                    $price = $price - 3;
-                    if($price < 0) $price = 0;
+                    $price = max($price - 3, 0);
                 }
             }
-
             $order->price = $price;
             $order->save();
             \Cache::forget('word');
