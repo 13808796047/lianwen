@@ -254,6 +254,7 @@
   <script>
     $(() => {
       @unless(Auth::user()->dev_weixin_openid)
+
       axios.get('{{ route('official_account.index') }}').then(res => {
         //   swal({
         //   //   $('#wximg').attr('src', res.data.url)

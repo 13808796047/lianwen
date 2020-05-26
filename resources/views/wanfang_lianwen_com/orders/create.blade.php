@@ -250,7 +250,7 @@
   <script type="text/javascript" src="{{ asset('asset/js/jquery-cxcalendar.js') }}"></script>
   <script>
     $(() => {
-      @unless(Auth::user()->subscribe)
+      @unless(Auth::user()->wf_weixin_openid)
       axios.get('{{ route('official_account.index') }}').then(res => {
         //   swal({
         //   //   $('#wximg').attr('src', res.data.url)
