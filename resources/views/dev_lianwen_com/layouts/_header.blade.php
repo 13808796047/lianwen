@@ -62,8 +62,9 @@
       </div>
     @else
     <div class="flex justify-content-around w-25 align-items-center">
-        <a href="https://2019.lianwen.com" class="logout inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
-          lg:mt-0">旧版入口</a>
+
+        <span  class="logout inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
+          lg:mt-0">旧版入口</span>
     </div>
     @endauth
 
