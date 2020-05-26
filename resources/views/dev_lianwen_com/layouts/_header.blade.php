@@ -62,6 +62,16 @@
   </div>
 </nav>
 <script>
-    console.log("{{auth()->user()}}");
+  var ss = document.querySelector("#categories")
+  console.log(ss,312)
+  var ssq = document.querySelector('#categories').getElementsByTagName("a");
+  console.log(ssq,312)
+  ssq.onclick=function(){
+    console.log('xixix',this)
+  }
+  let name = '{{auth()->user()->phone??auth()->user()->nickname}}';
+    if(!name) {
+      console.log('name',3123)
+    }
 </script>
 <!----- start-header---->
