@@ -13,3 +13,10 @@
       margin-left: -150px;
       z-index:99999;
   }
+ .toast-cent-cent{
+      top: 50%;
+      left: 50%;
+      margin-top: -20px;
+      margin-left: -150px;
+      z-index:99999;
+ }
