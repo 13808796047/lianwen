@@ -66,7 +66,7 @@
   console.log(ss,312)
   var ssq = document.querySelector('#categories').getElementsByTagName("a");
   console.log(ssq,312)
-  document.querySelector("#categories a").onclick=function(){
+  ssq.onclick=function(){
     console.log('xixix',this)
   }
 </script>
