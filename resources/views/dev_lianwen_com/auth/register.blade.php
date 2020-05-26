@@ -115,7 +115,7 @@
       <script !src="">
         $(() => {
 
-          $('#categories').css('font-size','0.965rem')
+          $('#categories').css('font-size','14px')
           $('#categories a').css('color','black')
           $('#lwfoot').css('font-size','14px')
 
