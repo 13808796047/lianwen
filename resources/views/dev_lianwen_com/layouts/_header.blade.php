@@ -1,4 +1,4 @@
-<nav class="flex items-center justify-between flex-wrap bg-white-100" style="background:#fff;box-shadow: 0px 0px 3px #c1bebd;margin-bottom: 6px;font-size:16px;" id="headernav">
+<nav class="flex items-center justify-between flex-wrap bg-white-100" style="background:#fff;box-shadow: 0px 0px 3px #c1bebd;margin-bottom: 6px;font-size:0.965rem;" id="headernav">
   <div class="flex items-center flex-shrink-0 text-white mr-6 bg-blue-600 p-2">
     <a href="/"><img src="https://css.lianwen.com/images/logo.png" alt=""></a>
   </div>
