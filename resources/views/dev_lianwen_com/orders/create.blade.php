@@ -100,7 +100,7 @@
         <form>
         <!-- @csrf -->
           <input type="hidden" name="cid" id="cid">
-          <input type="hidden" name="from" value="万方PC端">
+          <input type="hidden" name="from" value="xx-pc">
           <input type="hidden" name="file_id" value="" id="hidden_form_id">
           <input type="hidden" name="type" value="content" id="hideen_type">
           <div class="form-group">
@@ -357,7 +357,7 @@
           $('#submitBtn').css("display", "block")
           axios.post('{{route('orders.store')}}', {
               cid: $('#cid').val(),
-              from: '万方PC端',
+              from: 'xx-pc',
               file_id: oneid,
               type: 'file',
               content: '',
@@ -380,7 +380,7 @@
           $('#submitBtn').css("display", "block")
           axios.post('{{route('orders.store')}}', {
               cid: $('#cid').val(),
-              from: '万方PC端',
+              from: 'xx-pc',
               type: 'content',
               content: $('#content').val(),
               title: $('#title').val(),
