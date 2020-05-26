@@ -62,6 +62,6 @@
   </div>
 </nav>
 <script>
-    console.log("{{request()->user}}");
+    console.log("{{auth()->user()}}");
 </script>
 <!----- start-header---->
