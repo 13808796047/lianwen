@@ -62,5 +62,8 @@
   </div>
 </nav>
 <script>
+  if(window.location.href='https://dev.lianwen.com/login'){
+    console.log('xixi')
+  }
 </script>
 <!----- start-header---->
