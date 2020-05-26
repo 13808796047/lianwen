@@ -69,9 +69,8 @@
   ssq.onclick=function(){
     console.log('xixix',this)
   }
-  let name = {{auth()->user()}};
-    if(!name) {
-      console.log('name',3123)
-    }
+  @unless(Auth::user())
+  console.log('xixxiix','meisfdsaf')
+  @endunless
 </script>
 <!----- start-header---->
