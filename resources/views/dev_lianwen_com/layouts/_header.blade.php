@@ -70,7 +70,7 @@
       atag[i].onclick = function(event){
           event.preventDefault()
           alert(event.target)
-      }；
+      }
     }
   @endunless
 </script>
