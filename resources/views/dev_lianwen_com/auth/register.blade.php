@@ -114,7 +114,6 @@
 @section('scripts')
       <script !src="">
         $(() => {
-
           $('#categories').css('font-size','14px')
           $('#categories a').css('color','black')
           $('#lwfoot').css('font-size','14px')

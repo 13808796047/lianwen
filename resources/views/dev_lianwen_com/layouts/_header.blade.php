@@ -48,10 +48,11 @@
     </div>
     @auth
       <div class="flex justify-content-around w-25 align-items-center">
-        <span>{{auth()->user()->phone??auth()->user()->nickname}}</span>
         <img
           src="{{Auth::user()->avatar??'https://css.lianwen.com/images/head.jpg'}}"
           class=" w-10 h-10"/>
+        <span>{{auth()->user()->phone??auth()->user()->nickname}}</span>
+
 
         <a href="javascript:;"
            class="logout inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
