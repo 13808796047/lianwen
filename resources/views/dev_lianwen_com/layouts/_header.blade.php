@@ -69,7 +69,7 @@
   ssq.onclick=function(){
     console.log('xixix',this)
   }
-  let name = '{{auth()->user()->phone??auth()->user()->nickname}}';
+  let name = {{auth()->user()}};
     if(!name) {
       console.log('name',3123)
     }
