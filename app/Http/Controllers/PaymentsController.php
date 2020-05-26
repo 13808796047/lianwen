@@ -70,10 +70,7 @@ class PaymentsController extends Controller
     public function freePay(Order $order)
     {
         $this->authorize('own', $order);
-        if($order->status == 1 || $order->del) {
-            throw new InvalidRequestException('订单状态不正确!');
-        }
-        if($order->category->id != 1 || !$order->user->is_free) {
+        if($order->status == 1 || $order->del || $order->category->id != 1 || !$order->user->is_free) {
             throw new InvalidRequestException('订单状态不正确!');
         }
         $order->update([
@@ -83,8 +80,9 @@ class PaymentsController extends Controller
             'pay_price' => $order->price,//支付金额
             'status' => 1,
         ]);
-        $order->user->is_free = false;
-        $order->user->save();
+        $order->user->update([
+            'is_free' => false,
+        ]);
         $this->afterOrderPaid($order);
         $this->afterPaidMsg($order);
         return response(compact('order'), 200);
