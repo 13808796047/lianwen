@@ -62,6 +62,8 @@
   </div>
 </nav>
 <script>
-
+  $('#categories a').click(function(){
+    console.log('xixix')
+  })
 </script>
 <!----- start-header---->
