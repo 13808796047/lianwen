@@ -95,7 +95,7 @@
         <form>
         <!-- @csrf -->
           <input type="hidden" name="cid" id="cid">
-          <input type="hidden" name="from" value="维普PC端">
+          <input type="hidden" name="from" value="wp-pc">
           <input type="hidden" name="file_id" value="" id="hidden_form_id">
           <input type="hidden" name="type" value="content" id="hideen_type">
           <div class="form-group">
@@ -247,7 +247,7 @@
 <script type="text/javascript" src="{{ asset('asset/js/jquery-cxcalendar.js') }}"></script>
   <script>
     $(() => {
-      @unless(Auth::user()->weixin_openid)
+      @unless(Auth::user()->wp_weixin_openid)
       axios.get('{{ route('official_account.index') }}').then(res => {
         //   swal({
         //   //   $('#wximg').attr('src', res.data.url)
@@ -330,7 +330,7 @@
           }
         }).then(res => {
           array.push({
-            'file_id': res.data.data.id, 'from': '维普查重PC', 'type': 'file',
+            'file_id': res.data.data.id, 'from': 'wp-pc', 'type': 'file',
             'content': ''
           });
           index++;
@@ -440,7 +440,7 @@
         $('#submitBtn').css("display", "block")
         axios.post('{{route('orders.store')}}', {
             cid: $('#cid').val(),
-            from: '维普PC端',
+            from: 'wp-pc',
             file_id: oneid,
             type: 'file',
             content: '',
@@ -463,7 +463,7 @@
         $('#submitBtn').css("display", "block")
         axios.post('{{route('orders.store')}}', {
             cid: $('#cid').val(),
-            from: '维普PC端',
+            from: 'wp-pc',
             type: 'content',
             content: $('#content').val(),
             title: $('#title').val(),
