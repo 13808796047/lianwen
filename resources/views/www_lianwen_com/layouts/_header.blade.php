@@ -8,7 +8,7 @@
     <div class="text-sm lg:flex-grow" id="categories">
 
       <a href="/"
-         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none istoaster">
         首页
       </a>
 
@@ -17,9 +17,9 @@
           初稿查重
         </span>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/categories/1">联文检测</a>
+          <a class="dropdown-item istoaster" href="/categories/1">联文检测</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/categories/5">PaperPass</a>
+          <a class="dropdown-item istoaster" href="/categories/5">PaperPass</a>
         </div>
       </li>
       <li class="nav-item dropdown" style="display: inline;">
@@ -27,20 +27,20 @@
           定稿查重
         </span>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/categories/4">万方检测</a>
+          <a class="dropdown-item istoaster" href="/categories/4">万方检测</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/categories/2">维普查重</a>
+          <a class="dropdown-item istoaster" href="/categories/2">维普查重</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/categories/3">知网查重</a>
+          <a class="dropdown-item istoaster" href="/categories/3">知网查重</a>
         </div>
       </li>
 
       <a href="{{route('orders.index')}}"
-         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none" style="margin-left:15px;">
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none istoaster" style="margin-left:15px;">
         查看报告
       </a>
       <a href="/ai_rewrite"
-         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none" style="margin-left:15px;">
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none istoaster" style="margin-left:15px;">
         自动降重
       </a>
       <a href="javascript:void(0)" style="margin-left:15px;"
@@ -84,7 +84,7 @@
 
      "hideDuration": "1000",//消失的动画时间
 
-     "positionClass": "toast-center-center",//弹出窗的位置
+     "positionClass": "toast-cent-cent",//弹出窗的位置
 
      "timeOut": "1000", //展现时间
 
@@ -100,7 +100,8 @@
    };
 
   @unless(Auth::user())
-    let atag = document.querySelector('#categories').getElementsByTagName("a");
+    let atag = document.getElementsByClassName("istoaster");
+    console.log(atag,3131)
     for(let i in atag){
       atag[i].onclick = function(event){
           event.preventDefault()
