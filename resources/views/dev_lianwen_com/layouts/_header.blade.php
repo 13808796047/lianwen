@@ -100,7 +100,8 @@
    };
 
   @unless(Auth::user())
-    let atag = document.querySelector('.istoaster')
+    let atag = document.getElementsByClassName("istoaster");
+    console.log(atag,3131)
     for(let i in atag){
       atag[i].onclick = function(event){
           event.preventDefault()
