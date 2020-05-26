@@ -1,3 +1,5 @@
+
+<link href="{{asset('asset/css/toast-min.css')}}" rel="stylesheet" />
 <nav class="flex items-center justify-between flex-wrap bg-white-100" style="background:#fff;box-shadow: 0px 0px 3px #c1bebd;margin-bottom: 6px;font-size:0.965rem;" id="headernav">
   <div class="flex items-center flex-shrink-0 text-white mr-6 bg-blue-600" style="padding:0.5rem 1.5rem">
     <a href="/"><img src="https://css.lianwen.com/images/logo.png" alt=""></a>
@@ -61,6 +63,7 @@
     @endauth
   </div>
 </nav>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
 
 
@@ -69,7 +72,7 @@
     for(let i in atag){
       atag[i].onclick = function(event){
           event.preventDefault()
-          alert(event.target)
+
       }
     }
   @endunless
