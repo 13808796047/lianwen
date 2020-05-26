@@ -297,8 +297,8 @@
         let words =  $('#words span').text();
         let contents = $('#content').val();
         console.log(words,contents,31)
-        if(words>5000){
-          alert('字数大于1000')
+        if(words>1000){
+          toastr.error('字数不能大于1000字');
           return
         }
         $('#exampleModal').modal('show')
