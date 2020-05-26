@@ -62,15 +62,16 @@
   </div>
 </nav>
 <script>
-  var ss = document.querySelector("#categories")
-  console.log(ss,312)
-  var ssq = document.querySelector('#categories').getElementsByTagName("a");
-  console.log(ssq,312)
-  ssq.onclick=function(){
-    console.log('xixix',this)
-  }
+
+
   @unless(Auth::user())
-  console.log('xixxiix','meisfdsaf')
+    let atag = document.querySelector('#categories').getElementsByTagName("a");
+    for(let i in atag){
+      atag[i].onclick = function(event){
+          event.preventDefault()
+          alert(event.target)
+      }；
+    }
   @endunless
 </script>
 <!----- start-header---->
