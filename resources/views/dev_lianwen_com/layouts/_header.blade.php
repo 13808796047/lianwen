@@ -62,8 +62,8 @@
   </div>
 </nav>
 <script>
-  $('#categories a').click(function(){
-    console.log('xixix')
-  })
+  document.querySelector("#categories a").onclick=function(){
+    console.log('xixix',this)
+  }
 </script>
 <!----- start-header---->
