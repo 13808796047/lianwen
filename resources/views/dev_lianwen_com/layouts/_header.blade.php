@@ -64,7 +64,7 @@
   </div>
 </nav>
 
-<script type="text/javascript" src="{{ asset('asset/js/jquery.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
    toastr.options = {
