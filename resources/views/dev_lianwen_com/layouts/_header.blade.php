@@ -62,12 +62,6 @@
   </div>
 </nav>
 <script>
-  var ss = document.querySelector("#categories")
-  console.log(ss,312)
-  var ssq = document.querySelector('#categories').getElementsByTagName("a");
-  console.log(ssq,312)
-  ssq.onclick=function(){
-    console.log('xixix',this)
-  }
+    console.log("{{request()->user,}}", @auth);
 </script>
 <!----- start-header---->
