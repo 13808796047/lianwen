@@ -103,7 +103,7 @@ class OrdersController extends Controller
             $rate = $order->rate;
         }
         //把要转换的字符串作为QrCode的构造函数
-        $qrCode = new QrCode(url("/qcrode/generate_img?title={$order->title}&&writer={$order->writer}&&category_name={$order->category->name}&&created_at={$order->created_at}&&rate={$rate}"));
+        $qrCode = new QrCode(url("/qcrode/generate_img?title={$order->title}&&writer={$order->writer}&&category_name={$order->category->name}&&classid={$order->category->classid}&&created_at={$order->created_at}&&rate={$rate}"));
         //将生成的二维码图片数据以字符串形式输出，并带上相应的响应类型
         return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
     }
@@ -111,7 +111,7 @@ class OrdersController extends Controller
     public function generateImg(Request $request)
     {
         $orderimg = app(OrderimgHandler::class);
-        $img_url = $orderimg->generate($request->title, $request->writer, $request->category_name, $request->created_at, $request->rate);
+        $img_url = $orderimg->generate($request->title, $request->writer, $request->category_name, $request->classid, $request->created_at, $request->rate);
         return view('domained::orders.qrcode.index', compact('img_url'));
     }
 }

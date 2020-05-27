@@ -8,9 +8,19 @@ use Intervention\Image\Facades\Image;
 
 class OrderimgHandler
 {
-    public function generate($title, $writer, $category_name, $created_at, $rate)
+    public function generate($title, $writer, $category_name, $classid, $created_at, $rate)
     {
-        $img = Image::make(public_path('orderimg/xx.jpg'));
+        switch ($classid) {
+            case 2:
+                $img_path = public_path('orderimg/wp.jpg');
+                break;
+            case 4:
+                $img_path = public_path('orderimg/wf.jpg');
+                break;
+            default:
+                $img_path = public_path('orderimg/xx.jpg');
+        }
+        $img = Image::make($img_path);
         $i = 500;
         $fontTtf = public_path('orderimg/msyhl.ttc');
         $fontSize = 26;
