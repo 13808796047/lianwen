@@ -391,6 +391,8 @@
           );
       }
       @endauth
-
+      @unless(Auth::user())
+        console.log("xixi")
+      @endunless
   </script>
 @stop
