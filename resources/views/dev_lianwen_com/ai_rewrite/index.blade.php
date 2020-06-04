@@ -207,6 +207,12 @@
     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
     <div class="modal-dialog modal-dialog-centered " role="document" >
       <div class="modal-content" style="width:350px;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div class="modal-body" style="text-align:center;">
         <ul class="nav nav-pills mt-4 d-flex justify-content-center" id="pills-tab" role="tablist">
             <li class="nav-item mr-4">
