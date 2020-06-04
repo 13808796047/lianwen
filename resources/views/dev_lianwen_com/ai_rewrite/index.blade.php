@@ -523,6 +523,7 @@
       @unless(Auth::user())
         $('#content').focus(function(){
           console.log('xixixii')
+          $('#noLoginModal').modal('show')
         })
         $('#noreduce').click(function(){
           $('#noLoginModal').modal('show')
