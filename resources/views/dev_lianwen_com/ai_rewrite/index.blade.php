@@ -518,6 +518,99 @@
         $('#noreduce').click(function(){
           $('#noLoginModal').modal('show')
         })
+         //账号登录
+      $('#accountLogin').click(function () {
+        axios.post('{{route('login') }}', {
+          phone: $("input[name='phone']").val(),
+          password: $("input[name='password']").val(),
+          type: 'account'
+        }).then(res => {
+          if (res.status == 200) {
+            swal("提示", res.data.message, "success");
+            location.reload();
+          } else {
+            swal("提示", res.data.message, "error");
+          }
+        }).catch(err => {
+          if (err.response.status == 422) {
+            $.each(err.response.data.errors, (field, errors) => {
+              swal("提示", errors[0], "error");
+            })
+          }
+          if (err.response.status == 401) {
+            $.each(err.response.data, (field, errors) => {
+              swal("提示", errors, "error");
+            })
+          }
+        })
+      })
+      var wait = 60;
+      var verification_key = '';
+
+      function time(o) {
+        if (wait == 0) {
+          o.removeAttribute("disabled");
+          o.value = "点击获取验证码";
+          wait = 60;
+        } else {
+          o.setAttribute("disabled", true);
+          o.value = "重新发送(" + wait + ")";
+          wait--;
+          setTimeout(function () {
+              time(o)
+            },
+            1000)
+        }
+      }
+
+      function getcode(index) {
+        index.setAttribute('disabled', true);
+        var phone = $("#mobile").val();
+        var reg = /^1[34578]\d{9}$/;
+        if (!reg.test(phone)) {
+          index.removeAttribute("disabled");
+          $("input[name='phone']").focus();
+          swal('提示信息', "请输入正确的手机号码!!!", "error");
+          return;
+        }
+        axios.post('/api/v1/verificationCodes', {
+          phone: phone,
+        }).then(res => {
+          swal('验证码已发送成功!,请注意查收!')
+          time(index);
+          verification_key = res.data.key;
+        }).catch(err => {
+          index.removeAttribute("disabled");
+          if (err.response.status == 401) {
+            $.each(err.response.data.errors, (field, errors) => {
+              swal("提示", errors[0], "error");
+            })
+          }
+        })
+      }
+
+      $('#verificationCode').click(function () {
+        getcode(this)
+      })
+      $('#phoneLogin').click(() => {
+        axios.post('{{ route('login') }}', {
+          phone: $('#mobile').val(),
+          verification_code: $('#verification_code').val(),
+          verification_key: verification_key,
+          type: 'phone'
+        }).then(res => {
+          location.reload();
+        }).catch(err => {
+          if (err.response.status == 401) {
+            swal("提示", '用户不存在！！！', "error");
+          }
+          if (err.response.status == 422) {
+            $.each(err.response.data.errors, (field, errors) => {
+              swal("提示", errors[0], "error");
+            })
+          }
+        });
+      });
       @endunless
   </script>
 @stop
