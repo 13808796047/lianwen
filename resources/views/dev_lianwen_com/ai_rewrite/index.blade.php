@@ -18,16 +18,107 @@
   <!-- alert提示框 -->
 
   <!-- 模态框 -->
+  @auth
+  <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="text-align:center;">
+          <p>本次操作将消耗1次降重次数</p>
+          <p>剩余次数：{{ auth()->user()->jc_times}}<span style="color:#4876FF;margin-left:10px;" id="addjctimes">增加次数</span></p>
 
+        </div>
+        <div class="modal-footer">
+          <p style="color:#4876FF;margin-right:25%;" id="freeadds">免费增加</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="surecheck">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endauth
   <!-- 模态框结束 -->
    <!-- 模态框2 -->
-
+   @auth
+   <div class="modal fade bd-example-modal-sm" id="beingModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body" style="text-align:center;">
+          <div style="padding:20px 0">正在降重中，请勿刷新页面</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endauth
   <!-- 模态框2结束-->
   <!-- 购买降重字数模态框 -->
-
+  @auth
+  <div class="modal fade bd-example-modal-sm" id="jctimeModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="text-align:center;">
+          <p>购买自动降重次数</p>
+          <p style="margin: 6px 0;font-size: 11px;color: #F4A460;">(价格:1元/次)</p>
+          <p>请输入购买次数<span style="padding:0 10px;" id="cutjctime">-</span><span style="border: 1px solid;padding: 3px;" id="curjctime">1</span><span style="padding:0 10px;" id="addjctime">+</span></p>
+        </div>
+        <div class="modal-footer">
+          <p style="color:#4876FF;margin-right:25%;" id="freeadd">免费增加</p>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="sureshop">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endauth
   <!-- 购买降重字数模态框结束 -->
   <!-- 推荐弹框 -->
+  @auth
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="tjModal">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header" style="padding:5px 10px;border-bottom:0;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding:0;text-align:center;">
+          <p style="font-weight: bold;font-size: 18px;">推荐注册，赠送自动降重次数</p>
+          <p style="font-size: 13px;color: #FFA54F;">双方各送5次</p>
+          <p style="margin:10px 0;">方式1：分享地址，邀请好友注册（适合电脑此操作）</p>
+          <div style="display:flex;justify-content: center;">
+            <p id="demo" style="border: 1px solid;padding: 0 10px;" >https://dev.lianwen.com/zt/jc?uid={{auth()->user()->id}}</p>
+            <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;" class="btn" id="copybtn" >复制链接</p>
+          </div>
+          <p style="margin:10px 0;">方式2：微信扫码，邀请好友注册（适合手机操作）</p>
+          <div style="display:flex;justify-content: center;" id="qrcode">
 
+          </div>
+          <p style="font-size: 13px;margin-top: 5px;">微信扫码分享</p>
+        </div>
+        <div class="modal-footer" style="border:none;display:block;font-size:13px;">
+          <p>活动规则</p>
+          <p>1、每推荐1名好友成功注册（微信登录或绑定手机号），推荐人和注册人各获得5次自动降重次数，获得的次数可叠加，无上限；</p>
+          <p>2、所获得降重次数不可提现，仅用于使用自动降重服务时抵扣；</p>
+          <p>3、严禁使用非法手段获取，对于问题账号本站有权撤销相应数据或封禁账号。</p>
+        </div>
+    </div>
+  </div>
+</div>
+@endauth
   <!-- 推荐弹框结束 -->
     <!--左边导航-->
     <div class="main clearfix" id="jcafter">
@@ -42,7 +133,9 @@
         <p style="float: right;font-size: 13px;padding-right: 30px;" id="words">当前输入<span>0</span>字</p>
       </div>
       <div style="display: flex;justify-content: center;margin-top: 15px;">
-
+      @auth
+      <p>剩余次数:<span id="jc_time">{{ auth()->user()->jc_times}}</span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
+      @endauth
     </div>
     </div>
     <!--右边内容-->
@@ -109,7 +202,7 @@
 <script type="text/javascript" src="{{ asset('asset/js/diff.js') }}"></script>
   <script>
     $(() => {
-    @auth
+      @auth
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
 
@@ -184,8 +277,10 @@
       clipboard.on('success', function(e) {
 　　    console.log(e); //返回值类型给控制台 没什么用 可以注释掉
 　　    toastr.success('复制成功');
+        @endauth
       });
       //确认购买
+      @auth
       $("#sureshop").click(function(){
         let totalprice=$("#curjctime").text();
         console.log(totalprice,3131)
@@ -201,7 +296,101 @@
           console.log(err,31312)
         })
       })
+      })
+      //点击减少降重次数
+      $("#cutjctime").click(function(){
+        let current = Number($("#curjctime").text());
+        if(current==1) return;
+        let cur =current-1;
+        $("#curjctime").text(cur)
+      })
+      //点击降重
+      $('#reduce').click(function(){
+        let words =  $('#words span').text();
+        let contents = $('#content').val();
+        console.log(words,contents,31)
+        if(words>1000){
+          toastr.error('字数不能大于1000字');
+          return
+        }
+        $('#exampleModal').modal('show')
+      })
+      //再来一篇
+      $('#againjc').click(function(){
+        window.location.reload()
+      })
+       //对比diff方法
+       function changed(a,b,c) {
+            var oldContent = a
+            var content1 = b
+            var diff = JsDiff['diffChars'](oldContent, content1);
+      var arr = new Array();
+      for (var i = 0; i < diff.length; i++) {
+        if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
+          var swap = diff[i];
+          diff[i] = diff[i + 1];
+          diff[i + 1] = swap;
+        }
+        var diffObj = diff[i];
+        var content = diffObj.value;
+
+        //可以考虑启用，特别是后台清理HTML标签后的文本
+        if (content.indexOf("\n") >= 0) {
+
+          var reg = new RegExp('\n', 'g');
+          content = content.replace(reg, '<br/>');
+        }
+        if (diffObj.removed) {
+          arr.push('<del title="删除的部分">' + content + '</del>');
+        } else if (diffObj.added) {
+          arr.push('<ins title="新增的部分">' + content + '</ins>');
+        } else {
+          //没有改动的部分
+          arr.push('<span title="没有改动的部分">' + content + '</span>');
+        }
+      }
+          var html = arr.join('');
+          document.getElementById('content_after').innerHTML = html;
+
+          document.getElementById('content_later').innerHTML = c;
+        }
+       //点击确认显示正在降重弹框
+      $("#surecheck").click(function () {
+        $('#exampleModal').modal('hide')
+        $('#beingModal').modal('show')
+        let num = 3;
+        togetJc(num)
+      })
+
+      function togetJc(num){
+        let contents = $('#content').val();
+        axios.post('{{ route('ai_rewrite.store') }}',{content:contents})
+          .then(res => {
+            if(res.data.user.jc_times){
+              console.log(res.data.user.jc_times,1323122321)
+              $('#jc_timeend').html(res.data.user.jc_times)
+            }
+            $('#beingModal').modal('hide')
+            $('#jcafter').css('display', 'none')
+            var htmlstring=res.data.result.new_content;
+            var stringtemp =htmlstring.replace(/<[^>]+>/g, "");
+            changed(contents,stringtemp,htmlstring)
+
+            $("#jclater").css('display', 'block')
+          })
+          .catch(err =>{
+            num--;
+            if(num>=0){
+              togetJc(num)
+              return;
+            }else{
+              $('#beingModal').modal('hide')
+              toastr.error('降重失败，请重试');
+            }
+          }
+          );
+      }
       @endauth
-    })
+
   </script>
 @stop
