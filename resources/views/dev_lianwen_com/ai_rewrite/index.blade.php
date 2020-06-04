@@ -205,8 +205,8 @@
   <!-- 未登录模态框 -->
   <div class="modal fade " id="noLoginModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
-    <div class="modal-dialog modal-dialog-centered " role="document" style="height:700px;">
-      <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered " role="document" >
+      <div class="modal-content" style="height:500px;">
         <div class="modal-body" style="text-align:center;">
         <ul class="nav nav-pills mt-4 d-flex justify-content-center" id="pills-tab" role="tablist">
             <li class="nav-item mr-4">
