@@ -202,6 +202,17 @@
     </div>
 
   </div>
+  <!-- 未登录模态框 -->
+  <div class="modal fade bd-example-modal-sm" id="noLoginModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body" style="text-align:center;">
+          <div style="padding:20px 0">正在降重中，请勿刷新页面</div>
+        </div>
+      </div>
+    </div>
+  </div>
 @stop
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -401,7 +412,7 @@
       @endauth
       @unless(Auth::user())
         $('#noreduce').click(function(){
-          console.log('xixixifsdaf')
+          $('#noLoginModal').modal('show')
         })
       @endunless
   </script>
