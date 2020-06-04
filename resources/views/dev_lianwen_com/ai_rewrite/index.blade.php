@@ -206,9 +206,8 @@
   <div class="modal fade " id="noLoginModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
     <div class="modal-dialog modal-dialog-centered " role="document" >
-      <div class="modal-content" style="width:350px;">
+      <div class="modal-content" style="width:380px;">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
