@@ -521,6 +521,9 @@
       }
       @endauth
       @unless(Auth::user())
+        $('#content').focus(function(){
+          console.log('xixixii')
+        })
         $('#noreduce').click(function(){
           $('#noLoginModal').modal('show')
         })
