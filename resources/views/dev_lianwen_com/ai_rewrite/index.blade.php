@@ -30,7 +30,8 @@
         </div>
         <div class="modal-body" style="text-align:center;">
           <p>本次操作将消耗1次降重次数</p>
-          <p>剩余次数：{{ auth()->user()->jc_times}}<span style="color:#4876FF;margin-left:10px;" id="addjctimes">增加次数</span></p>
+          <!-- <p>剩余次数：{{ auth()->user()->jc_times}}<span style="color:#4876FF;margin-left:10px;" id="addjctimes">增加次数</span></p> -->
+          <p>剩余次数：0<span style="color:#4876FF;margin-left:10px;" id="addjctimes">增加次数</span></p>
 
         </div>
         <div class="modal-footer">
