@@ -109,7 +109,99 @@
 <script type="text/javascript" src="{{ asset('asset/js/diff.js') }}"></script>
   <script>
     $(() => {
+    @auth
+      $('.navbar>div').removeClass('container').addClass('container-fluid')
+      $('#headerlw').addClass('curfont')
 
+      $('#freeadd').click(function(){
+        $('#tjModal').modal('show')
       })
+      $('#freeadds').click(function(){
+        $('#tjModal').modal('show')
+      })
+      //生成分享二维码
+      var qrcode = document.getElementById('qrcode')
+
+      /*也可以配置二维码的宽高等*/
+       var qrcodeObj = new QRCode('qrcode', {
+          text: 'http://dev.cnweipu.com/zt/jc?uid='+{{auth()->user()->id}},
+          width: 120,
+          height: 120,
+          colorDark: '#000000', //前景色
+          colorLight: '#ffffff',//背景色
+          correctLevel: QRCode.CorrectLevel.H
+      })
+      toastr.options = {
+
+        "closeButton": true, //是否显示关闭按钮
+
+        "debug": true, //是否使用debug模式
+
+        "showDuration": "1000",//显示的动画时间
+
+        "hideDuration": "1000",//消失的动画时间
+
+        "positionClass": "toast-center-center",//弹出窗的位置
+
+        "timeOut": "1000", //展现时间
+
+        "extendedTimeOut": "1000",//加长展示时间
+
+        "showEasing": "swing",//显示时的动画缓冲方式
+
+        "hideEasing": "linear",//消失时的动画缓冲方式
+
+        "showMethod": "fadeIn",//显示时的动画方式
+
+        "hideMethod": "fadeOut" //消失时的动画方式
+
+
+      };
+
+      //获取字数
+      $("#content").bind('input',(e)=>{
+        $('#words span').html(e.target.value.length)
+      })
+      //增加降重次数
+      $("#shopjctime").click(function(){
+        $("#jctimeModal").modal('show')
+      })
+      $("#addjctimes").click(function(){
+        $('#exampleModal').modal('hide')
+        $("#jctimeModal").modal('show')
+      })
+      //点击增加降重次数
+      $("#addjctime").click(function(){
+        let current = Number($("#curjctime").text())+1;
+        $("#curjctime").text(current)
+      })
+      //复制链接
+      var clipboard = new Clipboard("#copybtn",{
+        target:function(){
+          return document.querySelector('#demo');
+        }
+      });
+      clipboard.on('success', function(e) {
+　　    console.log(e); //返回值类型给控制台 没什么用 可以注释掉
+　　    toastr.success('复制成功');
+      });
+      //确认购买
+      $("#sureshop").click(function(){
+        let totalprice=$("#curjctime").text();
+        console.log(totalprice,3131)
+        axios.post('{{ route('recharges.store') }}',{
+          total_amount:totalprice,
+          amount:totalprice
+        }).then(res => {
+          let number = res.data.data.amount;
+          let id =res.data.data.id;
+          let price=res.data.data.total_amount;
+          location.href=`/recharges/${id}`
+        }).catch(err => {
+          console.log(err,31312)
+        })
+      })
+      @endauth
+    })
   </script>
 @stop
