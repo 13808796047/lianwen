@@ -126,12 +126,20 @@
       <p style="font-size: 20px;">请输入你要降重的内容。<span style="font-size:16px;color:#757575;">（最大支持1000字）</span></p>
       <textarea name="content" id="content"
         style="width:97%;height: 500px;padding:20px;box-sizing:border-box;font-size:20px;outline: none;border:1px solid #ddd;margin-top:20px"></textarea>
+      @auth
       <div style="display:flex;align-items: center;justify-content: space-between;">
       <p style="background-color: #4876FF;display: inline;padding: 5px 20px;color:#fff;text-align: center;font-size:15px;"
         id="reduce">
         一键降重</p>
         <p style="float: right;font-size: 13px;padding-right: 30px;" id="words">当前输入<span>0</span>字</p>
       </div>
+      @else
+      <div style="display:flex;align-items: center;justify-content: space-between;">
+      <p style="background-color: #4876FF;display: inline;padding: 5px 20px;color:#fff;text-align: center;font-size:15px;"
+        id="noreduce">
+        一键s</p>
+      </div>
+      @endauth
       <div style="display: flex;justify-content: center;margin-top: 15px;">
       @auth
       <p>剩余次数:<span id="jc_time">{{ auth()->user()->jc_times}}</span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
@@ -392,7 +400,9 @@
       }
       @endauth
       @unless(Auth::user())
-        console.log("xixi")
+        $('#noreduce').click(function(){
+          console.log('xixixifsdaf')
+        })
       @endunless
   </script>
 @stop
