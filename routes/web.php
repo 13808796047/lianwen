@@ -32,8 +32,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('official_account', 'OfficialAccountController@index')->name('official_account.index');
     //异步上传文件
     Route::post('files', 'FilesController@store')->name('files.store');
-    //自动查重
-    Route::get('ai_rewrite', 'AutoCheckController@index')->name('ai_rewrite.index');
+
     Route::post('ai_rewrite', 'AutoCheckController@store')->name('ai_rewrite.store');
     Route::get('auto_check/{autoCheck}', 'AutoCheckController@show')->name('auto_check.show');
     Route::get('payments/{order}/free_pay', 'PaymentsController@freePay')->name('payments.freePay');
@@ -41,8 +40,9 @@ Route::group(['middleware' => 'auth'], function() {
 //下载
 Route::get('orders/{orderid}/download', 'OrdersController@download')
     ->name('orders.download');
+//自动查重
 
-
+Route::get('ai_rewrite', 'AutoCheckController@index')->name('ai_rewrite.index');
 //支付宝
 Route::get('payments/{id}/alipay/{type}', 'PaymentsController@alipay')
     ->name('payments.alipay');
