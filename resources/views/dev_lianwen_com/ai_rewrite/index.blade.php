@@ -18,107 +18,16 @@
   <!-- alert提示框 -->
 
   <!-- 模态框 -->
-  @auth
-  <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="text-align:center;">
-          <p>本次操作将消耗1次降重次数</p>
-          <p>剩余次数：{{ auth()->user()->jc_times}}<span style="color:#4876FF;margin-left:10px;" id="addjctimes">增加次数</span></p>
 
-        </div>
-        <div class="modal-footer">
-          <p style="color:#4876FF;margin-right:25%;" id="freeadds">免费增加</p>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" id="surecheck">确定</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  @endauth
   <!-- 模态框结束 -->
    <!-- 模态框2 -->
-   @auth
-   <div class="modal fade bd-example-modal-sm" id="beingModal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
-    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-      <div class="modal-content">
-        <div class="modal-body" style="text-align:center;">
-          <div style="padding:20px 0">正在降重中，请勿刷新页面</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  @endauth
+
   <!-- 模态框2结束-->
   <!-- 购买降重字数模态框 -->
-  @auth
-  <div class="modal fade bd-example-modal-sm" id="jctimeModal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">提示</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="text-align:center;">
-          <p>购买自动降重次数</p>
-          <p style="margin: 6px 0;font-size: 11px;color: #F4A460;">(价格:1元/次)</p>
-          <p>请输入购买次数<span style="padding:0 10px;" id="cutjctime">-</span><span style="border: 1px solid;padding: 3px;" id="curjctime">1</span><span style="padding:0 10px;" id="addjctime">+</span></p>
-        </div>
-        <div class="modal-footer">
-          <p style="color:#4876FF;margin-right:25%;" id="freeadd">免费增加</p>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" id="sureshop">确定</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  @endauth
+
   <!-- 购买降重字数模态框结束 -->
   <!-- 推荐弹框 -->
-  @auth
-  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="tjModal">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header" style="padding:5px 10px;border-bottom:0;">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="padding:0;text-align:center;">
-          <p style="font-weight: bold;font-size: 18px;">推荐注册，赠送自动降重次数</p>
-          <p style="font-size: 13px;color: #FFA54F;">双方各送5次</p>
-          <p style="margin:10px 0;">方式1：分享地址，邀请好友注册（适合电脑此操作）</p>
-          <div style="display:flex;justify-content: center;">
-            <p id="demo" style="border: 1px solid;padding: 0 10px;" >https://dev.lianwen.com/zt/jc?uid={{auth()->user()->id}}</p>
-            <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;" class="btn" id="copybtn" >复制链接</p>
-          </div>
-          <p style="margin:10px 0;">方式2：微信扫码，邀请好友注册（适合手机操作）</p>
-          <div style="display:flex;justify-content: center;" id="qrcode">
 
-          </div>
-          <p style="font-size: 13px;margin-top: 5px;">微信扫码分享</p>
-        </div>
-        <div class="modal-footer" style="border:none;display:block;font-size:13px;">
-          <p>活动规则</p>
-          <p>1、每推荐1名好友成功注册（微信登录或绑定手机号），推荐人和注册人各获得5次自动降重次数，获得的次数可叠加，无上限；</p>
-          <p>2、所获得降重次数不可提现，仅用于使用自动降重服务时抵扣；</p>
-          <p>3、严禁使用非法手段获取，对于问题账号本站有权撤销相应数据或封禁账号。</p>
-        </div>
-    </div>
-  </div>
-</div>
-@endauth
   <!-- 推荐弹框结束 -->
     <!--左边导航-->
     <div class="main clearfix" id="jcafter">
@@ -133,9 +42,7 @@
         <p style="float: right;font-size: 13px;padding-right: 30px;" id="words">当前输入<span>0</span>字</p>
       </div>
       <div style="display: flex;justify-content: center;margin-top: 15px;">
-      @auth
-      <p>剩余次数:<span id="jc_time">{{ auth()->user()->jc_times}}</span></p><span style="color:#4876FF;margin-left: 10px;" id="shopjctime">增加次数</span>
-      @endauth
+
     </div>
     </div>
     <!--右边内容-->
