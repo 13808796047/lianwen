@@ -60,13 +60,11 @@
            class="logout inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
           lg:mt-0">登出</a>
       </div>
-    @else
-    <div class="flex justify-content-around w-25 align-items-center">
-
+    @endauth
+    <div class="flex justify-content-around w-25 align-items-center" style="display:none;" id="jbrk">
         <a href="https://2019.lianwen.com" class="inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
           lg:mt-0" target="_blank">旧版入口</a>
     </div>
-    @endauth
 
   </div>
 </nav>
@@ -100,6 +98,12 @@
    };
 
   @unless(Auth::user())
+    if(window.location.href='https://dev.lianwen.com'){
+      console.log('xixi')
+      $('#jbrk').css('display','block')
+    }else{
+      $('#jbrk').css('display','none')
+    }
     let atag = document.getElementsByClassName("istoaster");
     console.log(atag,3131)
     for(let i in atag){
