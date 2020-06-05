@@ -115,7 +115,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('baidu_pay', function() {
             $domain = request()->getHost();
             switch ($domain) {
-                case 'dev.lianwen.com':
+                case 'weipu.lianwen.com':
                     $config = config('pay.dev_baidu_pay');
                     break;
                 default:
