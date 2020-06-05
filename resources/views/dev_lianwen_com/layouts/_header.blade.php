@@ -98,7 +98,7 @@
    };
 
   @unless(Auth::user())
-    if(window.location.href='https://dev.lianwen.com'){
+    if(window.location.href=='https://dev.lianwen.com'){
       console.log('xixi')
       $('#jbrk').css('display','block')
     }else{
