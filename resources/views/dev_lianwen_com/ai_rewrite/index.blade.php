@@ -139,6 +139,7 @@
         id="noreduce">
         一键降重</p>
       </div>
+      <p>注：采用人工智能技术，实现自动降低论文查重率，降重结果仅供参考，如需更专业的人工论文降重服务请联系微信：cx5078</p>
       @endauth
       <div style="display: flex;justify-content: center;margin-top: 15px;">
       @auth
