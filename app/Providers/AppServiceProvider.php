@@ -116,10 +116,10 @@ class AppServiceProvider extends ServiceProvider
             $domain = request()->getHost();
             switch ($domain) {
                 case 'weipu.lianwen.com':
-                    $config = config('pay.dev_baidu_pay');
+                    $config = config('pay.zcnki_baidu_pay');
                     break;
                 default:
-                    $config = config('pay.dev_baidu_pay');
+                    $config = config('pay.zcnki_baidu_pay');
             }
             return new BaiduPayHandler($config);
         });
