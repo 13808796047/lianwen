@@ -40,7 +40,7 @@
         查看报告
       </a>
       <a href="/ai_rewrite"
-         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none istoaster" style="margin-left:15px;">
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none" style="margin-left:15px;">
         自动降重
       </a>
       <a href="javascript:void(0)" style="margin-left:15px;"
