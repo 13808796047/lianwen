@@ -31,7 +31,7 @@ var _hmt = _hmt || [];
     if (_tag != 'web') {
       for (var i = 0; i < mobileAgent.length; i++) {
         if (browser.indexOf(mobileAgent[i]) != -1) {
-          window.location.href = 'http://h5.lianwen.com';
+          window.location.href = 'http://wap.lianwen.com';
           break;
         }
       }
