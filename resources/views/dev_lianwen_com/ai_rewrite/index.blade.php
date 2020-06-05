@@ -73,7 +73,7 @@
         <div class="modal-body" style="text-align:center;">
           <p>购买自动降重次数</p>
           <p style="margin: 6px 0;font-size: 11px;color: #F4A460;">(价格:1元/次)</p>
-          <p>请输入购买次数<span style="padding:0 10px;" id="cutjctime">-</span><span style="border: 1px solid;padding: 3px;" id="curjctime">1</span><span style="padding:0 10px;" id="addjctime">+</span></p>
+          <p>请输入购买次数<span style="padding:0 10px;" id="cutjctime">-</span><span style="border: 1px solid;padding: 3px;" id="curjctime">10</span><span style="padding:0 10px;" id="addjctime">+</span></p>
         </div>
         <div class="modal-footer">
           <p style="color:#4876FF;margin-right:25%;" id="freeadd">免费增加</p>
