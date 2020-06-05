@@ -45,7 +45,6 @@ class OrderPendingMsg implements ShouldQueue
                     $appid = config('wechat.official_account.wf.templates.pending.appid');
                     $pagepath = config('wechat.official_account.wf.templates.pending.page_path');
                     $config = config('wechat.official_account.wf');
-                    info([$touser, $template_id, $appid, $pagepath, $config]);
                     break;
                 case config('app.host.wp_host'):
                     $touser = $this->order->user->wp_weixin_openid;
