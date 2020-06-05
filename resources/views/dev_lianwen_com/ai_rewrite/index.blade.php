@@ -127,20 +127,22 @@
       <textarea name="content" id="content"
         style="width:97%;height: 500px;padding:20px;box-sizing:border-box;font-size:20px;outline: none;border:1px solid #ddd;margin-top:20px"></textarea>
       @auth
+      <p style="color:#696969">注：采用人工智能技术，实现自动降低论文查重率，降重结果仅供参考，如需更专业的人工论文降重服务请联系微信：cx5078</p>
       <div style="display:flex;align-items: center;justify-content: space-between;">
       <p style="background-color: #4876FF;display: inline;padding: 5px 20px;color:#fff;text-align: center;font-size:15px;"
         id="reduce">
         一键降重</p>
         <p style="float: right;font-size: 13px;padding-right: 30px;" id="words">当前输入<span>0</span>字</p>
       </div>
-      <p style="color:#696969">注：采用人工智能技术，实现自动降低论文查重率，降重结果仅供参考，如需更专业的人工论文降重服务请联系微信：cx5078</p>
+
       @else
+      <p style="color:#696969">注：采用人工智能技术，实现自动降低论文查重率，降重结果仅供参考，如需更专业的人工论文降重服务请联系微信：cx5078</p>
       <div style="display:flex;align-items: center;justify-content: space-between;">
       <p style="background-color: #4876FF;display: inline;padding: 5px 20px;color:#fff;text-align: center;font-size:15px;"
         id="noreduce">
         一键降重</p>
       </div>
-      <p style="color:#696969">注：采用人工智能技术，实现自动降低论文查重率，降重结果仅供参考，如需更专业的人工论文降重服务请联系微信：cx5078</p>
+
       @endauth
       <div style="display: flex;justify-content: center;margin-top: 15px;">
       @auth
