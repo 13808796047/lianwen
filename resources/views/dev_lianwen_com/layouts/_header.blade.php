@@ -99,7 +99,7 @@
 
   @unless(Auth::user())
    console.log($,32132,window.location.href)
-    if(window.location.href=='https://dev.lianwen.com'){
+    if(window.location.href=='https://dev.lianwen.com/'){
       console.log('xixi')
       $('#jbrk').css('display','block')
     }else{
