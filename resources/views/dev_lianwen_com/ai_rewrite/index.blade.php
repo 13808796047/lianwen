@@ -137,7 +137,7 @@
       <div style="display:flex;align-items: center;justify-content: space-between;">
       <p style="background-color: #4876FF;display: inline;padding: 5px 20px;color:#fff;text-align: center;font-size:15px;"
         id="noreduce">
-        一键s</p>
+        一键降重</p>
       </div>
       @endauth
       <div style="display: flex;justify-content: center;margin-top: 15px;">
@@ -522,7 +522,6 @@
       @endauth
       @unless(Auth::user())
         $('#content').focus(function(){
-          console.log('xixixii')
           $('#noLoginModal').modal('show')
         })
         $('#noreduce').click(function(){
