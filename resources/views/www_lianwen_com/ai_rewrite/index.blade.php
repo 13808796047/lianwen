@@ -100,7 +100,7 @@
           <p style="font-size: 13px;color: #FFA54F;">双方各送5次</p>
           <p style="margin:10px 0;">方式1：分享地址，邀请好友注册（适合电脑此操作）</p>
           <div style="display:flex;justify-content: center;">
-            <p id="demo" style="border: 1px solid;padding: 0 10px;" >https://dev.lianwen.com/zt/jc?uid={{auth()->user()->id}}</p>
+            <p id="demo" style="border: 1px solid;padding: 0 10px;" >https://www.lianwen.com/zt/jc?uid={{auth()->user()->id}}</p>
             <p style="margin-left: 10px;background: red;color: #fff;padding: 0 10px;" class="btn" id="copybtn" >复制链接</p>
           </div>
           <p style="margin:10px 0;">方式2：微信扫码，邀请好友注册（适合手机操作）</p>
@@ -351,7 +351,7 @@
 
       /*也可以配置二维码的宽高等*/
        var qrcodeObj = new QRCode('qrcode', {
-          text: 'http://dev.cnweipu.com/zt/jc?uid='+{{auth()->user()->id}},
+          text: 'http://www.cnweipu.com/zt/jc?uid='+{{auth()->user()->id}},
           width: 120,
           height: 120,
           colorDark: '#000000', //前景色
@@ -657,12 +657,12 @@
 
 @unless(Auth::user())
 console.log(window.location.href)
-if(window.location.href=='https://dev.lianwen.com/'){
+if(window.location.href=='https://www.lianwen.com/'){
  $('#jbrk').css('display','block')
 }else{
  $('#jbrk').css('display','none')
 }
-if(window.location.href=='https://dev.lianwen.com/ai_rewrite'){
+if(window.location.href=='https://www.lianwen.com/ai_rewrite'){
  $('#dlzcrk').css('display','block')
 }else{
  $('#dlzcrk').css('display','none')

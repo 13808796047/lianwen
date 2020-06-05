@@ -70,7 +70,7 @@
               <!-- <h2 class="text-center text-5xl">暂无内容!!!!</h2> -->
 
 
-              <iframe src="https://dev.lianwen.com/pdf/{{$order->orderid}}.pdf" width="100%" height="650"></iframe>
+              <iframe src="https://www.lianwen.com/pdf/{{$order->orderid}}.pdf" width="100%" height="650"></iframe>
             @endif
           </div>
         </div>
