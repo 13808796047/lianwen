@@ -210,13 +210,13 @@
   <div class="modal fade " id="noLoginModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" >
     <div class="modal-dialog modal-dialog-centered " role="document" >
-      <div class="modal-content" style="width:380px;">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="text-align:center;">
+      <div class="modal-content">
+          <div class="modal-header border-none">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <div class="modal-body">
         <ul class="nav nav-pills mt-4 d-flex justify-content-center" id="pills-tab" role="tablist">
             <li class="nav-item mr-4">
               <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
