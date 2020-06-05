@@ -531,6 +531,9 @@
         $('#noreduce').click(function(){
           $('#noLoginModal').modal('show')
         })
+        $('#dlzcrk').click(function(){
+          $('#noLoginModal').modal('show')
+        })
          //账号登录
       $('#accountLogin').click(function () {
         axios.post('{{route('login') }}', {
