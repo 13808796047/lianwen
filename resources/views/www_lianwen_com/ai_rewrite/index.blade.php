@@ -351,7 +351,7 @@
 
       /*也可以配置二维码的宽高等*/
        var qrcodeObj = new QRCode('qrcode', {
-          text: 'http://www.cnweipu.com/zt/jc?uid='+{{auth()->user()->id}},
+          text: 'http://www.lianwen.com/zt/jc?uid='+{{auth()->user()->id}},
           width: 120,
           height: 120,
           colorDark: '#000000', //前景色
