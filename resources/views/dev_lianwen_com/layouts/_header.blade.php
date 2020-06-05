@@ -65,6 +65,10 @@
         <a href="https://2019.lianwen.com" class="inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
           lg:mt-0" target="_blank">旧版入口</a>
     </div>
+    <div class="flex justify-content-around w-25 align-items-center" style="display:none;" id="dlzcrk">
+        <span class="inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
+          lg:mt-0">登录/注册</span>
+    </div>
 
   </div>
 </nav>
@@ -98,13 +102,15 @@
    };
 
   @unless(Auth::user())
-   console.log($,32132,window.location.href)
     if(window.location.href=='https://dev.lianwen.com/'){
-      console.log('xixi')
       $('#jbrk').css('display','block')
     }else{
-      console.log('haha')
       $('#jbrk').css('display','none')
+    }
+    if(window.location.href=='https://dev.lianwen.com/ai_rewrite'){
+      $('#dlzcrk').css('display','block')
+    }else{
+      $('#dlzcrk').css('display','none')
     }
     let atag = document.getElementsByClassName("istoaster");
     console.log(atag,3131)
