@@ -98,11 +98,12 @@
    };
 
   @unless(Auth::user())
-   console.log($,32132)
+   console.log($,32132,window.location.href)
     if(window.location.href=='https://dev.lianwen.com'){
       console.log('xixi')
       $('#jbrk').css('display','block')
     }else{
+      console.log('haha')
       $('#jbrk').css('display','none')
     }
     let atag = document.getElementsByClassName("istoaster");
