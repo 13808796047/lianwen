@@ -7,8 +7,8 @@
   <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto" style="margin-left:30px;">
     <div class="text-sm lg:flex-grow" id="categories">
 
-      <a href="/"
-         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none istoaster">
+      <a href="https://www.lianwen.com"
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
         首页
       </a>
 
@@ -60,54 +60,22 @@
            class="logout inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
           lg:mt-0">登出</a>
       </div>
-    @else
-    <div class="flex justify-content-around w-25 align-items-center">
-
+    @endauth
+    <div class="flex justify-content-around w-25 align-items-center" style="display:none;" id="jbrk">
         <a href="https://2019.lianwen.com" class="inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
           lg:mt-0" target="_blank">旧版入口</a>
     </div>
-    @endauth
+    <div class="flex justify-content-around w-25 align-items-center" style="display:none;" id="dlzcrk">
+        <span class="inline-block text-sm px-4 py-1 bg-teal-500 border rounded text-white border-white hover:border-transparent hover:text-black-500 hover:bg-red
+          lg:mt-0">登录/注册</span>
+    </div>
 
   </div>
 </nav>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+
 <script>
-   toastr.options = {
 
-     "closeButton": true, //是否显示关闭按钮
-
-     "debug": true, //是否使用debug模式
-
-     "showDuration": "1000",//显示的动画时间
-
-     "hideDuration": "1000",//消失的动画时间
-
-     "positionClass": "toast-cent-cent",//弹出窗的位置
-
-     "timeOut": "1000", //展现时间
-
-     "extendedTimeOut": "1000",//加长展示时间
-
-     "showEasing": "swing",//显示时的动画缓冲方式
-
-     "hideEasing": "linear",//消失时的动画缓冲方式
-
-     "showMethod": "fadeIn",//显示时的动画方式
-
-     "hideMethod": "fadeOut" //消失时的动画方式
-   };
-
-  @unless(Auth::user())
-    let atag = document.getElementsByClassName("istoaster");
-    console.log(atag,3131)
-    for(let i in atag){
-      atag[i].onclick = function(event){
-          event.preventDefault()
-          toastr.error('当前未登录账号，请登录后再操作');
-      }
-    }
-  @endunless
 </script>
 <!----- start-header---->

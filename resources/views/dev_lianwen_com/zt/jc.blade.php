@@ -160,7 +160,8 @@
       <p style="text-align: center;background: #4876FF;font-size: 50px;color:#fff;padding: 10px 30px;letter-spacing:10px;border-radius: 8px;"
         id="tjregister">
         免费体验</p>
-      <p><a href="/ai_rewrite">立即登录</a></p>
+      <p style="text-align: center;background: #32CD32;font-size: 50px;color:#fff;padding: 10px 30px;letter-spacing:10px;border-radius: 8px;margin-left:66px;color:#fff;"
+        id="tjregister"><a href="/ai_rewrite" style="color:#fff;text-decoration:none;">前往降重</a></p>
     </div>
     <div>
       <p class="t">—— AI智能降重原理 ——</p>
