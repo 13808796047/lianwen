@@ -7,8 +7,8 @@
   <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto" style="margin-left:30px;">
     <div class="text-sm lg:flex-grow" id="categories">
 
-      <a href="/"
-         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none istoaster">
+      <a href="https://dev.lianwen.com"
+         class="block  lg:inline-block lg:mt-0 text-black-500 hover:text-blue-600 mr-4 text-decoration-none">
         首页
       </a>
 
