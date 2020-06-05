@@ -73,54 +73,58 @@
   </div>
 </nav>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
-   toastr.options = {
+$(()=>{
+  console.log($,'fdsafs')
+  toastr.options = {
 
-     "closeButton": true, //是否显示关闭按钮
+"closeButton": true, //是否显示关闭按钮
 
-     "debug": true, //是否使用debug模式
+"debug": true, //是否使用debug模式
 
-     "showDuration": "1000",//显示的动画时间
+"showDuration": "1000",//显示的动画时间
 
-     "hideDuration": "1000",//消失的动画时间
+"hideDuration": "1000",//消失的动画时间
 
-     "positionClass": "toast-cent-cent",//弹出窗的位置
+"positionClass": "toast-cent-cent",//弹出窗的位置
 
-     "timeOut": "1000", //展现时间
+"timeOut": "1000", //展现时间
 
-     "extendedTimeOut": "1000",//加长展示时间
+"extendedTimeOut": "1000",//加长展示时间
 
-     "showEasing": "swing",//显示时的动画缓冲方式
+"showEasing": "swing",//显示时的动画缓冲方式
 
-     "hideEasing": "linear",//消失时的动画缓冲方式
+"hideEasing": "linear",//消失时的动画缓冲方式
 
-     "showMethod": "fadeIn",//显示时的动画方式
+"showMethod": "fadeIn",//显示时的动画方式
 
-     "hideMethod": "fadeOut" //消失时的动画方式
-   };
+"hideMethod": "fadeOut" //消失时的动画方式
+};
 
-  @unless(Auth::user())
-    console.log(window.location.href)
-    if(window.location.href=='https://dev.lianwen.com/'){
-      $('#jbrk').css('display','block')
-    }else{
-      $('#jbrk').css('display','none')
-    }
-    if(window.location.href=='https://dev.lianwen.com/ai_rewrite'){
-      $('#dlzcrk').css('display','block')
-    }else{
-      $('#dlzcrk').css('display','none')
-    }
-    let atag = document.getElementsByClassName("istoaster");
-    console.log(atag,3131)
-    for(let i in atag){
-      atag[i].onclick = function(event){
-          event.preventDefault()
-          toastr.error('当前未登录账号，请登录后再操作');
-      }
-    }
-  @endunless
+@unless(Auth::user())
+console.log(window.location.href)
+if(window.location.href=='https://dev.lianwen.com/'){
+ $('#jbrk').css('display','block')
+}else{
+ $('#jbrk').css('display','none')
+}
+if(window.location.href=='https://dev.lianwen.com/ai_rewrite'){
+ $('#dlzcrk').css('display','block')
+}else{
+ $('#dlzcrk').css('display','none')
+}
+let atag = document.getElementsByClassName("istoaster");
+console.log(atag,3131)
+for(let i in atag){
+ atag[i].onclick = function(event){
+     event.preventDefault()
+     toastr.error('当前未登录账号，请登录后再操作');
+ }
+}
+@endunless
+})
+
 </script>
 <!----- start-header---->
