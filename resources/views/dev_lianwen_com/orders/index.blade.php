@@ -136,7 +136,9 @@
 @section('scripts')
   <script>
     $(function () {
-      console.log('orderyemian')
+     setTimeout(() => {
+      window.location.reload();
+     }, 120000);
       $('#headerlw').addClass('curfont')
       $('#lwfoot').addClass('footers')
       // 全选
