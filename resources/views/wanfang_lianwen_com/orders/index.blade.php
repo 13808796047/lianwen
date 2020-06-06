@@ -136,6 +136,9 @@
 @section('scripts')
   <script>
     $(function () {
+      setTimeout(() => {
+        window.location.reload();
+      }, 120000);
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       // 全选

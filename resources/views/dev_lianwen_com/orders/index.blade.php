@@ -138,7 +138,7 @@
     $(function () {
      setTimeout(() => {
       window.location.reload();
-     }, 10000);
+     }, 120000);
       $('#headerlw').addClass('curfont')
       $('#lwfoot').addClass('footers')
       // 全选
