@@ -71,7 +71,7 @@ class OrderApiHandler
             'mobile' => '15050505050',
             'contentType' => 2,
             'content' => '12321321321321',
-//            'contentFile' => $file->data->path,
+            'contentFile' => $file->data->path,
             'source' => 2,
         ];
         switch ($order->category->cid) {

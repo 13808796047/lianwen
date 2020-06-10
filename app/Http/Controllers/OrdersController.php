@@ -49,7 +49,7 @@ class OrdersController extends Controller
 
     public function show(Order $order)
     {
-//        dd(app(OrderApiHandler::class)->getRequestHeader());
+        dd(app(OrderApiHandler::class)->getRequestHeader());
 //        $orderimg = app(OrderimgHandler::class);
 //        return $orderimg->generate();
 //        $disk = Storage::disk('public');
