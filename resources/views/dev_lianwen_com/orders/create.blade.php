@@ -282,7 +282,7 @@
         $(this).siblings().children('i').removeClass('selected')
         $(this).children('i').addClass('selected')
         $('#cid').val($(this).data('id'))
-        if ($(this).data('id') == 15 ||$(this).data('id') == 5) {
+        if ($(this).data('id') == 15 ||$(this).data('id') == 6) {
           $('#element_id').val(getNowFormatDate())
           $('#isfbtime').css('display', 'block')
         } else {
