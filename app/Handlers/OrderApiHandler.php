@@ -76,10 +76,12 @@ class OrderApiHandler
         ];
         switch ($order->category->cid) {
             case 8:
-                $body = Arr::add($data, 'endDate', $order->endDate);
+//                $body = Arr::add($data, 'endDate', $order->endDate);
+                $data['postDate'] = $order->endDate;
                 break;
             case 23:
-                $body = Arr::add($data, 'publishdate', $order->publishdate);
+//                $body = Arr::add($data, 'publishdate', $order->publishdate);
+                $data['postDate'] = $order->publishdate;
                 break;
             default:
                 $body = $data;
