@@ -77,21 +77,19 @@ class OrderApiHandler
         switch ($order->category->cid) {
             case 8:
 //                $body = Arr::add($data, 'endDate', $order->endDate);
-                $data['postDate'] = $order->endDate;
+                $data['postDate'] = $order->endDate . ' ' . date("h:i:s");
                 break;
             case 23:
 //                $body = Arr::add($data, 'publishdate', $order->publishdate);
-                $data['postDate'] = $order->publishdate;
+                $data['postDate'] = $order->publishdate . ' ' . date("h:i:s");
                 break;
-            default:
-                $body = $data;
         }
         // 构建请求参数
         $option = [
             'headers' => [
                 'Token' => $this->token
             ],
-            'body' => json_encode($body),
+            'body' => json_encode($data),
         ];
         $response = $this->http->post($this->api . 'order/create', $option);
 
