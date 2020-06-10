@@ -276,11 +276,9 @@
       $(this).children('i').addClass('selected')
       $('#cid').val($(this).data('id'))
       if ($(this).data('id') == 6) {
-            console.log('pipi')
             $('#element_id').val(getNowFormatDate())
             $('#isfbtime').css('display','block')
         }else{
-          console.log('pkaka')
             $('#isfbtime').css('display','none')
             $('#element_id').val('')
         }
