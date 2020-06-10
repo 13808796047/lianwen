@@ -71,7 +71,7 @@ class OrderApiHandler
             'mobile' => '15050505050',
             'contentType' => 2,
             'content' => '12321321321321',
-            'contentFile' => $file->data->path,
+//            'contentFile' => $file->data->path,
             'source' => 2,
         ];
         switch ($order->category->cid) {
@@ -84,7 +84,6 @@ class OrderApiHandler
                 $data['postDate'] = $order->publishdate . ' ' . date("h:i:s");
                 break;
         }
-        dd($data);
         // 构建请求参数
         $option = [
             'headers' => [
