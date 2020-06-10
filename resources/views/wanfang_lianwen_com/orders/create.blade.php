@@ -278,6 +278,7 @@
         $(this).children('i').addClass('selected')
         $('#cid').val($(this).data('id'))
         if ($(this).data('id') == 15) {
+          
           $('#element_id').val(getNowFormatDate())
           $('#isfbtime').css('display', 'block')
         } else {
