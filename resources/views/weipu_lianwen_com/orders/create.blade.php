@@ -275,10 +275,12 @@
       $(this).siblings().children('i').removeClass('selected')
       $(this).children('i').addClass('selected')
       $('#cid').val($(this).data('id'))
-      if($(this).data('id')==6){
+      if ($(this).data('id') == 6) {
+            console.log('pipi')
             $('#element_id').val(getNowFormatDate())
             $('#isfbtime').css('display','block')
         }else{
+          console.log('pkaka')
             $('#isfbtime').css('display','none')
             $('#element_id').val('')
         }
@@ -287,24 +289,24 @@
       $('#words span').html(e.target.value.length)
     })
     //  //时间选择
-    //  $('#element_id')[0].dataset.startDate = '2000/1/1'
-    //   $('#element_id')[0].dataset.endDate = getNowFormatDate()
-    //   $('#element_id').cxCalendar();
-    //   function getNowFormatDate() {
-    //      var date = new Date();
-    //      var seperator1 = "-";
-    //      var year = date.getFullYear();
-    //      var month = date.getMonth() + 1;
-    //      var strDate = date.getDate();
-    //      if (month >= 1 && month <= 9) {
-    //        month = "0" + month;
-    //      }
-    //      if (strDate >= 0 && strDate <= 9) {
-    //        strDate = "0" + strDate;
-    //      }
-    //      var currentdate = year + seperator1 + month + seperator1 + strDate
-    //      return currentdate;
-    //   }
+     $('#element_id')[0].dataset.startDate = '2000/1/1'
+      $('#element_id')[0].dataset.endDate = getNowFormatDate()
+      $('#element_id').cxCalendar();
+      function getNowFormatDate() {
+         var date = new Date();
+         var seperator1 = "-";
+         var year = date.getFullYear();
+         var month = date.getMonth() + 1;
+         var strDate = date.getDate();
+         if (month >= 1 && month <= 9) {
+           month = "0" + month;
+         }
+         if (strDate >= 0 && strDate <= 9) {
+           strDate = "0" + strDate;
+         }
+         var currentdate = year + seperator1 + month + seperator1 + strDate
+         return currentdate;
+      }
     //   //时间选择结束
     //多文件上传
     $('#customFiles').change(function (e) {
