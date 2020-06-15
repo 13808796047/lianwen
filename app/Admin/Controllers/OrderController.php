@@ -79,8 +79,8 @@ class OrderController extends AdminController
                 2 => 'primary',
                 3 => 'warning',
                 4 => 'success',
-                5 => Admin::color()->purple(),
-                6 => Admin::color()->custom(),
+                5 => Admin::color()->link(),
+                6 => Admin::color()->cyanDarker(),
                 7 => Admin::color()->blue(),
             ]);
             $grid->column('title', '标题')->link(function($title) {
