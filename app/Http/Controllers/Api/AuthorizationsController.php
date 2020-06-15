@@ -151,11 +151,8 @@ class AuthorizationsController extends Controller
                 // 返回401
                 throw new AuthenticationException('验证码错误');
             }
-
-            if(!$user = User::where('phone', $verifyData['phone'])->first()) {
-//                return response()->json([
-//                    'error' => '用户不存在',
-//                ], 401);
+            $user = User::where('phone', $verifyData['phone'])->first();
+            if(!$user) {
                 $user = User::create([
                     'phone' => $verifyData['phone']
                 ]);
