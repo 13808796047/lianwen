@@ -43,6 +43,7 @@ class UserService
 //                    'phone' => $phone,
 //                ]);
 //            }
+            $phone_user->delete();
             $mini_program_user->update([
                 'phone' => $phone,
                 'password' => $phone_user->password ?? "",
@@ -75,7 +76,6 @@ class UserService
                     'userid' => $mini_program_user->id,
                 ]);
             }
-            $phone_user->delete();
             return $mini_program_user;
         });
         return $mini_program_user;
