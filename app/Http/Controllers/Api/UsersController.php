@@ -64,7 +64,7 @@ class UsersController extends Controller
             throw new AuthenticationException('验证码错误');
         }
         $phone = $verifyData['phone'];
-        $user = $this->userService->miniprogramBindPhone($phone);
+        $user = $this->userService->miniprogramBindPhone($request, $phone);
         $this->dispatch(new BindPhoneSuccess($user));
         \Cache::forget($verification_key);
         return response([
