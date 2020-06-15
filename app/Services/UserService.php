@@ -37,7 +37,7 @@ class UserService
     {
         $mini_program_user = auth()->user();
         $phone_user = User::where('phone', $phone)->first();
-        $mini_program_user = DB::transaction(function() use ($phone_user, $phone) {
+        $mini_program_user = DB::transaction(function() use ($mini_program_user, $phone_user, $phone) {
             if(!$phone_user) {
                 $mini_program_user->update([
                     'phone' => $phone,
