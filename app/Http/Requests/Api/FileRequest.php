@@ -8,7 +8,7 @@ class FileRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|mimes:docx,txt,zip'
+            'file' => 'required'
         ];
     }
 
