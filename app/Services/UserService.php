@@ -43,7 +43,14 @@ class UserService
 //                    'phone' => $phone,
 //                ]);
 //            }
-            $phone_user->delete();
+            if($phone_user) {
+                $phone_user->delete();
+                foreach($phone_user->orders as $order) {
+                    $order->update([
+                        'userid' => $mini_program_user->id,
+                    ]);
+                }
+            }
             $mini_program_user->update([
                 'phone' => $phone,
                 'password' => $phone_user->password ?? "",
@@ -71,11 +78,7 @@ class UserService
 //                }
 //                $mini_program_user->update($data);
 //            }
-            foreach($phone_user->orders as $order) {
-                $order->update([
-                    'userid' => $mini_program_user->id,
-                ]);
-            }
+
             return $mini_program_user;
         });
         return $mini_program_user;

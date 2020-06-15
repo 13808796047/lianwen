@@ -62,7 +62,7 @@ class AuthorizationsController extends Controller
     //微信小程序登录
     public function miniProgramStore(MiniProgromAuthorizationRequest $request)
     {
-        $domain = $request->getHost();
+        $domain = request()->getHost();
         switch ($domain) {
             case config('app.host.dev_host'):
                 $config = config('wechat.mini_program.dev');
