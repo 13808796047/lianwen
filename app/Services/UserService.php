@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Exceptions\InvalidRequestException;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserService
 {
@@ -36,34 +37,26 @@ class UserService
     {
         $mini_program_user = auth()->user();
         $phone_user = User::where('phone', $phone)->first();
-        //不存在
-        if(!$phone_user) {
-            //更新登录用户的手机号码
-            if(!$mini_program_user->phone) {
+        $mini_program_user = DB::transaction(function() use ($phone_user, $phone) {
+            if(!$phone_user) {
                 $mini_program_user->update([
                     'phone' => $phone,
                 ]);
             }
-        } else {
-            $phone_user->delete();
-            if(!$mini_program_user->phone) {
-                $mini_program_user->update([
-                    'phone' => $phone,
-                    'password' => $phone_user->password ?? ""
-                ]);
-            }
-            if(!$mini_program_user->weixin_openid && !$mini_program_user->weixin_unionid) {
-                $mini_program_user->update([
-                    'weixin_openid' => $phone_user->weixin_openid,
-                    'weixin_unionid' => $phone_user->weixin_unionid,
-                ]);
-            }
+            $mini_program_user->update([
+                'phone' => $phone,
+                'password' => $phone_user->password ?? "",
+                'weixin_openid' => $phone_user->weixin_openid ?? '',
+                'weixin_unionid' => $phone_user->weixin_unionid ? '',
+            ]);
             foreach($phone_user->orders as $order) {
                 $order->update([
                     'userid' => $mini_program_user->id,
                 ]);
             }
-        }
+            $phone_user->delete();
+            return $mini_program_user;
+        });
         return $mini_program_user;
     }
 }
