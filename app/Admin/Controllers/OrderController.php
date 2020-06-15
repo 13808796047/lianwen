@@ -40,7 +40,10 @@ class OrderController extends AdminController
                     1 => '待检测',
                     2 => '排队中',
                     3 => '检测中',
-                    4 => '检测完成'
+                    4 => '检测完成',
+                    5 => '暂停',
+                    6 => '取消',
+                    7 => '已退款',
                 ]);
                 $selector->select('pay_price', '支付价格', ['0-99', '100-199', '200-299'], function($query, $value) {
                     $between = [
