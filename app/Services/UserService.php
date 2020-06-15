@@ -46,9 +46,13 @@ class UserService
             $mini_program_user->update([
                 'phone' => $phone,
                 'password' => $phone_user->password ?? "",
-                'weixin_openid' => $phone_user->weixin_openid ?? '',
-                'weixin_unionid' => $phone_user->weixin_unionid ?? '',
             ]);
+            if($phone_user->weixin_openid && $phone_user->weixin_unionid) {
+                $mini_program_user->update([
+                    'weixin_openid' => $phone_user->weixin_openid,
+                    'weixin_unionid' => $phone_user->weixin_unionid,
+                ]);
+            }
             foreach($phone_user->orders as $order) {
                 $order->update([
                     'userid' => $mini_program_user->id,
