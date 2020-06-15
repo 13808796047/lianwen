@@ -11,6 +11,7 @@ use App\Jobs\getOrderStatus;
 use App\Jobs\UploadCheckFile;
 use App\Models\Order;
 use App\Models\User;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Color;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -65,13 +66,19 @@ class OrderController extends AdminController
                 1 => '待检测',
                 2 => '排队中',
                 3 => '检测中',
-                4 => '检测完成'
+                4 => '检测完成',
+                5 => '暂停',
+                6 => '取消',
+                7 => '已退款',
             ])->dot([
                 0 => 'danger',
-                1 => 'info',
+                1 => Admin::color()->info(),
                 2 => 'primary',
                 3 => 'warning',
                 4 => 'success',
+                5 => Admin::color()->purple(),
+                6 => Admin::color()->custom(),
+                7 => Admin::color()->blue(),
             ]);
             $grid->column('title', '标题')->link(function($title) {
                 return admin_url('/orders/' . $this->id . '/edit');
