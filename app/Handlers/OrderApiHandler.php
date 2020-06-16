@@ -71,17 +71,17 @@ class OrderApiHandler
             'mobile' => '15050505050',
             'contentType' => 2,
             'content' => '12321321321321',
-//            'contentFile' => $file->data->path,
+            'contentFile' => $file->data->path,
             'source' => 2,
         ];
         switch ($order->category->cid) {
             case 8:
 //                $body = Arr::add($data, 'endDate', $order->endDate);
-                $data['postDate'] = $order->endDate . ' ' . date("h:i:s");
+                $data['postDate'] = $order->endDate . ' 00:00:00';
                 break;
             case 23:
 //                $body = Arr::add($data, 'publishdate', $order->publishdate);
-                $data['postDate'] = $order->publishdate . ' ' . date("h:i:s");
+                $data['postDate'] = $order->publishdate . ' 00:00:00';
                 break;
         }
         // 构建请求参数

@@ -62,7 +62,7 @@ class AuthorizationsController extends Controller
     //微信小程序登录
     public function miniProgramStore(MiniProgromAuthorizationRequest $request)
     {
-        $domain = $request->getHost();
+        $domain = request()->getHost();
         switch ($domain) {
             case config('app.host.dev_host'):
                 $config = config('wechat.mini_program.dev');
@@ -86,6 +86,7 @@ class AuthorizationsController extends Controller
         }
         $app = Factory::miniProgram($config);
         if(!$code = $request->code) {
+            info('code不存在~!');
             throw new AuthenticationException('参数code错误，未获取用户信息');
         }
         $data = $app->auth->session($code);
@@ -151,11 +152,8 @@ class AuthorizationsController extends Controller
                 // 返回401
                 throw new AuthenticationException('验证码错误');
             }
-
-            if(!$user = User::where('phone', $verifyData['phone'])->first()) {
-//                return response()->json([
-//                    'error' => '用户不存在',
-//                ], 401);
+            $user = User::where('phone', $verifyData['phone'])->first();
+            if(!$user) {
                 $user = User::create([
                     'phone' => $verifyData['phone']
                 ]);

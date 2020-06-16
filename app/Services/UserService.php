@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Exceptions\InvalidRequestException;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserService
 {
@@ -32,38 +33,54 @@ class UserService
         }
     }
 
-    public function miniprogramBindPhone($phone)
+    public function miniprogramBindPhone($request, $phone)
     {
         $mini_program_user = auth()->user();
         $phone_user = User::where('phone', $phone)->first();
-        //不存在
-        if(!$phone_user) {
-            //更新登录用户的手机号码
-            if(!$mini_program_user->phone) {
-                $mini_program_user->update([
-                    'phone' => $phone,
-                ]);
+        $mini_program_user = DB::transaction(function() use ($request, $mini_program_user, $phone_user, $phone) {
+//            if(!$phone_user) {
+//                $mini_program_user->update([
+//                    'phone' => $phone,
+//                ]);
+//            }
+            if($phone_user) {
+                $phone_user->delete();
+                foreach($phone_user->orders as $order) {
+                    $order->update([
+                        'userid' => $mini_program_user->id,
+                    ]);
+                }
             }
-        } else {
-            $phone_user->delete();
-            if(!$mini_program_user->phone) {
-                $mini_program_user->update([
-                    'phone' => $phone,
-                    'password' => $phone_user->password ?? ""
-                ]);
-            }
-            if(!$mini_program_user->weixin_openid && !$mini_program_user->weixin_unionid) {
-                $mini_program_user->update([
-                    'weixin_openid' => $phone_user->weixin_openid,
-                    'weixin_unionid' => $phone_user->weixin_unionid,
-                ]);
-            }
-            foreach($phone_user->orders as $order) {
-                $order->update([
-                    'userid' => $mini_program_user->id,
-                ]);
-            }
-        }
+            $mini_program_user->update([
+                'phone' => $phone,
+                'password' => $phone_user->password ?? "",
+            ]);
+//            $data = [
+//                'weixin_unionid' => $phone_user->weixin_unionid,
+//            ];
+//
+//            if($phone_user->weixin_unionid) {
+//                switch (request()->getHost()) {
+//                    case config('app.host.dev_host'):
+//                        $data['dev_weapp_openid'] = $phone_user->dev_weapp_openid;
+//                        break;
+//                    case config('app.host.wf_host'):
+//                        $data['wf_weapp_openid'] = $phone_user->wf_weapp_openid;
+//                        break;
+//                    case config('app.host.wp_host'):
+//                        $data['wp_weapp_openid'] = $phone_user->wp_weapp_openid;
+//                        break;
+//                    case config('app.host.pp_host'):
+//                        $data['pp_weapp_openid'] = $phone_user->pp_weapp_openid;
+//                        break;
+//                    default:
+//                        $data['cn_weapp_openid'] = $phone_user->cn_weapp_openid;
+//                }
+//                $mini_program_user->update($data);
+//            }
+
+            return $mini_program_user;
+        });
         return $mini_program_user;
     }
 }
