@@ -706,6 +706,8 @@
           verification_key: verification_key,
           type: 'phone'
         }).then(res => {
+          console.log(res,"系啊范德萨发生")
+          swal("提示",'登录成功', "success");
           location.reload();
         }).catch(err => {
           if (err.response.status == 401) {
