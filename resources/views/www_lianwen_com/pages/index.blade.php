@@ -265,6 +265,7 @@
           verification_key: verification_key,
           type: 'phone'
         }).then(res => {
+          swal("提示", res.data.message, "success");
           location.reload();
         }).catch(err => {
           if (err.response.status == 401) {
