@@ -49,11 +49,14 @@ class AppServiceProvider extends ServiceProvider
             $config['notify_url'] = route('payments.alipay.notify');
             $domain = request()->getHost();
             switch ($domain) {
-                case 'dev.lianwen.com':
-                    $config['return_url'] = 'https://wap.lianwen.com/wanfang/#/report';
+                case 'www.lianwen.com':
+                    $config['return_url'] = 'https://wap.lianwen.com/#/report';
                     break;
-                case "www.zcnki.com":
+                case "weipu.lianwen.com":
                     $config['return_url'] = 'https://wap.lianwen.com/weipu/#/report';
+                    break;
+                case "wanfang.lianwen.com":
+                    $config['return_url'] = 'https://wap.lianwen.com/wanfang/#/report';
                     break;
             }
             //判断当前项目运行环境是否为线上环境
