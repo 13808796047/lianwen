@@ -258,6 +258,7 @@
         getcode(this)
       })
       $('#phoneLogin').click(() => {
+        console.log("xixi",123123)
         axios.post('{{ route('login') }}', {
           phone: $('#mobile').val(),
           verification_code: $('#verification_code').val(),
