@@ -84,6 +84,7 @@ class OrderApiHandler
                 $data['postDate'] = $order->publishdate . ' 00:00:00' ?? date('Y-m-d H:i:s');
                 break;
         }
+        info($data);
         // 构建请求参数
         $option = [
             'headers' => [
