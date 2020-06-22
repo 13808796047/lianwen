@@ -77,11 +77,11 @@ class OrderApiHandler
         switch ($order->category->cid) {
             case 8:
 //                $body = Arr::add($data, 'endDate', $order->endDate);
-                $data['postDate'] = $order->endDate . ' 00:00:00' ?? '';
+                $data['postDate'] = $order->endDate . ' 00:00:00' ?: '';
                 break;
             case 23:
 //                $body = Arr::add($data, 'publishdate', $order->publishdate);
-                $data['postDate'] = $order->publishdate . ' 00:00:00' ?? '';
+                $data['postDate'] = $order->publishdate . ' 00:00:00' ?: '';
                 break;
         }
         // 构建请求参数
