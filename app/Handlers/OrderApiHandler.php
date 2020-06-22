@@ -76,11 +76,11 @@ class OrderApiHandler
         ];
         switch ($order->category->cid) {
             case 8:
-                $date = $order->endDate ?? date('Y-m-d');
+                $date = $order->endDate ?: date('Y-m-d');
                 $data['postDate'] = $date . ' 00:00:00';
                 break;
             case 23:
-                $date = $order->publishdate ?? date('Y-m-d');
+                $date = $order->publishdate ?: date('Y-m-d');
                 $data['postDate'] = $date . ' 00:00:00';
                 break;
         }
