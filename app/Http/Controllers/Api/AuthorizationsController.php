@@ -95,7 +95,8 @@ class AuthorizationsController extends Controller
         if($this->uri == 'wp') {
             $iv = $request->input('iv');
             $encryptData = $request->input('encryptData');
-            $data = $app->encryptor->decryptData($data['session_key'], $iv, $encryptData);
+            $decryptedData = $app->encryptor->decryptData($data['session_key'], $iv, $encryptData);
+            $data['unionid'] = $decryptedData['unionId'];
         }
 
         info($data);
