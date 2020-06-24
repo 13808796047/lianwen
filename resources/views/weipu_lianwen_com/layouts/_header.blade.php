@@ -277,7 +277,7 @@
   <div class="container">
     <!-- Branding Image -->
     <a class="navbar-brand " href="{{ url('/') }}">
-      <img src="https://www.cnweipu.com/images/weipu/vpcs-logo.png" alt="">
+      <img src="https://www.cnweipu.com/asset/images/vpcs-logo.png" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
