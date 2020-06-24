@@ -63,6 +63,7 @@ class AuthorizationsController extends Controller
     public function miniProgramStore(MiniProgromAuthorizationRequest $request)
     {
         $domain = request()->getHost();
+        info($domain);
         switch ($domain) {
             case config('app.host.dev_host'):
                 $config = config('wechat.mini_program.dev');
@@ -84,6 +85,7 @@ class AuthorizationsController extends Controller
                 $config = config('wechat.mini_program.cn');
                 $this->uri = 'cn';
         }
+        info($config);
         $app = Factory::miniProgram($config);
         if(!$code = $request->code) {
             info('code不存在~!');
