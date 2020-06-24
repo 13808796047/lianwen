@@ -91,7 +91,8 @@ class AuthorizationsController extends Controller
             throw new AuthenticationException('参数code错误，未获取用户信息');
         }
         $data = $app->auth->session($code);
-        if($iv = $request->input('iv') && $encryptData = $request->input('encryptData')) {
+        if($iv = $request->iv) {
+            $encryptData = $request->encryptData;
             info($iv);
             info($encryptData);
             $decryptedData = $app->encryptor->decryptData($data['session_key'], $iv, $encryptData);
