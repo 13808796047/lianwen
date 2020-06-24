@@ -63,7 +63,6 @@ class AuthorizationsController extends Controller
     public function miniProgramStore(MiniProgromAuthorizationRequest $request)
     {
         $domain = request()->getHost();
-        info($domain);
         switch ($domain) {
             case config('app.host.dev_host'):
                 $config = config('wechat.mini_program.dev');
@@ -85,7 +84,6 @@ class AuthorizationsController extends Controller
                 $config = config('wechat.mini_program.cn');
                 $this->uri = 'cn';
         }
-        info($config);
         $app = Factory::miniProgram($config);
         if(!$code = $request->code) {
             info('code不存在~!');
@@ -99,7 +97,6 @@ class AuthorizationsController extends Controller
             $data['unionid'] = $decryptedData['unionId'];
         }
 
-        info($data);
         // 如果结果错误，说明 code 已过期或不正确，返回 401 错误
         if(isset($data['errcode'])) {
             throw new AuthenticationException('code 不正确');
