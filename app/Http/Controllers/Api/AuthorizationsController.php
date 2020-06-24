@@ -11,6 +11,7 @@ use App\Models\User;
 use EasyWeChat\Factory;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
+use function Composer\Autoload\includeFile;
 
 class AuthorizationsController extends Controller
 {
@@ -91,7 +92,8 @@ class AuthorizationsController extends Controller
         }
         $data = $app->auth->session($code);
         if($iv = $request->input('iv') && $encryptData = $request->input('encryptData')) {
-            info($iv, $encryptData);
+            info($iv);
+            info($encryptData);
             $decryptedData = $app->encryptor->decryptData($data['session_key'], $iv, $encryptData);
             $data['unionid'] = $decryptedData['unionId'];
         }
