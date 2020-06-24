@@ -92,7 +92,7 @@ class AuthorizationsController extends Controller
             throw new AuthenticationException('参数code错误，未获取用户信息');
         }
         $data = $app->auth->session($code);
-        if(!$data['unionid']) {
+        if($this->uri == 'wp') {
             $iv = $request->input('iv');
             $encryptData = $request->input('encryptData');
             $data = $app->encryptor->decryptData($data['session_key'], $iv, $encryptData);
