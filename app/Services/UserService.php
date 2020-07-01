@@ -38,10 +38,12 @@ class UserService
         $mini_program_user = auth()->user();
         $phone_user = User::where('phone', $phone)->first();
         $mini_program_user = DB::transaction(function() use ($request, $mini_program_user, $phone_user, $phone) {
-            foreach($phone_user->orders as $order) {
-                $order->update([
-                    'userid' => $mini_program_user->id,
-                ]);
+            if($phone_user) {
+                foreach($phone_user->orders as $order) {
+                    $order->update([
+                        'userid' => $mini_program_user->id,
+                    ]);
+                }
             }
             $phone_user->delete();
             $mini_program_user->update([
