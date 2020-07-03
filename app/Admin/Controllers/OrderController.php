@@ -126,7 +126,7 @@ class OrderController extends AdminController
                 $filter->like('from', '来源');
                 $filter->scope('phone')->whereHas('user', function($query) {
                     $query->where('phone', 'like', "%{$this->input}%");
-                });
+                }, '手机号');
 //                $filter->like('user.phone', '手机号');
 //                $filter->like('from', '来源');
 //                $filter->whereHas('user', function($query) {
