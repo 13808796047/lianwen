@@ -114,7 +114,7 @@ class OrderController extends AdminController
             $grid->disableCreateButton();
 //            $grid->actions(new ResetOrderStatus());
 //            $grid->actions(new UploadOrderFile());
-            $grid->filter(function(Grid\Filter $filter) {
+            $grid->filter(function($filter) {
                 $filter->panel();
                 // 去掉默认的id过滤器
                 $filter->disableIdFilter();
