@@ -131,14 +131,13 @@ class OrderController extends AdminController
                     });
 
                 }, '手机号');
-//                $filter->like('user.phone', '手机号');
-//                $filter->like('from', '来源');
-//                $filter->whereHas('user', function($query) {
-//                    $query->where('phone', 'like', "%{$this->input}%");
-//                }, '手机号');
-//                $filter->whereHas('category', function($query) {
-//                    $query->where('name', 'like', "%{$this->input}%");
-//                }, '检测系统');
+                $filter->where('name', function($query) {
+
+                    $query->whereHas('category', function($query) {
+                        $query->where('name', 'like', "%{$this->input}%");
+                    });
+
+                }, '检测系统');
                 $filter->scope('1', '已支付')->where('status', 1);
                 $filter->scope('3', '检测中')->where('status', 3);
                 $filter->scope('4', '检测完成')->where('status', 4);
