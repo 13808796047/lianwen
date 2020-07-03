@@ -124,7 +124,10 @@ class OrderController extends AdminController
                 $filter->like('orderid', '订单号');
                 $filter->like('api_orderid', 'api订单ID');
                 $filter->like('from', '来源');
-                $filter->like('user.phone', '手机号');
+                $filter->scope('phone')->whereHas('user', function($query) {
+                    $query->where('phone', 'like', "%{$this->input}%");
+                });
+//                $filter->like('user.phone', '手机号');
 //                $filter->like('from', '来源');
 //                $filter->whereHas('user', function($query) {
 //                    $query->where('phone', 'like', "%{$this->input}%");
