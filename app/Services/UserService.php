@@ -46,7 +46,7 @@ class UserService
 //                    'userid' => $mini_program_user->id,
 //                ]);
 //            }
-            DB::table('order')->where('userid', $phone_user->id)->update([
+            DB::table('orders')->where('userid', $phone_user->id)->update([
                 'userid' => $mini_program_user->id
             ]);
             $phone_user->delete();
