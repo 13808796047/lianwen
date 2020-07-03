@@ -41,13 +41,14 @@ class UserService
             throw new \Exception('用户不存在', 500);
         }
         $mini_program_user = DB::transaction(function() use ($request, $mini_program_user, $phone_user, $phone) {
-            if($phone_user) {
-                foreach($phone_user->orders as $order) {
-                    $order->update([
-                        'userid' => $mini_program_user->id,
-                    ]);
-                }
-            }
+//            foreach($phone_user->orders as $order) {
+//                $order->update([
+//                    'userid' => $mini_program_user->id,
+//                ]);
+//            }
+            DB::table('order')->where('userid', $phone_user->id)->update([
+                'userid' => $mini_program_user->id
+            ]);
             $phone_user->delete();
             $mini_program_user->update([
                 'phone' => $phone,
