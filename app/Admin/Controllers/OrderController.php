@@ -27,7 +27,7 @@ class OrderController extends AdminController
     {
         // 第二个参数为 `Column` 对象， 第三个参数是自定义参数
 
-        return Grid::make(Order::with(['category']), function(Grid $grid) {
+        return Grid::make(Order::with(['category', 'user']), function(Grid $grid) {
             $grid->id->sortable()->display(function($id) {
                 return "<a href='orders/{$this->id}/download_report'>$id</a>";
             });
@@ -114,7 +114,8 @@ class OrderController extends AdminController
             $grid->disableCreateButton();
 //            $grid->actions(new ResetOrderStatus());
 //            $grid->actions(new UploadOrderFile());
-            $grid->filter(function(Grid\Filter $filter) {
+            $grid->filter(function($filter) {
+                $filter->panel();
                 // 去掉默认的id过滤器
                 $filter->disableIdFilter();
                 // 在这里添加字段过滤器
@@ -123,8 +124,20 @@ class OrderController extends AdminController
                 $filter->like('orderid', '订单号');
                 $filter->like('api_orderid', 'api订单ID');
                 $filter->like('from', '来源');
-                $filter->like('user.phone', '手机号');
-                $filter->like('category.name', '检测系统');
+                $filter->where('phone', function($query) {
+
+                    $query->whereHas('user', function($query) {
+                        $query->where('phone', 'like', "%{$this->input}%");
+                    });
+
+                }, '手机号');
+                $filter->where('name', function($query) {
+
+                    $query->whereHas('category', function($query) {
+                        $query->where('name', 'like', "%{$this->input}%");
+                    });
+
+                }, '检测系统');
                 $filter->scope('1', '已支付')->where('status', 1);
                 $filter->scope('3', '检测中')->where('status', 3);
                 $filter->scope('4', '检测完成')->where('status', 4);

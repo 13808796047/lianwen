@@ -60,8 +60,8 @@ return [
     'official_account' => [
         'dev' =>
             [
-                'app_id' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_APPID', 'your-app-id'),         // AppID
-                'secret' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_SECRET', 'your-app-secret'),    // AppSecret
+                'app_id' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
+                'secret' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),    // AppSecret
                 'token' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_TOKEN', ''),           // Token
                 'aes_key' => env('DEV_WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                 // EncodingAESKey
                 'templates' => [

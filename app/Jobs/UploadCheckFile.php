@@ -28,7 +28,6 @@ class UploadCheckFile implements ShouldQueue
         $result = $api->fileUpload($this->order);
         if($result->code == 200) {
             dispatch(new CreateCheckOrder($this->order, $result));
-            info('上传检测文件.....');
         }
     }
 

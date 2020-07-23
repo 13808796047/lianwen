@@ -11,6 +11,7 @@ use App\Models\User;
 use EasyWeChat\Factory;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
+use function Composer\Autoload\includeFile;
 
 class AuthorizationsController extends Controller
 {
@@ -86,10 +87,15 @@ class AuthorizationsController extends Controller
         }
         $app = Factory::miniProgram($config);
         if(!$code = $request->code) {
-            info('code不存在~!');
             throw new AuthenticationException('参数code错误，未获取用户信息');
         }
         $data = $app->auth->session($code);
+        if($iv = $request->iv) {
+            $encryptData = $request->encryptData;
+            $decryptedData = $app->encryptor->decryptData($data['session_key'], $iv, $encryptData);
+            $data['unionid'] = $decryptedData['unionId'];
+        }
+
         // 如果结果错误，说明 code 已过期或不正确，返回 401 错误
         if(isset($data['errcode'])) {
             throw new AuthenticationException('code 不正确');
