@@ -85,7 +85,7 @@
             }).then(willDelete => {
               // console.log(willDelete,42)
               // location.reload();
-              location.replace('https://weipu.lianwen.com')
+              location.replace('https://www.cnweipu.com')
             });
           })
         }
