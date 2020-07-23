@@ -17,6 +17,7 @@ return [
         'wf_host' => env('WF_HOST'),
         'wp_host' => env('WP_HOST'),
         'pp_host' => env('PP_HOST'),
+        'cn_host' => env('CN_HOST'),
     ],
     'name' => env('APP_NAME', 'Laravel'),
 
