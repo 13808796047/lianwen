@@ -30,7 +30,7 @@ class AuthenticationsController extends Controller
                 $this->uri = 'wp';
                 break;
             case config('app.host.cn_host'):
-                $config = config('services.www_cnweipu.com');
+                $config = config('services.www_cnweipu_com');
                 $this->uri = 'cn';
                 break;
             default:
