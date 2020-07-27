@@ -67,7 +67,7 @@ class OrderApiHandler
             'cid' => $order->category->cid, //文件資源
             'title' => $order->title,
             'postDate' => '',
-            'author' => $order->writer,
+            'author' => $order->category->classid == 4 ? substr($order->writer, 5) : $order->writer,
             'mobile' => '15050505050',
             'contentType' => 2,
             'content' => '12321321321321',
