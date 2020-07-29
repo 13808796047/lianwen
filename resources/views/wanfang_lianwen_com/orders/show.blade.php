@@ -10,6 +10,25 @@
     .curfont{
       font-size:16px;
     }
+    table.mylist {
+      border: 1px solid #CDCDCD;
+      border-collapse: collapse;
+      padding: 2px;
+      width: 780px;
+      margin: 5px 0;
+    }
+
+   .mylist td, .mylist th {
+      border: 1px solid #CDCDCD;
+      padding: 8px 5px;
+    }
+
+    .mylist .td {
+      padding-left: 10px !important;
+      padding-top: 15px !important;
+      padding-top: 15px !important;
+    }
+
   </style>
 @stop
 @section('content')
