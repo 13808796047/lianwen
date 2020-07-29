@@ -36,15 +36,16 @@ class OrderCheckedMsg implements ShouldQueue
                 'keyword4' => ['value' => $this->order->created_at->format("Y-m-d H:i:s"), 'color' => '#173177'],
                 'remark' => ['value' => '点击查看详情！', 'color' => '#173177']
             ];
-            switch ($this->host) {
-                case config('app.host.wf_host'):
+            [$class, $type] = explode('-', $this->order->from);
+            switch ($class) {
+                case 'wf':
                     $touser = $this->order->user->wf_weixin_openid;
                     $template_id = config('wechat.official_account.wf.templates.checked.template_id');
                     $appid = config('wechat.official_account.wf.templates.checked.appid');
                     $pagepath = config('wechat.official_account.wf.templates.checked.page_path');
                     $config = config('wechat.official_account.wf');
                     break;
-                case config('app.host.wp_host'):
+                case 'wp':
                     $touser = $this->order->user->wp_weixin_openid;
                     $template_id = config('wechat.official_account.wp.templates.checked.template_id');
                     $appid = config('wechat.official_account.wp.templates.checked.appid');

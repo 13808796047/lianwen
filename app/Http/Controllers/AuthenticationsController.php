@@ -29,6 +29,10 @@ class AuthenticationsController extends Controller
                 $config = config('services.weipu_lianwen_com');
                 $this->uri = 'wp';
                 break;
+            case config('app.host.cn_host'):
+                $config = config('services.www_cnweipu_com');
+                $this->uri = 'cn';
+                break;
             default:
                 $config = config('services.pp_lianwen_com');
         }
@@ -75,6 +79,9 @@ class AuthenticationsController extends Controller
                         case 'wp':
                             $attributes['wp_weixin_openid'] = $oauthUser->getOriginal()['openid'];
                             break;
+                        case 'cn':
+                            $attributes['cn_weixin_openid'] = $oauthUser->getOriginal()['openid'];
+                            break;
                     }
                     $user = User::create($attributes);
                     $uid = \Cache::get('uid');
@@ -88,6 +95,7 @@ class AuthenticationsController extends Controller
                     $user->increaseJcTimes(2);
 
                 }
+
                 break;
         }
         auth('web')->login($user);

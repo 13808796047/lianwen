@@ -67,13 +67,14 @@ class OrderApiHandler
             'cid' => $order->category->cid, //文件資源
             'title' => $order->title,
             'postDate' => '',
-            'author' => $order->writer,
+            'author' => $order->category->classid == 4 ? mb_substr($order->writer, 0, 5, 'utf-8') : $order->writer,
             'mobile' => '15050505050',
             'contentType' => 2,
             'content' => '12321321321321',
             'contentFile' => $file->data->path,
             'source' => 2,
         ];
+
         switch ($order->category->cid) {
             case 8:
                 $date = $order->endDate ?: date('Y-m-d');

@@ -68,6 +68,13 @@ return [
             'redirect' => env('WEIPU_WEIXIN_REDIRECT'),
         ]
     ],
+    'www_cnweipu_com' => [
+        'wechat' => [
+            'client_id' => env('CN_WEIXIN_KEY'),
+            'client_secret' => env('CN_WEIXIN_SECRET'),
+            'redirect' => env('CN_WEIXIN_REDIRECT'),
+        ]
+    ],
     //获取字数
     'words_count' => [
         'appid' => env('WORDSCOUNT_APPID'),
