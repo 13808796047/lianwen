@@ -159,7 +159,7 @@
     $(document).ready(function () {
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
-      // $('#lwfooter').removeClass('absolute');
+      $('#lwfooter').removeClass('absolute');
 
       $("input[name='paytype']").change(() => {
         $('#bottonsubmit').toggle();
