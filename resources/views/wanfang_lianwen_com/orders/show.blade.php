@@ -157,7 +157,7 @@
 @section('scripts')
   <script>
     $(document).ready(function () {
-      $('.navbar>div').removeClass('container').addClass('container-fluid')
+      // $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('#lwfooter').removeClass('absolute');
 
