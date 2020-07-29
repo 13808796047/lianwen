@@ -2,8 +2,8 @@
 @section('title', '查看订单')
 @section('styles')
 
-  <link href="{{asset('asset/css/theme.css')}}" rel="stylesheet"/>
-  <!-- <link href="{{asset('asset/css/check.css')}}" rel="stylesheet"/> -->
+  <!-- <link href="{{asset('asset/css/theme.css')}}" rel="stylesheet"/> -->
+  <link href="{{asset('asset/css/check.css')}}" rel="stylesheet"/>
   <!-- <link href="{{asset('asset/css/font-awesome.min.css')}}" rel="stylesheet"/>
   <link href="{{asset('asset/css/alertify.css')}}" rel="stylesheet"/> -->
   <style>
