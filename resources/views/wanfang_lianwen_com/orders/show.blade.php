@@ -19,7 +19,7 @@
 {{--      </h5>--}}
 {{--    </div>--}}
 {{--  </div>--}}
-<div class="main clearfix" style="flex:1;min-height:150%;">
+<div class="main clearfix" style="flex:1;">
 	<div class="lbox fl">
 		<div>
 			<div class="cbox submit yh">
