@@ -19,7 +19,7 @@
 {{--      </h5>--}}
 {{--    </div>--}}
 {{--  </div>--}}
-<div class="main clearfix" style="flex:1">
+<div class="main clearfix" style="flex:1;min-height:150%;">
 	<div class="lbox fl">
 		<div>
 			<div class="cbox submit yh">
@@ -160,6 +160,7 @@
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('#lwfooter').removeClass('absolute');
+
       $("input[name='paytype']").change(() => {
         $('#bottonsubmit').toggle();
         $('#btn-wechat').toggle();
