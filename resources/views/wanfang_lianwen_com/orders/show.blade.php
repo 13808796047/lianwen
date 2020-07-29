@@ -28,7 +28,30 @@
       padding-top: 15px !important;
       padding-top: 15px !important;
     }
+    .sbtn {
+      background: #4BB7FB;
+      font-size: 18px;
+      font-weight: normal;
+      border: none;
+      letter-spacing: 18px;
+      height: 45px;
+      width: 110px;
+      color: #FFF;
+      margin: 30px 5px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      padding-left: 18px;
+      display: block;
+    }
+    .btn {
+      border-radius: 2px;
+      background-image: none !important;
+    }
 
+    .btn.btn-primary {
+     background-color: #2D9AF9;
+     background-image: none;
+    }
   </style>
 @stop
 @section('content')
