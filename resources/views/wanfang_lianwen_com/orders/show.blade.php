@@ -20,7 +20,7 @@
 {{--      </h5>--}}
 {{--    </div>--}}
 {{--  </div>--}}
-<div class="main clearfix" style="min-height:800px;">
+<div class="main clearfix" style="min-height:860px;">
 	<div class="lbox fl">
 		<div>
 			<div class="cbox submit yh">
