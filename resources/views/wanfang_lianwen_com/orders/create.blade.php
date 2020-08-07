@@ -438,10 +438,10 @@
       $("#tosubmit").click(function () {
         if($('#cid').val()=="15"){
           let riqi = $('#element_id').val();
-          console.log(riqi,"hahariqi")
           let seperator = "-";
-          riqi = riqi.split(seperator);
-          if(riqi.length != 3){
+          let endriqi = riqi.split(seperator);
+          console.log(endriqi,"ixixi")
+          if(endriqi.length != 3){
             console.log("shuru")
           }
         }
