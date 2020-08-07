@@ -446,6 +446,7 @@
           let endriqi = riqi.split(seperator);
           if(endriqi.length != 3){
             $("#riqiture").css("display","block")
+            return false;
           }else{
             $("#riqiture").css("display","none")
           }
