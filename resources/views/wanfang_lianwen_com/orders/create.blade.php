@@ -436,7 +436,15 @@
       // });
       //文件上传提交论文
       $("#tosubmit").click(function () {
-        console.log(  $('#cid').val(),"xxi")
+        if($('#cid').val()=="15"){
+          let riqi = $('#element_id').val(getNowFormatDate());
+          console.log(riqi,"hahariqi")
+          let seperator = "-";
+          riqi = strDate.split(seperator);
+          if(riqi.length != 3){
+            console.log("shuru")
+          }
+        }
         if ($('#title').val() == '') return false;
         if ($('#writer').val() == '') return false;
 
