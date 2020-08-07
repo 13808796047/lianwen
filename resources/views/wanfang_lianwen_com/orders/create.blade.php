@@ -137,7 +137,11 @@
               </div>
               <input id="element_id" type="text" name="element_id"
                      class="form-control @error('writer') is-invalid @enderror">
+
             </div>
+          </div>
+          <div>
+            <span style="display:none;color:red;" id="riqiture">请选择正确日期</span>
           </div>
           <div class="mt-3">
             <ul class="nav nav-tabs tab-list" role="tablist" id="navbarText">
@@ -440,9 +444,10 @@
           let riqi = $('#element_id').val();
           let seperator = "-";
           let endriqi = riqi.split(seperator);
-          console.log(endriqi,"ixixi")
           if(endriqi.length != 3){
-            console.log("shuru")
+            $("#riqiture").css("display","block")
+          }else{
+            $("#riqiture").css("display","none")
           }
         }
         if ($('#title').val() == '') return false;
