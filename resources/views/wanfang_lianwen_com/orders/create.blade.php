@@ -437,7 +437,7 @@
       //文件上传提交论文
       $("#tosubmit").click(function () {
         if($('#cid').val()=="15"){
-          let riqi = $('#element_id').val(getNowFormatDate());
+          let riqi = $('#element_id').val();
           console.log(riqi,"hahariqi")
           let seperator = "-";
           riqi = riqi.split(seperator);
