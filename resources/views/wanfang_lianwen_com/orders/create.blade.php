@@ -440,7 +440,7 @@
           let riqi = $('#element_id').val(getNowFormatDate());
           console.log(riqi,"hahariqi")
           let seperator = "-";
-          riqi = strDate.split(seperator);
+          riqi = riqi.split(seperator);
           if(riqi.length != 3){
             console.log("shuru")
           }
