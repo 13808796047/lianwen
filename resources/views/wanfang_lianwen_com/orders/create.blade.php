@@ -436,11 +436,10 @@
       // });
       //文件上传提交论文
       $("#tosubmit").click(function () {
+        console.log(  $('#cid').val(),"xxi")
         if ($('#title').val() == '') return false;
         if ($('#writer').val() == '') return false;
-        if( $('.category>li').data('id') == 15)){
-          console.log("xixi")
-        }
+
         // 判断选择谁
         if ($('#contentfile').hasClass('active')) {
           if (oneid == '') return false;
