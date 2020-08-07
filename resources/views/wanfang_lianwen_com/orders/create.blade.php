@@ -438,7 +438,7 @@
       $("#tosubmit").click(function () {
         if ($('#title').val() == '') return false;
         if ($('#writer').val() == '') return false;
-        if( $('.category>li')data('id') == 15)){
+        if( $('.category>li').data('id') == 15)){
           console.log("xixi")
         }
         // 判断选择谁
