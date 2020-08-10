@@ -88,7 +88,7 @@ class PaymentsController extends Controller
         $config['notify_url'] = route('payments.wechat.notify');
         $payment = Factory::payment($config);
         $jssdk = $payment->jssdk;
-        $result = $payment->prepare(order);
+        $result = $payment->prepare($order);
         if($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS') {
             $prepayId = $result->prepay_id;
         }
