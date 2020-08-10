@@ -1,13 +1,56 @@
 @extends('domained::layouts.app')
 @section('title', '查看订单')
 @section('styles')
+
+  <!-- <link href="{{asset('asset/css/theme.css')}}" rel="stylesheet"/> -->
   <link href="{{asset('asset/css/check.css')}}" rel="stylesheet"/>
-  <link href="{{asset('asset/css/theme.css')}}" rel="stylesheet"/>
-  <link href="{{asset('asset/css/font-awesome.min.css')}}" rel="stylesheet"/>
-  <link href="{{asset('asset/css/alertify.css')}}" rel="stylesheet"/>
+  <!-- <link href="{{asset('asset/css/font-awesome.min.css')}}" rel="stylesheet"/>
+  <link href="{{asset('asset/css/alertify.css')}}" rel="stylesheet"/> -->
   <style>
     .curfont{
       font-size:16px;
+    }
+    table.mylist {
+      border: 1px solid #CDCDCD;
+      border-collapse: collapse;
+      padding: 2px;
+      width: 780px;
+      margin: 5px 0;
+    }
+
+   .mylist td, .mylist th {
+      border: 1px solid #CDCDCD;
+      padding: 8px 5px;
+    }
+
+    .mylist .td {
+      padding-left: 10px !important;
+      padding-top: 15px !important;
+      padding-top: 15px !important;
+    }
+    .sbtn {
+      background: #4BB7FB;
+      font-size: 18px;
+      font-weight: normal;
+      border: none;
+      letter-spacing: 18px;
+      height: 45px;
+      width: 110px;
+      color: #FFF;
+      margin: 30px 5px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      padding-left: 18px;
+      display: block;
+    }
+    .btn {
+      border-radius: 2px;
+      background-image: none !important;
+    }
+
+    .btn.btn-primary {
+     background-color: #2D9AF9;
+     background-image: none;
     }
   </style>
 @stop
@@ -19,7 +62,7 @@
 {{--      </h5>--}}
 {{--    </div>--}}
 {{--  </div>--}}
-<div class="main clearfix" style="flex:1">
+<div class="main clearfix" style="min-height:860px;">
 	<div class="lbox fl">
 		<div>
 			<div class="cbox submit yh">
@@ -157,9 +200,11 @@
 @section('scripts')
   <script>
     $(document).ready(function () {
+      // $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('.navbar>div').removeClass('container').addClass('container-fluid')
       $('#headerlw').addClass('curfont')
       $('#lwfooter').removeClass('absolute');
+
       $("input[name='paytype']").change(() => {
         $('#bottonsubmit').toggle();
         $('#btn-wechat').toggle();

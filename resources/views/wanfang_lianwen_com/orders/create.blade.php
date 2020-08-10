@@ -137,7 +137,11 @@
               </div>
               <input id="element_id" type="text" name="element_id"
                      class="form-control @error('writer') is-invalid @enderror">
+
             </div>
+          </div>
+          <div>
+            <span style="display:none;color:red;" id="riqiture">请选择正确日期</span>
           </div>
           <div class="mt-3">
             <ul class="nav nav-tabs tab-list" role="tablist" id="navbarText">
@@ -278,7 +282,6 @@
         $(this).children('i').addClass('selected')
         $('#cid').val($(this).data('id'))
         if ($(this).data('id') == 15) {
-          
           $('#element_id').val(getNowFormatDate())
           $('#isfbtime').css('display', 'block')
         } else {
@@ -437,8 +440,20 @@
       // });
       //文件上传提交论文
       $("#tosubmit").click(function () {
+        if($('#cid').val()=="15"){
+          let riqi = $('#element_id').val();
+          let seperator = "-";
+          let endriqi = riqi.split(seperator);
+          if(endriqi.length != 3){
+            $("#riqiture").css("display","block")
+            return false;
+          }else{
+            $("#riqiture").css("display","none")
+          }
+        }
         if ($('#title').val() == '') return false;
         if ($('#writer').val() == '') return false;
+
         // 判断选择谁
         if ($('#contentfile').hasClass('active')) {
           if (oneid == '') return false;
