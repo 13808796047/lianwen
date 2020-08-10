@@ -88,10 +88,23 @@ class PaymentsController extends Controller
         $config['notify_url'] = route('payments.wechat.notify');
         $payment = Factory::payment($config);
         $jssdk = $payment->jssdk;
-        $result = $payment->prepare($order);
-        if($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS') {
-            $prepayId = $result->prepay_id;
+        try {
+            $result = $payment->order->unify([
+                'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid,
+                'out_trade_no' => $order->orderid,
+                'total_fee' => $order->price * 100,//todo
+                'attach' => $order->id,
+                'spbill_create_ip' => '', // 可选，如不传该参数，SDK 将会自动获取相应 IP 地址
+                'notify_url' => $config['notify_url'], // 支付结果通知网址，如果不设置则会使用配置里的默认地址
+                'trade_type' => 'JSAPI',//支付方式
+                'openid' => $order->user->wf_openid,
+            ]);
+        } catch (InvalidRequestException $e) {
+
         }
+
+        //预支付订单号prepayId, 生成支付 JS 配置
+        $prepayId = $result['prepay_id'];
         $json = $jssdk->bridgeConfig($prepayId);
         return response()->json($json)->setStatusCode(200);
     }
