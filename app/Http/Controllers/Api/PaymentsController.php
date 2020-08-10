@@ -82,7 +82,7 @@ class PaymentsController extends Controller
     }
 
     //jssdk
-    public function WxJsBridgeData(Order $order)
+    public function wxJsBridgeData(Order $order)
     {
         $config = config('pay.wechat');
         $config['notify_url'] = route('payments.wechat.notify');
