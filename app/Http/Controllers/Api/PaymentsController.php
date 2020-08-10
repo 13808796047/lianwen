@@ -8,6 +8,7 @@ use App\Handlers\NuomiRsaSign;
 use App\Handlers\OpenidHandler;
 use App\Models\Order;
 use Carbon\Carbon;
+use EasyWeChat\Factory;
 use Endroid\QrCode\QrCode;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -78,5 +79,20 @@ class PaymentsController extends Controller
         $data['signFieldsRange'] = 1; // 固定值1
         $data['bizInfo'] = ''; // 其他信息
         return response()->json($data)->setStatusCode(200);
+    }
+
+    //jssdk
+    public function WxJsBridgeData(Order $order)
+    {
+        $config = config('pay.wechat');
+        $config['notify_url'] = route('payments.wechat.notify');
+        $payment = Factory::payment($config);
+        $jssdk = $payment->jssdk;
+        $result = $payment->prepare(order);
+        if($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS') {
+            $prepayId = $result->prepay_id;
+        }
+        $json = $jssdk->bridgeConfig($prepayId);
+        return response()->json($json)->setStatusCode(200);
     }
 }
