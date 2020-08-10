@@ -82,10 +82,8 @@ class PaymentsController extends Controller
     }
 
     //jssdk
-    public function wxJsBridgeData(Order $order)
+    public function wxJsBridgeData(Request $request, Order $order)
     {
-        $original = session('wechat.oauth_user.default.original');
-        dd($original);
         $config = config('pay.wechat');
         $config['notify_url'] = route('payments.wechat.notify');
         $payment = Factory::payment($config);
@@ -99,7 +97,7 @@ class PaymentsController extends Controller
                 'spbill_create_ip' => '', // 可选，如不传该参数，SDK 将会自动获取相应 IP 地址
                 'notify_url' => $config['notify_url'], // 支付结果通知网址，如果不设置则会使用配置里的默认地址
                 'trade_type' => 'JSAPI',//支付方式
-                'openid' => $order->user->wf_weixin_openid,
+                'openid' => app(OpenidHandler::class)->openid($request->code),
             ]);
         } catch (InvalidRequestException $e) {
 
