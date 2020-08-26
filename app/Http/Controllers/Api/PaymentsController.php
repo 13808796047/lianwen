@@ -8,6 +8,7 @@ use App\Handlers\NuomiRsaSign;
 use App\Handlers\OpenidHandler;
 use App\Models\Order;
 use Carbon\Carbon;
+use EasyWeChat\Factory;
 use Endroid\QrCode\QrCode;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -78,5 +79,34 @@ class PaymentsController extends Controller
         $data['signFieldsRange'] = 1; // 固定值1
         $data['bizInfo'] = ''; // 其他信息
         return response()->json($data)->setStatusCode(200);
+    }
+
+    //jssdk
+    public function wxJsBridgeData(Request $request, Order $order)
+    {
+        dd(app(OpenidHandler::class)->openid($request->code));
+        $config = config('pay.wechat');
+        $config['notify_url'] = route('payments.wechat.notify');
+        $payment = Factory::payment($config);
+        $jssdk = $payment->jssdk;
+        try {
+            $result = $payment->order->unify([
+                'body' => '支付' . $order->category->name . ' 的订单：' . $order->orderid,
+                'out_trade_no' => $order->orderid,
+                'total_fee' => $order->price * 100,//todo
+                'attach' => $order->id,
+                'spbill_create_ip' => '', // 可选，如不传该参数，SDK 将会自动获取相应 IP 地址
+                'notify_url' => $config['notify_url'], // 支付结果通知网址，如果不设置则会使用配置里的默认地址
+                'trade_type' => 'JSAPI',//支付方式
+                'openid' => app(OpenidHandler::class)->openid($request->code),
+            ]);
+        } catch (InvalidRequestException $e) {
+
+        }
+        dd($result);
+        //预支付订单号prepayId, 生成支付 JS 配置
+        $prepayId = $result['prepay_id'];
+        $json = $jssdk->bridgeConfig($prepayId);
+        return response()->json($json)->setStatusCode(200);
     }
 }
