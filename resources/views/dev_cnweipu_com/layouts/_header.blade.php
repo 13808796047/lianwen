@@ -237,7 +237,7 @@
 {{--<div id="home" class="header" style="box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);">--}}
 {{--  <div class="container">--}}
 {{--    <div class="logo">--}}
-{{--      <a href="/"><img src="http://www.zcnki.com/asset/images/logo/wanfang.png" title="logo"/></a>--}}
+{{--      <a href="/"><img src="http://wanfang.lianwen.com/asset/images/logo/wanfang.png" title="logo"/></a>--}}
 {{--    </div>--}}
 {{--    <!----start-top-nav---->--}}
 {{--    <nav class="top-nav float-left ml-16">--}}
@@ -277,7 +277,7 @@
   <div class="container">
     <!-- Branding Image -->
     <a class="navbar-brand " href="{{ url('/') }}">
-      <img src="http://www.zcnki.com/asset/images/logo/wanfang.png" alt="">
+      <img src="http://wanfang.lianwen.com/asset/images/logo/wanfang.png" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
