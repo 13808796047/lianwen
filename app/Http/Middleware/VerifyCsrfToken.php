@@ -18,6 +18,8 @@ class VerifyCsrfToken extends Middleware
         'orders/*',
         'oauth/weixin/callback',
         'oauth/weixin',
-        'official_account/*'
+        'official_account/*',
+        'login',
+        'register'
     ];
 }
