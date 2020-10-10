@@ -707,6 +707,7 @@
           type: 'phone'
         }).then(res => {
           swal("提示",'登录成功', "success");
+          console.log("xixi")
           location.reload();
         }).catch(err => {
           if (err.response.status == 401) {

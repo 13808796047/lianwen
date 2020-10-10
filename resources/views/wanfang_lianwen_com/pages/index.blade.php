@@ -411,7 +411,7 @@
         <div class="border border-gray-300 text-center p-2">
           <img src="{{ asset('asset/images/benke.png') }}" class="w-full"/>
           <h5 class="py-2"><a>本科版</a></h5>
-          <span class="text-red-500">2.50元/千字</span>
+          <span class="text-red-500">30.00元/万字</span>
           <p class="my-2 text-xs">适合本科、专科、自考大学生毕业论文查重，全国多个高校在使用，与学校检测结果一致。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
@@ -424,7 +424,7 @@
         <div class="border border-gray-300 text-center p-2">
           <img src="{{ asset('asset/images/shuobo.png') }}" class="w-full"/>
           <h5 class="py-2"><a>硕博版</a></h5>
-          <span class="text-red-500">2.50元/千字</span>
+          <span class="text-red-500">30.00元/万字</span>
           <p class="my-2 text-xs">含有博士/硕士学位论文全文数据库，更适合硕士和博士生论文查重，全国多个高校在使用。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
@@ -437,7 +437,7 @@
         <div class="border border-gray-300 text-center p-2">
           <img src=" {{ asset('asset/images/tongyong.png') }}" title="name" class="w-full"/>
           <h5 class="py-2"><a>通用版</a></h5>
-          <span class="text-red-500">2.50元/千字</span>
+          <span class="text-red-500">3.00元/千字</span>
           <p class="my-2 text-xs">适合未正式发表的文献、会议记录、工作总结、心得体会等..文章查重。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
@@ -451,7 +451,7 @@
         <div class="border border-gray-300 text-center p-2">
           <img src="{{ asset('asset/images/zhicheng.png') }}" title="name" class="w-full"/>
           <h5 class="py-2"><a>职称版</a></h5>
-          <span class="text-red-500">5.00元/千字</span>
+          <span class="text-red-500">6.00元/千字</span>
           <p class="my-2 text-xs">适合职称评比、已发表论文查重，可选发表时间避免出现与自己发表的论文重复的尴尬。</p>
           @guest
             <a class="bg-blue-500 text-white  py-2 block" href="javascript:;" id="login6" data-toggle="modal"
