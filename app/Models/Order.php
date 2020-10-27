@@ -16,13 +16,6 @@ class Order extends Model
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s'
     ];
-    protected $connection;
-
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-        $this->connection = $attributes['connection'];
-    }
 
     protected function serializeDate(\DateTimeInterface $date)
     {
