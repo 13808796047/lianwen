@@ -392,6 +392,7 @@ class PaymentsController extends Controller
                 switch ($type) {
                     case 'CL':
                         $order = DB::connection('xx')->table('orders')->where('orderid', $notify_arr['tpOrderId'])->first();
+                        $order = collect($order);
                         Log::info('order', [$order]);
                         break;
                     default:
