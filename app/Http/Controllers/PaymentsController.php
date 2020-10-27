@@ -387,6 +387,7 @@ class PaymentsController extends Controller
 //                $pay_time = $notify_arr['payTime']; //支付时间
 //                $orderId = $notify_arr['orderId']; //百度平台订单ID
                 //检查订单状态 检查支付状态 检查订单号  检查金额
+                Log::info('tpOrderId', [$tpOrderId]);
                 $type = substr($notify_arr['tpOrderId'], 0, 2);
                 switch ($type) {
                     case 'CL':
