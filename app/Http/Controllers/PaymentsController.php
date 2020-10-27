@@ -391,25 +391,26 @@ class PaymentsController extends Controller
                 $type = substr($notify_arr['tpOrderId'], 0, 2);
                 switch ($type) {
                     case 'CL':
-                        $order = DB::connection('xx')->table('orders')->where('orderid', $notify_arr['tpOrderId'])->first();
-                        $order = collect($order);
+                        $orderModel = new Order(['connection' => 'xx']);
+                        $order = $orderModel->where('orderid', $notify_arr['tpOrderId'])->first();
                         Log::info('order', [$order]);
                         break;
                     default:
                         $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
+                        // 订单不存在则告知微信支付
+                        if(!$order) {
+                            return 'fail';
+                        }
+                        // 将订单标记为已支付
+                        $order->update([
+                            'date_pay' => Carbon::now(),
+                            'pay_type' => '百度支付',
+                            'payid' => $notify_arr['orderId'], //订单号
+                            'pay_price' => $notify_arr['totalMoney'] / 100,//支付金额
+                            'status' => 1,
+                        ]);
                 }
-                // 订单不存在则告知微信支付
-                if(!$order) {
-                    return 'fail';
-                }
-                // 将订单标记为已支付
-                $order->update([
-                    'date_pay' => Carbon::now(),
-                    'pay_type' => '百度支付',
-                    'payid' => $notify_arr['orderId'], //订单号
-                    'pay_price' => $notify_arr['totalMoney'] / 100,//支付金额
-                    'status' => 1,
-                ]);
+
                 $this->afterOrderPaid($order);
                 $this->afterPaidMsg($order);
                 //返回付款成功
