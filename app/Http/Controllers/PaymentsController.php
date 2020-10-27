@@ -18,6 +18,7 @@ use http\Exception\InvalidArgumentException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Yansongda\Pay\Pay;
 
 class PaymentsController extends Controller
@@ -390,6 +391,7 @@ class PaymentsController extends Controller
                 switch ($type) {
                     case 'CL':
                         $order = DB::connection('xx')->select('select * from orders where orderid=?', [$notify_arr['tpOrderId']]);
+                        Log::info('order', [$order]);
                         break;
                     default:
                         $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
