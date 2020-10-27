@@ -391,7 +391,9 @@ class PaymentsController extends Controller
                 $type = substr($notify_arr['tpOrderId'], 0, 2);
                 switch ($type) {
                     case 'CL':
-                        $order = DB::connection('xx')->table('orders')->where('orderid', $notify_arr['tpOrderId'])->first();
+                        $orderModel = new Order();
+                        $order = $orderModel->setConnection('xx')->where('orderid', $notify_arr['tpOrderId'])->first();
+//                        $order = DB::connection('xx')->table('orders')->where('orderid', $notify_arr['tpOrderId'])->first();
                         Log::info('order', [$order]);
                         break;
                     default:
