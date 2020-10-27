@@ -386,7 +386,14 @@ class PaymentsController extends Controller
 //                $pay_time = $notify_arr['payTime']; //支付时间
 //                $orderId = $notify_arr['orderId']; //百度平台订单ID
                 //检查订单状态 检查支付状态 检查订单号  检查金额
-                $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
+                $type = substr($notify_arr['tpOrderId'], 0, 2);
+                switch ($type) {
+                    case 'CL':
+                        $order = DB::connection('xx')->select('select * from orders where orderid=?', [$notify_arr['tpOrderId']]);
+                        break;
+                    default:
+                        $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
+                }
                 // 订单不存在则告知微信支付
                 if(!$order) {
                     return 'fail';
