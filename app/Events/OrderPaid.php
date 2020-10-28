@@ -20,7 +20,6 @@ class OrderPaid
 
     public function __construct($order)
     {
-        Log::info('event', [$order]);
         $this->order = $order;
     }
 
