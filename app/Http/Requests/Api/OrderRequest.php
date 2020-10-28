@@ -8,7 +8,7 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'title' => 'required',
+            'title' => 'required|max:64',
             'writer' => 'required',
             'type' => 'required',
             'content' => 'required_without:file_id',
