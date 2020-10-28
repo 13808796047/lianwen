@@ -12,7 +12,7 @@ class PagesController extends Controller
     public function index()
     {
         $orderModel = new Order();
-        $order = $orderModel->setConnection('xx')->where('orderid', $notify_arr['tpOrderId'])->first();
+        $order = $orderModel->setConnection('xx')->where('orderid', 'CL202010271706055')->first();
         dd($order);
         //以下为测试
         //在搜索引擎搜索个关键词，进入网站
