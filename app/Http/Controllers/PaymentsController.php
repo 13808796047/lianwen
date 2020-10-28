@@ -393,7 +393,6 @@ class PaymentsController extends Controller
                     case 'CL':
                         $orderModel = new Order();
                         $order = $orderModel->setConnection('xx')->where('orderid', $notify_arr['tpOrderId'])->first();
-                        Log::info('order', [$order]);
                         break;
                     default:
                         $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
