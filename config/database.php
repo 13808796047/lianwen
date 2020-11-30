@@ -62,7 +62,7 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-        'u_checklike' => [
+        'uchecklike' => [
             'driver' => 'mysql',
             'url' => env('U_DATABASE_URL'),
             'host' => env('U_DB_HOST', '127.0.0.1'),

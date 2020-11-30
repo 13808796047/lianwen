@@ -392,7 +392,7 @@ class PaymentsController extends Controller
                 switch ($type) {
                     case 'CL':
                         $orderModel = new Order();
-                        $order = $orderModel->setConnection('u_checklike')->where('orderid', $notify_arr['tpOrderId'])->first();
+                        $order = $orderModel->setConnection('uchecklike')->where('orderid', $notify_arr['tpOrderId'])->first();
                         break;
                     default:
                         $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
