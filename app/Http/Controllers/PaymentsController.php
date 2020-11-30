@@ -398,6 +398,7 @@ class PaymentsController extends Controller
                         $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
 
                 }
+                Log::info('订单号', [$order]);
                 // 订单不存在则告知微信支付
                 if(!$order) {
                     return 'fail';
