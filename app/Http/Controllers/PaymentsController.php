@@ -364,6 +364,7 @@ class PaymentsController extends Controller
     public function baiduNotify()
     {
         $notify_arr = $_POST;
+        Log::info('notify', [$notify_arr]);
         //检查空
         if(!isset($notify_arr['rsaSign']) || empty($notify_arr['rsaSign'])) {
             return 'fail';
