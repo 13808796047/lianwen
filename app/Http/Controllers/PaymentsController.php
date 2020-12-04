@@ -413,7 +413,7 @@ class PaymentsController extends Controller
                     'status' => 1,
                 ]);
 
-                if($notify_arr['dealId'] != config('deal_Id')) {
+                if($notify_arr['dealId'] != config('app.deal_Id')) {
                     $this->afterOrderPaid($order);
                     $this->afterPaidMsg($order);
                 }
