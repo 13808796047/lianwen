@@ -411,8 +411,10 @@ class PaymentsController extends Controller
                     'pay_price' => $notify_arr['totalMoney'] / 100,//支付金额
                     'status' => 1,
                 ]);
-                $this->afterOrderPaid($order);
-                $this->afterPaidMsg($order);
+                if($notify_arr['dealId'] != '470215513') {
+                    $this->afterOrderPaid($order);
+                    $this->afterPaidMsg($order);
+                }
                 //返回付款成功
                 $ret['errno'] = 0;
                 $ret['msg'] = 'success';
