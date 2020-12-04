@@ -341,6 +341,7 @@ class PaymentsController extends Controller
     }
     //百度回调
     /*
+     * {"unitPrice":"300","orderId":"83572535327785","payTime":"1607060556","dealId":"470215513","tpOrderId":"CL202012041304546","count":"1","totalMoney":"300","hbBalanceMoney":"0","userId":"3171198730","promoMoney":"0","promoDetail":"","hbMoney":"0","giftCardMoney":"0","payMoney":"300","payType":"1124","returnData":"","partnerId":"6000001","rsaSign":"Kle+6XbUMcFIGrFLlrbqriv1BWMFo/Avxo1IjgOTLc2dcGUvufN/eE4fXi4h1J40KF/jtz1cl+3nIDv1vzZ7pUCZ4FoJi9YAQatyBBKEVUyAXlPYLWAlAcB6JwUmNR9xXBOZ25HyAtZ8yMwaE4fp20oOwms17c3rwh4gRp2nGS0=","status":"2"}
      *   [unitPrice] => 100 //单价分
 	    [orderId] => 81406526123456 //百度平台订单ID【幂等性标识参数】(用于重入判断)
 	    [payTime] => 1573875414 //支付完成时间，时间戳
@@ -411,7 +412,8 @@ class PaymentsController extends Controller
                     'pay_price' => $notify_arr['totalMoney'] / 100,//支付金额
                     'status' => 1,
                 ]);
-                if($notify_arr['dealId'] != '470215513') {
+
+                if($notify_arr['dealId'] != config('deal_Id')) {
                     $this->afterOrderPaid($order);
                     $this->afterPaidMsg($order);
                 }

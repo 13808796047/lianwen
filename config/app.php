@@ -12,6 +12,7 @@ return [
     | any other location as required by the application or its packages.
     |
     */
+    'deal_Id' => env('DEAL_ID'),
     'host' => [
         'dev_host' => env('DEV_HOST'),
         'wf_host' => env('WF_HOST'),
