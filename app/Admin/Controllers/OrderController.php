@@ -19,6 +19,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
 class OrderController extends AdminController
@@ -196,7 +197,8 @@ class OrderController extends AdminController
 
     public function downloadReport(Order $order)
     {
+        return Storage::disk('downloads')->download($order->report_path, $order->writer . '-' . $order->title . '.zip');
 //        return \Storage::download(storage_path() . '/app/' . $order->report_path);
-        return response()->download(storage_path() . '/app/' . $order->report_path, $order->writer . '-' . $order->title . '.zip');
+//        return response()->download(storage_path() . '/app/' . $order->report_path, $order->writer . '-' . $order->title . '.zip');
     }
 }
