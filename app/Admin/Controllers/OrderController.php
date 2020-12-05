@@ -197,7 +197,7 @@ class OrderController extends AdminController
 
     public function downloadReport(Order $order)
     {
-        dd(preg_replace("/\//", "\\\/", $order->title));
+        dd(preg_replace("/\//", "\\&", $order->title));
         return Storage::disk('downloads')->download($order->report_path, $order->writer . '-' . preg_replace("/\//", "\\\/", $order->title)
             . '.zip', $headers = ['Content-Type' => 'application/zip;charset=utf-8']);
 //        return \Storage::download(storage_path() . '/app/' . $order->report_path);
