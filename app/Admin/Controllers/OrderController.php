@@ -197,7 +197,9 @@ class OrderController extends AdminController
 
     public function downloadReport(Order $order)
     {
-        return Storage::disk('downloads')->download($order->report_path, $order->writer . '-' . $order->title . '.zip');
+        return Storage::disk('downloads')->download($order->report_path, $order->writer . '-' . $order->title . '.zip', [
+            'Content-Disposition' => 'attachment;filename=' . $name
+        ]);
 //        return \Storage::download(storage_path() . '/app/' . $order->report_path);
 //        return response()->download(storage_path() . '/app/' . $order->report_path, $order->writer . '-' . $order->title . '.zip');
     }
