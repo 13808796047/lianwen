@@ -22,19 +22,19 @@ class VerificationCodesController extends Controller
             'code' => $code,
         ];
         $domain = request()->getHost();
-        switch ($domain) {
-            case config('app.host.wf_host'):
-                $data['product'] = '万方查重';
-                break;
-            case config('app.host.wp_host'):
-                $data['product'] = '维普查重';
-                break;
-            case config('app.host.pp_host'):
-                $data['product'] = 'paperPass检测';
-                break;
-            default:
-                $data['product'] = '学信检测';
-        }
+//        switch ($domain) {
+//            case config('app.host.wf_host'):
+//                $data['product'] = '万方查重';
+//                break;
+//            case config('app.host.wp_host'):
+//                $data['product'] = '维普查重';
+//                break;
+//            case config('app.host.pp_host'):
+//                $data['product'] = 'paperPass检测';
+//                break;
+//            default:
+//                $data['product'] = '学信检测';
+//        }
         try {
             $result = $easySms->send($phone, [
                 'template' => config('easysms.gateways.aliyun.templates.register'),
