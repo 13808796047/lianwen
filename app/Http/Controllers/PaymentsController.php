@@ -396,6 +396,10 @@ class PaymentsController extends Controller
                         $orderModel = new Order();
                         $order = $orderModel->setConnection('uchecklike')->where('orderid', $notify_arr['tpOrderId'])->first();
                         break;
+                    case 'WP':
+                        $orderModel = new Order();
+                        $order = $orderModel->setConnection('cnweipu')->where('orderid', $notify_arr['tpOrderId'])->first();
+                        break;
                     default:
                         $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
 
