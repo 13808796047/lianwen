@@ -365,7 +365,6 @@ class PaymentsController extends Controller
     public function baiduNotify()
     {
         $notify_arr = $_POST;
-        Log::info('notify', [$notify_arr]);
         //检查空
         if(!isset($notify_arr['rsaSign']) || empty($notify_arr['rsaSign'])) {
             return 'fail';
@@ -398,13 +397,15 @@ class PaymentsController extends Controller
                         break;
                     case 'WP':
                         $orderModel = new Order();
+
                         $order = $orderModel->setConnection('cnweipu')->where('orderid', $notify_arr['tpOrderId'])->first();
                         break;
                     default:
                         $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
 
                 }
-                Log::info('WP', [$order]);
+
+                Log::info('WP', [$orderModel->setConnection('cnweipu')]);
                 // 订单不存在则告知微信支付
                 if(!$order) {
                     return 'fail';
