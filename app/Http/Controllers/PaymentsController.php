@@ -404,6 +404,7 @@ class PaymentsController extends Controller
                         $order = Order::where('orderid', $notify_arr['tpOrderId'])->first();
 
                 }
+                Log::info('WP', [$order]);
                 // 订单不存在则告知微信支付
                 if(!$order) {
                     return 'fail';
@@ -432,7 +433,7 @@ class PaymentsController extends Controller
             //返回付款成功
             $ret['errno'] = 0;
             $ret['msg'] = 'success';
-            $ret['data'] = ['isErrorOrder' => 1, 'isConsumed' => 2];
+            $ret['data'] = ['isErrorOrder' => 1, 'isConsumed' => 1];
             return response()->json($ret);
         }
     }
