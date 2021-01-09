@@ -405,7 +405,6 @@ class PaymentsController extends Controller
 
                 }
 
-                Log::info('WP', [$orderModel->setConnection('cnweipu')]);
                 // 订单不存在则告知微信支付
                 if(!$order) {
                     return 'fail';
