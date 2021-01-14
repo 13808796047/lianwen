@@ -52,7 +52,12 @@ return [
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
-
+        'downloads' => [
+            'driver' => 'local',
+            'root' => storage_path('app'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -61,7 +66,19 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => 'ftp.example.com',
+            'username' => 'your-username',
+            'password' => 'your-password',
 
+            // Optional FTP Settings...
+            // 'port' => 21,
+            // 'root' => '',
+            // 'passive' => true,
+            // 'ssl' => true,
+            // 'timeout' => 30,
+        ],
     ],
 
     /*

@@ -19,7 +19,7 @@ class OrderPaidMsg implements ShouldQueue
     protected $order;
     protected $host;
 
-    public function __construct(Order $order)
+    public function __construct($order)
     {
         $this->order = $order;
         $this->host = request()->getHost();

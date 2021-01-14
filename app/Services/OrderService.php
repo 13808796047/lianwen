@@ -31,8 +31,10 @@ class OrderService
                 }
                 if($result->type == 'docx') {
                     $content = read_docx($result->real_path);
-                    $words_count = $fileWordsHandler->getWords($request->title, $request->writer, $result->path);
-                    $words = $words_count['data']['wordCount'];
+//                    $words_count = $fileWordsHandler->getWords($request->title, $request->writer, $result->path);
+//                    $words = $words_count['data']['wordCount'];
+                    $res = $fileWordsHandler->submitCheck($result->path);
+                    $words = $fileWordsHandler->queryParsing($res['data']['orderid'])['data']['wordCount'];
                     if($category->classid == 4) {
                         $result = $fileUploadHandle->saveTxt($content, 'files', $user->id);
                     }

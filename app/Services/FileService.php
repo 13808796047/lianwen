@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Exceptions\InvalidRequestException;
 use App\Models\File;
 
 class FileService
@@ -20,7 +21,7 @@ class FileService
             //是否是要求的文件
             $isInFileType = in_array($extension, $fileTypes);
             if(!$isInFileType) {
-                throw new \Exception('文件格式不合法!', 400);
+                throw new InvalidRequestException('文件格式不合法!', 500);
             }
             $type = $file->getClientOriginalExtension() == 'docx' ? 'docx' : 'txt';
             $result = $uploadHandler->save($file, 'files', $user->id);

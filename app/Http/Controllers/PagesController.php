@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Handlers\BaiduPayHandler;
+use App\Models\Order;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\URL;
 
